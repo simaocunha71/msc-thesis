@@ -1,0 +1,37 @@
+public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
+		ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+		
+		// Don't try to sync if no network!
+		if(networkInfo == null || !networkInfo.isConnected() || Util.isOffline(context)) {
+			Log.w(TAG, "Not running sync, not connected to network");
+			return;
+		}
+
+		// Check if user wants to only sync on wifi
+		SharedPreferences prefs = Util.getPreferences(context);
+		if(prefs.getBoolean(Constants.PREFERENCES_KEY_SYNC_WIFI, true)) {
+			if(networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+				executeSync(context);
+			} else {
+				Log.w(TAG, "Not running sync, not connected to wifi");
+			}
+		} else {
+			executeSync(context);
+		}
+
+		// Check if user wants to only sync on battery
+		if(prefs.getBoolean(Constants.PREFERENCES_KEY_SYNC_ON_BATTERY, true)) {
+			IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+			Intent batteryStatus = context.registerReceiver(null, ifilter);
+			int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+			boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL;
+			if(isCharging) {
+				Log.w(TAG, "Not running sync, device is charging");
+			} else {
+				executeSync(context);
+			}
+		} else {
+			executeSync(context);
+		}
+	}

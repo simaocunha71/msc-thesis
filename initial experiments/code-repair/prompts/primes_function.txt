@@ -1,0 +1,13 @@
+def calculate_prime_numbers(n):
+    prime_numbers = []
+    i = 2
+    while len(prime_numbers) < n:
+        is_prime = True
+        for j in range(2, i):
+            if i % j == 0:
+                is_prime = False
+                break
+        if is_prime:
+            prime_numbers.append(i)
+        i += 1
+    return prime_numbers
