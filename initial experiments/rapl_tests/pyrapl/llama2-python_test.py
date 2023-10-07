@@ -45,7 +45,7 @@ prompt5 = {
 from llama_cpp import Llama
 import pyRAPL
 
-model_name = "../llama.cpp//models/llama-2-7b.Q2_K.gguf"
+model_name = "../../llama_cpp/models/llama-2-7b.Q2_K.gguf"
 max_tokens = 64
 
 csv_output = pyRAPL.outputs.CSVOutput('result_pyrapl.csv')
