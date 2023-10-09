@@ -7,75 +7,81 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <math.h>
+#include <sys/time.h>
+#include <unistd.h>
+#include <string.h>
 #include "rapl.h"
 
 #define RUNTIME
 
 int main(int argc, char **argv)
 {
-  char command[500], res[500];
+  char command[500] = "";
+  char res[500] = "";
   int ntimes = 1;
   int core = 0;
   int i = 0;
 
 #ifdef RUNTIME
-  clock_t begin, end;
-  double time_spent;
-
   struct timeval tvb, tva;
-
 #endif
   FILE *fp;
 
-  // printf("Program to be executed: %d",argc);
-  // strcpy( command, "./" );
-  strcat(command, argv[1]);
-  printf("Program to be executed: %s\n", argv[1]);
+  if (argc < 4)
+  {
+    fprintf(stderr, "Usage: %s <command> <ntimes> <output_filename>\n", argv[0]);
+    exit(EXIT_FAILURE);
+  }
 
-  strcpy(command, "");
-  strcat(command, argv[1]);
+  strcpy(command, argv[1]);
+  printf("Program to be executed: %s\n", command);
 
   ntimes = atoi(argv[2]);
 
-  strcpy(res, argv[3]); //argv[3] vai ser o nome do ficheiro .J
+  strcpy(res, argv[3]);
   strcat(res, ".J");
-  printf("Command: %s  %d-times res: %s\n", command, ntimes, res);
-
+  printf("Command: %s %d times, Output File: %s\n", command, ntimes, res);
 
   printf("\n\n RUNNING THE PARAMETRIZED PROGRAM:  %s\n\n\n", command);
   fflush(stdout);
 
   fp = fopen(res, "w");
 
+  if (fp == NULL)
+  {
+    perror("Error opening output file");
+    exit(EXIT_FAILURE);
+  }
+
   rapl_init(core);
 
-  fprintf(fp, "Program, Package , Core(s) , GPU , DRAM? , Time (sec) \n");
+  fprintf(fp, "Program, Package, Core(s), GPU, DRAM?, Time (sec)\n");
 
   for (i = 0; i < ntimes; i++)
   {
-    sleep(1); // sleep 1 second
-    fprintf(fp, "%s , ", argv[3]); //escrita do ID que queremos no csv/.J
+    sleep(1);                     // sleep for 1 second
+    fprintf(fp, "%s, ", argv[3]); // write the ID to the csv/.J file
     rapl_before(fp, core);
 
 #ifdef RUNTIME
-    begin = clock();
-    gettimeofday(&tvb, 0);
+    gettimeofday(&tvb, NULL);
 #endif
 
-    system(command);
+    if (system(command) == -1)
+    {
+      perror("Error executing command");
+      exit(EXIT_FAILURE);
+    }
 
 #ifdef RUNTIME
-    end = clock();
-    gettimeofday(&tva, 0);
-    //	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-    time_spent = (tva.tv_sec - tvb.tv_sec) * 1000000 + tva.tv_usec - tvb.tv_usec;
+    gettimeofday(&tva, NULL);
+    double time_spent = (tva.tv_sec - tvb.tv_sec) + (tva.tv_usec - tvb.tv_usec) / 1e6;
 #endif
 
     rapl_after(fp, core);
 
 #ifdef RUNTIME
-    fprintf(fp, " %G \n", time_spent);
+    fprintf(fp, " %lf\n", time_spent);
 #endif
   }
 
