@@ -18,7 +18,7 @@ def execute_python_script(task_id, prompt, script_to_execute):
     prompt_escaped = shlex.quote(prompt)
 
     # Compose the command for executing the Python script
-    command = f'python3 {script_path} {prompt_escaped} {task_id} >> {task_id}.J'
+    command = f'python3 {script_path} {prompt_escaped} {task_id} > {task_id}.J'
 
     # Execute the command using the shell
     subprocess.run(command, shell=True)
@@ -91,13 +91,14 @@ def start_measure(prompts_filepath):
                         csv_writer = csv.writer(csv_file)
                         csv_writer.writerow(values_to_add.split(','))
 
-    #TODO: Apagar todos os ficheiros .J depois do append para o csv final
-
+    subprocess.run("sudo rm *.J", shell=True)
 
 
 if __name__ == "__main__":
 
     FILENAME = "results_pyrapl.csv"
+
+    subprocess.run("sudo chmod -R a+r /sys/class/powercap/intel-rapl", shell=True)
 
     # List with the values of the csv's header
     header_list = [
