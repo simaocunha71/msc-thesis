@@ -7,13 +7,15 @@ models=(
     "models/llama-2-7b.Q2_K.gguf"
 )
 
-#prompts_filepath="../rapl_tests/rapl_c_function/prompts/teste.jsonl"
+prompts_filepath="../rapl_tests/rapl_c_function/prompts/teste.jsonl"
 #prompts_filepath="../rapl_tests/rapl_c_function/prompts/prompts.jsonl"
 
 RESULT_CSV="../rapl_tests/rapl_c_function/result_rapl_c.csv"
 
 # Updates all the prompts so we can use in the command line
-python3 handle_prompts.py $(basename "$prompts_filepath")
+python3 handle_prompts.py "prompts/$(basename "$prompts_filepath")"
+
+
 
 cd RAPL/
 make 
@@ -38,7 +40,7 @@ done
 awk -F',' '!seen[$1, $2, $3, $4, $5, $6]++' "$RESULT_CSV" > temp && mv temp "$RESULT_CSV"
 
 # Cleanup
-#sudo rm *.J *.log
+sudo rm *.J *.log
 
 cd ../rapl_tests/rapl_c_function/RAPL/
 make clean
