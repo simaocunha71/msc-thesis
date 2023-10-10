@@ -4,6 +4,7 @@ import re
 import csv
 import os
 import shlex
+import time
 
 def get_scripts():
     scripts = []
@@ -23,7 +24,7 @@ def execute_python_script(task_id, prompt, script_to_execute):
     # Execute the command using the shell
     subprocess.run(command, shell=True)
 
-def extract_values(model_name, input_text):
+def extract_values(model_name, input_text, execution_time):
     # Regular expressions for each value
     # Output file content example to parse
     """
@@ -40,17 +41,15 @@ def extract_values(model_name, input_text):
     """
 
     label_match = re.search(r'Label\s*:\s*(\w+)', input_text)
-    duration_match = re.search(r'Duration\s*:\s*([\d.]+)\s*us', input_text)
     pkg_match = re.search(r'socket 0\s*:\s*([\d.]+)\s*uJ', input_text)
     dram_match = re.search(r'socket 0\s*:\s*([\d.]+)\s*uJ', input_text)
 
-    if label_match and duration_match and pkg_match and dram_match:
+    if label_match and pkg_match and dram_match:
         label = label_match.group(1)
-        duration = duration_match.group(1)
         pkg = pkg_match.group(1)
         dram = dram_match.group(1)
 
-        return f'{model_name},{label},{duration},{pkg},{dram}'
+        return f'{model_name},{label},{execution_time},{pkg},{dram}'
     else:
         return None
 
@@ -64,29 +63,30 @@ def get_model_name(script_path):
 
 def start_measure(prompts_filepath):
     with open(prompts_filepath, 'r') as file:
-        lines = file.readlines() #NOTE: Provavelmente terá de ser implementado um readline em vez de termos todas as linhas carregadas em memoria
+        lines = file.readlines()
         for line in lines:
             entry = json.loads(line)
 
-            # Gets the task_id and the prompt text from JSONL file
             task_id = entry.get("task_id", "")
             prompt = entry.get("prompt", "")
 
-            # Gets all the script to run (1 per model)
             scripts_to_execute = get_scripts()
 
             for script in scripts_to_execute:
-                
-                # Executes the Python script using the task_id and the prompt
+                # Measure execution time
+                start_time = time.time()
+
                 execute_python_script(task_id.replace("/", "_"), prompt, script)
 
-                # Read measurements file from the previous execution
-                with open(f"{task_id.replace('/','_')}.J", 'r') as file:
+                end_time = time.time()
+                execution_time = end_time - start_time
+
+                with open(f"{task_id.replace('/', '_')}.J", 'r') as file:
                     input_text = file.read()
 
-                # Gets all the values to append to the CSV file from a single string
-                values_to_add = extract_values(get_model_name(script), input_text)
+                values_to_add = extract_values(get_model_name(script), input_text, execution_time)
                 if values_to_add:
+
                     with open(FILENAME, 'a', newline='') as csv_file:
                         csv_writer = csv.writer(csv_file)
                         csv_writer.writerow(values_to_add.split(','))

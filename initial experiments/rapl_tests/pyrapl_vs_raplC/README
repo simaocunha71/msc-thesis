@@ -1,0 +1,5 @@
+TODO:
+- Mudar as implementações do calculo do tempo de execução tanto no pyrapl como no rapl em c
+- Comparar ambos os resultados para o prompt criado (prompts_to_test.jsonl)
+- Escolher pyrapl ou rapl em C consoante resultados
+- Dar append da percentagem obtida pelo modelo a responder a estes prompts usando os benchmarks (para já só temos o humanEval)

@@ -7,7 +7,7 @@ models=(
     "models/llama-2-7b.Q2_K.gguf"
 )
 
-prompts_filepath="../rapl_tests/rapl_c_function/prompts/teste.jsonl"
+prompts_filepath="../rapl_tests/rapl_c_function/prompts/prompts_to_compare.jsonl"
 #prompts_filepath="../rapl_tests/rapl_c_function/prompts/prompts.jsonl"
 
 RESULT_CSV="../rapl_tests/rapl_c_function/result_rapl_c.csv"
