@@ -6,6 +6,9 @@ import os
 import shlex
 import time
 
+def transform_to_base_unit(value):
+    return str(float(value) * 10**-6)
+
 def get_scripts():
     scripts = []
     scripts.append('llama-2-7b.Q2_K.py')
@@ -24,6 +27,7 @@ def execute_python_script(task_id, prompt, script_to_execute):
     # Execute the command using the shell
     subprocess.run(command, shell=True)
 
+
 def extract_values(model_name, input_text, execution_time):
     # Regular expressions for each value
     # Output file content example to parse
@@ -33,23 +37,23 @@ def extract_values(model_name, input_text, execution_time):
     Duration : 15923350.7570 us
     -------------------------------
     PKG :
-    	socket 0 :  961007123.0000 uJ
+        socket 0 :  961007123.0000 uJ
     -------------------------------
     DRAM :
-    	socket 0 :  40850237.0000 uJ
+        socket 0 :  40850237.0000 uJ
     -------------------------------
     """
 
     label_match = re.search(r'Label\s*:\s*(\w+)', input_text)
-    pkg_match = re.search(r'socket 0\s*:\s*([\d.]+)\s*uJ', input_text)
-    dram_match = re.search(r'socket 0\s*:\s*([\d.]+)\s*uJ', input_text)
+    pkg_match = re.search(r'\bPKG\s*:\s*socket 0\s*:\s*([\d.]+)\s*uJ', input_text)
+    dram_match = re.search(r'\bDRAM\s*:\s*socket 0\s*:\s*([\d.]+)\s*uJ', input_text)
 
     if label_match and pkg_match and dram_match:
         label = label_match.group(1)
         pkg = pkg_match.group(1)
         dram = dram_match.group(1)
 
-        return f'{model_name},{label},{execution_time},{pkg},{dram}'
+        return f'{model_name},{label},{execution_time},{transform_to_base_unit(pkg)},{transform_to_base_unit(dram)}'
     else:
         return None
 

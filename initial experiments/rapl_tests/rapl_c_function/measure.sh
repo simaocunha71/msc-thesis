@@ -13,7 +13,7 @@ prompts_filepath="../rapl_tests/rapl_c_function/prompts/prompts_to_compare.jsonl
 RESULT_CSV="../rapl_tests/rapl_c_function/result_rapl_c.csv"
 
 # Updates all the prompts so we can use in the command line
-python3 handle_prompts.py "prompts/$(basename "$prompts_filepath")"
+#python3 handle_prompts.py "prompts/$(basename "$prompts_filepath")"
 
 
 
