@@ -8,8 +8,6 @@ import sys
 ROOT = os.path.dirname(os.path.abspath(__file__))
 HUMAN_EVAL = os.path.join(ROOT, *(sys.argv[1].split("/")))
 
-print(HUMAN_EVAL)
-
 
 def read_problems(evalset_file: str = HUMAN_EVAL) -> Dict[str, Dict]:
     return {task["task_id"]: task for task in stream_jsonl(evalset_file)}

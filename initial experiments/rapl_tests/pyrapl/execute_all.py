@@ -95,7 +95,7 @@ def start_measure(prompts_filepath):
                         csv_writer = csv.writer(csv_file)
                         csv_writer.writerow(values_to_add.split(','))
 
-    #subprocess.run("sudo rm *.J", shell=True)
+    subprocess.run("sudo rm *.J", shell=True)
 
 
 if __name__ == "__main__":

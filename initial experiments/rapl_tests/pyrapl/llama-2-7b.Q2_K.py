@@ -1,10 +1,3 @@
-"""
-TODO:
-- Testar diretamente o HumanEval com este modelo (mudar lá num ficheiro python???)
-- Usar a função Main do RAPL em C para testar consumo de energia e tempo de execução
-- Usar a função PYRAPL para testar consumo de energia e tempo de execução
-"""
-
 #question1 = "Q: What is the capital of England?\nA: London\nQ: What is 1+1?\nA: 2\nQ: What are the names of the planets in the Solar System?\nA: "
 
 from llama_cpp import Llama
@@ -27,8 +20,8 @@ def create_llama():
 
 llm = create_llama()
 
-with pyRAPL.Measurement(label):
-    output = llm(prompt=prompt, max_tokens=max_tokens, stop=["Q:"], echo=True)["choices"][0]["text"]
+#with pyRAPL.Measurement(label):
+output = llm(prompt=prompt, max_tokens=max_tokens, stop=["Q:"], echo=True)["choices"][0]["text"]
   
 print(output)
 """
