@@ -67,7 +67,7 @@ def eval(args, subject, engine, dev_df, test_df):
                 c = openai.Completion.create(
                     engine=engine,
                     prompt=prompt,
-                    max_tokens=1,
+                    max_tokens=500,
                     logprobs=100,
                     temperature=0,
                     echo=True

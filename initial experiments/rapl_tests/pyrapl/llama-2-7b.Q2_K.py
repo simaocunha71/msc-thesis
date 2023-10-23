@@ -30,7 +30,7 @@ llm = create_llama()
 with pyRAPL.Measurement(label):
     output = llm(prompt=prompt, max_tokens=max_tokens, stop=["Q:"], echo=True)["choices"][0]["text"]
   
-
+print(output)
 """
 Descrição das colunas CSV:
 
