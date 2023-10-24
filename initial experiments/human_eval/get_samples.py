@@ -9,7 +9,11 @@ models = [
 
 def generate_one_completion(prompt, model):
     prompt = prompt.replace('"', r'\"').replace("'", r"\'").replace(">", r"\>").replace("<", r"\<").replace("\n", r'\n')
-    command = f'python3 models/{model}.py "{prompt}" > {model}.output'
+
+    # Use shlex.quote para escapar a string do prompt corretamente
+    prompt = shlex.quote(prompt)
+
+    command = f'python3 models/{model}.py {prompt} > {model}.output'
     subprocess.run(command, shell=True)
 
     with open(f"{model}.output", "r") as file:

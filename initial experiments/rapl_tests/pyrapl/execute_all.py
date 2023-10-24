@@ -14,6 +14,16 @@ def get_scripts():
     scripts.append('llama-2-7b.Q2_K.py')
     return scripts
 
+def get_humal_eval_score(model):
+    #Para já apenas vai devolver o pass@1, mas depois vai devolver um tuplo com o pass@10 e pass@100
+    #TODO: 
+    # executar o get_samples.py
+    # executar "python3 evaluate_functional_correctness.py data/samples_llama-2-7b.Q2_K.jsonl --problem_file=data/problems_llama-2-7b.Q2_K.jsonl" usando o nome do modelo e redirecionar para um ficheiro de texto
+    # usar regex para dar parse do pass@1 (mais tarde do pass@10 e pass@100) 
+    # apagar esse ficheiro de texto
+    # retornar o valor de pass@1 (mais tarde um tuplo incluindo o pass@10 e pass@100)
+    pass
+
 def execute_python_script(task_id, prompt, script_to_execute):
     # NOTE: Assure that scripts name has the correct name of the LLM
 
@@ -44,6 +54,8 @@ def extract_values(model_name, input_text, execution_time):
     -------------------------------
     """
 
+    humal_eval_score = get_humal_eval_score(model_name)
+
     label_match = re.search(r'Label\s*:\s*(\w+)', input_text)
     pkg_match = re.search(r'\bPKG\s*:\s*socket 0\s*:\s*([\d.]+)\s*uJ', input_text)
     dram_match = re.search(r'\bDRAM\s*:\s*socket 0\s*:\s*([\d.]+)\s*uJ', input_text)
@@ -53,7 +65,8 @@ def extract_values(model_name, input_text, execution_time):
         pkg = pkg_match.group(1)
         dram = dram_match.group(1)
 
-        return f'{model_name},{label},{execution_time},{transform_to_base_unit(pkg)},{transform_to_base_unit(dram)}'
+        #NOTE: para já apenas vou por pass@1, mas tenho de dar append ao pass@10 e pass@100 - criar tantas funções quantos os pass
+        return f'{model_name},{label},{execution_time},{transform_to_base_unit(pkg)},{transform_to_base_unit(dram), {humal_eval_score}}'
     else:
         return None
 
