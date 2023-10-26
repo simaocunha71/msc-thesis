@@ -1,34 +1,19 @@
 from data import write_jsonl, read_problems
-import sys, subprocess, shlex
+import sys
 
-prompts_problems_file = sys.argv[1]
+# Argumentos de setup
+model = sys.argv[1]      # Nome do LLM
+output_got = sys.argv[2] # Output gerado pelo LLM em formato string
 
-models = [
-    "llama-2-7b.Q2_K"
+problems = read_problems(f"data/HumanEval.jsonl") # Leitura dos prompts do benchmark
+num_samples_per_task = 1                          # Numero de execuções por prompts
+
+# Geração das samples
+samples = [
+    dict(task_id=task_id, completion=output_got)
+    for task_id in problems
+    for _ in range(num_samples_per_task)
 ]
 
-def generate_one_completion(prompt, model):
-    prompt = prompt.replace('"', r'\"').replace("'", r"\'").replace(">", r"\>").replace("<", r"\<").replace("\n", r'\n')
-
-    # Use shlex.quote para escapar a string do prompt corretamente
-    prompt = shlex.quote(prompt)
-
-    command = f'python3 models/{model}.py {prompt} > {model}.output'
-    subprocess.run(command, shell=True)
-
-    with open(f"{model}.output", "r") as file:
-        completion_output = file.read()
-    
-    subprocess.run("rm *.output", shell=True)
-    return completion_output
-
-for model in models:
-    problems = read_problems()
-
-    num_samples_per_task = 1
-    samples = [
-        dict(task_id=task_id, completion=generate_one_completion(problems[task_id]["prompt"], model))
-        for task_id in problems
-        for _ in range(num_samples_per_task)
-    ]
-    write_jsonl("samples_" + model + ".jsonl", samples)
+# Escrita das samples num ficheiro jsonl
+write_jsonl("data/samples_" + model + ".jsonl", samples)
