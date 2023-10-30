@@ -30,7 +30,7 @@ for model in "${models[@]}"; do
         task_id_modified=${task_id//\//_}
 
         # You can customize the command as needed
-        sudo ../rapl_tests/rapl_c_function/RAPL/main "./main -m $model -p \"$prompt\" -n $N_TOKENS -e" $N_TIMES $task_id_modified
+        sudo ../rapl_tests/rapl_c_function/RAPL/main "./main -m $model -p \"$prompt\" -n $N_TOKENS -e -s 42" $N_TIMES $task_id_modified
     done < "$prompts_filepath"
 
     cat *.J >> "$RESULT_CSV"
