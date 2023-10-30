@@ -56,6 +56,7 @@ FILENAME   = sys.argv[3]  # Nome do ficheiro CSV final a adicionar o conteúdo (
 
 model_name = "../../llama_cpp/models/llama-2-7b.Q2_K.gguf" #Path do LLM
 max_tokens = 500          # Número máximo de tokens a ser usado pelo LLM na resposta
+#NOTE: A variação do max_tokens leva a um maior/menor consumo de energia
 
 pyRAPL.setup()
 
