@@ -12,15 +12,18 @@ def get_scripts():
     scripts.append('llama-2-7b.Q2_K.py')
     return scripts
 
-def execute_python_script(task_id, prompt, script_to_execute, CSV_FILENAME):
+def execute_python_script(task_id, prompt, entry_point, canonical_solution, test, script_to_execute, CSV_FILENAME):
     # NOTE: Temos de nos assegurar que a script de execução de um LLM está no formato [nome exato do modelo].py
 
-    # Quote the script path and prompt to handle spaces and special characters
+    # Quoting das strings para poderem ser usadas na linha de comando
     script_path = shlex.quote(script_to_execute)
     prompt_escaped = shlex.quote(prompt)
+    entry_point = shlex.quote(entry_point)
+    canonical_solution = shlex.quote(test)
+    test = shlex.quote(test)
 
     # Compose the command for executing the Python script
-    command = f'python3 {script_path} {prompt_escaped} {task_id} {CSV_FILENAME}'
+    command = f'python3 {script_path} {task_id} {prompt_escaped} {entry_point} {canonical_solution} {test} {CSV_FILENAME}'
 
     # Execute the command using the shell
     subprocess.run(command, shell=True)
@@ -37,11 +40,14 @@ def start_measure(prompts_filepath):
 
                 task_id = entry.get("task_id", "")
                 prompt = entry.get("prompt", "")
+                entry_point = entry.get("entry_point", "")
+                canonical_solution = entry.get("canonical_solution", "")
+                test = entry.get("test", "")
 
                 scripts_to_execute = get_scripts()
 
                 for script in scripts_to_execute:
-                    execute_python_script(task_id, prompt, script, FILENAME)
+                    execute_python_script(task_id, prompt, entry_point, canonical_solution, test, script, FILENAME)
     else:
         print("Ficheiro JSONL não pertence a nenhum benchmark considerado")
 
@@ -49,7 +55,7 @@ def start_measure(prompts_filepath):
 if __name__ == "__main__":
 
     # Nome do CSV final
-    FILENAME = "results_pyrapl.csv"
+    FILENAME = "measurements.csv"
 
     subprocess.run("sudo chmod -R a+r /sys/class/powercap/intel-rapl", shell=True)
 
@@ -71,7 +77,7 @@ if __name__ == "__main__":
 
     # Nome dos prompts a considerar
     prompt_files = [
-        "../../human_eval/data/HumanEval.jsonl"
+        "human_eval/data/HumanEval.jsonl"
     ]
 
     for prompt_file in prompt_files:
