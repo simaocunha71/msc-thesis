@@ -1,13 +1,13 @@
 #question1 = "Q: What is the capital of England?\nA: London\nQ: What is 1+1?\nA: 2\nQ: What are the names of the planets in the Solar System?\nA: "
 
 from llama_cpp import Llama
-import sys, os, subprocess, time, re, csv
+import sys, os, subprocess, time, re, csv, shlex
 import pyRAPL
 
 #Usage: python3 llama2-python_test.py <prompt> <label>
 #Example: python3 llama2-python_test ""Building a website can be done in 10 simple steps:\nStep 1:" "HumanEval/42"
 
-def run_human_eval_benchmark(model, output, label, entry_point, canonical_solution, test):
+def run_human_eval_benchmark(model, output, label):
     """Calcula o score do benchmark HumanEval - neste momento apenas calcula o pass@1 mas mais tarde vou incluir o pass@10 e pass@100"""
     return_value = None
 
@@ -17,9 +17,18 @@ def run_human_eval_benchmark(model, output, label, entry_point, canonical_soluti
     os.chdir("human_eval")
 
     # Executa a script get_samples.py que irá calcular as samples de um dado LLM para a execução do HumanEval
-    command = f'python3 get_samples.py {model} "{label}" "{output}" "{entry_point}" "{canonical_solution}" "{test}"'
+    # Escreva o result_prompt em um arquivo temporário
+    temp_prompt_file = "temp_output_prompt.txt"
+    with open(temp_prompt_file, 'w') as prompt_file:
+        prompt_file.write(output)
+
+    command = f'python3 get_samples.py {model} "{label}" "{temp_prompt_file}"'
     subprocess.run(command,  shell=True)
 
+    # Remova o arquivo temporário
+    os.remove(temp_prompt_file)
+
+    """
     # Calcula o(s) score(s) do benchmark HumanEval e coloca o resultado num ficheiro de texto    
     subprocess.run(f"python3 evaluate_functional_correctness.py data/samples_{model}.jsonl --problem_file=data/HumanEval.jsonl > human_eval_score_{label}.txt", shell=True)
 
@@ -42,6 +51,7 @@ def run_human_eval_benchmark(model, output, label, entry_point, canonical_soluti
 
     # Apagamos o ficheiro de texto
     subprocess.run(f"rm human_eval_score_{label}.txt", shell=True)
+    """
     
     # Voltamos à diretoria inicial
     os.chdir("..")
@@ -52,12 +62,15 @@ def run_human_eval_benchmark(model, output, label, entry_point, canonical_soluti
 
 # Argumentos da função e setup
 
+# Argumentos da função e setup
 label              = sys.argv[1]  # Identificador da execução do LLM no ficheiro CSV final
-prompt             = sys.argv[2]  # Prompt a ser usado pelo LLM
-entry_point        = sys.argv[3]  # Nome da função do promtps
-canonical_solution = sys.argv[4]  # Solução esperada
-test               = sys.argv[5]  # Conjunto de testes para a solução
-FILENAME           = sys.argv[6]  # Nome do ficheiro CSV final a adicionar o conteúdo (append)
+prompt_file_path   = sys.argv[2]  # Caminho do arquivo temporário contendo o prompt
+FILENAME           = sys.argv[3]  # Nome do ficheiro CSV final a adicionar o conteúdo (append)
+
+# Ler o prompt do arquivo temporário
+with open(prompt_file_path, 'r') as prompt_file:
+    prompt = prompt_file.read()
+
 
 model_name = "llama_cpp/models/llama-2-7b.Q2_K.gguf" #Path do LLM
 max_tokens = 512          # Número máximo de tokens a ser usado pelo LLM na resposta
@@ -101,18 +114,15 @@ with open(output_file_path, "w") as output_file:
 
 human_eval_score = run_human_eval_benchmark(
     "llama-2-7b.Q2_K", 
-    output.replace('"', r'\"').replace("'", r"\'").replace(">", r"\>").replace("<", r"\<").replace("\n", r'\n'), 
-    label,
-    entry_point.replace('"', r'\"').replace("'", r"\'").replace(">", r"\>").replace("<", r"\<").replace("\n", r'\n'), 
-    canonical_solution.replace('"', r'\"').replace("'", r"\'").replace(">", r"\>").replace("<", r"\<").replace("\n", r'\n'), 
-    test.replace('"', r'\"').replace("'", r"\'").replace(">", r"\>").replace("<", r"\<").replace("\n", r'\n')
+    shlex.quote(output), 
+    label
 )
 
 # Adição da medição ao ficheiro CSV final
 with open(FILENAME, 'a', newline='') as csv_file:
     csv_writer = csv.writer(csv_file)
     #NOTE: colocar em J e em S
-    csv_writer.writerow(["llama-2-7b.Q2_K", label, execution_time, measure.result.pkg[0], measure.result.dram[0], human_eval_score])
+    csv_writer.writerow(["llama-2-7b.Q2_K", label, execution_time, measure.result.pkg[0], measure.result.dram[0], "human_eval_score"])
 
 """
 Descrição das colunas CSV:

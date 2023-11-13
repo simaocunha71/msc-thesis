@@ -4,10 +4,10 @@ import sys
 # Argumentos de setup
 model              = sys.argv[1] # Nome do LLM
 label              = sys.argv[2] # Label do prompt
-output_got         = sys.argv[3] # Output gerado pelo LLM em formato string
-entry_point        = sys.argv[4] # Nome da função (originária do ficheiro dos prompts)
-canonical_solution = sys.argv[5] # Solução esperada (originária do ficheiro dos prompts)
-test               = sys.argv[6] # Conjunto de testes da função (originária do ficheiro dos prompts)
+output_got_file    = sys.argv[3] # Ficheiro c/ output gerado pelo LLM em formato string
+
+with open(output_got_file, 'r') as prompt_file:
+    output_got = prompt_file.read()
 
 #problems = read_problems(f"data/HumanEval.jsonl") # Leitura dos prompts do benchmark
 num_samples_per_task = 1                           # Numero de execuções por prompts
@@ -15,7 +15,7 @@ num_samples_per_task = 1                           # Numero de execuções por p
 samples = [
     dict(
         task_id=label.replace("_", "/"), 
-        completion=output_got.replace(r'\n', '\n').replace(r'\"', '"').replace(r"\'", "'").replace(r'\>', '>').replace(r'\<', '<').replace(r'\n', '\n').replace(r'\<', '<').replace(r'\>', '>').replace(r"\'", "'").replace(r'\"', '"')
+        completion=output_got
     ) for _ in range(num_samples_per_task)
 ]
 

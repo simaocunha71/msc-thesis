@@ -4,7 +4,23 @@ import re
 import csv
 import os
 import shlex
-import time
+import time, sys
+
+def escape_string(input_string):
+    escape_sequences = {
+        r'\n': r'\\n',
+        r'\r': r'\\r',
+        r'\t': r'\\t',
+        r"'": r"\\'",
+        r'"': r'\\"',
+        r'\\': r'\\\\'
+    }
+
+    for char, escape_sequence in escape_sequences.items():
+        input_string = input_string.replace(char, escape_sequence)
+
+    return input_string
+
 
 def get_scripts():
     """Junta todas as scripts que executam os LLMs numa lista"""
@@ -12,21 +28,23 @@ def get_scripts():
     scripts.append('llama-2-7b.Q2_K.py')
     return scripts
 
-def execute_python_script(task_id, prompt, entry_point, canonical_solution, test, script_to_execute, CSV_FILENAME):
-    # NOTE: Temos de nos assegurar que a script de execução de um LLM está no formato [nome exato do modelo].py
+def execute_python_script(task_id, prompt, script_to_execute, CSV_FILENAME):
+    prompt = escape_string(prompt)
 
-    # Quoting das strings para poderem ser usadas na linha de comando
-    script_path = shlex.quote(script_to_execute)
-    prompt_escaped = shlex.quote(prompt)
-    entry_point = shlex.quote(entry_point)
-    canonical_solution = shlex.quote(test)
-    test = shlex.quote(test)
+    # Escreva o prompt em um arquivo temporário
+    temp_prompt_file = "temp_prompt.txt"
+    with open(temp_prompt_file, 'w') as prompt_file:
+        prompt_file.write(prompt)
 
-    # Compose the command for executing the Python script
-    command = f'python3 {script_path} {task_id} {prompt_escaped} {entry_point} {canonical_solution} {test} {CSV_FILENAME}'
+    # Componha o comando para executar o Python script com o caminho do arquivo prompt
+    command = f"python3 {script_to_execute} '{task_id}' {temp_prompt_file} {CSV_FILENAME}"
 
-    # Execute the command using the shell
+    # Execute o comando usando o shell
     subprocess.run(command, shell=True)
+
+    # Remova o arquivo temporário
+    os.remove(temp_prompt_file)
+
 
 def start_measure(prompts_filepath):
     # Execução das scripts de todos os modelos considerados
@@ -40,14 +58,11 @@ def start_measure(prompts_filepath):
 
                 task_id = entry.get("task_id", "")
                 prompt = entry.get("prompt", "")
-                entry_point = entry.get("entry_point", "")
-                canonical_solution = entry.get("canonical_solution", "")
-                test = entry.get("test", "")
 
                 scripts_to_execute = get_scripts()
 
                 for script in scripts_to_execute:
-                    execute_python_script(task_id, prompt, entry_point, canonical_solution, test, script, FILENAME)
+                    execute_python_script(task_id, prompt, script, FILENAME)
     else:
         print("Ficheiro JSONL não pertence a nenhum benchmark considerado")
 
