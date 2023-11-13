@@ -133,15 +133,20 @@ end_time = time.time()
 execution_time = end_time - start_time
 
 # Criar a pasta "prompts_returned" se não existir
-output_directory = "prompts_returned"
-if not os.path.exists(output_directory):
-    os.makedirs(output_directory)
+outputs_directory = "prompts_returned"
+if not os.path.exists(outputs_directory):
+    os.makedirs(outputs_directory)
 
 # Substituir '/' por '_' no nome do ficheiro
 label_for_filename = label.replace("/", "_")
 
-# Guardar o código gerado pelo modelo na pasta "prompts_returned"
-output_file_path = os.path.join(output_directory, f"{label_for_filename}_{''.join(model_name.split('/')[-1].split('.')[:-1])}.py")
+# Criar a pasta "llama-2-7b.Q2_K/" se não existir
+models_outputs_directory = outputs_directory + "/" + ''.join(model_name.split('/')[-1].split('.')[:-1])
+if not os.path.exists(models_outputs_directory):
+    os.makedirs(models_outputs_directory)
+
+# Guardar o código gerado pelo modelo na pasta "prompts_returned/llama-2-7b.Q2_K/"
+output_file_path = os.path.join(models_outputs_directory, f"{label_for_filename}.py")
 with open(output_file_path, "w") as output_file:
     output_file.write(output)
 
