@@ -6,7 +6,7 @@ import os
 import shlex
 import time, sys
 
-N_TIMES = 2
+N_TIMES = 1
 
 def get_scripts():
     """Junta todas as scripts que executam os LLMs numa lista"""
