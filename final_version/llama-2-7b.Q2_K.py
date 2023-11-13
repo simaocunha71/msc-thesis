@@ -22,11 +22,16 @@ def run_human_eval_benchmark(model, output, label):
     with open(temp_prompt_file, 'w') as prompt_file:
         prompt_file.write(output)
 
-    command = f'python3 get_samples.py {model} "{label}" "{temp_prompt_file}"'
+    subprocess.run("grep -vxFf ../temp_prompt.txt temp_output_prompt.txt > completion_content.txt", shell=True)
+
+    command = f'python3 get_samples.py {model} "{label}" completion_content.txt'
     subprocess.run(command,  shell=True)
 
     # Remova o arquivo temporário
     os.remove(temp_prompt_file)
+    os.remove("completion_content.txt")
+    os.remove("../temp_prompt.txt")
+    
 
     """
     # Calcula o(s) score(s) do benchmark HumanEval e coloca o resultado num ficheiro de texto    
@@ -114,7 +119,7 @@ with open(output_file_path, "w") as output_file:
 
 human_eval_score = run_human_eval_benchmark(
     "llama-2-7b.Q2_K", 
-    shlex.quote(output), 
+    output, 
     label
 )
 

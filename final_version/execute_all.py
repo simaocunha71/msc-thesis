@@ -6,21 +6,7 @@ import os
 import shlex
 import time, sys
 
-def escape_string(input_string):
-    escape_sequences = {
-        r'\n': r'\\n',
-        r'\r': r'\\r',
-        r'\t': r'\\t',
-        r"'": r"\\'",
-        r'"': r'\\"',
-        r'\\': r'\\\\'
-    }
-
-    for char, escape_sequence in escape_sequences.items():
-        input_string = input_string.replace(char, escape_sequence)
-
-    return input_string
-
+N_TIMES = 2
 
 def get_scripts():
     """Junta todas as scripts que executam os LLMs numa lista"""
@@ -29,8 +15,6 @@ def get_scripts():
     return scripts
 
 def execute_python_script(task_id, prompt, script_to_execute, CSV_FILENAME):
-    prompt = escape_string(prompt)
-
     # Escreva o prompt em um arquivo temporário
     temp_prompt_file = "temp_prompt.txt"
     with open(temp_prompt_file, 'w') as prompt_file:
@@ -41,9 +25,6 @@ def execute_python_script(task_id, prompt, script_to_execute, CSV_FILENAME):
 
     # Execute o comando usando o shell
     subprocess.run(command, shell=True)
-
-    # Remova o arquivo temporário
-    os.remove(temp_prompt_file)
 
 
 def start_measure(prompts_filepath):
@@ -96,4 +77,5 @@ if __name__ == "__main__":
     ]
 
     for prompt_file in prompt_files:
-        start_measure(prompt_file)
+        for _ in range(N_TIMES):
+            start_measure(prompt_file)
