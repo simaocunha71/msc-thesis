@@ -8,26 +8,18 @@ import time, sys
 
 N_TIMES = 1
 
-def get_scripts():
-    """Junta todas as scripts que executam os LLMs numa lista"""
-    scripts = []
-    scripts.append('llama-2-7b.Q2_K.py')
-    return scripts
-
 def execute_python_script(task_id, prompt, script_to_execute, CSV_FILENAME):
-    # Escreva o prompt em um arquivo temporário
+    # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
     temp_prompt_file = "temp_prompt.txt"
     with open(temp_prompt_file, 'w') as prompt_file:
         prompt_file.write(prompt)
 
-    # Componha o comando para executar o Python script com o caminho do arquivo prompt
     command = f"python3 {script_to_execute} '{task_id}' {temp_prompt_file} {CSV_FILENAME}"
 
-    # Execute o comando usando o shell
     subprocess.run(command, shell=True)
 
 
-def start_measure(prompts_filepath):
+def start_measure(model_script, prompts_filepath):
     # Execução das scripts de todos os modelos considerados
 
     if prompts_filepath.endswith("HumanEval.jsonl"):
@@ -40,10 +32,7 @@ def start_measure(prompts_filepath):
                 task_id = entry.get("task_id", "")
                 prompt = entry.get("prompt", "")
 
-                scripts_to_execute = get_scripts()
-
-                for script in scripts_to_execute:
-                    execute_python_script(task_id, prompt, script, FILENAME)
+                execute_python_script(task_id, prompt, model_script, FILENAME)
     else:
         print("Ficheiro JSONL não pertence a nenhum benchmark considerado")
 
@@ -76,6 +65,13 @@ if __name__ == "__main__":
         "human_eval/data/HumanEval.jsonl"
     ]
 
-    for prompt_file in prompt_files:
-        for _ in range(N_TIMES):
-            start_measure(prompt_file)
+    # Nome das scripts a executar
+    scripts_to_execute = [
+        "llama-2-7b.Q2_K.py",
+        'llama-2-7b.Q3_K_L.py'
+    ]
+
+    for _ in range(N_TIMES):
+        for script in scripts_to_execute:
+            for prompt_file in prompt_files:
+                start_measure(script, prompt_file)
