@@ -43,7 +43,7 @@ def run_human_eval_benchmark(model):
     os.chdir("human_eval")
 
     # Calcula o(s) score(s) do benchmark HumanEval e coloca o resultado num ficheiro de texto    
-    subprocess.run(f"python3 evaluate_functional_correctness.py data/samples_{model}.jsonl --problem_file=data/HumanEval.jsonl > human_eval_score.txt", shell=True)
+    os.system(f"python3 evaluate_functional_correctness.py data/samples_{model}.jsonl --problem_file=data/HumanEval.jsonl > human_eval_score.txt")
 
     # Caso exista o ficheiro, iremos fazer parsing do pass@1, pass@10 e pass@100
     if os.path.exists(f"human_eval_score.txt"):
@@ -63,7 +63,7 @@ def run_human_eval_benchmark(model):
         print(f"Error: The file 'human_eval_score.txt' was not found.")
 
     # Apagamos o ficheiro de texto temporário
-    subprocess.run(f"rm human_eval_score.txt", shell=True)
+    os.system(f"rm human_eval_score.txt")
 
     # Voltamos a diretoria inicial
     os.chdir("..")
@@ -86,11 +86,11 @@ def generate_samples(model, output, label):
 
     # O ficheiro "completion_content.txt" vai conter apenas o código gerado pelo modelo,
     # excluindo-se a assinatura da função e comentários iniciais
-    subprocess.run("grep -vxFf ../temp_prompt.txt temp_output_prompt.txt > completion_content.txt", shell=True)
+    os.system("grep -vxFf ../temp_prompt.txt temp_output_prompt.txt > completion_content.txt")
 
     # Executa a script get_samples.py que irá calcular as samples de um dado LLM para a execução do HumanEval
     command = f'python3 get_samples.py {model} "{label}" completion_content.txt'
-    subprocess.run(command,  shell=True)
+    os.system(command)
 
     # Remove os ficheiros de texto temporários
     os.remove(temp_prompt_file)

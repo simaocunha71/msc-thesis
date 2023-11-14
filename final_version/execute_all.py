@@ -16,7 +16,7 @@ def execute_python_script(task_id, prompt, script_to_execute, CSV_FILENAME):
 
     command = f"python3 {script_to_execute} '{task_id}' {temp_prompt_file} {CSV_FILENAME}"
 
-    subprocess.run(command, shell=True)
+    os.system(command)
 
 
 def start_measure(model_script, prompts_filepath):
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     # Nome do CSV final
     FILENAME = "measurements.csv"
 
-    subprocess.run("sudo chmod -R a+r /sys/class/powercap/intel-rapl", shell=True)
+    os.system("sudo chmod -R a+r /sys/class/powercap/intel-rapl")
 
     # Nome das colunas do CSV final
     header_list = [
