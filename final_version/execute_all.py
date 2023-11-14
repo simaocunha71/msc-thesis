@@ -6,7 +6,7 @@ import os
 import shlex
 import time, sys
 
-N_TIMES = 1
+N_TIMES = 2
 
 def execute_python_script(task_id, prompt, script_to_execute, CSV_FILENAME):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
@@ -68,10 +68,11 @@ if __name__ == "__main__":
     # Nome das scripts a executar
     scripts_to_execute = [
         "llama-2-7b.Q2_K.py",
-        'llama-2-7b.Q3_K_L.py'
+        "llama-2-7b.Q3_K_L.py"
     ]
 
-    for _ in range(N_TIMES):
+    for i in range(N_TIMES):
+        print(f"------------------ Executed times = {i} ------------------\n")
         for script in scripts_to_execute:
             for prompt_file in prompt_files:
                 start_measure(script, prompt_file)

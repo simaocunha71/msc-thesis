@@ -7,6 +7,10 @@ import pyRAPL
 #Usage: python3 llama2-python_test.py <prompt> <label>
 #Example: python3 llama2-python_test ""Building a website can be done in 10 simple steps:\nStep 1:" "HumanEval/42"
 
+def print_measure_information(model_name, prompt_id):
+    print(f"\n\nModel: {model_name}")
+    print(f"Prompt: {prompt_id}\n")
+
 def add_human_eval_score_in_csv(csv_file_old, csv_file_new, column_name, value_to_add):
     """Adiciona um valor numa coluna de um ficheiro CSV já existente"""
     
@@ -112,9 +116,11 @@ max_tokens = 512                                     # Número máximo de tokens
 pyRAPL.setup()
 
 def create_llama():
-    return Llama(model_path=model_name, seed=42)
+    return Llama(model_path=model_name, seed=42, verbose=False)
 
 llm = create_llama()
+
+print_measure_information(model_name, label)
 
 pyRAPL.setup()
 
