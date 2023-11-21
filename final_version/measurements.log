@@ -1,0 +1,1984 @@
+simao@simao-GL63-8SE:~/Desktop/thesis-repository/final_version$ python3 execute_all.py 
+[sudo] password for simao: 
+------------------ Executed times = 1 ------------------
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/0
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/1
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/2
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/3
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/4
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/5
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/6
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/7
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/8
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/9
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/10
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/11
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/12
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/13
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/14
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/15
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/16
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/17
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/18
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/19
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/20
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/21
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/22
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/23
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/24
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/25
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/26
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/27
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/28
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/29
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/30
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/31
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/32
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/33
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/34
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/35
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/36
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/37
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/38
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/39
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/40
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/41
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/42
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/43
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/44
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/45
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/46
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/47
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/48
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/49
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/50
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/51
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/52
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/53
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/54
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/55
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/56
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/57
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/58
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/59
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/60
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/61
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/62
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/63
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/64
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/65
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/66
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/67
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/68
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/69
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/70
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/71
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/72
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/73
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/74
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/75
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/76
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/77
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/78
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/79
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/80
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/81
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/82
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/83
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/84
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/85
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/86
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/87
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/88
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/89
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/90
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/91
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/92
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/93
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/94
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/95
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/96
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/97
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/98
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/99
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/100
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/101
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/102
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/103
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/104
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/105
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/106
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/107
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/108
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/109
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/110
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/111
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/112
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/113
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/114
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/115
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/116
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/117
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/118
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/119
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/120
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/121
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/122
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/123
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/124
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/125
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/126
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/127
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/128
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/129
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/130
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/131
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/132
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/133
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/134
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/135
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/136
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/137
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/138
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/139
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/140
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/141
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/142
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/143
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/144
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/145
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/146
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/147
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/148
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/149
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/150
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/151
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/152
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/153
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/154
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/155
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/156
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/157
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/158
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/159
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/160
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/161
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/162
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q2_K.gguf
+> Prompt: HumanEval/163
+
+164it [00:00, 16886.77it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 164/164 [00:03<00:00, 42.76it/s]
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 164/164 [00:00<00:00, 56956.68it/s]
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/0
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/1
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/2
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/3
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/4
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/5
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/6
+
+Traceback (most recent call last):
+  File "/home/simao/Desktop/thesis-repository/final_version/llama-2-7b.Q3_K_L.py", line 105, in <module>
+    csv_writer.writerow(["llama-2-7b.Q3_K_L", label, execution_time, measure.result.pkg[0], measure.result.dram[0]])
+TypeError: 'NoneType' object is not subscriptable
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/7
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/8
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/9
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/10
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/11
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/12
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/13
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/14
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/15
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/16
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/17
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/18
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/19
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/20
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/21
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/22
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/23
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/24
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/25
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/26
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/27
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/28
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/29
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/30
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/31
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/32
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/33
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/34
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/35
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/36
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/37
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/38
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/39
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/40
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/41
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/42
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/43
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/44
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/45
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/46
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/47
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/48
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/49
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/50
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/51
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/52
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/53
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/54
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/55
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/56
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/57
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/58
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/59
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/60
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/61
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/62
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/63
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/64
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/65
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/66
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/67
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/68
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/69
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/70
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/71
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/72
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/73
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/74
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/75
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/76
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/77
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/78
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/79
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/80
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/81
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/82
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/83
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/84
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/85
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/86
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/87
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/88
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/89
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/90
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/91
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/92
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/93
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/94
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/95
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/96
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/97
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/98
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/99
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/100
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/101
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/102
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/103
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/104
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/105
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/106
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/107
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/108
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/109
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/110
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/111
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/112
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/113
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/114
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/115
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/116
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/117
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/118
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/119
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/120
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/121
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/122
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/123
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/124
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/125
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/126
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/127
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/128
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/129
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/130
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/131
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/132
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/133
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/134
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/135
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/136
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/137
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/138
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/139
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/140
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/141
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/142
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/143
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/144
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/145
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/146
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/147
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/148
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/149
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/150
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/151
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/152
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/153
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/154
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/155
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/156
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/157
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/158
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/159
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/160
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/161
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/162
+
+
+
+Executing:
+> Model: llama_cpp/models/llama-2-7b.Q3_K_L.gguf
+> Prompt: HumanEval/163
+
+164it [00:00, 18721.51it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 164/164 [00:03<00:00, 47.15it/s]
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 164/164 [00:00<00:00, 72460.32it/s]
+simao@simao-GL63-8SE:~/Desktop/thesis-repository/final_version$ 
+
