@@ -35,13 +35,13 @@ int main(int argc, char **argv)
 
   strcpy(command, "");
   strcat(command, argv[1]);
-  printf("Program to be executed: %s\n", argv[1]);
+  //printf("Program to be executed: %s\n", argv[1]);
 
   ntimes = atoi(argv[2]);
 
   strcpy(res, argv[3]);
   strcat(res, ".J");
-  printf("Command: %s  %d-times res: %s\n", command, ntimes, res);
+  //printf("Command: %s  %d-times res: %s\n", command, ntimes, res);
 
   printf("\n\n RUNNING THE PARAMETRIZED PROGRAM:  %s\n\n\n", command);
   fflush(stdout);

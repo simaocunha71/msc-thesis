@@ -112,6 +112,8 @@ if __name__ == "__main__":
                    "Benchmark prompt",
                    "Execution time",
                    "Package",
+                   "Core",
+                   "GPU",
                    "DRAM",
                    "HumanEval pass@1"
                   ]
@@ -129,8 +131,8 @@ if __name__ == "__main__":
 
     # Nome das scripts a executar
     scripts_to_execute = [
-        "llama-2-7b.Q2_K.py",
-        "llama-2-7b.Q3_K_L.py"
+        "llama-2-7b.Q2_K.py"
+        #"llama-2-7b.Q3_K_L.py"
     ]
 
     for i in range(N_TIMES):

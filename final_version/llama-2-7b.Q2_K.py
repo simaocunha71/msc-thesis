@@ -7,6 +7,7 @@ import pyRAPL
 #Usage: python3 llama2-python_test.py <prompt> <label>
 #Example: python3 llama2-python_test ""Building a website can be done in 10 simple steps:\nStep 1:" "HumanEval/42"
 
+
 def print_measure_information(model_name, prompt_id):
     print("\n\nExecuting:")
     print(f"> Model: {model_name}")
@@ -53,30 +54,24 @@ model_name = "llama_cpp/models/llama-2-7b.Q2_K.gguf" # Path do LLM
 max_tokens = 512                                     # Número máximo de tokens a ser usado pelo LLM na resposta
 #NOTE: A variação do max_tokens leva a um maior/menor consumo de energia
 
-pyRAPL.setup()
-
-def create_llama():
-    return Llama(model_path=model_name, seed=42, verbose=False)
-
-llm = create_llama()
-
 print_measure_information(model_name, label)
 
-pyRAPL.setup()
 
 # A medição do tempo de execução vai estar em segundos e usamos funções do Python para este cálculo
 start_time = time.time()
 
-# INÍCIO DA MEDIÇÃO
-measure = pyRAPL.Measurement('llama-2-7b.Q2_K')
-measure.begin()
-output = llm(prompt=prompt, max_tokens=max_tokens, stop=["Q:"], echo=True)["choices"][0]["text"]
-measure.end()
-# FIM DA MEDIÇÃO
+#os.system(f'sudo RAPL/main "python3 -c \'from llama_cpp import Llama; print(Llama(model_path="llama_cpp/models/llama-2-7b.Q2_K.gguf", seed=42, verbose=False)(prompt="{prompt}", max_tokens=512, stop=["Q:"], echo=True)["choices"][0]["text"])\' > output_generated.txt" 1')
+
+#os.system(f'sudo RAPL/main "./llama_cpp/main -m {model_name} -p "{prompt}" -n {max_tokens} -e 2> {os.devnull} > output_generated.txt" 1')
+os.system(f'sudo RAPL/main "./llama_cpp/main -m {model_name} -p \'$(cat {prompt_file_path})\' -n {max_tokens} -e > output_generated.txt" 1 {label.replace("/", "_")}')
 
 end_time = time.time()
 
 execution_time = end_time - start_time
+
+# Output lido do ficheiro de texto temporário
+with open("output_generated.txt", "r") as file:
+    output = file.read()
 
 # Criar a pasta "prompts_returned" se não existir
 outputs_directory = "prompts_returned"
@@ -98,11 +93,15 @@ with open(output_file_path, "w") as output_file:
 
 generate_samples("llama-2-7b.Q2_K", output, label)
 
+
 # Adição da medição ao ficheiro CSV final
 with open(FILENAME, 'a', newline='') as csv_file:
     csv_writer = csv.writer(csv_file)
-    #NOTE: colocar em J e em S
-    csv_writer.writerow(["llama-2-7b.Q2_K", label, execution_time, measure.result.pkg[0], measure.result.dram[0]])
+    try:
+        csv_writer.writerow(["llama-2-7b.Q2_K", label, execution_time, str(1), str(1), str(1), str(1)])
+    except:
+        csv_writer.writerow(["llama-2-7b.Q2_K", label, execution_time, "ERROR", "ERROR", "ERROR", "ERROR"])
+
 
 """
 Descrição das colunas CSV:
@@ -113,3 +112,5 @@ duration (float) - measurement's duration (in micro seconds)
 pkg (Optional[List[float]]) - list of the CPU energy consumption -expressed in micro Joules- (one value for each socket) if None, no CPU energy consumption was recorded
 dram (Optional[List[float]]) - list of the RAM energy consumption -expressed in seconds- (one value for each socket) if None, no RAM energy consumption was recorded
 """
+
+#sudo RAPL/main "./llama_cpp/main -m llama_cpp/models/llama-2-7b.Q2_K.gguf -p "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n" -n 512 -e"
