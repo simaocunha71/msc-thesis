@@ -1,36 +1,20 @@
 from typing import List
 
 
-def separate_paren_groups(paren_string: str) -> List[str]:
-    """ Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
-    separate those group into separate strings and return the list of those.
-    Separate groups are balanced (each open brace is properly closed) and not nested within each other
-    Ignore any spaces in the input string.
-    >>> separate_paren_groups('( ) (( )) (( )( ))')
-    ['()', '(())', '(()())']
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    """ Check if in given list of numbers, are any two numbers closer to each other than
+    given threshold.
+    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)
+    False
+    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)
+    True
     """
+    # sort list by elements from highest to lowest
+    numbers = sorted(numbers, reverse=True)
 
-    result = []
-    current_group = ''
-    prev_position = 0
-    for index, char in enumerate(paren_string):
-        if char == '(' or char == ')':
-            current_group += f'({char})'
-            continue
+    # check if there are two consecutive numbers close each other
+    for i in range(1, len(numbers)):
+        if abs(numbers[i] - numbers[i-1]) <= threshold:
+            return True
 
-        if char == ')':
-            result.append(current_group)
-            current_group = ''
-            continue
-
-        if index - 1 < prev_position:
-            result.append(current_group)
-            current_group = ''
-            continue
-
-        prev_position = index + 1
-
-    if current_group != '':
-        result.append(current_group)
-
-    return result
+    return False

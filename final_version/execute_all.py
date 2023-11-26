@@ -131,8 +131,8 @@ if __name__ == "__main__":
 
     # Nome das scripts a executar
     scripts_to_execute = [
-        "llama-2-7b.Q2_K.py"
-        #"llama-2-7b.Q3_K_L.py"
+        "llama-2-7b.Q2_K.py",
+        "llama-2-7b.Q3_K_L.py"
     ]
 
     for i in range(N_TIMES):
@@ -140,3 +140,5 @@ if __name__ == "__main__":
         for script in scripts_to_execute:
             for prompt_file in prompt_files:
                 start_measure(script, prompt_file)
+    
+    os.remove("output_generated.txt")
