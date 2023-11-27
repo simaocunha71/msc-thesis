@@ -6,7 +6,7 @@ import os
 import shlex
 import time, sys
 
-N_TIMES = 1
+N_TIMES = 2
 
 def add_human_eval_score_in_csv(csv_file_old, csv_file_new, column_name, value_to_add):
     """Adiciona um valor numa coluna de um ficheiro CSV já existente"""

@@ -57,16 +57,48 @@ prompt_file_path   = sys.argv[2]  # Path do ficheiro de texto que contém o prom
 FILENAME           = sys.argv[3]  # Nome do ficheiro CSV final a adicionar o conteúdo (append)
 
 # Ler o prompt do arquivo temporário
-with open(prompt_file_path, 'r') as prompt_file:
-    prompt = prompt_file.read()
+#with open(prompt_file_path, 'r') as prompt_file:
+#    prompt = prompt_file.read()
 
-model_name = "llama_cpp/models/llama-2-7b.Q3_K_L.gguf" # Path do LLM
+model_name = "llama_c++/models/llama-2-7b.Q3_K_L.gguf" # Path do LLM
 max_tokens = 512                                     # Número máximo de tokens a ser usado pelo LLM na resposta
 #NOTE: A variação do max_tokens leva a um maior/menor consumo de energia
 
 print_measure_information(model_name, label)
 
-os.system(f'sudo RAPL/main "./llama_cpp/main -m {model_name} -p \'$(cat {prompt_file_path})\' -n {max_tokens} -e --log-disable > output_generated.txt" 1 {label.replace("/", "_")} 2>/dev/null')
+#python_code = f"from llama_cpp import Llama; with open('{prompt_file_path}', 'r') as f: prompt = f.read(); model_name = '{model_name}'; max_tokens = {max_tokens}; output = Llama(model_path=model_name, seed=42, verbose=False)(prompt=prompt, max_tokens=max_tokens, stop=['Q:'], echo=True)['choices'][0]['text']; print(output)"
+
+python_code = '''\
+#!/usr/bin/env python3
+import sys
+sys.path.append("/home/simao/.local/lib/python3.10/site-packages")
+from llama_cpp import Llama
+
+with open('{}', 'r') as prompt_file:
+    prompt = prompt_file.read()
+
+output = Llama(model_path='{}', seed=42, verbose=False)(prompt=prompt, max_tokens={}, stop=['Q:'], echo=True)['choices'][0]['text']
+
+with open('output_generated.txt', 'w') as output_file:
+    output_file.write(output)
+'''.format(prompt_file_path, model_name, max_tokens)
+
+temporary_script = "temp_script.py"
+
+# Cria um arquivo temporário para armazenar o código Python
+with open(temporary_script, 'w') as script_file:
+    script_file.write(python_code)
+
+# Executa o script Python usando o comando shell
+os.system(f'chmod +x {temporary_script}')
+
+command = f'sudo RAPL/main "python3 {temporary_script}" 1 {label.replace("/", "_")}'
+os.system(command)
+
+# Remove o arquivo temporário
+os.remove('temp_script.py')
+
+#command = f'sudo RAPL/main "./llama_cpp/main -m {model_name} -p \'$(cat {prompt_file_path})\' -n {max_tokens} -e --log-disable > output_generated.txt" 1 {label.replace("/", "_")} 2>/dev/null'
 
 # Output lido do ficheiro de texto temporário
 with open("output_generated.txt", "r") as file:

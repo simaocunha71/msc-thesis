@@ -9,9 +9,8 @@ def truncate_number(number: float) -> float:
     >>> truncate_number(3.5)
     0.5
     """
-    # if number is already a whole number, return it as it is
-    if abs(number - int(number)) < 0.01:
-        return number
-    # otherwise, get the integer part and the decimals
-    (integer_part, decimal) = divmod(number, 1.)
-    return decimal
+    return math.trunc(number)
+
+def main() -> None:
+
+    print("Hello World!")
