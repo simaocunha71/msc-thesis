@@ -6,7 +6,7 @@ import os
 import shlex
 import time, sys
 
-N_TIMES = 2
+N_TIMES = 1
 
 def add_human_eval_score_in_csv(csv_file_old, csv_file_new, column_name, value_to_add):
     """Adiciona um valor numa coluna de um ficheiro CSV já existente"""
@@ -112,8 +112,6 @@ if __name__ == "__main__":
                    "Benchmark prompt",
                    "Execution time",
                    "Package",
-                   "Core",
-                   "GPU",
                    "DRAM",
                    "HumanEval pass@1"
                   ]
@@ -140,5 +138,3 @@ if __name__ == "__main__":
         for script in scripts_to_execute:
             for prompt_file in prompt_files:
                 start_measure(script, prompt_file)
-    
-    os.remove("output_generated.txt")
