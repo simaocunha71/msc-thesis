@@ -1,12 +1,9 @@
 import json
-import subprocess
 import re
 import csv
 import os
-import shlex
-import time, sys
 
-N_TIMES = 1
+N_TIMES = 3
 
 def add_human_eval_score_in_csv(csv_file_old, csv_file_new, column_name, value_to_add):
     """Adiciona um valor numa coluna de um ficheiro CSV já existente"""
@@ -104,15 +101,19 @@ if __name__ == "__main__":
     # Nome do CSV final
     FILENAME = "measurements.csv"
 
-    os.system("sudo chmod -R a+r /sys/class/powercap/intel-rapl")
-
     # Nome das colunas do CSV final
     header_list = [
                    "LLM",
                    "Benchmark prompt",
-                   "Execution time",
-                   "Package",
-                   "DRAM",
+                   "Execution time (s)",
+                   "CPU Energy (J)",
+                   "RAM Energy (J)",
+                   "GPU Energy (J)",
+                   "CPU Power (W)", 
+                   "RAM Power (W)",
+                   "GPU Power (W)",
+                   "CO2 emissions (Kg)",
+                   "CO2 emissions rate (Kg/s)",
                    "HumanEval pass@1"
                   ]
 
