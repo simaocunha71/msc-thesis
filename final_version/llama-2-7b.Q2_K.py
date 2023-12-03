@@ -49,7 +49,7 @@ FILENAME           = sys.argv[3]  # Nome do ficheiro CSV final a adicionar o con
 with open(prompt_file_path, 'r') as prompt_file:
     prompt = prompt_file.read()
 
-model_name = "llama_cpp/models/llama-2-7b.Q2_K.gguf" # Path do LLM
+model_name = "llama_c++/models/llama-2-7b.Q2_K.gguf" # Path do LLM
 max_tokens = 512                                     # Número máximo de tokens a ser usado pelo LLM na resposta
 #NOTE: A variação do max_tokens leva a um maior/menor consumo de energia
 
