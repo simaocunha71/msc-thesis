@@ -6,7 +6,7 @@ def convert_kwh_to_j(value):
     return value * (3.6*(10**6))
 
 def start_measure():
-    NTIMES = 100
+    NTIMES = 200
 
     for _ in range(NTIMES):
         os.system("gcc -O2 -o fibonacci fibonacci.c")
@@ -38,6 +38,8 @@ def start_measure():
                 csv_writer.writerow(["C", "fibonacci", "ERROR", "ERROR", "ERROR", "ERROR", "ERROR",
                                                                        "ERROR", "ERROR", "ERROR", "ERROR"
                                     ])
+        time.sleep(5)
+        
     for _ in range(NTIMES):
         os.system("chmod +x fibonacci.py")
 
@@ -68,6 +70,7 @@ def start_measure():
                 csv_writer.writerow(["C", "fibonacci", "ERROR", "ERROR", "ERROR", "ERROR", "ERROR",
                                                                        "ERROR", "ERROR", "ERROR", "ERROR"
                                     ])
+        time.sleep(5)
 
 
 if __name__ == "__main__":

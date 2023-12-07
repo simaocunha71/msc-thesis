@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NTIMES=20
+NTIMES=200
 
 echo "Language,Program,Package,Core,GPU,DRAM,Time" > measurements_raplc.csv
 
