@@ -1,14 +1,11 @@
 #question1 = "Q: What is the capital of England?\nA: London\nQ: What is 1+1?\nA: 2\nQ: What are the names of the planets in the Solar System?\nA: "
 
 from llama_cpp import Llama
-import sys, os, re, csv
-from codecarbon import OfflineEmissionsTracker
+import sys, os, subprocess, time, re, csv, shlex
+import pyRAPL
 
 #Usage: python3 llama2-python_test.py <prompt> <label>
 #Example: python3 llama2-python_test ""Building a website can be done in 10 simple steps:\nStep 1:" "HumanEval/42"
-
-def convert_kwh_to_j(value):
-    return value * (3.6*(10**6))
 
 def print_measure_information(model_name, prompt_id):
     print("\n\nExecuting:")
@@ -56,6 +53,8 @@ model_name = "llama_c++/models/llama-2-7b.Q2_K.gguf" # Path do LLM
 max_tokens = 512                                     # Número máximo de tokens a ser usado pelo LLM na resposta
 #NOTE: A variação do max_tokens leva a um maior/menor consumo de energia
 
+pyRAPL.setup()
+
 def create_llama():
     return Llama(model_path=model_name, seed=42, verbose=False)
 
@@ -63,12 +62,21 @@ llm = create_llama()
 
 print_measure_information(model_name, label)
 
-tracker = OfflineEmissionsTracker(country_iso_code="PRT")
+pyRAPL.setup()
+
+# A medição do tempo de execução vai estar em segundos e usamos funções do Python para este cálculo
+start_time = time.time()
+
 # INÍCIO DA MEDIÇÃO
-tracker.start()
+measure = pyRAPL.Measurement('llama-2-7b.Q2_K')
+measure.begin()
 output = llm(prompt=prompt, max_tokens=max_tokens, stop=["Q:"], echo=True)["choices"][0]["text"]
-tracker.stop()
+measure.end()
 # FIM DA MEDIÇÃO
+
+end_time = time.time()
+
+execution_time = end_time - start_time
 
 # Criar a pasta "prompts_returned" se não existir
 outputs_directory = "prompts_returned"
@@ -93,23 +101,15 @@ generate_samples("llama-2-7b.Q2_K", output, label)
 # Adição da medição ao ficheiro CSV final
 with open(FILENAME, 'a', newline='') as csv_file:
     csv_writer = csv.writer(csv_file)
-    try:
-        csv_writer.writerow(["llama-2-7b.Q2_K", label, 
-                                  tracker.final_emissions_data.duration, 
-                                  convert_kwh_to_j(tracker.final_emissions_data.cpu_energy), 
-                                  convert_kwh_to_j(tracker.final_emissions_data.ram_energy), 
-                                  convert_kwh_to_j(tracker.final_emissions_data.gpu_energy),  
-                                  tracker.final_emissions_data.cpu_power, 
-                                  tracker.final_emissions_data.ram_power,  
-                                  tracker.final_emissions_data.gpu_power, 
-                                  tracker.final_emissions_data.emissions,
-                                  tracker.final_emissions_data.emissions_rate
-                            ])
-    except Exception as e:
-        print("------------------------------------------")
-        print(e)
-        print("------------------------------------------")
+    #NOTE: colocar em J e em S
+    csv_writer.writerow(["llama-2-7b.Q2_K", label, execution_time, measure.result.pkg[0], measure.result.dram[0]])
 
-        csv_writer.writerow(["llama-2-7b.Q2_K", label, "ERROR", "ERROR", "ERROR", "ERROR", "ERROR",
-                                                       "ERROR", "ERROR", "ERROR", "ERROR"
-                            ])
+"""
+Descrição das colunas CSV:
+
+label (str) - measurement label
+timestamp (float) - measurement's beginning time (expressed in seconds since the epoch)
+duration (float) - measurement's duration (in micro seconds)
+pkg (Optional[List[float]]) - list of the CPU energy consumption -expressed in micro Joules- (one value for each socket) if None, no CPU energy consumption was recorded
+dram (Optional[List[float]]) - list of the RAM energy consumption -expressed in seconds- (one value for each socket) if None, no RAM energy consumption was recorded
+"""
