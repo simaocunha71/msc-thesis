@@ -2,8 +2,9 @@ import json
 import re
 import csv
 import os
+import time
 
-N_TIMES = 3
+N_TIMES = 1
 
 def add_human_eval_score_in_csv(csv_file_old, csv_file_new, column_name, value_to_add):
     """Adiciona um valor numa coluna de um ficheiro CSV já existente"""
@@ -29,15 +30,15 @@ def add_human_eval_score_in_csv(csv_file_old, csv_file_new, column_name, value_t
         writer.writeheader()
         writer.writerows(rows)
 
-def run_human_eval_benchmark(model):
-    """Calcula o score do benchmark HumanEval - neste momento apenas calcula o pass@1 mas mais tarde vou incluir o pass@10 e pass@100"""
+def run_human_eval_benchmark(model, language):
+    """Calcula o score do benchmark HumanEval-x - neste momento apenas calcula o pass@1 mas mais tarde vou incluir o pass@10 e pass@100"""
     return_value = None
 
     # A script do cálculo do score está em human_eval/
-    os.chdir("human_eval")
+    os.chdir("CodeGeeX")
 
     # Calcula o(s) score(s) do benchmark HumanEval e coloca o resultado num ficheiro de texto    
-    os.system(f"python3 evaluate_functional_correctness.py data/samples_{model}.jsonl --problem_file=data/HumanEval.jsonl > human_eval_score.txt")
+    os.system(f"bash scripts/evaluate_humaneval_x.sh /codegeex/benchmark/humaneval-x/{language}/data/samples_{model}_humaneval_{language}.jsonl {language} > human_eval_score.txt")
 
     # Caso exista o ficheiro, iremos fazer parsing do pass@1, pass@10 e pass@100
     if os.path.exists(f"human_eval_score.txt"):
@@ -57,7 +58,7 @@ def run_human_eval_benchmark(model):
         print(f"Error: The file 'human_eval_score.txt' was not found.")
 
     # Apagamos o ficheiro de texto temporário
-    os.system(f"rm human_eval_score.txt")
+    #os.system(f"rm human_eval_score.txt")
 
     # Voltamos a diretoria inicial
     os.chdir("..")
@@ -65,13 +66,16 @@ def run_human_eval_benchmark(model):
     # Aqui devolve os scores calculados no parsing (NOTE: no futuro isto irá ser um tuplo do tipo (pass@1, pass@10, pass@100))
     return return_value
 
-def execute_python_script(task_id, prompt, script_to_execute, CSV_FILENAME):
+def execute_python_script(task_id, prompt, script_to_execute, CSV_FILENAME, language=None):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
     temp_prompt_file = "temp_prompt.txt"
     with open(temp_prompt_file, 'w') as prompt_file:
         prompt_file.write(prompt)
 
     command = f"python3 {script_to_execute} '{task_id}' {temp_prompt_file} {CSV_FILENAME}"
+    
+    if language:
+        command += f" {language}"
 
     os.system(command)
 
@@ -79,7 +83,9 @@ def execute_python_script(task_id, prompt, script_to_execute, CSV_FILENAME):
 def start_measure(model_script, prompts_filepath):
     # Execução das scripts de todos os modelos considerados
 
-    if prompts_filepath.endswith("HumanEval.jsonl"):
+    if prompts_filepath.endswith(
+        ("humaneval_cpp.jsonl", "humaneval_go.jsonl", "humaneval_java.jsonl", 
+         "humaneval_js.jsonl", "humaneval_python.jsonl")): #, "humaneval_rust.jsonl")):
         # Este tratamento apenas se destina ao benchmark do HumanEval
         with open(prompts_filepath, 'r') as file:
             lines = file.readlines()
@@ -89,9 +95,31 @@ def start_measure(model_script, prompts_filepath):
                 task_id = entry.get("task_id", "")
                 prompt = entry.get("prompt", "")
 
-                execute_python_script(task_id, prompt, model_script, FILENAME)
-        human_eval_score = run_human_eval_benchmark(model_script[:-3])
-        add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval pass@1", human_eval_score)
+        if prompts_filepath.endswith("humaneval_cpp.jsonl"):
+            execute_python_script(task_id, prompt, model_script, FILENAME, "cpp")
+            human_eval_score = run_human_eval_benchmark(model_script[:-3], "cpp")
+            add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval C++ - pass@1", human_eval_score)
+        elif prompts_filepath.endswith("humaneval_go.jsonl"):
+            execute_python_script(task_id, prompt, model_script, FILENAME, "go")
+            human_eval_score = run_human_eval_benchmark(model_script[:-3], "go")
+            add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Go - pass@1", human_eval_score)
+        elif prompts_filepath.endswith("humaneval_java.jsonl"):
+            execute_python_script(task_id, prompt, model_script, FILENAME, "java")
+            human_eval_score = run_human_eval_benchmark(model_script[:-3], "java")
+            add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Java - pass@1", human_eval_score)
+        elif prompts_filepath.endswith("humaneval_js.jsonl"):
+            execute_python_script(task_id, prompt, model_script, FILENAME, "js")
+            human_eval_score = run_human_eval_benchmark(model_script[:-3], "js")
+            add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval JavaScript - pass@1", human_eval_score)
+        elif prompts_filepath.endswith("humaneval_python.jsonl"):
+            execute_python_script(task_id, prompt, model_script, FILENAME, "python")
+            human_eval_score = run_human_eval_benchmark(model_script[:-3], "python")
+            add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Python - pass@1", human_eval_score)
+        #elif prompts_filepath.endswith("humaneval_rust.jsonl"):
+        #    execute_python_script(task_id, prompt, model_script, FILENAME, "rust")
+        #    human_eval_score = run_human_eval_benchmark(model_script[:-3], "rust")
+        #    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Rust - pass@1", human_eval_score)
+        
     else:
         print("Ficheiro JSONL não pertence a nenhum benchmark considerado")
 
@@ -114,7 +142,12 @@ if __name__ == "__main__":
                    "GPU Power (W)",
                    "CO2 emissions (Kg)",
                    "CO2 emissions rate (Kg/s)",
-                   "HumanEval pass@1"
+                   "HumanEval C++ - pass@1",
+                   "HumanEval Go - pass@1",
+                   "HumanEval Java - pass@1",
+                   "HumanEval JavaScript - pass@1",
+                   "HumanEval Python - pass@1"
+                   #"HumanEval Rust - pass@1"
                   ]
 
     if not os.path.isfile(FILENAME) or os.stat(FILENAME).st_size == 0:
@@ -125,13 +158,18 @@ if __name__ == "__main__":
 
     # Nome dos prompts a considerar
     prompt_files = [
-        "human_eval/data/HumanEval.jsonl"
+        "CodeGeeX/codegeex/benchmark/humaneval-x/cpp/data/humaneval_cpp.jsonl",
+        "CodeGeeX/codegeex/benchmark/humaneval-x/go/data/humaneval_go.jsonl",
+        "CodeGeeX/codegeex/benchmark/humaneval-x/java/data/humaneval_java.jsonl",
+        "CodeGeeX/codegeex/benchmark/humaneval-x/js/data/humaneval_js.jsonl",
+        "CodeGeeX/codegeex/benchmark/humaneval-x/python/data/humaneval_python.jsonl"
+        #"CodeGeeX/codegeex/benchmark/humaneval-x/rust/data/humaneval_rust.jsonl"
     ]
 
     # Nome das scripts a executar
     scripts_to_execute = [
-        "llama-2-7b.Q2_K.py",
-        "llama-2-7b.Q3_K_L.py"
+        "llama-2-7b.Q2_K.py"
+        #"llama-2-7b.Q3_K_L.py"
     ]
 
     for i in range(N_TIMES):

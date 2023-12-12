@@ -16,12 +16,12 @@ def print_measure_information(model_name, prompt_id):
     print(f"> Prompt: {prompt_id}\n")
 
 def generate_samples(model, output, label):
-    """Gera o ficheiro das samples deste modelo (Benchmark: HumanEval)"""
+    """Gera o ficheiro das samples deste modelo (Benchmark: HumanEval-X)"""
 
     label = label.replace("/", "_")
 
-    # As scripts de execução do benchmark vão estar na diretoria do "human_eval/", pelo que é mais fácil ir para essa diretoria
-    os.chdir("human_eval")
+    # As scripts de execução do benchmark vão estar na diretoria do "CodeGeeX/", pelo que é mais fácil ir para essa diretoria
+    os.chdir("CodeGeeX")
 
     temp_prompt_file = "temp_output_prompt.txt"
     with open(temp_prompt_file, 'w') as prompt_file:
