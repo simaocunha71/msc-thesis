@@ -15,13 +15,13 @@ def print_measure_information(model_name, prompt_id):
     print(f"> Model: {model_name}")
     print(f"> Prompt: {prompt_id}\n")
 
-def generate_samples(model, output, label):
+def generate_samples_humaneval_x(model, output, label, language):
     """Gera o ficheiro das samples deste modelo (Benchmark: HumanEval-X)"""
 
     label = label.replace("/", "_")
 
     # As scripts de execução do benchmark vão estar na diretoria do "CodeGeeX/", pelo que é mais fácil ir para essa diretoria
-    os.chdir("CodeGeeX")
+    #os.chdir("CodeGeeX")
 
     temp_prompt_file = "temp_output_prompt.txt"
     with open(temp_prompt_file, 'w') as prompt_file:
@@ -29,24 +29,30 @@ def generate_samples(model, output, label):
 
     # O ficheiro "completion_content.txt" vai conter apenas o código gerado pelo modelo,
     # excluindo-se a assinatura da função e comentários iniciais
-    os.system("grep -vxFf ../temp_prompt.txt temp_output_prompt.txt > completion_content.txt")
+    os.system("grep -vxFf temp_prompt.txt temp_output_prompt.txt > completion_content.txt")
 
     # Executa a script get_samples.py que irá calcular as samples de um dado LLM para a execução do HumanEval
-    command = f'python3 get_samples.py {model} "{label}" completion_content.txt'
+    command = f'python3 scripts/get_samples_humaneval_x.py {model} "{label}" completion_content.txt {language}'
     os.system(command)
 
     # Remove os ficheiros de texto temporários
     os.remove(temp_prompt_file)
     os.remove("completion_content.txt")
-    os.remove("../temp_prompt.txt")
+    os.remove("temp_prompt.txt")
     
     # Voltamos à diretoria inicial
-    os.chdir("..")
+    #os.chdir("..")
 
 # Argumentos da função e setup
 label              = sys.argv[1]  # Identificador da execução do LLM no ficheiro CSV final
 prompt_file_path   = sys.argv[2]  # Path do ficheiro de texto que contém o prompt do ficheiro JSONL
 FILENAME           = sys.argv[3]  # Nome do ficheiro CSV final a adicionar o conteúdo (append)
+
+ # Linguagem a ser executada no benchmark (argumento opcional)
+if len(sys.argv) > 4:
+    language = sys.argv[4]
+else:
+    language = None
 
 # Ler o prompt do arquivo temporário
 with open(prompt_file_path, 'r') as prompt_file:
@@ -70,25 +76,43 @@ output = llm(prompt=prompt, max_tokens=max_tokens, stop=["Q:"], echo=True)["choi
 tracker.stop()
 # FIM DA MEDIÇÃO
 
-# Criar a pasta "prompts_returned" se não existir
-outputs_directory = "prompts_returned"
-if not os.path.exists(outputs_directory):
-    os.makedirs(outputs_directory)
+print("-------------------------------")
+print(output)
+print("-------------------------------")
 
-# Substituir '/' por '_' no nome do ficheiro
-label_for_filename = label.replace("/", "_")
 
-# Criar a pasta "llama-2-7b.Q3_K_L/" se não existir
-models_outputs_directory = outputs_directory + "/" + ''.join(model_name.split('/')[-1].split('.')[:-1])
-if not os.path.exists(models_outputs_directory):
-    os.makedirs(models_outputs_directory)
+# Criar diretórios necessários
+output_folder = "prompts_returned"
+llama_folder = "llama-2-7b.Q3_K_L"
+language_folder = "humaneval_x"
 
-# Guardar o código gerado pelo modelo na pasta "prompts_returned/llama-2-7b.Q3_K_L/"
-output_file_path = os.path.join(models_outputs_directory, f"{label_for_filename}.py")
-with open(output_file_path, "w") as output_file:
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+
+llama_path = os.path.join(output_folder, llama_folder)
+if not os.path.exists(llama_path):
+    os.makedirs(llama_path)
+
+if language is not None:
+    language_path = os.path.join(llama_path, language_folder)
+    if not os.path.exists(language_path):
+        os.makedirs(language_path)
+
+# Guardar a variável output com o nome [label].[language] se Language não for None
+if language is not None:
+    if language == "python":
+        output_filename = f"{label.replace('/','_')}.py"
+    else:
+        output_filename = f"{label.replace('/','_')}.{language}"
+    output_path = os.path.join(language_path, output_filename)
+else:
+    output_filename = f"{label}.txt"
+    output_path = os.path.join(llama_path, output_filename)
+
+with open(output_path, 'w') as output_file:
     output_file.write(output)
 
-generate_samples("llama-2-7b.Q3_K_L", output, label)
+generate_samples_humaneval_x("llama-2-7b.Q3_K_L", output, label, language)
 
 # Adição da medição ao ficheiro CSV final
 with open(FILENAME, 'a', newline='') as csv_file:

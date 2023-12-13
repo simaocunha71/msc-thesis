@@ -80,33 +80,37 @@ print("-------------------------------")
 print(output)
 print("-------------------------------")
 
-"""
-# Criar a pasta "prompts_returned" se não existir
-outputs_directory = "prompts_returned"
-if not os.path.exists(outputs_directory):
-    os.makedirs(outputs_directory)
 
-# Substituir '/' por '_' no nome do ficheiro
-label_for_filename = label.replace("/", "_")
+# Criar diretórios necessários
+output_folder = "prompts_returned"
+llama_folder = "llama-2-7b.Q2_K"
+language_folder = "humaneval_x"
 
-# Criar a pasta "llama-2-7b.Q2_K/" se não existir
-models_outputs_directory = outputs_directory + "/" + ''.join(model_name.split('/')[-1].split('.')[:-1])
-if not os.path.exists(models_outputs_directory):
-    os.makedirs(models_outputs_directory)
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+
+llama_path = os.path.join(output_folder, llama_folder)
+if not os.path.exists(llama_path):
+    os.makedirs(llama_path)
 
 if language is not None:
-    if not os.path.exists(models_outputs_directory + "/" + language):
-        os.makedirs(models_outputs_directory)
+    language_path = os.path.join(llama_path, language_folder)
+    if not os.path.exists(language_path):
+        os.makedirs(language_path)
 
-    # Guardar o código gerado pelo modelo na pasta "prompts_returned/llama-2-7b.Q2_K/[language]/"
-    output_file_path = os.path.join(models_outputs_directory + "/" + language, f"{label_for_filename}.py")
+# Guardar a variável output com o nome [label].[language] se Language não for None
+if language is not None:
+    if language == "python":
+        output_filename = f"{label.replace('/','_')}.py"
+    else:
+        output_filename = f"{label.replace('/','_')}.{language}"
+    output_path = os.path.join(language_path, output_filename)
 else:
-    # Guardar o código gerado pelo modelo na pasta "prompts_returned/llama-2-7b.Q2_K/"
-    output_file_path = os.path.join(models_outputs_directory, f"{label_for_filename}.py")
+    output_filename = f"{label}.txt"
+    output_path = os.path.join(llama_path, output_filename)
 
-with open(output_file_path, "w") as output_file:
+with open(output_path, 'w') as output_file:
     output_file.write(output)
-"""
 
 generate_samples_humaneval_x("llama-2-7b.Q2_K", output, label, language)
 

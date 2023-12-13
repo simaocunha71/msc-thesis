@@ -143,11 +143,11 @@ if __name__ == "__main__":
                    "GPU Power (W)",
                    "CO2 emissions (Kg)",
                    "CO2 emissions rate (Kg/s)",
-                   "HumanEval C++ - pass@1"
-                   #"HumanEval Go - pass@1",
-                   #"HumanEval Java - pass@1",
-                   #"HumanEval JavaScript - pass@1",
-                   #"HumanEval Python - pass@1"
+                   "HumanEval C++ - pass@1",
+                   "HumanEval Go - pass@1",
+                   "HumanEval Java - pass@1",
+                   "HumanEval JavaScript - pass@1",
+                   "HumanEval Python - pass@1"
                    #"HumanEval Rust - pass@1"
                   ]
 
