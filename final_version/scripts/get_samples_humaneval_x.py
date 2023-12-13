@@ -8,22 +8,27 @@ def write_jsonl(filename: str, data: Iterable[Dict], append: bool = False):
     """
     Writes an iterable of dictionaries to jsonl
     """
-    mode = 'a' if append else 'w'
+    if append:
+        mode = 'ab'
+    else:
+        mode = 'wb'
     filename = os.path.expanduser(filename)
     if filename.endswith(".gz"):
-        with gzip.open(filename, mode, encoding='utf-8') as gzfp:
-            for x in data:
-                gzfp.write(json.dumps(x) + "\n")
+        with open(filename, mode) as fp:
+            with gzip.GzipFile(fileobj=fp, mode='wb') as gzfp:
+                for x in data:
+                    gzfp.write((json.dumps(x) + "\n").encode('utf-8'))
     else:
-        with open(filename, mode, encoding='utf-8') as fp:
+        with open(filename, mode) as fp:
             for x in data:
-                fp.write(json.dumps(x) + "\n")
+                fp.write((json.dumps(x) + "\n").encode('utf-8'))
 
 # Argumentos de setup
 model = sys.argv[1]  # Nome do LLM
 label = sys.argv[2]  # Label do prompt
 output_got_file = sys.argv[3]  # Ficheiro c/ output gerado pelo LLM em formato string
 language = sys.argv[4] # Linguagem do benchmark
+
 
 with open(output_got_file, 'r') as prompt_file:
     output_got = prompt_file.read()
@@ -37,9 +42,9 @@ samples = [
     ) for _ in range(num_samples_per_task)
 ]
 
-# Caminho para o diretório de dados
-data_directory = os.path.join(os.path.dirname(__file__), f"codegeex/benchmark/humaneval-x/{language}/data/")
-os.makedirs(data_directory, exist_ok=True)
+outputs_directory = "generated_samples"
+if not os.path.exists(outputs_directory):
+    os.makedirs(outputs_directory)
 
 # Escrita das samples num ficheiro jsonl
-write_jsonl(os.path.join(data_directory, f"samples_{model}_humaneval_{language}.jsonl"), samples, append=True)
+write_jsonl(f"{outputs_directory}/samples_{model}_humaneval_{language}.jsonl", samples, append=True)

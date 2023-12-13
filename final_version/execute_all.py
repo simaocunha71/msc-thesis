@@ -2,7 +2,7 @@ import json
 import re
 import csv
 import os
-import time
+import time, sys
 
 N_TIMES = 1
 
@@ -95,31 +95,32 @@ def start_measure(model_script, prompts_filepath):
                 task_id = entry.get("task_id", "")
                 prompt = entry.get("prompt", "")
 
-        if prompts_filepath.endswith("humaneval_cpp.jsonl"):
-            execute_python_script(task_id, prompt, model_script, FILENAME, "cpp")
-            human_eval_score = run_human_eval_benchmark(model_script[:-3], "cpp")
-            add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval C++ - pass@1", human_eval_score)
-        elif prompts_filepath.endswith("humaneval_go.jsonl"):
-            execute_python_script(task_id, prompt, model_script, FILENAME, "go")
-            human_eval_score = run_human_eval_benchmark(model_script[:-3], "go")
-            add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Go - pass@1", human_eval_score)
-        elif prompts_filepath.endswith("humaneval_java.jsonl"):
-            execute_python_script(task_id, prompt, model_script, FILENAME, "java")
-            human_eval_score = run_human_eval_benchmark(model_script[:-3], "java")
-            add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Java - pass@1", human_eval_score)
-        elif prompts_filepath.endswith("humaneval_js.jsonl"):
-            execute_python_script(task_id, prompt, model_script, FILENAME, "js")
-            human_eval_score = run_human_eval_benchmark(model_script[:-3], "js")
-            add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval JavaScript - pass@1", human_eval_score)
-        elif prompts_filepath.endswith("humaneval_python.jsonl"):
-            execute_python_script(task_id, prompt, model_script, FILENAME, "python")
-            human_eval_score = run_human_eval_benchmark(model_script[:-3], "python")
-            add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Python - pass@1", human_eval_score)
-        #elif prompts_filepath.endswith("humaneval_rust.jsonl"):
-        #    execute_python_script(task_id, prompt, model_script, FILENAME, "rust")
-        #    human_eval_score = run_human_eval_benchmark(model_script[:-3], "rust")
-        #    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Rust - pass@1", human_eval_score)
-        
+
+                if prompts_filepath.endswith("humaneval_cpp.jsonl"):
+                    execute_python_script(task_id, prompt, model_script, FILENAME, "cpp")
+                    #human_eval_score = run_human_eval_benchmark(model_script[:-3], "cpp")
+                    #add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval C++ - pass@1", human_eval_score)
+                elif prompts_filepath.endswith("humaneval_go.jsonl"):
+                    execute_python_script(task_id, prompt, model_script, FILENAME, "go")
+                    #human_eval_score = run_human_eval_benchmark(model_script[:-3], "go")
+                    #add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Go - pass@1", human_eval_score)
+                elif prompts_filepath.endswith("humaneval_java.jsonl"):
+                    execute_python_script(task_id, prompt, model_script, FILENAME, "java")
+                    #human_eval_score = run_human_eval_benchmark(model_script[:-3], "java")
+                    #add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Java - pass@1", human_eval_score)
+                elif prompts_filepath.endswith("humaneval_js.jsonl"):
+                    execute_python_script(task_id, prompt, model_script, FILENAME, "js")
+                    #human_eval_score = run_human_eval_benchmark(model_script[:-3], "js")
+                    #add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval JavaScript - pass@1", human_eval_score)
+                elif prompts_filepath.endswith("humaneval_python.jsonl"):
+                    execute_python_script(task_id, prompt, model_script, FILENAME, "python")
+                    #human_eval_score = run_human_eval_benchmark(model_script[:-3], "python")
+                    #add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Python - pass@1", human_eval_score)
+                #elif prompts_filepath.endswith("humaneval_rust.jsonl"):
+                #    execute_python_script(task_id, prompt, model_script, FILENAME, "rust")
+                #    human_eval_score = run_human_eval_benchmark(model_script[:-3], "rust")
+                #    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Rust - pass@1", human_eval_score)
+
     else:
         print("Ficheiro JSONL não pertence a nenhum benchmark considerado")
 
@@ -142,11 +143,11 @@ if __name__ == "__main__":
                    "GPU Power (W)",
                    "CO2 emissions (Kg)",
                    "CO2 emissions rate (Kg/s)",
-                   "HumanEval C++ - pass@1",
-                   "HumanEval Go - pass@1",
-                   "HumanEval Java - pass@1",
-                   "HumanEval JavaScript - pass@1",
-                   "HumanEval Python - pass@1"
+                   "HumanEval C++ - pass@1"
+                   #"HumanEval Go - pass@1",
+                   #"HumanEval Java - pass@1",
+                   #"HumanEval JavaScript - pass@1",
+                   #"HumanEval Python - pass@1"
                    #"HumanEval Rust - pass@1"
                   ]
 
@@ -158,12 +159,12 @@ if __name__ == "__main__":
 
     # Nome dos prompts a considerar
     prompt_files = [
-        "CodeGeeX/codegeex/benchmark/humaneval-x/cpp/data/humaneval_cpp.jsonl",
-        "CodeGeeX/codegeex/benchmark/humaneval-x/go/data/humaneval_go.jsonl",
-        "CodeGeeX/codegeex/benchmark/humaneval-x/java/data/humaneval_java.jsonl",
-        "CodeGeeX/codegeex/benchmark/humaneval-x/js/data/humaneval_js.jsonl",
-        "CodeGeeX/codegeex/benchmark/humaneval-x/python/data/humaneval_python.jsonl"
-        #"CodeGeeX/codegeex/benchmark/humaneval-x/rust/data/humaneval_rust.jsonl"
+        "prompts/humaneval_x/humaneval_cpp.jsonl",
+        "prompts/humaneval_x/humaneval_go.jsonl",
+        "prompts/humaneval_x/humaneval_java.jsonl",
+        "prompts/humaneval_x/humaneval_js.jsonl",
+        "prompts/humaneval_x/humaneval_python.jsonl"
+        #"prompts/humaneval_x/humaneval_rust.jsonl"
     ]
 
     # Nome das scripts a executar

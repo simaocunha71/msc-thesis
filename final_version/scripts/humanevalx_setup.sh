@@ -71,6 +71,3 @@ sudo ln -sf $JAVA_HOME/bin/java /usr/bin/java
 
 # Se precisar ajustar o ambiente
 source ~/.bashrc
-
-# Permissão para criar pastas e ficheiros
-chmod 700 CodeGeeX/

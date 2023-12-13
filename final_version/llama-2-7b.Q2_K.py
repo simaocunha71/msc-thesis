@@ -21,7 +21,7 @@ def generate_samples_humaneval_x(model, output, label, language):
     label = label.replace("/", "_")
 
     # As scripts de execução do benchmark vão estar na diretoria do "CodeGeeX/", pelo que é mais fácil ir para essa diretoria
-    os.chdir("CodeGeeX")
+    #os.chdir("CodeGeeX")
 
     temp_prompt_file = "temp_output_prompt.txt"
     with open(temp_prompt_file, 'w') as prompt_file:
@@ -29,19 +29,19 @@ def generate_samples_humaneval_x(model, output, label, language):
 
     # O ficheiro "completion_content.txt" vai conter apenas o código gerado pelo modelo,
     # excluindo-se a assinatura da função e comentários iniciais
-    os.system("grep -vxFf ../temp_prompt.txt temp_output_prompt.txt > completion_content.txt")
+    os.system("grep -vxFf temp_prompt.txt temp_output_prompt.txt > completion_content.txt")
 
     # Executa a script get_samples.py que irá calcular as samples de um dado LLM para a execução do HumanEval
-    command = f'python3 get_samples.py {model} "{label}" completion_content.txt {language}'
+    command = f'python3 scripts/get_samples_humaneval_x.py {model} "{label}" completion_content.txt {language}'
     os.system(command)
 
     # Remove os ficheiros de texto temporários
     os.remove(temp_prompt_file)
     os.remove("completion_content.txt")
-    os.remove("../temp_prompt.txt")
+    os.remove("temp_prompt.txt")
     
     # Voltamos à diretoria inicial
-    os.chdir("..")
+    #os.chdir("..")
 
 # Argumentos da função e setup
 label              = sys.argv[1]  # Identificador da execução do LLM no ficheiro CSV final
@@ -76,6 +76,11 @@ output = llm(prompt=prompt, max_tokens=max_tokens, stop=["Q:"], echo=True)["choi
 tracker.stop()
 # FIM DA MEDIÇÃO
 
+print("-------------------------------")
+print(output)
+print("-------------------------------")
+
+"""
 # Criar a pasta "prompts_returned" se não existir
 outputs_directory = "prompts_returned"
 if not os.path.exists(outputs_directory):
@@ -101,6 +106,7 @@ else:
 
 with open(output_file_path, "w") as output_file:
     output_file.write(output)
+"""
 
 generate_samples_humaneval_x("llama-2-7b.Q2_K", output, label, language)
 
