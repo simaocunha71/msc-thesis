@@ -34,14 +34,16 @@ def run_human_eval_benchmark(model, language):
     """Calcula o score do benchmark HumanEval-x - neste momento apenas calcula o pass@1 mas mais tarde vou incluir o pass@10 e pass@100"""
     return_value = None
 
-    # A script do cálculo do score está em human_eval/
-    os.chdir("CodeGeeX")
-
     # Calcula o(s) score(s) do benchmark HumanEval e coloca o resultado num ficheiro de texto    
-    os.system(f"bash scripts/evaluate_humaneval_x.sh /codegeex/benchmark/humaneval-x/{language}/data/samples_{model}_humaneval_{language}.jsonl {language} > human_eval_score.txt")
+    os.system(
+        f"docker run -v $(pwd)/generated_samples:/workspace/CodeGeeX/generated_samples/ -it humaneval_x "
+        f"bash /workspace/CodeGeeX/scripts/evaluate_humaneval_x.sh /workspace/CodeGeeX/generated_samples/samples_{model}_humaneval_{language}.jsonl {language} > human_eval_score.txt"
+    )
+    
 
     # Caso exista o ficheiro, iremos fazer parsing do pass@1, pass@10 e pass@100
     if os.path.exists(f"human_eval_score.txt"):
+        os.system(f"cat human_eval_score.txt")
         with open(f"human_eval_score.txt", 'r') as file:
             # Lê o conteúdo do ficheiro
             lines = file.readlines()
@@ -98,24 +100,25 @@ def start_measure(model_script, prompts_filepath):
 
                 if prompts_filepath.endswith("humaneval_cpp.jsonl"):
                     execute_python_script(task_id, prompt, model_script, FILENAME, "cpp")
-                    #human_eval_score = run_human_eval_benchmark(model_script[:-3], "cpp")
-                    #add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval C++ - pass@1", human_eval_score)
+                    human_eval_score = run_human_eval_benchmark(model_script[:-3], "cpp")
+                    print(f"fghjk -> {human_eval_score}")
+                    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval C++ - pass@1", human_eval_score)
                 elif prompts_filepath.endswith("humaneval_go.jsonl"):
                     execute_python_script(task_id, prompt, model_script, FILENAME, "go")
-                    #human_eval_score = run_human_eval_benchmark(model_script[:-3], "go")
-                    #add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Go - pass@1", human_eval_score)
-                elif prompts_filepath.endswith("humaneval_java.jsonl"):
-                    execute_python_script(task_id, prompt, model_script, FILENAME, "java")
-                    #human_eval_score = run_human_eval_benchmark(model_script[:-3], "java")
-                    #add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Java - pass@1", human_eval_score)
-                elif prompts_filepath.endswith("humaneval_js.jsonl"):
-                    execute_python_script(task_id, prompt, model_script, FILENAME, "js")
-                    #human_eval_score = run_human_eval_benchmark(model_script[:-3], "js")
-                    #add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval JavaScript - pass@1", human_eval_score)
-                elif prompts_filepath.endswith("humaneval_python.jsonl"):
-                    execute_python_script(task_id, prompt, model_script, FILENAME, "python")
-                    #human_eval_score = run_human_eval_benchmark(model_script[:-3], "python")
-                    #add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Python - pass@1", human_eval_score)
+                    human_eval_score = run_human_eval_benchmark(model_script[:-3], "go")
+                    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Go - pass@1", human_eval_score)
+                #elif prompts_filepath.endswith("humaneval_java.jsonl"):
+                #    execute_python_script(task_id, prompt, model_script, FILENAME, "java")
+                #    #human_eval_score = run_human_eval_benchmark(model_script[:-3], "java")
+                #    #add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Java - pass@1", human_eval_score)
+                #elif prompts_filepath.endswith("humaneval_js.jsonl"):
+                #    execute_python_script(task_id, prompt, model_script, FILENAME, "js")
+                #    #human_eval_score = run_human_eval_benchmark(model_script[:-3], "js")
+                #    #add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval JavaScript - pass@1", human_eval_score)
+                #elif prompts_filepath.endswith("humaneval_python.jsonl"):
+                #    execute_python_script(task_id, prompt, model_script, FILENAME, "python")
+                #    #human_eval_score = run_human_eval_benchmark(model_script[:-3], "python")
+                #    #add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Python - pass@1", human_eval_score)
                 #elif prompts_filepath.endswith("humaneval_rust.jsonl"):
                 #    execute_python_script(task_id, prompt, model_script, FILENAME, "rust")
                 #    human_eval_score = run_human_eval_benchmark(model_script[:-3], "rust")

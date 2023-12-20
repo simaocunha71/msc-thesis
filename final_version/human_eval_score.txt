@@ -1,0 +1,20 @@
+/workspace/CodeGeeX/generated_samples/samples_llama-2-7b.Q2_K_humaneval_cpp.jsonl
+python /workspace/CodeGeeX/codegeex/benchmark/humaneval-x/evaluate_humaneval_x.py     --input_file /workspace/CodeGeeX/generated_samples/samples_llama-2-7b.Q2_K_humaneval_cpp.jsonl     --n_workers 64     --tmp_dir /workspace/CodeGeeX/codegeex/benchmark/humaneval-x/     --problem_file /workspace/CodeGeeX/codegeex/benchmark/humaneval-x/cpp/data/humaneval_cpp.jsonl.gz     --timeout 5
+Reading samples...
+  0% 0/2 [00:00<?, ?it/s]  0% 0/2 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/workspace/CodeGeeX/codegeex/benchmark/humaneval-x/evaluate_humaneval_x.py", line 239, in <module>
+    sys.exit(main())
+  File "/workspace/CodeGeeX/codegeex/benchmark/humaneval-x/evaluate_humaneval_x.py", line 235, in main
+    fire.Fire(evaluate_functional_correctness)
+  File "/opt/conda/lib/python3.8/site-packages/fire/core.py", line 141, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+  File "/opt/conda/lib/python3.8/site-packages/fire/core.py", line 475, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+  File "/opt/conda/lib/python3.8/site-packages/fire/core.py", line 691, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+  File "/workspace/CodeGeeX/codegeex/benchmark/humaneval-x/evaluate_humaneval_x.py", line 177, in evaluate_functional_correctness
+    sample["test_code"] = process_humaneval_test(sample, problems, example_test)
+  File "/workspace/CodeGeeX/codegeex/benchmark/humaneval-x/evaluate_humaneval_x.py", line 31, in process_humaneval_test
+    prompt = sample["prompt"]
+KeyError: 'prompt'

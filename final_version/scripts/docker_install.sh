@@ -12,3 +12,9 @@ sudo usermod -aG docker simao
 
 
 docker pull rishubi/codegeex:latest #7.51 GB
+
+#Remove all containers (on and off)
+docker rm $(docker ps -aq)
+
+#Envia a pasta com as samples dos modelos e coloca no path dentro do container "/workspace/CodeGeeX/generated_samples/"
+docker run -v $(pwd)/generated_samples:/workspace/CodeGeeX/generated_samples/ -it rishubi/codegeex
