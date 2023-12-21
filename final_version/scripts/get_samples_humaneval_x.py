@@ -42,7 +42,7 @@ samples = [
     ) for _ in range(num_samples_per_task)
 ]
 
-outputs_directory = "generated_samples"
+outputs_directory = "CodeGeeX/generated_samples"
 if not os.path.exists(outputs_directory):
     os.makedirs(outputs_directory)
 

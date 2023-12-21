@@ -32,15 +32,14 @@ def add_human_eval_score_in_csv(csv_file_old, csv_file_new, column_name, value_t
 
 def run_human_eval_benchmark(model, language):
     """Calcula o score do benchmark HumanEval-x - neste momento apenas calcula o pass@1 mas mais tarde vou incluir o pass@10 e pass@100"""
-    return_value = None
+    return_value = 42
 
     # Calcula o(s) score(s) do benchmark HumanEval e coloca o resultado num ficheiro de texto    
     os.system(
-        f"docker run -v $(pwd)/generated_samples:/workspace/CodeGeeX/generated_samples/ -it humaneval_x "
+        f"docker run -v $(pwd)/CodeGeeX:/workspace/CodeGeeX/ -it humaneval_x "
         f"bash /workspace/CodeGeeX/scripts/evaluate_humaneval_x.sh /workspace/CodeGeeX/generated_samples/samples_{model}_humaneval_{language}.jsonl {language} > human_eval_score.txt"
     )
     
-
     # Caso exista o ficheiro, iremos fazer parsing do pass@1, pass@10 e pass@100
     if os.path.exists(f"human_eval_score.txt"):
         os.system(f"cat human_eval_score.txt")
@@ -101,7 +100,6 @@ def start_measure(model_script, prompts_filepath):
                 if prompts_filepath.endswith("humaneval_cpp.jsonl"):
                     execute_python_script(task_id, prompt, model_script, FILENAME, "cpp")
                     human_eval_score = run_human_eval_benchmark(model_script[:-3], "cpp")
-                    print(f"fghjk -> {human_eval_score}")
                     add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval C++ - pass@1", human_eval_score)
                 elif prompts_filepath.endswith("humaneval_go.jsonl"):
                     execute_python_script(task_id, prompt, model_script, FILENAME, "go")
