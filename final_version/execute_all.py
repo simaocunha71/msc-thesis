@@ -32,7 +32,7 @@ def add_human_eval_score_in_csv(csv_file_old, csv_file_new, column_name, value_t
 
 def run_human_eval_benchmark(model, language):
     """Calcula o score do benchmark HumanEval-x - neste momento apenas calcula o pass@1 mas mais tarde vou incluir o pass@10 e pass@100"""
-    return_value = 42
+    return_value = None
 
     # Calcula o(s) score(s) do benchmark HumanEval e coloca o resultado num ficheiro de texto    
     os.system(
@@ -42,27 +42,28 @@ def run_human_eval_benchmark(model, language):
     
     # Caso exista o ficheiro, iremos fazer parsing do pass@1, pass@10 e pass@100
     if os.path.exists(f"human_eval_score.txt"):
-        os.system(f"cat human_eval_score.txt")
         with open(f"human_eval_score.txt", 'r') as file:
             # Lê o conteúdo do ficheiro
             lines = file.readlines()
 
             # Usamos regex para o parsing
             for line in lines:
-                match = re.search(r"'pass@1': (\d+\.\d+)", line)
-                if match:
-                    # Extraimos o valor de pass@1
-                    pass_value = match.group(1)
-                    return_value = pass_value
+                # Procura por "Total: <valor>"
+                total_match = re.search(r'Total:\s+(\d+)', line)
+                if total_match:
+                    total_value = total_match.group(1)
+
+                # Procura por "Correct: <valor>"
+                correct_match = re.search(r'Correct:\s+(\d+)', line)
+                if correct_match:
+                    correct_value = correct_match.group(1)
+            return_value = float(correct_value) / float(total_value)
 
     else:
         print(f"Error: The file 'human_eval_score.txt' was not found.")
 
     # Apagamos o ficheiro de texto temporário
     #os.system(f"rm human_eval_score.txt")
-
-    # Voltamos a diretoria inicial
-    os.chdir("..")
 
     # Aqui devolve os scores calculados no parsing (NOTE: no futuro isto irá ser um tuplo do tipo (pass@1, pass@10, pass@100))
     return return_value
