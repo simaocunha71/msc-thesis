@@ -1,9 +1,0 @@
-Reading samples...
-  0% 0/6 [00:00<?, ?it/s]100% 6/6 [00:00<00:00, 2790.93it/s]
-Counter({'Python/0': 1, 'Python/1': 1, 'Python/2': 1, 'Python/3': 1, 'Python/4': 1, 'Python/5': 1})
-Running test suites...
-  0% 0/6 [00:00<?, ?it/s]100% 6/6 [00:00<00:00, 81.69it/s]
-Total: 6
-Correct: 0
-Writing to:  /workspace/CodeGeeX/generated_samples/samples_llama-2-7b.Q2_K_humaneval_python_results.jsonl
-Evaluation finished.

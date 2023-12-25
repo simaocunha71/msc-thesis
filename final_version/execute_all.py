@@ -39,31 +39,46 @@ def run_human_eval_benchmark(model, language):
         f"docker run -v $(pwd)/CodeGeeX:/workspace/CodeGeeX/ -it humaneval_x "
         f"bash /workspace/CodeGeeX/scripts/evaluate_humaneval_x.sh /workspace/CodeGeeX/generated_samples/samples_{model}_humaneval_{language}.jsonl {language} > human_eval_score.txt"
     )
-    
+
     # Caso exista o ficheiro, iremos fazer parsing do pass@1, pass@10 e pass@100
     if os.path.exists(f"human_eval_score.txt"):
+        os.system(f"cat human_eval_score.txt")
         with open(f"human_eval_score.txt", 'r') as file:
             # Lê o conteúdo do ficheiro
             lines = file.readlines()
 
             # Usamos regex para o parsing
             for line in lines:
-                # Procura por "Total: <valor>"
-                total_match = re.search(r'Total:\s+(\d+)', line)
-                if total_match:
-                    total_value = total_match.group(1)
+                match = re.search(r"'pass@1': (\d+\.\d+)", line)
+                if match:
+                    # Extraimos o valor de pass@1
+                    pass_value = match.group(1)
+                    return_value = pass_value
 
-                # Procura por "Correct: <valor>"
-                correct_match = re.search(r'Correct:\s+(\d+)', line)
-                if correct_match:
-                    correct_value = correct_match.group(1)
-            return_value = float(correct_value) / float(total_value)
+    ## Caso exista o ficheiro, iremos fazer parsing do pass@1, pass@10 e pass@100
+    #if os.path.exists(f"human_eval_score.txt"):
+    #    with open(f"human_eval_score.txt", 'r') as file:
+    #        # Lê o conteúdo do ficheiro
+    #        lines = file.readlines()
+#
+    #        # Usamos regex para o parsing
+    #        for line in lines:
+    #            # Procura por "Total: <valor>"
+    #            total_match = re.search(r'Total:\s+(\d+)', line)
+    #            if total_match:
+    #                total_value = total_match.group(1)
+#
+    #            # Procura por "Correct: <valor>"
+    #            correct_match = re.search(r'Correct:\s+(\d+)', line)
+    #            if correct_match:
+    #                correct_value = correct_match.group(1)
+    #        return_value = float(correct_value) / float(total_value)
 
     else:
         print(f"Error: The file 'human_eval_score.txt' was not found.")
 
     # Apagamos o ficheiro de texto temporário
-    #os.system(f"rm human_eval_score.txt")
+    os.system(f"rm human_eval_score.txt")
 
     # Aqui devolve os scores calculados no parsing (NOTE: no futuro isto irá ser um tuplo do tipo (pass@1, pass@10, pass@100))
     return return_value
@@ -87,7 +102,7 @@ def start_measure(model_script, prompts_filepath):
 
     if prompts_filepath.endswith(
         ("humaneval_cpp.jsonl", "humaneval_go.jsonl", "humaneval_java.jsonl", 
-         "humaneval_js.jsonl", "humaneval_python.jsonl")): #, "humaneval_rust.jsonl")):
+         "humaneval_js.jsonl", "humaneval_python.jsonl")):
         # Este tratamento apenas se destina ao benchmark do HumanEval
         with open(prompts_filepath, 'r') as file:
             lines = file.readlines()
@@ -101,27 +116,23 @@ def start_measure(model_script, prompts_filepath):
                 if prompts_filepath.endswith("humaneval_cpp.jsonl"):
                     execute_python_script(task_id, prompt, model_script, FILENAME, "cpp")
                     human_eval_score = run_human_eval_benchmark(model_script[:-3], "cpp")
-                    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval C++ - pass@1", human_eval_score)
+                    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval-X", human_eval_score)
                 elif prompts_filepath.endswith("humaneval_go.jsonl"):
                     execute_python_script(task_id, prompt, model_script, FILENAME, "go")
                     human_eval_score = run_human_eval_benchmark(model_script[:-3], "go")
-                    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Go - pass@1", human_eval_score)
+                    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval-X", human_eval_score)
                 elif prompts_filepath.endswith("humaneval_java.jsonl"):
                     execute_python_script(task_id, prompt, model_script, FILENAME, "java")
                     human_eval_score = run_human_eval_benchmark(model_script[:-3], "java")
-                    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Java - pass@1", human_eval_score)
+                    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval-X", human_eval_score)
                 elif prompts_filepath.endswith("humaneval_js.jsonl"):
                     execute_python_script(task_id, prompt, model_script, FILENAME, "js")
                     human_eval_score = run_human_eval_benchmark(model_script[:-3], "js")
-                    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval JavaScript - pass@1", human_eval_score)
+                    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval-X", human_eval_score)
                 elif prompts_filepath.endswith("humaneval_python.jsonl"):
                     execute_python_script(task_id, prompt, model_script, FILENAME, "python")
                     human_eval_score = run_human_eval_benchmark(model_script[:-3], "python")
-                    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Python - pass@1", human_eval_score)
-                elif prompts_filepath.endswith("humaneval_rust.jsonl"):
-                    execute_python_script(task_id, prompt, model_script, FILENAME, "rust")
-                    human_eval_score = run_human_eval_benchmark(model_script[:-3], "rust")
-                    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval Rust - pass@1", human_eval_score)
+                    add_human_eval_score_in_csv(FILENAME, FILENAME, "HumanEval-X", human_eval_score)
 
     else:
         print("Ficheiro JSONL não pertence a nenhum benchmark considerado")
@@ -145,12 +156,7 @@ if __name__ == "__main__":
                    "GPU Power (W)",
                    "CO2 emissions (Kg)",
                    "CO2 emissions rate (Kg/s)",
-                   "HumanEval C++ - pass@1",
-                   "HumanEval Go - pass@1",
-                   "HumanEval Java - pass@1",
-                   "HumanEval JavaScript - pass@1",
-                   "HumanEval Python - pass@1"
-                   #"HumanEval Rust - pass@1"
+                   "HumanEval-X"
                   ]
 
     if not os.path.isfile(FILENAME) or os.stat(FILENAME).st_size == 0:
@@ -166,7 +172,6 @@ if __name__ == "__main__":
         "prompts/humaneval_x/humaneval_java.jsonl",
         "prompts/humaneval_x/humaneval_js.jsonl",
         "prompts/humaneval_x/humaneval_python.jsonl"
-        #"prompts/humaneval_x/humaneval_rust.jsonl"
     ]
 
     # Nome das scripts a executar
