@@ -167,9 +167,9 @@ if __name__ == "__main__":
 
     # Nome dos prompts a considerar
     prompt_files = [
-        "prompts/humaneval_x/humaneval_cpp.jsonl",
-        "prompts/humaneval_x/humaneval_go.jsonl",
-        "prompts/humaneval_x/humaneval_java.jsonl",
+        #"prompts/humaneval_x/humaneval_cpp.jsonl",
+        #"prompts/humaneval_x/humaneval_go.jsonl",
+        #"prompts/humaneval_x/humaneval_java.jsonl",
         "prompts/humaneval_x/humaneval_js.jsonl",
         "prompts/humaneval_x/humaneval_python.jsonl"
     ]
