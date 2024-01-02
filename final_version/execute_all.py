@@ -55,25 +55,6 @@ def run_human_eval_benchmark(model, language):
                     pass_value = match.group(1)
                     return_value = pass_value
 
-    ## Caso exista o ficheiro, iremos fazer parsing do pass@1, pass@10 e pass@100
-    #if os.path.exists(f"human_eval_score.txt"):
-    #    with open(f"human_eval_score.txt", 'r') as file:
-    #        # Lê o conteúdo do ficheiro
-    #        lines = file.readlines()
-#
-    #        # Usamos regex para o parsing
-    #        for line in lines:
-    #            # Procura por "Total: <valor>"
-    #            total_match = re.search(r'Total:\s+(\d+)', line)
-    #            if total_match:
-    #                total_value = total_match.group(1)
-#
-    #            # Procura por "Correct: <valor>"
-    #            correct_match = re.search(r'Correct:\s+(\d+)', line)
-    #            if correct_match:
-    #                correct_value = correct_match.group(1)
-    #        return_value = float(correct_value) / float(total_value)
-
     else:
         print(f"Error: The file 'human_eval_score.txt' was not found.")
 
@@ -167,17 +148,17 @@ if __name__ == "__main__":
 
     # Nome dos prompts a considerar
     prompt_files = [
-        #"prompts/humaneval_x/humaneval_cpp.jsonl",
-        #"prompts/humaneval_x/humaneval_go.jsonl",
-        #"prompts/humaneval_x/humaneval_java.jsonl",
+        "prompts/humaneval_x/humaneval_cpp.jsonl",
+        "prompts/humaneval_x/humaneval_go.jsonl",
+        "prompts/humaneval_x/humaneval_java.jsonl",
         "prompts/humaneval_x/humaneval_js.jsonl",
         "prompts/humaneval_x/humaneval_python.jsonl"
     ]
 
     # Nome das scripts a executar
     scripts_to_execute = [
-        "llama-2-7b.Q2_K.py"
-        #"llama-2-7b.Q3_K_L.py"
+        "llama-2-7b.Q2_K.py",
+        "llama-2-7b.Q3_K_L.py"
     ]
 
     for i in range(N_TIMES):

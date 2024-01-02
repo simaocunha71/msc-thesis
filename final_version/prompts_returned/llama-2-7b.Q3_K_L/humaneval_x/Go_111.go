@@ -1,0 +1,28 @@
+import (
+    "strings"
+)
+
+// Given a string representing a space separated lowercase letters, return a dictionary
+// of the letter with the most repetition and containing the corresponding count.
+// If several letters have the same occurrence, return all of them.
+// 
+// Example:
+// Histogram('a b c') == {'a': 1, 'b': 1, 'c': 1}
+// Histogram('a b b a') == {'a': 2, 'b': 2}
+// Histogram('a b c a b') == {'a': 2, 'b': 2}
+// Histogram('b b b b a') == {'b': 4}
+// Histogram('') == {}
+func Histogram(test string) map[rune]int {
+    // map[rune]int is used to avoid losing the leading space
+    hist := make(map[rune]int)
+    
+    for _, rchar := range strings.ToLower(test) {
+        if _, ok := hist[rchar]; !ok {
+            hist[rchar] = 1
+        } else {
+            hist[rchar]++
+        }
+    }
+    
+    return hist
+}
