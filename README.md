@@ -1,5 +1,14 @@
 ### Repository for the thesis 2023-2024
 
+### Documentos da tese
+| Documentos                       | Links                                                                                                 |
+|:--------------------------------:|:-----------------------------------------------------------------------------------------------------:|
+| Plano de dissertação             | ![aqui](https://github.com/simaocunha71/thesis-repository/blob/master/docs/Plano Dissertação.pdf)     |
+| RPD                              | ![aqui](https://github.com/simaocunha71/thesis-repository/blob/master/docs/RPD.pdf)                   |
+| Apresentação do RPD              | ![aqui](https://github.com/simaocunha71/thesis-repository/blob/master/docs/Apresentação RPD.pdf)      |
+
+
+
 #### Notas do Francisco sobre o RPD - A alterar para o documento final
 - Abstract e Resumo:
     - se achares relevante, inclui uma frase a falar dos modelos com quantization e dizer que queremos ver as diferenças entre os diferentes tamanhos e a eficácia/energia (como achares melhor, fica ao teu critério). [DESENVOLVER UM POUCO MELHOR PARA O DOCUMENTO FINAL]
