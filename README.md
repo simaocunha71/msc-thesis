@@ -1,11 +1,12 @@
 ### Repository for the thesis 2023-2024
 
 ### Documentos da tese
-| Documentos                       | Links                                                                                                 |
-|:--------------------------------:|:-----------------------------------------------------------------------------------------------------:|
-| Plano de dissertação             | ![aqui](https://github.com/simaocunha71/thesis-repository/blob/master/docs/Plano Dissertação.pdf)     |
-| RPD                              | ![aqui](https://github.com/simaocunha71/thesis-repository/blob/master/docs/RPD.pdf)                   |
-| Apresentação do RPD              | ![aqui](https://github.com/simaocunha71/thesis-repository/blob/master/docs/Apresentação RPD.pdf)      |
+| Documentos                  | Links                                                                                                       |
+|:---------------------------:|:-----------------------------------------------------------------------------------------------------------:|
+| Plano de dissertação        | [aqui](https://github.com/simaocunha71/thesis-repository/blob/main/docs/Plano%20Disserta%C3%A7%C3%A3o.pdf)  |
+| RPD                         | [aqui](https://github.com/simaocunha71/thesis-repository/blob/main/docs/RPD.pdf)                            |
+| Apresentação do RPD         | [aqui](https://github.com/simaocunha71/thesis-repository/blob/main/docs/Apresenta%C3%A7%C3%A3o%20RPD.pdf)   |
+
 
 
 
