@@ -16,10 +16,11 @@ from langchain.llms import Together
 
 from typing_extensions import override
 
+from llama_cpp import Llama
 
 NUM_LLM_RETRIES = 10
 
-MAX_TOKENS = 1000
+MAX_TOKENS = 1512
 
 LOG: logging.Logger = logging.getLogger(__name__)
 
@@ -123,7 +124,8 @@ def create(identifier: str) -> LLM:
         return ANYSCALE(name, api_key)
     if provider == "TOGETHER":
         return TOGETHER(name, api_key)
-
+    if provider == "LLAMACPP":
+        return LLAMACPP(name)
     raise ValueError(f"Unknown provider: {provider}")
 
 
@@ -223,4 +225,29 @@ class TOGETHER(LLM):
             "togethercomputer/llama-2-13b-chat",
             "togethercomputer/llama-2-70b",
             "togethercomputer/llama-2-70b-chat",
+        ]
+
+class LLAMACPP(LLM):
+    """Accessing LLAMACPP"""
+
+    def __init__(self, model: str) -> None:
+        super().__init__(model)
+        
+
+    @override
+    def query(self, prompt: str) -> str:
+        # Best-level effort to suppress openai log-spew.
+        # Likely not work well in multi-threaded environment.
+        level = logging.getLogger().level
+        logging.getLogger().setLevel(logging.WARNING)
+        llm = Llama(model_path=self.model, seed=42, verbose=False)
+        output = llm(prompt=prompt, max_tokens=MAX_TOKENS, stop=["Q:"], echo=True)["choices"][0]["text"]
+        return output
+
+
+    @override
+    def valid_models(self) -> list[str]:
+        return [
+            "llama_c++/models/llama-2-7b.Q2_K.gguf",
+            "llama_c++/models/llama-2-7b.Q3_K_L.gguf"
         ]
