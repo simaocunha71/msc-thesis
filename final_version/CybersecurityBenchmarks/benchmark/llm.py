@@ -18,9 +18,9 @@ from typing_extensions import override
 
 from llama_cpp import Llama
 
-NUM_LLM_RETRIES = 10
+NUM_LLM_RETRIES = 25
 
-MAX_TOKENS = 1512
+MAX_TOKENS = 2500
 
 LOG: logging.Logger = logging.getLogger(__name__)
 
@@ -249,5 +249,6 @@ class LLAMACPP(LLM):
     def valid_models(self) -> list[str]:
         return [
             "llama_c++/models/llama-2-7b.Q2_K.gguf",
-            "llama_c++/models/llama-2-7b.Q3_K_L.gguf"
+            "llama_c++/models/llama-2-7b.Q3_K_L.gguf",
+            "llama_c++/models/llama-2-7b.Q3_K_S.gguf"
         ]
