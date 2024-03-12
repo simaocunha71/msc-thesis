@@ -17,10 +17,12 @@ from langchain.llms import Together
 from typing_extensions import override
 
 from llama_cpp import Llama
+from codecarbon import OfflineEmissionsTracker
 
-NUM_LLM_RETRIES = 25
 
-MAX_TOKENS = 2500
+NUM_LLM_RETRIES = 10
+
+MAX_TOKENS = 512
 
 LOG: logging.Logger = logging.getLogger(__name__)
 
@@ -235,14 +237,18 @@ class LLAMACPP(LLM):
         
 
     @override
-    def query(self, prompt: str) -> str:
-        # Best-level effort to suppress openai log-spew.
-        # Likely not work well in multi-threaded environment.
+    def query(self, prompt: str) -> (str, tracker):
+
         level = logging.getLogger().level
         logging.getLogger().setLevel(logging.WARNING)
         llm = Llama(model_path=self.model, seed=42, verbose=False)
+
+        tracker = OfflineEmissionsTracker(country_iso_code="PRT")
+        tracker.start()
         output = llm(prompt=prompt, max_tokens=MAX_TOKENS, stop=["Q:"], echo=True)["choices"][0]["text"]
-        return output
+        tracker.stop()
+
+        return (output, tracker)
 
 
     @override

@@ -16,6 +16,8 @@ from .llm import LLM
 
 LOG: logging.Logger = logging.getLogger(__name__)
 
+def convert_kwh_to_j(value):
+    return value * (3.6*(10**6))
 
 def process_prompt_and_user_input(
     prompt_id: int,
@@ -82,11 +84,21 @@ def process_prompt(
     if not llm:
         raise ValueError("Initial query LLM must be specified.")
     query_result = llm.query_with_retries(prompt)
+                                    
     response = {
         "prompt_id": prompt_id,
         "pass_id": pass_id,
         "test_case_prompt": prompt,
-        "response": query_result,
+        "response": query_result[0],
+        "Execution time (s)": query_result[1].final_emissions_data.duration, 
+        "CPU Energy (J)": convert_kwh_to_j(query_result[1].final_emissions_data.cpu_energy), 
+        "RAM Energy (J)": convert_kwh_to_j(query_result[1].final_emissions_data.ram_energy), 
+        "GPU Energy (J)": convert_kwh_to_j(query_result[1].final_emissions_data.gpu_energy), 
+        "CPU Power (W)": query_result[1].final_emissions_data.cpu_power, 
+        "RAM Power (W)": query_result[1].final_emissions_data.ram_power, 
+        "GPU Power (W)": query_result[1].final_emissions_data.gpu_power, 
+        "CO2 emissions (Kg)": query_result[1].final_emissions_data.emissions, 
+        "CO2 emissions rate (Kg/s)": query_result[1].final_emissions_data.emissions_rate
     }
 
     # fields to (if available) add to response from the test case
