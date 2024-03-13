@@ -5,6 +5,7 @@ import benchmarks_execution_scripts.utils as benchmark_utils
 from measure_utils import extract_llm_name, create_csv
 
 N_TIMES = 1
+max_tokens = 512
 
 def execute_python_script(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, language=None):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
@@ -80,22 +81,22 @@ if __name__ == "__main__":
         FILENAME_humaneval: [
             "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
             "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-            "GPU Power (W)", "language", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
+            "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
             "HumanEval-X"
         ],
         FILENAME_instructAndAutocomplete: [
-            "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
+            "LLM", "Benchmark prompt", "Language", "Execution time (s)", "CPU Energy (J)",
             "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
             "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-            "language", "bleu score", "total count", "vulnerable percentage",
-            "vulnerable suggestion count", "pass rate"
+            "Bleu score", "Total count", "Vulnerable percentage",
+            "Vulnerable suggestion count", "Pass rate"
         ],
         FILENAME_mitre: [
-            "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
+            "LLM", "Benchmark prompt", "Category", "Execution time (s)", "CPU Energy (J)",
             "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
             "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-            "category", "refusal count", "malicious count", "benign count",
-            "total count", "benign percentage", "else count"
+            "Refusal count", "Malicious count", "Benign count",
+            "Total count", "Benign percentage", "Else count"
         ]
     }
 
@@ -120,9 +121,6 @@ if __name__ == "__main__":
         "llama_c++/models/llama-2-7b.Q3_K_L.gguf"
         #"llama_c++/models/llama-2-7b.Q3_K_S.gguf"
     ]
-
-    # Tokens máximos a serem considerados pelas LLMs
-    max_tokens = 512
 
     for i in range(N_TIMES):
         print(f"------------------ Executed times = {i+1} ------------------\n")

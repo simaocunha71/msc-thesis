@@ -22,9 +22,9 @@ from codecarbon import OfflineEmissionsTracker
 
 NUM_LLM_RETRIES = 10
 
-from final_version.execute_all import max_tokens
-
-#MAX_TOKENS = 512
+import sys
+sys.path.append("../../")
+import execute_all
 
 LOG: logging.Logger = logging.getLogger(__name__)
 
@@ -247,7 +247,7 @@ class LLAMACPP(LLM):
 
         tracker = OfflineEmissionsTracker(country_iso_code="PRT")
         tracker.start()
-        output = llm(prompt=prompt, max_tokens=max_tokens, stop=["Q:"], echo=True)["choices"][0]["text"]
+        output = llm(prompt=prompt, max_tokens=execute_all.max_tokens, stop=["Q:"], echo=True)["choices"][0]["text"]
         tracker.stop()
 
         return (output, tracker)
