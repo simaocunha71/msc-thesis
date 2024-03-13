@@ -1,39 +1,38 @@
 import os
-import re
+import sys
+# Adicione o diretório atual ao PYTHONPATH
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from utils import autocompleteOrInstruct_json_to_csv
 
-def run_instruct_benchmark(model, language):
-    """Calcula os scores do benchmark Instruct do CybersecEval"""
-    return_value = None
+def run_instruct_or_autocomplete_benchmark(model, benchmark_type):
+    """Calcula os scores do benchmark Instruct ou Autocomplete do CybersecEval"""
 
-    # Calcula os scores do benchmark Instruct do CybersecEval e coloca os resultados num ficheiro de JSON 
-    # TODO: Executar comando do repositorio Github deles (Dica: ver run_instruct.sh)
-    os.system(
-        "ls"
-    )
+    #Variáveis de ambiente necessárias para a execução do benchmark
+    #os.system("export WEGGLI_PATH=weggli")
+    os.environ['WEGGLI_PATH'] = 'weggli'
+    #os.system('export PATH="$HOME/.cargo/bin:$PATH"')
+    os.environ['PATH'] = f"{os.environ['HOME']}/.cargo/bin:{os.environ['PATH']}"
 
-    # TODO: Usar o ficheiro json dos resultados e guardar todas as variáveis num tuplo
-    if os.path.exists(f"cyberseceval_instruct_results.txt"):
-        os.system(f"cat cyberseceval_instruct_results.txt")
-        with open(f"cyberseceval_instruct_results.txt", 'r') as file:
-            # Lê o conteúdo do ficheiro
-            content = file.read()
+    command_to_execute_benchmark = f'python3 -m CybersecurityBenchmarks.benchmark.run ' \
+        f'--benchmark={benchmark_type} ' \
+        f'--prompt-path="prompts/cyberseceval/{benchmark_type}.json" ' \
+        f'--response-path="CybersecurityBenchmarks/results/{benchmark_type}_responses.json" ' \
+        f'--stat-path="CybersecurityBenchmarks/results/{benchmark_type}_stat.json" '
+    
+    if "llama_c++" in model:
+        command_to_execute_benchmark += f'--llm-under-test="LLAMACPP::{model}::random_string"'
 
-            # Usamos regex para o parsing
-            match = re.search(r"Total:\s+(\d+)\s+Correct:\s+(\d+)", content)
-            if match:
-                total = int(match.group(1))
-                correct = int(match.group(2))
-                # Calculamos a proporção correct/total
-                if total != 0:  # Avoid division by zero
-                    return_value = correct / total
-                else:
-                    return_value = -1  # Default to -1 if total is 0
+    os.system(command_to_execute_benchmark)
 
-    else:
-        print(f"Error: The file 'cyberseceval_instruct_results.txt' was not found.")
+    columns_from_json_response_file  = [
+        "model", "variant", "prompt_id", 
+        "Execution time (s)", "CPU Energy (J)", "RAM Energy (J)", "GPU Energy (J)", 
+                              "CPU Power (W)", "RAM Power (W)", "GPU Power (W)", 
+                              "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)"]
 
-    # Apagamos o ficheiro de texto temporário
-    os.system(f"rm cyberseceval_instruct_results.txt")
-
-    # Aqui devolve os scores calculados no parsing (NOTE: no futuro isto irá ser um tuplo do tipo (pass@1, pass@10, pass@100))
-    return return_value
+    autocompleteOrInstruct_json_to_csv(
+        f"CybersecurityBenchmarks/results/{benchmark_type}_responses.json",
+        f"CybersecurityBenchmarks/results/{benchmark_type}_stat.json", 
+        "measurements_instructAndAutocomplete.csv", 
+        columns_from_json_response_file
+        )

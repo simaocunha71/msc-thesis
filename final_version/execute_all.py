@@ -1,7 +1,8 @@
 import json, csv, os, time
 import benchmarks_execution_scripts.humaneval_x as humaneval_x
+import benchmarks_execution_scripts.cyberseceval as cyberseceval
 import benchmarks_execution_scripts.utils as benchmark_utils
-from measure_utils import extract_llm_name
+from measure_utils import extract_llm_name, create_csv
 
 N_TIMES = 1
 
@@ -25,10 +26,8 @@ def execute_python_script(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, l
 def start_measure(llm_path, prompts_filepath, max_tokens):
     # Execução das scripts de todos os modelos considerados
 
-    if prompts_filepath.endswith(
-        ("humaneval_cpp.jsonl", "humaneval_go.jsonl", "humaneval_java.jsonl", 
-         "humaneval_js.jsonl", "humaneval_python.jsonl")):
-        # Este tratamento apenas se destina ao benchmark do HumanEval
+    if "humaneval_x" in prompts_filepath:
+        # Este tratamento apenas se destina ao benchmark do HumanEval-X
         #NOTE: Caso haja algo estranho no append dos scores dos benchmarks, atualizar esta função 
         # (ver https://github.com/simaocunha71/thesis-repository/tree/ab63a74720a048bc4b8ed8fa14e6275670cc5fbe)
         with open(prompts_filepath, 'r') as file:
@@ -54,77 +53,72 @@ def start_measure(llm_path, prompts_filepath, max_tokens):
         human_eval_score = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), prompts_filepath.split('_')[-1].split('.')[0])
         benchmark_utils.add_score_in_csv(FILENAME_humaneval, FILENAME_humaneval, "HumanEval-X", human_eval_score)
 
+    elif "cyberseceval" in prompts_filepath:
+        # Este tratamento apenas se destina ao benchmark do CyberSecEval
+        if "autocomplete" in prompts_filepath:
+            cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, "autocomplete")
+            
+        elif "instruct" in prompts_filepath:
+            cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, "instruct")
+
+        elif "mitre" in prompts_filepath:
+            pass
     else:
         print("Ficheiro JSONL não pertence a nenhum benchmark considerado")
 
 
 if __name__ == "__main__":
-
+    
     # Nomes dos CSVs finais (um por cada benchmark)
     FILENAME_humaneval = "measurements_humaneval.csv"
     FILENAME_instructAndAutocomplete = "measurements_instructAndAutocomplete.csv"
     FILENAME_mitre = "measurements_mitre.csv"
 
 
-    # Nome das colunas do CSV final
-    common_header_list = [
-                   "LLM",
-                   "Benchmark prompt",
-                   "Execution time (s)",
-                   "CPU Energy (J)",
-                   "RAM Energy (J)",
-                   "GPU Energy (J)",
-                   "CPU Power (W)", 
-                   "RAM Power (W)",
-                   "GPU Power (W)",
-                   "CO2 emissions (Kg)",
-                   "CO2 emissions rate (Kg/s)",
-                  ]
+    # Define CSV files and their columns
+    csv_files = {
+        FILENAME_humaneval: [
+            "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
+            "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
+            "GPU Power (W)", "language", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
+            "HumanEval-X"
+        ],
+        FILENAME_instructAndAutocomplete: [
+            "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
+            "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
+            "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
+            "language", "bleu score", "total count", "vulnerable percentage",
+            "vulnerable suggestion count", "pass rate"
+        ],
+        FILENAME_mitre: [
+            "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
+            "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
+            "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
+            "category", "refusal count", "malicious count", "benign count",
+            "total count", "benign percentage", "else count"
+        ]
+    }
 
-    if not os.path.isfile(FILENAME_humaneval) or os.stat(FILENAME_humaneval).st_size == 0:
-        # Se o ficheiro não existir, então cria-se
-        with open(FILENAME_humaneval, 'w', newline='') as f:
-            writer = csv.writer(f)
-            common_header_list.append("HumanEval-X")
-            writer.writerow(common_header_list)
+    # Cria os ficheiros CSV
+    for filename, columns in csv_files.items():
+        create_csv(filename, columns)
 
-    if not os.path.isfile(FILENAME_instructAndAutocomplete) or os.stat(FILENAME_instructAndAutocomplete).st_size == 0:
-        # Se o ficheiro não existir, então cria-se
-        with open(FILENAME_instructAndAutocomplete, 'w', newline='') as f:
-            writer = csv.writer(f)
-            common_header_list.append("bleu score")
-            common_header_list.append("total count")
-            common_header_list.append("vulnerable percentage")
-            common_header_list.append("vulnerable suggestion count")
-            common_header_list.append("pass rate")
-            writer.writerow(common_header_list)
-
-    if not os.path.isfile(FILENAME_mitre) or os.stat(FILENAME_mitre).st_size == 0:
-        # Se o ficheiro não existir, então cria-se
-        with open(FILENAME_mitre, 'w', newline='') as f:
-            writer = csv.writer(f)
-            common_header_list.append("refusal count")
-            common_header_list.append("malicious count")
-            common_header_list.append("benign count")
-            common_header_list.append("total count")
-            common_header_list.append("benign percentage")
-            common_header_list.append("else count")
-            writer.writerow(common_header_list)
-    
     # Nome dos prompts a considerar
     prompt_files = [
-        "prompts/humaneval_x/humaneval_cpp.jsonl",
-        "prompts/humaneval_x/humaneval_go.jsonl",
-        "prompts/humaneval_x/humaneval_java.jsonl",
-        "prompts/humaneval_x/humaneval_js.jsonl",
-        "prompts/humaneval_x/humaneval_python.jsonl"
+        #"prompts/humaneval_x/humaneval_cpp.jsonl",
+        #"prompts/humaneval_x/humaneval_go.jsonl",
+        #"prompts/humaneval_x/humaneval_java.jsonl",
+        #"prompts/humaneval_x/humaneval_js.jsonl",
+        "prompts/cyberseceval/autocomplete.json"
+        #"prompts/cyberseceval/instruct.json",
+        #"prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json"
     ]
 
     # Path das LLMs a executar
     llms_to_execute = [
         "llama_c++/models/llama-2-7b.Q2_K.gguf",
-        "llama_c++/models/llama-2-7b.Q3_K_L.gguf",
-        "llama_c++/models/llama-2-7b.Q3_K_S.gguf"
+        "llama_c++/models/llama-2-7b.Q3_K_L.gguf"
+        #"llama_c++/models/llama-2-7b.Q3_K_S.gguf"
     ]
 
     # Tokens máximos a serem considerados pelas LLMs

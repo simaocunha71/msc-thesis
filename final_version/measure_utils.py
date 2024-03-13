@@ -109,3 +109,11 @@ def add_measurement_to_csv(FILENAME, model_name, label, tracker):
             csv_writer.writerow([model_name, label, "ERROR", "ERROR", "ERROR", "ERROR", "ERROR",
                                                     "ERROR", "ERROR", "ERROR", "ERROR"
                                 ])
+
+def create_csv(filename, columns):
+    """Cria um ficheiro csv com umas colunas específicas"""
+    if not os.path.isfile(filename) or os.stat(filename).st_size == 0:
+        with open(filename, 'w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(columns)
+    
