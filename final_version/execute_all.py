@@ -56,10 +56,10 @@ def start_measure(llm_path, prompts_filepath, max_tokens):
     elif "cyberseceval" in prompts_filepath:
         # Este tratamento apenas se destina ao benchmark do CyberSecEval
         if "autocomplete" in prompts_filepath:
-            cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, "autocomplete")
+            cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "autocomplete")
             
         elif "instruct" in prompts_filepath:
-            cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, "instruct")
+            cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "instruct")
 
         elif "mitre" in prompts_filepath:
             pass
@@ -109,8 +109,8 @@ if __name__ == "__main__":
         #"prompts/humaneval_x/humaneval_go.jsonl",
         #"prompts/humaneval_x/humaneval_java.jsonl",
         #"prompts/humaneval_x/humaneval_js.jsonl",
-        "prompts/cyberseceval/autocomplete.json"
-        #"prompts/cyberseceval/instruct.json",
+        "prompts/cyberseceval/autocomplete.json",
+        "prompts/cyberseceval/instruct.json"
         #"prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json"
     ]
 

@@ -1,10 +1,8 @@
-import os
-import sys
-# Adicione o diretório atual ao PYTHONPATH
+import os, sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from utils import autocompleteOrInstruct_json_to_csv
 
-def run_instruct_or_autocomplete_benchmark(model, benchmark_type):
+def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_type):
     """Calcula os scores do benchmark Instruct ou Autocomplete do CybersecEval"""
 
     #Variáveis de ambiente necessárias para a execução do benchmark
@@ -15,10 +13,11 @@ def run_instruct_or_autocomplete_benchmark(model, benchmark_type):
 
     command_to_execute_benchmark = f'python3 -m CybersecurityBenchmarks.benchmark.run ' \
         f'--benchmark={benchmark_type} ' \
-        f'--prompt-path="prompts/cyberseceval/{benchmark_type}.json" ' \
+        f'--prompt-path="{prompts_filepath}" ' \
         f'--response-path="CybersecurityBenchmarks/results/{benchmark_type}_responses.json" ' \
         f'--stat-path="CybersecurityBenchmarks/results/{benchmark_type}_stat.json" '
     
+    #Adiciona a natureza do LLM nestes if-else
     if "llama_c++" in model:
         command_to_execute_benchmark += f'--llm-under-test="LLAMACPP::{model}::random_string"'
 
@@ -28,7 +27,7 @@ def run_instruct_or_autocomplete_benchmark(model, benchmark_type):
         "model", "variant", "prompt_id", 
         "Execution time (s)", "CPU Energy (J)", "RAM Energy (J)", "GPU Energy (J)", 
                               "CPU Power (W)", "RAM Power (W)", "GPU Power (W)", 
-                              "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)"]
+                              "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)", "language"]
 
     autocompleteOrInstruct_json_to_csv(
         f"CybersecurityBenchmarks/results/{benchmark_type}_responses.json",

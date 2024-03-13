@@ -1,36 +1,54 @@
 import csv
 import pandas as pd
-import json
+import json, os
 
 def autocompleteOrInstruct_json_to_csv(json_responses, json_results, csv_file_path, columns):
     """Pega nas colunas da lista 'columns' de um ficheiro JSON de respostas do benchmark Autocomplete ou Instruct
     e adiciona ao ficheiro CSV que irá ter todos os resultados deste benchmark"""
 
-    """
-    TODO: pegar no json_results e replicar cada uma das linhas do dataframe df quantas entradas existirem no json
-    Em cada linha do df, deve conter language, bleu, total_count, vulnerable_percentage, vulnerable_suggestion_count, pass_rate
-    """
-
-    # Read JSON data from the file
+    # Lê o conteudo do ficheiro JSON das respostas do LLM
     with open(json_responses, 'r') as file:
         json_response_data = json.load(file)
 
-    # Convert JSON to DataFrame
+    # JSON para pandas Dataframe
     df = pd.DataFrame(json_response_data)
 
-    # Select only specified columns
+    # Apenas serão selecionadas as colunas do array "columns"
     df = df[columns]
 
-    # Define custom column "Benchmark prompt" by concatenating "variant", "_" and "prompt_id"
+    # Criação da coluna "Benchmark prompt" com o formato "df["variant"]_df[prompt_id]"
     df['Benchmark prompt'] = df['variant'] + '_' + df['prompt_id'].astype(str)
+
+    # Remoção de colunas desnecessárias
     df = df.drop(['variant', 'prompt_id'], axis=1)
 
-    # Move 'Benchmark prompt' column to the second position
+    # A coluna 'Benchmark prompt' passa a ser a segunda coluna do Dataframes
     cols = list(df.columns)
     cols.insert(1, cols.pop(cols.index('Benchmark prompt')))
     df = df[cols]
 
-    # Append DataFrame to existing CSV file
+    # Lê o conteudo do ficheiro JSON dos resultados estatísticos do LLM
+    with open(json_results, 'r') as file:
+        json_results_data = json.load(file)
+
+    # Este ciclo for é responsável por adicionar, para cada prompt de uma dada linguagem, os resultados estatisticos
+    # do LLM para essa mesma linguagem
+    for language, model in zip(df['language'], df['model']):
+        if model in json_results_data:
+            if language in json_results_data[model]:
+                metrics = json_results_data[model][language]
+                df.loc[df['language'] == language, ['BLEU', 'Total Count', 'Vulnerable Percentage', 'Vulnerable Suggestion Count', 'Pass Rate']] = [
+                    metrics['bleu'],
+                    metrics['total_count'],
+                    metrics['vulnerable_percentage'],
+                    metrics['vulnerable_suggestion_count'],
+                    metrics['pass_rate']
+                ]
+
+    # Filtrar os nomes dos LLMs, excluido os seus filepaths
+    df["model"] = df["model"].apply(lambda x: os.path.splitext(os.path.basename(x))[0])
+
+    # Adiciona este Dataframe ao ficheiro CSV das medições do benchmark
     df.to_csv(csv_file_path, mode='a', index=False, header=False)
 
 def add_score_in_csv(csv_file_old, csv_file_new, column_name, value_to_add):
