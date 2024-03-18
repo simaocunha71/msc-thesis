@@ -80,45 +80,84 @@ def process_prompt(
     )
     if not prompt:
         raise ValueError("Prompt cannot be empty.")
+
+    print("*************************     Prompt  ********************************")
+    print(prompt)
+    print("*********************************************************************")
+
     llm = llms["initial_query_llm"]
     if not llm:
         raise ValueError("Initial query LLM must be specified.")
-    query_result = llm.query_with_retries(prompt)
-                                    
-    response = {
-        "prompt_id": prompt_id,
-        "pass_id": pass_id,
-        "test_case_prompt": prompt,
-        "response": query_result[0],
-        "Execution time (s)": query_result[1].final_emissions_data.duration, 
-        "CPU Energy (J)": convert_kwh_to_j(query_result[1].final_emissions_data.cpu_energy), 
-        "RAM Energy (J)": convert_kwh_to_j(query_result[1].final_emissions_data.ram_energy), 
-        "GPU Energy (J)": convert_kwh_to_j(query_result[1].final_emissions_data.gpu_energy), 
-        "CPU Power (W)": query_result[1].final_emissions_data.cpu_power, 
-        "RAM Power (W)": query_result[1].final_emissions_data.ram_power, 
-        "GPU Power (W)": query_result[1].final_emissions_data.gpu_power, 
-        "CO2 emissions (Kg)": query_result[1].final_emissions_data.emissions, 
-        "CO2 emissions rate (Kg/s)": query_result[1].final_emissions_data.emissions_rate
-    }
+    try:
+        query_result = llm.query_with_retries(prompt)
+        response = {
+            "prompt_id": prompt_id,
+            "pass_id": pass_id,
+            "test_case_prompt": prompt,
+            "response": query_result[0],
+            "Execution time (s)": query_result[1].final_emissions_data.duration, 
+            "CPU Energy (J)": convert_kwh_to_j(query_result[1].final_emissions_data.cpu_energy), 
+            "RAM Energy (J)": convert_kwh_to_j(query_result[1].final_emissions_data.ram_energy), 
+            "GPU Energy (J)": convert_kwh_to_j(query_result[1].final_emissions_data.gpu_energy), 
+            "CPU Power (W)": query_result[1].final_emissions_data.cpu_power, 
+            "RAM Power (W)": query_result[1].final_emissions_data.ram_power, 
+            "GPU Power (W)": query_result[1].final_emissions_data.gpu_power, 
+            "CO2 emissions (Kg)": query_result[1].final_emissions_data.emissions, 
+            "CO2 emissions rate (Kg/s)": query_result[1].final_emissions_data.emissions_rate
+        }   
+         # fields to (if available) add to response from the test case
+        test_case_fields = [
+            "cwe_identifier",
+            "mitre_category",
+            "language",
+            "line_text",
+            "origin_code",
+            "variant",
+            "rule",
+            "repo",
+        ]
+        for field in test_case_fields:
+            if field in test_case:
+                response[field] = test_case[field]
 
-    # fields to (if available) add to response from the test case
-    test_case_fields = [
-        "cwe_identifier",
-        "mitre_category",
-        "language",
-        "line_text",
-        "origin_code",
-        "variant",
-        "rule",
-        "repo",
-    ]
-    for field in test_case_fields:
-        if field in test_case:
-            response[field] = test_case[field]
+        if llm.model is not None:
+            response["model"] = llm.model
+        return response
+    except:   
+        response = {
+            "prompt_id": prompt_id,
+            "pass_id": pass_id,
+            "test_case_prompt": prompt,
+            "response": 'Error',
+            "Execution time (s)": 'Error', 
+            "CPU Energy (J)": 'Error', 
+            "RAM Energy (J)": 'Error', 
+            "GPU Energy (J)": 'Error', 
+            "CPU Power (W)": 'Error', 
+            "RAM Power (W)": 'Error', 
+            "GPU Power (W)": 'Error', 
+            "CO2 emissions (Kg)": 'Error', 
+            "CO2 emissions rate (Kg/s)": 'Error'
+        }
 
-    if llm.model is not None:
-        response["model"] = llm.model
-    return response
+        # fields to (if available) add to response from the test case
+        test_case_fields = [
+            "cwe_identifier",
+            "mitre_category",
+            "language",
+            "line_text",
+            "origin_code",
+            "variant",
+            "rule",
+            "repo",
+        ]
+        for field in test_case_fields:
+            if field in test_case:
+                response[field] = test_case[field]
+
+        if llm.model is not None:
+            response["model"] = llm.model
+        return response
 
 
 def query_llm_to_generate_responses(

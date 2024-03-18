@@ -5,7 +5,7 @@ import benchmarks_execution_scripts.utils as benchmark_utils
 from measure_utils import extract_llm_name, create_csv
 
 N_TIMES = 1
-max_tokens = 512
+max_tokens = 2048
 
 def execute_python_script(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, language=None):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
@@ -53,7 +53,8 @@ def start_measure(llm_path, prompts_filepath, max_tokens):
         # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
         human_eval_score = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), prompts_filepath.split('_')[-1].split('.')[0])
         benchmark_utils.add_score_in_csv(FILENAME_humaneval, FILENAME_humaneval, "HumanEval-X", human_eval_score)
-
+        time.sleep(5)
+        
     elif "cyberseceval" in prompts_filepath:
         # Este tratamento apenas se destina ao benchmark do CyberSecEval
         if "autocomplete" in prompts_filepath:
@@ -110,7 +111,7 @@ if __name__ == "__main__":
         #"prompts/humaneval_x/humaneval_go.jsonl",
         #"prompts/humaneval_x/humaneval_java.jsonl",
         #"prompts/humaneval_x/humaneval_js.jsonl",
-        "prompts/cyberseceval/autocomplete.json",
+        #"prompts/cyberseceval/autocomplete.json"
         "prompts/cyberseceval/instruct.json"
         #"prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json"
     ]
@@ -118,7 +119,7 @@ if __name__ == "__main__":
     # Path das LLMs a executar
     llms_to_execute = [
         "llama_c++/models/llama-2-7b.Q2_K.gguf",
-        "llama_c++/models/llama-2-7b.Q3_K_L.gguf"
+        #"llama_c++/models/llama-2-7b.Q3_K_L.gguf"
         #"llama_c++/models/llama-2-7b.Q3_K_S.gguf"
     ]
 
@@ -127,4 +128,3 @@ if __name__ == "__main__":
         for llm_path in llms_to_execute:
             for prompt_file in prompt_files:
                 start_measure(llm_path, prompt_file, max_tokens)
-                time.sleep(5)

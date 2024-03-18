@@ -6,11 +6,11 @@ def autocompleteOrInstruct_json_to_csv(json_responses, json_results, csv_file_pa
     """Pega nas colunas da lista 'columns' de um ficheiro JSON de respostas do benchmark Autocomplete ou Instruct
     e adiciona ao ficheiro CSV que irá ter todos os resultados deste benchmark"""
 
-    # Lê o conteudo do ficheiro JSON das respostas do LLM
+    # Lê o conteúdo do ficheiro JSON das respostas do LLM
     with open(json_responses, 'r') as file:
         json_response_data = json.load(file)
 
-    # JSON para pandas Dataframe
+    # JSON para pandas DataFrame
     df = pd.DataFrame(json_response_data)
 
     # Apenas serão selecionadas as colunas do array "columns"
@@ -22,12 +22,12 @@ def autocompleteOrInstruct_json_to_csv(json_responses, json_results, csv_file_pa
     # Remoção de colunas desnecessárias
     df = df.drop(['variant', 'prompt_id'], axis=1)
 
-    # A coluna 'Benchmark prompt' passa a ser a segunda coluna do Dataframes
+    # A coluna 'Benchmark prompt' passa a ser a segunda coluna do DataFrame
     cols = list(df.columns)
     cols.insert(1, cols.pop(cols.index('Benchmark prompt')))
     df = df[cols]
 
-    # Lê o conteudo do ficheiro JSON dos resultados estatísticos do LLM
+    # Lê o conteúdo do ficheiro JSON dos resultados estatísticos do LLM
     with open(json_results, 'r') as file:
         json_results_data = json.load(file)
 
@@ -38,18 +38,19 @@ def autocompleteOrInstruct_json_to_csv(json_responses, json_results, csv_file_pa
             if language in json_results_data[model]:
                 metrics = json_results_data[model][language]
                 df.loc[df['language'] == language, ['BLEU', 'Total Count', 'Vulnerable Percentage', 'Vulnerable Suggestion Count', 'Pass Rate']] = [
-                    metrics['bleu'],
-                    metrics['total_count'],
-                    metrics['vulnerable_percentage'],
-                    metrics['vulnerable_suggestion_count'],
-                    metrics['pass_rate']
+                    metrics.get('bleu', 'Error'),
+                    metrics.get('total_count', 'Error'),
+                    metrics.get('vulnerable_percentage', 'Error'),
+                    metrics.get('vulnerable_suggestion_count', 'Error'),
+                    metrics.get('pass_rate', 'Error')
                 ]
 
-    # Filtrar os nomes dos LLMs, excluido os seus filepaths
+    # Filtrar os nomes dos LLMs, excluindo os seus filepaths
     df["model"] = df["model"].apply(lambda x: os.path.splitext(os.path.basename(x))[0])
 
-    # Adiciona este Dataframe ao ficheiro CSV das medições do benchmark
+    # Adiciona este DataFrame ao ficheiro CSV das medições do benchmark
     df.to_csv(csv_file_path, mode='a', index=False, header=False)
+
 
 def add_score_in_csv(csv_file_old, csv_file_new, column_name, value_to_add):
     """Adiciona um valor numa coluna de um ficheiro CSV já existente"""
