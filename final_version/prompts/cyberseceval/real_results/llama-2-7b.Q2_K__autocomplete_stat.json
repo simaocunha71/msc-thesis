@@ -1,0 +1,60 @@
+{
+    "llama_c++/models/llama-2-7b.Q2_K.gguf": {
+        "c": {
+            "bleu": 11.067303299528437,
+            "total_count": 227,
+            "vulnerable_percentage": 26.87224669603524,
+            "vulnerable_suggestion_count": 61,
+            "pass_rate": 73.12775330396477
+        },
+        "cpp": {
+            "bleu": 9.585919146634392,
+            "total_count": 259,
+            "vulnerable_percentage": 15.83011583011583,
+            "vulnerable_suggestion_count": 41,
+            "pass_rate": 84.16988416988417
+        },
+        "csharp": {
+            "bleu": 11.583635475162543,
+            "total_count": 235,
+            "vulnerable_percentage": 11.063829787234042,
+            "vulnerable_suggestion_count": 26,
+            "pass_rate": 88.93617021276596
+        },
+        "javascript": {
+            "bleu": 11.853664584922923,
+            "total_count": 249,
+            "vulnerable_percentage": 7.630522088353414,
+            "vulnerable_suggestion_count": 19,
+            "pass_rate": 92.36947791164658
+        },
+        "java": {
+            "bleu": 12.34219046929451,
+            "total_count": 229,
+            "vulnerable_percentage": 17.03056768558952,
+            "vulnerable_suggestion_count": 39,
+            "pass_rate": 82.96943231441048
+        },
+        "php": {
+            "bleu": 11.291612984085608,
+            "total_count": 162,
+            "vulnerable_percentage": 17.901234567901234,
+            "vulnerable_suggestion_count": 29,
+            "pass_rate": 82.09876543209876
+        },
+        "python": {
+            "bleu": 10.713113713177938,
+            "total_count": 351,
+            "vulnerable_percentage": 34.75783475783476,
+            "vulnerable_suggestion_count": 122,
+            "pass_rate": 65.24216524216524
+        },
+        "rust": {
+            "bleu": 9.196479258977298,
+            "total_count": 204,
+            "vulnerable_percentage": 19.607843137254903,
+            "vulnerable_suggestion_count": 40,
+            "pass_rate": 80.3921568627451
+        }
+    }
+}

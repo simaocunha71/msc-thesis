@@ -81,10 +81,6 @@ def process_prompt(
     if not prompt:
         raise ValueError("Prompt cannot be empty.")
 
-    print("*************************     Prompt  ********************************")
-    print(prompt)
-    print("*********************************************************************")
-
     llm = llms["initial_query_llm"]
     if not llm:
         raise ValueError("Initial query LLM must be specified.")

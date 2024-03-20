@@ -67,7 +67,7 @@ def start_measure():
                 print(e)
                 print("------------------------------------------")
 
-                csv_writer.writerow(["C", "fibonacci", "ERROR", "ERROR", "ERROR", "ERROR", "ERROR",
+                csv_writer.writerow(["Python", "fibonacci", "ERROR", "ERROR", "ERROR", "ERROR", "ERROR",
                                                                        "ERROR", "ERROR", "ERROR", "ERROR"
                                     ])
         time.sleep(5)

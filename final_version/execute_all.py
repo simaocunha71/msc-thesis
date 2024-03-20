@@ -111,15 +111,15 @@ if __name__ == "__main__":
         #"prompts/humaneval_x/humaneval_go.jsonl",
         #"prompts/humaneval_x/humaneval_java.jsonl",
         #"prompts/humaneval_x/humaneval_js.jsonl",
-        #"prompts/cyberseceval/autocomplete.json"
-        "prompts/cyberseceval/instruct.json"
+        "prompts/cyberseceval/autocomplete.json"
+        #"prompts/cyberseceval/instruct.json"
         #"prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json"
     ]
 
     # Path das LLMs a executar
     llms_to_execute = [
-        "llama_c++/models/llama-2-7b.Q2_K.gguf",
-        #"llama_c++/models/llama-2-7b.Q3_K_L.gguf"
+        #"llama_c++/models/llama-2-7b.Q2_K.gguf",
+        "llama_c++/models/llama-2-7b.Q3_K_L.gguf"
         #"llama_c++/models/llama-2-7b.Q3_K_S.gguf"
     ]
 
