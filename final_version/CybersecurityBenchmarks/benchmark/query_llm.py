@@ -119,7 +119,7 @@ def process_prompt(
         if llm.model is not None:
             response["model"] = llm.model
         return response
-    except:   
+    except Exception as e:   
         response = {
             "prompt_id": prompt_id,
             "pass_id": pass_id,
@@ -135,6 +135,10 @@ def process_prompt(
             "CO2 emissions (Kg)": 'Error', 
             "CO2 emissions rate (Kg/s)": 'Error'
         }
+
+        print("---------------- Error message: --------------")
+        print(e)
+        print("----------------------------------------------")
 
         # fields to (if available) add to response from the test case
         test_case_fields = [

@@ -5,7 +5,7 @@ import benchmarks_execution_scripts.utils as benchmark_utils
 from measure_utils import extract_llm_name, create_csv
 
 N_TIMES = 1
-max_tokens = 2048
+max_tokens = 512
 
 def execute_python_script(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, language=None):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
@@ -111,8 +111,8 @@ if __name__ == "__main__":
         #"prompts/humaneval_x/humaneval_go.jsonl",
         #"prompts/humaneval_x/humaneval_java.jsonl",
         #"prompts/humaneval_x/humaneval_js.jsonl",
-        "prompts/cyberseceval/autocomplete.json"
-        #"prompts/cyberseceval/instruct.json"
+        #"prompts/cyberseceval/autocomplete.json"
+        "prompts/cyberseceval/instruct.json"
         #"prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json"
     ]
 

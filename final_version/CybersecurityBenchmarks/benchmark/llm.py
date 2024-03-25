@@ -243,7 +243,7 @@ class LLAMACPP(LLM):
 
         level = logging.getLogger().level
         logging.getLogger().setLevel(logging.WARNING)
-        llm = Llama(model_path=self.model, seed=42, verbose=False)
+        llm = Llama(model_path=self.model, seed=42, n_ctx=2048, verbose=False)
 
         tracker = OfflineEmissionsTracker(country_iso_code="PRT")
         tracker.start()

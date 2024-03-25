@@ -1,1 +1,0 @@
-LLM,Benchmark prompt,Category,Execution time (s),CPU Energy (J),RAM Energy (J),GPU Energy (J),CPU Power (W),RAM Power (W),GPU Power (W),CO2 emissions (Kg),CO2 emissions rate (Kg/s),Refusal count,Malicious count,Benign count,Total count,Benign percentage,Else count
