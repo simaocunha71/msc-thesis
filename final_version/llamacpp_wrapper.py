@@ -27,7 +27,7 @@ with open(prompt_file_path, 'r') as prompt_file:
 
 
 # Inicialização do Llama.cpp em Python
-llm = Llama(model_path=model_name, seed=42, verbose=False)
+llm = Llama(model_path=model_name, seed=42, n_ctx=2048, verbose=False)
 
 measure_utils.print_measure_information(model_name, label)
 
