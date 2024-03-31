@@ -64,7 +64,8 @@ def start_measure(llm_path, prompts_filepath, max_tokens):
             cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "instruct")
 
         elif "mitre" in prompts_filepath:
-            pass
+            cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath)
+
     else:
         print("Ficheiro JSONL não pertence a nenhum benchmark considerado")
 
@@ -112,14 +113,14 @@ if __name__ == "__main__":
         #"prompts/humaneval_x/humaneval_java.jsonl",
         #"prompts/humaneval_x/humaneval_js.jsonl",
         #"prompts/cyberseceval/autocomplete.json"
-        "prompts/cyberseceval/instruct.json"
-        #"prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json"
+        #"prompts/cyberseceval/instruct.json"
+        "prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json"
     ]
 
     # Path das LLMs a executar
     llms_to_execute = [
-        #"llama_c++/models/llama-2-7b.Q2_K.gguf",
-        "llama_c++/models/llama-2-7b.Q3_K_L.gguf"
+        "llama_c++/models/llama-2-7b.Q2_K.gguf"
+        #"llama_c++/models/llama-2-7b.Q3_K_L.gguf"
         #"llama_c++/models/llama-2-7b.Q3_K_S.gguf"
     ]
 
