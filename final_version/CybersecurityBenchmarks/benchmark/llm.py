@@ -26,6 +26,11 @@ MAX_TOKENS = 512
 
 LOG: logging.Logger = logging.getLogger(__name__)
 
+def get_valid_models(llm_family):
+    """Reads a JSON file and retrieves the value corresponding to the 'llm_family' key."""
+    with open('file.json', 'r') as file:
+        data = json.load(file)
+        return data.get(llm_family)
 
 class LLM(ABC):
     def __init__(self, model: str, api_key: str | None = None) -> None:
@@ -253,8 +258,4 @@ class LLAMACPP(LLM):
 
     @override
     def valid_models(self) -> list[str]:
-        return [
-            "llama_c++/models/llama-2-7b.Q2_K.gguf",
-            "llama_c++/models/llama-2-7b.Q3_K_L.gguf",
-            "llama_c++/models/llama-2-7b.Q3_K_S.gguf"
-        ]
+        return get_valid_models("LLAMACPP")

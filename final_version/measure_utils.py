@@ -1,4 +1,4 @@
-import os, csv
+import os, csv, json
 
 def change_max_tokens_value(filename, new_max_tolens):
     """Substitui o valor de max_tokens vindo do ArgumentParser no ficheiro .py do CyberSecEval (i.e. llm.py)"""
@@ -129,4 +129,23 @@ def create_csv(filename, columns):
         with open(filename, 'w', newline='') as f:
             writer = csv.writer(f)
             writer.writerow(columns)
-    
+
+def validate_supported_models(json_file, models_list):
+    """Verifica se uma string de paths de LLMs estão suportados pelo programa, lendo o ficheiro JSON de modelos s"""
+    invalid_models = []
+    try:
+        with open(json_file, 'r') as file:
+            data = json.load(file)
+
+            json_strings = [value for sublist in data for value in sublist.values()]
+            json_models = [item for sublist in json_strings for item in sublist]
+
+            for string in models_list:
+                if string not in json_models:
+                    invalid_models.append(string)
+            if invalid_models:
+                return False, invalid_models
+            else:
+                return True, []
+    except FileNotFoundError:
+        print(f"The file '{json_file}' was not found.")
