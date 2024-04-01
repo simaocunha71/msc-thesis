@@ -19,4 +19,9 @@ const separateParenGroups = (paren_string) => {
           res.push('(' + paren_string.slice(0, i) + ')' )//and done with checking for nested parentheses
         }
       }
-    }else{ //if we found an
+    }else{ //if we found an open parentheses at that location but not a close parenthesis then keep going until we find another open parentheses and then add it into our result list
+      while((i = paren_string.indexOf('(', i+1)) != -1){ //find the index of any open parentheses in this section
+        res.push(paren_string.slice(0, i) + ')' )//if we found an open parenthesis and didn't find a close parenthesis then push it into our result list
+      }
+    }
+  } //end of

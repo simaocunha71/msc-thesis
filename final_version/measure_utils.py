@@ -1,5 +1,18 @@
 import os, csv
 
+def change_max_tokens_value(filename, new_max_tolens):
+    """Substitui o valor de max_tokens vindo do ArgumentParser no ficheiro .py do CyberSecEval (i.e. llm.py)"""
+    with open(filename, 'r') as file:
+        lines = file.readlines()
+
+    for i, line in enumerate(lines):
+        if 'MAX_TOKENS =' in line:
+            lines[i] = f'MAX_TOKENS = {new_max_tolens}\n'
+            break
+
+    with open(filename, 'w') as file:
+        file.writelines(lines)
+
 def convert_kwh_to_j(value):
     return value * (3.6*(10**6))
 
@@ -112,7 +125,7 @@ def add_measurement_to_csv(FILENAME, model_name, label, tracker):
 
 def create_csv(filename, columns):
     """Cria um ficheiro csv com umas colunas específicas"""
-    if not os.path.isfile(filename) or os.stat(filename).st_size == 0:
+    if not os.path.isfile(filename) or os.stat(filename).st_size == 0:  
         with open(filename, 'w', newline='') as f:
             writer = csv.writer(f)
             writer.writerow(columns)

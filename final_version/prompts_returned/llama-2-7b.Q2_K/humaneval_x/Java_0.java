@@ -39,4 +39,10 @@ class Solution {
             map = new HashMap();
             for (int j=index-i;j>=0;j--){
                 String s2 =""+elements.get(j).key;
-                int index2 = s2
+                int index2 = s2.indexOf('e');
+                    if(index2>-1 && Double.parseDouble(s2.substring(0, index2)) > threshold) {
+                map.put(elements.get(i).value+" "+elements.get(j+1).key, Integer.valueOf(""+map.get(elements.get(i+1).key)));
+                    } else  map.put(elements.get(i).value+" "+elements.get(j+1).key, Integer.valueOf(""+map.get(elements.get(i+1).key)));  
+            }
+            
+            System.out.println("\n"+s1+"\n");

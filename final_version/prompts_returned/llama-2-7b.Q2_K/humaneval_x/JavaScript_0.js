@@ -22,4 +22,10 @@ const hasCloseElements = (numbers, threshold) => {
       const numsDistance = Math.abs((i - numberSet.first()) - currentNum) + 1; // distance between i and current num (1 because it's not the same num)
       if (!closestIndex || numsDistance < closestIndex && numsDistance != prevIndex && numsDistance > threshold) { // set new one as index of closest to curent that is closer than thresh from prev index
         closestIndex = i;
-      } else if (numsDistance == prevIndex) { // update distance if
+      } else if (numsDistance == prevIndex) { // update distance if it's the same num, but with different indx
+        closestIndex += 1;
+      }
+    }
+  }
+  return closestIndex || !threshold;
+};
