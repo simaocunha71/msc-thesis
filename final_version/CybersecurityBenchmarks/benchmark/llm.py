@@ -5,7 +5,7 @@
 
 from __future__ import annotations
 
-import logging
+import logging, os, json, sys
 
 import time
 from abc import ABC, abstractmethod
@@ -26,11 +26,17 @@ MAX_TOKENS = 512
 
 LOG: logging.Logger = logging.getLogger(__name__)
 
+
 def get_valid_models(llm_family):
     """Reads a JSON file and retrieves the value corresponding to the 'llm_family' key."""
-    with open('file.json', 'r') as file:
+    json_path = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../supported_models.json'))
+    
+    with open(json_path, 'r') as file:
         data = json.load(file)
-        return data.get(llm_family)
+        for entry in data:
+            if llm_family in entry.keys():
+                return entry[llm_family]
+        return []
 
 class LLM(ABC):
     def __init__(self, model: str, api_key: str | None = None) -> None:
@@ -246,7 +252,7 @@ class LLAMACPP(LLM):
 
         level = logging.getLogger().level
         logging.getLogger().setLevel(logging.WARNING)
-        llm = Llama(model_path=self.model, seed=42, n_ctx=2048, verbose=False)
+        llm = Llama(model_path=self.model, seed=42, n_ctx=4096, verbose=False)
 
         tracker = OfflineEmissionsTracker(country_iso_code="PRT")
         tracker.start()
