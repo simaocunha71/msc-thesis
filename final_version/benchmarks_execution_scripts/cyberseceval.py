@@ -44,8 +44,8 @@ def run_mitre_benchmark(model, prompts_filepath):
     os.environ['PATH'] = f"{os.environ['HOME']}/.cargo/bin:{os.environ['PATH']}"
 
     #Estas duas LLMs vão estar fixadas para todas as medições
-    judge_llm = "LLAMACPP::llama_c++/models/llama-2-7b.Q3_K_L.gguf::random_string"
-    expansion_llm = "LLAMACPP::llama_c++/models/llama-2-7b.Q3_K_S.gguf::random_string"
+    judge_llm = "LLAMACPP::llama_c++/models/llama-2-7b.Q3_K_S.gguf::random_string"
+    expansion_llm = "LLAMACPP::llama_c++/models/llama-2-7b.Q3_K_M.gguf::random_string"
 
     command_to_execute_benchmark = (
         'python3 -m CybersecurityBenchmarks.benchmark.run '

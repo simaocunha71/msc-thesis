@@ -1,5 +1,9 @@
 import os, csv, json
 
+def generate_prompt_mbpp(prompt):
+    """Gera o prompt a dar à LLM para executar o benchmark MBPP"""
+    return f"You are an expert Python programmer, and here is your task: {prompt}[END]"
+
 def change_max_tokens_value(filename, new_max_tolens):
     """Substitui o valor de max_tokens vindo do ArgumentParser no ficheiro .py do CyberSecEval (i.e. llm.py)"""
     with open(filename, 'r') as file:
@@ -76,7 +80,7 @@ def save_output_to_file(output, label, language, output_folder, llama_folder, la
     with open(output_path, 'w') as output_file:
         output_file.write(output)
 
-def generate_samples_humaneval_x(model, output, label, language):
+def generate_samples_mbpp(model, output, label, language):
     """Gera o ficheiro das samples deste modelo (Benchmark: HumanEval-X)"""
 
     label = label.replace("/", "_")
@@ -91,6 +95,28 @@ def generate_samples_humaneval_x(model, output, label, language):
 
     # Executa a script get_samples.py que irá calcular as samples de um dado LLM para a execução do HumanEval
     command = f'python3 benchmarks_execution_scripts/get_samples_humaneval_x.py {model} "{label}" completion_content.txt {language}'
+    os.system(command)
+
+    # Remove os ficheiros de texto temporários
+    os.remove(temp_prompt_file)
+    os.remove("completion_content.txt")
+    os.remove("temp_prompt.txt")
+
+def generate_samples_mbpp(model, output, label):
+    """Gera o ficheiro das samples deste modelo (Benchmark: MBPP)"""
+
+    label = label.replace("/", "_")
+
+    temp_prompt_file = "temp_output_prompt.txt"
+    with open(temp_prompt_file, 'w') as prompt_file:
+        prompt_file.write(output)
+
+    # O ficheiro "completion_content.txt" vai conter apenas o código gerado pelo modelo,
+    # excluindo-se a assinatura da função e comentários iniciais
+    os.system("grep -vxFf temp_prompt.txt temp_output_prompt.txt > completion_content.txt")
+
+    # Executa a script get_samples.py que irá calcular as samples de um dado LLM para a execução do HumanEval
+    command = f'python3 benchmarks_execution_scripts/get_samples_mbpp.py {model} "{label}" completion_content.txt'
     os.system(command)
 
     # Remove os ficheiros de texto temporários

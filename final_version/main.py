@@ -1,19 +1,18 @@
 import argparse, json, csv, os, time, sys
-from benchmarks_execution_scripts import humaneval_x
-from benchmarks_execution_scripts import cyberseceval
+from benchmarks_execution_scripts import humaneval_x, cyberseceval, mbpp
 from benchmarks_execution_scripts import utils as benchmark_utils
-from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, validate_supported_models
+from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, validate_supported_models, generate_prompt_mbpp
 
 N_TIMES = 1
 
-def execute_python_script(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, language=None):
+def execute_python_script(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_type, language=None):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
     temp_prompt_file = "temp_prompt.txt"
     with open(temp_prompt_file, 'w') as prompt_file:
         prompt_file.write(prompt)
 
     if llm_path.endswith(".gguf"):
-        command = f"python3 llamacpp_wrapper.py '{task_id}' '{temp_prompt_file}' '{CSV_FILENAME}' '{llm_path}' {max_tokens}"
+        command = f"python3 llamacpp_wrapper.py '{task_id}' '{temp_prompt_file}' '{CSV_FILENAME}' '{llm_path}' {max_tokens} '{benchmark_type}'"
     else:
         print(f"Não existe script capaz de executar o LLM com o path {llm_path}")
         sys.exit(-1)
@@ -31,8 +30,6 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens):
 
             if "humaneval_x" in prompts_filepath:
                 # Este tratamento apenas se destina ao benchmark do HumanEval-X
-                #NOTE: Caso haja algo estranho no append dos scores dos benchmarks, atualizar esta função
-                # (ver https://github.com/simaocunha71/thesis-repository/tree/ab63a74720a048bc4b8ed8fa14e6275670cc5fbe)
                 with open(prompts_filepath, 'r') as file:
                     lines = file.readlines()
                     for line in lines:
@@ -42,15 +39,15 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens):
                         prompt = entry.get("prompt", "")
 
                         if prompts_filepath.endswith("humaneval_cpp.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "cpp")
+                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "humaneval_x", "cpp")
                         elif prompts_filepath.endswith("humaneval_go.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "go")
+                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "humaneval_x", "go")
                         elif prompts_filepath.endswith("humaneval_java.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "java")
+                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "humaneval_x", "java")
                         elif prompts_filepath.endswith("humaneval_js.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "js")
+                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "humaneval_x", "js")
                         elif prompts_filepath.endswith("humaneval_python.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "python")
+                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "humaneval_x", "python")
 
                 # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
                 human_eval_score = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), prompts_filepath.split('_')[-1].split('.')[0])
@@ -68,6 +65,22 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens):
                 elif "mitre" in prompts_filepath:
                     cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath)
 
+            elif "mbpp" in prompts_filepath:
+                # Este tratamento apenas se destina ao benchmark do HumanEval-X
+                with open(prompts_filepath, 'r') as file:
+                    data = json.load(file)
+                    for entry in data:
+                        task_id = entry.get("task_id", "")
+                        prompt = entry.get("prompt", "")
+
+                        prompt = generate_prompt_mbpp(prompt)
+
+                        execute_python_script("mbpp_" + str(task_id), prompt, llm_path, "measurements_mbpp.csv", max_tokens, "mbpp")
+
+                # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
+                mbpp_score = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path))
+                benchmark_utils.add_score_in_csv("measurements_mbpp.csv", "measurements_mbpp.csv", "MBPP pass@1", mbpp_score)
+                time.sleep(5)
             else:
                 print("Ficheiro JSONL não pertence a nenhum benchmark considerado")
 
@@ -77,6 +90,7 @@ def main():
     parser.add_argument("--benchmarks", nargs='+', choices=["humaneval_x","humaneval_x/c++", "humaneval_x/go", "humaneval_x/java",
                                                  "humaneval_x/javascript", "humaneval_x/python", 
                                                  "cyberseceval", "cyberseceval/autocomplete", "cyberseceval/instruct", "cyberseceval/mitre",
+                                                 "mbpp",
                                                  "all"], help="Choose benchmarks to run.")
     parser.add_argument("--max_tokens", type=int, default=512, help="Maximum tokens.")
     args = parser.parse_args()
@@ -104,7 +118,8 @@ def main():
                 "prompts/humaneval_x/humaneval_python.jsonl",
                 "prompts/cyberseceval/autocomplete.json",
                 "prompts/cyberseceval/instruct.json",
-                "prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json"
+                "prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json",
+                "prompts/mbpp/sanitized-mbpp.json"
             ]
         else:
             prompts_filepath_list = []
@@ -139,6 +154,8 @@ def main():
                     prompts_filepath_list.append("prompts/cyberseceval/instruct.json")
                 elif benchmark == "cyberseceval/mitre":
                     prompts_filepath_list.append("prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json")
+                elif benchmark == "mbpp":
+                    prompts_filepath_list.append("prompts/mbpp/sanitized-mbpp.json")
                 else:
                     print(f"Invalid value '{benchmark}' for --benchmarks.")
                     sys.exit(1)
@@ -185,6 +202,13 @@ def main():
                     "Refusal count", "Malicious count", "Benign count",
                     "Total count", "Benign percentage", "Else count"
                 ]
+            elif "mbpp" in b:
+                csv_files["measurements_mbpp"] = [
+                    "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
+                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
+                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
+                    "MBPP pass@1"
+                ]            
             elif "all" in b:
                 csv_files["measurements_humaneval"] = [
                     "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
@@ -206,7 +230,12 @@ def main():
                     "Refusal count", "Malicious count", "Benign count",
                     "Total count", "Benign percentage", "Else count"
                 ]            
-        
+                csv_files["measurements_mbpp"] = [
+                    "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
+                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
+                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
+                    "MBPP pass@1"
+                ]      
         # Create the CSV files
         for filename, columns in csv_files.items():
             create_csv(filename + ".csv", columns)
