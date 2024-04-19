@@ -35,7 +35,7 @@ measure_utils.print_measure_information(model_name, label)
 tracker = OfflineEmissionsTracker(country_iso_code="PRT")
 # INÍCIO DA MEDIÇÃO
 tracker.start()
-output = llm(prompt=prompt, max_tokens=max_tokens, stop=["Q:", "[END]"], echo=True)["choices"][0]["text"]
+output = llm(prompt=prompt, max_tokens=max_tokens, stop=["Q:"], echo=True)["choices"][0]["text"]
 tracker.stop()
 # FIM DA MEDIÇÃO
 
@@ -56,9 +56,3 @@ elif benchmark_type == "mbpp":
 
 measure_utils.add_measurement_to_csv(FILENAME, measure_utils.extract_llm_name(model_name), 
                                      label, tracker)
-
-"""
-TODO: 
-- Formar prompt
-- executar o mbpp e ver se está tudo bem
-"""

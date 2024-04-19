@@ -66,6 +66,7 @@ def save_output_to_file(output, label, language, output_folder, llama_folder, la
             os.makedirs(language_path)
 
     # Determinar o nome do ficheiro e o caminho de saída
+    #NOTE: label deve estar no formato "[nome do benchmark]/[1..N]"
     if language is not None:
         if language == "python":
             output_filename = f"{label.replace('/', '_')}.py"
@@ -73,7 +74,7 @@ def save_output_to_file(output, label, language, output_folder, llama_folder, la
             output_filename = f"{label.replace('/', '_')}.{language}"
         output_path = os.path.join(language_path, output_filename)
     else:
-        output_filename = f"{label}.txt"
+        output_filename = f"{label.replace('/', '_')}.py"
         output_path = os.path.join(llama_path, output_filename)
 
     # Salvar o output no ficheiro

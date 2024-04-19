@@ -6,22 +6,22 @@ def run_mbpp_benchmark(model):
     return_value = None
 
     # Calculate the benchmark score and place the result in a text file
-    os.system(f"python3 mbpp/evaluate_functional_correctness.py mbpp/results/samples_{model}_mbpp.jsonl --problem_file=prompts/mbpp/sanitized-mbpp.json > mbpp_score.txt")
+    os.system("export PYTHONPATH=$PYTHONPATH:$(pwd)")
+    os.system(f"python3 evalplus/evalplus/evaluate.py --dataset mbpp --samples evalplus/results/samples_{model}_mbpp.jsonl > mbpp_score.txt")
+
 
     # If the file exists, we will parse pass@1, pass@10, and pass@100
     if os.path.exists("mbpp_score.txt"):
         with open("mbpp_score.txt", 'r') as file:
-            # Read the content of the file
-            lines = file.readlines()
+            # Read the content of the file at once
+            content = file.read()
             # Use regex for parsing
-            for line in lines:
-                match = re.search(r"'pass@1': (\d+\.\d+)", line)
-                if match:
-                    # Extract the value of pass@1
-                    pass_value = match.group(1)
-                    return_value = pass_value
-                    break  # Stop parsing after finding pass@1
-
+            match = re.search(r"mbpp\+\s*\(base\s*\+\s*extra\s*tests\)\npass@1:\s+([-+]?\d*\.\d+|\d+)", content)
+            if match:
+                # Extract the value of pass@1
+                return_value = match.group(1)
+            else:
+                print("Error: Pattern not found in file.")
     else:
         print("Error: The file 'mbpp_score.txt' was not found.")
 

@@ -37,11 +37,11 @@ num_samples_per_task = 1  # Numero de execuções por prompts
 samples = [
     dict(
         task_id=label,
-        generation=output_got
+        completion=output_got
     ) for _ in range(num_samples_per_task)
 ]
 
-outputs_directory = "mbpp/results"
+outputs_directory = "evalplus/results"
 if not os.path.exists(outputs_directory):
     os.makedirs(outputs_directory)
 

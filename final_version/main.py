@@ -66,20 +66,20 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens):
                     cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath)
 
             elif "mbpp" in prompts_filepath:
-                # Este tratamento apenas se destina ao benchmark do HumanEval-X
+                # Este tratamento apenas se destina ao benchmark do MBPP
                 with open(prompts_filepath, 'r') as file:
-                    data = json.load(file)
-                    for entry in data:
+                    lines = file.readlines()
+                    for line in lines:
+                        entry = json.loads(line)
+
                         task_id = entry.get("task_id", "")
                         prompt = entry.get("prompt", "")
 
-                        prompt = generate_prompt_mbpp(prompt)
-
-                        execute_python_script("mbpp_" + str(task_id), prompt, llm_path, "measurements_mbpp.csv", max_tokens, "mbpp")
+                        execute_python_script(str(task_id), prompt, llm_path, "measurements_mbpp.csv", max_tokens, "mbpp")
 
                 # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
                 mbpp_score = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path))
-                benchmark_utils.add_score_in_csv("measurements_mbpp.csv", "measurements_mbpp.csv", "MBPP pass@1", mbpp_score)
+                benchmark_utils.add_score_in_csv("measurements_mbpp.csv", "measurements_mbpp.csv", "MBPP+ pass@1", mbpp_score)
                 time.sleep(5)
             else:
                 print("Ficheiro JSONL não pertence a nenhum benchmark considerado")
@@ -119,7 +119,7 @@ def main():
                 "prompts/cyberseceval/autocomplete.json",
                 "prompts/cyberseceval/instruct.json",
                 "prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json",
-                "prompts/mbpp/sanitized-mbpp.json"
+                "prompts/mbpp/MbppPlus.jsonl"
             ]
         else:
             prompts_filepath_list = []
@@ -155,7 +155,7 @@ def main():
                 elif benchmark == "cyberseceval/mitre":
                     prompts_filepath_list.append("prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json")
                 elif benchmark == "mbpp":
-                    prompts_filepath_list.append("prompts/mbpp/sanitized-mbpp.json")
+                    prompts_filepath_list.append("prompts/mbpp/MbppPlus.jsonl")
                 else:
                     print(f"Invalid value '{benchmark}' for --benchmarks.")
                     sys.exit(1)
@@ -207,7 +207,7 @@ def main():
                     "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "MBPP pass@1"
+                    "MBPP+ pass@1"
                 ]            
             elif "all" in b:
                 csv_files["measurements_humaneval"] = [
@@ -234,7 +234,7 @@ def main():
                     "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "MBPP pass@1"
+                    "MBPP+ pass@1"
                 ]      
         # Create the CSV files
         for filename, columns in csv_files.items():
