@@ -55,9 +55,11 @@ for model, languages in instruct_data.items():
 # Convert the list of dictionaries into a DataFrame
 df_instruct = pd.DataFrame(data)
 
+
 # Merge the autocomplete and instruct DataFrames
 df = pd.merge(df_autocomplete, df_instruct, on=["model", "language"], how="inner")
 
+#NOTE: É aqui o erro!!!
 # Group the DataFrame by model and calculate the average for each metric
 df_grouped = df.groupby("model").mean().reset_index()
 

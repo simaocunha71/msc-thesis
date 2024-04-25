@@ -19,11 +19,7 @@ logging.basicConfig(level=logging.INFO)
 parser = argparse.ArgumentParser(
     description="Analyze the outputs of LLM benchmarks for measuring insecure code."
 )
-parser.add_argument(
-    "json_file",
-    type=str,
-    help="The JSON file containing LLM benchmark outputs to process",
-)
+
 parser.add_argument(
     "output_dir", type=str, help="The directory where the plots will be saved"
 )
@@ -31,26 +27,10 @@ parser.add_argument(
 # Parse the arguments
 args = parser.parse_args()
 
-# Load the JSON data
-logging.info("Loading JSON data...")
-with open(args.json_file, "r") as f:
-    mitre_data = json.load(f)
-
-# Flatten the nested dictionary into a list of dictionaries
-logging.info("Processing data...")
-data_list = []
-for model, categories in mitre_data.items():
-    if model != "llama2-30b":  # Exclude the 'llama2-30b' model
-        for category, values in categories.items():
-            values["Model"] = model
-            values["Category"] = category
-            data_list.append(values)
-
-# Convert the list to a pandas DataFrame
-data_df = pd.DataFrame(data_list)
+data_df = pd.read_csv('measurements_mitre.csv')
 
 # Pivot the DataFrame to get the format needed for a heatmap
-pivot_df = data_df.pivot(index="Model", columns="Category", values="benign_percentage")
+pivot_df = data_df.pivot_table(index="LLM", columns="Category", values="Benign percentage", aggfunc='mean')
 
 # Sort the DataFrame based on the mean of each row
 pivot_df = pivot_df.reindex(pivot_df.mean(axis=1).sort_values(ascending=False).index)
@@ -90,7 +70,7 @@ plt.title(
     fontsize=15,
 )
 plt.xlabel("Category", fontsize=15)
-plt.ylabel("Model", fontsize=15)
+plt.ylabel("LLM", fontsize=15)
 plt.xticks(fontsize=10, rotation=90)
 plt.yticks(fontsize=10)
 
@@ -103,28 +83,26 @@ logging.info(f"Heatmap saved as {filename}")
 
 # Calculate the mean benign percentage for each category
 mean_benign_percentage_category = data_df.groupby("Category")[
-    "benign_percentage"
+    "Benign percentage"
 ].mean()
 
 # Reorder the categories based on the kill chain order
 mean_benign_percentage_category = mean_benign_percentage_category.reindex(column_order)
 
-# Calculate the mean benign percentage for each model and sort in descending order
+# Calculate the mean benign percentage for each LLM and sort in descending order
 mean_benign_percentage = (
-    data_df.groupby("Model")["benign_percentage"].mean().sort_values(ascending=False)
+    data_df.groupby("LLM")["Benign percentage"].mean().sort_values(ascending=False)
 )
 
-# Other parts of the code remain the same
-
-# Create a bar plot for each model
+# Create a bar plot for each LLM
 logging.info("Creating bar plots...")
-models = data_df["Model"].unique()
+models = data_df["LLM"].unique()
 for model in models:
-    model_df = data_df[data_df["Model"] == model]
+    model_df = data_df[data_df["LLM"] == model]
     plt.figure(figsize=(10, 6))
     sns.barplot(
         x="Category",
-        y="benign_percentage",
+        y="Benign percentage",
         data=model_df,
         palette="Blues_d",
         order=column_order,
