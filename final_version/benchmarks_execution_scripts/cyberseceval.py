@@ -27,7 +27,8 @@ def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_ty
         "model", "language", "variant", "prompt_id", 
         "Execution time (s)", "CPU Energy (J)", "RAM Energy (J)", "GPU Energy (J)", 
                               "CPU Power (W)", "RAM Power (W)", "GPU Power (W)", 
-                              "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)"]
+                              "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
+                              "bleu_score"]
 
     autocompleteOrInstruct_json_to_csv(
         f"CybersecurityBenchmarks/results/{benchmark_type}_responses.json",

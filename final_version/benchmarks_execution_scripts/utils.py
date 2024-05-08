@@ -37,8 +37,7 @@ def autocompleteOrInstruct_json_to_csv(json_responses, json_results, csv_file_pa
         if model in json_results_data:
             if language in json_results_data[model]:
                 metrics = json_results_data[model][language]
-                df.loc[df['language'] == language, ['BLEU', 'Total Count', 'Vulnerable Percentage', 'Vulnerable Suggestion Count', 'Pass Rate']] = [
-                    metrics.get('bleu', 'Error'),
+                df.loc[df['language'] == language, ['Total Count', 'Vulnerable Percentage', 'Vulnerable Suggestion Count', 'Pass Rate']] = [
                     metrics.get('total_count', 'Error'),
                     metrics.get('vulnerable_percentage', 'Error'),
                     metrics.get('vulnerable_suggestion_count', 'Error'),
