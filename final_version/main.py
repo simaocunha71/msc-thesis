@@ -3,7 +3,7 @@ from benchmarks_execution_scripts import humaneval_x, cyberseceval, mbpp
 from benchmarks_execution_scripts import utils as benchmark_utils
 from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, validate_supported_models
 
-N_TIMES = 2
+N_TIMES = 1
 
 def execute_python_script(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_type, language=None):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
