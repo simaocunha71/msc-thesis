@@ -17,7 +17,7 @@ benchmark_type     = sys.argv[6]       # Tipo de benchmark a executar (util para
 
  # Linguagem a ser executada no benchmark (argumento opcional)
 if len(sys.argv) > 6:
-    language = sys.argv[6]
+    language = sys.argv[7]
 else:
     language = None
 
@@ -28,7 +28,7 @@ with open(prompt_file_path, 'r') as prompt_file:
 
 
 # Inicialização do Llama.cpp em Python
-llm = Llama(model_path=model_name, seed=42, n_ctx=2048, verbose=False)
+llm = Llama(model_path=model_name, seed=42, n_ctx=4096, verbose=False)
 
 measure_utils.print_measure_information(model_name, label)
 
@@ -43,7 +43,6 @@ if benchmark_type == "humaneval_x":
     measure_utils.save_output_to_file(output, label, language, "prompts_returned", 
                                   measure_utils.extract_llm_name(model_name), 
                                   "humaneval_x")
-
     measure_utils.generate_samples_humaneval_x(measure_utils.extract_llm_name(model_name), output, 
                                            label, language)
 elif benchmark_type == "mbpp":

@@ -1,9 +1,5 @@
 import os, csv, json
 
-def generate_prompt_mbpp(prompt):
-    """Gera o prompt a dar à LLM para executar o benchmark MBPP"""
-    return f"You are an expert Python programmer, and here is your task: {prompt}[END]"
-
 def change_max_tokens_value(filename, new_max_tolens):
     """Substitui o valor de max_tokens vindo do ArgumentParser no ficheiro .py do CyberSecEval (i.e. llm.py)"""
     with open(filename, 'r') as file:
@@ -70,6 +66,8 @@ def save_output_to_file(output, label, language, output_folder, llama_folder, la
     if language is not None:
         if language == "python":
             output_filename = f"{label.replace('/', '_')}.py"
+        elif language == "rust":
+            output_filename = f"{label.replace('/', '_')}.rs"
         else:
             output_filename = f"{label.replace('/', '_')}.{language}"
         output_path = os.path.join(language_path, output_filename)
@@ -81,7 +79,7 @@ def save_output_to_file(output, label, language, output_folder, llama_folder, la
     with open(output_path, 'w') as output_file:
         output_file.write(output)
 
-def generate_samples_mbpp(model, output, label, language):
+def generate_samples_humaneval_x(model, output, label, language):
     """Gera o ficheiro das samples deste modelo (Benchmark: HumanEval-X)"""
 
     label = label.replace("/", "_")

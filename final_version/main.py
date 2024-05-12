@@ -1,9 +1,9 @@
 import argparse, json, csv, os, time, sys
 from benchmarks_execution_scripts import humaneval_x, cyberseceval, mbpp
 from benchmarks_execution_scripts import utils as benchmark_utils
-from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, validate_supported_models, generate_prompt_mbpp
+from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, validate_supported_models
 
-N_TIMES = 1
+N_TIMES = 2
 
 def execute_python_script(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_type, language=None):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
@@ -19,7 +19,6 @@ def execute_python_script(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, b
 
     if language:
         command += f" {language}"
-
     os.system(command)
 
 def start_measure(llm_path_list, prompts_filepath_list, max_tokens):
@@ -48,6 +47,8 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens):
                             execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "humaneval_x", "js")
                         elif prompts_filepath.endswith("humaneval_python.jsonl"):
                             execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "humaneval_x", "python")
+                        #elif prompts_filepath.endswith("humaneval_rust.jsonl"):
+                        #    execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "humaneval_x", "rust")
 
                 # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
                 human_eval_score = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), prompts_filepath.split('_')[-1].split('.')[0])
@@ -89,7 +90,7 @@ def main():
     parser = argparse.ArgumentParser(description="Execute benchmarks with given arguments.")
     parser.add_argument("--llm_path", nargs='+', help="Path to the LLMs to execute.")
     parser.add_argument("--benchmarks", nargs='+', choices=["humaneval_x","humaneval_x/c++", "humaneval_x/go", "humaneval_x/java",
-                                                 "humaneval_x/javascript", "humaneval_x/python", 
+                                                 "humaneval_x/javascript", "humaneval_x/python", #"humaneval_x/rust", 
                                                  "cyberseceval", "cyberseceval/autocomplete", "cyberseceval/instruct", "cyberseceval/mitre",
                                                  "mbpp",
                                                  "all"], help="Choose benchmarks to run.")
@@ -117,6 +118,7 @@ def main():
                 "prompts/humaneval_x/humaneval_java.jsonl", 
                 "prompts/humaneval_x/humaneval_js.jsonl", 
                 "prompts/humaneval_x/humaneval_python.jsonl",
+                #"prompts/humaneval_x/humaneval_rust.jsonl",
                 "prompts/cyberseceval/autocomplete.json",
                 "prompts/cyberseceval/instruct.json",
                 "prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json",
@@ -132,6 +134,7 @@ def main():
                         "prompts/humaneval_x/humaneval_java.jsonl", 
                         "prompts/humaneval_x/humaneval_js.jsonl", 
                         "prompts/humaneval_x/humaneval_python.jsonl"
+                        #"prompts/humaneval_x/humaneval_rust.jsonl"
                     ])
                 elif benchmark == "humaneval_x/c++":
                     prompts_filepath_list.append("prompts/humaneval_x/humaneval_cpp.jsonl")
@@ -143,6 +146,8 @@ def main():
                     prompts_filepath_list.append("prompts/humaneval_x/humaneval_js.jsonl")
                 elif benchmark == "humaneval_x/python":
                     prompts_filepath_list.append("prompts/humaneval_x/humaneval_python.jsonl")
+                #elif benchmark == "humaneval_x/rust":
+                #    prompts_filepath_list.append("prompts/humaneval_x/humaneval_rust.jsonl")
                 elif benchmark == "cyberseceval":
                     prompts_filepath_list.extend([
                         "prompts/cyberseceval/autocomplete.json",
@@ -242,7 +247,8 @@ def main():
             create_csv(filename + ".csv", columns)
     
         change_max_tokens_value("CybersecurityBenchmarks/benchmark/llm.py", max_tokens)
-        start_measure(llm_path_list, prompts_filepath_list, max_tokens)
+        for n in range(N_TIMES):
+            start_measure(llm_path_list, prompts_filepath_list, max_tokens)
 
 if __name__ == "__main__":
     main()
