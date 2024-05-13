@@ -93,7 +93,7 @@ def generate_samples_humaneval_x(model, output, label, language):
     os.system("grep -vxFf temp_prompt.txt temp_output_prompt.txt > completion_content.txt")
 
     # Executa a script get_samples.py que irá calcular as samples de um dado LLM para a execução do HumanEval
-    command = f'python3 benchmarks_execution_scripts/get_samples_humaneval_x.py {model} "{label}" completion_content.txt {language}'
+    command = f'python3 benchmarks/benchmarks_execution_scripts/get_samples_humaneval_x.py {model} "{label}" completion_content.txt {language}'
     os.system(command)
 
     # Remove os ficheiros de texto temporários
@@ -115,7 +115,7 @@ def generate_samples_mbpp(model, output, label):
     os.system("grep -vxFf temp_prompt.txt temp_output_prompt.txt > completion_content.txt")
 
     # Executa a script get_samples.py que irá calcular as samples de um dado LLM para a execução do HumanEval
-    command = f'python3 benchmarks_execution_scripts/get_samples_mbpp.py {model} "{label}" completion_content.txt'
+    command = f'python3 benchmarks/benchmarks_execution_scripts/get_samples_mbpp.py {model} "{label}" completion_content.txt'
     os.system(command)
 
     # Remove os ficheiros de texto temporários

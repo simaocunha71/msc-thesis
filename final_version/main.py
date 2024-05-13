@@ -1,6 +1,6 @@
 import argparse, json, csv, os, time, sys
-from benchmarks_execution_scripts import humaneval_x, cyberseceval, mbpp
-from benchmarks_execution_scripts import utils as benchmark_utils
+from benchmarks.benchmarks_execution_scripts import humaneval_x, cyberseceval, mbpp
+from benchmarks.benchmarks_execution_scripts import utils as benchmark_utils
 from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, validate_supported_models
 
 N_TIMES = 1
@@ -12,7 +12,7 @@ def execute_python_script(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, b
         prompt_file.write(prompt)
 
     if llm_path.endswith(".gguf"):
-        command = f"python3 llamacpp_wrapper.py '{task_id}' '{temp_prompt_file}' '{CSV_FILENAME}' '{llm_path}' {max_tokens} '{benchmark_type}'"
+        command = f"python3 llms/llamacpp_wrapper.py '{task_id}' '{temp_prompt_file}' '{CSV_FILENAME}' '{llm_path}' {max_tokens} '{benchmark_type}'"
     else:
         print(f"Não existe script capaz de executar o LLM com o path {llm_path}")
         sys.exit(-1)
@@ -119,9 +119,9 @@ def main():
                 "prompts/humaneval_x/humaneval_js.jsonl", 
                 "prompts/humaneval_x/humaneval_python.jsonl",
                 #"prompts/humaneval_x/humaneval_rust.jsonl",
-                "prompts/cyberseceval/autocomplete.json",
-                "prompts/cyberseceval/instruct.json",
-                "prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json",
+                "prompts/cyberseceval/autocomplete/autocomplete.json",
+                "prompts/cyberseceval/instruct/instruct.json",
+                "prompts/cyberseceval/mitre/mitre_benchmark_100_per_category_with_augmentation.json",
                 "prompts/mbpp/MbppPlus.jsonl"
             ]
         else:
@@ -150,16 +150,16 @@ def main():
                 #    prompts_filepath_list.append("prompts/humaneval_x/humaneval_rust.jsonl")
                 elif benchmark == "cyberseceval":
                     prompts_filepath_list.extend([
-                        "prompts/cyberseceval/autocomplete.json",
-                        "prompts/cyberseceval/instruct.json",
-                        "prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json"
+                        "prompts/cyberseceval/autocomplete/autocomplete.json",
+                        "prompts/cyberseceval/instruct/instruct.json",
+                        "prompts/cyberseceval/mitre/mitre_benchmark_100_per_category_with_augmentation.json"
                     ])
                 elif benchmark == "cyberseceval/autocomplete":
-                    prompts_filepath_list.append("prompts/cyberseceval/autocomplete.json")
+                    prompts_filepath_list.append("prompts/cyberseceval/autocomplete/autocomplete.json")
                 elif benchmark == "cyberseceval/instruct":
-                    prompts_filepath_list.append("prompts/cyberseceval/instruct.json")
+                    prompts_filepath_list.append("prompts/cyberseceval/instruct/instruct.json")
                 elif benchmark == "cyberseceval/mitre":
-                    prompts_filepath_list.append("prompts/cyberseceval/mitre_benchmark_100_per_category_with_augmentation.json")
+                    prompts_filepath_list.append("prompts/cyberseceval/mitre/mitre_benchmark_100_per_category_with_augmentation.json")
                 elif benchmark == "mbpp":
                     prompts_filepath_list.append("prompts/mbpp/MbppPlus.jsonl")
                 else:
@@ -246,7 +246,7 @@ def main():
         for filename, columns in csv_files.items():
             create_csv(filename + ".csv", columns)
     
-        change_max_tokens_value("CybersecurityBenchmarks/benchmark/llm.py", max_tokens)
+        change_max_tokens_value("benchmarks/PurpleLlama/CybersecurityBenchmarks/benchmark/llm.py", max_tokens)
         for n in range(N_TIMES):
             start_measure(llm_path_list, prompts_filepath_list, max_tokens)
 

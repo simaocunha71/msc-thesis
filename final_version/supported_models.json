@@ -1,16 +1,16 @@
 [
     {
         "LLAMACPP": [
-            "llama_c++/models/llama-2-7b.Q2_K.gguf",
-            "llama_c++/models/llama-2-7b.Q3_K_L.gguf",
-            "llama_c++/models/llama-2-7b.Q3_K_M.gguf",
-            "llama_c++/models/llama-2-7b.Q3_K_S.gguf"
+            "llms/llama_c++/models/llama-2-7b.Q2_K.gguf",
+            "llms/llama_c++/models/llama-2-7b.Q3_K_L.gguf",
+            "llms/llama_c++/models/llama-2-7b.Q3_K_M.gguf",
+            "llms/llama_c++/models/llama-2-7b.Q3_K_S.gguf"
         ]
     },
     {
         "TRANSFORMERS": [
-            "transformers/models/transformers_a",
-            "transformers/models/transformers_b"
+            "llms/transformers/models/transformers_a",
+            "llms/transformers/models/transformers_b"
         ]
     }
 ]
