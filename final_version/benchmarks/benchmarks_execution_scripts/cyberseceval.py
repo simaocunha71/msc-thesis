@@ -33,7 +33,7 @@ def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_ty
     autocompleteOrInstruct_json_to_csv(
         f"benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{benchmark_type}_responses.json",
         f"benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{benchmark_type}_stat.json", 
-        "measurements_instructAndAutocomplete.csv", 
+        "results/cyberseceval/instruct_and_autocomplete.csv", 
         columns_from_json_response_file
         )
 
@@ -74,6 +74,6 @@ def run_mitre_benchmark(model, prompts_filepath):
     mitre_json_to_csv(
         'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/mitre_responses.json',
         'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/mitre_stat.json',
-        'measurements_mitre.csv',
+        'results/cyberseceval/mitre.csv',
         columns_from_json_response_file
     )

@@ -38,33 +38,35 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens):
                         prompt = entry.get("prompt", "")
 
                         if prompts_filepath.endswith("humaneval_cpp.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "humaneval_x", "cpp")
+                            execute_python_script(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", "cpp")
                         elif prompts_filepath.endswith("humaneval_go.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "humaneval_x", "go")
+                            execute_python_script(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", "go")
                         elif prompts_filepath.endswith("humaneval_java.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "humaneval_x", "java")
+                            execute_python_script(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", "java")
                         elif prompts_filepath.endswith("humaneval_js.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "humaneval_x", "js")
+                            execute_python_script(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", "js")
                         elif prompts_filepath.endswith("humaneval_python.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "humaneval_x", "python")
-                        #elif prompts_filepath.endswith("humaneval_rust.jsonl"):
-                        #    execute_python_script(task_id, prompt, llm_path, "measurements_humaneval.csv", max_tokens, "humaneval_x", "rust")
+                            execute_python_script(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", "python")
 
                 # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
                 human_eval_score = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), prompts_filepath.split('_')[-1].split('.')[0])
-                benchmark_utils.add_score_in_csv("measurements_humaneval.csv", "measurements_humaneval.csv", "HumanEval-X", human_eval_score)
+                benchmark_utils.add_score_in_csv(os.path.join("results", "humaneval_x", "humaneval_x.csv"), os.path.join("results", "humaneval_x", "humaneval_x.csv"), "HumanEval-X", human_eval_score)
                 time.sleep(5)
 
             elif "cyberseceval" in prompts_filepath:
-                # Este tratamento apenas se destina ao benchmark do CyberSecEval
+                # Create the results/cyberseceval folder if it doesn't exist
+                folder_path = os.path.join("results", "cyberseceval")
+                if not os.path.exists(folder_path):
+                    os.makedirs(folder_path)
+
+                # This treatment is only for the CyberSecEval benchmark
                 if "autocomplete" in prompts_filepath:
                     cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "autocomplete")
-
                 elif "instruct" in prompts_filepath:
                     cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "instruct")
-
                 elif "mitre" in prompts_filepath:
                     cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath)
+
 
             elif "mbpp" in prompts_filepath:
                 # Este tratamento apenas se destina ao benchmark do MBPP
@@ -76,12 +78,12 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens):
                         task_id = entry.get("task_id", "")
                         prompt = entry.get("prompt", "")
 
-                        execute_python_script(str(task_id), prompt, llm_path, "measurements_mbpp.csv", max_tokens, "mbpp")
+                        execute_python_script(str(task_id), prompt, llm_path, os.path.join("results", "mbpp", "mbpp.csv"), max_tokens, "mbpp")
 
                 # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
                 mbpp_pass1, mbppPlus_pass1 = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path))
-                benchmark_utils.add_score_in_csv("measurements_mbpp.csv", "measurements_mbpp.csv", "MBPP pass@1", mbpp_pass1)
-                benchmark_utils.add_score_in_csv("measurements_mbpp.csv", "measurements_mbpp.csv", "MBPP+ pass@1", mbppPlus_pass1)
+                benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "MBPP pass@1", mbpp_pass1)
+                benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "MBPP+ pass@1", mbppPlus_pass1)
                 time.sleep(5)
             else:
                 print("Ficheiro JSONL não pertence a nenhum benchmark considerado")
@@ -106,6 +108,9 @@ def main():
         print(f"Unsupported models: {invalid_models}")
         sys.exit(-1)
     else:
+        # Ensure the existence of the 'results' folder
+        if not os.path.exists("results"):
+            os.makedirs("results")
 
         if "all" in benchmarks and len(benchmarks) > 1:
             print("When 'all' is selected, only 'all' can be chosen as benchmark.")
@@ -171,14 +176,14 @@ def main():
     
         for b in benchmarks:
             if "humaneval_x" in b:
-                csv_files["measurements_humaneval"] = [
+                csv_files["humaneval_x"] = [
                     "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "HumanEval-X"
                 ]
             elif "cyberseceval/autocomplete" in b or "cyberseceval/instruct" in b:
-                csv_files["measurements_instructAndAutocomplete"] = [
+                csv_files["instruct_and_autocomplete"] = [
                     "LLM", "Benchmark prompt", "Language", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
@@ -186,7 +191,7 @@ def main():
                     "Vulnerable suggestion count", "Pass rate"
                 ]
             elif "cyberseceval/mitre" in b:
-                csv_files["measurements_mitre"] = [
+                csv_files["mitre"] = [
                     "LLM", "Benchmark prompt", "Category", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
@@ -194,14 +199,14 @@ def main():
                     "Total count", "Benign percentage", "Else count"
                 ]
             elif "cyberseceval" in b:
-                csv_files["measurements_instructAndAutocomplete"] = [
+                csv_files["instruct_and_autocomplete"] = [
                     "LLM", "Benchmark prompt", "Language", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Bleu score", "Total count", "Vulnerable percentage",
                     "Vulnerable suggestion count", "Pass rate"
                 ]        
-                csv_files["measurements_mitre"] = [
+                csv_files["mitre"] = [
                     "LLM", "Benchmark prompt", "Category", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
@@ -209,43 +214,52 @@ def main():
                     "Total count", "Benign percentage", "Else count"
                 ]
             elif "mbpp" in b:
-                csv_files["measurements_mbpp"] = [
+                csv_files["mbpp"] = [
                     "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "MBPP pass@1", "MBPP+ pass@1"
                 ]            
             elif "all" in b:
-                csv_files["measurements_humaneval"] = [
+                csv_files["humaneval_x"] = [
                     "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "HumanEval-X"
                 ]
-                csv_files["measurements_instructAndAutocomplete"] = [
+                csv_files["instruct_and_autocomplete"] = [
                     "LLM", "Benchmark prompt", "Language", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Bleu score", "Total count", "Vulnerable percentage",
                     "Vulnerable suggestion count", "Pass rate"
                 ]        
-                csv_files["measurements_mitre"] = [
+                csv_files["mitre"] = [
                     "LLM", "Benchmark prompt", "Category", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Refusal count", "Malicious count", "Benign count",
                     "Total count", "Benign percentage", "Else count"
                 ]            
-                csv_files["measurements_mbpp"] = [
+                csv_files["mbpp"] = [
                     "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "MBPP pass@1", "MBPP+ pass@1"
                 ]      
-        # Create the CSV files
+                
+        # Create the CSV files in the 'results' folder
         for filename, columns in csv_files.items():
-            create_csv(filename + ".csv", columns)
-    
+            if filename == "humaneval_x" or filename == "mbpp":
+                folder_path = os.path.join("results", filename)
+            else:
+                folder_path = os.path.join("results", "cyberseceval")
+
+            if not os.path.exists(folder_path):
+                os.makedirs(folder_path)
+
+            create_csv(os.path.join(folder_path, filename + ".csv"), columns)
+
         change_max_tokens_value("benchmarks/PurpleLlama/CybersecurityBenchmarks/benchmark/llm.py", max_tokens)
         for n in range(N_TIMES):
             start_measure(llm_path_list, prompts_filepath_list, max_tokens)
