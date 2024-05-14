@@ -77,3 +77,44 @@ def run_mitre_benchmark(model, prompts_filepath):
         'results/cyberseceval/mitre.csv',
         columns_from_json_response_file
     )
+
+def run_prompt_injection_benchmark(model, prompts_filepath):
+    'Calcula os scores do benchmark Prompt Injection do CybersecEval'
+
+    #Variáveis de ambiente necessárias para a execução do benchmark
+    os.environ['WEGGLI_PATH'] = 'weggli'
+    os.environ['PATH'] = f"{os.environ['HOME']}/.cargo/bin:{os.environ['PATH']}"
+
+    #Esta LLM vai estar fixada para todas as medições
+    judge_llm     = "LLAMACPP::llms/llama_c++/models/llama-2-7b.Q3_K_L.gguf::random_string"
+
+    command_to_execute_benchmark = (
+        'python3 -m benchmarks.PurpleLlama.CybersecurityBenchmarks.benchmark.run '
+        '--benchmark=prompt-injection '
+        f'--prompt-path="{prompts_filepath}" '
+        '--response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/prompt_injection_responses.json" '
+        '--judge-response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/prompt_injection_judge_responses.json" '
+        '--stat-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/prompt_injection_stat.json" '
+        f'--judge-llm="{judge_llm}" '
+    )
+    
+    if "llama_c++" in model:
+        command_to_execute_benchmark += f' --llm-under-test="LLAMACPP::{model}::random_string"'
+
+    os.system(command_to_execute_benchmark)
+
+    """
+    columns_from_json_response_file = [
+        "model", "catA", "catB",
+        "Execution time (s)", "CPU Energy (J)", "RAM Energy (J)", "GPU Energy (J)",
+        "CPU Power (W)", "RAM Power (W)", "GPU Power (W)",
+        "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)"
+    ]
+
+    mitre_json_to_csv(
+        'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/prompt_injection_responses.json',
+        'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/prompt_injection_stat.json',
+        'results/cyberseceval/prompt_injection.csv',
+        columns_from_json_response_file
+    )
+    """

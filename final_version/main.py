@@ -66,7 +66,8 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens):
                     cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "instruct")
                 elif "mitre" in prompts_filepath:
                     cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath)
-
+                elif "prompt_injection" in prompts_filepath:
+                    cyberseceval.run_prompt_injection_benchmark(llm_path, prompts_filepath)
 
             elif "mbpp" in prompts_filepath:
                 # Este tratamento apenas se destina ao benchmark do MBPP
@@ -94,6 +95,7 @@ def main():
     parser.add_argument("--benchmarks", nargs='+', choices=["humaneval_x","humaneval_x/c++", "humaneval_x/go", "humaneval_x/java",
                                                  "humaneval_x/javascript", "humaneval_x/python", #"humaneval_x/rust", 
                                                  "cyberseceval", "cyberseceval/autocomplete", "cyberseceval/instruct", "cyberseceval/mitre",
+                                                 "cyberseceval/prompt_injection",
                                                  "mbpp",
                                                  "all"], help="Choose benchmarks to run.")
     parser.add_argument("--max_tokens", type=int, default=512, help="Maximum tokens.")
@@ -127,6 +129,7 @@ def main():
                 "prompts/cyberseceval/autocomplete/autocomplete.json",
                 "prompts/cyberseceval/instruct/instruct.json",
                 "prompts/cyberseceval/mitre/mitre_benchmark_100_per_category_with_augmentation.json",
+                "prompts/cyberseceval/prompt_injection/prompt_injection.json",
                 "prompts/mbpp/MbppPlus.jsonl"
             ]
         else:
@@ -157,7 +160,8 @@ def main():
                     prompts_filepath_list.extend([
                         "prompts/cyberseceval/autocomplete/autocomplete.json",
                         "prompts/cyberseceval/instruct/instruct.json",
-                        "prompts/cyberseceval/mitre/mitre_benchmark_100_per_category_with_augmentation.json"
+                        "prompts/cyberseceval/mitre/mitre_benchmark_100_per_category_with_augmentation.json",
+                        "prompts/cyberseceval/prompt_injection/prompt_injection.json"
                     ])
                 elif benchmark == "cyberseceval/autocomplete":
                     prompts_filepath_list.append("prompts/cyberseceval/autocomplete/autocomplete.json")
@@ -165,6 +169,8 @@ def main():
                     prompts_filepath_list.append("prompts/cyberseceval/instruct/instruct.json")
                 elif benchmark == "cyberseceval/mitre":
                     prompts_filepath_list.append("prompts/cyberseceval/mitre/mitre_benchmark_100_per_category_with_augmentation.json")
+                elif benchmark == "cyberseceval/prompt_injection":
+                    prompts_filepath_list.append("prompts/cyberseceval/prompt_injection/prompt_injection.json")
                 elif benchmark == "mbpp":
                     prompts_filepath_list.append("prompts/mbpp/MbppPlus.jsonl")
                 else:
@@ -198,6 +204,13 @@ def main():
                     "Refusal count", "Malicious count", "Benign count",
                     "Total count", "Benign percentage", "Else count"
                 ]
+            elif "cyberseceval/prompt_injection" in b:
+                csv_files["prompt_injection"] = [
+                    "LLM", "CatA", "CatB", "Execution time (s)", "CPU Energy (J)",
+                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
+                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
+                    "A", "B", "C"
+                ]
             elif "cyberseceval" in b:
                 csv_files["instruct_and_autocomplete"] = [
                     "LLM", "Benchmark prompt", "Language", "Execution time (s)", "CPU Energy (J)",
@@ -212,6 +225,12 @@ def main():
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Refusal count", "Malicious count", "Benign count",
                     "Total count", "Benign percentage", "Else count"
+                ]
+                csv_files["prompt_injection"] = [
+                    "LLM", "CatA", "CatB", "Execution time (s)", "CPU Energy (J)",
+                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
+                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
+                    "A", "B", "C"
                 ]
             elif "mbpp" in b:
                 csv_files["mbpp"] = [
@@ -240,7 +259,13 @@ def main():
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Refusal count", "Malicious count", "Benign count",
                     "Total count", "Benign percentage", "Else count"
-                ]            
+                ]      
+                csv_files["prompt_injection"] = [
+                    "LLM", "CatA", "CatB", "Execution time (s)", "CPU Energy (J)",
+                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
+                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
+                    "A", "B", "C"
+                ]      
                 csv_files["mbpp"] = [
                     "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
