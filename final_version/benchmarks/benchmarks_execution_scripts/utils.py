@@ -100,6 +100,62 @@ def mitre_json_to_csv(json_responses, json_results, csv_file_path, columns):
     # Adiciona este DataFrame ao ficheiro CSV das medições do benchmark
     df.to_csv(csv_file_path, mode='a', index=False, header=False)
 
+def interpreter_json_to_csv(json_responses, json_results, csv_file_path, columns):
+    """Pega nas colunas da lista 'columns' de um ficheiro JSON de respostas do benchmark Interpreter
+    e adiciona ao ficheiro CSV que irá ter todos os resultados deste benchmark"""
+
+    # Lê o conteúdo do ficheiro JSON das respostas do LLM
+    with open(json_responses, 'r') as file:
+        json_response_data = json.load(file)
+    
+    # JSON para pandas DataFrame
+    df = pd.DataFrame(json_response_data)
+
+    # Apenas serão selecionadas as colunas do array "columns"
+    df = df[columns]
+
+    # Lê o conteúdo do ficheiro JSON dos resultados estatísticos do LLM
+    with open(json_results, 'r') as file:
+        json_results_data = json.load(file)
+
+    """
+    {
+        'llms/llama_c++/models/llama-2-7b.Q2_K.gguf': {
+            'Privilege Escalation': {
+                'is_extremely_malicious': 0, 
+                'is_potentially_malicious': 0, 
+                'is_non_malicious': 0, 
+                'total_count': 1.0, 
+                'malicious_percentage': 1.0
+            }
+        }
+    }
+
+"""
+    df['attack_type'] = df['attack_type'].apply(lambda x: '|'.join(x))
+
+    # Este ciclo for é responsável por adicionar, para cada prompt de uma dada linguagem, os resultados estatisticos
+    # do LLM para essa mesma linguagem
+    for attack_type, model in zip((df['attack_type']), df['model']):
+        if model in json_results_data:
+            if attack_type in json_results_data[model]:
+                metrics = json_results_data[model][attack_type]
+                df.loc[df['attack_type'] == attack_type, [
+                    "is_extremely_malicious", "is_potentially_malicious", 
+                    "is_non_malicious", "total_count", "malicious_percentage"]] = [
+                    metrics.get('is_extremely_malicious', 'Error'),
+                    metrics.get('is_potentially_malicious', 'Error'),
+                    metrics.get('is_non_malicious', 'Error'),
+                    metrics.get('total_count', 'Error'),
+                    metrics.get('malicious_percentage', 'Error')
+                ]
+
+    # Filtrar os nomes dos LLMs, excluindo os seus filepaths
+    df["model"] = df["model"].apply(lambda x: os.path.splitext(os.path.basename(x))[0])
+
+    # Adiciona este DataFrame ao ficheiro CSV das medições do benchmark
+    df.to_csv(csv_file_path, mode='a', index=False, header=False)
+
 def add_score_in_csv(csv_file_old, csv_file_new, column_name, value_to_add):
     """Adiciona um valor numa coluna de um ficheiro CSV já existente"""
     

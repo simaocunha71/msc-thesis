@@ -68,7 +68,9 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens):
                     cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath)
                 elif "prompt_injection" in prompts_filepath:
                     cyberseceval.run_prompt_injection_benchmark(llm_path, prompts_filepath)
-
+                elif "interpreter" in prompts_filepath:
+                    cyberseceval.run_interpreter_benchmark(llm_path, prompts_filepath)
+                    
             elif "mbpp" in prompts_filepath:
                 # Este tratamento apenas se destina ao benchmark do MBPP
                 with open(prompts_filepath, 'r') as file:
@@ -96,6 +98,7 @@ def main():
                                                  "humaneval_x/javascript", "humaneval_x/python", #"humaneval_x/rust", 
                                                  "cyberseceval", "cyberseceval/autocomplete", "cyberseceval/instruct", "cyberseceval/mitre",
                                                  "cyberseceval/prompt_injection",
+                                                 "cyberseceval/interpreter",
                                                  "mbpp",
                                                  "all"], help="Choose benchmarks to run.")
     parser.add_argument("--max_tokens", type=int, default=512, help="Maximum tokens.")
@@ -130,6 +133,7 @@ def main():
                 "prompts/cyberseceval/instruct/instruct.json",
                 "prompts/cyberseceval/mitre/mitre_benchmark_100_per_category_with_augmentation.json",
                 "prompts/cyberseceval/prompt_injection/prompt_injection.json",
+                "prompts/cyberseceval/interpreter/interpreter.json",
                 "prompts/mbpp/MbppPlus.jsonl"
             ]
         else:
@@ -161,7 +165,8 @@ def main():
                         "prompts/cyberseceval/autocomplete/autocomplete.json",
                         "prompts/cyberseceval/instruct/instruct.json",
                         "prompts/cyberseceval/mitre/mitre_benchmark_100_per_category_with_augmentation.json",
-                        "prompts/cyberseceval/prompt_injection/prompt_injection.json"
+                        #"prompts/cyberseceval/prompt_injection/prompt_injection.json",
+                        "prompts/cyberseceval/interpreter/interpreter.json"
                     ])
                 elif benchmark == "cyberseceval/autocomplete":
                     prompts_filepath_list.append("prompts/cyberseceval/autocomplete/autocomplete.json")
@@ -169,8 +174,10 @@ def main():
                     prompts_filepath_list.append("prompts/cyberseceval/instruct/instruct.json")
                 elif benchmark == "cyberseceval/mitre":
                     prompts_filepath_list.append("prompts/cyberseceval/mitre/mitre_benchmark_100_per_category_with_augmentation.json")
-                elif benchmark == "cyberseceval/prompt_injection":
-                    prompts_filepath_list.append("prompts/cyberseceval/prompt_injection/prompt_injection.json")
+                #elif benchmark == "cyberseceval/prompt_injection":
+                #    prompts_filepath_list.append("prompts/cyberseceval/prompt_injection/prompt_injection.json")
+                elif benchmark == "cyberseceval/interpreter":
+                    prompts_filepath_list.append("prompts/cyberseceval/interpreter/interpreter.json")
                 elif benchmark == "mbpp":
                     prompts_filepath_list.append("prompts/mbpp/MbppPlus.jsonl")
                 else:
@@ -204,12 +211,16 @@ def main():
                     "Refusal count", "Malicious count", "Benign count",
                     "Total count", "Benign percentage", "Else count"
                 ]
-            elif "cyberseceval/prompt_injection" in b:
-                csv_files["prompt_injection"] = [
-                    "LLM", "CatA", "CatB", "Execution time (s)", "CPU Energy (J)",
+            elif "cyberseceval/interpreter" in b:
+                csv_files["interpreter"] = [
+                    "LLM", "Attack type", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "A", "B", "C"
+                    "is_extremely_malicious",
+                    "is_potentially_malicious",
+                    "is_non_malicious",
+                    "total_count",
+                    "malicious_percentage"
                 ]
             elif "cyberseceval" in b:
                 csv_files["instruct_and_autocomplete"] = [
@@ -226,11 +237,15 @@ def main():
                     "Refusal count", "Malicious count", "Benign count",
                     "Total count", "Benign percentage", "Else count"
                 ]
-                csv_files["prompt_injection"] = [
-                    "LLM", "CatA", "CatB", "Execution time (s)", "CPU Energy (J)",
+                csv_files["interpreter"] = [
+                    "LLM", "Attack type", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "A", "B", "C"
+                    "is_extremely_malicious",
+                    "is_potentially_malicious",
+                    "is_non_malicious",
+                    "total_count",
+                    "malicious_percentage"
                 ]
             elif "mbpp" in b:
                 csv_files["mbpp"] = [
@@ -266,6 +281,16 @@ def main():
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "A", "B", "C"
                 ]      
+                csv_files["interpreter"] = [
+                    "LLM", "Attack type", "Execution time (s)", "CPU Energy (J)",
+                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
+                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
+                    "is_extremely_malicious",
+                    "is_potentially_malicious",
+                    "is_non_malicious",
+                    "total_count",
+                    "malicious_percentage"
+                ]
                 csv_files["mbpp"] = [
                     "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
