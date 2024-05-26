@@ -156,6 +156,77 @@ def interpreter_json_to_csv(json_responses, json_results, csv_file_path, columns
     # Adiciona este DataFrame ao ficheiro CSV das medições do benchmark
     df.to_csv(csv_file_path, mode='a', index=False, header=False)
 
+def frr_json_to_csv(json_responses, json_results, csv_file_path, columns):
+    """Pega nas colunas da lista 'columns' de um ficheiro JSON de respostas do benchmark False Rate Refusal
+    e adiciona ao ficheiro CSV que irá ter todos os resultados deste benchmark"""
+
+    # Lê o conteúdo do ficheiro JSON das respostas do LLM
+    with open(json_responses, 'r') as file:
+        json_response_data = json.load(file)
+    
+    # JSON para pandas DataFrame
+    df = pd.DataFrame(json_response_data)
+
+    # Apenas serão selecionadas as colunas do array "columns"
+    df = df[columns]
+
+    # Lê o conteúdo do ficheiro JSON dos resultados estatísticos do LLM
+    with open(json_results, 'r') as file:
+        json_results_data = json.load(file)
+
+    # Este ciclo for é responsável por adicionar, para cada prompt de uma dada linguagem, os resultados estatisticos
+    # do LLM para essa mesma linguagem
+    for index, row in df.iterrows():
+        model = row['model']
+        if model in json_results_data:
+            metrics = json_results_data[model]
+            # Atualizar os valores no DataFrame
+            df.at[index, 'accept_count'] = metrics.get('accept_count', 'Error')
+            df.at[index, 'refusal_count'] = metrics.get('refusal_count', 'Error')
+            df.at[index, 'refusal_rate'] = metrics.get('refusal_rate', 'Error')
+
+    # Filtrar os nomes dos LLMs, excluindo os seus filepaths
+    df["model"] = df["model"].apply(lambda x: os.path.splitext(os.path.basename(x))[0])
+
+    # Adiciona este DataFrame ao ficheiro CSV das medições do benchmark
+    df.to_csv(csv_file_path, mode='a', index=False, header=False)
+
+def canary_exploit_json_to_csv(json_responses, json_results, csv_file_path, columns):
+    """Pega nas colunas da lista 'columns' de um ficheiro JSON de respostas do benchmark Vulnerability Exploitation
+    e adiciona ao ficheiro CSV que irá ter todos os resultados deste benchmark"""
+
+    # Lê o conteúdo do ficheiro JSON das respostas do LLM
+    with open(json_responses, 'r') as file:
+        json_response_data = json.load(file)
+    
+    # JSON para pandas DataFrame
+    df = pd.DataFrame(json_response_data)
+
+    # Apenas serão selecionadas as colunas do array "columns"
+    df = df[columns]
+
+    # Lê o conteúdo do ficheiro JSON dos resultados estatísticos do LLM
+    with open(json_results, 'r') as file:
+        json_results_data = json.load(file)
+
+    # Este ciclo for é responsável por adicionar, para cada prompt de uma dada linguagem, os resultados estatisticos
+    # do LLM para essa mesma linguagem
+    for index, row in df.iterrows():
+        model = row['model']
+        language = row['language']
+        challenge_type = row['challenge_type']
+
+        if challenge_type in json_results_data:
+            if language in json_results_data[challenge_type]:
+                if model in json_results_data[challenge_type][language]:
+                    df.at[index, 'Score'] = json_results_data[challenge_type][language][model]
+
+    # Filtrar os nomes dos LLMs, excluindo os seus filepaths
+    df["model"] = df["model"].apply(lambda x: os.path.splitext(os.path.basename(x))[0])
+
+    # Adiciona este DataFrame ao ficheiro CSV das medições do benchmark
+    df.to_csv(csv_file_path, mode='a', index=False, header=False)
+
 def add_score_in_csv(csv_file_old, csv_file_new, column_name, value_to_add):
     """Adiciona um valor numa coluna de um ficheiro CSV já existente"""
     
