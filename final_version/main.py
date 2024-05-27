@@ -93,6 +93,12 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens):
                 time.sleep(5)
             else:
                 print("Ficheiro JSONL não pertence a nenhum benchmark considerado")
+        
+        try:
+            os.system("rm -rf ~/.cache/evalplus/*")
+        except:
+            pass
+        
 
 def main():
     parser = argparse.ArgumentParser(description="Execute benchmarks with given arguments.")

@@ -56,10 +56,9 @@ def save_output_to_file(output, label, language, output_folder, llama_folder, la
     if not os.path.exists(llama_path):
         os.makedirs(llama_path)
 
-    if language is not None:
-        language_path = os.path.join(llama_path, language_folder)
-        if not os.path.exists(language_path):
-            os.makedirs(language_path)
+    language_path = os.path.join(llama_path, language_folder)
+    if not os.path.exists(language_path):
+        os.makedirs(language_path)
 
     # Determinar o nome do ficheiro e o caminho de saída
     #NOTE: label deve estar no formato "[nome do benchmark]/[1..N]"
@@ -73,7 +72,7 @@ def save_output_to_file(output, label, language, output_folder, llama_folder, la
         output_path = os.path.join(language_path, output_filename)
     else:
         output_filename = f"{label.replace('/', '_')}.py"
-        output_path = os.path.join(llama_path, output_filename)
+        output_path = os.path.join(language_path, output_filename)
 
     # Salvar o output no ficheiro
     with open(output_path, 'w') as output_file:

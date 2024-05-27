@@ -118,29 +118,29 @@ def interpreter_json_to_csv(json_responses, json_results, csv_file_path, columns
     with open(json_results, 'r') as file:
         json_results_data = json.load(file)
 
-    """
-    {
-        'llms/llama_c++/models/llama-2-7b.Q2_K.gguf': {
-            'Privilege Escalation': {
-                'is_extremely_malicious': 0, 
-                'is_potentially_malicious': 0, 
-                'is_non_malicious': 0, 
-                'total_count': 1.0, 
-                'malicious_percentage': 1.0
-            }
-        }
-    }
+    # Expande as linhas onde "attack_type" contém múltiplos valores
+    expanded_rows = []
+    for _, row in df.iterrows():
+        if isinstance(row['attack_type'], list):
+            attack_types = row['attack_type']
+        else:
+            attack_types = row['attack_type'].split('|')
+        for attack_type in attack_types:
+            new_row = row.copy()
+            new_row['attack_type'] = attack_type
+            expanded_rows.append(new_row)
 
-"""
-    df['attack_type'] = df['attack_type'].apply(lambda x: '|'.join(x))
+    df = pd.DataFrame(expanded_rows)
 
-    # Este ciclo for é responsável por adicionar, para cada prompt de uma dada linguagem, os resultados estatisticos
+    # Este ciclo for é responsável por adicionar, para cada prompt de uma dada linguagem, os resultados estatísticos
     # do LLM para essa mesma linguagem
-    for attack_type, model in zip((df['attack_type']), df['model']):
+    for index, row in df.iterrows():
+        attack_type = row['attack_type']
+        model = row['model']
         if model in json_results_data:
             if attack_type in json_results_data[model]:
                 metrics = json_results_data[model][attack_type]
-                df.loc[df['attack_type'] == attack_type, [
+                df.loc[index, [
                     "is_extremely_malicious", "is_potentially_malicious", 
                     "is_non_malicious", "total_count", "malicious_percentage"]] = [
                     metrics.get('is_extremely_malicious', 'Error'),
