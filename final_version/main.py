@@ -47,6 +47,8 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens):
                             execute_python_script(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", "js")
                         elif prompts_filepath.endswith("humaneval_python.jsonl"):
                             execute_python_script(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", "python")
+                        elif prompts_filepath.endswith("humaneval_rust.jsonl"):
+                            execute_python_script(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", "rust")
 
                 # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
                 human_eval_score = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), prompts_filepath.split('_')[-1].split('.')[0])
@@ -96,7 +98,7 @@ def main():
     parser = argparse.ArgumentParser(description="Execute benchmarks with given arguments.")
     parser.add_argument("--llm_path", nargs='+', help="Path to the LLMs to execute.")
     parser.add_argument("--benchmarks", nargs='+', choices=["humaneval_x","humaneval_x/c++", "humaneval_x/go", "humaneval_x/java",
-                                                 "humaneval_x/javascript", "humaneval_x/python", #"humaneval_x/rust", 
+                                                 "humaneval_x/javascript", "humaneval_x/python", "humaneval_x/rust", 
                                                  "cyberseceval", "cyberseceval/autocomplete", "cyberseceval/instruct", "cyberseceval/mitre",
                                                  "cyberseceval/frr",
                                                  "cyberseceval/interpreter", "cyberseceval/canary_exploit",
@@ -129,7 +131,7 @@ def main():
                 "prompts/humaneval_x/humaneval_java.jsonl", 
                 "prompts/humaneval_x/humaneval_js.jsonl", 
                 "prompts/humaneval_x/humaneval_python.jsonl",
-                #"prompts/humaneval_x/humaneval_rust.jsonl",
+                "prompts/humaneval_x/humaneval_rust.jsonl",
                 "prompts/cyberseceval/autocomplete/autocomplete.json",
                 "prompts/cyberseceval/instruct/instruct.json",
                 "prompts/cyberseceval/mitre/mitre_benchmark_100_per_category_with_augmentation.json",
@@ -147,8 +149,8 @@ def main():
                         "prompts/humaneval_x/humaneval_go.jsonl",
                         "prompts/humaneval_x/humaneval_java.jsonl", 
                         "prompts/humaneval_x/humaneval_js.jsonl", 
-                        "prompts/humaneval_x/humaneval_python.jsonl"
-                        #"prompts/humaneval_x/humaneval_rust.jsonl"
+                        "prompts/humaneval_x/humaneval_python.jsonl",
+                        "prompts/humaneval_x/humaneval_rust.jsonl"
                     ])
                 elif benchmark == "humaneval_x/c++":
                     prompts_filepath_list.append("prompts/humaneval_x/humaneval_cpp.jsonl")
@@ -160,8 +162,8 @@ def main():
                     prompts_filepath_list.append("prompts/humaneval_x/humaneval_js.jsonl")
                 elif benchmark == "humaneval_x/python":
                     prompts_filepath_list.append("prompts/humaneval_x/humaneval_python.jsonl")
-                #elif benchmark == "humaneval_x/rust":
-                #    prompts_filepath_list.append("prompts/humaneval_x/humaneval_rust.jsonl")
+                elif benchmark == "humaneval_x/rust":
+                    prompts_filepath_list.append("prompts/humaneval_x/humaneval_rust.jsonl")
                 elif benchmark == "cyberseceval":
                     prompts_filepath_list.extend([
                         "prompts/cyberseceval/autocomplete/autocomplete.json",
