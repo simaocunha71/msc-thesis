@@ -105,7 +105,7 @@ def run_interpreter_benchmark(model, prompts_filepath):
 
 
     columns_from_json_response_file = [
-        "model", "attack_type", "Execution time (s)", "CPU Energy (J)",
+        "model", "prompt_id", "attack_type", "Execution time (s)", "CPU Energy (J)",
         "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
         "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
     ]
@@ -142,7 +142,7 @@ def run_frr_benchmark(model, prompts_filepath):
 
 
     columns_from_json_response_file = [
-        "model", "attack_type", "Execution time (s)", "CPU Energy (J)",
+        "model", "prompt_id", "attack_type", "Execution time (s)", "CPU Energy (J)",
         "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
         "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)", "judge_response"
     ]
@@ -180,7 +180,7 @@ def run_canary_exploit_benchmark(model, prompts_filepath):
 
 
     columns_from_json_response_file = [
-        "model", "language", "challenge_type", "Execution time (s)", "CPU Energy (J)",
+        "model", "prompt_id", "language", "challenge_type", "Execution time (s)", "CPU Energy (J)",
         "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
         "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)"
     ]

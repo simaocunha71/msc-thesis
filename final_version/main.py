@@ -210,7 +210,7 @@ def main():
                 ]
             elif "cyberseceval/autocomplete" in b or "cyberseceval/instruct" in b:
                 csv_files["instruct_and_autocomplete"] = [
-                    "LLM", "Benchmark prompt", "Language", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Variant", "Language", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Bleu score", "Total count", "Vulnerable percentage",
@@ -218,7 +218,7 @@ def main():
                 ]
             elif "cyberseceval/mitre" in b:
                 csv_files["mitre"] = [
-                    "LLM", "Benchmark prompt", "Category", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Category", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Refusal count", "Malicious count", "Benign count",
@@ -226,7 +226,7 @@ def main():
                 ]
             elif "cyberseceval/interpreter" in b:
                 csv_files["interpreter"] = [
-                    "LLM", "Attack type", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Attack type", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Is extremely malicious",
@@ -237,7 +237,7 @@ def main():
                 ]
             elif "cyberseceval/frr" in b:
                 csv_files["frr"] = [
-                    "LLM", "Attack type", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Attack type", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Judge Response",
@@ -247,28 +247,28 @@ def main():
                 ]
             elif "cyberseceval/canary_exploit" in b:
                 csv_files["canary_exploit"] = [
-                    "LLM", "Language", "Challenge Type", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Language", "Challenge Type", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Score"
                 ]
             elif "cyberseceval" in b:
                 csv_files["instruct_and_autocomplete"] = [
-                    "LLM", "Benchmark prompt", "Language", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Variant", "Language", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Bleu score", "Total count", "Vulnerable percentage",
                     "Vulnerable suggestion count", "Pass rate"
-                ]        
+                ]    
                 csv_files["mitre"] = [
-                    "LLM", "Benchmark prompt", "Category", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Category", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Refusal count", "Malicious count", "Benign count",
                     "Total count", "Benign percentage", "Else count"
                 ]
                 csv_files["interpreter"] = [
-                    "LLM", "Attack type", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Attack type", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Is extremely malicious",
@@ -278,7 +278,7 @@ def main():
                     "Malicious percentage"
                 ]
                 csv_files["frr"] = [
-                    "LLM", "Attack type", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Attack type", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Judge Response",
@@ -287,7 +287,7 @@ def main():
                     "Refusal rate"
                 ]
                 csv_files["canary_exploit"] = [
-                    "LLM", "Language", "Challenge Type", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Language", "Challenge Type", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Score"
@@ -307,21 +307,21 @@ def main():
                     "HumanEval-X"
                 ]
                 csv_files["instruct_and_autocomplete"] = [
-                    "LLM", "Benchmark prompt", "Language", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Variant", "Language", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Bleu score", "Total count", "Vulnerable percentage",
                     "Vulnerable suggestion count", "Pass rate"
-                ]        
+                ]      
                 csv_files["mitre"] = [
-                    "LLM", "Benchmark prompt", "Category", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Category", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Refusal count", "Malicious count", "Benign count",
                     "Total count", "Benign percentage", "Else count"
                 ]        
                 csv_files["interpreter"] = [
-                    "LLM", "Attack type", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Attack type", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Is extremely malicious",
@@ -331,7 +331,7 @@ def main():
                     "Malicious percentage"
                 ]
                 csv_files["frr"] = [
-                    "LLM", "Attack type", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Attack type", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Judge Response",
@@ -340,7 +340,7 @@ def main():
                     "Refusal rate"
                 ]
                 csv_files["canary_exploit"] = [
-                    "LLM", "Language", "Challenge Type", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Language", "Challenge Type", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Score"

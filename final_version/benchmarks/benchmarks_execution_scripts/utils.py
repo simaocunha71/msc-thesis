@@ -16,15 +16,16 @@ def autocompleteOrInstruct_json_to_csv(json_responses, json_results, csv_file_pa
     # Apenas serão selecionadas as colunas do array "columns"
     df = df[columns]
 
-    # Criação da coluna "Benchmark prompt" com o formato "df["variant"]_df[prompt_id]"
-    df['Benchmark prompt'] = df['variant'] + '_' + df['prompt_id'].astype(str)
+    df['Variant'] = df['variant'].astype(str)
+    df['Prompt ID'] = df['prompt_id'].astype(str)
 
     # Remoção de colunas desnecessárias
     df = df.drop(['variant', 'prompt_id'], axis=1)
 
-    # A coluna 'Benchmark prompt' passa a ser a segunda coluna do DataFrame
+    # A coluna 'Prompt ID' passa a ser a segunda coluna do DataFrame
     cols = list(df.columns)
-    cols.insert(1, cols.pop(cols.index('Benchmark prompt')))
+    cols.insert(1, cols.pop(cols.index('Prompt ID')))
+    cols.insert(2, cols.pop(cols.index('Variant')))
     df = df[cols]
 
     # Lê o conteúdo do ficheiro JSON dos resultados estatísticos do LLM
@@ -64,15 +65,15 @@ def mitre_json_to_csv(json_responses, json_results, csv_file_path, columns):
     # Apenas serão selecionadas as colunas do array "columns"
     df = df[columns]
 
-    # Criação da coluna "Benchmark prompt" com o formato "df["variant"]_df[prompt_id]"
-    df['Benchmark prompt'] = "MITRE" + '_' + df['prompt_id'].astype(str)
+    # Criação da coluna "Prompt ID" com o formato "df["variant"]_df[prompt_id]"
+    df['Prompt ID'] = df['prompt_id'].astype(str)
 
     # Remoção de colunas desnecessárias
     df = df.drop(['prompt_id'], axis=1)
 
-    # A coluna 'Benchmark prompt' passa a ser a segunda coluna do DataFrame
+    # A coluna 'Prompt ID' passa a ser a segunda coluna do DataFrame
     cols = list(df.columns)
-    cols.insert(1, cols.pop(cols.index('Benchmark prompt')))
+    cols.insert(1, cols.pop(cols.index('Prompt ID')))
     df = df[cols]
 
     # Lê o conteúdo do ficheiro JSON dos resultados estatísticos do LLM
@@ -127,13 +128,13 @@ def interpreter_json_to_csv(json_responses, json_results, csv_file_path, columns
             attack_types = row['attack_type'].split('|')
         for attack_type in attack_types:
             new_row = row.copy()
-            new_row['attack_type'] = attack_type
+            # Adiciona o valor de prompt_id ao attack_type
+            new_row['attack_type'] = f"{attack_type}"
             expanded_rows.append(new_row)
 
     df = pd.DataFrame(expanded_rows)
 
-    # Este ciclo for é responsável por adicionar, para cada prompt de uma dada linguagem, os resultados estatísticos
-    # do LLM para essa mesma linguagem
+    # Adicionar os resultados estatísticos para cada linha
     for index, row in df.iterrows():
         attack_type = row['attack_type']
         model = row['model']
@@ -169,6 +170,20 @@ def frr_json_to_csv(json_responses, json_results, csv_file_path, columns):
 
     # Apenas serão selecionadas as colunas do array "columns"
     df = df[columns]
+    
+    # Apenas serão selecionadas as colunas do array "columns"
+    df = df[columns]
+
+    # Criação da coluna "Prompt ID" com o formato "df["variant"]_df[prompt_id]"
+    df['Prompt ID'] = df['prompt_id'].astype(str)
+
+    # Remoção de colunas desnecessárias
+    df = df.drop(['prompt_id'], axis=1)
+
+    # A coluna 'Prompt ID' passa a ser a segunda coluna do DataFrame
+    cols = list(df.columns)
+    cols.insert(1, cols.pop(cols.index('Prompt ID')))
+    df = df[cols]
 
     # Lê o conteúdo do ficheiro JSON dos resultados estatísticos do LLM
     with open(json_results, 'r') as file:
@@ -205,6 +220,17 @@ def canary_exploit_json_to_csv(json_responses, json_results, csv_file_path, colu
     # Apenas serão selecionadas as colunas do array "columns"
     df = df[columns]
 
+    # Criação da coluna "Prompt ID" com o formato "df["variant"]_df[prompt_id]"
+    df['Prompt ID'] = df['prompt_id'].astype(str)
+
+    # Remoção de colunas desnecessárias
+    df = df.drop(['prompt_id'], axis=1)
+
+    # A coluna 'Prompt ID' passa a ser a segunda coluna do DataFrame
+    cols = list(df.columns)
+    cols.insert(1, cols.pop(cols.index('Prompt ID')))
+    df = df[cols]
+    
     # Lê o conteúdo do ficheiro JSON dos resultados estatísticos do LLM
     with open(json_results, 'r') as file:
         json_results_data = json.load(file)
