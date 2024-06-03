@@ -1,13 +1,57 @@
 import os, csv, json
 
-def change_max_tokens_value(filename, new_max_tolens):
+def change_max_tokens_value(filename, new_max_tokens):
     """Substitui o valor de max_tokens vindo do ArgumentParser no ficheiro .py do CyberSecEval (i.e. llm.py)"""
     with open(filename, 'r') as file:
         lines = file.readlines()
 
     for i, line in enumerate(lines):
         if 'MAX_TOKENS =' in line:
-            lines[i] = f'MAX_TOKENS = {new_max_tolens}\n'
+            lines[i] = f'MAX_TOKENS = {new_max_tokens}\n'
+            break
+
+    with open(filename, 'w') as file:
+        file.writelines(lines)
+
+def change_n_ctx_value(filename, new_nctx):
+    """Substitui o valor de n_ctx vindo do ArgumentParser no ficheiro .py do CyberSecEval (i.e. llm.py)"""
+    with open(filename, 'r') as file:
+        lines = file.readlines()
+
+    for i, line in enumerate(lines):
+        if 'N_CTX =' in line:
+            lines[i] = f'N_CTX = {new_nctx}\n'
+            break
+
+    with open(filename, 'w') as file:
+        file.writelines(lines)
+
+def change_seed_value(filename, new_seed):
+    """Substitui o valor de seed vindo do ArgumentParser no ficheiro .py do CyberSecEval (i.e. llm.py)"""
+    with open(filename, 'r') as file:
+        lines = file.readlines()
+
+    for i, line in enumerate(lines):
+        if 'SEED =' in line:
+            lines[i] = f'SEED = {new_seed}\n'
+            break
+
+    with open(filename, 'w') as file:
+        file.writelines(lines)
+
+def change_boolean_to_save_outputs(filename, new_flag):
+    """Substitui o valor de SAVE_OUTPUTS vindo do ArgumentParser em todos os benchmarks do CybersecEval"""
+    with open(filename, 'r') as file:
+        lines = file.readlines()
+
+    if new_flag == 'yes':
+        nf = "True"
+    elif new_flag == 'no':
+        nf = "False"
+
+    for i, line in enumerate(lines):
+        if 'SAVE_OUTPUTS =' in line:
+            lines[i] = f'SAVE_OUTPUTS = {nf}\n'
             break
 
     with open(filename, 'w') as file:

@@ -14,11 +14,13 @@ FILENAME           = sys.argv[3]       # Nome do ficheiro CSV final a adicionar 
 model_name         = sys.argv[4]       # Path do LLM
 max_tokens         = int(sys.argv[5])  # Número máximo de tokens a ser usado pelo LLM na resposta
 benchmark_type     = sys.argv[6]       # Tipo de benchmark a executar (util para a geração das samples)
+n_ctx              = int(sys.argv[7])  # Context Size
+seed               = int(sys.argv[8])  # Seed usada para as gerações das LLMs
 #NOTE: A variação do max_tokens leva a um maior/menor consumo de energia
 
  # Linguagem a ser executada no benchmark (argumento opcional)
-if len(sys.argv) > 7:
-    language = sys.argv[7]
+if len(sys.argv) > 9:
+    language = sys.argv[9]
 else:
     language = None
 
@@ -29,7 +31,7 @@ with open(prompt_file_path, 'r') as prompt_file:
 
 
 # Inicialização do Llama.cpp em Python
-llm = Llama(model_path=model_name, seed=42, n_ctx=4096, verbose=False)
+llm = Llama(model_path=model_name, seed=seed, n_ctx=n_ctx, verbose=False)
 
 measure_utils.print_measure_information(model_name, label)
 
