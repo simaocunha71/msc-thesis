@@ -3,8 +3,6 @@ from benchmarks.benchmarks_execution_scripts import humaneval_x, cyberseceval, m
 from benchmarks.benchmarks_execution_scripts import utils as benchmark_utils
 from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, change_n_ctx_value, change_seed_value, change_boolean_to_save_outputs, validate_supported_models
 
-N_TIMES = 1
-
 def execute_python_script(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_type, n_ctx, seed, language=None):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
     temp_prompt_file = "temp_prompt.txt"
@@ -113,6 +111,7 @@ def main():
     parser.add_argument("--max_tokens", type=int, default=512, help="Maximum tokens.")
     parser.add_argument("--n_ctx", type=int, default=512, help="Maximum number of tokens that the LLM can account for when processing a response (Context size).")
     parser.add_argument("--seed", type=int, default=512, help="Seed used for generating the same outputs")
+    parser.add_argument("--n_times", type=int, default=512, help="Number of times to execute each prompt")
     parser.add_argument("--save_output", type=str, default=512, help="'yes' to save LLM outputs in files, 'no' otherwise.")
 
     args = parser.parse_args()
@@ -122,6 +121,7 @@ def main():
     max_tokens = args.max_tokens
     n_ctx = args.n_ctx
     seed = args.seed
+    N_TIMES = args.n_times
     save_output_flag = args.save_output
 
     boolean_validate_models, invalid_models = validate_supported_models("supported_models.json", llm_path_list)
