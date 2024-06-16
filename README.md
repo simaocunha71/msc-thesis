@@ -8,7 +8,12 @@
 | Apresentação do RPD         | [aqui](https://github.com/simaocunha71/thesis-repository/blob/main/docs/Apresenta%C3%A7%C3%A3o%20RPD.pdf)   |
 
 
+### Comandos úteis para o cluster
 
+#### Instalação do llama-cpp-python
+```
+CMAKE_ARGS="-DLLAMA_BLAS=ON -DLLAMA_BLAS_VENDOR=OpenBLAS" pip3 install llama-cpp-python
+```
 
 #### Notas do Francisco sobre o RPD - A alterar para o documento final
 - Abstract e Resumo:
