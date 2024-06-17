@@ -1,14 +1,26 @@
 import os, re
 
+running_in_cluster = True
+
 def run_human_eval_benchmark(model, language):
     """Calcula o score do benchmark HumanEval-x - neste momento apenas calcula o pass@1 mas mais tarde vou incluir o pass@10 e pass@100"""
     return_value = None
 
     # Calcula o(s) score(s) do benchmark HumanEval e coloca o resultado num ficheiro de texto    
-    os.system(
-        f"docker run -v $(pwd)/benchmarks/CodeGeeX:/workspace/CodeGeeX/ -it humaneval_x "
-        f"bash /workspace/CodeGeeX/scripts/evaluate_humaneval_x.sh /workspace/CodeGeeX/generated_samples/samples_{model}_humaneval_{language}.jsonl {language} > human_eval_score.txt"
-    )
+
+    if running_in_cluster == True:
+        # CLUSTER COMMAND
+        os.system(
+            f"srun singularity exec --bind $(pwd)/benchmarks/CodeGeeX:/workspace/CodeGeeX/ ../humaneval_x_dockerImage/humaneval_x.sif "
+            f"bash /workspace/CodeGeeX/scripts/evaluate_humaneval_x.sh /workspace/CodeGeeX/generated_samples/samples_{model}_humaneval_{language}.jsonl {language} > human_eval_score.txt"
+        )
+    else:
+        # LOCAL COMMAND
+        os.system(
+            f"docker run -v $(pwd)/benchmarks/CodeGeeX:/workspace/CodeGeeX/ -it humaneval_x "
+            f"bash /workspace/CodeGeeX/scripts/evaluate_humaneval_x.sh /workspace/CodeGeeX/generated_samples/samples_{model}_humaneval_{language}.jsonl {language} > human_eval_score.txt"
+        )
+
 
     # Caso exista o ficheiro, iremos fazer parsing de "Total" e de "Correct", fazendo a divisão entre "Correct" e "Total"
     if os.path.exists(f"human_eval_score.txt"):

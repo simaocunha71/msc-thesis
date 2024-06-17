@@ -11,8 +11,14 @@
 ### Comandos úteis para o cluster
 
 #### Instalação do llama-cpp-python
-```
+```bash
 CMAKE_ARGS="-DLLAMA_BLAS=ON -DLLAMA_BLAS_VENDOR=OpenBLAS" pip3 install llama-cpp-python
+```
+
+#### Docker images
+##### HumanEval-x
+```bash
+docker pull alcunha71/humaneval_x:latest
 ```
 
 #### Notas do Francisco sobre o RPD - A alterar para o documento final
