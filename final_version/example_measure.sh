@@ -5,4 +5,4 @@ python3 main.py \
     --n_ctx 4098 \
     --seed 42 \
     --n_times 1 \
-    --save_output yes
+    --save_output no

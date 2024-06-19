@@ -2,29 +2,33 @@ import argparse, json, csv, os, time, sys
 from benchmarks.benchmarks_execution_scripts import humaneval_x, cyberseceval, mbpp
 from benchmarks.benchmarks_execution_scripts import utils as benchmark_utils
 from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, change_n_ctx_value, change_seed_value, change_boolean_to_save_outputs, validate_supported_models
+from llms.utils import load_llm, get_llm_family
+from llms.llamacpp_wrapper import LLAMACPP
 
-def execute_python_script(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_type, n_ctx, seed, language=None):
+def execute_llm(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_type, llm_object, save_output_flag, language=None):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
     temp_prompt_file = "temp_prompt.txt"
     with open(temp_prompt_file, 'w') as prompt_file:
         prompt_file.write(prompt)
 
-    if llm_path.endswith(".gguf"):
-        command = f"python3 llms/llamacpp_wrapper.py '{task_id}' '{temp_prompt_file}' '{CSV_FILENAME}' '{llm_path}' {max_tokens} '{benchmark_type}' '{n_ctx}' '{seed}'"
+    llm_family = get_llm_family(llm_path)
+
+    if(llm_family == "LLAMACPP"):
+        if(language):
+            llama_benchmark = LLAMACPP(task_id, temp_prompt_file, CSV_FILENAME, llm_path, max_tokens, benchmark_type, llm_object, save_output_flag, language)
+        else:
+            llama_benchmark = LLAMACPP(task_id, temp_prompt_file, CSV_FILENAME, llm_path, max_tokens, benchmark_type, llm_object, save_output_flag, language=None)
+        llama_benchmark.run()
     else:
-        print(f"Não existe script capaz de executar o LLM com o path {llm_path}")
+        print(f"Não existe classe capaz de executar o LLM com o path {llm_path}")
         sys.exit(-1)
 
-    if language:
-        command += f" {language}"
-    os.system(command)
-
-def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed):
+def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag):
     # Execução das scripts de todos os modelos considerados
 
     for llm_path in llm_path_list:
+        llm = load_llm(llm_path, n_ctx, seed)
         for prompts_filepath in prompts_filepath_list:
-
             if "humaneval_x" in prompts_filepath:
                 # Este tratamento apenas se destina ao benchmark do HumanEval-X
                 with open(prompts_filepath, 'r') as file:
@@ -36,17 +40,17 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed)
                         prompt = entry.get("prompt", "")
 
                         if prompts_filepath.endswith("humaneval_cpp.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", n_ctx, seed, "cpp")
+                            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "cpp")
                         elif prompts_filepath.endswith("humaneval_go.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", n_ctx, seed, "go")
+                            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "go")
                         elif prompts_filepath.endswith("humaneval_java.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", n_ctx, seed, "java")
+                            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "java")
                         elif prompts_filepath.endswith("humaneval_js.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", n_ctx, seed, "js")
+                            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "js")
                         elif prompts_filepath.endswith("humaneval_python.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", n_ctx, seed, "python")
+                            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "python")
                         elif prompts_filepath.endswith("humaneval_rust.jsonl"):
-                            execute_python_script(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", n_ctx, seed, "rust")
+                            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "rust")
 
                 # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
                 human_eval_score = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), prompts_filepath.split('_')[-1].split('.')[0])
@@ -82,7 +86,7 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed)
                         task_id = entry.get("task_id", "")
                         prompt = entry.get("prompt", "")
 
-                        execute_python_script(str(task_id), prompt, llm_path, os.path.join("results", "mbpp", "mbpp.csv"), max_tokens, "mbpp", n_ctx, seed)
+                        execute_llm(str(task_id), prompt, llm_path, os.path.join("results", "mbpp", "mbpp.csv"), max_tokens, "mbpp", llm, save_output_flag)
 
                 # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
                 mbpp_pass1, mbppPlus_pass1 = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path))
@@ -383,7 +387,7 @@ def main():
 
 
         for n in range(N_TIMES):
-            start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed)
+            start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag)
 
 if __name__ == "__main__":
     main()

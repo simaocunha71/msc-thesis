@@ -8,7 +8,7 @@ def run_human_eval_benchmark(model, language):
 
     # Calcula o(s) score(s) do benchmark HumanEval e coloca o resultado num ficheiro de texto    
 
-    if running_in_cluster == True:
+    if running_in_cluster == False:
         # CLUSTER COMMAND
         os.system(
             f"srun singularity exec --bind $(pwd)/benchmarks/CodeGeeX:/workspace/CodeGeeX/ ../humaneval_x_dockerImage/humaneval_x.sif "
@@ -17,7 +17,7 @@ def run_human_eval_benchmark(model, language):
     else:
         # LOCAL COMMAND
         os.system(
-            f"docker run -v $(pwd)/benchmarks/CodeGeeX:/workspace/CodeGeeX/ -it humaneval_x "
+            f"docker run -v $(pwd)/benchmarks/CodeGeeX:/workspace/CodeGeeX/ -it alcunha71/humaneval_x "
             f"bash /workspace/CodeGeeX/scripts/evaluate_humaneval_x.sh /workspace/CodeGeeX/generated_samples/samples_{model}_humaneval_{language}.jsonl {language} > human_eval_score.txt"
         )
 
