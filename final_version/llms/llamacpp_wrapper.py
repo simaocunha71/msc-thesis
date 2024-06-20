@@ -1,6 +1,7 @@
 import sys
 import measure_utils as measure_utils
 from codecarbon import OfflineEmissionsTracker
+from llama_cpp import Llama
 
 class LLAMACPP:
     def __init__(self, label, prompt_file_path, filename, model_name, max_tokens, benchmark_type, llm_object, save_output_flag, language=None):
@@ -63,20 +64,20 @@ class LLAMACPP:
         output = self.execute_llamacpp(prompt)
         tracker.stop()
 
-        if self.save_output_flag == True:
+        if self.benchmark_type == "humaneval_x":
+            measure_utils.generate_samples_humaneval_x(measure_utils.extract_llm_name(self.model_name), output, self.label, self.language)
+        elif self.benchmark_type == "mbpp":
+            measure_utils.generate_samples_mbpp(measure_utils.extract_llm_name(self.model_name), output, self.label)
+
+        if self.save_output_flag:
             if self.benchmark_type == "humaneval_x":
-                measure_utils.save_output_to_file(output, self.label, self.language, "prompts_returned", 
+                measure_utils.save_output_to_file(output, self.label, self.language, "returned_prompts", 
                                                   measure_utils.extract_llm_name(self.model_name), 
                                                   "humaneval_x")
-                measure_utils.generate_samples_humaneval_x(measure_utils.extract_llm_name(self.model_name), output, 
-                                                           self.label, self.language)
             elif self.benchmark_type == "mbpp":
-                measure_utils.save_output_to_file(output, self.label, None, "prompts_returned", 
+                measure_utils.save_output_to_file(output, self.label, None, "returned_prompts", 
                                                   measure_utils.extract_llm_name(self.model_name), 
                                                   "mbpp")
-                measure_utils.generate_samples_mbpp(measure_utils.extract_llm_name(self.model_name), 
-                                                    output, 
-                                                    self.label)
 
         measure_utils.add_measurement_to_csv(self.filename, measure_utils.extract_llm_name(self.model_name), 
                                              self.label, tracker)

@@ -1,4 +1,70 @@
-import os, csv, json
+import os, csv, json, sys
+
+def shrink_json_or_jsonl(file_path, min_index, max_index, output_path):
+    """
+    Shrinks a JSON or JSONL file to only include entries/lines between min_index and max_index (inclusive).
+    NOTE: min_index can be equal to max_index
+    
+    Parameters:
+    - file_path: str, path to the input JSON or JSONL file
+    - min_index: int, minimum index (inclusive)
+    - max_index: int, maximum index (inclusive)
+    - output_path: str, path to the output JSON or JSONL file
+    """
+    # Check if min_index is greater than max_index
+    if min_index > max_index:
+        print("Error: min_index cannot be greater than max_index.")
+        sys.exit(1)
+
+    try:
+        if file_path.endswith('.jsonl'):
+            # Process JSONL file
+            with open(file_path, 'r') as input_file:
+                lines = input_file.readlines()
+            
+            # Adjust indices if they are out of bounds
+            if min_index < 0:
+                min_index = 0
+            if max_index >= len(lines):
+                max_index = len(lines) - 1
+
+            with open(output_path, 'w') as output_file:
+                if min_index == max_index:
+                    output_file.write(lines[min_index])
+                else:
+                    for line_index in range(min_index, max_index + 1):
+                        output_file.write(lines[line_index])
+        
+        elif file_path.endswith('.json'):
+            # Process JSON file
+            with open(file_path, 'r') as f:
+                entries = json.load(f)
+            
+            # Adjust indices if they are out of bounds
+            if min_index < 0:
+                min_index = 0
+            if max_index >= len(entries):
+                max_index = len(entries) - 1
+
+            if min_index == max_index:
+                selected_entries = [entries[min_index]]
+            else:
+                selected_entries = entries[min_index : max_index + 1]
+            
+            with open(output_path, 'w') as outfile:
+                json.dump(selected_entries, outfile, indent=2)
+        
+        else:
+            raise ValueError("Unsupported file format. Only .json and .jsonl are supported.")
+        
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+    
+    except (json.JSONDecodeError, ValueError) as e:
+        print(f"Error processing JSON file: {e}")
+    
+    except IndexError as e:
+        print(f"Error: {e}")
 
 def change_max_tokens_value(filename, new_max_tokens):
     """Substitui o valor de max_tokens vindo do ArgumentParser no ficheiro .py do CyberSecEval (i.e. llm.py)"""
@@ -77,7 +143,7 @@ def print_measure_information(model_name, prompt_id):
 def save_output_to_file(output, label, language, output_folder, llama_folder, language_folder):
     """
     Guarda os outputs gerados pelo LLM em ficheiros cujo file system é o seguinte:
-    "prompts_returned/"
+    "returned_prompts/"
         |"llama-2-7b.Q2_K/"
             |"humaneval_x/"
                 |"CPP_0.cpp"

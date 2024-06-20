@@ -1,11 +1,11 @@
 import argparse, json, csv, os, time, sys
 from benchmarks.benchmarks_execution_scripts import humaneval_x, cyberseceval, mbpp
 from benchmarks.benchmarks_execution_scripts import utils as benchmark_utils
-from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, change_n_ctx_value, change_seed_value, change_boolean_to_save_outputs, validate_supported_models
+from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, change_n_ctx_value, change_seed_value, change_boolean_to_save_outputs, validate_supported_models, shrink_json_or_jsonl
 from llms.utils import load_llm, get_llm_family
 from llms.llamacpp_wrapper import LLAMACPP
 
-def execute_llm(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_type, llm_object, save_output_flag, language=None):
+def execute_llm(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_type, llm_object, save_output_flag, language):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
     temp_prompt_file = "temp_prompt.txt"
     with open(temp_prompt_file, 'w') as prompt_file:
@@ -13,22 +13,25 @@ def execute_llm(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_t
 
     llm_family = get_llm_family(llm_path)
 
-    if(llm_family == "LLAMACPP"):
-        if(language):
+    if llm_family == "LLAMACPP":
+        if language is not None:
             llama_benchmark = LLAMACPP(task_id, temp_prompt_file, CSV_FILENAME, llm_path, max_tokens, benchmark_type, llm_object, save_output_flag, language)
         else:
-            llama_benchmark = LLAMACPP(task_id, temp_prompt_file, CSV_FILENAME, llm_path, max_tokens, benchmark_type, llm_object, save_output_flag, language=None)
+            llama_benchmark = LLAMACPP(task_id, temp_prompt_file, CSV_FILENAME, llm_path, max_tokens, benchmark_type, llm_object, save_output_flag)
         llama_benchmark.run()
     else:
         print(f"Não existe classe capaz de executar o LLM com o path {llm_path}")
         sys.exit(-1)
-
-def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag):
+        
+def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval):
     # Execução das scripts de todos os modelos considerados
 
     for llm_path in llm_path_list:
         llm = load_llm(llm_path, n_ctx, seed)
         for prompts_filepath in prompts_filepath_list:
+            if samples_interval != "all":
+                min_ind, max_ind = tuple(map(int, samples_interval.split('-')))
+                shrink_json_or_jsonl(prompts_filepath, min_ind, max_ind, prompts_filepath)
             if "humaneval_x" in prompts_filepath:
                 # Este tratamento apenas se destina ao benchmark do HumanEval-X
                 with open(prompts_filepath, 'r') as file:
@@ -86,7 +89,7 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
                         task_id = entry.get("task_id", "")
                         prompt = entry.get("prompt", "")
 
-                        execute_llm(str(task_id), prompt, llm_path, os.path.join("results", "mbpp", "mbpp.csv"), max_tokens, "mbpp", llm, save_output_flag)
+                        execute_llm(str(task_id), prompt, llm_path, os.path.join("results", "mbpp", "mbpp.csv"), max_tokens, "mbpp", llm, save_output_flag, None)
 
                 # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
                 mbpp_pass1, mbppPlus_pass1 = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path))
@@ -117,6 +120,7 @@ def main():
     parser.add_argument("--seed", type=int, default=512, help="Seed used for generating the same outputs")
     parser.add_argument("--n_times", type=int, default=512, help="Number of times to execute each prompt")
     parser.add_argument("--save_output", type=str, default=512, help="'yes' to save LLM outputs in files, 'no' otherwise.")
+    parser.add_argument("--samples_interval", type=str, default='all', help="Benchmark prompts interval to execute. Format: '[min_index]-[max_index]', or 'all' to use all the dataset")
 
     args = parser.parse_args()
 
@@ -127,6 +131,7 @@ def main():
     seed = args.seed
     N_TIMES = args.n_times
     save_output_flag = args.save_output
+    samples_interval = args.samples_interval
 
     boolean_validate_models, invalid_models = validate_supported_models("supported_models.json", llm_path_list)
     if(boolean_validate_models == False):
@@ -387,7 +392,7 @@ def main():
 
 
         for n in range(N_TIMES):
-            start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag)
+            start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval)
 
 if __name__ == "__main__":
     main()
