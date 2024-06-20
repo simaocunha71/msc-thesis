@@ -1,6 +1,6 @@
-import os, csv, json, sys
+import os, csv, json, sys, re
 
-def shrink_json_or_jsonl(file_path, min_index, max_index, output_path):
+def shrink_json_or_jsonl(file_path, min_index, max_index):
     """
     Shrinks a JSON or JSONL file to only include entries/lines between min_index and max_index (inclusive).
     NOTE: min_index can be equal to max_index
@@ -9,6 +9,8 @@ def shrink_json_or_jsonl(file_path, min_index, max_index, output_path):
     - file_path: str, path to the input JSON or JSONL file
     - min_index: int, minimum index (inclusive)
     - max_index: int, maximum index (inclusive)
+    
+    Returns:
     - output_path: str, path to the output JSON or JSONL file
     """
     # Check if min_index is greater than max_index
@@ -16,8 +18,14 @@ def shrink_json_or_jsonl(file_path, min_index, max_index, output_path):
         print("Error: min_index cannot be greater than max_index.")
         sys.exit(1)
 
+    # Derive the output path
+    dir_name = os.path.dirname(file_path)
+    base_name = os.path.basename(file_path)
+    name, ext = os.path.splitext(base_name)
+    output_path = os.path.join(dir_name, f"{name}_samples_{min_index}-{max_index}{ext}")
+
     try:
-        if file_path.endswith('.jsonl'):
+        if ext == '.jsonl':
             # Process JSONL file
             with open(file_path, 'r') as input_file:
                 lines = input_file.readlines()
@@ -35,7 +43,7 @@ def shrink_json_or_jsonl(file_path, min_index, max_index, output_path):
                     for line_index in range(min_index, max_index + 1):
                         output_file.write(lines[line_index])
         
-        elif file_path.endswith('.json'):
+        elif ext == '.json':
             # Process JSON file
             with open(file_path, 'r') as f:
                 entries = json.load(f)
@@ -46,10 +54,7 @@ def shrink_json_or_jsonl(file_path, min_index, max_index, output_path):
             if max_index >= len(entries):
                 max_index = len(entries) - 1
 
-            if min_index == max_index:
-                selected_entries = [entries[min_index]]
-            else:
-                selected_entries = entries[min_index : max_index + 1]
+            selected_entries = entries[min_index : max_index + 1]
             
             with open(output_path, 'w') as outfile:
                 json.dump(selected_entries, outfile, indent=2)
@@ -57,15 +62,16 @@ def shrink_json_or_jsonl(file_path, min_index, max_index, output_path):
         else:
             raise ValueError("Unsupported file format. Only .json and .jsonl are supported.")
         
-    except FileNotFoundError:
-        print(f"File not found: {file_path}")
+        return output_path
     
-    except (json.JSONDecodeError, ValueError) as e:
-        print(f"Error processing JSON file: {e}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        sys.exit(1)
     
-    except IndexError as e:
-        print(f"Error: {e}")
-
+def extract_language(filepath):
+    """Devolve a linguagem do path de um dataset do HumanEval-X"""
+    return filepath.split('/')[-1].split('_')[1]
+    
 def change_max_tokens_value(filename, new_max_tokens):
     """Substitui o valor de max_tokens vindo do ArgumentParser no ficheiro .py do CyberSecEval (i.e. llm.py)"""
     with open(filename, 'r') as file:

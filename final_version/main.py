@@ -1,7 +1,7 @@
 import argparse, json, csv, os, time, sys
 from benchmarks.benchmarks_execution_scripts import humaneval_x, cyberseceval, mbpp
 from benchmarks.benchmarks_execution_scripts import utils as benchmark_utils
-from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, change_n_ctx_value, change_seed_value, change_boolean_to_save_outputs, validate_supported_models, shrink_json_or_jsonl
+from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, change_n_ctx_value, change_seed_value, change_boolean_to_save_outputs, validate_supported_models, shrink_json_or_jsonl, extract_language
 from llms.utils import load_llm, get_llm_family
 from llms.llamacpp_wrapper import LLAMACPP
 
@@ -31,10 +31,13 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
         for prompts_filepath in prompts_filepath_list:
             if samples_interval != "all":
                 min_ind, max_ind = tuple(map(int, samples_interval.split('-')))
-                shrink_json_or_jsonl(prompts_filepath, min_ind, max_ind, prompts_filepath)
-            if "humaneval_x" in prompts_filepath:
+                prompts_filepath_updated = shrink_json_or_jsonl(prompts_filepath, min_ind, max_ind)
+            else:
+                prompts_filepath_updated = prompts_filepath
+
+            if "humaneval_x" in prompts_filepath_updated:
                 # Este tratamento apenas se destina ao benchmark do HumanEval-X
-                with open(prompts_filepath, 'r') as file:
+                with open(prompts_filepath_updated, 'r') as file:
                     lines = file.readlines()
                     for line in lines:
                         entry = json.loads(line)
@@ -42,46 +45,45 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
                         task_id = entry.get("task_id", "")
                         prompt = entry.get("prompt", "")
 
-                        if prompts_filepath.endswith("humaneval_cpp.jsonl"):
+                        if "cpp" in prompts_filepath_updated:
                             execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "cpp")
-                        elif prompts_filepath.endswith("humaneval_go.jsonl"):
+                        elif "go" in prompts_filepath_updated:
                             execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "go")
-                        elif prompts_filepath.endswith("humaneval_java.jsonl"):
+                        elif "java" in prompts_filepath_updated:
                             execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "java")
-                        elif prompts_filepath.endswith("humaneval_js.jsonl"):
+                        elif "js" in prompts_filepath_updated:
                             execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "js")
-                        elif prompts_filepath.endswith("humaneval_python.jsonl"):
+                        elif "python" in prompts_filepath_updated:
                             execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "python")
-                        elif prompts_filepath.endswith("humaneval_rust.jsonl"):
+                        elif "rust" in prompts_filepath_updated:
                             execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "rust")
-
                 # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
-                human_eval_score = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), prompts_filepath.split('_')[-1].split('.')[0])
+                human_eval_score = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath_updated))
                 benchmark_utils.add_score_in_csv(os.path.join("results", "humaneval_x", "humaneval_x.csv"), os.path.join("results", "humaneval_x", "humaneval_x.csv"), "HumanEval-X", human_eval_score)
                 time.sleep(5)
 
-            elif "cyberseceval" in prompts_filepath:
+            elif "cyberseceval" in prompts_filepath_updated:
                 # Create the results/cyberseceval folder if it doesn't exist
                 folder_path = os.path.join("results", "cyberseceval")
                 if not os.path.exists(folder_path):
                     os.makedirs(folder_path)
 
                 # This treatment is only for the CyberSecEval benchmark
-                if "autocomplete" in prompts_filepath:
-                    cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "autocomplete")
-                elif "instruct" in prompts_filepath:
-                    cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "instruct")
-                elif "mitre" in prompts_filepath:
-                    cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath)
-                elif "frr" in prompts_filepath:
-                    cyberseceval.run_frr_benchmark(llm_path, prompts_filepath)
-                elif "interpreter" in prompts_filepath:
-                    cyberseceval.run_interpreter_benchmark(llm_path, prompts_filepath)
-                elif "canary_exploit" in prompts_filepath:
-                    cyberseceval.run_canary_exploit_benchmark(llm_path, prompts_filepath)                    
-            elif "mbpp" in prompts_filepath:
+                if "autocomplete" in prompts_filepath_updated:
+                    cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath_updated, "autocomplete")
+                elif "instruct" in prompts_filepath_updated:
+                    cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath_updated, "instruct")
+                elif "mitre" in prompts_filepath_updated:
+                    cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath_updated)
+                elif "frr" in prompts_filepath_updated:
+                    cyberseceval.run_frr_benchmark(llm_path, prompts_filepath_updated)
+                elif "interpreter" in prompts_filepath_updated:
+                    cyberseceval.run_interpreter_benchmark(llm_path, prompts_filepath_updated)
+                elif "canary_exploit" in prompts_filepath_updated:
+                    cyberseceval.run_canary_exploit_benchmark(llm_path, prompts_filepath_updated)                    
+            elif "mbpp" in prompts_filepath_updated:
                 # Este tratamento apenas se destina ao benchmark do MBPP
-                with open(prompts_filepath, 'r') as file:
+                with open(prompts_filepath_updated, 'r') as file:
                     lines = file.readlines()
                     for line in lines:
                         entry = json.loads(line)
