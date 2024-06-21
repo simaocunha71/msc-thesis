@@ -129,6 +129,20 @@ def change_boolean_to_save_outputs(filename, new_flag):
     with open(filename, 'w') as file:
         file.writelines(lines)
 
+def change_mbpp_filepath(filename, new_mbpp_filename):
+    """Substitui o valor de MBPP_FILENAME vindo do ficheiro JSON quando apenas executamos uma parte dos prompts"""
+    with open(filename, 'r') as file:
+        lines = file.readlines()
+
+    for i, line in enumerate(lines):
+        if 'MBPP_FILENAME =' in line:
+            lines[i] = f'MBPP_FILENAME = "{new_mbpp_filename}"\n'
+            break
+
+    with open(filename, 'w') as file:
+        file.writelines(lines)
+
+
 def convert_kwh_to_j(value):
     return value * (3.6*(10**6))
 
@@ -219,7 +233,7 @@ def generate_samples_humaneval_x(model, output, label, language):
 def generate_samples_mbpp(model, output, label):
     """Gera o ficheiro das samples deste modelo (Benchmark: MBPP)"""
 
-    label = label.replace("/", "_")
+    #label = label.replace("/", "_")
 
     temp_prompt_file = "temp_output_prompt.txt"
     with open(temp_prompt_file, 'w') as prompt_file:

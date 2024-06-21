@@ -1,7 +1,7 @@
 import argparse, json, csv, os, time, sys
 from benchmarks.benchmarks_execution_scripts import humaneval_x, cyberseceval, mbpp
 from benchmarks.benchmarks_execution_scripts import utils as benchmark_utils
-from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, change_n_ctx_value, change_seed_value, change_boolean_to_save_outputs, validate_supported_models, shrink_json_or_jsonl, extract_language
+from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, change_n_ctx_value, change_seed_value, change_boolean_to_save_outputs, validate_supported_models, shrink_json_or_jsonl, extract_language, change_mbpp_filepath
 from llms.utils import load_llm, get_llm_family
 from llms.llamacpp_wrapper import LLAMACPP
 
@@ -34,7 +34,7 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
                 prompts_filepath_updated = shrink_json_or_jsonl(prompts_filepath, min_ind, max_ind)
             else:
                 prompts_filepath_updated = prompts_filepath
-
+            
             if "humaneval_x" in prompts_filepath_updated:
                 # Este tratamento apenas se destina ao benchmark do HumanEval-X
                 with open(prompts_filepath_updated, 'r') as file:
@@ -82,6 +82,8 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
                 elif "canary_exploit" in prompts_filepath_updated:
                     cyberseceval.run_canary_exploit_benchmark(llm_path, prompts_filepath_updated)                    
             elif "mbpp" in prompts_filepath_updated:
+                change_mbpp_filepath("benchmarks/evalplus/evalplus/data/mbpp.py", os.path.basename(prompts_filepath_updated))
+
                 # Este tratamento apenas se destina ao benchmark do MBPP
                 with open(prompts_filepath_updated, 'r') as file:
                     lines = file.readlines()

@@ -75,7 +75,7 @@ class LLAMACPP:
                                                   measure_utils.extract_llm_name(self.model_name), 
                                                   "humaneval_x")
             elif self.benchmark_type == "mbpp":
-                measure_utils.save_output_to_file(output, self.label, None, "returned_prompts", 
+                measure_utils.save_output_to_file(output, (self.label).replace("/","_"), None, "returned_prompts", 
                                                   measure_utils.extract_llm_name(self.model_name), 
                                                   "mbpp")
 
