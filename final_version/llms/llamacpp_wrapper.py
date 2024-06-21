@@ -68,12 +68,13 @@ class LLAMACPP:
             measure_utils.generate_samples_humaneval_x(measure_utils.extract_llm_name(self.model_name), output, self.label, self.language)
         elif self.benchmark_type == "mbpp":
             measure_utils.generate_samples_mbpp(measure_utils.extract_llm_name(self.model_name), output, self.label)
-
-        if self.save_output_flag:
+        
+        if self.save_output_flag == "yes":
             if self.benchmark_type == "humaneval_x":
                 measure_utils.save_output_to_file(output, self.label, self.language, "returned_prompts", 
                                                   measure_utils.extract_llm_name(self.model_name), 
                                                   "humaneval_x")
+
             elif self.benchmark_type == "mbpp":
                 measure_utils.save_output_to_file(output, (self.label).replace("/","_"), None, "returned_prompts", 
                                                   measure_utils.extract_llm_name(self.model_name), 

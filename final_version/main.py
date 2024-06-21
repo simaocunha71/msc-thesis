@@ -44,18 +44,18 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
 
                         task_id = entry.get("task_id", "")
                         prompt = entry.get("prompt", "")
-
-                        if "cpp" in prompts_filepath_updated:
+                        
+                        if "cpp" == extract_language(prompts_filepath_updated):
                             execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "cpp")
-                        elif "go" in prompts_filepath_updated:
+                        elif "go" == extract_language(prompts_filepath_updated):
                             execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "go")
-                        elif "java" in prompts_filepath_updated:
+                        elif "java" == extract_language(prompts_filepath_updated):
                             execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "java")
-                        elif "js" in prompts_filepath_updated:
+                        elif "js" == extract_language(prompts_filepath_updated):
                             execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "js")
-                        elif "python" in prompts_filepath_updated:
+                        elif "python" == extract_language(prompts_filepath_updated):
                             execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "python")
-                        elif "rust" in prompts_filepath_updated:
+                        elif "rust" == extract_language(prompts_filepath_updated):
                             execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "rust")
                 # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
                 human_eval_score = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath_updated))

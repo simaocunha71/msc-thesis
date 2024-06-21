@@ -1,14 +1,13 @@
 import os, re
 
-running_in_cluster = True
+running_in_cluster = False
 
 def run_human_eval_benchmark(model, language):
     """Calcula o score do benchmark HumanEval-x - neste momento apenas calcula o pass@1 mas mais tarde vou incluir o pass@10 e pass@100"""
     return_value = None
 
     # Calcula o(s) score(s) do benchmark HumanEval e coloca o resultado num ficheiro de texto    
-
-    if running_in_cluster == False:
+    if running_in_cluster == True:
         # CLUSTER COMMAND
         os.system(
             f"srun singularity exec --bind $(pwd)/benchmarks/CodeGeeX:/workspace/CodeGeeX/ ../humaneval_x_dockerImage/humaneval_x.sif "

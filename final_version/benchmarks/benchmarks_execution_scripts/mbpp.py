@@ -26,7 +26,7 @@ def run_mbpp_benchmark(model):
         print("Error: The file 'mbpp_score.txt' was not found.")
 
     # Delete the temporary text file
-    #os.system("rm mbpp_score.txt")
+    os.system("rm mbpp_score.txt")
 
     # Return the calculated scores from parsing
     return pass_1_mbpp, pass_1_mbppPlus

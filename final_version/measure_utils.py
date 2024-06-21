@@ -70,7 +70,12 @@ def shrink_json_or_jsonl(file_path, min_index, max_index):
     
 def extract_language(filepath):
     """Devolve a linguagem do path de um dataset do HumanEval-X"""
-    return filepath.split('/')[-1].split('_')[1]
+    print(f"filepath inicial = {filepath}")
+    if "humaneval_x" in filepath:
+        language = filepath.split('/')[-1].split('_')[1].split(".")[0]
+    else:
+        language = filepath.split('/')[-1].split('_')[1]
+    return language
     
 def change_max_tokens_value(filename, new_max_tokens):
     """Substitui o valor de max_tokens vindo do ArgumentParser no ficheiro .py do CyberSecEval (i.e. llm.py)"""
@@ -210,7 +215,6 @@ def save_output_to_file(output, label, language, output_folder, llama_folder, la
 
 def generate_samples_humaneval_x(model, output, label, language):
     """Gera o ficheiro das samples deste modelo (Benchmark: HumanEval-X)"""
-
     label = label.replace("/", "_")
 
     temp_prompt_file = "temp_output_prompt.txt"
@@ -229,6 +233,7 @@ def generate_samples_humaneval_x(model, output, label, language):
     os.remove(temp_prompt_file)
     os.remove("completion_content.txt")
     os.remove("temp_prompt.txt")
+
 
 def generate_samples_mbpp(model, output, label):
     """Gera o ficheiro das samples deste modelo (Benchmark: MBPP)"""

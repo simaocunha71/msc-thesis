@@ -1,5 +1,0 @@
-Load from previous results from benchmarks/evalplus/results/samples_llama-2-7b.Q2_K_mbpp_eval_results.json
-mbpp (base tests)
-pass@1:	0.000
-mbpp+ (base + extra tests)
-pass@1:	0.000

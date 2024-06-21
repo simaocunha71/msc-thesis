@@ -29,7 +29,6 @@ label = sys.argv[2]  # Label do prompt
 output_got_file = sys.argv[3]  # Ficheiro c/ output gerado pelo LLM em formato string
 language = sys.argv[4] # Linguagem do benchmark
 
-
 with open(output_got_file, 'r') as prompt_file:
     output_got = prompt_file.read()
 
