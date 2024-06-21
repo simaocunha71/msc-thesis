@@ -7,7 +7,14 @@ def run_mbpp_benchmark(model):
 
     # Calculate the benchmark score and place the result in a text file
     os.system("export PYTHONPATH=$PYTHONPATH:$(pwd)")
+
+    #os.system(f"python3 benchmarks/evalplus/evalplus/sanitize.py --samples benchmarks/evalplus/results/samples_{model}_mbpp.jsonl")
+    
+    #os.system(f"python3 benchmarks/evalplus/evalplus/syncheck.py --samples benchmarks/evalplus/results/samples_{model}_mbpp.jsonl --dataset mbpp")
+
+
     os.system(f"python3 benchmarks/evalplus/evalplus/evaluate.py --dataset mbpp --samples benchmarks/evalplus/results/samples_{model}_mbpp.jsonl > mbpp_score.txt")
+
 
     # If the file exists, we will parse pass@1 and pass@1Plus
     if os.path.exists("mbpp_score.txt"):

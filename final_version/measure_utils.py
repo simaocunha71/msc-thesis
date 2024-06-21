@@ -70,7 +70,6 @@ def shrink_json_or_jsonl(file_path, min_index, max_index):
     
 def extract_language(filepath):
     """Devolve a linguagem do path de um dataset do HumanEval-X"""
-    print(f"filepath inicial = {filepath}")
     if "humaneval_x" in filepath:
         language = filepath.split('/')[-1].split('_')[1].split(".")[0]
     else:
