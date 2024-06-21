@@ -1,20 +1,20 @@
 import os
 import re
 
+using_sanitized_version = False
+
 def run_mbpp_benchmark(model):
     """Calculates the score of the MBPP benchmark - currently only calculates pass@1 but will include pass@10 and pass@100 later."""
     pass_1_mbpp = pass_1_mbppPlus = None
 
-    # Calculate the benchmark score and place the result in a text file
     os.system("export PYTHONPATH=$PYTHONPATH:$(pwd)")
-
-    #os.system(f"python3 benchmarks/evalplus/evalplus/sanitize.py --samples benchmarks/evalplus/results/samples_{model}_mbpp.jsonl")
-    
-    #os.system(f"python3 benchmarks/evalplus/evalplus/syncheck.py --samples benchmarks/evalplus/results/samples_{model}_mbpp.jsonl --dataset mbpp")
-
-
-    os.system(f"python3 benchmarks/evalplus/evalplus/evaluate.py --dataset mbpp --samples benchmarks/evalplus/results/samples_{model}_mbpp.jsonl > mbpp_score.txt")
-
+    if using_sanitized_version == True:
+        # Calculate the benchmark score and place the result in a text file
+        os.system(f"python3 benchmarks/evalplus/evalplus/sanitize.py --samples benchmarks/evalplus/results/samples_{model}_mbpp.jsonl")
+        os.system(f"python3 benchmarks/evalplus/evalplus/syncheck.py --samples benchmarks/evalplus/results/samples_{model}_mbpp-sanitized.jsonl --dataset mbpp")
+        os.system(f"python3 benchmarks/evalplus/evalplus/evaluate.py --dataset mbpp --samples benchmarks/evalplus/results/samples_{model}_mbpp-sanitized.jsonl > mbpp_score.txt")
+    else:
+        os.system(f"python3 benchmarks/evalplus/evalplus/evaluate.py --dataset mbpp --samples benchmarks/evalplus/results/samples_{model}_mbpp.jsonl > mbpp_score.txt")
 
     # If the file exists, we will parse pass@1 and pass@1Plus
     if os.path.exists("mbpp_score.txt"):
