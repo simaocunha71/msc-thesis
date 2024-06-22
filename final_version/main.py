@@ -1,7 +1,7 @@
 import argparse, json, csv, os, time, sys
 from benchmarks.benchmarks_execution_scripts import humaneval_x, cyberseceval, mbpp
 from benchmarks.benchmarks_execution_scripts import utils as benchmark_utils
-from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, change_n_ctx_value, change_seed_value, change_boolean_to_save_outputs, validate_supported_models, shrink_json_or_jsonl, extract_language, change_mbpp_filepath
+from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, change_n_ctx_value, change_seed_value, change_boolean_to_save_outputs, validate_supported_models, shrink_json_or_jsonl, extract_language, change_mbpp_filepath, save_sanitized_outputs
 from llms.utils import load_llm, get_llm_family
 from llms.llamacpp_wrapper import LLAMACPP
 
@@ -99,6 +99,9 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
                 mbpp_pass1, mbppPlus_pass1 = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path))
                 benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "MBPP pass@1", mbpp_pass1)
                 benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "MBPP+ pass@1", mbppPlus_pass1)
+                if save_output_flag == "yes":
+                    save_sanitized_outputs("benchmarks/evalplus/results/samples_" + extract_llm_name(llm_path) + "_mbpp-sanitized.jsonl", 
+                                           "returned_prompts", extract_llm_name(llm_path), "mbpp")
                 time.sleep(5)
             else:
                 print("Ficheiro JSONL não pertence a nenhum benchmark considerado")

@@ -1,4 +1,22 @@
-import os, csv, json, sys, re
+import os, csv, json, sys
+
+def save_sanitized_outputs(file_path, output_folder, llama_folder, language_folder):
+     """Guarda as versões sanitized dos outputs gerados - apenas os outputs do MBPP"""
+     #NOTE: Pode ser boa ideia guardar estes outputs dentro de uma pasta "sanitized/" em vez de estar tudo junto com os outputs normais
+     with open(file_path, 'r') as file:
+        for line in file:
+            # Parse the JSON line
+            json_line = json.loads(line)
+            
+            # Extract the "solution" value
+            label = json_line.get('task_id')
+            solution = json_line.get('solution')
+            
+            if solution:
+                save_output_to_file(solution, label+"_sanitized", None, output_folder, llama_folder, language_folder)
+            else:
+                save_output_to_file(solution, label+"_sanitized_EMPTY", None, output_folder, llama_folder, language_folder)
+
 
 def shrink_json_or_jsonl(file_path, min_index, max_index):
     """
