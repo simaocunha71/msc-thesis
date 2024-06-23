@@ -1,14 +1,12 @@
 import os
 import re
 
-using_sanitized_version = False
-
-def run_mbpp_benchmark(model):
+def run_mbpp_benchmark(model, enable_sanitize):
     """Calculates the score of the MBPP benchmark - currently only calculates pass@1 but will include pass@10 and pass@100 later."""
     pass_1_mbpp = pass_1_mbppPlus = None
 
     os.system("export PYTHONPATH=$PYTHONPATH:$(pwd)")
-    if using_sanitized_version == True:
+    if enable_sanitize == "yes":
         # Calculate the benchmark score and place the result in a text file
         os.system(f"python3 benchmarks/evalplus/evalplus/sanitize.py --samples benchmarks/evalplus/results/samples_{model}_mbpp.jsonl")
         os.system(f"python3 benchmarks/evalplus/evalplus/syncheck.py --samples benchmarks/evalplus/results/samples_{model}_mbpp-sanitized.jsonl --dataset mbpp")

@@ -23,7 +23,7 @@ def execute_llm(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_t
         print(f"Não existe classe capaz de executar o LLM com o path {llm_path}")
         sys.exit(-1)
         
-def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval):
+def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, enable_sanitize):
     # Execução das scripts de todos os modelos considerados
 
     for llm_path in llm_path_list:
@@ -96,10 +96,10 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
                         execute_llm(str(task_id), prompt, llm_path, os.path.join("results", "mbpp", "mbpp.csv"), max_tokens, "mbpp", llm, save_output_flag, None)
 
                 # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
-                mbpp_pass1, mbppPlus_pass1 = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path))
+                mbpp_pass1, mbppPlus_pass1 = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path), enable_sanitize)
                 benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "MBPP pass@1", mbpp_pass1)
                 benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "MBPP+ pass@1", mbppPlus_pass1)
-                if save_output_flag == "yes":
+                if save_output_flag == "yes" and enable_sanitize == "yes":
                     save_sanitized_outputs("benchmarks/evalplus/results/samples_" + extract_llm_name(llm_path) + "_mbpp-sanitized.jsonl", 
                                            "returned_prompts", extract_llm_name(llm_path), "mbpp")
                 time.sleep(5)
@@ -128,6 +128,7 @@ def main():
     parser.add_argument("--n_times", type=int, default=512, help="Number of times to execute each prompt")
     parser.add_argument("--save_output", type=str, default=512, help="'yes' to save LLM outputs in files, 'no' otherwise.")
     parser.add_argument("--samples_interval", type=str, default='all', help="Benchmark prompts interval to execute. Format: '[min_index]-[max_index]', or 'all' to use all the dataset")
+    parser.add_argument("--enable_sanitize", type=str, default='all', help="'yes' to enable sanitizing samples from MBPP, 'no' otherwise.")
 
     args = parser.parse_args()
 
@@ -139,6 +140,7 @@ def main():
     N_TIMES = args.n_times
     save_output_flag = args.save_output
     samples_interval = args.samples_interval
+    enable_sanitize = args.enable_sanitize
 
     boolean_validate_models, invalid_models = validate_supported_models("supported_models.json", llm_path_list)
     if(boolean_validate_models == False):
@@ -399,7 +401,7 @@ def main():
 
 
         for n in range(N_TIMES):
-            start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval)
+            start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, enable_sanitize)
 
 if __name__ == "__main__":
     main()
