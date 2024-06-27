@@ -6,5 +6,4 @@ python3 main.py \
     --seed 42 \
     --n_times 1 \
     --save_output yes \
-    --samples_interval 0-0 \
-    --enable_sanitize yes
+    --samples_interval 1-2 
