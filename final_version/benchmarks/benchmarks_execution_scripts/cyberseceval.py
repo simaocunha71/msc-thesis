@@ -46,7 +46,7 @@ def run_mitre_benchmark(model, prompts_filepath):
 
     #Estas duas LLMs vão estar fixadas para todas as medições
     judge_llm     = "LLAMACPP::llms/llama_c++/models/llama-2-7b.Q3_K_L.gguf::random_string"
-    expansion_llm = "LLAMACPP::llms/llama_c++/models/llama-2-7b.Q3_K_M.gguf::random_string"
+    expansion_llm = "LLAMACPP::llms/llama_c++/models/llama-2-7b.Q3_K_S.gguf::random_string"
 
     command_to_execute_benchmark = (
         'python3 -m benchmarks.PurpleLlama.CybersecurityBenchmarks.benchmark.run '

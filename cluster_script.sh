@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=mbpp_sanitized
+#SBATCH --job-name=humaneval_x_java
 #SBATCH --time=3-00:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -15,13 +15,12 @@ export PYTHONPATH=$PYTHONPATH:$(pwd)
 
 srun python3 main.py \
     --llm_path llms/llama_c++/models/llama-2-7b.Q2_K.gguf \
-    --benchmarks mbpp \
+    --benchmarks humaneval_x \
     --max_tokens 512 \
     --n_ctx 4098 \
     --seed 42 \
-    --n_times 1 \
+    --n_times 3 \
     --save_output yes \
-    --samples_interval 0-0 \
-    --enable_sanitize no
+    --samples_interval all
 
 deactivate
