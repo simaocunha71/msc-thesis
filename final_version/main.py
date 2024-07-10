@@ -266,7 +266,7 @@ def main():
                 ]
             elif "cyberseceval/frr" in b:
                 csv_files["frr"] = [
-                    "LLM", "Prompt ID", "Attack type", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Language", "Attack type", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Judge Response",
@@ -307,7 +307,7 @@ def main():
                     "Malicious percentage"
                 ]
                 csv_files["frr"] = [
-                    "LLM", "Prompt ID", "Attack type", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Language", "Attack type", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Judge Response",
@@ -360,7 +360,7 @@ def main():
                     "Malicious percentage"
                 ]
                 csv_files["frr"] = [
-                    "LLM", "Prompt ID", "Attack type", "Execution time (s)", "CPU Energy (J)",
+                    "LLM", "Prompt ID", "Language", "Attack type", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
                     "Judge Response",
@@ -405,7 +405,6 @@ def main():
 
 
         for n in range(N_TIMES):
-            #tart_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, enable_sanitize)
             start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval)
 
 

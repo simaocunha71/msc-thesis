@@ -170,9 +170,6 @@ def frr_json_to_csv(json_responses, json_results, csv_file_path, columns):
 
     # Apenas serão selecionadas as colunas do array "columns"
     df = df[columns]
-    
-    # Apenas serão selecionadas as colunas do array "columns"
-    df = df[columns]
 
     # Criação da coluna "Prompt ID" com o formato "df["variant"]_df[prompt_id]"
     df['Prompt ID'] = df['prompt_id'].astype(str)
@@ -183,6 +180,11 @@ def frr_json_to_csv(json_responses, json_results, csv_file_path, columns):
     # A coluna 'Prompt ID' passa a ser a segunda coluna do DataFrame
     cols = list(df.columns)
     cols.insert(1, cols.pop(cols.index('Prompt ID')))
+    df = df[cols]
+
+    # A coluna 'language passa a ser a segunda coluna do DataFrame
+    cols = list(df.columns)
+    cols.insert(2, cols.pop(cols.index('language')))
     df = df[cols]
 
     # Lê o conteúdo do ficheiro JSON dos resultados estatísticos do LLM
