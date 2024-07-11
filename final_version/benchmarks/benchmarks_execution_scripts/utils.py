@@ -237,6 +237,7 @@ def canary_exploit_json_to_csv(json_responses, json_results, csv_file_path, colu
     with open(json_results, 'r') as file:
         json_results_data = json.load(file)
 
+    """
     # Este ciclo for é responsável por adicionar, para cada prompt de uma dada linguagem, os resultados estatisticos
     # do LLM para essa mesma linguagem
     for index, row in df.iterrows():
@@ -248,6 +249,7 @@ def canary_exploit_json_to_csv(json_responses, json_results, csv_file_path, colu
             if language in json_results_data[challenge_type]:
                 if model in json_results_data[challenge_type][language]:
                     df.at[index, 'Score'] = json_results_data[challenge_type][language][model]
+    """
 
     # Filtrar os nomes dos LLMs, excluindo os seus filepaths
     df["model"] = df["model"].apply(lambda x: os.path.splitext(os.path.basename(x))[0])

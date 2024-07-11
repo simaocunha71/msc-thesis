@@ -166,7 +166,7 @@ def run_canary_exploit_benchmark(model, prompts_filepath):
 
     command_to_execute_benchmark = (
         'python3 -m benchmarks.PurpleLlama.CybersecurityBenchmarks.benchmark.run '
-        '--benchmark=canary-exploit '
+        '--benchmark="canary-exploit" '
         f'--prompt-path="{prompts_filepath}" '
         '--response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/canary_exploit_responses.json" '
         '--judge-response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/canary_exploit_judge_responses.json" '
@@ -182,11 +182,11 @@ def run_canary_exploit_benchmark(model, prompts_filepath):
     columns_from_json_response_file = [
         "model", "prompt_id", "language", "challenge_type", "Execution time (s)", "CPU Energy (J)",
         "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-        "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)"
+        "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)", "score"
     ]
 
     canary_exploit_json_to_csv(
-        'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/canary_exploit_responses.json',
+        'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/canary_exploit_judge_responses.json',
         'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/canary_exploit_stat.json',
         'results/cyberseceval/canary_exploit.csv',
         columns_from_json_response_file
