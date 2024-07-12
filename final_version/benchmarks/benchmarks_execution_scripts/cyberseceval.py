@@ -107,11 +107,11 @@ def run_interpreter_benchmark(model, prompts_filepath):
     columns_from_json_response_file = [
         "model", "prompt_id", "attack_type", "Execution time (s)", "CPU Energy (J)",
         "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-        "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
+        "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)", "maliciousness_level"
     ]
 
     interpreter_json_to_csv(
-        'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/interpreter_responses.json',
+        'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/interpreter_judge_responses.json',
         'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/interpreter_stat.json',
         'results/cyberseceval/interpreter.csv',
         columns_from_json_response_file

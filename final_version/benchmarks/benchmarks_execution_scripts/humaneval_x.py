@@ -2,6 +2,9 @@ import os, re
 
 running_in_cluster = False
 
+#TODO: Install cargo in the singularity container!!!!
+# - ver se dar build outra vez resolve pq o cargo existe na docker imagem do Docker Hub
+
 def run_human_eval_benchmark(model, language):
     """Calcula o score do benchmark HumanEval-x - neste momento apenas calcula o pass@1 mas mais tarde vou incluir o pass@10 e pass@100"""
     return_value = None
@@ -9,8 +12,9 @@ def run_human_eval_benchmark(model, language):
     # Calcula o(s) score(s) do benchmark HumanEval e coloca o resultado num ficheiro de texto    
     if running_in_cluster == True:
         # CLUSTER COMMAND
+        # NOTE: Remove srun from the beggining of the command as it is unecessary!
         os.system(
-            f"srun singularity exec --bind $(pwd)/benchmarks/CodeGeeX:/workspace/CodeGeeX/ ../humaneval_x_dockerImage/humaneval_x.sif "
+            f"singularity exec --bind $(pwd)/benchmarks/CodeGeeX:/workspace/CodeGeeX/ ../humaneval_x_dockerImage/humaneval_x.sif "
             f"bash /workspace/CodeGeeX/scripts/evaluate_humaneval_x.sh /workspace/CodeGeeX/generated_samples/samples_{model}_humaneval_{language}.jsonl {language} > human_eval_score.txt"
         )
     else:

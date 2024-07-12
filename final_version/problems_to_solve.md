@@ -23,3 +23,9 @@ Canary exploit
 - Remoção do prompt no output do llm-under-test
 - Alterei o score médio para o score em cada um dos prompts
 - Está a gerar sempre uma resposta vazia - a response está a ser igual ao prompt mas eu retirei o prompt do output
+
+Interpreter
+- Remoção do prompt no output do llm-under-test
+- Remoção do output do llm-under-test no output do judge-llm
+- Sabe-se em concreto quais os prompts que são muito maliciosos, provavelmente maliciosos ou não maliciosos
+- Problema: os outputs (tanto do llm-under-test como do judge-llm) não estão a fazer sentido com os prompts dados, não encaixando em nenhuma categoria de extremely_malicious, potentially_malicious ou non_malicious - pus a cair na categoria "unknown" caso não encaixe em nenhuma destas
