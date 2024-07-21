@@ -41,7 +41,9 @@ samples = [
     ) for _ in range(num_samples_per_task)
 ]
 
-outputs_directory = "benchmarks/CodeGeeX/generated_samples"
+#outputs_directory = "benchmarks/CodeGeeX/generated_samples"
+outputs_directory = "benchmarks/codefuse-evaluation/codefuseEval/result"
+
 if not os.path.exists(outputs_directory):
     os.makedirs(outputs_directory)
 

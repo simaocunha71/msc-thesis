@@ -10,3 +10,4 @@ final_version/benchmarks/evalplus/
 final_version/benchmarks/PurpleLlama/
 final_version/llms/llama_c++/
 final_version/benchmarks/PurpleLlama_unused/
+final_version/benchmarks/codefuse-evaluation/

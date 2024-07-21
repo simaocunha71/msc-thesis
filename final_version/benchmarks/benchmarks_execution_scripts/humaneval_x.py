@@ -1,53 +1,151 @@
-import os, re
+import os
+import re
+import json
+from pathlib import Path
 
+# Global variable to indicate if running in a cluster
 running_in_cluster = False
 
-#TODO: Install cargo in the singularity container!!!!
-# - ver se dar build outra vez resolve pq o cargo existe na docker imagem do Docker Hub
-
-def run_human_eval_benchmark(model, language):
-    """Calcula o score do benchmark HumanEval-x - neste momento apenas calcula o pass@1 mas mais tarde vou incluir o pass@10 e pass@100"""
-    return_value = None
-
-    # Calcula o(s) score(s) do benchmark HumanEval e coloca o resultado num ficheiro de texto    
-    if running_in_cluster == True:
-        # CLUSTER COMMAND
-        # NOTE: Remove srun from the beggining of the command as it is unecessary!
-        os.system(
-            f"singularity exec --bind $(pwd)/benchmarks/CodeGeeX:/workspace/CodeGeeX/ ../humaneval_x_dockerImage/humaneval_x.sif "
-            f"bash /workspace/CodeGeeX/scripts/evaluate_humaneval_x.sh /workspace/CodeGeeX/generated_samples/samples_{model}_humaneval_{language}.jsonl {language} > human_eval_score.txt"
+# Define command templates for Docker and Singularity
+COMMAND_TEMPLATES = {
+    "docker": {
+        "pass@k": (
+            "docker run "
+            "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
+            "-it registry.cn-hangzhou.aliyuncs.com/codefuse/codefuseeval:latest "
+            "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
+            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "pass@k "
+            "humaneval_{language} > human_eval_score.txt"
+        ),
+        "codebleu": (
+            "docker run "
+            "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
+            "-it registry.cn-hangzhou.aliyuncs.com/codefuse/codefuseeval:latest "
+            "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
+            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "codebleu "
+            "humaneval_{language}"
+        ),
+        "google_bleu": (
+            "docker run "
+            "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
+            "-it registry.cn-hangzhou.aliyuncs.com/codefuse/codefuseeval:latest "
+            "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
+            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "google_bleu "
+            "humaneval_{language}"
         )
-    else:
-        # LOCAL COMMAND
-        os.system(
-            f"docker run -v $(pwd)/benchmarks/CodeGeeX:/workspace/CodeGeeX/ -it alcunha71/humaneval_x "
-            f"bash /workspace/CodeGeeX/scripts/evaluate_humaneval_x.sh /workspace/CodeGeeX/generated_samples/samples_{model}_humaneval_{language}.jsonl {language} > human_eval_score.txt"
+    },
+    "singularity": {
+        "pass@k": (
+            "singularity exec "
+            "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
+            "../humaneval_x_dockerImage/humaneval_x.sif "
+            "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
+            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "pass@k "
+            "humaneval_{language} > human_eval_score.txt"
+        ),
+        "codebleu": (
+            "singularity exec "
+            "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
+            "../humaneval_x_dockerImage/humaneval_x.sif "
+            "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
+            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "codebleu "
+            "humaneval_{language}"
+        ),
+        "google_bleu": (
+            "singularity exec "
+            "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
+            "../humaneval_x_dockerImage/humaneval_x.sif "
+            "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
+            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "google_bleu "
+            "humaneval_{language}"
         )
+    }
+}
 
+def execute_command(command: str):
+    """Executes a system command."""
+    os.system(command)
 
-    # Caso exista o ficheiro, iremos fazer parsing de "Total" e de "Correct", fazendo a divisão entre "Correct" e "Total"
-    if os.path.exists(f"human_eval_score.txt"):
-        os.system(f"cat human_eval_score.txt")
-        with open(f"human_eval_score.txt", 'r') as file:
-            # Lê o conteúdo do ficheiro
+def parse_score_from_file(file_path: Path) -> dict:
+    """Parses score information from the given file."""
+    scores = {"pass_1": -1, "google_bleu": -1, "codebleu": -1}
+    
+    if file_path.exists():
+        with file_path.open('r') as file:
             content = file.read()
-
-            # Usamos regex para o parsing
             match = re.search(r"Total:\s+(\d+)\s+Correct:\s+(\d+)", content)
             if match:
-                total = int(match.group(1))
-                correct = int(match.group(2))
-                # Calculamos a proporção correct/total
-                if total != 0:  # Avoid division by zero
-                    return_value = correct / total
-                else:
-                    return_value = -1  # Default to -1 if total is 0
+                total, correct = int(match.group(1)), int(match.group(2))
+                if total != 0:
+                    scores["pass_1"] = correct / total
 
     else:
-        print(f"Error: The file 'human_eval_score.txt' was not found.")
+        print(f"Error: The file '{file_path}' was not found.")
+    
+    return scores
 
-    # Apagamos o ficheiro de texto temporário
-    os.system(f"rm human_eval_score.txt")
+def extract_scores_from_json(file_googlebleu: Path, file_codebleu: Path) -> dict:
+    """Extracts google_bleu and codebleu scores from JSON files."""
+    scores = {"google_bleu": -1, "codebleu": -1}
+    
+    # Check and extract from google_bleu file
+    if file_googlebleu.exists():
+        with file_googlebleu.open('r') as file:
+            for line in file:
+                try:
+                    data = json.loads(line)
+                    if 'google_bleu' in data:
+                        scores["google_bleu"] = data['google_bleu']
+                except json.JSONDecodeError:
+                    print(f"Error: Failed to decode JSON in '{file_googlebleu}'")
+    else:
+        print(f"Error: The file '{file_googlebleu}' was not found.")
 
-    # Aqui devolve os scores calculados no parsing (NOTE: no futuro isto irá ser um tuplo do tipo (pass@1, pass@10, pass@100))
-    return return_value
+    # Check and extract from codebleu file
+    if file_codebleu.exists():
+        with file_codebleu.open('r') as file:
+            for line in file:
+                try:
+                    data = json.loads(line)
+                    if 'CodeBLEU_Score' in data:
+                        scores["codebleu"] = data['CodeBLEU_Score']
+                except json.JSONDecodeError:
+                    print(f"Error: Failed to decode JSON in '{file_codebleu}'")
+    else:
+        print(f"Error: The file '{file_codebleu}' was not found.")
+    
+    print(scores)
+    return scores
+
+
+def run_human_eval_benchmark(model: str, language: str) -> tuple:
+    """Calculates the HumanEval benchmark scores."""
+    base_path = Path("benchmarks/codefuse-evaluation/codefuseEval/result")
+    scores = {"pass_1": -1, "google_bleu": -1, "codebleu": -1}
+    
+    if running_in_cluster:
+        command_templates = COMMAND_TEMPLATES["singularity"]
+    else:
+        command_templates = COMMAND_TEMPLATES["docker"]
+
+    for metric, command_template in command_templates.items():
+        command = command_template.format(model=model, language=language)
+        execute_command(command)
+        
+    # Update scores for pass@k
+    scores.update(parse_score_from_file(Path("human_eval_score.txt")))
+
+    # Update scores for Google BLEU and CodeBLEU
+    google_bleu_path = base_path / f"samples_{model}_humaneval_{language}_google_bleu.jsonl"
+    codebleu_path = base_path / f"samples_{model}_humaneval_{language}_codebleu.jsonl"
+    scores.update(extract_scores_from_json(google_bleu_path, codebleu_path))
+    
+    os.system("rm human_eval_score.txt")
+
+    return (scores["pass_1"], scores["google_bleu"], scores["codebleu"])
