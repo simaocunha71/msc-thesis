@@ -60,10 +60,11 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
                         elif "rust" == extract_language(prompts_filepath_updated):
                             execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "rust")
                 # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
-                pass_1, google_bleu, codebleu = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath_updated))
+                pass_1, google_bleu, codebleu, sacrebleu = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath_updated))
                 benchmark_utils.add_score_in_csv(os.path.join("results", "humaneval_x", "humaneval_x.csv"), os.path.join("results", "humaneval_x", "humaneval_x.csv"), "Pass@1", pass_1)
                 benchmark_utils.add_score_in_csv(os.path.join("results", "humaneval_x", "humaneval_x.csv"), os.path.join("results", "humaneval_x", "humaneval_x.csv"), "googleBLEU", google_bleu)
                 benchmark_utils.add_score_in_csv(os.path.join("results", "humaneval_x", "humaneval_x.csv"), os.path.join("results", "humaneval_x", "humaneval_x.csv"), "codeBLEU", codebleu)
+                benchmark_utils.add_score_in_csv(os.path.join("results", "humaneval_x", "humaneval_x.csv"), os.path.join("results", "humaneval_x", "humaneval_x.csv"), "sacreBLEU", sacrebleu)
 
                 time.sleep(5)
 
@@ -187,8 +188,8 @@ def main():
                         "prompts/humaneval_x/humaneval_go.jsonl",
                         "prompts/humaneval_x/humaneval_java.jsonl", 
                         "prompts/humaneval_x/humaneval_js.jsonl", 
-                        "prompts/humaneval_x/humaneval_python.jsonl"
-                        #"prompts/humaneval_x/humaneval_rust.jsonl"
+                        "prompts/humaneval_x/humaneval_python.jsonl",
+                        "prompts/humaneval_x/humaneval_rust.jsonl"
                     ])
                 elif benchmark == "humaneval_x/c++":
                     prompts_filepath_list.append("prompts/humaneval_x/humaneval_cpp.jsonl")
@@ -238,7 +239,7 @@ def main():
                     "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Pass@1", "googleBLEU", "codeBLEU"
+                    "Pass@1", "googleBLEU", "codeBLEU", "sacreBLEU"
                 ]
             elif "cyberseceval/autocomplete" in b or "cyberseceval/instruct" in b:
                 csv_files["instruct_and_autocomplete"] = [
@@ -338,7 +339,7 @@ def main():
                     "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
                     "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
                     "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Pass@1", "googleBLEU", "codeBLEU"
+                    "Pass@1", "googleBLEU", "codeBLEU", "sacreBLEU"
                 ]
                 csv_files["instruct_and_autocomplete"] = [
                     "LLM", "Prompt ID", "Variant", "Language", "Execution time (s)", "CPU Energy (J)",

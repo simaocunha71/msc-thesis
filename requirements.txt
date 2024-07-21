@@ -8,3 +8,7 @@ tree_sitter==0.21.3
 tree_sitter_languages==1.10.2
 
 codecarbon==2.4.2
+
+evaluate==0.4.2
+scb==0.1.0
+sacrebleu==2.4.2

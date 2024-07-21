@@ -21,6 +21,16 @@ CMAKE_ARGS="-DLLAMA_BLAS=ON -DLLAMA_BLAS_VENDOR=OpenBLAS" pip3 install llama-cpp
 docker pull alcunha71/humaneval_x:latest
 ```
 
+#### Cuidados a ter no codefuse.ai
+##### import sacrebleu as scb
+```bash
+nano /home/simao/.cache/huggingface/modules/evaluate_modules/metrics/sacrebleu/0cc3ee582c27f193445865d2cdfb25edd3582d7966b11db6123c03f7f68a1a35/sacrebleu.py
+```
+##### pode ser preciso escrever
+```bash
+pip3 install sacrebleu --upgrade
+```
+
 #### Notas do Francisco sobre o RPD - A alterar para o documento final
 - Abstract e Resumo:
     - se achares relevante, inclui uma frase a falar dos modelos com quantization e dizer que queremos ver as diferenças entre os diferentes tamanhos e a eficácia/energia (como achares melhor, fica ao teu critério). [DESENVOLVER UM POUCO MELHOR PARA O DOCUMENTO FINAL]

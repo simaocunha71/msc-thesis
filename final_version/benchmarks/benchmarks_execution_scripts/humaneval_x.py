@@ -3,6 +3,7 @@ import re
 import json
 from pathlib import Path
 
+#sh benchmarks/codefuse-evaluation/codefuseEval/script/evaluation.sh benchmarks/codefuse-evaluation/codefuseEval/result/samples_llama-2-7b.Q2_K_humaneval_python.jsonl sacrebleu humaneval_python
 # Global variable to indicate if running in a cluster
 running_in_cluster = False
 
@@ -35,6 +36,13 @@ COMMAND_TEMPLATES = {
             "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
             "google_bleu "
             "humaneval_{language}"
+        ),
+        "sacrebleu": (
+            "python3 benchmarks/codefuse-evaluation/codefuseEval/evaluation.py "
+            "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "--metric sacrebleu "
+            "--problem_file humaneval_{language} "
+            "--test_groundtruth False"
         )
     },
     "singularity": {
@@ -64,6 +72,15 @@ COMMAND_TEMPLATES = {
             "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
             "google_bleu "
             "humaneval_{language}"
+        ),
+        "sacrebleu": (
+            "singularity exec "
+            "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
+            "../humaneval_x_dockerImage/humaneval_x.sif "
+            "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
+            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "sacrebleu "
+            "humaneval_{language}"
         )
     }
 }
@@ -90,9 +107,9 @@ def parse_score_from_file(file_path: Path) -> dict:
     
     return scores
 
-def extract_scores_from_json(file_googlebleu: Path, file_codebleu: Path) -> dict:
+def extract_scores_from_json(file_googlebleu: Path, file_codebleu: Path, file_sacrebleu: Path) -> dict:
     """Extracts google_bleu and codebleu scores from JSON files."""
-    scores = {"google_bleu": -1, "codebleu": -1}
+    scores = {"google_bleu": -1, "codebleu": -1, "sacrebleu": -1}
     
     # Check and extract from google_bleu file
     if file_googlebleu.exists():
@@ -117,17 +134,27 @@ def extract_scores_from_json(file_googlebleu: Path, file_codebleu: Path) -> dict
                         scores["codebleu"] = data['CodeBLEU_Score']
                 except json.JSONDecodeError:
                     print(f"Error: Failed to decode JSON in '{file_codebleu}'")
+
+    # Check and extract from codebleu file
+    if file_sacrebleu.exists():
+        with file_sacrebleu.open('r') as file:
+            for line in file:
+                try:
+                    data = json.loads(line)
+                    if 'score' in data:
+                        scores["sacrebleu"] = data['score']
+                except json.JSONDecodeError:
+                    print(f"Error: Failed to decode JSON in '{file_sacrebleu}'")
     else:
-        print(f"Error: The file '{file_codebleu}' was not found.")
+        print(f"Error: The file '{file_sacrebleu}' was not found.")
     
-    print(scores)
     return scores
 
 
 def run_human_eval_benchmark(model: str, language: str) -> tuple:
-    """Calculates the HumanEval benchmark scores."""
+    """Calculates the HumanEval-X benchmark scores."""
     base_path = Path("benchmarks/codefuse-evaluation/codefuseEval/result")
-    scores = {"pass_1": -1, "google_bleu": -1, "codebleu": -1}
+    scores = {"pass_1": -1, "google_bleu": -1, "codebleu": -1, "sacrebleu": -1}
     
     if running_in_cluster:
         command_templates = COMMAND_TEMPLATES["singularity"]
@@ -144,8 +171,9 @@ def run_human_eval_benchmark(model: str, language: str) -> tuple:
     # Update scores for Google BLEU and CodeBLEU
     google_bleu_path = base_path / f"samples_{model}_humaneval_{language}_google_bleu.jsonl"
     codebleu_path = base_path / f"samples_{model}_humaneval_{language}_codebleu.jsonl"
-    scores.update(extract_scores_from_json(google_bleu_path, codebleu_path))
+    sacrebleu_path = base_path / f"samples_{model}_humaneval_{language}_sacrebleu.jsonl"
+    scores.update(extract_scores_from_json(google_bleu_path, codebleu_path, sacrebleu_path))
     
     os.system("rm human_eval_score.txt")
 
-    return (scores["pass_1"], scores["google_bleu"], scores["codebleu"])
+    return (scores["pass_1"], scores["google_bleu"], scores["codebleu"], scores["sacrebleu"])
