@@ -1,6 +1,7 @@
 import csv
 import pandas as pd
 import json, os
+from pathlib import Path
 
 def autocompleteOrInstruct_json_to_csv(json_responses, json_results, csv_file_path, columns):
     """Pega nas colunas da lista 'columns' de um ficheiro JSON de respostas do benchmark Autocomplete ou Instruct
@@ -280,3 +281,17 @@ def add_score_in_csv(csv_file_old, csv_file_new, column_name, value_to_add):
         writer = csv.DictWriter(csv_out, fieldnames=header)
         writer.writeheader()
         writer.writerows(rows)
+
+def delete_files_with_keyword(directory: str, keyword: str):
+    """Remove all files in the given directory that contain the specified keyword in their filepath."""
+    path = Path(directory)
+    
+    if not path.is_dir():
+        raise ValueError(f"The provided path '{directory}' is not a directory.")
+    
+    for file in path.glob(f"*{keyword}*"):
+        if file.is_file():
+            try:
+                file.unlink()
+            except Exception as e:
+                print(f"Error deleting {file}: {e}")

@@ -37,7 +37,10 @@ num_samples_per_task = 1  # Numero de execuções por prompts
 samples = [
     dict(
         task_id=label,
-        completion=output_got
+        #completion=output_got
+        generation=output_got
+
+
     ) for _ in range(num_samples_per_task)
 ]
 
