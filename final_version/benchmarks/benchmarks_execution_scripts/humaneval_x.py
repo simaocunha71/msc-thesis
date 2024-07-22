@@ -2,8 +2,8 @@ import os
 import re
 import json
 from pathlib import Path
+from benchmarks.benchmarks_execution_scripts.utils import delete_files_with_keyword
 
-#sh benchmarks/codefuse-evaluation/codefuseEval/script/evaluation.sh benchmarks/codefuse-evaluation/codefuseEval/result/samples_llama-2-7b.Q2_K_humaneval_python.jsonl sacrebleu humaneval_python
 # Global variable to indicate if running in a cluster
 running_in_cluster = False
 
@@ -175,5 +175,8 @@ def run_human_eval_benchmark(model: str, language: str) -> tuple:
     scores.update(extract_scores_from_json(google_bleu_path, codebleu_path, sacrebleu_path))
     
     os.system("rm human_eval_score.txt")
-
+    delete_files_with_keyword("benchmarks/codefuse-evaluation/codefuseEval/result", "codebleu")
+    delete_files_with_keyword("benchmarks/codefuse-evaluation/codefuseEval/result", "sacrebleu")
+    delete_files_with_keyword("benchmarks/codefuse-evaluation/codefuseEval/result", "google_bleu")
+    
     return (scores["pass_1"], scores["google_bleu"], scores["codebleu"], scores["sacrebleu"])
