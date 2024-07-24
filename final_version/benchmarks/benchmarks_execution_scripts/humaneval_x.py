@@ -49,7 +49,7 @@ COMMAND_TEMPLATES = {
         "pass@k": (
             "singularity exec "
             "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-            "../humaneval_x_dockerImage/humaneval_x.sif "
+            "../container_in_use/codefuseeval_latest.sif "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
             "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
             "pass@k "
@@ -58,7 +58,7 @@ COMMAND_TEMPLATES = {
         "codebleu": (
             "singularity exec "
             "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-            "../humaneval_x_dockerImage/humaneval_x.sif "
+            "../container_in_use/codefuseeval_latest.sif "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
             "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
             "codebleu "
@@ -67,20 +67,18 @@ COMMAND_TEMPLATES = {
         "google_bleu": (
             "singularity exec "
             "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-            "../humaneval_x_dockerImage/humaneval_x.sif "
+            "../container_in_use/codefuseeval_latest.sif "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
             "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
             "google_bleu "
             "humaneval_{language}"
         ),
         "sacrebleu": (
-            "singularity exec "
-            "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-            "../humaneval_x_dockerImage/humaneval_x.sif "
-            "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
-            "sacrebleu "
-            "humaneval_{language}"
+            "python3 benchmarks/codefuse-evaluation/codefuseEval/evaluation.py "
+            "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "--metric sacrebleu "
+            "--problem_file humaneval_{language} "
+            "--test_groundtruth False"
         )
     }
 }
