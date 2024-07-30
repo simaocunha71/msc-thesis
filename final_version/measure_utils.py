@@ -1,4 +1,4 @@
-import os, csv, json, sys
+import os, csv, json, sys, glob, re
 
 def save_sanitized_outputs(file_path, output_folder, llama_folder, language_folder):
      """Guarda as versões sanitized dos outputs gerados - apenas os outputs do MBPP"""
@@ -8,14 +8,14 @@ def save_sanitized_outputs(file_path, output_folder, llama_folder, language_fold
             # Parse the JSON line
             json_line = json.loads(line)
             
-            # Extract the "solution" value
+            # Extract the "generation" value
             label = json_line.get('task_id')
-            solution = json_line.get('solution')
+            generation = json_line.get('generation')
             
-            if solution:
-                save_output_to_file(solution, label+"_sanitized", None, output_folder, llama_folder, language_folder)
+            if generation:
+                save_output_to_file(generation, label+"_sanitized", None, output_folder, llama_folder, language_folder)
             else:
-                save_output_to_file(solution, label+"_sanitized_EMPTY", None, output_folder, llama_folder, language_folder)
+                save_output_to_file(generation, label+"_sanitized_EMPTY", None, output_folder, llama_folder, language_folder)
 
 
 def shrink_json_or_jsonl(file_path, min_index, max_index):
@@ -87,12 +87,19 @@ def shrink_json_or_jsonl(file_path, min_index, max_index):
         sys.exit(1)
     
 def extract_language(filepath):
-    """Devolve a linguagem do path de um dataset do HumanEval-X"""
-    if "humaneval_x" in filepath:
-        language = filepath.split('/')[-1].split('_')[1].split(".")[0]
-    else:
-        language = filepath.split('/')[-1].split('_')[1]
-    return language
+    """
+    Extracts the programming language from the given filepath.
+
+    Args:
+        filepath (str): The filepath string to parse.
+
+    Returns:
+        str: The extracted programming language.
+    """
+    match = re.search(r'humaneval_(\w+)(?:_samples_\d+-\d+)?\.(json|jsonl)', filepath)
+    if match:
+        return match.group(1)
+    return None
     
 def change_max_tokens_value(filename, new_max_tokens):
     """Substitui o valor de max_tokens vindo do ArgumentParser no ficheiro .py do CyberSecEval (i.e. llm.py)"""
@@ -231,16 +238,14 @@ def save_output_to_file(output, label, language, output_folder, llama_folder, la
         output_file.write(output)
 
 def generate_samples_humaneval_x(model, output, label, language):
-    """Gera o ficheiro das samples deste modelo (Benchmark: HumanEval-X)"""
     label = label.replace("/", "_")
-
-    temp_prompt_file = "temp_output_prompt.txt"
+    
+    # Define temporary files
+    temp_prompt_file = "completion_content.txt"
+    
+    # Write the extracted content to the temporary file
     with open(temp_prompt_file, 'w') as prompt_file:
         prompt_file.write(output)
-
-    # O ficheiro "completion_content.txt" vai conter apenas o código gerado pelo modelo,
-    # excluindo-se a assinatura da função e comentários iniciais
-    os.system("grep -vxFf temp_prompt.txt temp_output_prompt.txt > completion_content.txt")
 
     # Executa a script get_samples.py que irá calcular as samples de um dado LLM para a execução do HumanEval
     command = f'python3 benchmarks/benchmarks_execution_scripts/get_samples_humaneval_x.py {model} "{label}" completion_content.txt {language}'
@@ -248,31 +253,27 @@ def generate_samples_humaneval_x(model, output, label, language):
 
     # Remove os ficheiros de texto temporários
     os.remove(temp_prompt_file)
-    os.remove("completion_content.txt")
-    os.remove("temp_prompt.txt")
-
 
 def generate_samples_mbpp(model, output, label):
     """Gera o ficheiro das samples deste modelo (Benchmark: MBPP)"""
-
-    #label = label.replace("/", "_")
-
-    temp_prompt_file = "temp_output_prompt.txt"
+    
+    # Define temporary files
+    temp_prompt_file = "completion_content.txt"
+    
+    # Write the extracted content to the temporary file
     with open(temp_prompt_file, 'w') as prompt_file:
         prompt_file.write(output)
 
-    # O ficheiro "completion_content.txt" vai conter apenas o código gerado pelo modelo,
-    # excluindo-se a assinatura da função e comentários iniciais
-    os.system("grep -vxFf temp_prompt.txt temp_output_prompt.txt > completion_content.txt")
-
-    # Executa a script get_samples.py que irá calcular as samples de um dado LLM para a execução do HumanEval
+    # Execute the script to generate the samples for MBPP
     command = f'python3 benchmarks/benchmarks_execution_scripts/get_samples_mbpp.py {model} "{label}" completion_content.txt'
+    
     os.system(command)
 
-    # Remove os ficheiros de texto temporários
-    os.remove(temp_prompt_file)
-    os.remove("completion_content.txt")
-    os.remove("temp_prompt.txt")
+    # Clean up temporary files
+    if os.path.exists(temp_prompt_file):
+        os.remove(temp_prompt_file)
+    else:
+        print(f"{temp_prompt_file} does not exist.")
 
 def add_measurement_to_csv(FILENAME, model_name, label, tracker):
     """ Adiciona uma linha com as medições de tempos de execução e de energia consumida ao ficheiro CSV """
@@ -325,3 +326,79 @@ def validate_supported_models(json_file, models_list):
                 return True, []
     except FileNotFoundError:
         print(f"The file '{json_file}' was not found.")
+
+def get_prompt_for_shot_prompting(dataset_path, n_shot_prompting):
+    """
+    Generates a prompt string for n-shot prompting and returns the path to the remaining dataset.
+
+    Args:
+        dataset_path (str): Path to the dataset file (JSON or JSONL).
+        n_shot_prompting (int): Number of examples to be used for creating the prompt string.
+
+    Returns:
+        tuple: A string with the prompting examples and the path to the remaining dataset file.
+    """
+    # Determine file extension
+    _, ext = os.path.splitext(dataset_path)
+
+    if ext not in ['.json', '.jsonl']:
+        raise ValueError("Unsupported file format. Only .json and .jsonl are supported.")
+
+    # Initialize data container
+    data = []
+
+    # Read the dataset
+    with open(dataset_path, 'r') as f:
+        if ext == '.json':
+            data = json.load(f)
+        elif ext == '.jsonl':
+            data = [json.loads(line) for line in f]
+
+    # Handle n_shot_prompting
+    if n_shot_prompting <= 0 or n_shot_prompting >= len(data):
+        print(f"INVALID N={n_shot_prompting} for N-SHOT PROMPTING: must be in ]0,number_of_json_entries[")
+        return "", dataset_path
+
+    prompts = []
+    remaining_data = data[n_shot_prompting:]
+    
+    # Generate prompts string
+    for entry in data[:n_shot_prompting]:
+        prompt = entry.get('prompt')
+        canonical_solution = entry.get('canonical_solution')
+        if prompt and canonical_solution:
+            prompts.append(f"Q:\n{prompt}\nA:\n{canonical_solution}\n")
+    
+    prompt_string = "\n".join(prompts)
+
+    # Save the remaining data with a "temp_" prefix
+    dir_name = os.path.dirname(dataset_path)
+    base_name = os.path.basename(dataset_path)
+    temp_output_path = os.path.join(dir_name, f"temp_{base_name}")
+
+    with open(temp_output_path, 'w') as temp_file:
+        if ext == '.json':
+            json.dump(remaining_data, temp_file, indent=2)
+        elif ext == '.jsonl':
+            for entry in remaining_data:
+                temp_file.write(json.dumps(entry) + '\n')
+
+    return prompt_string, temp_output_path
+
+def remove_temp_datasets(prompts_filepath_updated):
+    """
+    Remove todos os arquivos que contêm a palavra "temp_" no diretório do caminho fornecido, exceto o próprio arquivo.
+    
+    Args:
+        prompts_filepath_updated (str): Caminho completo para o arquivo de prompts atualizado.
+    """
+    # Obter o diretório completo, exceto o nome do arquivo
+    dir_path = os.path.dirname(prompts_filepath_updated)
+    
+    # Procurar por todos os arquivos no diretório que contêm "temp_" no nome
+    temp_files = glob.glob(os.path.join(dir_path, "*temp_*"))
+    
+    # Remover todos os arquivos encontrados
+    for temp_file in temp_files:
+        os.remove(temp_file)
+        print(f"Removed: {temp_file}")

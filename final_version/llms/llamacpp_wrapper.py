@@ -1,7 +1,6 @@
-import sys
+import os
 import measure_utils as measure_utils
 from codecarbon import OfflineEmissionsTracker
-from llama_cpp import Llama
 
 class LLAMACPP:
     def __init__(self, label, prompt_file_path, filename, model_name, max_tokens, benchmark_type, llm_object, save_output_flag, language=None):
@@ -31,13 +30,16 @@ class LLAMACPP:
 
     def read_prompt(self):
         """
-        Lê o prompt do ficheiro especificado.
+        Lê o prompt do ficheiro especificado e elimina o ficheiro.
         
         Returns:
         str: O conteúdo do prompt.
         """
         with open(self.prompt_file_path, 'r') as prompt_file:
-            return prompt_file.read()
+            content = prompt_file.read()
+
+        os.remove(self.prompt_file_path)
+        return content
 
     def execute_llamacpp(self, prompt):
         """
@@ -50,6 +52,7 @@ class LLAMACPP:
         str: A saída de texto do objeto LlamaCpp.
         """
         output = self.llm_object(prompt=prompt, max_tokens=self.max_tokens, stop=["Q:"], echo=True)["choices"][0]["text"]
+
         return output
 
     def run(self):
@@ -63,6 +66,24 @@ class LLAMACPP:
         prompt = self.read_prompt()
         output = self.execute_llamacpp(prompt)
         tracker.stop()
+
+        def clean_output(output):
+            """Remove prompts from n-shot prompting in the output generated"""
+            # Find the last occurrence of 'A:\n'
+            last_index = output.rfind('A:\n')
+
+            # If 'A:\n' is not found, return early
+            if last_index == -1:
+                print("No 'A:\n' found in the output.")
+                return ""
+
+            # Extract the text following the last 'A:\n'
+            cleaned_output = output[last_index + len('A:\n'):]
+
+            return cleaned_output
+
+        
+        output = clean_output(output)
 
         if self.benchmark_type == "humaneval_x":
             measure_utils.generate_samples_humaneval_x(measure_utils.extract_llm_name(self.model_name), output, self.label, self.language)
@@ -82,3 +103,4 @@ class LLAMACPP:
 
         measure_utils.add_measurement_to_csv(self.filename, measure_utils.extract_llm_name(self.model_name), 
                                              self.label, tracker)
+        

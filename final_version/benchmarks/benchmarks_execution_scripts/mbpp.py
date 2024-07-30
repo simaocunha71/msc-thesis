@@ -70,7 +70,7 @@ COMMAND_TEMPLATES = {
             "codebleu": (
                 "singularity exec "
                 "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-                "../container_in_use/codefuseeval_latest.sif "
+                "../../codefuseeval_latest.sif "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
                 "codebleu "
@@ -79,7 +79,7 @@ COMMAND_TEMPLATES = {
             "google_bleu": (
                 "singularity exec "
                 "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-                "../container_in_use/codefuseeval_latest.sif "
+                "../../codefuseeval_latest.sif "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
                 "google_bleu "
@@ -97,7 +97,7 @@ COMMAND_TEMPLATES = {
             "codebleu": (
                 "singularity exec "
                 "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-                "../container_in_use/codefuseeval_latest.sif "
+                "../../codefuseeval_latest.sif "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
                 "codebleu "
@@ -106,7 +106,7 @@ COMMAND_TEMPLATES = {
             "google_bleu": (
                 "singularity exec "
                 "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-                "../container_in_use/codefuseeval_latest.sif "
+                "../../codefuseeval_latest.sif "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
                 "google_bleu "

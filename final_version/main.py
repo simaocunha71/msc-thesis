@@ -1,7 +1,7 @@
-import argparse, json, csv, os, time, sys
+import argparse, json, os, sys
 from benchmarks.benchmarks_execution_scripts import humaneval_x, cyberseceval, mbpp
 from benchmarks.benchmarks_execution_scripts import utils as benchmark_utils
-from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, change_n_ctx_value, change_seed_value, change_boolean_to_save_outputs, validate_supported_models, shrink_json_or_jsonl, extract_language, change_mbpp_filepath, save_sanitized_outputs
+from measure_utils import extract_llm_name, create_csv, change_max_tokens_value, change_n_ctx_value, change_seed_value, change_boolean_to_save_outputs, validate_supported_models, shrink_json_or_jsonl, extract_language, change_mbpp_filepath, save_sanitized_outputs, get_prompt_for_shot_prompting, remove_temp_datasets
 from llms.utils import load_llm, get_llm_family
 from llms.llamacpp_wrapper import LLAMACPP
 
@@ -23,110 +23,123 @@ def execute_llm(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_t
         print(f"Não existe classe capaz de executar o LLM com o path {llm_path}")
         sys.exit(-1)
         
-#def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, enable_sanitize):
-def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval):
+def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting):
+    """
+    Execute measurement scripts for all considered models.
 
-    # Execução das scripts de todos os modelos considerados
-
+    Args:
+        llm_path_list (list): List of paths to the LLMs.
+        prompts_filepath_list (list): List of paths to the prompt files.
+        max_tokens (int): Maximum number of tokens.
+        n_ctx (int): Context size (maximum tokens the LLM can process).
+        seed (int): Seed for generating reproducible results.
+        save_output_flag (str): Indicates if the results should be saved ('yes' or 'no').
+        samples_interval (str): Sample interval to execute. Format: '[min_index]-[max_index]', or 'all' to use the entire dataset.
+        shot_prompting (int): Number of examples for N-Shot prompting.
+    """
+    
     for llm_path in llm_path_list:
         llm = load_llm(llm_path, n_ctx, seed)
+        
         for prompts_filepath in prompts_filepath_list:
+            prompt_for_shot_prompting, temp_prompts_filepath = get_prompt_for_shot_prompting(prompts_filepath, shot_prompting)
+
             if samples_interval != "all":
-                min_ind, max_ind = tuple(map(int, samples_interval.split('-')))
-                prompts_filepath_updated = shrink_json_or_jsonl(prompts_filepath, min_ind, max_ind)
+                min_ind, max_ind = map(int, samples_interval.split('-'))
+                temp_prompts_filepath = shrink_json_or_jsonl(temp_prompts_filepath, min_ind, max_ind)
             else:
-                prompts_filepath_updated = prompts_filepath
-            
-            if "humaneval_x" in prompts_filepath_updated:
-                # Este tratamento apenas se destina ao benchmark do HumanEval-X
-                with open(prompts_filepath_updated, 'r') as file:
-                    lines = file.readlines()
-                    for line in lines:
-                        entry = json.loads(line)
+                temp_prompts_filepath = prompts_filepath
 
-                        task_id = entry.get("task_id", "")
-                        prompt = entry.get("prompt", "")
-                        
-                        if "cpp" == extract_language(prompts_filepath_updated):
-                            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "cpp")
-                        elif "go" == extract_language(prompts_filepath_updated):
-                            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "go")
-                        elif "java" == extract_language(prompts_filepath_updated):
-                            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "java")
-                        elif "js" == extract_language(prompts_filepath_updated):
-                            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "js")
-                        elif "python" == extract_language(prompts_filepath_updated):
-                            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "python")
-                        elif "rust" == extract_language(prompts_filepath_updated):
-                            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, "rust")
-                # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
-                pass_1, google_bleu, codebleu, sacrebleu = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath_updated))
-                benchmark_utils.add_score_in_csv(os.path.join("results", "humaneval_x", "humaneval_x.csv"), os.path.join("results", "humaneval_x", "humaneval_x.csv"), "Pass@1", pass_1)
-                benchmark_utils.add_score_in_csv(os.path.join("results", "humaneval_x", "humaneval_x.csv"), os.path.join("results", "humaneval_x", "humaneval_x.csv"), "googleBLEU", google_bleu)
-                benchmark_utils.add_score_in_csv(os.path.join("results", "humaneval_x", "humaneval_x.csv"), os.path.join("results", "humaneval_x", "humaneval_x.csv"), "codeBLEU", codebleu)
-                benchmark_utils.add_score_in_csv(os.path.join("results", "humaneval_x", "humaneval_x.csv"), os.path.join("results", "humaneval_x", "humaneval_x.csv"), "sacreBLEU", sacrebleu)
-
-                time.sleep(5)
-
-            elif "cyberseceval" in prompts_filepath_updated:
-                # Create the results/cyberseceval folder if it doesn't exist
-                folder_path = os.path.join("results", "cyberseceval")
-                if not os.path.exists(folder_path):
-                    os.makedirs(folder_path)
-
-                # This treatment is only for the CyberSecEval benchmark
-                if "autocomplete" in prompts_filepath_updated:
-                    cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath_updated, "autocomplete")
-                elif "instruct" in prompts_filepath_updated:
-                    cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath_updated, "instruct")
-                elif "mitre" in prompts_filepath_updated:
-                    cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath_updated)
-                elif "frr" in prompts_filepath_updated:
-                    cyberseceval.run_frr_benchmark(llm_path, prompts_filepath_updated)
-                elif "interpreter" in prompts_filepath_updated:
-                    cyberseceval.run_interpreter_benchmark(llm_path, prompts_filepath_updated)
-                elif "canary_exploit" in prompts_filepath_updated:
-                    cyberseceval.run_canary_exploit_benchmark(llm_path, prompts_filepath_updated)                    
-            elif "mbpp" in prompts_filepath_updated:
-                change_mbpp_filepath("benchmarks/evalplus/evalplus/data/mbpp.py", os.path.basename(prompts_filepath_updated))
-
-                # Este tratamento apenas se destina ao benchmark do MBPP
-                with open(prompts_filepath_updated, 'r') as file:
-                    lines = file.readlines()
-                    for line in lines:
-                        entry = json.loads(line)
-
-                        task_id = entry.get("task_id", "")
-                        prompt = entry.get("prompt", "")
-
-                        execute_llm(str(task_id), prompt, llm_path, os.path.join("results", "mbpp", "mbpp.csv"), max_tokens, "mbpp", llm, save_output_flag, None)
-
-                # Todos os benchmarks apenas vão ser executados depois de as LLMs responderem a todos os prompts
-                mbpp_pass1, mbppPlus_pass1, google_bleu, codebleu, sacrebleu, mbpp_pass1_sanitized, mbppPlus_pass1_sanitized, google_bleu_sanitized, codebleu_sanitized, sacrebleu_sanitized = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path))
-                
-                benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "MBPP pass@1 (unsanitized)", mbpp_pass1)
-                benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "MBPP+ pass@1 (unsanitized)", mbppPlus_pass1)
-                benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "GoogleBLEU (unsanitized)", google_bleu)
-                benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "CodeBLEU (unsanitized)", codebleu)
-                benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "SacreBLEU (unsanitized)", sacrebleu)
-
-                benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "MBPP pass@1 (sanitized)", mbpp_pass1_sanitized)
-                benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "MBPP+ pass@1 (sanitized)", mbppPlus_pass1_sanitized)
-                benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "GoogleBLEU (sanitized)", google_bleu_sanitized)
-                benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "CodeBLEU (sanitized)", codebleu_sanitized)
-                benchmark_utils.add_score_in_csv(os.path.join("results", "mbpp", "mbpp.csv"), os.path.join("results", "mbpp", "mbpp.csv"), "SacreBLEU (sanitized)", sacrebleu_sanitized)
-                if save_output_flag == "yes":
-                    save_sanitized_outputs("benchmarks/evalplus/results/samples_" + extract_llm_name(llm_path) + "_mbpp-sanitized.jsonl", 
-                                           "returned_prompts", extract_llm_name(llm_path), "mbpp")
-                time.sleep(5)
+            if "humaneval_x" in temp_prompts_filepath:
+                handle_humaneval_x_benchmark(llm, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag)
+            elif "cyberseceval" in temp_prompts_filepath:
+                handle_cyberseceval_benchmark(llm_path, temp_prompts_filepath)
+            elif "mbpp" in temp_prompts_filepath:
+                handle_mbpp_benchmark(llm, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag)
             else:
-                print("Ficheiro JSONL não pertence a nenhum benchmark considerado")
+                print("JSONL file does not belong to any considered benchmark")
+
+            remove_temp_datasets(temp_prompts_filepath)
         
         try:
             os.system("rm -rf ~/.cache/evalplus/*")
-        except:
-            pass
+        except Exception as e:
+            print(f"Error clearing cache: {e}")
+
+def handle_humaneval_x_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag):
+    with open(prompts_filepath, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            entry = json.loads(line)
+            task_id = entry.get("task_id", "")
+            prompt_from_file = entry.get("prompt", "")
+            prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
+            language = extract_language(prompts_filepath)
+            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, language)
+    
+    pass_1, google_bleu, codebleu, sacrebleu = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath))
+    results_path = os.path.join("results", "humaneval_x", "humaneval_x.csv")
+    benchmark_utils.add_score_in_csv(results_path, results_path, "Pass@1", pass_1)
+    benchmark_utils.add_score_in_csv(results_path, results_path, "googleBLEU", google_bleu)
+    benchmark_utils.add_score_in_csv(results_path, results_path, "codeBLEU", codebleu)
+    benchmark_utils.add_score_in_csv(results_path, results_path, "sacreBLEU", sacrebleu)
+
+
+def handle_mbpp_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag):
+    change_mbpp_filepath("benchmarks/evalplus/evalplus/data/mbpp.py", os.path.basename(prompts_filepath))
+
+    with open(prompts_filepath, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            entry = json.loads(line)
+            task_id = entry.get("task_id", "")
+            prompt_from_file = entry.get("prompt", "")
+            prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
+
+            execute_llm(str(task_id), prompt, llm_path, os.path.join("results", "mbpp", "mbpp.csv"), max_tokens, "mbpp", llm, save_output_flag, None)
+    
+    results = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path))
+    save_mbpp_results(results, llm_path, save_output_flag)
+
+def save_mbpp_results(results, llm_path, save_output_flag):
+    results_path = os.path.join("results", "mbpp", "mbpp.csv")
+    (mbpp_pass1, mbppPlus_pass1, google_bleu, codebleu, sacrebleu, 
+     mbpp_pass1_sanitized, mbppPlus_pass1_sanitized, google_bleu_sanitized, 
+     codebleu_sanitized, sacrebleu_sanitized) = results
+
+    benchmark_utils.add_score_in_csv(results_path, results_path, "MBPP pass@1 (unsanitized)", mbpp_pass1)
+    benchmark_utils.add_score_in_csv(results_path, results_path, "MBPP+ pass@1 (unsanitized)", mbppPlus_pass1)
+    benchmark_utils.add_score_in_csv(results_path, results_path, "GoogleBLEU (unsanitized)", google_bleu)
+    benchmark_utils.add_score_in_csv(results_path, results_path, "CodeBLEU (unsanitized)", codebleu)
+    benchmark_utils.add_score_in_csv(results_path, results_path, "SacreBLEU (unsanitized)", sacrebleu)
+    benchmark_utils.add_score_in_csv(results_path, results_path, "MBPP pass@1 (sanitized)", mbpp_pass1_sanitized)
+    benchmark_utils.add_score_in_csv(results_path, results_path, "MBPP+ pass@1 (sanitized)", mbppPlus_pass1_sanitized)
+    benchmark_utils.add_score_in_csv(results_path, results_path, "GoogleBLEU (sanitized)", google_bleu_sanitized)
+    benchmark_utils.add_score_in_csv(results_path, results_path, "CodeBLEU (sanitized)", codebleu_sanitized)
+    benchmark_utils.add_score_in_csv(results_path, results_path, "SacreBLEU (sanitized)", sacrebleu_sanitized)
+
+    if save_output_flag == "yes":
+        save_sanitized_outputs(
+            f"benchmarks/evalplus/results/samples_{extract_llm_name(llm_path)}_mbpp-sanitized.jsonl", 
+            "returned_prompts", extract_llm_name(llm_path), "mbpp"
+        )
         
+def handle_cyberseceval_benchmark(llm_path, prompts_filepath):
+    folder_path = os.path.join("results", "cyberseceval")
+    os.makedirs(folder_path, exist_ok=True)
+
+    if "autocomplete" in prompts_filepath:
+        cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "autocomplete")
+    elif "instruct" in prompts_filepath:
+        cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "instruct")
+    elif "mitre" in prompts_filepath:
+        cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath)
+    elif "frr" in prompts_filepath:
+        cyberseceval.run_frr_benchmark(llm_path, prompts_filepath)
+    elif "interpreter" in prompts_filepath:
+        cyberseceval.run_interpreter_benchmark(llm_path, prompts_filepath)
+    elif "canary_exploit" in prompts_filepath:
+        cyberseceval.run_canary_exploit_benchmark(llm_path, prompts_filepath)
 
 def main():
     parser = argparse.ArgumentParser(description="Execute benchmarks with given arguments.")
@@ -142,8 +155,9 @@ def main():
     parser.add_argument("--n_ctx", type=int, default=512, help="Maximum number of tokens that the LLM can account for when processing a response (Context size).")
     parser.add_argument("--seed", type=int, default=512, help="Seed used for generating the same outputs")
     parser.add_argument("--n_times", type=int, default=512, help="Number of times to execute each prompt")
-    parser.add_argument("--save_output", type=str, default=512, help="'yes' to save LLM outputs in files, 'no' otherwise.")
+    parser.add_argument("--save_output", type=str, default='no', help="'yes' to save LLM outputs in files, 'no' otherwise.")
     parser.add_argument("--samples_interval", type=str, default='all', help="Benchmark prompts interval to execute. Format: '[min_index]-[max_index]', or 'all' to use all the dataset")
+    parser.add_argument("--shot_prompting", type=int, default=0, help="Number of examples (shots) to include in the prompt to demonstrate the task. Set to 0 for zero-shot prompting, 1 for one-shot prompting, and so on.")
 
     args = parser.parse_args()
 
@@ -155,6 +169,7 @@ def main():
     N_TIMES = args.n_times
     save_output_flag = args.save_output
     samples_interval = args.samples_interval
+    shot_prompting = args.shot_prompting
 
     boolean_validate_models, invalid_models = validate_supported_models("supported_models.json", llm_path_list)
     if(boolean_validate_models == False):
@@ -420,7 +435,7 @@ def main():
 
 
         for n in range(N_TIMES):
-            start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval)
+            start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting)
 
 
 if __name__ == "__main__":
