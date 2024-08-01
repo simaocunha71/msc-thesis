@@ -125,6 +125,9 @@ def save_mbpp_results(results, llm_path, save_output_flag):
         )
         
 def handle_cyberseceval_benchmark(llm_path, prompts_filepath):
+    if not os.path.exists("benchmarks/PurpleLlama/CybersecurityBenchmarks/results"):
+        os.makedirs("benchmarks/PurpleLlama/CybersecurityBenchmarks/results")
+
     folder_path = os.path.join("results", "cyberseceval")
     os.makedirs(folder_path, exist_ok=True)
 

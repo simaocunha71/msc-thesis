@@ -355,8 +355,8 @@ def get_prompt_for_shot_prompting(dataset_path, n_shot_prompting):
             data = [json.loads(line) for line in f]
 
     # Handle n_shot_prompting
-    if n_shot_prompting <= 0 or n_shot_prompting >= len(data):
-        print(f"INVALID N={n_shot_prompting} for N-SHOT PROMPTING: must be in ]0,number_of_json_entries[")
+    if n_shot_prompting < 0 or n_shot_prompting >= len(data):
+        print(f"INVALID N={n_shot_prompting} for N-SHOT PROMPTING: must be in [0,number_of_json_entries[")
         return "", dataset_path
 
     prompts = []

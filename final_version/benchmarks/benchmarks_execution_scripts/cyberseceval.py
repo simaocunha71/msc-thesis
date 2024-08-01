@@ -2,14 +2,22 @@ import os, sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from utils import autocompleteOrInstruct_json_to_csv, mitre_json_to_csv, interpreter_json_to_csv, frr_json_to_csv, canary_exploit_json_to_csv
 
-def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_type):
-    """Calcula os scores do benchmark Instruct ou Autocomplete do CybersecEval"""
+# Global definitions for LLMs
+JUDGE_LLM = "LLAMACPP::llms/llama_c++/models/llama-2-7b.Q3_K_M.gguf::random_string"
+EXPANSION_LLM = "LLAMACPP::llms/llama_c++/models/llama-2-7b.Q3_K_S.gguf::random_string"
 
+def set_env_variables():
     #Variáveis de ambiente necessárias para a execução do benchmark
+
     #os.system("export WEGGLI_PATH=weggli")
     os.environ['WEGGLI_PATH'] = 'weggli'
     #os.system('export PATH="$HOME/.cargo/bin:$PATH"')
     os.environ['PATH'] = f"{os.environ['HOME']}/.cargo/bin:{os.environ['PATH']}"
+
+def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_type):
+    """Calcula os scores do benchmark Instruct ou Autocomplete do CybersecEval"""
+
+    set_env_variables()
 
     command_to_execute_benchmark = f'python3 -m benchmarks.PurpleLlama.CybersecurityBenchmarks.benchmark.run ' \
         f'--benchmark={benchmark_type} ' \
@@ -40,13 +48,11 @@ def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_ty
 def run_mitre_benchmark(model, prompts_filepath):
     'Calcula os scores do benchmark MITRE do CybersecEval'
 
-    #Variáveis de ambiente necessárias para a execução do benchmark
-    os.environ['WEGGLI_PATH'] = 'weggli'
-    os.environ['PATH'] = f"{os.environ['HOME']}/.cargo/bin:{os.environ['PATH']}"
+    set_env_variables()
 
     #Estas duas LLMs vão estar fixadas para todas as medições
-    judge_llm     = "LLAMACPP::llms/llama_c++/models/llama-2-7b.Q3_K_L.gguf::random_string"
-    expansion_llm = "LLAMACPP::llms/llama_c++/models/llama-2-7b.Q3_K_S.gguf::random_string"
+    judge_llm     = JUDGE_LLM
+    expansion_llm = EXPANSION_LLM
 
     command_to_execute_benchmark = (
         'python3 -m benchmarks.PurpleLlama.CybersecurityBenchmarks.benchmark.run '
@@ -81,12 +87,10 @@ def run_mitre_benchmark(model, prompts_filepath):
 def run_interpreter_benchmark(model, prompts_filepath):
     'Calcula os scores do benchmark Interpreter do CybersecEval'
 
-    #Variáveis de ambiente necessárias para a execução do benchmark
-    os.environ['WEGGLI_PATH'] = 'weggli'
-    os.environ['PATH'] = f"{os.environ['HOME']}/.cargo/bin:{os.environ['PATH']}"
+    set_env_variables()
 
     #Esta LLM vai estar fixada para todas as medições
-    judge_llm     = "LLAMACPP::llms/llama_c++/models/llama-2-7b.Q3_K_L.gguf::random_string"
+    judge_llm     = JUDGE_LLM
 
     command_to_execute_benchmark = (
         'python3 -m benchmarks.PurpleLlama.CybersecurityBenchmarks.benchmark.run '
@@ -120,12 +124,7 @@ def run_interpreter_benchmark(model, prompts_filepath):
 def run_frr_benchmark(model, prompts_filepath):
     'Calcula os scores do benchmark False Rate Refusal do CybersecEval'
 
-    #Variáveis de ambiente necessárias para a execução do benchmark
-    os.environ['WEGGLI_PATH'] = 'weggli'
-    os.environ['PATH'] = f"{os.environ['HOME']}/.cargo/bin:{os.environ['PATH']}"
-
-    #Esta LLM vai estar fixada para todas as medições
-    judge_llm     = "LLAMACPP::llms/llama_c++/models/llama-2-7b.Q3_K_L.gguf::random_string"
+    set_env_variables()
 
     command_to_execute_benchmark = (
         'python3 -m benchmarks.PurpleLlama.CybersecurityBenchmarks.benchmark.run '
@@ -157,12 +156,7 @@ def run_frr_benchmark(model, prompts_filepath):
 def run_canary_exploit_benchmark(model, prompts_filepath):
     'Calcula os scores do benchmark Vulnerability Exploitation do CybersecEval'
 
-    #Variáveis de ambiente necessárias para a execução do benchmark
-    os.environ['WEGGLI_PATH'] = 'weggli'
-    os.environ['PATH'] = f"{os.environ['HOME']}/.cargo/bin:{os.environ['PATH']}"
-
-    #Esta LLM vai estar fixada para todas as medições
-    judge_llm     = "LLAMACPP::llms/llama_c++/models/llama-2-7b.Q3_K_L.gguf::random_string"
+    set_env_variables()
 
     command_to_execute_benchmark = (
         'python3 -m benchmarks.PurpleLlama.CybersecurityBenchmarks.benchmark.run '
