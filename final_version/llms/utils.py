@@ -19,6 +19,7 @@ def get_llm_family(llm_path):
     return None
 
 def load_llm(llm_path, n_ctx, seed):
+    print("ENTREI AQUI")
     llm_family = get_llm_family(llm_path)
     if(llm_family == "LLAMACPP"):
         llm = Llama(model_path=llm_path, seed=seed, n_ctx=n_ctx, verbose=False)

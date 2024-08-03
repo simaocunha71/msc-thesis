@@ -39,7 +39,8 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
     """
     
     for llm_path in llm_path_list:
-        llm = load_llm(llm_path, n_ctx, seed)
+        if not any("cyberseceval" in prompts_filepath for prompts_filepath in prompts_filepath_list):
+            llm = load_llm(llm_path, n_ctx, seed)
         
         for prompts_filepath in prompts_filepath_list:
             prompt_for_shot_prompting, temp_prompts_filepath = get_prompt_for_shot_prompting(prompts_filepath, shot_prompting)
@@ -53,7 +54,7 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
             if "humaneval_x" in temp_prompts_filepath:
                 handle_humaneval_x_benchmark(llm, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag)
             elif "cyberseceval" in temp_prompts_filepath:
-                handle_cyberseceval_benchmark(llm_path, temp_prompts_filepath)
+                handle_cyberseceval_benchmark(llm_path, temp_prompts_filepath, max_tokens, seed, n_ctx, save_output_flag)
             elif "mbpp" in temp_prompts_filepath:
                 handle_mbpp_benchmark(llm, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag)
             else:
@@ -124,7 +125,7 @@ def save_mbpp_results(results, llm_path, save_output_flag):
             "returned_prompts", extract_llm_name(llm_path), "mbpp"
         )
         
-def handle_cyberseceval_benchmark(llm_path, prompts_filepath):
+def handle_cyberseceval_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag):
     if not os.path.exists("benchmarks/PurpleLlama/CybersecurityBenchmarks/results"):
         os.makedirs("benchmarks/PurpleLlama/CybersecurityBenchmarks/results")
 
@@ -132,17 +133,17 @@ def handle_cyberseceval_benchmark(llm_path, prompts_filepath):
     os.makedirs(folder_path, exist_ok=True)
 
     if "autocomplete" in prompts_filepath:
-        cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "autocomplete")
+        cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "autocomplete", max_tokens, seed, n_ctx, save_output_flag)
     elif "instruct" in prompts_filepath:
-        cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "instruct")
+        cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "instruct", max_tokens, seed, n_ctx, save_output_flag)
     elif "mitre" in prompts_filepath:
-        cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath)
+        cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag)
     elif "frr" in prompts_filepath:
-        cyberseceval.run_frr_benchmark(llm_path, prompts_filepath)
+        cyberseceval.run_frr_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag)
     elif "interpreter" in prompts_filepath:
-        cyberseceval.run_interpreter_benchmark(llm_path, prompts_filepath)
+        cyberseceval.run_interpreter_benchmark(llm_path, prompts_filepath,max_tokens, seed, n_ctx, save_output_flag)
     elif "canary_exploit" in prompts_filepath:
-        cyberseceval.run_canary_exploit_benchmark(llm_path, prompts_filepath)
+        cyberseceval.run_canary_exploit_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag)
 
 def main():
     parser = argparse.ArgumentParser(description="Execute benchmarks with given arguments.")
@@ -154,7 +155,7 @@ def main():
                                                  "cyberseceval/interpreter", "cyberseceval/canary_exploit",
                                                  "mbpp",
                                                  "all"], help="Choose benchmarks to run.")
-    parser.add_argument("--max_tokens", type=int, default=512, help="Maximum tokens.")
+    parser.add_argument("--max_tokens", type=int, default=512, help="Max tokens used by the LLM to generate responses")
     parser.add_argument("--n_ctx", type=int, default=512, help="Maximum number of tokens that the LLM can account for when processing a response (Context size).")
     parser.add_argument("--seed", type=int, default=512, help="Seed used for generating the same outputs")
     parser.add_argument("--n_times", type=int, default=512, help="Number of times to execute each prompt")
@@ -425,17 +426,6 @@ def main():
                 os.makedirs(folder_path)
 
             create_csv(os.path.join(folder_path, filename + ".csv"), columns)
-
-        change_max_tokens_value("benchmarks/PurpleLlama/CybersecurityBenchmarks/benchmark/llm.py", max_tokens)
-        change_n_ctx_value("benchmarks/PurpleLlama/CybersecurityBenchmarks/benchmark/llm.py", n_ctx)
-        change_seed_value("benchmarks/PurpleLlama/CybersecurityBenchmarks/benchmark/llm.py", seed)
-        change_boolean_to_save_outputs("benchmarks/PurpleLlama/CybersecurityBenchmarks/benchmark/canary_exploit_benchmark.py", save_output_flag)
-        change_boolean_to_save_outputs("benchmarks/PurpleLlama/CybersecurityBenchmarks/benchmark/frr_benchmark.py", save_output_flag)
-        change_boolean_to_save_outputs("benchmarks/PurpleLlama/CybersecurityBenchmarks/benchmark/instruct_or_autocomplete_benchmark.py", save_output_flag)
-        change_boolean_to_save_outputs("benchmarks/PurpleLlama/CybersecurityBenchmarks/benchmark/interpreter_benchmark.py", save_output_flag)
-        change_boolean_to_save_outputs("benchmarks/PurpleLlama/CybersecurityBenchmarks/benchmark/mitre_benchmark.py", save_output_flag)
-
-
 
         for n in range(N_TIMES):
             start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting)

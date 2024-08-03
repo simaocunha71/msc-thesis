@@ -14,13 +14,17 @@ def set_env_variables():
     #os.system('export PATH="$HOME/.cargo/bin:$PATH"')
     os.environ['PATH'] = f"{os.environ['HOME']}/.cargo/bin:{os.environ['PATH']}"
 
-def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_type):
+def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_type, max_tokens, seed, n_ctx, save_output_flag):
     """Calcula os scores do benchmark Instruct ou Autocomplete do CybersecEval"""
 
     set_env_variables()
 
     command_to_execute_benchmark = f'python3 -m benchmarks.PurpleLlama.CybersecurityBenchmarks.benchmark.run ' \
         f'--benchmark={benchmark_type} ' \
+        f'--max_tokens={max_tokens} ' \
+        f'--seed={seed} ' \
+        f'--n_ctx={n_ctx} ' \
+        f'--save_output_flag={save_output_flag} ' \
         f'--prompt-path="{prompts_filepath}" ' \
         f'--response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{benchmark_type}_responses.json" ' \
         f'--stat-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{benchmark_type}_stat.json" '
@@ -45,7 +49,7 @@ def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_ty
         columns_from_json_response_file
         )
 
-def run_mitre_benchmark(model, prompts_filepath):
+def run_mitre_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag):
     'Calcula os scores do benchmark MITRE do CybersecEval'
 
     set_env_variables()
@@ -57,6 +61,10 @@ def run_mitre_benchmark(model, prompts_filepath):
     command_to_execute_benchmark = (
         'python3 -m benchmarks.PurpleLlama.CybersecurityBenchmarks.benchmark.run '
         '--benchmark=mitre '
+        f'--max_tokens={max_tokens} ' \
+        f'--seed={seed} ' \
+        f'--n_ctx={n_ctx} ' \
+        f'--save_output_flag={save_output_flag} ' \
         f'--prompt-path="{prompts_filepath}" '
         '--response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/mitre_responses.json" '
         '--judge-response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/mitre_judge_responses.json" '
@@ -84,7 +92,7 @@ def run_mitre_benchmark(model, prompts_filepath):
         columns_from_json_response_file
     )
 
-def run_interpreter_benchmark(model, prompts_filepath):
+def run_interpreter_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag):
     'Calcula os scores do benchmark Interpreter do CybersecEval'
 
     set_env_variables()
@@ -95,6 +103,10 @@ def run_interpreter_benchmark(model, prompts_filepath):
     command_to_execute_benchmark = (
         'python3 -m benchmarks.PurpleLlama.CybersecurityBenchmarks.benchmark.run '
         '--benchmark=interpreter '
+        f'--max_tokens={max_tokens} ' \
+        f'--seed={seed} ' \
+        f'--n_ctx={n_ctx} ' \
+        f'--save_output_flag={save_output_flag} ' \
         f'--prompt-path="{prompts_filepath}" '
         '--response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/interpreter_responses.json" '
         '--judge-response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/interpreter_judge_responses.json" '
@@ -121,7 +133,7 @@ def run_interpreter_benchmark(model, prompts_filepath):
         columns_from_json_response_file
     )
 
-def run_frr_benchmark(model, prompts_filepath):
+def run_frr_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag):
     'Calcula os scores do benchmark False Rate Refusal do CybersecEval'
 
     set_env_variables()
@@ -129,6 +141,10 @@ def run_frr_benchmark(model, prompts_filepath):
     command_to_execute_benchmark = (
         'python3 -m benchmarks.PurpleLlama.CybersecurityBenchmarks.benchmark.run '
         '--benchmark=frr '
+        f'--max_tokens={max_tokens} ' \
+        f'--seed={seed} ' \
+        f'--n_ctx={n_ctx} ' \
+        f'--save_output_flag={save_output_flag} ' \
         f'--prompt-path="{prompts_filepath}" '
         '--response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/frr_responses.json" '
         '--stat-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/frr_stat.json" '
@@ -153,7 +169,7 @@ def run_frr_benchmark(model, prompts_filepath):
         columns_from_json_response_file
     )
 
-def run_canary_exploit_benchmark(model, prompts_filepath):
+def run_canary_exploit_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag):
     'Calcula os scores do benchmark Vulnerability Exploitation do CybersecEval'
 
     set_env_variables()
@@ -161,6 +177,10 @@ def run_canary_exploit_benchmark(model, prompts_filepath):
     command_to_execute_benchmark = (
         'python3 -m benchmarks.PurpleLlama.CybersecurityBenchmarks.benchmark.run '
         '--benchmark="canary-exploit" '
+        f'--max_tokens={max_tokens} ' \
+        f'--seed={seed} ' \
+        f'--n_ctx={n_ctx} ' \
+        f'--save_output_flag={save_output_flag} ' \
         f'--prompt-path="{prompts_filepath}" '
         '--response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/canary_exploit_responses.json" '
         '--judge-response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/canary_exploit_judge_responses.json" '
