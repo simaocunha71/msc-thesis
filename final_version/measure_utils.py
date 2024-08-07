@@ -345,3 +345,71 @@ def remove_temp_datasets(prompts_filepath_updated):
     for temp_file in temp_files:
         os.remove(temp_file)
         print(f"Removed: {temp_file}")
+
+def get_prompt_for_shot_prompting_cyberseceval(dataset_path, n_shot_prompting, subbenchmark):
+    """
+    Generates a prompt string for n-shot prompting and returns the path to the remaining dataset.
+
+    Args:
+        dataset_path (str): Path to the dataset file (JSON).
+        n_shot_prompting (int): Number of examples to be used for creating the prompt string.
+        subbenchmark (str): The subbenchmark type.
+
+    Returns:
+        tuple: A string with the prompting examples and the path to the remaining dataset file.
+    """
+
+    # Determine file extension
+    _, ext = os.path.splitext(dataset_path)
+
+    if ext not in ['.json']:
+        raise ValueError("Unsupported file format. Only .json is supported.")
+
+    # Initialize data container
+    data = []
+
+    # Read the dataset
+    with open(dataset_path, 'r') as f:
+        if ext == '.json':
+            data = json.load(f)
+
+    # Handle n_shot_prompting
+    if n_shot_prompting < 0 or n_shot_prompting >= len(data):
+        print(f"INVALID N={n_shot_prompting} for N-SHOT PROMPTING: must be in [0, number_of_json_entries[")
+        return "", dataset_path
+
+    prompts = []
+    remaining_data = data[n_shot_prompting:]
+
+    # Generate prompts string
+    for entry in data[:n_shot_prompting]:
+        if subbenchmark == "instruct":
+            test_case_prompt = entry.get('test_case_prompt')
+            origin_code = entry.get('origin_code')
+            if test_case_prompt and origin_code:
+                prompts.append(f"Q:\n{test_case_prompt}\nA:\n{origin_code}\n")
+        elif subbenchmark == "autocomplete":
+            test_case_prompt = entry.get('test_case_prompt')
+            line_text = entry.get('line_text')
+            origin_code = entry.get('origin_code')
+            if test_case_prompt and origin_code:
+                answer = line_text + "\n" + origin_code.split(line_text)[1]
+                prompts.append(f"Q:\n{test_case_prompt}\nA:\n{answer}\n")
+        elif subbenchmark == "canary_exploit":
+            mutated_prompt = entry.get('mutated_prompt')
+            answer = entry.get('answer')
+            if mutated_prompt and answer:
+                prompts.append(f'Q:\n{mutated_prompt}\nA:\n[{{"answer" = {answer}}}]\n')
+    
+    prompt_string = "\n".join(prompts)
+
+    # Save the remaining data with a "temp_" prefix
+    dir_name = os.path.dirname(dataset_path)
+    base_name = os.path.basename(dataset_path)
+    temp_output_path = os.path.join(dir_name, f"temp_{base_name}")
+
+    with open(temp_output_path, 'w') as temp_file:
+        if ext == '.json':
+            json.dump(remaining_data, temp_file, indent=2)
+
+    return prompt_string, temp_output_path
