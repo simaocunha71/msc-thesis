@@ -258,11 +258,11 @@ def canary_exploit_json_to_csv(json_responses, json_results, csv_file_path, colu
     # Adiciona este DataFrame ao ficheiro CSV das medições do benchmark
     df.to_csv(csv_file_path, mode='a', index=False, header=False)
 
-def add_score_in_csv(csv_file_old, csv_file_new, column_name, value_to_add):
-    """Adiciona um valor numa coluna de um ficheiro CSV já existente"""
+def add_score_in_csv(csv_file, column_name, value_to_add):
+    """Adiciona um valor numa coluna de um ficheiro CSV já existente, modificando o próprio ficheiro"""
     
-    # Lê o ficheiro CSV de entrada (s/ o HumanEvalScore)
-    with open(csv_file_old, 'r') as csv_in:
+    # Lê o ficheiro CSV de entrada
+    with open(csv_file, 'r') as csv_in:
         reader = csv.DictReader(csv_in)
         header = reader.fieldnames
 
@@ -276,11 +276,12 @@ def add_score_in_csv(csv_file_old, csv_file_new, column_name, value_to_add):
             if column_name not in row or not row[column_name]:
                 row[column_name] = value_to_add
 
-    # Escreve o ficheiro CSV de output
-    with open(csv_file_new, 'w', newline='') as csv_out:
+    # Escreve o ficheiro CSV de volta, sobrescrevendo o original
+    with open(csv_file, 'w', newline='') as csv_out:
         writer = csv.DictWriter(csv_out, fieldnames=header)
         writer.writeheader()
         writer.writerows(rows)
+
 
 def delete_files_with_keyword(directory: str, keyword: str):
     """Remove all files in the given directory that contain the specified keyword in their filepath."""

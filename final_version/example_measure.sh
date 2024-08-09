@@ -5,6 +5,7 @@ python3 main.py \
     --n_ctx 4098 \
     --seed 42 \
     --n_times 1 \
-    --save_output yes \
+    --sleep_time 1.0 \
+    --save_output no \
     --shot_prompting 1 \
     --samples_interval 1-1

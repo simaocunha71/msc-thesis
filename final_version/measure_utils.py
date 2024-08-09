@@ -1,4 +1,4 @@
-import os, csv, json, sys, glob, re
+import os, csv, json, sys, glob, re, time
 
 def save_sanitized_outputs(file_path, output_folder, llama_folder, language_folder):
      """Guarda as versões sanitized dos outputs gerados - apenas os outputs do MBPP"""
@@ -413,3 +413,7 @@ def get_prompt_for_shot_prompting_cyberseceval(dataset_path, n_shot_prompting, s
             json.dump(remaining_data, temp_file, indent=2)
 
     return prompt_string, temp_output_path
+
+def sleep_between_executions(secs):
+    print(f"VOU DORMIR {secs} SEGUNDOS!!!")
+    return time.sleep(secs)

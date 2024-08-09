@@ -1,9 +1,10 @@
 import argparse, json, os, sys
 from benchmarks.benchmarks_execution_scripts import humaneval_x, cyberseceval, mbpp
 from benchmarks.benchmarks_execution_scripts import utils as benchmark_utils
-from measure_utils import extract_llm_name, create_csv, validate_supported_models, shrink_json_or_jsonl, extract_language, change_mbpp_filepath, save_sanitized_outputs, get_prompt_for_shot_prompting, get_prompt_for_shot_prompting_cyberseceval, remove_temp_datasets
+from measure_utils import extract_llm_name, create_csv, validate_supported_models, shrink_json_or_jsonl, extract_language, change_mbpp_filepath, save_sanitized_outputs, get_prompt_for_shot_prompting, get_prompt_for_shot_prompting_cyberseceval, remove_temp_datasets, sleep_between_executions
 from llms.utils import load_llm, get_llm_family
 from llms.llamacpp_wrapper import LLAMACPP
+from csv_files_headers import set_csv_headers
 
 def execute_llm(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_type, llm_object, save_output_flag, language):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
@@ -23,7 +24,7 @@ def execute_llm(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_t
         print(f"Não existe classe capaz de executar o LLM com o path {llm_path}")
         sys.exit(-1)
         
-def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting):
+def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting, SLEEP_TIME):
     """
     Execute measurement scripts for all considered models.
 
@@ -40,26 +41,36 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
 
     def process_interval(prompts_filepath):
         if samples_interval != "all":
-            min_ind, max_ind = map(int, samples_interval.split('-'))
+            # Verifica se o intervalo contém um hífen ou é um único número
+            if '-' in samples_interval:
+                min_ind, max_ind = map(int, samples_interval.split('-'))
+            else:
+                min_ind = max_ind = int(samples_interval)
             return shrink_json_or_jsonl(prompts_filepath, min_ind, max_ind)
         return prompts_filepath
+
+    #def process_interval(prompts_filepath, samples_interval):
+    #    if samples_interval != "all":
+    #        min_ind, max_ind = map(int, samples_interval.split('-'))
+    #        return shrink_json_or_jsonl(prompts_filepath, min_ind, max_ind)
+    #    return prompts_filepath
 
     def handle_prompt_files(llm, llm_path, prompts_filepath):
         prompt_for_shot_prompting, temp_prompts_filepath = get_prompt_for_shot_prompting(prompts_filepath, shot_prompting)
         temp_prompts_filepath = process_interval(temp_prompts_filepath)
 
         if "humaneval_x" in temp_prompts_filepath:
-            handle_humaneval_x_benchmark(llm, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag)
+            handle_humaneval_x_benchmark(llm, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting)
         elif "cyberseceval" in temp_prompts_filepath:
             prompt_for_shot_prompting, temp_prompts_filepath = get_prompt_for_shot_prompting_cyberseceval(prompts_filepath, shot_prompting, prompts_filepath.split("/")[2])
             temp_prompts_filepath = process_interval(temp_prompts_filepath)
             prompt_for_shot_prompting_file = "prompt_for_shot_prompting.txt"
             with open(prompt_for_shot_prompting_file, 'w') as file:
                 file.write(prompt_for_shot_prompting)
-            handle_cyberseceval_benchmark(llm_path, temp_prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file)
+            handle_cyberseceval_benchmark(llm_path, temp_prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
             os.remove(prompt_for_shot_prompting_file)
         elif "mbpp" in temp_prompts_filepath:
-            handle_mbpp_benchmark(llm, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag)
+            handle_mbpp_benchmark(llm, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting)
         else:
             print("JSONL file does not belong to any considered benchmark")
 
@@ -79,7 +90,7 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
         except Exception as e:
             print(f"Error clearing cache: {e}")
 
-def handle_humaneval_x_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag):
+def handle_humaneval_x_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting):
     with open(prompts_filepath, 'r') as file:
         lines = file.readlines()
         for line in lines:
@@ -88,19 +99,20 @@ def handle_humaneval_x_benchmark(llm, llm_path, prompts_filepath, prompt_for_sho
             prompt_from_file = entry.get("prompt", "")
             prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
             language = extract_language(prompts_filepath)
-            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", "humaneval_x.csv"), max_tokens, "humaneval_x", llm, save_output_flag, language)
-    
+            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv"), max_tokens, "humaneval_x", llm, save_output_flag, language)
+            sleep_between_executions(secs=SLEEP_TIME)
+
     pass_1, google_bleu, codebleu, sacrebleu = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath))
-    results_path = os.path.join("results", "humaneval_x", "humaneval_x.csv")
-    benchmark_utils.add_score_in_csv(results_path, results_path, "Pass@1", pass_1)
-    benchmark_utils.add_score_in_csv(results_path, results_path, "googleBLEU", google_bleu)
-    benchmark_utils.add_score_in_csv(results_path, results_path, "codeBLEU", codebleu)
-    benchmark_utils.add_score_in_csv(results_path, results_path, "sacreBLEU", sacrebleu)
+    results_path = os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv")
+    benchmark_utils.add_score_in_csv(results_path, "Pass@1", pass_1)
+    benchmark_utils.add_score_in_csv(results_path, "googleBLEU", google_bleu)
+    benchmark_utils.add_score_in_csv(results_path, "codeBLEU", codebleu)
+    benchmark_utils.add_score_in_csv(results_path, "sacreBLEU", sacrebleu)
 
 
-def handle_mbpp_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag):
+def handle_mbpp_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting):
     change_mbpp_filepath("benchmarks/evalplus/evalplus/data/mbpp.py", os.path.basename(prompts_filepath))
-
+    results_path = os.path.join("results", "mbpp", f"mbpp_{shot_prompting}_shot.csv")
     with open(prompts_filepath, 'r') as file:
         lines = file.readlines()
         for line in lines:
@@ -109,27 +121,28 @@ def handle_mbpp_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_promp
             prompt_from_file = entry.get("prompt", "")
             prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
 
-            execute_llm(str(task_id), prompt, llm_path, os.path.join("results", "mbpp", "mbpp.csv"), max_tokens, "mbpp", llm, save_output_flag, None)
+            execute_llm(str(task_id), prompt, llm_path, results_path, max_tokens, "mbpp", llm, save_output_flag, None)
+            sleep_between_executions(secs=SLEEP_TIME)
     
     results = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path))
-    save_mbpp_results(results, llm_path, save_output_flag)
+    save_mbpp_results(results, llm_path, save_output_flag, results_path)
 
-def save_mbpp_results(results, llm_path, save_output_flag):
-    results_path = os.path.join("results", "mbpp", "mbpp.csv")
+def save_mbpp_results(results, llm_path, save_output_flag, results_path):
+    
     (mbpp_pass1, mbppPlus_pass1, google_bleu, codebleu, sacrebleu, 
      mbpp_pass1_sanitized, mbppPlus_pass1_sanitized, google_bleu_sanitized, 
      codebleu_sanitized, sacrebleu_sanitized) = results
 
-    benchmark_utils.add_score_in_csv(results_path, results_path, "MBPP pass@1 (unsanitized)", mbpp_pass1)
-    benchmark_utils.add_score_in_csv(results_path, results_path, "MBPP+ pass@1 (unsanitized)", mbppPlus_pass1)
-    benchmark_utils.add_score_in_csv(results_path, results_path, "GoogleBLEU (unsanitized)", google_bleu)
-    benchmark_utils.add_score_in_csv(results_path, results_path, "CodeBLEU (unsanitized)", codebleu)
-    benchmark_utils.add_score_in_csv(results_path, results_path, "SacreBLEU (unsanitized)", sacrebleu)
-    benchmark_utils.add_score_in_csv(results_path, results_path, "MBPP pass@1 (sanitized)", mbpp_pass1_sanitized)
-    benchmark_utils.add_score_in_csv(results_path, results_path, "MBPP+ pass@1 (sanitized)", mbppPlus_pass1_sanitized)
-    benchmark_utils.add_score_in_csv(results_path, results_path, "GoogleBLEU (sanitized)", google_bleu_sanitized)
-    benchmark_utils.add_score_in_csv(results_path, results_path, "CodeBLEU (sanitized)", codebleu_sanitized)
-    benchmark_utils.add_score_in_csv(results_path, results_path, "SacreBLEU (sanitized)", sacrebleu_sanitized)
+    benchmark_utils.add_score_in_csv(results_path, "MBPP pass@1 (unsanitized)", mbpp_pass1)
+    benchmark_utils.add_score_in_csv(results_path, "MBPP+ pass@1 (unsanitized)", mbppPlus_pass1)
+    benchmark_utils.add_score_in_csv(results_path, "GoogleBLEU (unsanitized)", google_bleu)
+    benchmark_utils.add_score_in_csv(results_path, "CodeBLEU (unsanitized)", codebleu)
+    benchmark_utils.add_score_in_csv(results_path, "SacreBLEU (unsanitized)", sacrebleu)
+    benchmark_utils.add_score_in_csv(results_path, "MBPP pass@1 (sanitized)", mbpp_pass1_sanitized)
+    benchmark_utils.add_score_in_csv(results_path, "MBPP+ pass@1 (sanitized)", mbppPlus_pass1_sanitized)
+    benchmark_utils.add_score_in_csv(results_path, "GoogleBLEU (sanitized)", google_bleu_sanitized)
+    benchmark_utils.add_score_in_csv(results_path, "CodeBLEU (sanitized)", codebleu_sanitized)
+    benchmark_utils.add_score_in_csv(results_path, "SacreBLEU (sanitized)", sacrebleu_sanitized)
 
     if save_output_flag == "yes":
         save_sanitized_outputs(
@@ -137,7 +150,7 @@ def save_mbpp_results(results, llm_path, save_output_flag):
             "returned_prompts", extract_llm_name(llm_path), "mbpp"
         )
         
-def handle_cyberseceval_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file):
+def handle_cyberseceval_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
     if not os.path.exists("benchmarks/PurpleLlama/CybersecurityBenchmarks/results"):
         os.makedirs("benchmarks/PurpleLlama/CybersecurityBenchmarks/results")
 
@@ -145,17 +158,17 @@ def handle_cyberseceval_benchmark(llm_path, prompts_filepath, max_tokens, seed, 
     os.makedirs(folder_path, exist_ok=True)
 
     if "autocomplete" in prompts_filepath:
-        cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "autocomplete", max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file)
+        cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "autocomplete", max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
     elif "instruct" in prompts_filepath:
-        cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "instruct", max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file)
+        cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "instruct", max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
     elif "mitre" in prompts_filepath:
-        cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file)
+        cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
     elif "frr" in prompts_filepath:
-        cyberseceval.run_frr_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file)
+        cyberseceval.run_frr_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
     elif "interpreter" in prompts_filepath:
-        cyberseceval.run_interpreter_benchmark(llm_path, prompts_filepath,max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file)
+        cyberseceval.run_interpreter_benchmark(llm_path, prompts_filepath,max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
     elif "canary_exploit" in prompts_filepath:
-        cyberseceval.run_canary_exploit_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file)
+        cyberseceval.run_canary_exploit_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
 
 def main():
     parser = argparse.ArgumentParser(description="Execute benchmarks with given arguments.")
@@ -174,6 +187,7 @@ def main():
     parser.add_argument("--save_output", type=str, default='no', help="'yes' to save LLM outputs in files, 'no' otherwise.")
     parser.add_argument("--samples_interval", type=str, default='all', help="Benchmark prompts interval to execute. Format: '[min_index]-[max_index]', or 'all' to use all the dataset")
     parser.add_argument("--shot_prompting", type=int, default=0, help="Number of examples (shots) to include in the prompt to demonstrate the task. Set to 0 for zero-shot prompting, 1 for one-shot prompting, and so on.")
+    parser.add_argument("--sleep_time", type=float, default=3.0, help="Number of seconds to wait between executions.")
 
     args = parser.parse_args()
 
@@ -186,6 +200,8 @@ def main():
     save_output_flag = args.save_output
     samples_interval = args.samples_interval
     shot_prompting = args.shot_prompting
+    SLEEP_TIME = args.sleep_time
+
 
     boolean_validate_models, invalid_models = validate_supported_models("supported_models.json", llm_path_list)
     if(boolean_validate_models == False):
@@ -268,169 +284,19 @@ def main():
                     sys.exit(1)
     
         # Define CSV files and their columns based on the benchmarks
-        csv_files = {}
-    
-        for b in benchmarks:
-            if "humaneval_x" in b:
-                csv_files["humaneval_x"] = [
-                    "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Pass@1", "googleBLEU", "codeBLEU", "sacreBLEU"
-                ]
-            elif "cyberseceval/autocomplete" in b or "cyberseceval/instruct" in b:
-                csv_files["instruct_and_autocomplete"] = [
-                    "LLM", "Prompt ID", "Variant", "Language", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Bleu score", "Total count", "Vulnerable percentage",
-                    "Vulnerable suggestion count", "Pass rate"
-                ]
-            elif "cyberseceval/mitre" in b:
-                csv_files["mitre"] = [
-                    "LLM", "Prompt ID", "Category", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Refusal count", "Malicious count", "Benign count",
-                    "Total count", "Benign percentage", "Else count"
-                ]
-            elif "cyberseceval/interpreter" in b:
-                csv_files["interpreter"] = [
-                    "LLM", "Prompt ID", "Attack type", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Maliciousness Level",
-                    "Is extremely malicious",
-                    "Is potentially malicious",
-                    "Is non malicious",
-                    "Total count",
-                    "Malicious percentage"
-                ]
-            elif "cyberseceval/frr" in b:
-                csv_files["frr"] = [
-                    "LLM", "Prompt ID", "Language", "Attack type", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Judge Response",
-                    "Accept count",
-                    "Refusal count",
-                    "Refusal rate"
-                ]
-            elif "cyberseceval/canary_exploit" in b:
-                csv_files["canary_exploit"] = [
-                    "LLM", "Prompt ID", "Language", "Challenge Type", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Score"
-                ]
-            elif "cyberseceval" in b:
-                csv_files["instruct_and_autocomplete"] = [
-                    "LLM", "Prompt ID", "Variant", "Language", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Bleu score", "Total count", "Vulnerable percentage",
-                    "Vulnerable suggestion count", "Pass rate"
-                ]    
-                csv_files["mitre"] = [
-                    "LLM", "Prompt ID", "Category", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Refusal count", "Malicious count", "Benign count",
-                    "Total count", "Benign percentage", "Else count"
-                ]
-                csv_files["interpreter"] = [
-                    "LLM", "Prompt ID", "Attack type", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Maliciousness Level",
-                    "Is extremely malicious",
-                    "Is potentially malicious",
-                    "Is non malicious",
-                    "Total count",
-                    "Malicious percentage"
-                ]
-                csv_files["frr"] = [
-                    "LLM", "Prompt ID", "Language", "Attack type", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Judge Response",
-                    "Accept count",
-                    "Refusal count",
-                    "Refusal rate"
-                ]
-                csv_files["canary_exploit"] = [
-                    "LLM", "Prompt ID", "Language", "Challenge Type", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Score"
-                ]
-            elif "mbpp" in b:
-                csv_files["mbpp"] = [
-                    "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "MBPP pass@1 (unsanitized)", "MBPP+ pass@1 (unsanitized)", "GoogleBLEU (unsanitized)", "CodeBLEU (unsanitized)", "SacreBLEU (unsanitized)",
-                    "MBPP pass@1 (sanitized)", "MBPP+ pass@1 (sanitized)", "GoogleBLEU (sanitized)", "CodeBLEU (sanitized)", "SacreBLEU (sanitized)"
-                ]            
-            elif "all" in b:
-                csv_files["humaneval_x"] = [
-                    "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Pass@1", "googleBLEU", "codeBLEU", "sacreBLEU"
-                ]
-                csv_files["instruct_and_autocomplete"] = [
-                    "LLM", "Prompt ID", "Variant", "Language", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Bleu score", "Total count", "Vulnerable percentage",
-                    "Vulnerable suggestion count", "Pass rate"
-                ]      
-                csv_files["mitre"] = [
-                    "LLM", "Prompt ID", "Category", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Refusal count", "Malicious count", "Benign count",
-                    "Total count", "Benign percentage", "Else count"
-                ]        
-                csv_files["interpreter"] = [
-                    "LLM", "Prompt ID", "Attack type", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Maliciousness Level",
-                    "Is extremely malicious",
-                    "Is potentially malicious",
-                    "Is non malicious",
-                    "Total count",
-                    "Malicious percentage"
-                ]
-                csv_files["frr"] = [
-                    "LLM", "Prompt ID", "Language", "Attack type", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Judge Response",
-                    "Accept count",
-                    "Refusal count",
-                    "Refusal rate"
-                ]
-                csv_files["canary_exploit"] = [
-                    "LLM", "Prompt ID", "Language", "Challenge Type", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "Score"
-                ]
-                csv_files["mbpp"] = [
-                    "LLM", "Benchmark prompt", "Execution time (s)", "CPU Energy (J)",
-                    "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-                    "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)",
-                    "MBPP pass@1 (unsanitized)", "MBPP+ pass@1 (unsanitized)", "GoogleBLEU (unsanitized)", "CodeBLEU (unsanitized)", "SacreBLEU (unsanitized)",
-                    "MBPP pass@1 (sanitized)", "MBPP+ pass@1 (sanitized)", "GoogleBLEU (sanitized)", "CodeBLEU (sanitized)", "SacreBLEU (sanitized)"
-                ]   
-                
+        csv_files = set_csv_headers(benchmarks, shot_prompting)
+
         # Create the CSV files in the 'results' folder
         for filename, columns in csv_files.items():
-            if filename == "humaneval_x" or filename == "mbpp":
-                folder_path = os.path.join("results", filename)
+            print("------------")
+            print(filename)
+
+            print("------------")
+
+            if "humaneval_x" in filename:
+                folder_path = os.path.join("results", "humaneval_x")
+            elif "mbpp" in filename:
+                folder_path = os.path.join("results", "mbpp")
             else:
                 folder_path = os.path.join("results", "cyberseceval")
 
@@ -439,8 +305,8 @@ def main():
 
             create_csv(os.path.join(folder_path, filename + ".csv"), columns)
 
-        for n in range(N_TIMES):
-            start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting)
+        for _ in range(N_TIMES):
+            start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting, SLEEP_TIME)
 
 
 if __name__ == "__main__":

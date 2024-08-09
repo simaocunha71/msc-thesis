@@ -8,6 +8,30 @@
 | Apresentação do RPD         | [aqui](https://github.com/simaocunha71/thesis-repository/blob/main/docs/Apresenta%C3%A7%C3%A3o%20RPD.pdf)   |
 
 
+### LLMs a usar
+tal como falamos, aqui vai uma sugestão de modelos para executarmos.
+Sobre esta lista:
+supostamente, estão no formato necessário para executares com o llama.cpp (formato GGUF)
+por vezes, a fonte oficial não disponibiliza esse formato. Tanto quanto consegui apurar, as "third parties" são OK
+estas versões são instruction-tuned. Ou seja, não são tão boas (teoricamente) para fazer "code completion puro". Se o benchmark for puramente de code completion, podemos ter de ajustar a lista. Do que me lembro, quase todos têm instruções/descrições nos prompts por isso poderá não haver problema. Mas se calhar há algum que é só mesmo código?
+podemos ter de ajustar o que estou a sugerir porque:
+  1. devemos tentar ter uma comparação "justa" com modelos o mais equivalentes entre si
+  2. posso ter sugerido algo demasiado exigente para o cluster
+
+Atenção relativamente a este último ponto.
+Tanto quanto tenho lido: maior nr. params + maior quantization > menor nr. params + menor quantization
+Ou seja, por exemplo (valores à sorte): Llama 3 70B Q4 > Llama 3 8B Q8
+Por outras palavras, um modelo (igual) que ocupe X GB mas que tenha mais params e mais quant é melhor do que um que ocupe os mesmos X GB mas que tenha menos params e menos quant
+
+Sugestão de modelos:
+
+https://huggingface.co/bartowski/gemma-2-27b-it-GGUF
+https://huggingface.co/google/codegemma-1.1-7b-it-GGUF
+https://huggingface.co/bartowski/Meta-Llama-3-8B-Instruct-GGUF (não encontrei a versão maior)
+https://huggingface.co/TheBloke/CodeLlama-7B-Instruct-GGUF
+https://huggingface.co/TheBloke/Mixtral-8x7B-v0.1-GGUF
+https://huggingface.co/second-state/StarCoder2-15B-GGUF
+
 ### Comandos úteis para o cluster
 
 #### Instalação do llama-cpp-python
