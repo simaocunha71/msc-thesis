@@ -7,6 +7,9 @@ from utils import delete_files_with_keyword
 # Global variable to indicate if running in a cluster
 running_in_cluster = False
 
+docker_container = "registry.cn-hangzhou.aliyuncs.com/codefuse/codefuseeval:latest"
+singularity_container = "../container_v2/folder/teste.sif"
+
 # Define command templates for Docker and Singularity
 COMMAND_TEMPLATES = {
     "docker": {
@@ -14,7 +17,7 @@ COMMAND_TEMPLATES = {
             "codebleu": (
                 "docker run "
                 "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-                "-it registry.cn-hangzhou.aliyuncs.com/codefuse/codefuseeval:latest "
+                f"-it {docker_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
                 "codebleu "
@@ -23,7 +26,7 @@ COMMAND_TEMPLATES = {
             "google_bleu": (
                 "docker run "
                 "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-                "-it registry.cn-hangzhou.aliyuncs.com/codefuse/codefuseeval:latest "
+                f"-it {docker_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
                 "google_bleu "
@@ -41,7 +44,7 @@ COMMAND_TEMPLATES = {
             "codebleu": (
                 "docker run "
                 "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-                "-it registry.cn-hangzhou.aliyuncs.com/codefuse/codefuseeval:latest "
+                f"-it {docker_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
                 "codebleu "
@@ -50,7 +53,7 @@ COMMAND_TEMPLATES = {
             "google_bleu": (
                 "docker run "
                 "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-                "-it registry.cn-hangzhou.aliyuncs.com/codefuse/codefuseeval:latest "
+                f"-it {docker_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
                 "google_bleu "
@@ -70,7 +73,7 @@ COMMAND_TEMPLATES = {
             "codebleu": (
                 "singularity exec "
                 "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-                "../../codefuseeval_latest.sif "
+                f"{singularity_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
                 "codebleu "
@@ -79,7 +82,7 @@ COMMAND_TEMPLATES = {
             "google_bleu": (
                 "singularity exec "
                 "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-                "../../codefuseeval_latest.sif "
+                f"{singularity_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
                 "google_bleu "
@@ -97,7 +100,7 @@ COMMAND_TEMPLATES = {
             "codebleu": (
                 "singularity exec "
                 "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-                "../../codefuseeval_latest.sif "
+                f"{singularity_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
                 "codebleu "
@@ -106,7 +109,7 @@ COMMAND_TEMPLATES = {
             "google_bleu": (
                 "singularity exec "
                 "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-                "../../codefuseeval_latest.sif "
+                f"{singularity_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
                 "google_bleu "

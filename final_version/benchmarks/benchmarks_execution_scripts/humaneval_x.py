@@ -7,13 +7,16 @@ from benchmarks.benchmarks_execution_scripts.utils import delete_files_with_keyw
 # Global variable to indicate if running in a cluster
 running_in_cluster = False
 
+docker_container = "registry.cn-hangzhou.aliyuncs.com/codefuse/codefuseeval:latest"
+singularity_container = "../container_v2/folder/teste.sif"
+
 # Define command templates for Docker and Singularity
 COMMAND_TEMPLATES = {
     "docker": {
         "pass@k": (
             "docker run "
             "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-            "-it registry.cn-hangzhou.aliyuncs.com/codefuse/codefuseeval:latest "
+            f"-it {docker_container} "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
             "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
             "pass@k "
@@ -22,7 +25,7 @@ COMMAND_TEMPLATES = {
         "codebleu": (
             "docker run "
             "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-            "-it registry.cn-hangzhou.aliyuncs.com/codefuse/codefuseeval:latest "
+            f"-it {docker_container} "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
             "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
             "codebleu "
@@ -31,7 +34,7 @@ COMMAND_TEMPLATES = {
         "google_bleu": (
             "docker run "
             "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-            "-it registry.cn-hangzhou.aliyuncs.com/codefuse/codefuseeval:latest "
+            f"-it {docker_container} "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
             "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
             "google_bleu "
@@ -49,7 +52,7 @@ COMMAND_TEMPLATES = {
         "pass@k": (
             "singularity exec "
             "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-            "../container_in_use/codefuseeval_latest.sif "
+            "{singularity_container} "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
             "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
             "pass@k "
@@ -58,7 +61,7 @@ COMMAND_TEMPLATES = {
         "codebleu": (
             "singularity exec "
             "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-            "../container_in_use/codefuseeval_latest.sif "
+            "{singularity_container} "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
             "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
             "codebleu "
@@ -67,7 +70,7 @@ COMMAND_TEMPLATES = {
         "google_bleu": (
             "singularity exec "
             "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
-            "../container_in_use/codefuseeval_latest.sif "
+            "{singularity_container} "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
             "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
             "google_bleu "
