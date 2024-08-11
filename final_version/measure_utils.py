@@ -180,7 +180,7 @@ def save_output_to_file(output, label, language, output_folder, llama_folder, la
     with open(output_path, 'w') as output_file:
         output_file.write(output)
 
-def generate_samples_humaneval_x(model, output, label, language):
+def generate_samples_humaneval_x(model, output, label, language, pass_k):
     label = label.replace("/", "_")
     
     # Define temporary files
@@ -191,13 +191,13 @@ def generate_samples_humaneval_x(model, output, label, language):
         prompt_file.write(output)
 
     # Executa a script get_samples.py que irá calcular as samples de um dado LLM para a execução do HumanEval
-    command = f'python3 benchmarks/benchmarks_execution_scripts/get_samples_humaneval_x.py {model} "{label}" completion_content.txt {language}'
+    command = f'python3 benchmarks/benchmarks_execution_scripts/get_samples_humaneval_x.py {model} "{label}" completion_content.txt {pass_k} {language}'
     os.system(command)
 
     # Remove os ficheiros de texto temporários
     os.remove(temp_prompt_file)
 
-def generate_samples_mbpp(model, output, label):
+def generate_samples_mbpp(model, output, label, pass_k):
     """Gera o ficheiro das samples deste modelo (Benchmark: MBPP)"""
     
     # Define temporary files
@@ -208,7 +208,7 @@ def generate_samples_mbpp(model, output, label):
         prompt_file.write(output)
 
     # Execute the script to generate the samples for MBPP
-    command = f'python3 benchmarks/benchmarks_execution_scripts/get_samples_mbpp.py {model} "{label}" completion_content.txt'
+    command = f'python3 benchmarks/benchmarks_execution_scripts/get_samples_mbpp.py {model} "{label}" completion_content.txt {pass_k}'
     
     os.system(command)
 

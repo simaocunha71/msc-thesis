@@ -6,7 +6,7 @@ from llms.utils import load_llm, get_llm_family
 from llms.llamacpp_wrapper import LLAMACPP
 from csv_files_headers import set_csv_headers
 
-def execute_llm(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_type, llm_object, save_output_flag, language):
+def execute_llm(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_type, llm_object, save_output_flag, language, pass_k):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
     temp_prompt_file = "temp_prompt.txt"
     with open(temp_prompt_file, 'w') as prompt_file:
@@ -16,15 +16,15 @@ def execute_llm(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_t
 
     if llm_family == "LLAMACPP":
         if language is not None:
-            llama_benchmark = LLAMACPP(task_id, temp_prompt_file, CSV_FILENAME, llm_path, max_tokens, benchmark_type, llm_object, save_output_flag, language)
+            llama_benchmark = LLAMACPP(task_id, temp_prompt_file, CSV_FILENAME, llm_path, max_tokens, benchmark_type, llm_object, save_output_flag, pass_k, language)
         else:
-            llama_benchmark = LLAMACPP(task_id, temp_prompt_file, CSV_FILENAME, llm_path, max_tokens, benchmark_type, llm_object, save_output_flag)
+            llama_benchmark = LLAMACPP(task_id, temp_prompt_file, CSV_FILENAME, llm_path, max_tokens, benchmark_type, llm_object, save_output_flag, pass_k)
         llama_benchmark.run()
     else:
         print(f"Não existe classe capaz de executar o LLM com o path {llm_path}")
         sys.exit(-1)
         
-def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting, SLEEP_TIME):
+def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting, SLEEP_TIME, pass_k):
     """
     Execute measurement scripts for all considered models.
 
@@ -49,18 +49,12 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
             return shrink_json_or_jsonl(prompts_filepath, min_ind, max_ind)
         return prompts_filepath
 
-    #def process_interval(prompts_filepath, samples_interval):
-    #    if samples_interval != "all":
-    #        min_ind, max_ind = map(int, samples_interval.split('-'))
-    #        return shrink_json_or_jsonl(prompts_filepath, min_ind, max_ind)
-    #    return prompts_filepath
-
-    def handle_prompt_files(llm, llm_path, prompts_filepath):
+    def handle_prompt_files(llm, llm_path, prompts_filepath, pass_k):
         prompt_for_shot_prompting, temp_prompts_filepath = get_prompt_for_shot_prompting(prompts_filepath, shot_prompting)
         temp_prompts_filepath = process_interval(temp_prompts_filepath)
 
         if "humaneval_x" in temp_prompts_filepath:
-            handle_humaneval_x_benchmark(llm, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting)
+            handle_humaneval_x_benchmark(llm, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting, pass_k)
         elif "cyberseceval" in temp_prompts_filepath:
             prompt_for_shot_prompting, temp_prompts_filepath = get_prompt_for_shot_prompting_cyberseceval(prompts_filepath, shot_prompting, prompts_filepath.split("/")[2])
             temp_prompts_filepath = process_interval(temp_prompts_filepath)
@@ -70,7 +64,7 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
             handle_cyberseceval_benchmark(llm_path, temp_prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
             os.remove(prompt_for_shot_prompting_file)
         elif "mbpp" in temp_prompts_filepath:
-            handle_mbpp_benchmark(llm, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting)
+            handle_mbpp_benchmark(llm, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting, pass_k)
         else:
             print("JSONL file does not belong to any considered benchmark")
 
@@ -83,14 +77,14 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
             else:
                 llm = load_llm(llm_path, n_ctx, seed)
             
-            handle_prompt_files(llm, llm_path, prompts_filepath)
+            handle_prompt_files(llm, llm_path, prompts_filepath, pass_k)
         
         try:
             os.system("rm -rf ~/.cache/evalplus/*")
         except Exception as e:
             print(f"Error clearing cache: {e}")
 
-def handle_humaneval_x_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting):
+def handle_humaneval_x_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting, pass_k):
     with open(prompts_filepath, 'r') as file:
         lines = file.readlines()
         for line in lines:
@@ -99,18 +93,32 @@ def handle_humaneval_x_benchmark(llm, llm_path, prompts_filepath, prompt_for_sho
             prompt_from_file = entry.get("prompt", "")
             prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
             language = extract_language(prompts_filepath)
-            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv"), max_tokens, "humaneval_x", llm, save_output_flag, language)
+            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv"), max_tokens, "humaneval_x", llm, save_output_flag, language, pass_k)
             sleep_between_executions(secs=SLEEP_TIME)
-
-    pass_1, google_bleu, codebleu, sacrebleu = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath))
+    
+    scores = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath), pass_k)
+    pass_1, pass_10, pass_100, google_bleu, codebleu, sacrebleu = scores["pass_1"], scores["pass_10"], scores["pass_100"], scores["google_bleu"], scores["codebleu"], scores["sacrebleu"]
     results_path = os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv")
-    benchmark_utils.add_score_in_csv(results_path, "Pass@1", pass_1)
-    benchmark_utils.add_score_in_csv(results_path, "googleBLEU", google_bleu)
-    benchmark_utils.add_score_in_csv(results_path, "codeBLEU", codebleu)
-    benchmark_utils.add_score_in_csv(results_path, "sacreBLEU", sacrebleu)
 
+    if pass_k not in [1,10,100]:
+        print(f"[ERROR] pass@k value (k={pass_k}) not supported - only supported pass@1, pass@10 and pass@100")
+        sys.exit(1)
 
-def handle_mbpp_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting):
+    if pass_k == 1:
+        benchmark_utils.add_score_in_csv(results_path, "Pass@1", pass_1)
+    if pass_k == 10:
+        benchmark_utils.add_score_in_csv(results_path, "Pass@1", pass_1)
+        benchmark_utils.add_score_in_csv(results_path, "Pass@10", pass_10)
+    elif pass_k == 100:
+        benchmark_utils.add_score_in_csv(results_path, "Pass@1", pass_1)
+        benchmark_utils.add_score_in_csv(results_path, "Pass@10", pass_10)
+        benchmark_utils.add_score_in_csv(results_path, "Pass@100", pass_100)
+
+    benchmark_utils.add_score_in_csv(results_path, "GoogleBLEU", google_bleu)
+    benchmark_utils.add_score_in_csv(results_path, "CodeBLEU", codebleu)
+    benchmark_utils.add_score_in_csv(results_path, "SacreBLEU", sacrebleu)
+
+def handle_mbpp_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting, pass_k):
     change_mbpp_filepath("benchmarks/evalplus/evalplus/data/mbpp.py", os.path.basename(prompts_filepath))
     results_path = os.path.join("results", "mbpp", f"mbpp_{shot_prompting}_shot.csv")
     with open(prompts_filepath, 'r') as file:
@@ -121,7 +129,7 @@ def handle_mbpp_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_promp
             prompt_from_file = entry.get("prompt", "")
             prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
 
-            execute_llm(str(task_id), prompt, llm_path, results_path, max_tokens, "mbpp", llm, save_output_flag, None)
+            execute_llm(str(task_id), prompt, llm_path, results_path, max_tokens, "mbpp", llm, save_output_flag, None, pass_k)
             sleep_between_executions(secs=SLEEP_TIME)
     
     results = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path))
@@ -133,8 +141,8 @@ def save_mbpp_results(results, llm_path, save_output_flag, results_path):
      mbpp_pass1_sanitized, mbppPlus_pass1_sanitized, google_bleu_sanitized, 
      codebleu_sanitized, sacrebleu_sanitized) = results
 
-    benchmark_utils.add_score_in_csv(results_path, "MBPP pass@1 (unsanitized)", mbpp_pass1)
-    benchmark_utils.add_score_in_csv(results_path, "MBPP+ pass@1 (unsanitized)", mbppPlus_pass1)
+    benchmark_utils.add_score_in_csv(results_path, "MBPP (unsanitized) pass@1", mbpp_pass1)
+    benchmark_utils.add_score_in_csv(results_path, "MBPP+ (unsanitized) pass@1", mbppPlus_pass1)
     benchmark_utils.add_score_in_csv(results_path, "GoogleBLEU (unsanitized)", google_bleu)
     benchmark_utils.add_score_in_csv(results_path, "CodeBLEU (unsanitized)", codebleu)
     benchmark_utils.add_score_in_csv(results_path, "SacreBLEU (unsanitized)", sacrebleu)
@@ -188,6 +196,7 @@ def main():
     parser.add_argument("--samples_interval", type=str, default='all', help="Benchmark prompts interval to execute. Format: '[min_index]-[max_index]', or 'all' to use all the dataset")
     parser.add_argument("--shot_prompting", type=int, default=0, help="Number of examples (shots) to include in the prompt to demonstrate the task. Set to 0 for zero-shot prompting, 1 for one-shot prompting, and so on.")
     parser.add_argument("--sleep_time", type=float, default=3.0, help="Number of seconds to wait between executions.")
+    parser.add_argument("--pass_k", type=int, default=1, help="Max number of k to evaluate in pass@k metric: 1, 10 or 100 (currently supported)")
 
     args = parser.parse_args()
 
@@ -201,6 +210,7 @@ def main():
     samples_interval = args.samples_interval
     shot_prompting = args.shot_prompting
     SLEEP_TIME = args.sleep_time
+    pass_k = args.pass_k
 
 
     boolean_validate_models, invalid_models = validate_supported_models("supported_models.json", llm_path_list)
@@ -284,15 +294,10 @@ def main():
                     sys.exit(1)
     
         # Define CSV files and their columns based on the benchmarks
-        csv_files = set_csv_headers(benchmarks, shot_prompting)
+        csv_files = set_csv_headers(benchmarks, shot_prompting, pass_k)
 
         # Create the CSV files in the 'results' folder
         for filename, columns in csv_files.items():
-            print("------------")
-            print(filename)
-
-            print("------------")
-
             if "humaneval_x" in filename:
                 folder_path = os.path.join("results", "humaneval_x")
             elif "mbpp" in filename:
@@ -304,9 +309,8 @@ def main():
                 os.makedirs(folder_path)
 
             create_csv(os.path.join(folder_path, filename + ".csv"), columns)
-
         for _ in range(N_TIMES):
-            start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting, SLEEP_TIME)
+            start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting, SLEEP_TIME, pass_k)
 
 
 if __name__ == "__main__":

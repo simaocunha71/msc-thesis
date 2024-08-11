@@ -3,7 +3,7 @@ import measure_utils as measure_utils
 from codecarbon import OfflineEmissionsTracker
 
 class LLAMACPP:
-    def __init__(self, label, prompt_file_path, filename, model_name, max_tokens, benchmark_type, llm_object, save_output_flag, language=None):
+    def __init__(self, label, prompt_file_path, filename, model_name, max_tokens, benchmark_type, llm_object, save_output_flag, pass_k, language=None):
         """
         Inicializa a classe LLAMACPP com argumentos fornecidos.
         
@@ -16,6 +16,7 @@ class LLAMACPP:
         benchmark_type (str): Tipo de benchmark a executar (util para a geração das samples).
         llm_object (Llama): Objeto Llama a ser executado.
         save_output_flag (str): Flag para guardar outputs em ficheiros (true) ou não (false)
+        pass_k (int): Valor de k da métrica pass@k
         language (str, optional): Linguagem a ser executada no benchmark (argumento opcional).
         """
         self.label = label
@@ -27,6 +28,7 @@ class LLAMACPP:
         self.llm_object = llm_object
         self.save_output_flag = save_output_flag
         self.language = language
+        self.pass_k = pass_k
 
     def read_prompt(self):
         """
@@ -86,9 +88,9 @@ class LLAMACPP:
         output = clean_output(output)
 
         if self.benchmark_type == "humaneval_x":
-            measure_utils.generate_samples_humaneval_x(measure_utils.extract_llm_name(self.model_name), output, self.label, self.language)
+            measure_utils.generate_samples_humaneval_x(measure_utils.extract_llm_name(self.model_name), output, self.label, self.pass_k, self.language)
         elif self.benchmark_type == "mbpp":
-            measure_utils.generate_samples_mbpp(measure_utils.extract_llm_name(self.model_name), output, self.label)
+            measure_utils.generate_samples_mbpp(measure_utils.extract_llm_name(self.model_name), output, self.label, self.pass_k)
         
         if self.save_output_flag == "yes":
             if self.benchmark_type == "humaneval_x":
