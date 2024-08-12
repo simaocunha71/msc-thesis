@@ -28,18 +28,16 @@ model = sys.argv[1]  # Nome do LLM
 label = sys.argv[2]  # Label do prompt
 output_got_file = sys.argv[3]  # Ficheiro c/ output gerado pelo LLM em formato string
 language = sys.argv[4] # Linguagem do benchmark
-pass_k = sys.argv[5] # Valor de k para a métrica pass@k
 
 with open(output_got_file, 'r') as prompt_file:
     output_got = prompt_file.read()
 
-num_samples_per_task = int(pass_k)  # Numero de execuções por prompts
 
 samples = [
     dict(
         task_id=label.replace("_", "/"),
         generation=output_got
-    ) for _ in range(num_samples_per_task)
+    ) for _ in range(1)
 ]
 
 #outputs_directory = "benchmarks/CodeGeeX/generated_samples"

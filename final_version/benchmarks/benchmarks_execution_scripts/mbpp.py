@@ -1,6 +1,6 @@
 import os
 import re
-import json
+import json, sys
 from pathlib import Path
 from utils import delete_files_with_keyword
 
@@ -21,7 +21,9 @@ COMMAND_TEMPLATES = {
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
                 "codebleu "
-                "mbpp"
+                "mbpp "
+                "{pass_k}"
+
             ),
             "google_bleu": (
                 "docker run "
@@ -30,13 +32,16 @@ COMMAND_TEMPLATES = {
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
                 "google_bleu "
-                "mbpp"
+                "mbpp "
+                "{pass_k}"
+
             ),
             "sacrebleu": (
                 "python3 benchmarks/codefuse-evaluation/codefuseEval/evaluation.py "
                 "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
                 "--metric sacrebleu "
                 "--problem_file mbpp "
+                "--k_max_value {pass_k} "
                 "--test_groundtruth False"
             )
         },
@@ -48,7 +53,9 @@ COMMAND_TEMPLATES = {
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
                 "codebleu "
-                "mbpp"
+                "mbpp "
+                "{pass_k}"
+
             ),
             "google_bleu": (
                 "docker run "
@@ -57,13 +64,16 @@ COMMAND_TEMPLATES = {
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
                 "google_bleu "
-                "mbpp"
+                "mbpp "
+                "{pass_k}"
+
             ),
             "sacrebleu": (
                 "python3 benchmarks/codefuse-evaluation/codefuseEval/evaluation.py "
                 "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
                 "--metric sacrebleu "
                 "--problem_file mbpp "
+                "--k_max_value {pass_k} "
                 "--test_groundtruth False"
             )
         }
@@ -77,7 +87,9 @@ COMMAND_TEMPLATES = {
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
                 "codebleu "
-                "mbpp"
+                "mbpp "
+                "{pass_k}"
+
             ),
             "google_bleu": (
                 "singularity exec "
@@ -86,13 +98,16 @@ COMMAND_TEMPLATES = {
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
                 "google_bleu "
-                "mbpp"
+                "mbpp "
+                "{pass_k}"
+
             ),
             "sacrebleu": (
                 "python3 benchmarks/codefuse-evaluation/codefuseEval/evaluation.py "
                 "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
                 "--metric sacrebleu "
                 "--problem_file mbpp "
+                "--k_max_value {pass_k} "
                 "--test_groundtruth False"
             )
         },
@@ -104,7 +119,9 @@ COMMAND_TEMPLATES = {
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
                 "codebleu "
-                "mbpp"
+                "mbpp "
+                "{pass_k}"
+
             ),
             "google_bleu": (
                 "singularity exec "
@@ -113,13 +130,16 @@ COMMAND_TEMPLATES = {
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
                 "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
                 "google_bleu "
-                "mbpp"
+                "mbpp "
+                "{pass_k}"
+
             ),
             "sacrebleu": (
                 "python3 benchmarks/codefuse-evaluation/codefuseEval/evaluation.py "
                 "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
                 "--metric sacrebleu "
                 "--problem_file mbpp "
+                "--k_max_value {pass_k} "
                 "--test_groundtruth False"
             )
         }
@@ -177,37 +197,64 @@ def extract_scores_from_json(file_googlebleu: Path, file_codebleu: Path, file_sa
 
     return gbleu_score, codeb_score, sacreb_score
 
+
 def parse_scores(file_path):
-    """Parse the pass@1 and pass@1Plus scores from a given file."""
+    """Parse the pass@1, pass@10, and pass@100 scores from a given file."""
     if os.path.exists(file_path):
         with open(file_path, 'r') as file:
             content = file.read()
-            matches = re.findall(r"pass@1:\s+([-+]?\d*\.\d+|\d+)", content)
-            if matches and len(matches) >= 2:
-                return matches[:2]
-            else:
-                print(f"Error: Pattern not found in file {file_path}.")
+            match_pass1 = re.findall(r"pass@1:\s+([-+]?\d*\.\d+|\d+)", content)
+            match_pass10 = re.findall(r"pass@10:\s+([-+]?\d*\.\d+|\d+)", content)
+            match_pass100 = re.findall(r"pass@100:\s+([-+]?\d*\.\d+|\d+)", content)
+            
+            # Exibe todos os matches encontrados
+            print("pass@1 matches:", match_pass1)
+            print("pass@10 matches:", match_pass10)
+            print("pass@100 matches:", match_pass100)
+            
+            # Inicializa a lista de resultados
+            results = []
+            
+            # Adiciona os valores encontrados às respostas, se existirem
+            results.extend(match_pass1[:2])   # Adiciona até 2 valores de pass@1
+            results.extend(match_pass10[:2])  # Adiciona até 2 valores de pass@10
+            results.extend(match_pass100[:2]) # Adiciona até 2 valores de pass@100
+            
+            # Preenche com -1 se a lista tiver menos de 6 elementos
+            while len(results) < 6:
+                results.append(-1)
+            
+            return tuple(results)  # Retorna os resultados como tupla
+            
     else:
         print(f"Error: The file '{file_path}' was not found.")
-    return None, None
+        return None
 
-def run_mbpp_benchmark(model: str) -> tuple:
+def run_mbpp_benchmark(model: str, pass_k : int) -> tuple:
     """Calculates the MBPP+ benchmark scores."""
 
     base_path = Path("benchmarks/codefuse-evaluation/codefuseEval/result")
     base_path.mkdir(parents=True, exist_ok=True)
     
-    execute_command(f"python3 benchmarks/evalplus/evalplus/evaluate_mbpp.py --dataset mbpp --samples benchmarks/evalplus/results/samples_{model}_mbpp.jsonl > mbpp_score.txt")
+    execute_command(f"python3 benchmarks/evalplus/evalplus/evaluate_mbpp.py --dataset mbpp --k_max_value {pass_k} --samples benchmarks/evalplus/results/samples_{model}_mbpp.jsonl > mbpp_score.txt")
     os.system(f"cp benchmarks/evalplus/results/samples_{model}_mbpp.jsonl benchmarks/codefuse-evaluation/codefuseEval/result")
 
-    scores_unsanitized = {"MBPP pass@1": -1, "MBPP+ pass@1": -1, "google_bleu": -1, "codebleu": -1, "sacrebleu": -1}
-    scores_sanitized = {"MBPP pass@1": -1, "MBPP+ pass@1": -1, "google_bleu": -1, "codebleu": -1, "sacrebleu": -1}
+
+    scores = {"MBPP (unsanitized) pass@1": -1, "MBPP+ (unsanitized) pass@1": -1, 
+              "MBPP (unsanitized) pass@10": -1, "MBPP+ (unsanitized) pass@10": -1, 
+              "MBPP (unsanitized) pass@100": -1, "MBPP+ (unsanitized) pass@100": -1, 
+              "GoogleBLEU (unsanitized)": -1, "CodeBLEU (unsanitized)": -1, "SacreBLEU (unsanitized)": -1,
+              
+              "MBPP (sanitized) pass@1": -1, "MBPP+ (sanitized) pass@1": -1, 
+              "MBPP (sanitized) pass@10": -1, "MBPP+ (sanitized) pass@10": -1, 
+              "MBPP (sanitized) pass@100": -1, "MBPP+ (sanitized) pass@100": -1, 
+              "GoogleBLEU (sanitized)": -1, "CodeBLEU (sanitized)": -1, "SacreBLEU (sanitized)": -1}
 
     command_set = COMMAND_TEMPLATES["singularity" if running_in_cluster else "docker"]
 
     for key in ["unsanitized"]:
         for metric, command_template in command_set[key].items():
-            command = command_template.format(model=model)
+            command = command_template.format(model=model, pass_k=pass_k)
             execute_command(command)
 
     # Update scores for Google BLEU, CodeBLEU, and SacreBLEU for unsanitized
@@ -215,13 +262,14 @@ def run_mbpp_benchmark(model: str) -> tuple:
     unsanitized_codebleu_path = base_path / f"samples_{model}_mbpp_codebleu.jsonl"
     unsanitized_sacrebleu_path = base_path / f"samples_{model}_mbpp_sacrebleu.jsonl"
 
-    scores_unsanitized["MBPP pass@1"], scores_unsanitized["MBPP+ pass@1"] = parse_scores("mbpp_score.txt")
-    scores_unsanitized["google_bleu"], scores_unsanitized["codebleu"], scores_unsanitized["sacrebleu"] = extract_scores_from_json(unsanitized_google_bleu_path, unsanitized_codebleu_path, unsanitized_sacrebleu_path)
+    scores["MBPP (unsanitized) pass@1"], scores["MBPP+ (unsanitized) pass@1"], scores["MBPP (unsanitized) pass@10"], scores["MBPP+ (unsanitized) pass@10"], scores["MBPP (unsanitized) pass@100"], scores["MBPP+ (unsanitized) pass@100"] = parse_scores("mbpp_score.txt")
+    scores["GoogleBLEU (unsanitized)"], scores["CodeBLEU (unsanitized)"], scores["SacreBLEU (unsanitized)"] = extract_scores_from_json(unsanitized_google_bleu_path, unsanitized_codebleu_path, unsanitized_sacrebleu_path)
+
 
     # Execute the remaining scripts
     execute_command(f"python3 benchmarks/evalplus/evalplus/sanitize.py --samples benchmarks/evalplus/results/samples_{model}_mbpp.jsonl")
     execute_command(f"python3 benchmarks/evalplus/evalplus/syncheck.py --samples benchmarks/evalplus/results/samples_{model}_mbpp-sanitized.jsonl --dataset mbpp")
-    execute_command(f"python3 benchmarks/evalplus/evalplus/evaluate_mbpp.py --dataset mbpp --samples benchmarks/evalplus/results/samples_{model}_mbpp-sanitized.jsonl > mbpp_score_sanitized.txt")
+    execute_command(f"python3 benchmarks/evalplus/evalplus/evaluate_mbpp.py --dataset mbpp --k_max_value {pass_k} --samples benchmarks/evalplus/results/samples_{model}_mbpp-sanitized.jsonl > mbpp_score_sanitized.txt")
 
     os.system(f"cp benchmarks/evalplus/results/samples_{model}_mbpp-sanitized.jsonl benchmarks/codefuse-evaluation/codefuseEval/result")
     sanitized_google_bleu_path = base_path / f"samples_{model}_mbpp-sanitized_google_bleu.jsonl"
@@ -230,11 +278,11 @@ def run_mbpp_benchmark(model: str) -> tuple:
 
     for key in ["sanitized"]:
         for metric, command_template in command_set[key].items():
-            command = command_template.format(model=model)
+            command = command_template.format(model=model, pass_k=pass_k)
             execute_command(command)
 
-    scores_sanitized["MBPP pass@1"], scores_sanitized["MBPP+ pass@1"] = parse_scores("mbpp_score_sanitized.txt")
-    scores_sanitized["google_bleu"], scores_sanitized["codebleu"], scores_sanitized["sacrebleu"] = extract_scores_from_json(sanitized_google_bleu_path, sanitized_codebleu_path, sanitized_sacrebleu_path)
+    scores["MBPP (sanitized) pass@1"], scores["MBPP+ (sanitized) pass@1"], scores["MBPP (sanitized) pass@10"], scores["MBPP+ (sanitized) pass@10"], scores["MBPP (sanitized) pass@100"], scores["MBPP+ (sanitized) pass@100"] = parse_scores("mbpp_score_sanitized.txt")
+    scores["GoogleBLEU (sanitized)"], scores["CodeBLEU (sanitized)"], scores["SacreBLEU (sanitized)"] = extract_scores_from_json(sanitized_google_bleu_path, sanitized_codebleu_path, sanitized_sacrebleu_path)
 
     execute_command("rm mbpp_score.txt")
     execute_command("rm mbpp_score_sanitized.txt")
@@ -242,8 +290,16 @@ def run_mbpp_benchmark(model: str) -> tuple:
     delete_files_with_keyword("benchmarks/codefuse-evaluation/codefuseEval/result", "mbpp")
 
     return (
-        scores_unsanitized["MBPP pass@1"], scores_unsanitized["MBPP+ pass@1"], scores_unsanitized["google_bleu"],
-        scores_unsanitized["codebleu"], scores_unsanitized["sacrebleu"],
-        scores_sanitized["MBPP pass@1"], scores_sanitized["MBPP+ pass@1"], scores_sanitized["google_bleu"],
-        scores_sanitized["codebleu"], scores_sanitized["sacrebleu"]
+        scores["MBPP (unsanitized) pass@1"], scores["MBPP (sanitized) pass@1"],
+        scores["MBPP+ (unsanitized) pass@1"], scores["MBPP+ (sanitized) pass@1"],
+
+        scores["MBPP (unsanitized) pass@10"], scores["MBPP (sanitized) pass@10"],
+        scores["MBPP+ (unsanitized) pass@10"], scores["MBPP+ (sanitized) pass@10"],
+
+        scores["MBPP (unsanitized) pass@10"], scores["MBPP (sanitized) pass@100"],
+        scores["MBPP+ (unsanitized) pass@10"], scores["MBPP+ (sanitized) pass@100"],
+
+        scores["GoogleBLEU (unsanitized)"], scores["GoogleBLEU (sanitized)"],
+        scores["CodeBLEU (unsanitized)"], scores["CodeBLEU (sanitized)"],
+        scores["SacreBLEU (unsanitized)"], scores["SacreBLEU (sanitized)"]
     )

@@ -1,9 +1,10 @@
 import os
 import measure_utils as measure_utils
 from codecarbon import OfflineEmissionsTracker
+from llama_cpp import Llama
 
 class LLAMACPP:
-    def __init__(self, label, prompt_file_path, filename, model_name, max_tokens, benchmark_type, llm_object, save_output_flag, pass_k, language=None):
+    def __init__(self, label, prompt_file_path, filename, model_name, seed, n_ctx, max_tokens, benchmark_type, save_output_flag, language=None):
         """
         Inicializa a classe LLAMACPP com argumentos fornecidos.
         
@@ -14,9 +15,7 @@ class LLAMACPP:
         model_name (str): Path do LLM.
         max_tokens (int): Número máximo de tokens a ser usado pelo LLM na resposta.
         benchmark_type (str): Tipo de benchmark a executar (util para a geração das samples).
-        llm_object (Llama): Objeto Llama a ser executado.
         save_output_flag (str): Flag para guardar outputs em ficheiros (true) ou não (false)
-        pass_k (int): Valor de k da métrica pass@k
         language (str, optional): Linguagem a ser executada no benchmark (argumento opcional).
         """
         self.label = label
@@ -25,10 +24,10 @@ class LLAMACPP:
         self.model_name = model_name
         self.max_tokens = max_tokens
         self.benchmark_type = benchmark_type
-        self.llm_object = llm_object
         self.save_output_flag = save_output_flag
         self.language = language
-        self.pass_k = pass_k
+        self.seed = seed
+        self.n_ctx = n_ctx
 
     def read_prompt(self):
         """
@@ -42,6 +41,10 @@ class LLAMACPP:
 
         os.remove(self.prompt_file_path)
         return content
+    
+    def load_llamacpp(self):
+        return Llama(model_path=self.model_name, seed=self.seed, n_ctx=self.n_ctx, verbose=False)
+
 
     def execute_llamacpp(self, prompt):
         """
@@ -53,7 +56,8 @@ class LLAMACPP:
         Returns:
         str: A saída de texto do objeto LlamaCpp.
         """
-        output = self.llm_object(prompt=prompt, max_tokens=self.max_tokens, stop=["Q:"], echo=True)["choices"][0]["text"]
+        llm_object = self.load_llamacpp()
+        output = llm_object(prompt=prompt, max_tokens=self.max_tokens, stop=["Q:"], echo=True)["choices"][0]["text"]
 
         return output
 
@@ -63,6 +67,7 @@ class LLAMACPP:
         """
         measure_utils.print_measure_information(self.model_name, self.label)
         
+
         tracker = OfflineEmissionsTracker(country_iso_code="PRT")
         tracker.start()
         prompt = self.read_prompt()
@@ -88,9 +93,9 @@ class LLAMACPP:
         output = clean_output(output)
 
         if self.benchmark_type == "humaneval_x":
-            measure_utils.generate_samples_humaneval_x(measure_utils.extract_llm_name(self.model_name), output, self.label, self.pass_k, self.language)
+            measure_utils.generate_samples_humaneval_x(measure_utils.extract_llm_name(self.model_name), output, self.label, self.language)
         elif self.benchmark_type == "mbpp":
-            measure_utils.generate_samples_mbpp(measure_utils.extract_llm_name(self.model_name), output, self.label, self.pass_k)
+            measure_utils.generate_samples_mbpp(measure_utils.extract_llm_name(self.model_name), output, self.label)
         
         if self.save_output_flag == "yes":
             if self.benchmark_type == "humaneval_x":

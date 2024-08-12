@@ -32,8 +32,6 @@ output_got_file = sys.argv[3]  # Ficheiro c/ output gerado pelo LLM em formato s
 with open(output_got_file, 'r') as prompt_file:
     output_got = prompt_file.read()
 
-num_samples_per_task = 1  # Numero de execuções por prompts
-
 samples = [
     dict(
         task_id=label,
@@ -41,7 +39,7 @@ samples = [
         generation=output_got
 
 
-    ) for _ in range(num_samples_per_task)
+    ) for _ in range(1)
 ]
 
 outputs_directory = "benchmarks/evalplus/results"

@@ -6,7 +6,7 @@ from llms.utils import load_llm, get_llm_family
 from llms.llamacpp_wrapper import LLAMACPP
 from csv_files_headers import set_csv_headers
 
-def execute_llm(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_type, llm_object, save_output_flag, language, pass_k):
+def execute_llm(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_type, save_output_flag, language, seed, n_ctx):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
     temp_prompt_file = "temp_prompt.txt"
     with open(temp_prompt_file, 'w') as prompt_file:
@@ -16,9 +16,9 @@ def execute_llm(task_id, prompt, llm_path, CSV_FILENAME, max_tokens, benchmark_t
 
     if llm_family == "LLAMACPP":
         if language is not None:
-            llama_benchmark = LLAMACPP(task_id, temp_prompt_file, CSV_FILENAME, llm_path, max_tokens, benchmark_type, llm_object, save_output_flag, pass_k, language)
+            llama_benchmark = LLAMACPP(task_id, temp_prompt_file, CSV_FILENAME, llm_path, seed, n_ctx, max_tokens, benchmark_type, save_output_flag, language)
         else:
-            llama_benchmark = LLAMACPP(task_id, temp_prompt_file, CSV_FILENAME, llm_path, max_tokens, benchmark_type, llm_object, save_output_flag, pass_k)
+            llama_benchmark = LLAMACPP(task_id, temp_prompt_file, CSV_FILENAME, llm_path, seed, n_ctx, max_tokens, benchmark_type, save_output_flag)
         llama_benchmark.run()
     else:
         print(f"Não existe classe capaz de executar o LLM com o path {llm_path}")
@@ -49,12 +49,12 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
             return shrink_json_or_jsonl(prompts_filepath, min_ind, max_ind)
         return prompts_filepath
 
-    def handle_prompt_files(llm, llm_path, prompts_filepath, pass_k):
+    def handle_prompt_files(llm_path, prompts_filepath, pass_k):
         prompt_for_shot_prompting, temp_prompts_filepath = get_prompt_for_shot_prompting(prompts_filepath, shot_prompting)
         temp_prompts_filepath = process_interval(temp_prompts_filepath)
 
         if "humaneval_x" in temp_prompts_filepath:
-            handle_humaneval_x_benchmark(llm, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting, pass_k)
+            handle_humaneval_x_benchmark(llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting, pass_k, seed, n_ctx)
         elif "cyberseceval" in temp_prompts_filepath:
             prompt_for_shot_prompting, temp_prompts_filepath = get_prompt_for_shot_prompting_cyberseceval(prompts_filepath, shot_prompting, prompts_filepath.split("/")[2])
             temp_prompts_filepath = process_interval(temp_prompts_filepath)
@@ -64,7 +64,7 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
             handle_cyberseceval_benchmark(llm_path, temp_prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
             os.remove(prompt_for_shot_prompting_file)
         elif "mbpp" in temp_prompts_filepath:
-            handle_mbpp_benchmark(llm, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting, pass_k)
+            handle_mbpp_benchmark(llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting, pass_k, seed, n_ctx)
         else:
             print("JSONL file does not belong to any considered benchmark")
 
@@ -72,19 +72,22 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
 
     for llm_path in llm_path_list:
         for prompts_filepath in prompts_filepath_list:
-            if "cyberseceval" in prompts_filepath:
-                llm = None
-            else:
-                llm = load_llm(llm_path, n_ctx, seed)
+            #if "cyberseceval" in prompts_filepath:
+            #    llm = None
+            #else:
+            #    llm = load_llm(llm_path, n_ctx, seed)
             
-            handle_prompt_files(llm, llm_path, prompts_filepath, pass_k)
+            handle_prompt_files(llm_path, prompts_filepath, pass_k)
         
         try:
             os.system("rm -rf ~/.cache/evalplus/*")
         except Exception as e:
             print(f"Error clearing cache: {e}")
 
-def handle_humaneval_x_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting, pass_k):
+def handle_humaneval_x_benchmark(llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting, pass_k, seed, n_ctx):
+    
+    list_of_seeds = [seed + i for i in range(pass_k)]
+    
     with open(prompts_filepath, 'r') as file:
         lines = file.readlines()
         for line in lines:
@@ -93,7 +96,8 @@ def handle_humaneval_x_benchmark(llm, llm_path, prompts_filepath, prompt_for_sho
             prompt_from_file = entry.get("prompt", "")
             prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
             language = extract_language(prompts_filepath)
-            execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv"), max_tokens, "humaneval_x", llm, save_output_flag, language, pass_k)
+            for sd in list_of_seeds:
+                execute_llm(task_id, prompt, llm_path, os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv"), max_tokens, "humaneval_x", save_output_flag, language, sd, n_ctx)
             sleep_between_executions(secs=SLEEP_TIME)
     
     scores = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath), pass_k)
@@ -106,7 +110,7 @@ def handle_humaneval_x_benchmark(llm, llm_path, prompts_filepath, prompt_for_sho
 
     if pass_k == 1:
         benchmark_utils.add_score_in_csv(results_path, "Pass@1", pass_1)
-    if pass_k == 10:
+    elif pass_k == 10:
         benchmark_utils.add_score_in_csv(results_path, "Pass@1", pass_1)
         benchmark_utils.add_score_in_csv(results_path, "Pass@10", pass_10)
     elif pass_k == 100:
@@ -118,9 +122,12 @@ def handle_humaneval_x_benchmark(llm, llm_path, prompts_filepath, prompt_for_sho
     benchmark_utils.add_score_in_csv(results_path, "CodeBLEU", codebleu)
     benchmark_utils.add_score_in_csv(results_path, "SacreBLEU", sacrebleu)
 
-def handle_mbpp_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting, pass_k):
+def handle_mbpp_benchmark(llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, save_output_flag, SLEEP_TIME, shot_prompting, pass_k, seed, n_ctx):
     change_mbpp_filepath("benchmarks/evalplus/evalplus/data/mbpp.py", os.path.basename(prompts_filepath))
     results_path = os.path.join("results", "mbpp", f"mbpp_{shot_prompting}_shot.csv")
+    
+    list_of_seeds = [seed + i for i in range(pass_k)]
+
     with open(prompts_filepath, 'r') as file:
         lines = file.readlines()
         for line in lines:
@@ -129,28 +136,92 @@ def handle_mbpp_benchmark(llm, llm_path, prompts_filepath, prompt_for_shot_promp
             prompt_from_file = entry.get("prompt", "")
             prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
 
-            execute_llm(str(task_id), prompt, llm_path, results_path, max_tokens, "mbpp", llm, save_output_flag, None, pass_k)
+            for sd in list_of_seeds:
+                execute_llm(str(task_id), prompt, llm_path, results_path, max_tokens, "mbpp", save_output_flag, None, sd, n_ctx)
             sleep_between_executions(secs=SLEEP_TIME)
     
-    results = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path))
-    save_mbpp_results(results, llm_path, save_output_flag, results_path)
+    results = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path), pass_k)
+    save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k)
 
-def save_mbpp_results(results, llm_path, save_output_flag, results_path):
+def save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k):
     
-    (mbpp_pass1, mbppPlus_pass1, google_bleu, codebleu, sacrebleu, 
-     mbpp_pass1_sanitized, mbppPlus_pass1_sanitized, google_bleu_sanitized, 
-     codebleu_sanitized, sacrebleu_sanitized) = results
+    (mbpp_unsan_pass_1, mbpp_san_pass_1, mbppPlus_unsan_pass_1, mbppPlus_san_pass_1, 
+     mbpp_unsan_pass_10, mbpp_san_pass_10, mbppPlus_unsan_pass_10, mbppPlus_san_pass_10, 
+     mbpp_unsan_pass_100, mbpp_san_pass_100, mbppPlus_unsan_pass_100, mbppPlus_san_pass_100,
+     unsan_google_bleu, san_google_bleu, unsan_codebleu, san_codebleu, unsan_sacrebleu, san_sacrebleu) = results
+    
+    print("----------------------------------")
+    print(results)
+    print("----------------------------------")
+    print(f"mbpp_unsan_pass_1 = {mbpp_unsan_pass_1}\n", f"mbpp_san_pass_1 = {mbpp_san_pass_1}\n", f"mbppPlus_unsan_pass_1 = {mbppPlus_unsan_pass_1}\n", f"mbppPlus_san_pass_1 = {mbppPlus_san_pass_1}\n", 
+    f"mbpp_unsan_pass_10 = {mbpp_unsan_pass_10}\n", f"mbpp_san_pass_10 = {mbpp_san_pass_10}\n", f"mbppPlus_unsan_pass_10 = {mbppPlus_unsan_pass_10}\n", f"mbppPlus_san_pass_10 = {mbppPlus_san_pass_10}\n", 
+    f"mbpp_unsan_pass_100 = {mbpp_unsan_pass_100}\n", f"mbpp_san_pass_100 = {mbpp_san_pass_100}\n", f"mbppPlus_unsan_pass_100 = {mbppPlus_unsan_pass_100}\n", f"mbppPlus_san_pass_100 = {mbppPlus_san_pass_100}\n", 
+    f"unsan_google_bleu = {unsan_google_bleu}\n", f"san_google_bleu = {san_google_bleu}\n", 
+    f"unsan_codebleu = {unsan_codebleu}\n", f"san_codebleu = {san_codebleu}\n", f"unsan_sacrebleu = {unsan_sacrebleu}\n", f"san_sacrebleu = {san_sacrebleu}\n")
+    print("----------------------------------")
+    
 
-    benchmark_utils.add_score_in_csv(results_path, "MBPP (unsanitized) pass@1", mbpp_pass1)
-    benchmark_utils.add_score_in_csv(results_path, "MBPP+ (unsanitized) pass@1", mbppPlus_pass1)
-    benchmark_utils.add_score_in_csv(results_path, "GoogleBLEU (unsanitized)", google_bleu)
-    benchmark_utils.add_score_in_csv(results_path, "CodeBLEU (unsanitized)", codebleu)
-    benchmark_utils.add_score_in_csv(results_path, "SacreBLEU (unsanitized)", sacrebleu)
-    benchmark_utils.add_score_in_csv(results_path, "MBPP pass@1 (sanitized)", mbpp_pass1_sanitized)
-    benchmark_utils.add_score_in_csv(results_path, "MBPP+ pass@1 (sanitized)", mbppPlus_pass1_sanitized)
-    benchmark_utils.add_score_in_csv(results_path, "GoogleBLEU (sanitized)", google_bleu_sanitized)
-    benchmark_utils.add_score_in_csv(results_path, "CodeBLEU (sanitized)", codebleu_sanitized)
-    benchmark_utils.add_score_in_csv(results_path, "SacreBLEU (sanitized)", sacrebleu_sanitized)
+
+    if pass_k not in [1,10,100]:
+        print(f"[ERROR] pass@k value (k={pass_k}) not supported - only supported pass@1, pass@10 and pass@100")
+        sys.exit(1)
+
+    if pass_k == 1:
+        print("PASS1---------------")
+        benchmark_utils.add_score_in_csv(results_path, "MBPP (unsanitized) pass@1", mbpp_unsan_pass_1)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP+ (unsanitized) pass@1", mbppPlus_unsan_pass_1)
+        benchmark_utils.add_score_in_csv(results_path, "GoogleBLEU (unsanitized)", unsan_google_bleu)
+        benchmark_utils.add_score_in_csv(results_path, "CodeBLEU (unsanitized)", unsan_codebleu)
+        benchmark_utils.add_score_in_csv(results_path, "SacreBLEU (unsanitized)", unsan_sacrebleu)
+
+        benchmark_utils.add_score_in_csv(results_path, "MBPP (sanitized) pass@1", mbpp_san_pass_1)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP+ (sanitized) pass@1", mbppPlus_san_pass_1)
+        benchmark_utils.add_score_in_csv(results_path, "GoogleBLEU (sanitized)", san_google_bleu)
+        benchmark_utils.add_score_in_csv(results_path, "CodeBLEU (sanitized)", san_codebleu)
+        benchmark_utils.add_score_in_csv(results_path, "SacreBLEU (sanitized)", san_sacrebleu)
+
+    elif pass_k == 10:
+        print("PASS10---------------")
+
+        benchmark_utils.add_score_in_csv(results_path, "MBPP (unsanitized) pass@1", mbpp_unsan_pass_1)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP+ (unsanitized) pass@1", mbppPlus_unsan_pass_1)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP (unsanitized) pass@10", mbpp_unsan_pass_10)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP+ (unsanitized) pass@10", mbppPlus_unsan_pass_10)
+        benchmark_utils.add_score_in_csv(results_path, "GoogleBLEU (unsanitized)", unsan_google_bleu)
+        benchmark_utils.add_score_in_csv(results_path, "CodeBLEU (unsanitized)", unsan_codebleu)
+        benchmark_utils.add_score_in_csv(results_path, "SacreBLEU (unsanitized)", unsan_sacrebleu)
+
+        benchmark_utils.add_score_in_csv(results_path, "MBPP (sanitized) pass@1", mbpp_san_pass_1)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP+ (sanitized) pass@1", mbppPlus_san_pass_1)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP (sanitized) pass@10", mbpp_san_pass_10)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP+ (sanitized) pass@10", mbppPlus_san_pass_10)
+        benchmark_utils.add_score_in_csv(results_path, "GoogleBLEU (sanitized)", san_google_bleu)
+        benchmark_utils.add_score_in_csv(results_path, "CodeBLEU (sanitized)", san_codebleu)
+        benchmark_utils.add_score_in_csv(results_path, "SacreBLEU (sanitized)", san_sacrebleu)
+
+    elif pass_k == 100:
+        print("PASS100---------------")
+
+        benchmark_utils.add_score_in_csv(results_path, "MBPP (unsanitized) pass@1", mbpp_unsan_pass_1)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP+ (unsanitized) pass@1", mbppPlus_unsan_pass_1)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP (unsanitized) pass@10", mbpp_unsan_pass_10)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP+ (unsanitized) pass@10", mbppPlus_unsan_pass_10)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP (unsanitized) pass@100", mbpp_unsan_pass_100)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP+ (unsanitized) pass@100", mbppPlus_unsan_pass_100)
+        benchmark_utils.add_score_in_csv(results_path, "GoogleBLEU (unsanitized)", unsan_google_bleu)
+        benchmark_utils.add_score_in_csv(results_path, "CodeBLEU (unsanitized)", unsan_codebleu)
+        benchmark_utils.add_score_in_csv(results_path, "SacreBLEU (unsanitized)", unsan_sacrebleu)
+
+        benchmark_utils.add_score_in_csv(results_path, "MBPP (sanitized) pass@1", mbpp_san_pass_1)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP+ (sanitized) pass@1", mbppPlus_san_pass_1)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP (sanitized) pass@10", mbpp_san_pass_10)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP+ (sanitized) pass@10", mbppPlus_san_pass_10)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP (sanitized) pass@100", mbpp_san_pass_100)
+        benchmark_utils.add_score_in_csv(results_path, "MBPP+ (sanitized) pass@100", mbppPlus_san_pass_100)
+        benchmark_utils.add_score_in_csv(results_path, "GoogleBLEU (sanitized)", san_google_bleu)
+        benchmark_utils.add_score_in_csv(results_path, "CodeBLEU (sanitized)", san_codebleu)
+        benchmark_utils.add_score_in_csv(results_path, "SacreBLEU (sanitized)", san_sacrebleu)
+
 
     if save_output_flag == "yes":
         save_sanitized_outputs(
