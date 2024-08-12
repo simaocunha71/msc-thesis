@@ -29,3 +29,5 @@ srun python3 main.py \
     --shot_prompting 1 \
     --samples_interval 1
 deactivate
+
+find . -maxdepth 1 -type d -name '*pymp*' -exec rm -r {} +

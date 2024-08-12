@@ -296,8 +296,8 @@ def run_mbpp_benchmark(model: str, pass_k : int) -> tuple:
         scores["MBPP (unsanitized) pass@10"], scores["MBPP (sanitized) pass@10"],
         scores["MBPP+ (unsanitized) pass@10"], scores["MBPP+ (sanitized) pass@10"],
 
-        scores["MBPP (unsanitized) pass@10"], scores["MBPP (sanitized) pass@100"],
-        scores["MBPP+ (unsanitized) pass@10"], scores["MBPP+ (sanitized) pass@100"],
+        scores["MBPP (unsanitized) pass@100"], scores["MBPP (sanitized) pass@100"],
+        scores["MBPP+ (unsanitized) pass@100"], scores["MBPP+ (sanitized) pass@100"],
 
         scores["GoogleBLEU (unsanitized)"], scores["GoogleBLEU (sanitized)"],
         scores["CodeBLEU (unsanitized)"], scores["CodeBLEU (sanitized)"],

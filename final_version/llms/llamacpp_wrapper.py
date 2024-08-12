@@ -1,14 +1,14 @@
 import os
 import measure_utils as measure_utils
 from codecarbon import OfflineEmissionsTracker
-from llama_cpp import Llama
 
 class LLAMACPP:
-    def __init__(self, label, prompt_file_path, filename, model_name, seed, n_ctx, max_tokens, benchmark_type, save_output_flag, language=None):
+    def __init__(self, llm_obj, label, prompt_file_path, filename, model_name, seed, max_tokens, benchmark_type, save_output_flag, language=None):
         """
         Inicializa a classe LLAMACPP com argumentos fornecidos.
         
         Parameters:
+        llm_obj (Llama): Objeto Llama a ser executado.
         label (str): Identificador da execução do LLM no ficheiro CSV final.
         prompt_file_path (str): Path do ficheiro de texto que contém o prompt.
         filename (str): Nome do ficheiro CSV final a adicionar o conteúdo (append).
@@ -19,6 +19,7 @@ class LLAMACPP:
         language (str, optional): Linguagem a ser executada no benchmark (argumento opcional).
         """
         self.label = label
+        self.llm_obj = llm_obj
         self.prompt_file_path = prompt_file_path
         self.filename = filename
         self.model_name = model_name
@@ -27,7 +28,6 @@ class LLAMACPP:
         self.save_output_flag = save_output_flag
         self.language = language
         self.seed = seed
-        self.n_ctx = n_ctx
 
     def read_prompt(self):
         """
@@ -41,10 +41,6 @@ class LLAMACPP:
 
         os.remove(self.prompt_file_path)
         return content
-    
-    def load_llamacpp(self):
-        return Llama(model_path=self.model_name, seed=self.seed, n_ctx=self.n_ctx, verbose=False)
-
 
     def execute_llamacpp(self, prompt):
         """
@@ -56,8 +52,7 @@ class LLAMACPP:
         Returns:
         str: A saída de texto do objeto LlamaCpp.
         """
-        llm_object = self.load_llamacpp()
-        output = llm_object(prompt=prompt, max_tokens=self.max_tokens, stop=["Q:"], echo=True)["choices"][0]["text"]
+        output = self.llm_obj(prompt=prompt, max_tokens=self.max_tokens, seed=self.seed, stop=["Q:"], echo=True)["choices"][0]["text"]
 
         return output
 
