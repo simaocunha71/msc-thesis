@@ -253,7 +253,7 @@ def main():
     parser.add_argument("--n_times", type=int, default=512, help="Number of times to execute each prompt")
     parser.add_argument("--save_output", type=str, default='no', help="'yes' to save LLM outputs in files, 'no' otherwise.")
     parser.add_argument("--samples_interval", type=str, default='all', help="Benchmark prompts interval to execute. Format: '[min_index]-[max_index]', or 'all' to use all the dataset")
-    parser.add_argument("--shot_prompting", type=int, default=0, help="Number of examples (shots) to include in the prompt to demonstrate the task. Set to 0 for zero-shot prompting, 1 for one-shot prompting, and so on.")
+    parser.add_argument("--n_shot_prompting", type=int, default=0, help="Number of examples (shots) to include in the prompt to demonstrate the task. Set to 0 for zero-shot prompting, 1 for one-shot prompting, and so on.")
     parser.add_argument("--sleep_time", type=float, default=3.0, help="Number of seconds to wait between executions.")
     parser.add_argument("--pass_k", type=int, default=1, help="Max number of k to evaluate in pass@k metric: 1, 10 or 100 (currently supported)")
     parser.add_argument("--top_p", type=float, default=0.95, help="The top-p value to use for nucleus sampling - default value is the same as in 'Purple Llama CyberSecEval: A benchmark for evaluating the cybersecurity risks of large language models'")
@@ -269,7 +269,7 @@ def main():
     N_TIMES = args.n_times
     save_output_flag = args.save_output
     samples_interval = args.samples_interval
-    shot_prompting = args.shot_prompting
+    shot_prompting = args.n_shot_prompting
     SLEEP_TIME = args.sleep_time
     pass_k = args.pass_k
     top_p = args.top_p

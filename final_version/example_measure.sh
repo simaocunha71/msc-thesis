@@ -9,6 +9,6 @@ python3 main.py \
     --n_times 1 \
     --sleep_time 1.0 \
     --save_output no \
-    --shot_prompting 1 \
+    --n_shot_prompting 1 \
     --pass_k 1 \
     --samples_interval 1
