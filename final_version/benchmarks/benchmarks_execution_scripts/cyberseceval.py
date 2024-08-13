@@ -14,7 +14,7 @@ def set_env_variables():
     #os.system('export PATH="$HOME/.cargo/bin:$PATH"')
     os.environ['PATH'] = f"{os.environ['HOME']}/.cargo/bin:{os.environ['PATH']}"
 
-def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_type, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
+def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_type, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
     """Calcula os scores do benchmark Instruct ou Autocomplete do CybersecEval"""
 
     set_env_variables()
@@ -24,6 +24,8 @@ def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_ty
         f'--max_tokens={max_tokens} ' \
         f'--seed={seed} ' \
         f'--n_ctx={n_ctx} ' \
+        f'--top_p={top_p} ' \
+        f'--temperature={temperature} ' \
         f'--save_output_flag={save_output_flag} ' \
         f'--sleep_time={SLEEP_TIME} ' \
         f'--prompt_for_shot_prompting_file={prompt_for_shot_prompting_file} ' \
@@ -51,7 +53,7 @@ def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_ty
         columns_from_json_response_file
         )
 
-def run_mitre_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
+def run_mitre_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
     'Calcula os scores do benchmark MITRE do CybersecEval'
 
     set_env_variables()
@@ -66,6 +68,8 @@ def run_mitre_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, save_o
         f'--max_tokens={max_tokens} ' \
         f'--seed={seed} ' \
         f'--n_ctx={n_ctx} ' \
+        f'--top_p={top_p} ' \
+        f'--temperature={temperature} ' \
         f'--save_output_flag={save_output_flag} ' \
         f'--sleep_time={SLEEP_TIME} ' \
         f'--prompt_for_shot_prompting_file={prompt_for_shot_prompting_file} ' \
@@ -96,7 +100,7 @@ def run_mitre_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, save_o
         columns_from_json_response_file
     )
 
-def run_interpreter_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
+def run_interpreter_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
     'Calcula os scores do benchmark Interpreter do CybersecEval'
 
     set_env_variables()
@@ -110,6 +114,8 @@ def run_interpreter_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, 
         f'--max_tokens={max_tokens} ' \
         f'--seed={seed} ' \
         f'--n_ctx={n_ctx} ' \
+        f'--top_p={top_p} ' \
+        f'--temperature={temperature} ' \
         f'--save_output_flag={save_output_flag} ' \
         f'--sleep_time={SLEEP_TIME} ' \
         f'--prompt_for_shot_prompting_file={prompt_for_shot_prompting_file} ' \
@@ -139,7 +145,7 @@ def run_interpreter_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, 
         columns_from_json_response_file
     )
 
-def run_frr_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
+def run_frr_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
     'Calcula os scores do benchmark False Rate Refusal do CybersecEval'
 
     set_env_variables()
@@ -150,6 +156,8 @@ def run_frr_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, save_out
         f'--max_tokens={max_tokens} ' \
         f'--seed={seed} ' \
         f'--n_ctx={n_ctx} ' \
+        f'--top_p={top_p} ' \
+        f'--temperature={temperature} ' \
         f'--save_output_flag={save_output_flag} ' \
         f'--sleep_time={SLEEP_TIME} ' \
         f'--prompt_for_shot_prompting_file={prompt_for_shot_prompting_file} ' \
@@ -177,7 +185,7 @@ def run_frr_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, save_out
         columns_from_json_response_file
     )
 
-def run_canary_exploit_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
+def run_canary_exploit_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
     'Calcula os scores do benchmark Vulnerability Exploitation do CybersecEval'
 
     set_env_variables()
@@ -188,6 +196,8 @@ def run_canary_exploit_benchmark(model, prompts_filepath, max_tokens, seed, n_ct
         f'--max_tokens={max_tokens} ' \
         f'--seed={seed} ' \
         f'--n_ctx={n_ctx} ' \
+        f'--top_p={top_p} ' \
+        f'--temperature={temperature} ' \
         f'--save_output_flag={save_output_flag} ' \
         f'--sleep_time={SLEEP_TIME} ' \
         f'--prompt_for_shot_prompting_file={prompt_for_shot_prompting_file} ' \

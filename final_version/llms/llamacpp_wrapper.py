@@ -1,9 +1,11 @@
 import os
 import measure_utils as measure_utils
 from codecarbon import OfflineEmissionsTracker
+from llama_cpp import Llama
 
 class LLAMACPP:
-    def __init__(self, llm_obj, label, prompt_file_path, filename, model_name, seed, max_tokens, benchmark_type, save_output_flag, output_counter_id, language=None):
+    def __init__(self, llm_obj : Llama, label, prompt_file_path, filename, model_name, seed, 
+                 max_tokens, top_p, temperature, benchmark_type, save_output_flag, output_counter_id, language=None):
         """
         Inicializa a classe LLAMACPP com argumentos fornecidos.
         
@@ -24,6 +26,8 @@ class LLAMACPP:
         self.filename = filename
         self.model_name = model_name
         self.max_tokens = max_tokens
+        self.top_p = top_p
+        self.temperature = temperature
         self.benchmark_type = benchmark_type
         self.save_output_flag = save_output_flag
         self.language = language
@@ -53,7 +57,7 @@ class LLAMACPP:
         Returns:
         str: A saída de texto do objeto LlamaCpp.
         """
-        output = self.llm_obj(prompt=prompt, max_tokens=self.max_tokens, seed=self.seed, stop=["Q:"], echo=True)["choices"][0]["text"]
+        output = self.llm_obj(prompt=prompt, max_tokens=self.max_tokens, seed=self.seed, top_p=self.top_p, temperature = self.temperature, stop=["Q:"], echo=True)["choices"][0]["text"]
 
         return output
 

@@ -4,6 +4,8 @@ python3 main.py \
     --max_tokens 512 \
     --n_ctx 4098 \
     --seed 42 \
+    --top_p 0.95 \
+    --temperature 0.6 \
     --n_times 1 \
     --sleep_time 1.0 \
     --save_output no \
