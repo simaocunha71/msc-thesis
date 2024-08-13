@@ -24,7 +24,8 @@ def execute_llm(llm_obj, task_id, prompt, llm_path, CSV_FILENAME, max_tokens, to
         print(f"Não existe classe capaz de executar o LLM com o path {llm_path}")
         sys.exit(-1)
         
-def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting, SLEEP_TIME, pass_k, top_p, temperature):
+def start_measure(llm_path_list: list, prompts_filepath_list: list, max_tokens: int, n_ctx: int, seed: int, save_output_flag: str, 
+                  samples_interval: str, shot_prompting: int, SLEEP_TIME: float, pass_k: int, top_p: float, temperature: float):
     """
     Execute measurement scripts for all considered models.
 
@@ -37,6 +38,10 @@ def start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed,
         save_output_flag (str): Indicates if the results should be saved ('yes' or 'no').
         samples_interval (str): Sample interval to execute. Format: '[min_index]-[max_index]', or 'all' to use the entire dataset.
         shot_prompting (int): Number of examples for N-Shot prompting.
+        SLEEP_TIME (float): Sleep time between executions.
+        pass_k: Max number of k to evaluate in pass@k metric: 1, 10 or 100 (currently supported)
+        top_p (float): The top-p value to use for nucleus sampling.
+        temperature (float): The temperature to use for sampling
     """
 
     def process_interval(prompts_filepath):
@@ -149,25 +154,12 @@ def save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k)
      mbpp_unsan_pass_10, mbpp_san_pass_10, mbppPlus_unsan_pass_10, mbppPlus_san_pass_10, 
      mbpp_unsan_pass_100, mbpp_san_pass_100, mbppPlus_unsan_pass_100, mbppPlus_san_pass_100,
      unsan_google_bleu, san_google_bleu, unsan_codebleu, san_codebleu, unsan_sacrebleu, san_sacrebleu) = results
-    
-    print("----------------------------------")
-    print(results)
-    print("----------------------------------")
-    print(f"mbpp_unsan_pass_1 = {mbpp_unsan_pass_1}\n", f"mbpp_san_pass_1 = {mbpp_san_pass_1}\n", f"mbppPlus_unsan_pass_1 = {mbppPlus_unsan_pass_1}\n", f"mbppPlus_san_pass_1 = {mbppPlus_san_pass_1}\n", 
-    f"mbpp_unsan_pass_10 = {mbpp_unsan_pass_10}\n", f"mbpp_san_pass_10 = {mbpp_san_pass_10}\n", f"mbppPlus_unsan_pass_10 = {mbppPlus_unsan_pass_10}\n", f"mbppPlus_san_pass_10 = {mbppPlus_san_pass_10}\n", 
-    f"mbpp_unsan_pass_100 = {mbpp_unsan_pass_100}\n", f"mbpp_san_pass_100 = {mbpp_san_pass_100}\n", f"mbppPlus_unsan_pass_100 = {mbppPlus_unsan_pass_100}\n", f"mbppPlus_san_pass_100 = {mbppPlus_san_pass_100}\n", 
-    f"unsan_google_bleu = {unsan_google_bleu}\n", f"san_google_bleu = {san_google_bleu}\n", 
-    f"unsan_codebleu = {unsan_codebleu}\n", f"san_codebleu = {san_codebleu}\n", f"unsan_sacrebleu = {unsan_sacrebleu}\n", f"san_sacrebleu = {san_sacrebleu}\n")
-    print("----------------------------------")
-    
-
 
     if pass_k not in [1,10,100]:
         print(f"[ERROR] pass@k value (k={pass_k}) not supported - only supported pass@1, pass@10 and pass@100")
         sys.exit(1)
 
     if pass_k == 1:
-        print("PASS1---------------")
         benchmark_utils.add_score_in_csv(results_path, "MBPP (unsanitized) pass@1", mbpp_unsan_pass_1)
         benchmark_utils.add_score_in_csv(results_path, "MBPP+ (unsanitized) pass@1", mbppPlus_unsan_pass_1)
         benchmark_utils.add_score_in_csv(results_path, "GoogleBLEU (unsanitized)", unsan_google_bleu)
@@ -181,8 +173,6 @@ def save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k)
         benchmark_utils.add_score_in_csv(results_path, "SacreBLEU (sanitized)", san_sacrebleu)
 
     elif pass_k == 10:
-        print("PASS10---------------")
-
         benchmark_utils.add_score_in_csv(results_path, "MBPP (unsanitized) pass@1", mbpp_unsan_pass_1)
         benchmark_utils.add_score_in_csv(results_path, "MBPP+ (unsanitized) pass@1", mbppPlus_unsan_pass_1)
         benchmark_utils.add_score_in_csv(results_path, "MBPP (unsanitized) pass@10", mbpp_unsan_pass_10)
@@ -200,8 +190,6 @@ def save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k)
         benchmark_utils.add_score_in_csv(results_path, "SacreBLEU (sanitized)", san_sacrebleu)
 
     elif pass_k == 100:
-        print("PASS100---------------")
-
         benchmark_utils.add_score_in_csv(results_path, "MBPP (unsanitized) pass@1", mbpp_unsan_pass_1)
         benchmark_utils.add_score_in_csv(results_path, "MBPP+ (unsanitized) pass@1", mbppPlus_unsan_pass_1)
         benchmark_utils.add_score_in_csv(results_path, "MBPP (unsanitized) pass@10", mbpp_unsan_pass_10)

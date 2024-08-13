@@ -7,6 +7,18 @@
 | RPD                         | [aqui](https://github.com/simaocunha71/thesis-repository/blob/main/docs/RPD.pdf)                            |
 | Apresentação do RPD         | [aqui](https://github.com/simaocunha71/thesis-repository/blob/main/docs/Apresenta%C3%A7%C3%A3o%20RPD.pdf)   |
 
+### Lista LLMS:
+Estou a ver agora que LLMs vou usar para os resultados finais e vou colocar o cluster a fazer download dos modelos. Como em cada um dos modelos que enviaste existem várias versões com vários níveis de quantização, escolhi estes (escolhi o modelo mais pesado e com a nota de recomendado em cada uma das listas):
+https://huggingface.co/bartowski/gemma-2-27b-it-GGUF/blob/main/gemma-2-27b-it-Q6_K_L.gguf (Size of remote file: 22.6 GB)
+https://huggingface.co/bartowski/Meta-Llama-3-8B-Instruct-GGUF/blob/main/Meta-Llama-3-8B-Instruct-Q6_K.gguf (Size of remote file: 6.6 GB)
+https://huggingface.co/TheBloke/CodeLlama-7B-Instruct-GGUF/blob/main/codellama-7b-instruct.Q5_K_M.gguf (Size of remote file: 4.78 GB)
+https://huggingface.co/TheBloke/Mixtral-8x7B-v0.1-GGUF/blob/main/mixtral-8x7b-v0.1.Q5_K_M.gguf (Size of remote file: 32.2 GB)
+https://huggingface.co/second-state/StarCoder2-15B-GGUF/blob/main/starcoder2-15b-Q5_K_S.gguf (Size of remote file: 11 GB)
+https://huggingface.co/google/codegemma-1.1-7b-it-GGUF/blob/main/codegemma-1.1-7b-it.gguf (Size of remote file: 34.2 GB)
+
+Judge LLM: https://huggingface.co/TheBloke/deepseek-coder-6.7B-instruct-GGUF/blob/main/deepseek-coder-6.7b-instruct.Q5_K_M.gguf (Size of remote file: 4.79 GB)
+
+Expansion LLM: https://huggingface.co/TheBloke/Starling-LM-7B-alpha-GGUF/blob/main/starling-lm-7b-alpha.Q5_K_S.gguf (Size of remote file: 5 GB)
 
 ### LLMs a usar
 tal como falamos, aqui vai uma sugestão de modelos para executarmos.

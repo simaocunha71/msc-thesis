@@ -24,8 +24,8 @@ def write_jsonl(filename: str, data: Iterable[Dict], append: bool = False):
                 fp.write((json.dumps(x) + "\n").encode('utf-8'))
 
 # Argumentos de setup
-model = sys.argv[1]  # Nome do LLM
-label = sys.argv[2]  # Label do prompt
+model = sys.argv[1]            # Nome do LLM
+label = sys.argv[2]            # Label do prompt
 output_got_file = sys.argv[3]  # Ficheiro c/ output gerado pelo LLM em formato string
 
 
@@ -35,7 +35,6 @@ with open(output_got_file, 'r') as prompt_file:
 samples = [
     dict(
         task_id=label,
-        #completion=output_got
         generation=output_got
 
 

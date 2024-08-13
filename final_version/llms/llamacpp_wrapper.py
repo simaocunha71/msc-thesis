@@ -1,10 +1,9 @@
 import os
 import measure_utils as measure_utils
 from codecarbon import OfflineEmissionsTracker
-from llama_cpp import Llama
 
 class LLAMACPP:
-    def __init__(self, llm_obj : Llama, label, prompt_file_path, filename, model_name, seed, 
+    def __init__(self, llm_obj, label, prompt_file_path, filename, model_name, seed, 
                  max_tokens, top_p, temperature, benchmark_type, save_output_flag, output_counter_id, language=None):
         """
         Inicializa a classe LLAMACPP com argumentos fornecidos.
@@ -15,9 +14,13 @@ class LLAMACPP:
         prompt_file_path (str): Path do ficheiro de texto que contém o prompt.
         filename (str): Nome do ficheiro CSV final a adicionar o conteúdo (append).
         model_name (str): Path do LLM.
+        seed (int): Seed for generating reproducible results.
         max_tokens (int): Número máximo de tokens a ser usado pelo LLM na resposta.
+        top_p (float): The top-p value to use for nucleus sampling.
+        temperature (float): The temperature to use for sampling
         benchmark_type (str): Tipo de benchmark a executar (util para a geração das samples).
         save_output_flag (str): Flag para guardar outputs em ficheiros (true) ou não (false)
+        output_counter_id (int): Execution counter of the k generations for the pass@k metric
         language (str, optional): Linguagem a ser executada no benchmark (argumento opcional).
         """
         self.label = label
