@@ -1,23 +1,45 @@
 import os, csv, json, sys, glob, re, time
 
-def save_sanitized_outputs(file_path, output_folder, llama_folder, language_folder):
-     """Guarda as versões sanitized dos outputs gerados - apenas os outputs do MBPP"""
-     #NOTE: Pode ser boa ideia guardar estes outputs dentro de uma pasta "sanitized/" em vez de estar tudo junto com os outputs normais
-     with open(file_path, 'r') as file:
+def save_sanitized_outputs(file_path, output_folder, llm_name_folder, benchmark_folder, pass_k):
+    """Guarda as versões sanitized dos outputs gerados - apenas os outputs do MBPP"""
+    
+    # Dicionário para armazenar as linhas por label
+    outputs_by_label = {}
+
+    with open(file_path, 'r') as file:
         for line in file:
             # Parse the JSON line
             json_line = json.loads(line)
             
-            # Extract the "generation" value
+            # Extrair o label e a geração
             label = json_line.get('task_id')
             generation = json_line.get('generation')
             
-            if generation:
-                save_output_to_file(generation, label+"_sanitized", None, output_folder, llama_folder, language_folder)
-            else:
-                save_output_to_file(generation, label+"_sanitized_EMPTY", None, output_folder, llama_folder, language_folder)
-
-
+            if label not in outputs_by_label:
+                outputs_by_label[label] = []
+            
+            outputs_by_label[label].append(generation)
+            
+    # Iterar sobre os outputs organizados por label
+    for label, generations in outputs_by_label.items():
+        for idx, generation in enumerate(generations, start=1):
+            # Definir o prefixo para a pasta e o arquivo
+            prefix = "sanitized_" if generation else "sanitized_EMPTY_"
+            
+            # Criar o novo label com o prefixo
+            sanitized_label = f"{prefix}{label}"
+            
+            # Chamar a função save_output_to_file para salvar na pasta com o nome correto
+            save_output_to_file(
+                output=generation,
+                label_folder=label,
+                label=sanitized_label,
+                language=None,  # Aqui estou assumindo que o idioma não é relevante, ajuste conforme necessário
+                output_folder=output_folder,
+                llm_name_folder=llm_name_folder,
+                benchmark_folder=benchmark_folder,
+                output_id=idx
+            )
 def shrink_json_or_jsonl(file_path, min_index, max_index):
     """
     Shrinks a JSON or JSONL file to only include entries/lines between min_index and max_index (inclusive).
@@ -132,7 +154,7 @@ def print_measure_information(model_name, prompt_id):
     print(f"> Model: {model_name}")
     print(f"> Prompt: {prompt_id}\n")
 
-def save_output_to_file(output, label, language, output_folder, llama_folder, language_folder):
+def save_output_to_file(output, label_folder, label, language, output_folder, llm_name_folder, benchmark_folder, output_id):
     """
     Guarda os outputs gerados pelo LLM em ficheiros cujo file system é o seguinte:
     "returned_prompts/"
@@ -154,27 +176,39 @@ def save_output_to_file(output, label, language, output_folder, llama_folder, la
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
-    llama_path = os.path.join(output_folder, llama_folder)
-    if not os.path.exists(llama_path):
-        os.makedirs(llama_path)
+    llm_path = os.path.join(output_folder, llm_name_folder)
+    if not os.path.exists(llm_path):
+        os.makedirs(llm_path)
 
-    language_path = os.path.join(llama_path, language_folder)
-    if not os.path.exists(language_path):
-        os.makedirs(language_path)
+    benchmark_path = os.path.join(llm_path, benchmark_folder)
+    if not os.path.exists(benchmark_path):
+        os.makedirs(benchmark_path)
 
     # Determinar o nome do ficheiro e o caminho de saída
     #NOTE: label deve estar no formato "[nome do benchmark]/[1..N]"
     if language is not None:
+        language_path = os.path.join(benchmark_path, language)
+        if not os.path.exists(language_path):
+            os.makedirs(language_path)
+
+        label_path = os.path.join(language_path, label_folder.replace('/', '_'))
+        if not os.path.exists(label_path):
+            os.makedirs(label_path)
+
         if language == "python":
-            output_filename = f"{label.replace('/', '_')}.py"
+            output_filename = f"{label.replace('/', '_')}_gen-{output_id}.py"
         elif language == "rust":
-            output_filename = f"{label.replace('/', '_')}.rs"
+            output_filename = f"{label.replace('/', '_')}-gen-{output_id}.rs"
         else:
-            output_filename = f"{label.replace('/', '_')}.{language}"
-        output_path = os.path.join(language_path, output_filename)
+            output_filename = f"{label.replace('/', '_')}-gen-{output_id}.{language}"
+        output_path = os.path.join(label_path, output_filename)
     else:
-        output_filename = f"{label.replace('/', '_')}.py"
-        output_path = os.path.join(language_path, output_filename)
+        label_path = os.path.join(benchmark_path, label_folder.replace('/', '_'))
+        if not os.path.exists(label_path):
+            os.makedirs(label_path)
+
+        output_filename = f"{label.replace('/', '_')}-gen-{output_id}.py"
+        output_path = os.path.join(label_path, output_filename)
 
     # Salvar o output no ficheiro
     with open(output_path, 'w') as output_file:

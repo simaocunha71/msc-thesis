@@ -3,7 +3,7 @@ import measure_utils as measure_utils
 from codecarbon import OfflineEmissionsTracker
 
 class LLAMACPP:
-    def __init__(self, llm_obj, label, prompt_file_path, filename, model_name, seed, max_tokens, benchmark_type, save_output_flag, language=None):
+    def __init__(self, llm_obj, label, prompt_file_path, filename, model_name, seed, max_tokens, benchmark_type, save_output_flag, output_counter_id, language=None):
         """
         Inicializa a classe LLAMACPP com argumentos fornecidos.
         
@@ -28,6 +28,7 @@ class LLAMACPP:
         self.save_output_flag = save_output_flag
         self.language = language
         self.seed = seed
+        self.output_counter_id = output_counter_id
 
     def read_prompt(self):
         """
@@ -94,14 +95,14 @@ class LLAMACPP:
         
         if self.save_output_flag == "yes":
             if self.benchmark_type == "humaneval_x":
-                measure_utils.save_output_to_file(output, self.label, self.language, "returned_prompts", 
+                measure_utils.save_output_to_file(output, self.label, self.label, self.language, "returned_prompts", 
                                                   measure_utils.extract_llm_name(self.model_name), 
-                                                  "humaneval_x")
+                                                  "humaneval_x", self.output_counter_id)
 
             elif self.benchmark_type == "mbpp":
-                measure_utils.save_output_to_file(output, (self.label).replace("/","_"), None, "returned_prompts", 
+                measure_utils.save_output_to_file(output, (self.label).replace("/","_"), (self.label).replace("/","_"), None, "returned_prompts", 
                                                   measure_utils.extract_llm_name(self.model_name), 
-                                                  "mbpp")
+                                                  "mbpp", self.output_counter_id)
 
         measure_utils.add_measurement_to_csv(self.filename, measure_utils.extract_llm_name(self.model_name), 
                                              self.label, tracker)
