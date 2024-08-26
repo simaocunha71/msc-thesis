@@ -4,13 +4,22 @@
             "llms/llama_c++/models/llama-2-7b.Q2_K.gguf",
             "llms/llama_c++/models/llama-2-7b.Q3_K_L.gguf",
             "llms/llama_c++/models/llama-2-7b.Q3_K_M.gguf",
-            "llms/llama_c++/models/llama-2-7b.Q3_K_S.gguf"
+            "llms/llama_c++/models/llama-2-7b.Q3_K_S.gguf",
+            "llms/llama_c++/models/codellama-7b-instruct.Q5_K_M.gguf",
+            "llms/llama_c++/models/deepseek-coder-6.7b-instruct.Q5_K_M.gguf",
+            "llms/llama_c++/models/Meta-Llama-3-8B-Instruct-Q6_K.gguf",
+            "llms/llama_c++/models/starling-lm-7b-alpha.Q5_K_S.gguf",
+            "llms/llama_c++/models/codegeex4-all-9b-Q6_K_L.gguf",
+            "llms/llama_c++/models/Tess-10.7B-v2.0-Q6_K.gguf",
+            "llms/llama_c++/models/orca-2-13b.Q3_K_M.gguf",
+            "llms/llama_c++/models/mistral-7b-instruct-v0.1.Q5_K_M.gguf",
+            "llms/llama_c++/models/zephyr-7b-alpha.Q4_K_M.gguf"
         ]
     },
     {
-        "TRANSFORMERS": [
-            "llms/transformers/models/transformers_a",
-            "llms/transformers/models/transformers_b"
+        "LLM_FAMILY_EXAMPLE": [
+            "first_llm_path",
+            "second_llm_path"
         ]
     }
 ]

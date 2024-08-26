@@ -3,8 +3,8 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from utils import autocompleteOrInstruct_json_to_csv, mitre_json_to_csv, interpreter_json_to_csv, frr_json_to_csv, canary_exploit_json_to_csv
 
 # Global definitions for LLMs
-JUDGE_LLM = "LLAMACPP::llms/llama_c++/models/llama-2-7b.Q3_K_M.gguf::random_string"
-EXPANSION_LLM = "LLAMACPP::llms/llama_c++/models/llama-2-7b.Q3_K_S.gguf::random_string"
+JUDGE_LLM = "LLAMACPP::llms/llama_c++/models/orca-2-13b.Q3_K_M.gguf::random_string"
+EXPANSION_LLM = "LLAMACPP::llms/llama_c++/models/Tess-10.7B-v2.0-Q6_K.gguf::random_string"
 
 def set_env_variables():
     #Variáveis de ambiente necessárias para a execução do benchmark
