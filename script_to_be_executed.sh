@@ -1,6 +1,6 @@
 #!/bin/bash
-#SBATCH --job-name=setups
-#SBATCH --time=1-00:00:00
+#SBATCH --job-name=all_results
+#SBATCH --time=3-00:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
@@ -18,15 +18,15 @@ export WEGGLI_PATH=weggli
 export PATH="$HOME/.cargo/bin:$PATH"
 
 srun python3 main.py \
-    --llm_path llms/llama_c++/models/codellama-7b-instruct.Q5_K_M.gguf \
-               llms/llama_c++/models/deepseek-coder-6.7b-instruct.Q5_K_M.gguf \
-               llms/llama_c++/models/Meta-Llama-3-8B-Instruct-Q6_K.gguf \
-               llms/llama_c++/models/starling-lm-7b-alpha.Q5_K_S.gguf \
-               llms/llama_c++/models/codegeex4-all-9b-Q6_K_L.gguf \
-               llms/llama_c++/models/Tess-10.7B-v2.0-Q6_K.gguf \
-               llms/llama_c++/models/orca-2-13b.Q3_K_M.gguf \
-               llms/llama_c++/models/mistral-7b-instruct-v0.1.Q5_K_M.gguf \
-               llms/llama_c++/models/zephyr-7b-alpha.Q4_K_M.gguf \
+    --llm_path llms/models/codellama-7b-instruct.Q5_K_M.gguf \
+               llms/models/deepseek-coder-6.7b-instruct.Q5_K_M.gguf \
+               llms/models/Meta-Llama-3-8B-Instruct-Q6_K.gguf \
+               llms/models/starling-lm-7b-alpha.Q5_K_S.gguf \
+               llms/models/codegeex4-all-9b-Q6_K_L.gguf \
+               llms/models/Tess-10.7B-v2.0-Q6_K.gguf \
+               llms/models/orca-2-13b.Q3_K_M.gguf \
+               llms/models/mistral-7b-instruct-v0.1.Q5_K_M.gguf \
+               llms/models/zephyr-7b-alpha.Q4_K_M.gguf \
     --benchmarks mbpp \
     --max_tokens 512 \
     --n_ctx 4098 \

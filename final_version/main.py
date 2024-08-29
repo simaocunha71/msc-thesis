@@ -82,7 +82,7 @@ def start_measure(llm_path_list: list, prompts_filepath_list: list, max_tokens: 
             else:
                 llm_obj = load_llm(llm_path, n_ctx, seed)
             
-            handle_prompt_files(llm_obj, llm_path, prompts_filepath, pass_k)
+            handle_prompt_files("llm_obj", llm_path, prompts_filepath, pass_k)
         
         try:
             os.system("rm -rf ~/.cache/evalplus/*")
@@ -133,17 +133,17 @@ def handle_mbpp_benchmark(llm_obj, llm_path, prompts_filepath, prompt_for_shot_p
     
     list_of_seeds = [seed + i for i in range(pass_k)]
 
-    #with open(prompts_filepath, 'r') as file:
-    #    lines = file.readlines()
-    #    for line in lines:
-    #        entry = json.loads(line)
-    #        task_id = entry.get("task_id", "")
-    #        prompt_from_file = entry.get("prompt", "")
-    #        prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
-#
-    #        for idx, sd in enumerate(list_of_seeds, start=1):
-    #            execute_llm(llm_obj, str(task_id), prompt, llm_path, results_path, max_tokens, top_p, temperature, "mbpp", save_output_flag, None, sd, idx)
-    #        sleep_between_executions(secs=SLEEP_TIME)
+    with open(prompts_filepath, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            entry = json.loads(line)
+            task_id = entry.get("task_id", "")
+            prompt_from_file = entry.get("prompt", "")
+            prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
+
+            for idx, sd in enumerate(list_of_seeds, start=1):
+                execute_llm(llm_obj, str(task_id), prompt, llm_path, results_path, max_tokens, top_p, temperature, "mbpp", save_output_flag, None, sd, idx)
+            sleep_between_executions(secs=SLEEP_TIME)
     
     results = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path), pass_k)
     save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k)

@@ -1,0 +1,2 @@
+def common_in_nested_lists(nested_lists):
+    return set(nested_lists[0]).intersection(*map(set, nested_lists[1:]))
