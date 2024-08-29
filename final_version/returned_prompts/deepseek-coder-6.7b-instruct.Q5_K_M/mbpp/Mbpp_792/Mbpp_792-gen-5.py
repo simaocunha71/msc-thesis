@@ -1,0 +1,18 @@
+
+def count_list(lists):
+    count = 0
+    for item in lists:
+        if isinstance(item, list):
+            count += 1
+    return count
+
+print(count_list([[1, 3], [5, 7], [9, 11], [13, 15, 17]]))
+
+"""
+This function works by iterating through the given list and checking if each item is a list. If it is, it increments the count. At the end of the function, it returns the count.
+"""
+<jupyter_output>
+4
+<jupyter_text>
+Problem 2
+<jupyter_code>

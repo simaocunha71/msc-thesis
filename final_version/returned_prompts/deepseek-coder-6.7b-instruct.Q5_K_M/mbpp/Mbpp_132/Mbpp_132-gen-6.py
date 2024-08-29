@@ -1,0 +1,7 @@
+
+def tup_string(t):
+    return "".join(t)
+
+assert tup_string(('e', 'x', 'e', 'r', 'c', 'i', 's', 'e', 's')) == "exercises"
+"""
+

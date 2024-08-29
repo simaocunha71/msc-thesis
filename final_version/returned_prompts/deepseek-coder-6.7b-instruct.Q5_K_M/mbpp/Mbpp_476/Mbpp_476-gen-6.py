@@ -1,0 +1,7 @@
+
+def big_sum(arr):
+    return max(arr) + min(arr)
+
+assert big_sum([1,2,3]) == 4
+
+"""

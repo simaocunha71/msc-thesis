@@ -1,0 +1,19 @@
+  let rowCount = grid.length;
+  let colCount = grid[0].length;
+
+  let totalWater = 0;
+  for (let i = 0; i < rowCount; i++) {
+    for (let j = 0; j < colCount; j++) {
+      if (grid[i][j] == 1) {
+        totalWater += 1;
+      }
+    }
+  }
+
+  let totalBucketCount = Math.ceil(totalWater / capacity);
+
+  return totalBucketCount;
+}
+
+
+

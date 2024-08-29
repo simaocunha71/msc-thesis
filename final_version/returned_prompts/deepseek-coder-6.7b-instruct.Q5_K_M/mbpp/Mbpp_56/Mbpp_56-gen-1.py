@@ -1,0 +1,14 @@
+
+def check(n):
+    rev = int(str(n)[::-1])
+    return n == 2*rev - 1
+
+print(check(70)) # False
+
+# Alternative solution
+def check(n):
+    rev = int(str(n)[::-1])
+    return n == 2*rev - 1
+
+print(check(70)) # False
+

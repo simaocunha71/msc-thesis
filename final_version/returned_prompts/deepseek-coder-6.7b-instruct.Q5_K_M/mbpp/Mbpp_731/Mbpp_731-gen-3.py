@@ -1,0 +1,12 @@
+def lateralsurface_cone(r, h):
+    import math
+    return math.pi * r * math.sqrt(r**2 + h**2)
+
+print(lateralsurface_cone(5,12))
+
+# 204.20352248333654
+<jupyter_output>
+204.20352248333654
+<jupyter_text>
+Question 2
+<jupyter_code>

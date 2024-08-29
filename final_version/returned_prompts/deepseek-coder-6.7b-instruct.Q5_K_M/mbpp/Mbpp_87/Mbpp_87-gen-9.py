@@ -1,0 +1,1 @@
+def merge_dictionaries_three(dict1,

@@ -133,17 +133,17 @@ def handle_mbpp_benchmark(llm_obj, llm_path, prompts_filepath, prompt_for_shot_p
     
     list_of_seeds = [seed + i for i in range(pass_k)]
 
-    with open(prompts_filepath, 'r') as file:
-        lines = file.readlines()
-        for line in lines:
-            entry = json.loads(line)
-            task_id = entry.get("task_id", "")
-            prompt_from_file = entry.get("prompt", "")
-            prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
-
-            for idx, sd in enumerate(list_of_seeds, start=1):
-                execute_llm(llm_obj, str(task_id), prompt, llm_path, results_path, max_tokens, top_p, temperature, "mbpp", save_output_flag, None, sd, idx)
-            sleep_between_executions(secs=SLEEP_TIME)
+    #with open(prompts_filepath, 'r') as file:
+    #    lines = file.readlines()
+    #    for line in lines:
+    #        entry = json.loads(line)
+    #        task_id = entry.get("task_id", "")
+    #        prompt_from_file = entry.get("prompt", "")
+    #        prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
+#
+    #        for idx, sd in enumerate(list_of_seeds, start=1):
+    #            execute_llm(llm_obj, str(task_id), prompt, llm_path, results_path, max_tokens, top_p, temperature, "mbpp", save_output_flag, None, sd, idx)
+    #        sleep_between_executions(secs=SLEEP_TIME)
     
     results = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path), pass_k)
     save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k)
@@ -297,7 +297,7 @@ def main():
                 "prompts/humaneval_x/humaneval_java.jsonl", 
                 "prompts/humaneval_x/humaneval_js.jsonl", 
                 "prompts/humaneval_x/humaneval_python.jsonl",
-                "prompts/humaneval_x/humaneval_rust.jsonl",
+                #"prompts/humaneval_x/humaneval_rust.jsonl",
                 "prompts/cyberseceval/autocomplete/autocomplete.json",
                 "prompts/cyberseceval/instruct/instruct.json",
                 "prompts/cyberseceval/mitre/mitre_benchmark_100_per_category_with_augmentation.json",
@@ -315,8 +315,8 @@ def main():
                         "prompts/humaneval_x/humaneval_go.jsonl",
                         "prompts/humaneval_x/humaneval_java.jsonl", 
                         "prompts/humaneval_x/humaneval_js.jsonl", 
-                        "prompts/humaneval_x/humaneval_python.jsonl",
-                        "prompts/humaneval_x/humaneval_rust.jsonl"
+                        "prompts/humaneval_x/humaneval_python.jsonl"
+                        #"prompts/humaneval_x/humaneval_rust.jsonl"
                     ])
                 elif benchmark == "humaneval_x/c++":
                     prompts_filepath_list.append("prompts/humaneval_x/humaneval_cpp.jsonl")
@@ -328,8 +328,8 @@ def main():
                     prompts_filepath_list.append("prompts/humaneval_x/humaneval_js.jsonl")
                 elif benchmark == "humaneval_x/python":
                     prompts_filepath_list.append("prompts/humaneval_x/humaneval_python.jsonl")
-                elif benchmark == "humaneval_x/rust":
-                    prompts_filepath_list.append("prompts/humaneval_x/humaneval_rust.jsonl")
+                #elif benchmark == "humaneval_x/rust":
+                #    prompts_filepath_list.append("prompts/humaneval_x/humaneval_rust.jsonl")
                 elif benchmark == "cyberseceval":
                     prompts_filepath_list.extend([
                         "prompts/cyberseceval/autocomplete/autocomplete.json",

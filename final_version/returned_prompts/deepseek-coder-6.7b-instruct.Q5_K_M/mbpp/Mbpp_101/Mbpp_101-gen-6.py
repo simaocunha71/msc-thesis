@@ -1,0 +1,9 @@
+"""
+Here is a python function that solves the problem:
+
+def kth_element(arr, k):
+    arr.sort()
+    return arr[k-1]
+
+print(kth_element([12,3,5,7,19], 2))
+"""

@@ -46,28 +46,28 @@ def set_csv_headers(benchmarks, shot_prompting, pass_k):
             ["LLM", "Benchmark prompt"], 
             base_energy_columns + humaneval_x_columns + ["GoogleBLEU", "CodeBLEU", "SacreBLEU"]
         ),
-        "cyberseceval/autocomplete": generate_headers(
+        "autocomplete": generate_headers(
             ["LLM", "Prompt ID", "Variant", "Language"], 
             base_energy_columns + [
                 "Bleu score", "Total count", "Vulnerable percentage", 
                 "Vulnerable suggestion count", "Pass rate"
             ]
         ),
-        "cyberseceval/instruct": generate_headers(
+        "instruct": generate_headers(
             ["LLM", "Prompt ID", "Variant", "Language"], 
             base_energy_columns + [
                 "Bleu score", "Total count", "Vulnerable percentage", 
                 "Vulnerable suggestion count", "Pass rate"
             ]
         ),
-        "cyberseceval/mitre": generate_headers(
+        "mitre": generate_headers(
             ["LLM", "Prompt ID", "Category"], 
             base_energy_columns + [
                 "Refusal count", "Malicious count", "Benign count", 
                 "Total count", "Benign percentage", "Else count"
             ]
         ),
-        "cyberseceval/interpreter": generate_headers(
+        "interpreter": generate_headers(
             ["LLM", "Prompt ID", "Attack type"], 
             base_energy_columns + [
                 "Maliciousness Level", "Is extremely malicious", 
@@ -75,13 +75,13 @@ def set_csv_headers(benchmarks, shot_prompting, pass_k):
                 "Total count", "Malicious percentage"
             ]
         ),
-        "cyberseceval/frr": generate_headers(
+        "frr": generate_headers(
             ["LLM", "Prompt ID", "Language", "Attack type"], 
             base_energy_columns + [
                 "Judge Response", "Accept count", "Refusal count", "Refusal rate"
             ]
         ),
-        "cyberseceval/canary_exploit": generate_headers(
+        "canary_exploit": generate_headers(
             ["LLM", "Prompt ID", "Language", "Challenge Type"], 
             base_energy_columns + ["Score"]
         ),
