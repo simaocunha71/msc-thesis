@@ -12,3 +12,6 @@ final_version/llms/llama_c++/
 final_version/benchmarks/PurpleLlama_unused/
 final_version/benchmarks/codefuse-evaluation/
 *.pyc
+benchmarks/codefuse-evaluation/
+benchmarks/evalplus/
+benchmarks/PurpleLlama/
