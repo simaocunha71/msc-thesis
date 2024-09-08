@@ -1,0 +1,2 @@
+
+The program works by first finding the last vowel in the word. If no vowel is found, it returns an empty string. Then it finds the first consonant to the left of the vowel. The substring between these two characters is the closest vowel between two consonants from the right side of the word. If no vowel

@@ -1,0 +1,8 @@
+def divisible_by_digits(startnum, endnum):
+    def is_divisible(num):
+        digits = set(int(digit) for digit in str(num))
+        for digit in digits:
+            if num % digit != 0:
+                return False
+        return True
+    return [num for num in range(startnum, endnum + 1) if is_divisible(num)]
