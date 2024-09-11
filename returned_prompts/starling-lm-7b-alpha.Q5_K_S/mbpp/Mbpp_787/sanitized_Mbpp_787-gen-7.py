@@ -1,0 +1,1 @@
+text_match_three = lambda s: 'a' in s and s.replace('b', '', 3) == ''

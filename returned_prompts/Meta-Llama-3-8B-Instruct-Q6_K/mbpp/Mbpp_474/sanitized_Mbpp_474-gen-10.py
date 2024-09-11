@@ -1,0 +1,2 @@
+def replace_char(s, char_to_replace, char_to_replace_with):
+    return s.replace(char_to_replace, char_to_replace_with)  # or s = s.replace(char_to_replace, char_to_replace_with) for in-place replacement

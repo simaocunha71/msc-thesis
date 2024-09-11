@@ -1,0 +1,38 @@
+def is_majority(arr, n, elem):
+    left = 0
+    right = n - 1
+    while left < right:
+        mid = (left + right + 1) // 2
+        if arr[mid] == elem:
+            break
+        elif arr[mid] > elem:
+            right = mid - 1
+        else:
+            left = mid
+    left_cnt = 0
+    right_cnt = 0
+    for i in range(left, n):
+        if arr[i] == elem:
+            left_cnt += 1
+        else:
+            break
+    for i in range(right, -1, -1):
+        if arr[i] == elem:
+            right_cnt += 1
+        else:
+            break
+    return left_cnt > n // 2 or right_cnt > n // 2
+
+# Test
+assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True
+assert is_majority([1, 1, 1, 2, 2, 2, 2], 7, 2) == True
+assert is_majority([1, 1, 2, 2, 2, 2, 2], 7, 1) == False
+assert is_majority([1, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5], 13, 3) == True
+assert is_majority([1, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5], 13, 4) == True
+assert is_majority([1, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5], 13, 5) == False
+
+# Time complexity: O(n)
+# Space complexity: O(1)
+
+# A more concise solution
+def is_majority(arr, n, elem):

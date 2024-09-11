@@ -1,6 +1,6 @@
 python3 main.py \
     --llm_path llms/models/Meta-Llama-3-8B-Instruct-Q6_K.gguf \
-    --benchmarks humaneval_x/c++ \
+    --benchmarks mbpp \
     --max_tokens 512 \
     --n_ctx 4098 \
     --seed 42 \
@@ -10,5 +10,5 @@ python3 main.py \
     --sleep_time 1.0 \
     --save_output yes \
     --n_shot_prompting 0 \
-    --pass_k 1 \
-    --samples_interval 1
+    --pass_k 10 \
+    --samples_interval all

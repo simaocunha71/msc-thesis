@@ -1,0 +1,8 @@
+def countSubString(s,substring):
+    cnt=0
+    for i in range(len(s)-len(substring)+1):
+        if s[i:i+len(substring)]==substring:
+            cnt+=1
+    return cnt
+
+# print(countSubString("aaabaaacaaaayaaayyayayyayayyaayayayyaayayyaayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayay

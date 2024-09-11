@@ -1,0 +1,2 @@
+def sum_digits(n):
+    return sum(int(i) for i in str(n))  # Convert the integer to a string, iterate over each character (digit), convert it back to an integer, and sum them up.  # Doctest: >>> sum_digits(345) 12

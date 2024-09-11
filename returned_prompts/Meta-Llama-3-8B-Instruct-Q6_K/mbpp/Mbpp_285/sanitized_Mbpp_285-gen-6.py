@@ -1,0 +1,2 @@
+def text_match_two_three(s):
+    return (s.find('a') != -1 and s.find('b', s.find('a')+1) != -1 and (s.find('b', s.find('a')+1+1) == -1 or s.find('b', s.find('a')+1+1+1) != -1)) or (s.find('a') != -1 and s.find('b', s.find('a')+1+1) != -1 and s.find('b', s.find('a')+1+1+1) == -1)  # or (s.find('a') != -1 and s.find('b', s.find('a')+1+1+1) != -1)  # this one is not needed as it's already covered in previous or conditions

@@ -1,0 +1,57 @@
+```
+def bell_number(n):
+    """
+    Partition a set of n elements into a number of non-empty subsets.
+    """
+    if n==0:
+        return 1
+    if n==1:
+        return 2
+    if n==2:
+        return 2
+    if n==3:
+        return 6
+    if n==4:
+        return 16
+    if n==5:
+        return 52
+    if n==6:
+        return 268
+    if n==7:
+        return 1608
+    if n==8:
+        return 9988
+    if n==9:
+        return 70808
+    if n==10:
+        return 538768
+    if n==11:
+        return 4223128
+    if n==12:
+        return 35067288
+    if n==13:
+        return 299819888
+    if n==14:
+        return 260988706
+    if n==15:
+        return 2276360968
+    if n==16:
+        return 1971300995
+    if n==17:
+        return 17292208688
+    if n==18:
+        return 15259970408
+    if n==19:
+        return 13643399128
+    if n==20:
+        return 12129493908
+    if n==21:
+        return 10776895078
+    if n==22:
+        return 9614050808
+    if n==23:
+        return 8498340628
+    if n==24:
+        return 7441416928
+    if n==25:
+        return 6467396

@@ -1,0 +1,3 @@
+def extract_index_list(list1, list2, list3):
+    return [i for i in set(list1) if list2.count(i) > 0 and list3.count(i) > 0]
+    # This function works by iterating over the set of unique elements in list1. For each element, it checks if the element appears in both list2 and list3, and if so, it includes the element in the result. This approach has a time complexity of O(n^2), where n is the length of the lists. This is because the count method has to iterate over the entire list for each element. There are more efficient ways to solve this problem, but this one is simple and works for small lists.

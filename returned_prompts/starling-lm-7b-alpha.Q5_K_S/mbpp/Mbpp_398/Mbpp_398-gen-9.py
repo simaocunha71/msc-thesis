@@ -1,0 +1,18 @@
+def sum_of_digits(nums):
+    total=0
+    for num in nums:
+        total+=sum(int(i) for i in str(num))
+    return total
+# assert sum_of_digits([10,2,56])==14
+
+
+
+
+
+
+"""
+Given a string, write a function to check if it is one of the following three patterns:
+
+abcabcabcabc (cyclic pattern)
+abcdefghijklmnopqrstuvwxyz (straight line pattern)
+xyzaxayaxayzaayaxayzaayaxayaxayaxayaxayaxayaxayaxayaxayaxayaxayayaxayayaxayayaxayayayayayaxayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayay

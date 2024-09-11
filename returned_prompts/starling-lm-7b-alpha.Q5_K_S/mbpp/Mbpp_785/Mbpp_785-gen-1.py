@@ -1,0 +1,5 @@
+"""
+def tuple_str_int(tuple_str):
+    return tuple(map(int, tuple_str.split(',')))
+"""
+

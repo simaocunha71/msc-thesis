@@ -1,0 +1,1 @@
+number_ctr = lambda input_string: sum(1 for char in input_string if char.isdigit())

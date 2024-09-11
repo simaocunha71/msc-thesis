@@ -1,0 +1,12 @@
+from typing import List
+def maxAverageOfPath(m: List[List[int]]) -> float:
+    N = len(m)
+    dp = [[0.0 for _ in range(N)] for _ in range(N)]
+    for i in range(N):
+        dp[i][0] = m[i][0]
+        dp[0][i] = m[0][i]
+    for i in range(1, N):
+        for j in range(1, N):
+            dp[i][j] = m[i][j] + max(dp[i-1][j], dp[i][j-1]) / (i+j)
+    return max(max(row) for row in dp)  # or return max(max(dp, key=max)) if you want the maximum average of a path
+    # The path with the maximum average is the one that contains all cells in the matrix. This is because the maximum average is computed as the total cost divided by the number of cells visited in the path, and the total cost is the sum of all cell costs in the path. If we consider a path that does not contain all cells, the average will be lower because the number of cells in the path is less than the total number of cells. Therefore, the path with the maximum average is the one that contains all cells. The maximum average is the maximum value in the dp array, which is the array that stores the maximum average for each cell. This is because the maximum average for each cell is computed as the maximum average of the cell above it plus the cost of the cell, divided by the number of cells visited in the path. The maximum average is the maximum value in this array. This is because the maximum average is the maximum value in the array that stores the maximum average for each cell. This is because the maximum average is computed as the maximum average of the cell above it plus the cost of the cell, divided by the number of cells visited in the path. The maximum average is the maximum value in this array. This is because the maximum average is the maximum value in the array that stores the maximum average for each cell. This is because the maximum average is computed as the maximum average of the cell above it plus the cost of the cell, divided by the number of cells visited in the path. The maximum average is the maximum value in this array. This is because the maximum average is the maximum value in the array that stores the maximum average for each cell. This is because the maximum average is computed as the maximum

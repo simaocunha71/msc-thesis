@@ -1,0 +1,100 @@
+def long_words(n,words):
+    return [word for word in words.split() if len(word)>n]
+
+long_words(3,"python is a programming language")==['python','programming','language']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+def long_words(n,words):
+    return [word for word in words.split() if len(word)>n]
+
+long_words(3,"python is a programming language")
+
+
+
+"""
+
+
+
+"""
+def long_words(n,words):
+    return [word for word in words.split() if len(word)>n]
+
+long_words(3,"python is a programming language")==['python','programming','language']
+
+
+
+"""
+
+"""
+def long_words(n,words):
+    return [word for word in words.split() if len(word)>n]
+
+long_words(3,"python is a programming language")==['python','programming','language']
+
+
+
+"""
+
+"""
+def long_words(n,words):
+    return [word for word in words.split() if len(word)>n]
+
+long_words(3,"python is a programming language")==['python','programming','language']
+
+
+
+"""
+
+"""
+def long_words(n,words):
+    return [word for word in words.split() if len(word)>n]
+
+long_words(3,"python is a programming language")==['python','programming','language']
+
+
+
+"""
+
+"""
+def long_words(n,words):
+    return [word for word in words.split() if len(word)>n]
+
+long_words(3,"python is a programming language")==['python','programming','language']
+
+
+
+"""
+
+"""
+def long_words(n,words):
+    return [word for word in words.split() if len(word)>n]
+
+long_words(3,"python is a programming language")==['python','programming','language']
+
+
+
+"""
+
+"""
+def long_words(n,words):
+    return [word for word in words.split() if len(

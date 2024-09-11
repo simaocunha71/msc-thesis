@@ -1,0 +1,52 @@
+def split_two_parts(lst, L):
+    return (lst[:L], lst[L:])
+
+def test_split_two_parts():
+    assert split_two_parts([1,1,2,3,4,4,5,1],3)==([1, 1, 2], [3, 4, 4, 5, 1])
+
+test_split_two_parts()
+
+def split_two_parts(lst, L):
+    return (lst[:L], lst[L:])
+
+def test_split_two_parts():
+    assert split_two_parts([1,1,2,3,4,4,5,1],3)==([1, 1, 2], [3, 4, 4, 5, 1])
+
+test_split_two_parts()
+
+
+
+"""
+"""
+
+def split_two_parts(lst, L):
+    return (lst[:L], lst[L:])
+
+def test_split_two_parts():
+    assert split_two_parts([1,1,2,3,4,4,5,1],3)==([1, 1, 2], [3, 4, 4, 5, 1])
+
+test_split_two_parts()
+
+"""
+"""
+"""
+
+def split_two_parts(lst, L):
+    return (lst[:L], lst[L:])
+
+def test_split_two_parts():
+    assert split_two_parts([1,1,2,3,4,4,5,1],3)==([1, 1, 2], [3, 4, 4, 5, 1])
+
+test_split_two_parts()
+
+"""
+"""
+"""
+
+def split_two_parts(lst, L):
+    return (lst[:L], lst[L:])
+
+def test_split_two_parts():
+    assert split_two_parts([1,1,2,3,4,4,5,1],3)==([1, 1, 2], [3, 4, 4, 5, 1])
+
+test
