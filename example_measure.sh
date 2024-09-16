@@ -1,5 +1,5 @@
 python3 main.py \
-    --llm_path llms/models/Meta-Llama-3-8B-Instruct-Q6_K.gguf \
+    --llm_path llms/models/codellama-7b-instruct.Q5_K_M.gguf \
     --benchmarks mbpp \
     --max_tokens 512 \
     --n_ctx 4098 \
