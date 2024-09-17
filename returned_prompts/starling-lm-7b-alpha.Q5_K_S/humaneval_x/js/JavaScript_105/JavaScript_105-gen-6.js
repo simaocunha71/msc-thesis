@@ -1,5 +1,0 @@
-  return byLength(sortAndReverse(arr));
-}
-
-
-

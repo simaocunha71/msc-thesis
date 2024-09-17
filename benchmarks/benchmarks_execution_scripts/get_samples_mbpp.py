@@ -26,7 +26,8 @@ def write_jsonl(filename: str, data: Iterable[Dict], append: bool = False):
 # Argumentos de setup
 model = sys.argv[1]            # Nome do LLM
 label = sys.argv[2]            # Label do prompt
-output_got_file = sys.argv[3]  # Ficheiro c/ output gerado pelo LLM em formato string
+n_shot = sys.argv[3]           # N-shot prompting
+output_got_file = sys.argv[4]  # Ficheiro c/ output gerado pelo LLM em formato string
 
 
 with open(output_got_file, 'r') as prompt_file:
@@ -46,4 +47,4 @@ if not os.path.exists(outputs_directory):
     os.makedirs(outputs_directory)
 
 # Escrita das samples num ficheiro jsonl
-write_jsonl(f"{outputs_directory}/samples_{model}_mbpp.jsonl", samples, append=True)
+write_jsonl(f"{outputs_directory}/samples_{model}_mbpp_{n_shot}_shot.jsonl", samples, append=True)

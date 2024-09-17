@@ -46,14 +46,7 @@ def set_csv_headers(benchmarks, shot_prompting, pass_k):
             ["LLM", "Benchmark prompt"], 
             base_energy_columns + humaneval_x_columns + ["GoogleBLEU", "CodeBLEU", "SacreBLEU"]
         ),
-        "autocomplete": generate_headers(
-            ["LLM", "Prompt ID", "Variant", "Language"], 
-            base_energy_columns + [
-                "Bleu score", "Total count", "Vulnerable percentage", 
-                "Vulnerable suggestion count", "Pass rate"
-            ]
-        ),
-        "instruct": generate_headers(
+        "instruct_and_autocomplete": generate_headers(
             ["LLM", "Prompt ID", "Variant", "Language"], 
             base_energy_columns + [
                 "Bleu score", "Total count", "Vulnerable percentage", 

@@ -3,8 +3,8 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from utils import autocompleteOrInstruct_json_to_csv, mitre_json_to_csv, interpreter_json_to_csv, frr_json_to_csv, canary_exploit_json_to_csv
 
 # Global definitions for LLMs
-JUDGE_LLM = "LLAMACPP::llms/llama_c++/models/orca-2-13b.Q3_K_M.gguf::random_string"
-EXPANSION_LLM = "LLAMACPP::llms/llama_c++/models/Tess-10.7B-v2.0-Q6_K.gguf::random_string"
+JUDGE_LLM = "LLAMACPP::llms/models/orca-2-13b.Q3_K_M.gguf::random_string"
+EXPANSION_LLM = "LLAMACPP::llms/models/Tess-10.7B-v2.0-Q6_K.gguf::random_string"
 
 def set_env_variables():
     #Variáveis de ambiente necessárias para a execução do benchmark
@@ -33,8 +33,7 @@ def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_ty
         f'--response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{benchmark_type}_responses.json" ' \
         f'--stat-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{benchmark_type}_stat.json" '
     
-    #Adiciona a natureza do LLM nestes if-else
-    if "llama_c++" in model:
+    if model.endswith(".gguf"):
         command_to_execute_benchmark += f'--llm-under-test="LLAMACPP::{model}::random_string"'
 
     os.system(command_to_execute_benchmark)
@@ -81,7 +80,7 @@ def run_mitre_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p,
         f'--expansion-llm="{expansion_llm}"'
     )
     
-    if "llama_c++" in model:
+    if model.endswith(".gguf"):
         command_to_execute_benchmark += f' --llm-under-test="LLAMACPP::{model}::random_string"'
 
     os.system(command_to_execute_benchmark)
@@ -126,7 +125,7 @@ def run_interpreter_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, 
         f'--judge-llm="{judge_llm}" '
     )
 
-    if "llama_c++" in model:
+    if model.endswith(".gguf"):
         command_to_execute_benchmark += f' --llm-under-test="LLAMACPP::{model}::random_string"'
 
     os.system(command_to_execute_benchmark)
@@ -166,7 +165,7 @@ def run_frr_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, t
         '--stat-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/frr_stat.json" '
     )
 
-    if "llama_c++" in model:
+    if model.endswith(".gguf"):
         command_to_execute_benchmark += f' --llm-under-test="LLAMACPP::{model}::random_string"'
 
     os.system(command_to_execute_benchmark)
@@ -207,7 +206,7 @@ def run_canary_exploit_benchmark(model, prompts_filepath, max_tokens, seed, n_ct
         '--stat-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/canary_exploit_stat.json" '
     )
 
-    if "llama_c++" in model:
+    if model.endswith(".gguf"):
         command_to_execute_benchmark += f' --llm-under-test="LLAMACPP::{model}::random_string"'
 
     os.system(command_to_execute_benchmark)

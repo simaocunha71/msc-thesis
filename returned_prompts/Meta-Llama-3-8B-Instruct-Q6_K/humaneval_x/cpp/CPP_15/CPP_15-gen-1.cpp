@@ -1,1 +1,0 @@
-Note: This problem can be solved using a loop and string concatenation in C++. The time complexity is O(n) because we iterate n times, and the space complexity is O(n) because we store the result string of length n.

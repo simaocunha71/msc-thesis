@@ -6,7 +6,7 @@ from llms.utils import load_llm, get_llm_family
 from llms.llamacpp_wrapper import LLAMACPP
 from csv_files_headers import set_csv_headers
 
-def execute_llm(llm_obj, task_id, prompt, llm_path, CSV_FILENAME, max_tokens, top_p, temperature, benchmark_type, save_output_flag, language, seed, output_counter_id):
+def execute_llm(llm_obj, task_id, prompt, llm_path, CSV_FILENAME, max_tokens, top_p, temperature, benchmark_type, save_output_flag, language, seed, output_counter_id, n_shot, pass_k):
     # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
     temp_prompt_file = "temp_prompt.txt"
     with open(temp_prompt_file, 'w') as prompt_file:
@@ -16,9 +16,9 @@ def execute_llm(llm_obj, task_id, prompt, llm_path, CSV_FILENAME, max_tokens, to
 
     if llm_family == "LLAMACPP":
         if language is not None:
-            llama_benchmark = LLAMACPP(llm_obj, task_id, temp_prompt_file, CSV_FILENAME, llm_path, seed, max_tokens, top_p, temperature, benchmark_type, save_output_flag, output_counter_id, language)
+            llama_benchmark = LLAMACPP(llm_obj, task_id, temp_prompt_file, CSV_FILENAME, llm_path, seed, max_tokens, top_p, temperature, benchmark_type, save_output_flag, output_counter_id, str(n_shot), str(pass_k), language)
         else:
-            llama_benchmark = LLAMACPP(llm_obj, task_id, temp_prompt_file, CSV_FILENAME, llm_path, seed, max_tokens, top_p, temperature, benchmark_type, save_output_flag, output_counter_id)
+            llama_benchmark = LLAMACPP(llm_obj, task_id, temp_prompt_file, CSV_FILENAME, llm_path, seed, max_tokens, top_p, temperature, benchmark_type, save_output_flag, output_counter_id, str(n_shot), str(pass_k))
         llama_benchmark.run()
     else:
         print(f"Não existe classe capaz de executar o LLM com o path {llm_path}")
@@ -77,12 +77,12 @@ def start_measure(llm_path_list: list, prompts_filepath_list: list, max_tokens: 
 
     for llm_path in llm_path_list:
         for prompts_filepath in prompts_filepath_list:
-            #if "cyberseceval" in prompts_filepath:
-            #    llm_obj = None
-            #else:
-            #    llm_obj = load_llm(llm_path, n_ctx, seed)
+            if "cyberseceval" in prompts_filepath:
+                llm_obj = None
+            else:
+                llm_obj = load_llm(llm_path, n_ctx, seed)
             
-            handle_prompt_files("llm_obj", llm_path, prompts_filepath, pass_k)
+            handle_prompt_files(llm_obj, llm_path, prompts_filepath, pass_k)
         
         try:
             os.system("rm -rf ~/.cache/evalplus/*")
@@ -93,19 +93,19 @@ def handle_humaneval_x_benchmark(llm_obj, llm_path, prompts_filepath, prompt_for
     
     list_of_seeds = [seed + i for i in range(pass_k)]
     
-    #with open(prompts_filepath, 'r') as file:
-    #    lines = file.readlines()
-    #    for line in lines:
-    #        entry = json.loads(line)
-    #        task_id = entry.get("task_id", "")
-    #        prompt_from_file = entry.get("prompt", "")
-    #        prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
-    #        language = extract_language(prompts_filepath)
-    #        for idx, sd in enumerate(list_of_seeds, start=1):
-    #            execute_llm(llm_obj, task_id, prompt, llm_path, os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv"), max_tokens, top_p, temperature, "humaneval_x", save_output_flag, language, sd, idx)
-    #        sleep_between_executions(secs=SLEEP_TIME)
+    with open(prompts_filepath, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            entry = json.loads(line)
+            task_id = entry.get("task_id", "")
+            prompt_from_file = entry.get("prompt", "")
+            prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
+            language = extract_language(prompts_filepath)
+            for idx, sd in enumerate(list_of_seeds, start=1):
+                execute_llm(llm_obj, task_id, prompt, llm_path, os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv"), max_tokens, top_p, temperature, "humaneval_x", save_output_flag, language, sd, idx, shot_prompting, pass_k)
+            sleep_between_executions(secs=SLEEP_TIME)
     
-    scores = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath), pass_k)
+    scores = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath), pass_k, shot_prompting)
     pass_1, pass_10, pass_100, google_bleu, codebleu, sacrebleu = scores["pass_1"], scores["pass_10"], scores["pass_100"], scores["google_bleu"], scores["codebleu"], scores["sacrebleu"]
     results_path = os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv")
 
@@ -133,22 +133,22 @@ def handle_mbpp_benchmark(llm_obj, llm_path, prompts_filepath, prompt_for_shot_p
     
     list_of_seeds = [seed + i for i in range(pass_k)]
 
-    #with open(prompts_filepath, 'r') as file:
-    #    lines = file.readlines()
-    #    for line in lines:
-    #        entry = json.loads(line)
-    #        task_id = entry.get("task_id", "")
-    #        prompt_from_file = entry.get("prompt", "")
-    #        prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
-#
-    #        for idx, sd in enumerate(list_of_seeds, start=1):
-    #            execute_llm(llm_obj, str(task_id), prompt, llm_path, results_path, max_tokens, top_p, temperature, "mbpp", save_output_flag, None, sd, idx)
-    #        sleep_between_executions(secs=SLEEP_TIME)
-    
-    results = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path), pass_k)
-    save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k)
+    with open(prompts_filepath, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            entry = json.loads(line)
+            task_id = entry.get("task_id", "")
+            prompt_from_file = entry.get("prompt", "")
+            prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
 
-def save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k):
+            for idx, sd in enumerate(list_of_seeds, start=1):
+                execute_llm(llm_obj, str(task_id), prompt, llm_path, results_path, max_tokens, top_p, temperature, "mbpp", save_output_flag, None, sd, idx, shot_prompting, pass_k)
+            sleep_between_executions(secs=SLEEP_TIME)
+    
+    results = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path), pass_k, shot_prompting)
+    save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k, shot_prompting)
+
+def save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k, n_shot):
     
     (mbpp_unsan_pass_1, mbpp_san_pass_1, mbppPlus_unsan_pass_1, mbppPlus_san_pass_1, 
      mbpp_unsan_pass_10, mbpp_san_pass_10, mbppPlus_unsan_pass_10, mbppPlus_san_pass_10, 
@@ -213,8 +213,8 @@ def save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k)
 
     if save_output_flag == "yes":
         save_sanitized_outputs(
-            f"benchmarks/evalplus/results/samples_{extract_llm_name(llm_path)}_mbpp-sanitized.jsonl", 
-            "returned_prompts", extract_llm_name(llm_path), "mbpp", pass_k
+            f"benchmarks/evalplus/results/samples_{extract_llm_name(llm_path)}_mbpp_{n_shot}_shot-sanitized.jsonl", 
+            "returned_prompts", extract_llm_name(llm_path), "mbpp", str(n_shot)
         )
         
 def handle_cyberseceval_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):

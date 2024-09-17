@@ -4,7 +4,7 @@ from codecarbon import OfflineEmissionsTracker
 
 class LLAMACPP:
     def __init__(self, llm_obj, label, prompt_file_path, filename, model_name, seed, 
-                 max_tokens, top_p, temperature, benchmark_type, save_output_flag, output_counter_id, language=None):
+                 max_tokens, top_p, temperature, benchmark_type, save_output_flag, output_counter_id, n_shot, pass_k, language=None):
         """
         Inicializa a classe LLAMACPP com argumentos fornecidos.
         
@@ -36,6 +36,10 @@ class LLAMACPP:
         self.language = language
         self.seed = seed
         self.output_counter_id = output_counter_id
+        self.n_shot = n_shot
+        self.pass_k = pass_k
+
+
 
     def read_prompt(self):
         """
@@ -68,7 +72,7 @@ class LLAMACPP:
         """
         Executa o benchmark e mede as emissões de carbono.
         """
-        measure_utils.print_measure_information(self.model_name, self.label)
+        measure_utils.print_measure_information(self.model_name, self.label, self.n_shot, self.output_counter_id, self.pass_k)
         
 
         tracker = OfflineEmissionsTracker(country_iso_code="PRT")
@@ -96,20 +100,20 @@ class LLAMACPP:
         output = clean_output(output)
 
         if self.benchmark_type == "humaneval_x":
-            measure_utils.generate_samples_humaneval_x(measure_utils.extract_llm_name(self.model_name), output, self.label, self.language)
+            measure_utils.generate_samples_humaneval_x(measure_utils.extract_llm_name(self.model_name), output, self.label, self.n_shot, self.language)
         elif self.benchmark_type == "mbpp":
-            measure_utils.generate_samples_mbpp(measure_utils.extract_llm_name(self.model_name), output, self.label)
+            measure_utils.generate_samples_mbpp(measure_utils.extract_llm_name(self.model_name), output, self.label, self.n_shot)
         
         if self.save_output_flag == "yes":
             if self.benchmark_type == "humaneval_x":
                 measure_utils.save_output_to_file(output, self.label, self.label, self.language, "returned_prompts", 
                                                   measure_utils.extract_llm_name(self.model_name), 
-                                                  "humaneval_x", self.output_counter_id)
+                                                  "humaneval_x", self.output_counter_id, self.n_shot)
 
             elif self.benchmark_type == "mbpp":
                 measure_utils.save_output_to_file(output, (self.label).replace("/","_"), (self.label).replace("/","_"), None, "returned_prompts", 
                                                   measure_utils.extract_llm_name(self.model_name), 
-                                                  "mbpp", self.output_counter_id)
+                                                  "mbpp", self.output_counter_id, self.n_shot)
 
         measure_utils.add_measurement_to_csv(self.filename, measure_utils.extract_llm_name(self.model_name), 
                                              self.label, tracker)

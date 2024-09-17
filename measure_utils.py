@@ -1,6 +1,6 @@
 import os, csv, json, sys, glob, re, time
 
-def save_sanitized_outputs(file_path, output_folder, llm_name_folder, benchmark_folder, pass_k):
+def save_sanitized_outputs(file_path, output_folder, llm_name_folder, benchmark_folder, n_shot):
     """Guarda as versões sanitized dos outputs gerados - apenas os outputs do MBPP"""
     
     # Dicionário para armazenar as linhas por label
@@ -38,7 +38,8 @@ def save_sanitized_outputs(file_path, output_folder, llm_name_folder, benchmark_
                 output_folder=output_folder,
                 llm_name_folder=llm_name_folder,
                 benchmark_folder=benchmark_folder,
-                output_id=idx
+                output_id=idx,
+                n_shot=n_shot
             )
 def shrink_json_or_jsonl(file_path, min_index, max_index):
     """
@@ -149,12 +150,15 @@ def extract_llm_name(filepath):
     filename_without_extension = os.path.splitext(filename_with_extension)[0]
     return filename_without_extension
 
-def print_measure_information(model_name, prompt_id):
-    print("\n\nExecuting:")
+def print_measure_information(model_name, prompt_id, n_shot, generation_id, pass_k_id):
+    print(f"\n\nExecuting with {n_shot}-shot prompting:")
     print(f"> Model: {model_name}")
-    print(f"> Prompt: {prompt_id}\n")
+    print(f"> Prompt: {prompt_id}")
+    print(f"> Pass_k: {pass_k_id}")
+    if int(pass_k_id) > 1:
+        print(f"  > Generation: #{generation_id}/{pass_k_id}\n")
 
-def save_output_to_file(output, label_folder, label, language, output_folder, llm_name_folder, benchmark_folder, output_id):
+def save_output_to_file(output, label_folder, label, language, output_folder, llm_name_folder, benchmark_folder, output_id, n_shot):
     """
     Guarda os outputs gerados pelo LLM em ficheiros cujo file system é o seguinte:
     "returned_prompts/"
@@ -184,10 +188,14 @@ def save_output_to_file(output, label_folder, label, language, output_folder, ll
     if not os.path.exists(benchmark_path):
         os.makedirs(benchmark_path)
 
+    n_shot_path = os.path.join(benchmark_path, n_shot + "-shot")
+    if not os.path.exists(n_shot_path):
+        os.makedirs(n_shot_path)
+
     # Determinar o nome do ficheiro e o caminho de saída
     #NOTE: label deve estar no formato "[nome do benchmark]/[1..N]"
     if language is not None:
-        language_path = os.path.join(benchmark_path, language)
+        language_path = os.path.join(n_shot_path, language)
         if not os.path.exists(language_path):
             os.makedirs(language_path)
 
@@ -203,7 +211,7 @@ def save_output_to_file(output, label_folder, label, language, output_folder, ll
             output_filename = f"{label.replace('/', '_')}-gen-{output_id}.{language}"
         output_path = os.path.join(label_path, output_filename)
     else:
-        label_path = os.path.join(benchmark_path, label_folder.replace('/', '_'))
+        label_path = os.path.join(n_shot_path, label_folder.replace('/', '_'))
         if not os.path.exists(label_path):
             os.makedirs(label_path)
 
@@ -214,7 +222,7 @@ def save_output_to_file(output, label_folder, label, language, output_folder, ll
     with open(output_path, 'w') as output_file:
         output_file.write(output)
 
-def generate_samples_humaneval_x(model, output, label, language):
+def generate_samples_humaneval_x(model, output, label, n_shot, language):
     label = label.replace("/", "_")
     
     # Define temporary files
@@ -225,13 +233,13 @@ def generate_samples_humaneval_x(model, output, label, language):
         prompt_file.write(output)
 
     # Executa a script get_samples.py que irá calcular as samples de um dado LLM para a execução do HumanEval
-    command = f'python3 benchmarks/benchmarks_execution_scripts/get_samples_humaneval_x.py {model} "{label}" completion_content.txt {language}'
+    command = f'python3 benchmarks/benchmarks_execution_scripts/get_samples_humaneval_x.py {model} "{label}" {n_shot} completion_content.txt {language}'
     os.system(command)
 
     # Remove os ficheiros de texto temporários
     os.remove(temp_prompt_file)
 
-def generate_samples_mbpp(model, output, label):
+def generate_samples_mbpp(model, output, label, n_shot):
     """Gera o ficheiro das samples deste modelo (Benchmark: MBPP)"""
     
     # Define temporary files
@@ -242,7 +250,7 @@ def generate_samples_mbpp(model, output, label):
         prompt_file.write(output)
 
     # Execute the script to generate the samples for MBPP
-    command = f'python3 benchmarks/benchmarks_execution_scripts/get_samples_mbpp.py {model} "{label}" completion_content.txt'
+    command = f'python3 benchmarks/benchmarks_execution_scripts/get_samples_mbpp.py {model} "{label}" {n_shot} completion_content.txt'
     
     os.system(command)
 
@@ -449,5 +457,4 @@ def get_prompt_for_shot_prompting_cyberseceval(dataset_path, n_shot_prompting, s
     return prompt_string, temp_output_path
 
 def sleep_between_executions(secs):
-    print(f"VOU DORMIR {secs} SEGUNDOS!!!")
     return time.sleep(secs)

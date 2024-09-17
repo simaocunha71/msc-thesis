@@ -19,7 +19,7 @@ COMMAND_TEMPLATES = {
                 "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
                 f"-it {docker_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
+                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp_{n_shot}_shot.jsonl "
                 "codebleu "
                 "mbpp "
                 "{pass_k}"
@@ -30,7 +30,7 @@ COMMAND_TEMPLATES = {
                 "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
                 f"-it {docker_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
+                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp_{n_shot}_shot.jsonl "
                 "google_bleu "
                 "mbpp "
                 "{pass_k}"
@@ -38,7 +38,7 @@ COMMAND_TEMPLATES = {
             ),
             "sacrebleu": (
                 "python3 benchmarks/codefuse-evaluation/codefuseEval/evaluation.py "
-                "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
+                "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp_{n_shot}_shot.jsonl "
                 "--metric sacrebleu "
                 "--problem_file mbpp "
                 "--k_max_value {pass_k} "
@@ -51,7 +51,7 @@ COMMAND_TEMPLATES = {
                 "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
                 f"-it {docker_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
+                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp_{n_shot}_shot-sanitized.jsonl "
                 "codebleu "
                 "mbpp "
                 "{pass_k}"
@@ -62,7 +62,7 @@ COMMAND_TEMPLATES = {
                 "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
                 f"-it {docker_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
+                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp_{n_shot}_shot-sanitized.jsonl "
                 "google_bleu "
                 "mbpp "
                 "{pass_k}"
@@ -70,7 +70,7 @@ COMMAND_TEMPLATES = {
             ),
             "sacrebleu": (
                 "python3 benchmarks/codefuse-evaluation/codefuseEval/evaluation.py "
-                "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
+                "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp_{n_shot}_shot-sanitized.jsonl "
                 "--metric sacrebleu "
                 "--problem_file mbpp "
                 "--k_max_value {pass_k} "
@@ -85,7 +85,7 @@ COMMAND_TEMPLATES = {
                 "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
                 f"{singularity_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
+                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp_{n_shot}_shot.jsonl "
                 "codebleu "
                 "mbpp "
                 "{pass_k}"
@@ -96,7 +96,7 @@ COMMAND_TEMPLATES = {
                 "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
                 f"{singularity_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
+                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp_{n_shot}_shot.jsonl "
                 "google_bleu "
                 "mbpp "
                 "{pass_k}"
@@ -104,7 +104,7 @@ COMMAND_TEMPLATES = {
             ),
             "sacrebleu": (
                 "python3 benchmarks/codefuse-evaluation/codefuseEval/evaluation.py "
-                "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp.jsonl "
+                "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp_{n_shot}_shot.jsonl "
                 "--metric sacrebleu "
                 "--problem_file mbpp "
                 "--k_max_value {pass_k} "
@@ -117,7 +117,7 @@ COMMAND_TEMPLATES = {
                 "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
                 f"{singularity_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
+                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp_{n_shot}_shot-sanitized.jsonl "
                 "codebleu "
                 "mbpp "
                 "{pass_k}"
@@ -128,7 +128,7 @@ COMMAND_TEMPLATES = {
                 "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
                 f"{singularity_container} "
                 "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
+                "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp_{n_shot}_shot-sanitized.jsonl "
                 "google_bleu "
                 "mbpp "
                 "{pass_k}"
@@ -136,7 +136,7 @@ COMMAND_TEMPLATES = {
             ),
             "sacrebleu": (
                 "python3 benchmarks/codefuse-evaluation/codefuseEval/evaluation.py "
-                "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp-sanitized.jsonl "
+                "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_mbpp_{n_shot}_shot-sanitized.jsonl "
                 "--metric sacrebleu "
                 "--problem_file mbpp "
                 "--k_max_value {pass_k} "
@@ -207,11 +207,6 @@ def parse_scores(file_path):
             match_pass10 = re.findall(r"pass@10:\s+([-+]?\d*\.\d+|\d+)", content)
             match_pass100 = re.findall(r"pass@100:\s+([-+]?\d*\.\d+|\d+)", content)
             
-            # Exibe todos os matches encontrados
-            print("pass@1 matches:", match_pass1)
-            print("pass@10 matches:", match_pass10)
-            print("pass@100 matches:", match_pass100)
-            
             # Inicializa a lista de resultados
             results = []
             
@@ -230,14 +225,14 @@ def parse_scores(file_path):
         print(f"Error: The file '{file_path}' was not found.")
         return None
 
-def run_mbpp_benchmark(model: str, pass_k : int) -> tuple:
+def run_mbpp_benchmark(model: str, pass_k : int, n_shot: int) -> tuple:
     """Calculates the MBPP+ benchmark scores."""
 
     base_path = Path("benchmarks/codefuse-evaluation/codefuseEval/result")
     base_path.mkdir(parents=True, exist_ok=True)
     
-    execute_command(f"python3 benchmarks/evalplus/evalplus/evaluate_mbpp.py --dataset mbpp --k_max_value {pass_k} --samples benchmarks/evalplus/results/samples_{model}_mbpp.jsonl > mbpp_score.txt")
-    os.system(f"cp benchmarks/evalplus/results/samples_{model}_mbpp.jsonl benchmarks/codefuse-evaluation/codefuseEval/result")
+    execute_command(f"python3 benchmarks/evalplus/evalplus/evaluate_mbpp.py --dataset mbpp --k_max_value {pass_k} --samples benchmarks/evalplus/results/samples_{model}_mbpp_{n_shot}_shot.jsonl > mbpp_score.txt")
+    os.system(f"cp benchmarks/evalplus/results/samples_{model}_mbpp_{n_shot}_shot.jsonl benchmarks/codefuse-evaluation/codefuseEval/result")
 
 
     scores = {"MBPP (unsanitized) pass@1": -1, "MBPP+ (unsanitized) pass@1": -1, 
@@ -254,31 +249,31 @@ def run_mbpp_benchmark(model: str, pass_k : int) -> tuple:
 
     for key in ["unsanitized"]:
         for metric, command_template in command_set[key].items():
-            command = command_template.format(model=model, pass_k=pass_k)
+            command = command_template.format(model=model, pass_k=pass_k, n_shot=n_shot)
             execute_command(command)
 
     # Update scores for Google BLEU, CodeBLEU, and SacreBLEU for unsanitized
-    unsanitized_google_bleu_path = base_path / f"samples_{model}_mbpp_google_bleu.jsonl"
-    unsanitized_codebleu_path = base_path / f"samples_{model}_mbpp_codebleu.jsonl"
-    unsanitized_sacrebleu_path = base_path / f"samples_{model}_mbpp_sacrebleu.jsonl"
+    unsanitized_google_bleu_path = base_path / f"samples_{model}_mbpp_{n_shot}_shot_google_bleu.jsonl"
+    unsanitized_codebleu_path = base_path / f"samples_{model}_mbpp_{n_shot}_shot_codebleu.jsonl"
+    unsanitized_sacrebleu_path = base_path / f"samples_{model}_mbpp_{n_shot}_shot_sacrebleu.jsonl"
 
     scores["MBPP (unsanitized) pass@1"], scores["MBPP+ (unsanitized) pass@1"], scores["MBPP (unsanitized) pass@10"], scores["MBPP+ (unsanitized) pass@10"], scores["MBPP (unsanitized) pass@100"], scores["MBPP+ (unsanitized) pass@100"] = parse_scores("mbpp_score.txt")
     scores["GoogleBLEU (unsanitized)"], scores["CodeBLEU (unsanitized)"], scores["SacreBLEU (unsanitized)"] = extract_scores_from_json(unsanitized_google_bleu_path, unsanitized_codebleu_path, unsanitized_sacrebleu_path)
 
 
     # Execute the remaining scripts
-    execute_command(f"python3 benchmarks/evalplus/evalplus/sanitize.py --samples benchmarks/evalplus/results/samples_{model}_mbpp.jsonl")
-    execute_command(f"python3 benchmarks/evalplus/evalplus/syncheck.py --samples benchmarks/evalplus/results/samples_{model}_mbpp-sanitized.jsonl --dataset mbpp")
-    execute_command(f"python3 benchmarks/evalplus/evalplus/evaluate_mbpp.py --dataset mbpp --k_max_value {pass_k} --samples benchmarks/evalplus/results/samples_{model}_mbpp-sanitized.jsonl > mbpp_score_sanitized.txt")
+    execute_command(f"python3 benchmarks/evalplus/evalplus/sanitize.py --samples benchmarks/evalplus/results/samples_{model}_mbpp_{n_shot}_shot.jsonl")
+    execute_command(f"python3 benchmarks/evalplus/evalplus/syncheck.py --samples benchmarks/evalplus/results/samples_{model}_mbpp_{n_shot}_shot-sanitized.jsonl --dataset mbpp")
+    execute_command(f"python3 benchmarks/evalplus/evalplus/evaluate_mbpp.py --dataset mbpp --k_max_value {pass_k} --samples benchmarks/evalplus/results/samples_{model}_mbpp_{n_shot}_shot-sanitized.jsonl > mbpp_score_sanitized.txt")
 
-    os.system(f"cp benchmarks/evalplus/results/samples_{model}_mbpp-sanitized.jsonl benchmarks/codefuse-evaluation/codefuseEval/result")
-    sanitized_google_bleu_path = base_path / f"samples_{model}_mbpp-sanitized_google_bleu.jsonl"
-    sanitized_codebleu_path = base_path / f"samples_{model}_mbpp-sanitized_codebleu.jsonl"
-    sanitized_sacrebleu_path = base_path / f"samples_{model}_mbpp-sanitized_sacrebleu.jsonl"
+    os.system(f"cp benchmarks/evalplus/results/samples_{model}_mbpp_{n_shot}_shot-sanitized.jsonl benchmarks/codefuse-evaluation/codefuseEval/result")
+    sanitized_google_bleu_path = base_path / f"samples_{model}_mbpp_{n_shot}_shot-sanitized_google_bleu.jsonl"
+    sanitized_codebleu_path = base_path / f"samples_{model}_mbpp_{n_shot}_shot-sanitized_codebleu.jsonl"
+    sanitized_sacrebleu_path = base_path / f"samples_{model}_mbpp_{n_shot}_shot-sanitized_sacrebleu.jsonl"
 
     for key in ["sanitized"]:
         for metric, command_template in command_set[key].items():
-            command = command_template.format(model=model, pass_k=pass_k)
+            command = command_template.format(model=model, pass_k=pass_k, n_shot=n_shot)
             execute_command(command)
 
     scores["MBPP (sanitized) pass@1"], scores["MBPP+ (sanitized) pass@1"], scores["MBPP (sanitized) pass@10"], scores["MBPP+ (sanitized) pass@10"], scores["MBPP (sanitized) pass@100"], scores["MBPP+ (sanitized) pass@100"] = parse_scores("mbpp_score_sanitized.txt")

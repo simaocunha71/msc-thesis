@@ -16,7 +16,7 @@ COMMAND_TEMPLATES = {
             "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
             f"-it {docker_container} "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}_{n_shot}_shot.jsonl "
             "pass@k "
             "humaneval_{language} {pass_k} > human_eval_score.txt"
         ),
@@ -25,7 +25,7 @@ COMMAND_TEMPLATES = {
             "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
             f"-it {docker_container} "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}_{n_shot}_shot.jsonl "
             "codebleu "
             "humaneval_{language} "
             "{pass_k}"
@@ -35,14 +35,14 @@ COMMAND_TEMPLATES = {
             "-v $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
             f"-it {docker_container} "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}_{n_shot}_shot.jsonl "
             "google_bleu "
             "humaneval_{language} "
             "{pass_k}"
         ),
         "sacrebleu": (
             "python3 benchmarks/codefuse-evaluation/codefuseEval/evaluation.py "
-            "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}_{n_shot}_shot.jsonl "
             "--metric sacrebleu "
             "--problem_file humaneval_{language} "
             "--k_max_value {pass_k} "
@@ -55,7 +55,7 @@ COMMAND_TEMPLATES = {
             "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
             f"{singularity_container} "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}_{n_shot}_shot.jsonl "
             "pass@k "
             "humaneval_{language} {pass_k} > human_eval_score.txt"
         ),
@@ -64,7 +64,7 @@ COMMAND_TEMPLATES = {
             "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
             f"{singularity_container} "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}_{n_shot}_shot.jsonl "
             "codebleu "
             "humaneval_{language} "
             "{pass_k}"
@@ -74,14 +74,14 @@ COMMAND_TEMPLATES = {
             "--bind $(pwd)/benchmarks/codefuse-evaluation:/workspace/codefuse-evaluation/ "
             f"{singularity_container} "
             "bash /workspace/codefuse-evaluation/codefuseEval/script/evaluation.sh "
-            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "/workspace/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}_{n_shot}_shot.jsonl "
             "google_bleu "
             "humaneval_{language} "
             "{pass_k}"
         ),
         "sacrebleu": (
             "python3 benchmarks/codefuse-evaluation/codefuseEval/evaluation.py "
-            "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}.jsonl "
+            "--input_file benchmarks/codefuse-evaluation/codefuseEval/result/samples_{model}_humaneval_{language}_{n_shot}_shot.jsonl "
             "--metric sacrebleu "
             "--problem_file humaneval_{language} "
             "--k_max_value {pass_k}"
@@ -167,7 +167,7 @@ def extract_scores_from_json(file_googlebleu: Path, file_codebleu: Path, file_sa
     return scores
 
 
-def run_human_eval_benchmark(model: str, language: str, pass_k: int) -> dict:
+def run_human_eval_benchmark(model: str, language: str, pass_k: int, n_shot: str) -> dict:
     """Calculates the HumanEval-X benchmark scores for pass@k, Google BLEU, CodeBLEU, and SacreBLEU."""
     base_path = Path("benchmarks/codefuse-evaluation/codefuseEval/result")
     scores = {"pass_1": -1, "pass_10": -1, "pass_100": -1,
@@ -181,16 +181,16 @@ def run_human_eval_benchmark(model: str, language: str, pass_k: int) -> dict:
 
     # Execute commands for each metric
     for metric, command_template in command_templates.items():
-        command = command_template.format(model=model, language=language, pass_k=pass_k)
+        command = command_template.format(model=model, language=language, pass_k=pass_k, n_shot=n_shot)
         execute_command(command)
     
     # Update scores for pass@k
     scores.update(parse_score_from_file(Path("human_eval_score.txt")))
 
     # Extract scores for Google BLEU, CodeBLEU, and SacreBLEU
-    google_bleu_path = base_path / f"samples_{model}_humaneval_{language}_google_bleu.jsonl"
-    codebleu_path = base_path / f"samples_{model}_humaneval_{language}_codebleu.jsonl"
-    sacrebleu_path = base_path / f"samples_{model}_humaneval_{language}_sacrebleu.jsonl"
+    google_bleu_path = base_path / f"samples_{model}_humaneval_{language}_{n_shot}_shot_google_bleu.jsonl"
+    codebleu_path = base_path / f"samples_{model}_humaneval_{language}_{n_shot}_shot_codebleu.jsonl"
+    sacrebleu_path = base_path / f"samples_{model}_humaneval_{language}_{n_shot}_shot_sacrebleu.jsonl"
     scores.update(extract_scores_from_json(google_bleu_path, codebleu_path, sacrebleu_path))
     
     # Cleanup
