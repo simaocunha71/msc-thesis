@@ -1,2 +1,5 @@
-def find_max_min(lst):
-    return
+
+def div_list(list1, list2):
+  return [a / b for a, b in zip(list1, list2)]
+
+

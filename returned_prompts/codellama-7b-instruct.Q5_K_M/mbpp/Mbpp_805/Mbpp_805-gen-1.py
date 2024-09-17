@@ -1,2 +1,5 @@
-def max_sum_list(list_of_lists):
-    return max(list_of_lists, key=sum)
+
+def max_sum_list(lists: list) -> list:
+  return max(lists, key=sum)
+
+

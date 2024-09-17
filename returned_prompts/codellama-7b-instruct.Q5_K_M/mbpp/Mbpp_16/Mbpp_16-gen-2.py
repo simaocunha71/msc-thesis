@@ -1,4 +1,8 @@
-def text_lowercase_underscore(s):
-    return all(c.islower() for c in s) and s.replace('_', '').islower()
+
+def text_lowercase_underscore(text: str) -> bool:
+  if text.islower() and "_" in text:
+    return True
+  else:
+    return False
 
 

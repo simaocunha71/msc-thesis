@@ -1,5 +1,7 @@
-"""
+
 import math
 def lateralsurface_cone(r,h):
-    return math.pi*r*h+math.pi*r**2
-"""
+  lateral_surface = (math.pi*r*r*h)/3
+  return lateral_surface
+
+

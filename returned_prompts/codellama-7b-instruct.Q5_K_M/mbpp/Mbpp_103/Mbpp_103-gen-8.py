@@ -1,4 +1,9 @@
+
 def eulerian_num(n, m):
-    return n * (n - 1) * (n - 2) * ... * (n - m + 1)
+    if n < m:
+        return 0
+    if n == m:
+        return 1
+    return eulerian_num(n - 1, m) + eulerian_num(n - 1, m - 1)
 
 

@@ -1,2 +1,5 @@
-def divisible_by_three(nums):
-    return [num for num in nums if num %
+
+def tuple_str_int(tup_str):
+    return tuple(map(int, tup_str))
+
+

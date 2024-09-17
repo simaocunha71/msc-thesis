@@ -1,5 +1,5 @@
-"""
-def count_X(t, x):
-    return sum(t.count(x) for t in t)
-"""
+
+def count_X(test_tup, element):
+    return test_tup.count(element)
+
 

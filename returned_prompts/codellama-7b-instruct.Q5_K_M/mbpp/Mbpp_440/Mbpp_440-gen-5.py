@@ -1,8 +1,9 @@
+
 def find_adverb_position(sentence):
-    adverb = None
-    position = None
-    for i, word in enumerate(sentence.split()):
-        if word in ('clearly', 'quickly', 'quick', 'soon', 'later'):
-            adverb = word
-            position = i
-    return position, position + len(adverb), adverb
+  words = sentence.split()
+  for i, word in enumerate(words):
+    if word.endswith('ly'):
+      return (i, len(word)-2, word)
+  return (None, None, None)
+
+

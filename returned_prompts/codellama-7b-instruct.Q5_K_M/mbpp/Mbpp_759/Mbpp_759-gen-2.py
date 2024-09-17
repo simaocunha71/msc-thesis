@@ -1,5 +1,9 @@
-def is_decimal(s):
-    return s.count('.') == 1 and s.count('0') < 3 and s.endswith('0')
 
+def is_decimal(s: str) -> bool:
+  try:
+    float(s)
+    return True
+  except:
+    return False
 
 

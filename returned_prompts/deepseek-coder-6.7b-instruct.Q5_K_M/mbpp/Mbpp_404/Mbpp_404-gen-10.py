@@ -1,9 +1,5 @@
-def minimum(a,b):
-    if a < b:
-        return a
-    else:
-        return b
 
-print(minimum(1,2))
+def minimum(a, b):
+    return min(a, b)
 
-#Q2
+

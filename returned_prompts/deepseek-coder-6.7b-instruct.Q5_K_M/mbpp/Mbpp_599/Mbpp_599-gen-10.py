@@ -1,3 +1,7 @@
-def count_num(lst):
-    even_count = sum(1 for num in lst if num % 2 == 0)
-    odd_
+
+def sum_average(n):
+  total_sum = n * (n + 1) // 2
+  average = total_sum / n
+  return (total_sum, average)
+
+

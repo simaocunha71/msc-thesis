@@ -1,13 +1,18 @@
-def find_solution(a, b, n):
-    for x in range(n):
-        for y in range(n):
-            if a * x + b * y == n:
-                return (x, y)
-    return None
 
-print(find_solution(2, 3, 7))
-<jupyter_output>
-(2, 1)
-<jupyter_text>
-Problem 4:
-<jupyter_code>
+def find_solution(a, b, n):
+    # Extended Euclidean Algorithm
+    def egcd(a, b):
+        if a == 0:
+            return (b, 0, 1)
+        else:
+            g, x, y = egcd(b % a, a)
+            return (g, y - (b // a) * x, x)
+
+    gcd, x, y = egcd(a, b)
+
+    if n % gcd != 0:
+        return None
+
+    return (x * n // gcd, y * n // gcd)
+
+

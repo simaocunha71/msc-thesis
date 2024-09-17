@@ -1,4 +1,7 @@
-def start_withp(my_list):
-    return list(filter(lambda x: x.startswith('p'), my_list))
+
+def start_withp(words):
+  for word in words:
+    if word.split()[0] == "Python":
+      return word.split()
 
 

@@ -1,5 +1,9 @@
-"""
-def count_samepair(lst1, lst2, lst3):
-    assert len(lst1) == len(lst2) == len(lst3)
-    return sum(i == j and k == l for i, j, k, l in zip(lst1, lst2, lst3, lst3))
-"""
+
+def count_samepair(list1, list2, list3) -> int:
+  count = 0
+  for i in range(len(list1)):
+    if list1[i] == list2[i] == list3[i]:
+      count += 1
+  return count
+
+

@@ -1,12 +1,11 @@
-def flatten_list(my_list):
-    res = []
-    for i in my_list:
-        if isinstance(i, list):
-            res.extend(flatten_list(i))
-        else:
-            res.append(i)
-    return res
 
-
+def flatten_list(nested_list):
+  flattened_list = []
+  for item in nested_list:
+    if isinstance(item, list):
+      flattened_list.extend(flatten_list(item))
+    else:
+      flattened_list.append(item)
+  return flattened_list
 
 

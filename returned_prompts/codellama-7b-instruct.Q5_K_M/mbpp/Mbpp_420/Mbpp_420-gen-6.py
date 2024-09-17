@@ -1,5 +1,8 @@
-def cube_Sum(n):
-    sum = 0
-    for i in range(0,n):
-        sum += i*i*i
-    return sum
+
+def cube_Sum(n: int) -> int:
+    total = 0
+    for i in range(2, n+1):
+        total += i**3
+    return total
+
+

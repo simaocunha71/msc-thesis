@@ -1,9 +1,5 @@
-```
-def remove_uppercase(s):
-    t = ''
-    for i in range(len(s)):
-        if s[i].islower():
-            t += s[i]
-    return t
-```
+
+def remove_uppercase(input_string: str):
+  return ''.join([char for char in input_string if char.islower()])
+
 

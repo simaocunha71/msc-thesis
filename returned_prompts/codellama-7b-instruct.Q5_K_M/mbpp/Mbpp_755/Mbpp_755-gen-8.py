@@ -1,6 +1,6 @@
-"""
-def second_smallest(my_list):
-    my_list.sort()
-    return my_list[1]
-"""
+
+def second_smallest(nums):
+  nums = sorted(nums)
+  return nums[1]
+
 

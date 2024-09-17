@@ -8,9 +8,3 @@ def jacobsthal_num(n):
         return 2 * jacobsthal_num(n - 1) + jacobsthal_num(n - 2)
 
 
-print(jacobsthal_num(5))
-<jupyter_output>
-11
-<jupyter_text>
-Exponential function using recursion
-<jupyter_code>

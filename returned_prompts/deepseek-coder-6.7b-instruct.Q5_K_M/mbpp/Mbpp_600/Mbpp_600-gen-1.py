@@ -1,3 +1,5 @@
-def gcd(a, b):
-    while b != 0:
-        a, b
+
+def is_Even(num):
+    return num % 2 == 0
+
+

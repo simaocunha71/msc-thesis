@@ -1,4 +1,6 @@
-def polar_rect(r,theta):
-    x = r*np.cos(theta)
-    y = r*np.sin(theta)
-    return (x,y)
+
+import cmath
+def polar_rect(radius, angle):
+  return (cmath.rect(radius, angle))
+
+

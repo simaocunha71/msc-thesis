@@ -1,4 +1,5 @@
-"""
+
 def freq_count(my_list):
-    return {k: my_list.count(k) for k in set(my_list)}
-"""
+  return {i: my_list.count(i) for i in set(my_list)}
+
+

@@ -1,9 +1,5 @@
-def find_tuples(lst, k):
-    return [tup for tup in lst if all(el % k == 0 for el in tup)]
 
-print(find_tuples([(6, 24, 12), (7, 9, 6), (12, 18, 21)], 6))
-<jupyter_output>
-[(6, 24, 12)]
-<jupyter_text>
-Problem 4
-<jupyter_code>
+def find_tuples(tuples_list: list, k: int) -> list:
+  return [t for t in tuples_list if all(i % k == 0 for i in t)]
+
+

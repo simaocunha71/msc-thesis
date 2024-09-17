@@ -1,13 +1,5 @@
-def find_first(li,val):
-    for i in range(len(li)):
-        if li[i]==val:
-            return i
-    return -1
 
-# Testing
-assert find_first([1, 2, 3, 4, 5, 6, 7, 8],2)==1
-assert find_first([1, 2, 3, 4, 5, 6, 7, 8],6)==6
-assert find_first([],7)==-1
+def count_same_pair(test_list1,test_list2):
+  return sum(1 for a, b in zip(test_list1, test_list2) if a == b)
 
-"""
-The input is defined as two lists of the same length. Write a function
+

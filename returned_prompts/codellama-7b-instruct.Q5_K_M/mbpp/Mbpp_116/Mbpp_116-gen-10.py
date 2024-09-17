@@ -1,5 +1,8 @@
-def tuple_to_int(t):
-    assert all(i>0 for i in t)
-    return sum(i*10**(len(t)-1-i) for i in t)
+
+def tuple_to_int(tup: tuple) -> int:
+  res = 0
+  for i in range(len(tup)):
+    res += tup[i] * 10 ** i
+  return res
 
 

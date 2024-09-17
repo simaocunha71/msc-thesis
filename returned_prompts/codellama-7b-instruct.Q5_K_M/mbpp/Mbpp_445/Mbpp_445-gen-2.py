@@ -1,3 +1,6 @@
-def index_multiplication(tuple1, tuple2):
-    assert len(tuple1) == len(tuple2)
-    return tuple(map(lambda x, y: (x[0], x[1] * y[1]), tuple1, tuple2))
+
+def index_multiplication(tup1, tup2):
+  assert len(tup1) == len(tup2)
+  return tuple(x*y for x, y in zip(tup1, tup2))
+
+

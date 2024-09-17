@@ -1,2 +1,5 @@
-def count(lst):
-    return len([x for x in lst if x])
+
+def count(lst: list) -> int:
+    return sum(lst)
+
+

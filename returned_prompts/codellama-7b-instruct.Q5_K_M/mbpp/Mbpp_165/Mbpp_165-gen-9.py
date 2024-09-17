@@ -1,8 +1,10 @@
-"""
-def count_char_position(string):
+
+def count_char_position(s: str) -> int:
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
     count = 0
-    for c in string:
-        if c.lower() == c.lower()[c.lower().index(c)]:
+    for i,c in enumerate(s.lower()):
+        if c == alphabet[i]:
             count += 1
     return count
-"""
+
+

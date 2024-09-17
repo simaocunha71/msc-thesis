@@ -1,7 +1,6 @@
-"""
-import re
 
-def text_lowercase_underscore(text):
-    pattern = re.compile(r'^[a-z]+(_[a-z]+)*$')
-    return bool(pattern.match(text))
-"""
+import re
+def text_lowercase_underscore(s:str)->bool:
+  return re.match(r"^[a-z]+(_[a-z]+)*$",s)
+
+

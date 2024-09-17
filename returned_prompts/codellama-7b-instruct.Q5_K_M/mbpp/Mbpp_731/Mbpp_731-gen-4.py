@@ -1,4 +1,7 @@
-"""
-def lateralsurface_cone(r, h):
-    return (1/3)*3.14*r*r + 3.14*r*h
-"""
+
+import math
+def lateral_surface_cone(r: float, h: float) -> float:
+  lateral_surface = 2 * math.pi * r * (r + h)
+  return lateral_surface
+
+

@@ -1,13 +1,6 @@
-"""
-def get_coordinates(t):
-    x, y = t
-    coordinates = []
-    for dx in [-1, 0, 1]:
-        for dy in [-1, 0, 1]:
-            if dx != 0 or dy != 0:
-                coordinates.append([x + dx, y + dy])
-    return coordinates
 
-print(get_coordinates((3, 4)))
-"""
+def get_coordinates(coord: tuple) -> list:
+    x, y = coord
+    return [[i, j] for i in range(x-1, x+2) for j in range(y-1, y+2)]
+
 

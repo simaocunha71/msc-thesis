@@ -1,8 +1,7 @@
-def two_unique_nums(nums_list):
-    # write your code here
-    nums_list = sorted(nums_list)
-    unique_nums = []
-    for num in nums_list:
-        if num not in unique_nums:
-            unique_nums.append(num)
+
+def two_unique_nums(my_list):
+    unique_nums = list(set(my_list))
+    unique_nums.sort()
     return unique_nums
+
+

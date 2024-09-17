@@ -1,4 +1,7 @@
-def area_tetrahedron(side_length):
-    return (side_length * (side_length + 1) ** 0.5) / 2
+
+import math
+
+def area_tetrahedron(edge: float) -> float:
+  return (math.sqrt(2 * (edge ** 2)))
 
 

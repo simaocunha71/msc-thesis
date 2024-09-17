@@ -1,11 +1,11 @@
-"""
-def flatten_list(nested_list):
-    result = []
-    for element in nested_list:
-        if isinstance(element, list):
-            result.extend(flatten_list(element))
+
+def flatten_list(my_list):
+    flat_list = []
+    for element in my_list:
+        if type(element) == list:
+            flat_list += flatten_list(element)
         else:
-            result.append(element)
-    return result
-"""
+            flat_list.append(element)
+    return flat_list
+
 

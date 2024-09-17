@@ -1,6 +1,5 @@
-def remove_odd(lst):
-    return [x for x in lst if x % 2 == 0]
 
-print(remove_odd([1,2,3]))  # Expected output: [2]
+def remove_odd(nums):
+  return [n for n in nums if n % 2 == 0]
 
-"""
+

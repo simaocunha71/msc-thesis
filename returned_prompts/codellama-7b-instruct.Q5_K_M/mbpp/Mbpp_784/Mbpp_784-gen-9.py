@@ -1,6 +1,12 @@
-"""
+
 def mul_even_odd(my_list):
-    even = [x for x in my_list if x % 2 == 0]
-    odd = [x for x in my_list if x % 2 != 0]
-    return even[0] * odd[0]
-"""
+  even_prod = 1
+  odd_prod = 1
+  for i in my_list:
+    if i % 2 == 0:
+      even_prod *= i
+    else:
+      odd_prod *= i
+  return even_prod * odd_prod
+
+

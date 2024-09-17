@@ -1,9 +1,8 @@
-"""
-def check_integer(string):
+
+def check_integer(value):
     try:
-        int(string)
+        int(value)
         return True
     except ValueError:
         return False
-"""
 

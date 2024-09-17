@@ -1,4 +1,5 @@
-def multiple_to_single(lst):
-    return int(''.join(map(str, lst)))
+
+def multiple_to_single(my_list: list) -> int:
+  return int(''.join(map(str, my_list)))
 
 

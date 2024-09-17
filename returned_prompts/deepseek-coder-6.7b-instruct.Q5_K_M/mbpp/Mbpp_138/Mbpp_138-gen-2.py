@@ -1,3 +1,4 @@
+
 def is_Sum_Of_Powers_Of_Two(n):
     i = 0
     while 2 ** i <= n:
@@ -8,9 +9,4 @@ def is_Sum_Of_Powers_Of_Two(n):
     i += 1
     return False
 
-print(is_Sum_Of_Powers_Of_Two(10))
-<jupyter_output>
-True
-<jupyter_text>
-Problem 2
-<jupyter_code>
+

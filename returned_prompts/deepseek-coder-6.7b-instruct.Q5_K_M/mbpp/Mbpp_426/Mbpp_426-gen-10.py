@@ -1,8 +1,5 @@
-def filter_perfect_squares(lst):
-    return [i for i in lst if i**0.5==int(i**0.5)]
 
-print(filter_perfect_squares([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+def filter_oddnumbers(nums):
+  return [n for n in nums if n % 2 == 1]
 
-"""
-Write a function to filter numbers which are palindromes.
-assert filter_
+

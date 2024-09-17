@@ -1,4 +1,5 @@
-```python
-def unique_Element(my_list):
-  return len(set(my_list)) == 1
-```
+
+def unique_Element(nums:list)->bool:
+  return len(set(nums)) == 1
+
+

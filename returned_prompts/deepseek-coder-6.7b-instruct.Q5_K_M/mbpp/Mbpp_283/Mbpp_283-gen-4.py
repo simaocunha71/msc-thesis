@@ -1,9 +1,8 @@
-def validate(n):
-    s = str(n)
-    for i in s:
-        if s.count(i) > int(i):
-            return False
-    return True
 
-print(validate(1234))
+def validate(n):
+  for digit in str(n):
+    if str(n).count(digit) > int(digit):
+      return False
+  return True
+
 

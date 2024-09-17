@@ -1,13 +1,13 @@
-def check_min_heap(arr):
-    if len(arr) == 1:
-        return True
-    left = 2 * i + 1
-    right = 2 * i + 2
-    if left >= len(arr) or right >= len(arr):
-        return True
-    if arr[i] > arr[left] or arr[i] > arr[right]:
-        return False
-    return check_min_heap(arr[left:]) and check_min_heap(arr[right:])
 
+def check_min_heap(arr):
+  if len(arr) == 1:
+    return True
+  if len(arr) == 2:
+    return True
+  if arr[0] > arr[1]:
+    return False
+  if arr[1] > arr[2]:
+    return False
+  return check_min_heap(arr[1:]) and check_min_heap(arr[2:])
 
 

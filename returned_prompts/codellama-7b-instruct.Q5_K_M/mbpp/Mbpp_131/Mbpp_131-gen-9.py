@@ -1,11 +1,12 @@
-```python
+
 def reverse_vowels(s):
-    vowels = "aeiouAEIOU"
-    rv = ""
+    vowels = 'aeiou'
+    ans = ''
     for c in s:
         if c in vowels:
-            rv = c + rv
+            ans = c + ans
         else:
-            rv = rv + c
-    return rv
-```
+            ans += c
+    return ans
+
+

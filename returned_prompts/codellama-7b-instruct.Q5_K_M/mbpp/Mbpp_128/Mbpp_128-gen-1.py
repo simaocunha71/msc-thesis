@@ -1,5 +1,5 @@
 
-def long_words(n, words):
-    return [word for word in words if len(word) > n]
+def long_words(n: int, words: str) -> list:
+  return [word for word in words.split() if len(word) > n]
 
 

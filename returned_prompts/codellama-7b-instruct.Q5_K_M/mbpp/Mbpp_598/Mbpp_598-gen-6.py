@@ -1,7 +1,10 @@
+
 def armstrong_number(n):
-    x=n
-    y=0
-    while x>0:
-        y+=x%10
-        x//=10
-    return y==n
+    sn = 0
+    temp = n
+    while temp > 0:
+        sn += (temp % 10) ** 3
+        temp //= 10
+    return sn == n
+
+

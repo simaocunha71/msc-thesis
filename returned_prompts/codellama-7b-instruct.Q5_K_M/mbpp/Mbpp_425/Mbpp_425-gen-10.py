@@ -1,4 +1,9 @@
-"""
-def count_element_in_list(list_of_lists, element):
-    return sum(1 for sublist in list_of_lists if element in sublist)
-"""
+
+def count_element_in_list(lst, elem):
+  count = 0
+  for sublist in lst:
+    if elem in sublist:
+      count += 1
+  return count
+
+

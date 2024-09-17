@@ -1,4 +1,7 @@
-def convert(x):
-    if isinstance(x, complex):
-        return (x.real, x.imag)
-    return (x, 0.0)
+
+def convert(num):
+  abs_num = abs(num)
+  arg_num = cmath.phase(num)
+  return abs_num, arg_num
+
+

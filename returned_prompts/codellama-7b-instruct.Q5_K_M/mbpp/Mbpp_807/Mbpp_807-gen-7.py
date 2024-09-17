@@ -1,5 +1,6 @@
-def first_odd(my_list):
-    for num in my_list:
+
+def first_odd(nums: list) -> int:
+    for num in nums:
         if num % 2 != 0:
             return num
     return None

@@ -1,11 +1,5 @@
 
-def get_equal(lst):
-    for tup in lst:
-        if len(tup) != len(lst[0]):
-            return False
-    return True
+def get_equal(test_tup):
+  return all(len(tup) == len(test_tup[0]) for tup in test_tup)
 
-print(get_equal([(11, 22, 33), (44, 55, 66)]))
-
-# 2.
 

@@ -1,13 +1,9 @@
-"""
-def len_log(list_words):
-    # Get the length of the longest word
-    length = 0
-    for word in list_words:
-        if len(word) > length:
-            length = len(word)
-    return length
 
-# Test
-print(len_log(["python","PHP","bigdata"])) # Output: 7
-"""
+def len_log(words: list) -> int:
+    max_len = 0
+    for word in words:
+        if len(word) > max_len:
+            max_len = len(word)
+    return max_len
+
 

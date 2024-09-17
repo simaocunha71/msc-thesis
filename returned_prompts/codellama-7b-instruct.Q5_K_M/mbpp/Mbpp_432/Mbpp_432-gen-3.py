@@ -1,4 +1,6 @@
+
 def median_trapezium(a,b,c):
-    return (a+b+c)/2
+  median = (a+b+c)/2
+  return median
 
 

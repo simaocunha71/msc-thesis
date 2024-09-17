@@ -1,9 +1,10 @@
-"""
-def count_reverse_pairs(string_list):
-    count = 0
-    for i in range(len(string_list)):
-        for j in range(i+1, len(string_list)):
-            if string_list[i] == string_list[j][::-1]:
-                count += 1
-    return count
-"""
+
+def count_reverse_pairs(my_list):
+  count = 0
+  for word in my_list:
+    rev_word = word[::-1]
+    if rev_word in my_list and word != rev_word:
+      count += 1
+  return count
+
+

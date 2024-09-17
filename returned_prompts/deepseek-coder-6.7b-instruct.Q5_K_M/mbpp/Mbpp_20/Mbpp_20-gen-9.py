@@ -1,10 +1,12 @@
-def is_woodall(n):
-    if n < 2:
-        return False
-    while n % 2 == 0:
-        n /= 2
-    return all(n % i and n % (i + 2) for i in range(3, int(n ** 0.5) + 1, 6))
 
-print(is_woodall(383))  # True
+def is_woodall(n):
+    if n < 10:
+        return False
+    digits = [int(d) for d in str(n)]
+    product = 1
+    for d in digits:
+        if d != 0:
+            product *= d
+    return product == 1
 
 

@@ -1,7 +1,8 @@
-```
+
 def closest_num(n):
-    for i in range(n-1, 0, -1):
-        if i <= n:
-            return i
-```
+    if n % 2 == 0:
+        return n - 2
+    else:
+        return n - 1
+
 

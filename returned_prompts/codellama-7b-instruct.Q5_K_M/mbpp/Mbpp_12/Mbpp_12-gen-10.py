@@ -1,2 +1,5 @@
-def sort_matrix(matrix):
-    return [sorted(matrix[i], key=sum) for i in range(len(matrix))]
+
+def sort_matrix(matrix: list) -> list:
+    return sorted(matrix, key=lambda x: sum(x))
+
+

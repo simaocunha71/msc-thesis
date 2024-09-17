@@ -1,53 +1,11 @@
-"""
-def find_length(s):
-    max_length = 0
-    for i in range(len(s)):
-        for j in range(i+1, len(s)+1):
-            zero_count = s[i:j].count('0')
-            one_count = s[i:j].count('1')
-            max_length = max(max_length, abs(zero_count - one_count))
-    return max_length
 
-print(find_length("11000010001"))
-"""
-
-def find_length(s):
-    max_length = 0
-    for i in range(len(s)):
-        for j in range(i+1, len(s)+1):
-            zero_count = s[i:j].count('0')
-            one_count = s[i:j].count('1')
-            max_length = max(max_length, abs(zero_count - one_count))
-    return max_length
-
-print(find_length("11000010001"))
+def find_length(binary_string: str) -> int:
+  length = 0
+  for i in range(len(binary_string)):
+    if binary_string[i] == '0':
+      length = max(length + 1, 1)
+    else:
+      length += 1
+  return length
 
 
-
-def find_length(s):
-    max_length = 0
-    for i in range(len(s)):
-        for j in range(i+1, len(s)+1):
-            zero_count = s[i:j].count('0')
-            one_count = s[i:j].count('1')
-            max_length = max(max_length, abs(zero_count - one_count))
-    return max_length
-
-print(find_length("11000010001"))
-
-
-
-def find_length(s):
-    max_length = 0
-    for i in range(len(s)):
-        for j in range(i+1, len(s)+1):
-            zero_count = s[i:j].count('0')
-            one_count = s[i:j].count('1')
-            max_length = max(max_length, abs(zero_count - one_count))
-    return max_length
-
-print(find_length("11000010001"))
-
-
-
-def find

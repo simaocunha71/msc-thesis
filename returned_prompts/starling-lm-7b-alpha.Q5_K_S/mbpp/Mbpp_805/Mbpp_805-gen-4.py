@@ -1,92 +1,11 @@
-from itertools import *
 
-def max_sum_list(x):
-    return max(x, key=sum)
-
-
-# Another way:
-
-def max_sum_list(l):
-    return max(l, key=sum)
-
-
-# Yet another way, using itertools:
-
-from itertools import *
-def max_sum_list(l):
-    return max(l, key=sum)
+def max_sum_list(list_of_list):
+  max_sum = 0
+  max_sum_list = []
+  for sublist in list_of_list:
+    if sum(sublist) > max_sum:
+      max_sum = sum(sublist)
+      max_sum_list = sublist
+  return max_sum_list
 
 
-# Yet another way, using itertools:
-
-from itertools import *
-def max_sum_list(l):
-    return max(l, key=sum)
-
-
-# Yet another way, using itertools:
-
-from itertools import *
-def max_sum_list(l):
-    return max(l, key=sum)
-
-
-# Yet another way, using itertools:
-
-from itertools import *
-def max_sum_list(l):
-    return max(l, key=sum)
-
-
-# Yet another way, using itertools:
-
-from itertools import *
-def max_sum_list(l):
-    return max(l, key=sum)
-
-
-# Yet another way, using itertools:
-
-from itertools import *
-def max_sum_list(l):
-    return max(l, key=sum)
-
-
-# Yet another way, using itertools:
-
-from itertools import *
-def max_sum_list(l):
-    return max(l, key=sum)
-
-
-# Yet another way, using itertools:
-
-from itertools import *
-def max_sum_list(l):
-    return max(l, key=sum)
-
-
-# Yet another way, using itertools:
-
-from itertools import *
-def max_sum_list(l):
-    return max(l, key=sum)
-
-
-# Yet another way, using itertools:
-
-from itertools import *
-def max_sum_list(l):
-    return max(l, key=sum)
-
-
-# Yet another way, using itertools:
-
-from itertools import *
-def max_sum_list(l):
-    return max(l, key=sum)
-
-
-# Yet another way, using itertools:
-
-from iter

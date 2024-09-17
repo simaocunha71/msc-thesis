@@ -1,4 +1,10 @@
-def common_in_nested_lists(nested_lists):
-    return list(set(nested_lists[0]).intersection(*nested_lists))
+
+def common_in_nested_lists(nested_list):
+    common_elements = []
+    for sublist in nested_list:
+        for element in sublist:
+            if element not in common_elements:
+                common_elements.append(element)
+    return common_elements
 
 

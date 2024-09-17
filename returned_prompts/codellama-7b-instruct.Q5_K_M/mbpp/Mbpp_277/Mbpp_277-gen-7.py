@@ -1,2 +1,5 @@
-def dict_filter(my_dict,n):
-    return {k:v for k,v in my_dict.items() if v>=n}
+
+def dict_filter(my_dict: dict,n: int) -> dict:
+  return {key:value for key,value in my_dict.items() if value>=n}
+
+

@@ -1,5 +1,8 @@
-def check_none(tup):
-    for x in tup:
-        if x is None:
-            return True
-    return False
+
+def check_none(my_tuple):
+    if None in my_tuple:
+        return True
+    else:
+        return False
+
+

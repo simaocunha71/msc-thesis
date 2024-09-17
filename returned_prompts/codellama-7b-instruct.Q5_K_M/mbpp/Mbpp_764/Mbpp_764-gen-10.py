@@ -1,5 +1,9 @@
-def number_ctr(string):
-    """
-    Returns the number of digits in a given string
-    """
-    return sum(char.isdigit() for char in string)
+
+def number_ctr(string_input):
+  num_ctr = 0
+  for char in string_input:
+    if char.isdigit():
+      num_ctr += 1
+  return num_ctr
+
+

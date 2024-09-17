@@ -1,6 +1,9 @@
-"""
-def count_list(lst):
-    return len(lst)
-print(count_list([[1, 3], [5, 7], [9, 11], [13, 15, 17]]))
-"""
+
+def count_list(nums:list) -> int:
+  count = 0
+  for i in nums:
+    if isinstance(i, list):
+      count += 1
+  return count
+
 

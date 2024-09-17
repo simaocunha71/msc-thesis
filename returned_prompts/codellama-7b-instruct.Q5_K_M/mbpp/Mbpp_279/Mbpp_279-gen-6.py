@@ -1,5 +1,6 @@
-"""
-def is_num_decagonal(n):
-    nth_decagonal = n * (n + 1) // 2
-    return nth_decagonal
-"""
+
+def is_num_decagonal(num):
+  decagonal_num = (num * (10 * num - 1)) // 9
+  return decagonal_num
+
+

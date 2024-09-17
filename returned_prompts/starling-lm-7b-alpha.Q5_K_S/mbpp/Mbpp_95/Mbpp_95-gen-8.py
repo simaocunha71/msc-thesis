@@ -1,9 +1,5 @@
-"""
-def Find_Min_Length(List):
-    Min = len(List[0])
-    for i in List:
-        if len(i) < Min:
-            Min = len(i)
-    return Min
-"""
+
+def Find_Min_Length(list_of_lists):
+  return min([len(i) for i in list_of_lists])
+
 

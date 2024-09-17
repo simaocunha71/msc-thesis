@@ -1,10 +1,12 @@
-def magic_square_test(matrix):
-    row_sum = [sum(row) for row in matrix]
-    col_sum = [sum(col) for col in zip(*matrix)]
-    diag1 = sum(matrix[i][i] for i in range(len(matrix)))
-    diag2 = sum(matrix[i][len(matrix)-1-i] for i in range(len(matrix)))
-    if sum(row_sum) != 3*sum(col_sum): return False
-    if sum(row_sum) != sum(diag1, diag2): return False
+
+def magic_square_test(matrix: list):
+    sum_rows = [sum(row) for row in matrix]
+    sum_cols = [sum(col) for col in zip(*matrix)]
+    if sum(sum_rows) != sum(sum_cols):
+        return False
+    sum_diag = sum(matrix[i][i] for i in range(len(matrix)))
+    if sum_diag != sum(sum_rows) or sum_diag != sum(sum_cols):
+        return False
     return True
 
 

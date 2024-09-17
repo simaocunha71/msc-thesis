@@ -1,6 +1,6 @@
+
 def combinations_list(my_list):
-    if not my_list:
-        return [[]]
-    else:
-        rest = combinations_list(my_list[1:])
-        return [[my_list[0]] + r for r in rest] + rest
+  from itertools import combinations
+  return [list(combination) for r in range(1, len(my_list)+1) for combination in combinations(my_list, r)]
+
+

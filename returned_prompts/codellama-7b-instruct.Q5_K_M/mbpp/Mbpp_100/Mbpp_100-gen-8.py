@@ -1,11 +1,14 @@
-```python
-def next_smallest_palindrome(x):
-    s = str(x)
-    for i in range(len(s)):
-        if s[i] != s[-i-1]:
-            s = s[:i] + s[-i-1] + s[i+1:]
-            break
+
+def next_smallest_palindrome(n):
+    n = str(n)
+    if n == n[::-1]:
+        return int(n) + 1
     else:
-        s = str(int(s) + 1)
-    return int(s)
-```
+        n = n[::-1]
+        for i in range(len(n)):
+            if n[i] != n[-1-i]:
+                break
+        n = n[:-1-i] + str(int(n[-1-i]) + 1) + n[i+1::]
+        return int(n)
+
+

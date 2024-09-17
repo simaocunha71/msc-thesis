@@ -1,6 +1,5 @@
-```python
-import re
 
-def is_decimal(num_str):
-    return re.match(r'^[0-9]+\.[0-9]{2}$', num_str)
-```
+def is_decimal(num: str) -> bool:
+  return num.is_decimal() and num.count('.') == 1
+
+

@@ -1,10 +1,10 @@
-```
-def sum_Of_Subarray_Prod(arr):
-    n = len(arr)
-    total = 1
-    for i in range(n):
-        total *= arr[i]
-    for i in range(n-1, -1, -1):
-        total *= arr[i]
+
+def sum_Of_Subarray_Prod(my_list: list) -> int:
+    prod = 1
+    total = 0
+    for i in range(len(my_list)):
+        prod *= my_list[i]
+        total += prod
     return total
-```
+
+

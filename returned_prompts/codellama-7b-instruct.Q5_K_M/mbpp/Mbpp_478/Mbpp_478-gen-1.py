@@ -1,6 +1,5 @@
 
-```
-def remove_lowercase(s):
-    return ''.join(c for c in s if c.isupper())
-```
+def remove_lowercase(string):
+    return ''.join([char for char in string if char.isupper()])
+
 

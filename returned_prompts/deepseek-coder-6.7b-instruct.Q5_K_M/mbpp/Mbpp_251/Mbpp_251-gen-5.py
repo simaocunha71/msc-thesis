@@ -1,5 +1,5 @@
-def insert_element(lst, e):
-    return [e] + lst
 
-print(insert_element(['Red', 'Green', 'Black'], 'c'))
+def insert_element(lst: list, el: any) -> list:
+  return [el] + lst
+
 

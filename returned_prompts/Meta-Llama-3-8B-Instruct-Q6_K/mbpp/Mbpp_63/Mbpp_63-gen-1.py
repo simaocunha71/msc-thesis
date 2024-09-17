@@ -1,0 +1,5 @@
+```
+def max_difference(tuples):
+    return max(abs(t[0] - t[1]) for t in tuples)
+```
+This function works by using a generator expression to calculate the absolute difference between each pair of numbers in the tuples, and then using the built-in `max` function to find the largest of these differences. The `abs` function is used to ensure that the differences are always positive, regardless of whether the first number in the pair is greater than or less than the second. This is necessary because the `max` function only works with a single sequence of values, and the differences between pairs of numbers are not necessarily comparable. The `abs` function allows us to treat all the differences as comparable, so that the `max` function can find the largest one. The unit test `assert max_difference([(3, 5), (1, 7), (10, 3), (1, 2)]) == 7` demonstrates that the function works correctly. It checks that the maximum difference between the pairs in the tuple list `[(3, 5), (1, 7), (10, 3), (1, 2)]` is indeed 7, which is the difference between the pair `(1, 7)`. The function correctly identifies this as the maximum difference in the tuple list.

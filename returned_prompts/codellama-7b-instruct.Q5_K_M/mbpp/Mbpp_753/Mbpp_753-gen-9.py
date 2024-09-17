@@ -1,4 +1,5 @@
-"""
-def min_k(lst, k):
-    return sorted(lst)[0:k]
-"""
+
+def min_k(my_list,k):
+    return sorted(my_list, key=lambda x:x[1])[:k]
+
+

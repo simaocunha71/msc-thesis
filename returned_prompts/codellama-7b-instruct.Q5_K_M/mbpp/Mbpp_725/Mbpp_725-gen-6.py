@@ -1,7 +1,6 @@
-"""
-import re
 
-def extract_quotation(string):
-    quotations = re.findall(r'"([^"]*)"', string)
-    return quotations
-"""
+import re
+def extract_quotation(string_text: str) -> list:
+  return re.findall(r'"([^"]*)"', string_text)
+
+

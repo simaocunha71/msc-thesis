@@ -1,16 +1,9 @@
 
-def is_decimal(s):
-    try:
-        float(s)
-    except ValueError:
-        return False
-    else:
-        if '.' in s:
-            split_dec = s.split('.')
-            if len(split_dec[1]) != 2:
-                return False
-        return True
+def is_decimal(s: str) -> bool:
+  try:
+    float_s = float(s)
+    return True
+  except ValueError:
+    return False
 
-print(is_decimal('123.11'))
 
-# Task 2

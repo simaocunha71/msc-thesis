@@ -1,9 +1,5 @@
+
 def find_substring(lst, substr):
-    for word in lst:
-        if substr in word:
-            return True
-    return False
+  return any(substr in s for s in lst)
 
-print(find_substring(["red", "black", "white", "green", "orange"],"ack"))
 
-#

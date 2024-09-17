@@ -1,5 +1,7 @@
+
 def sort_sublists(my_list):
-    return [[item for item in sorted(sublist)] for sublist in my_list]
+  for sublist in my_list:
+    sublist.sort()
+  return my_list
 
 
-# 2.

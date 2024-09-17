@@ -1,4 +1,5 @@
-```python
-def check_monthnumber_number(monthnumber):
-    return monthnumber in [1, 3, 5, 7, 8, 10, 12]
-```
+
+def check_monthnumber_number(month: int) -> bool:
+  return (month in [4, 6, 9, 11])
+
+

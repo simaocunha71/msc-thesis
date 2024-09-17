@@ -1,6 +1,12 @@
-"""
-def jacobsthal_num(n):
-    if n <= 0:
-        return 0
-    return sum(jacobsthal_num(n-i) for i in range(1, n+1))
-"""
+
+def jacobsthal_num(n: int) -> int:
+    a = 0
+    b = 1
+    c = 1
+    for i in range(n):
+        c = a + b
+        a = b
+        b = c
+    return c
+
+

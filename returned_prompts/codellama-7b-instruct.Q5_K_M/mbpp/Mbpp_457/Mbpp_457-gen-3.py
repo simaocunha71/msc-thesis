@@ -1,2 +1,5 @@
-def Find_Min(lst):
-    return min(lst, key=len)
+
+def Find_Min(arr):
+    return min(arr, key=len)
+
+

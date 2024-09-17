@@ -1,5 +1,5 @@
 
-def max_val(my_list):
-    return max(my_list)
+def max_val(lst):
+    return max(lst)
 
 

@@ -1,9 +1,5 @@
 
 def odd_position(lst):
-    for i in range(len(lst)):
-        if i % 2 != 0 and lst[i] % 2 == 0:
-            return False
-    return True
+    return all(el % 2 == 1 for i, el in en_lst if i % 2 == 1)
 
-print(odd_position([2,1,4,3,6,7,6,3])) # True
 

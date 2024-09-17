@@ -1,6 +1,5 @@
-def sum_even_and_even_index(lst):
-    return sum(lst[i] for i in range(0, len(lst), 2) if lst[i] % 2 == 0)
 
-print(sum_even_and_even_index([5, 6, 12, 1, 18, 8]))  # 30
+def sum_even_and_even_index(lst):
+  return sum(elm for idx, elm in enumerate(lst) if idx % 2 == 0 and elm % 2 == 0)
 
 

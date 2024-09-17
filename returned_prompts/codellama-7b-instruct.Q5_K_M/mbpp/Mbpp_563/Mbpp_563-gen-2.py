@@ -1,6 +1,6 @@
-import re
 
+import re
 def extract_values(string):
-    return re.findall(r'"([^"]*)"', string)
+  return re.findall(r'"([^"]*)"', string)
 
 

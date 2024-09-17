@@ -1,4 +1,8 @@
-```
-def find_remainder(arr,n):
-    return pow(reduce(lambda x,y:x*y,arr),2,n)
-```
+
+def find_remainder(arr, n):
+    result = 1
+    for i in arr:
+        result = (result * i) % n
+    return result
+
+

@@ -1,4 +1,5 @@
-```python
-def number_ctr(s):
-    return sum(1 for c in s if c.isdigit())
-```
+
+def number_ctr(my_str: str) -> int:
+  return sum([1 for i in my_str if i.isdigit()])
+
+

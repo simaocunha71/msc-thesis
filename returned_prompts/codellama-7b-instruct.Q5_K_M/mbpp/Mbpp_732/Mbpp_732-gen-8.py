@@ -1,5 +1,5 @@
-def replace_specialchar(text):
-    text = text.replace(' ', ':')
-    text = text.replace(',', ':')
-    text = text.replace('.', ':')
-    return text
+
+def replace_specialchar(s: str) -> str:
+  return s.replace(' ','').replace(',','').replace('.','')
+
+

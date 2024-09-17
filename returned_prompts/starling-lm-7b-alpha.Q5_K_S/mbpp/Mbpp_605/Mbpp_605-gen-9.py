@@ -1,158 +1,16 @@
+
 def prime_num(n):
     if n <= 1:
         return False
-    if n <= 3:
+    if n == 2:
         return True
-    if n % 2 == 0 or n % 3 == 0:
+    if n % 2 == 0:
         return False
-    i = 5
+    i = 3
     while i * i <= n:
-        if n % i == 0 or n % (i + 2) == 0:
+        if n % i == 0:
             return False
-        i += 6
+        i += 2
     return True
 
 
-
-
-
-
-
-```
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-```
-
-```python
-def prime_num(n):
-    if n <= 1:
-        return False
-    if n <= 3:
-        return True
-    if n % 2 == 0 or n % 3 == 0:
-        return False
-    i = 5
-    while i * i <= n:
-        if n % i == 0 or n % (i + 2) == 0:
-            return False
-        i += 6
-    return True
-
-```
-
-```python
-
-```
-```
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-
-```python
-```

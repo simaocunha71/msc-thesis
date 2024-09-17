@@ -1,5 +1,6 @@
+
 def armstrong_number(n):
-    s = str(n)
-    return sum([int(i)**len(s) for i in s])==n
+  digits = [int(i) for i in str(n)]
+  return sum(digits ** 3) == n
 
 

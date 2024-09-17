@@ -1,5 +1,5 @@
 
-def check_tuplex(my_tuple, element):
-    return element in my_tuple
+def check_tuplex(tup: tuple, elem: object) -> bool:
+  return elem in tup
 
 

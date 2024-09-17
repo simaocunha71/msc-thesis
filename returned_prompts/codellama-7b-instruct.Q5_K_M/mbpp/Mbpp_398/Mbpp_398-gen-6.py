@@ -1,4 +1,5 @@
-```
-def sum_of_digits(my_list):
-    return [sum(int(i) for i in str(x)) for x in my_list]
-```
+
+def sum_of_digits(numbers: list) -> int:
+    return sum(int(x) for x in sum(numbers, ()))
+
+

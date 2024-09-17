@@ -1,5 +1,5 @@
-"""
-from functools import reduce
-from operator import itemgetter
-def count_Occurrence(t,l):
-    return reduce(itemgetter(1), (i
+
+def count_Occurrence(tup, lst):
+    return sum(tup.count(i) for i in lst)
+
+

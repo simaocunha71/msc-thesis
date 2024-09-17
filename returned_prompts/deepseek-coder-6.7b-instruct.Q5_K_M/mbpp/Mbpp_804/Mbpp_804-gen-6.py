@@ -1,13 +1,8 @@
-"""
-def is_product_even(lst):
-    product = 1
-    for i in lst:
-        product *= i
-    if product % 2 == 0:
-        return True
-    else:
-        return False
 
-print(is_product_even([1,2,3]))
+def is_product_even(numbers):
+    product = 1
+    for n in numbers:
+        product *= n
+    return product % 2 == 0
 """
 

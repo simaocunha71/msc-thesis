@@ -1,2 +1,10 @@
-def perfect_squares(start, end):
-    return [x**2 for x in range(start, end+1) if x**2 >= start and x**2 <= end]
+
+def perfect_squares(a,b):
+  perfect_squares = []
+  for i in range(a,b+1):
+    root = i ** 0.5
+    if root == int(root):
+      perfect_squares.append(i)
+  return perfect_squares
+
+

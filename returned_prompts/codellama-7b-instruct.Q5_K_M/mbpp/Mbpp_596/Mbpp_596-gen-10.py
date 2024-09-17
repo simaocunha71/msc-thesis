@@ -1,5 +1,6 @@
-"""
+
 import sys
-def tuple_size(t):
-    return sys.getsizeof(t)
-"""
+def tuple_size(my_tuple):
+  return sys.getsizeof(my_tuple)
+
+

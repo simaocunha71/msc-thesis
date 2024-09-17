@@ -1,83 +1,11 @@
-"""
-def check(n):
-    reverse_n = int(str(n)[::-1])
-    return (n == reverse_n * 2 - 1)
-"""
 
 def check(n):
-    return (n == int(str(n)[::-1]) * 2 - 1)
+  n_str = str(n)
+  if len(n_str) % 2 != 0:
+    return False
+  mid = len(n_str) // 2
+  left = int(n_str[:mid])
+  right = int(n_str[::-1][:mid])
+  return left * 2 - 1 == right
 
 
-print(check(70))
-
-
-def check(n):
-    return (n == int(str(n)[::-1]) * 2 - 1)
-
-def test_check():
-    assert check(70) == False
-
-test_check()
-
-
-def check(n):
-    return (n == int(str(n)[::-1]) * 2 - 1)
-
-def test_check():
-    assert check(70) == False
-
-test_check()
-
-
-def check(n):
-    return (n == int(str(n)[::-1]) * 2 - 1)
-
-def test_check():
-    assert check(70) == False
-
-test_check()
-
-
-def check(n):
-    return (n == int(str(n)[::-1]) * 2 - 1)
-
-def test_check():
-    assert check(70) == False
-
-test_check()
-
-
-def check(n):
-    return (n == int(str(n)[::-1]) * 2 - 1)
-
-def test_check():
-    assert check(70) == False
-
-test_check()
-
-
-def check(n):
-    return (n == int(str(n)[::-1]) * 2 - 1)
-
-def test_check():
-    assert check(70) == False
-
-test_check()
-
-
-def check(n):
-    return (n == int(str(n)[::-1]) * 2 - 1)
-
-def test_check():
-    assert check(70) == False
-
-test_check()
-
-
-def check(n):
-    return (n == int(str(n)[::-1]) * 2 - 1)
-
-def test_check():
-    assert check(70) == False
-
-test_check

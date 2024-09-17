@@ -1,3 +1,4 @@
+
 def first_non_repeating_character(s):
     count = {}
     for char in s:
@@ -10,5 +11,4 @@ def first_non_repeating_character(s):
             return char
     return None
 
-print(first_net_repeating_character("abcabc"))
 

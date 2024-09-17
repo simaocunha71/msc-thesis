@@ -1,4 +1,6 @@
-```python
+
+import re
 def extract_quotation(s):
-    return [x for x in s.split('"') if x != ''][1::2]
-```
+  return re.findall(r'"(.*?)"', s)
+
+

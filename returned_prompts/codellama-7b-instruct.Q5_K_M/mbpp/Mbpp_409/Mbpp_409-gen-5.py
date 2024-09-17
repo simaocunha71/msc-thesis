@@ -1,11 +1,14 @@
-def min_product_tuple(tup_list):
-    return min(map(lambda x: x[0]*x[1], tup_list))
 
-# TESTS
+def min_product_tuple(my_tuple_list: list) -> int:
+  min_product = 0
+  for i in range(len(my_tuple_list)):
+    for j in range(i+1,len(my_tuple_list)):
+      if my_tuple_list[i][0] * my_tuple_list[j][1] < my_tuple_list[j][0] * my_tuple_list[i][1]:
+        min_product = my_tuple_list[i][0] * my_tuple_list[j][1]
+      elif my_tuple_list[i][0] * my_tuple_list[j][1] > my_tuple_list[j][0] * my_tuple_list[i][1]:
+        min_product = my_tuple_list[j][0] * my_tuple_list[i][1]
+      else:
+        continue
+  return min_product
 
-def test_min_product_tuple():
-    assert min_product_tuple([(2, 7), (2, 6), (1, 8), (4, 9)])==8
-    assert min_product_tuple([(2, 7), (2, 6), (1, 8), (4, 9), (3, 10)])==8
-
-test_min_product_tuple()
 

@@ -1,13 +1,14 @@
-"""
-def max_run_uppercase(s):
-    curr = 0
-    max_run = 0
+
+def max_run_uppercase(s: str) -> int:
+    longest = 0
+    current = 0
     for c in s:
         if c.isupper():
-            curr += 1
-            if curr > max_run:
-                max_run = curr
+            current += 1
+            if current > longest:
+                longest = current
         else:
-            curr = 0
-    return max_run
-"""
+            current = 0
+    return longest
+
+

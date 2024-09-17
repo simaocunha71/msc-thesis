@@ -1,11 +1,10 @@
-```python
-import re
 
-def find_literals(string, pattern):
-    match = re.search(pattern, string)
-    if match:
-        return match.group(0), match.start(), match.end()
-    else:
-        return None, None, None
-```
+import re
+def find_literals(text: str, pattern: str) -> tuple:
+  match = re.search(pattern, text)
+  if not match:
+    return None, None, None
+  else:
+    return match.group(), match.start(), match.end()
+
 

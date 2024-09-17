@@ -1,6 +1,5 @@
 
-import heapq
-def larg_nnum(arr,n):
-    return heapq.nlargest(n,arr)
+def larg_nnum(lst, n):
+    return sorted(lst, reverse=True)[:n]
 
 

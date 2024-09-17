@@ -1,7 +1,5 @@
 
-def neg_nos(lst):
-    return [i for i in lst if i < 0]
-
-print(neg_nos([-1,4,5,-6]))
+def neg_nos(nums):
+  return [num for num in nums if num < 0]
 
 

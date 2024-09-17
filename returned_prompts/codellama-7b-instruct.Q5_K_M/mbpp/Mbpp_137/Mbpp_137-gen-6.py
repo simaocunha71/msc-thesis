@@ -1,11 +1,9 @@
-import math
 
-def zero_count(lst):
-    count = 0
-    for i in lst:
-        if i == 0:
-            count += 1
-    return count / len(lst)
-
+def zero_count(nums: list) -> float:
+  count = 0
+  for num in nums:
+    if num == 0:
+      count += 1
+  return count / len(nums)
 
 

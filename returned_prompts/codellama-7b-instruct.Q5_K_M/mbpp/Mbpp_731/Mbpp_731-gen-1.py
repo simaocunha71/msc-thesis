@@ -1,9 +1,7 @@
 
+from math import pi
 def lateralsurface_cone(r,h):
-    return (1/3)*pi*r*r+pi*h*r
-
-
-
-
+  lateral_surface_area= 2*pi*r*h+2*pi*(r**2)
+  return lateral_surface_area
 
 

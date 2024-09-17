@@ -1,5 +1,5 @@
-def filter_oddnumbers(mylist):
-    return [x for x in mylist if x % 2 == 0]
 
+def filter_oddnumbers(my_list):
+  return list(filter(lambda x: x % 2 != 0, my_list))
 
 

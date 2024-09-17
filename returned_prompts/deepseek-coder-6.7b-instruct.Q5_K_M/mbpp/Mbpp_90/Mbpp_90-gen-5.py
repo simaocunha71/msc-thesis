@@ -1,7 +1,5 @@
-def len_log(word_list):
-    return max(len(word) for word in word_list)
+
+def len_log(words):
+    return len(max(words, key=len))
 
 
-assert len_log(["python","PHP","bigdata"]) == 7
-
-# 2.

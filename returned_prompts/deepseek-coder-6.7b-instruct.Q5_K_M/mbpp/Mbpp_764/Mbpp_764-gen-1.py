@@ -1,11 +1,5 @@
 
-def number_ctr(s):
-    count = 0
-    for char in s:
-        if char.isdigit():
-            count += 1
-    return count
+def number_ctr(string):
+    return sum(c.isdigit() for c in string)
 
-print(number_ctr('program2bedone'))
 
-"""

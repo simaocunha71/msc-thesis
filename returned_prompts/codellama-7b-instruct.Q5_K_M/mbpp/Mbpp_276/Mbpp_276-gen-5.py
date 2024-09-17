@@ -1,2 +1,7 @@
-def volume_cylinder(radius, height):
-    return (3.14 * radius ** 2) * height
+
+import math
+
+def volume_cylinder(r, h):
+    return math.pi * r ** 2 * h
+
+

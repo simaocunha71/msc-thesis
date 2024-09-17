@@ -1,4 +1,5 @@
-```
-def ascii_value(char):
-    return ord(char)
-```
+
+def ascii_value(character: str) -> int:
+  return ord(character)
+
+

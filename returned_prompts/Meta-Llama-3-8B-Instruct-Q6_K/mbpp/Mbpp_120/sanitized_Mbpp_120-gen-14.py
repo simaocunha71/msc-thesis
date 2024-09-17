@@ -1,0 +1,9 @@
+def max_product_tuple(tuples):
+    max_product = float('-inf')
+    for i in range(len(tuples)):
+        for j in range(i+1, len(tuples)):
+            product = abs(tuples[i][0] * tuples[j][0])
+            product += abs(tuples[i][1] * tuples[j][1])
+            if product > max_product:
+                max_product = product
+    return max_product

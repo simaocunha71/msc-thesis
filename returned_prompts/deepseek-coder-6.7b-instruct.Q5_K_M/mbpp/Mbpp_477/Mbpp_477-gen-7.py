@@ -1,9 +1,5 @@
 
-def to_lower(str):
-    return str.lower()
+def is_lower(s):
+  return s.lower()
 
-print(to_lower("InValid"))
 
-# Expected output: 'invalid'
-
-"""

@@ -1,10 +1,8 @@
-def find_Rotations(s):
-    n = len(s)
-    temp = s + s
-    for i in range(1, n):
-        if temp[i:i+n] == s:
-            return i
-    return n
 
-print(find_Rotations("aaaa")) # 1
+def find_Rotations(s: str) -> int:
+  for i in range(1, len(s)):
+    if s[i:] + s[:i] == s:
+      return i
+  return len(s)
+
 

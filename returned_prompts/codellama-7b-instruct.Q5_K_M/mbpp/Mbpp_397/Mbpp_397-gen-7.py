@@ -1,3 +1,6 @@
+
 def median_numbers(a, b, c):
-    return sorted([a, b, c])[1]
+  median = sorted([a, b, c])[1]
+  return median
+
 

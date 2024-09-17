@@ -1,9 +1,5 @@
-def contains_substring(s, sub):
-    return sub in s
 
-# Test
-assert contains_substring("Hello, world!", "world") == True
+def is_upper(s: str) -> str:
+  return s.upper()
 
-"""
-Write a Python function to count the occurrence of a character in a string.
-assert count_occurrence("
+

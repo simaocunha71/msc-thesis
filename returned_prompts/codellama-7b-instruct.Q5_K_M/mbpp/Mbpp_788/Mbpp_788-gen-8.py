@@ -1,3 +1,5 @@
-def new_tuple(list, string):
-    return tuple(list + [string])
+
+def new_tuple(my_list, string):
+  return tuple(my_list+[string])
+
 

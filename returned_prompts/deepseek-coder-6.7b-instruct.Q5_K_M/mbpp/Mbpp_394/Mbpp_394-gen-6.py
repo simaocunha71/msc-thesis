@@ -1,8 +1,8 @@
-"""
-def check_distinct(t):
-    if len(t) == len(set(t)):
-        return True
-    else:
-        return False
-"""
+
+def check_distinct(test_tup):
+  if len(test_tup) == len(set(test_tup)):
+      return False
+  else:
+      return True
+
 

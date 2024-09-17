@@ -1,8 +1,5 @@
-```python
-import cmath
 
-def polar_rect(r, theta):
-    x = r * cmath.cos(theta)
-    y = r * cmath.sin(theta)
-    return (x, y)
-```
+import cmath
+def polar_rect(rho, phi):
+  return cmath.rect(rho * cmath.cos(phi), rho * cmath.sin(phi)), cmath.exp(rho * 1j * phi)
+

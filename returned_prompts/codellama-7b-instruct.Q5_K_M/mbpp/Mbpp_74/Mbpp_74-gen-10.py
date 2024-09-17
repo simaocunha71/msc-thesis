@@ -1,4 +1,8 @@
-"""
-def is_samepatterns(colors, patterns):
-    return len(colors) == len(patterns) and all(x == patterns[i % len(patterns)] for i, x in enumerate(colors))
-"""
+
+def is_samepatterns(patterns: list, words: list) -> bool:
+    for i in range(len(patterns)):
+        if patterns[i] != words[i]:
+            return False
+    return True
+
+

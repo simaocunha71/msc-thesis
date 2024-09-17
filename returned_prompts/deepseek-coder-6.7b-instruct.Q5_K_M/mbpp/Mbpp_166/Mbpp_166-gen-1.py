@@ -1,34 +1,13 @@
 
-def find_even_pair(arr):
+def find_even_pair(nums):
     count = 0
-    for i in range(len(arr)):
-        for j in range(i+1, len(arr)):
-            if arr[i] ^ arr[j] % 2 == 0:
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] ^ nums[j] % 2 == 0:
                 count += 1
     return count
-
-assert find_even_pair([5, 4, 7, 2, 1]) == 4
-assert find_even_pair([3, 2, 1]) == 1
-assert find_even_pair([1]) == 0
-assert find_even_pair([]) == 0
+"""
+The inner loop starts from i+1 because we cannot pair a number with itself.
+XOR operation on two numbers returns an even number if and only if both numbers are even or both numbers are odd.
 """
 
-def find_even_pair(arr):
-    count = 0
-    for i in range(len(arr)):
-        for j in range(i + 1, len(arr)):
-            if (arr[i] ^ arr[j]) % 2 == 0:
-                count += 1
-    return count
-
-assert find_even_pair([5, 4, 7, 2, 1]) == 4
-assert find_even_pair([3, 2, 1]) == 1
-assert find_even_pair([1]) == 0
-assert find_even_pair([]) == 0
-"""
-<jupyter_output>
-<empty_output>
-<jupyter_text>
-Problem 2:
-<jupyter_code>
-"""

@@ -1,7 +1,10 @@
+
 def is_product_even(my_list):
-    product = 1
-    for number in my_list:
-        product *= number
-    return product % 2 == 0
+  if len(my_list) == 0:
+    return False
+  result = 1
+  for num in my_list:
+    result *= num
+  return result % 2 == 0
 
 

@@ -1,4 +1,5 @@
-"""
-def maximize_elements(tuples_a, tuples_b):
-    return tuple(max(tuple_a, tuple_b) for tuple_a, tuple_b in zip(tuples_a, tuples_b))
-"""
+
+def maximize_elements(test_tuple1, test_tuple2):
+  return tuple(max(test_tuple1[i], test_tuple2[i]) for i in range(len(test_tuple1)))
+
+

@@ -1,8 +1,5 @@
-"""
-def noprofit_noloss(buy, sell):
-    if buy == sell:
-        return True
-    else:
-        return False
-"""
+
+def noprofit_noloss(buy_price,sell_price):
+  return buy_price < sell_price
+
 

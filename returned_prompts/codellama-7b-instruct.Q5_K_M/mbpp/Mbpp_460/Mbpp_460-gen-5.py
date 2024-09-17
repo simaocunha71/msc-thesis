@@ -1,2 +1,8 @@
-def Extract(lst):
-    return [sublst[0] for sublst in lst]
+
+def Extract(my_list):
+  extracted_list = []
+  for sublist in my_list:
+    extracted_list.append(sublist[0])
+  return extracted_list
+
+

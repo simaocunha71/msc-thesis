@@ -1,50 +1,11 @@
-def max_product(nums):
-    if len(nums) == 1:
-        return nums[0]
-    max_product = nums[0]
-    for i in range(1, len(nums)):
-        if nums[i] > max_product:
-            max_product = nums[i]
-    for i in range(1, len(nums)):
-        for j in range(i, len(nums)):
-            if nums[i] * nums[j] > max_product:
-                max_product = nums[i] * nums[j]
-    return max_product
-
-# OR
 
 def max_product(nums):
-    if len(nums) == 1:
-        return nums[0]
-    max_product = nums[0]
-    for i in range(1, len(nums)):
-        if nums[i] > max_product:
-            max_product = nums[i]
-    for i in range(1, len(nums)):
-        for j in range(i, len(nums)):
-            if nums[i] * nums[j] > max_product:
-                max_product = nums[i] * nums[j]
-    return max_product
+  n = len(nums)
+  dp = [1] * n
+  for i in range(1, n):
+    for j in range(0, i):
+      if nums[i] > nums[j]:
+        dp[i] = max(dp[i], dp[j] * nums[i])
+  return dp[n-1]
 
-# OR
 
-def max_product(nums):
-    if len(nums) == 1:
-        return nums[0]
-    max_product = nums[0]
-    for i in range(1, len(nums)):
-        if nums[i] > max_product:
-            max_product = nums[i]
-    for i in range(1, len(nums)):
-        for j in range(i, len(nums)):
-            if nums[i] * nums[j] > max_product:
-                max_product = nums[i] * nums[j]
-    return max_product
-
-# OR
-
-def max_product(nums):
-    if len(nums) == 1:
-        return nums[0]
-    max_product = nums[0]
-    for i in range(1, len(nums)):

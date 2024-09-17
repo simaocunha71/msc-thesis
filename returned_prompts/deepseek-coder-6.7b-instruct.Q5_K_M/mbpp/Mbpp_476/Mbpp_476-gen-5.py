@@ -1,3 +1,4 @@
-def max_product(lst):
-    lst.sort()
-    return max(lst[0
+
+def big_sum(arr):
+  return max(arr) + min(arr)
+

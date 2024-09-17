@@ -1,11 +1,10 @@
+
 def find_adverb_position(sentence):
     adverb = ''
-    adverb_position = []
     for i, word in enumerate(sentence.split()):
-        if word in ['quickly', 'quick', 'soon', 'fast', 'slow', 'quickest', 'slowest']:
-            adverb_position.append((i, word, adverb))
-        adverb = word
-    return adverb_position
+        if word[-2:] == 'ly':
+            adverb = word
+            break
+    return (i, len(adverb), adverb)
 
-# 10/10/2020
 

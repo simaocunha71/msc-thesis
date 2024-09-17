@@ -1,4 +1,7 @@
-```python
+
 def big_sum(nums):
-    return sum([max(nums), min(nums)])
-```
+  largest = max(nums)
+  smallest = min(nums)
+  return largest + smallest
+
+

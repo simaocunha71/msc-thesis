@@ -1,8 +1,9 @@
+
 def capital_words_spaces(s):
-    # Split into words
     words = s.split()
-    # Add spaces
-    words = [word[0] + ' ' + word[1:] for word in words]
-    # Join back
-    return ' '.join(words)
+    for i, word in enumerate(words):
+        if word[0].isupper():
+            words[i] = ' ' + word
+    return ''.join(words)
+
 

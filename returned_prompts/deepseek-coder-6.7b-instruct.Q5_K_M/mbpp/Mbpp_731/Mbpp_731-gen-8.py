@@ -1,6 +1,6 @@
-def lateralsurface_cone(r, h):
-    return 3.14 * r * (r + (h ** 0.5))
 
-print(lateralsurface_cone(5, 12))
+import math
+def lateralsurface_cone(r,h):
+  return math.pi * r * math.sqrt(r**2 + h**2)
 
-# 2. Write a function to calculate the volume of a cone.
+

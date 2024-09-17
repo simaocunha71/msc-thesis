@@ -1,4 +1,5 @@
-"""
-def tuple_to_int(my_tuple):
-    return int("".join(map(str, my_tuple)))
-"""
+
+def tuple_to_int(nums: tuple) -> int:
+    return int(''.join(map(str, nums)))
+
+

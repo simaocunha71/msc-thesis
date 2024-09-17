@@ -1,5 +1,5 @@
-```
-def text_match_three(text):
-    return text.startswith('a') and text[1:].count('b') == 3
-```
+
+def text_match_three(text: str) -> bool:
+  return re.match(r"a{3}b", text)
+
 

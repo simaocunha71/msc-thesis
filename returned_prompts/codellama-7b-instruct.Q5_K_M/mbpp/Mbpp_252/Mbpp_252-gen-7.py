@@ -1,2 +1,6 @@
+
 def convert(z):
-    return abs(z), cmath.phase(z)
+    polar = complex(z).polar()
+    return polar[0], polar[1]
+
+

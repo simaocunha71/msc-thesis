@@ -1,8 +1,5 @@
-"""
-def number_ctr(my_str):
-    ctr = 0
-    for char in my_str:
-        if char.isdigit():
-            ctr += 1
-    return ctr
-"""
+
+def number_ctr(input_string: str) -> int:
+  return sum(char.isdigit() for char in input_string)
+
+

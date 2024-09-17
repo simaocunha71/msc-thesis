@@ -1,4 +1,5 @@
-```python
-def maximize_elements(t1, t2):
-    return tuple(max(a, b) for a, b in zip(t1, t2))
-```
+
+def maximize_elements(tuple1, tuple2):
+  return tuple([max(tuple1[i], tuple2[i]) for i in range(len(tuple1))])
+
+

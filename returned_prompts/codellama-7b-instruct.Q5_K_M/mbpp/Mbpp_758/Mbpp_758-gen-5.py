@@ -1,8 +1,10 @@
-def unique_sublists(l):
-    d={}
-    for i in l:
-        t=tuple(i)
-        if t not in d:
-            d[t]=0
-        d[t]+=1
-    return d
+
+def unique_sublists(my_list):
+  count = {}
+  for sublist in map(tuple, my_list):
+    if sublist not in count:
+      count[sublist] = 0
+    count[sublist] += 1
+  return count
+
+

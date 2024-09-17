@@ -1,4 +1,5 @@
-"""
-def sort_matrix(matrix):
-    return [[row[i] for row in matrix] for i in range(len(matrix[0]))]
-"""
+
+def sort_matrix(matrix: list) -> list:
+  return sorted(matrix, key=sum)
+
+

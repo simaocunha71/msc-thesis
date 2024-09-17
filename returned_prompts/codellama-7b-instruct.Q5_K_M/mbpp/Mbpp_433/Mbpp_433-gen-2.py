@@ -1,4 +1,8 @@
+
 def check_greater(arr, num):
-    return not any(num > i for i in arr)
+    for i in arr:
+        if i > num:
+            return True
+    return False
 
 

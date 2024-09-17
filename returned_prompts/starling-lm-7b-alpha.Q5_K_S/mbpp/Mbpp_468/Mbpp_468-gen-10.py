@@ -1,10 +1,11 @@
-```
-def max_product(A):
-    """
-    Find the maximum product formed by multiplying numbers of an increasing subsequence of that array.
 
-    Args:
-        A(list): list of int
+def max_product(nums):
+    stack = []
+    for n in nums:
+        if not stack or stack[-1] <= n:
+            stack.append(n)
+        else:
+            stack.append(n * stack.pop())
+    return stack[-1]
 
-    Returns:
-       
+

@@ -1,11 +1,9 @@
-def dict_depth(dct):
-    """
-    Returns the depth of a dictionary.
-    """
-    depth = 1
-    for v in dct.values():
-        if isinstance(v, dict):
-            depth = max(depth, dict_depth(v)+1)
-    return depth
+
+def dict_depth(my_dict: dict):
+  depth = 1
+  for key, value in my_dict.items():
+    if isinstance(value, dict):
+      depth = max(depth, dict_depth(value)+1)
+  return depth
 
 

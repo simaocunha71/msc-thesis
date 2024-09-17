@@ -1,3 +1,9 @@
+
 def is_woodall(n):
-    s = str(n)
-    return s == ''.join(sorted(s))
+  str_num = str(n)
+  for digit in str_num:
+    if int(digit) != 3:
+      return False
+  return True
+
+

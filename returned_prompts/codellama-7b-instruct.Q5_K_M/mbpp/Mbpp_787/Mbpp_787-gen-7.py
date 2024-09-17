@@ -1,7 +1,8 @@
-```
-import re
 
-def text_match_three(my_string):
-    pattern = r"a[b]{3}"
-    return re.search(pattern, my_string)
-```
+def text_match_three(text: str) -> bool:
+  if re.match(r".*a{3}b.*", text):
+    return True
+  else:
+    return False
+
+

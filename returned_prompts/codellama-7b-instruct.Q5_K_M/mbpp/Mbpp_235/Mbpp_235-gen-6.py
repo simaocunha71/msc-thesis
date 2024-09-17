@@ -1,4 +1,6 @@
-def even_bit_set_number(num):
-    return num | (num << 1)
+
+def even_bit_set_number(num: int) -> int:
+  num &= 0xaaaaaaaa
+  return num
 
 

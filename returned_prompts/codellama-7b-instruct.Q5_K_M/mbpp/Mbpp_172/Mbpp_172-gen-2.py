@@ -1,4 +1,5 @@
-```
-def count_occurance(string):
-    return string.count("std")
-```
+
+def count_occurance(string: str) -> int:
+  return string.count('std')
+
+

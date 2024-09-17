@@ -1,2 +1,5 @@
-def is_lower(string):
-    return string.lower()
+
+def is_lower(my_string: str) -> str:
+  return my_string.lower()
+
+

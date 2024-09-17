@@ -1,4 +1,5 @@
-def is_perfect(n):
-    sum = 0
-    for i in range(1, n):
-        if
+
+def sum_negativenum(nums):
+  return sum(filter(lambda x: x < 0, nums))
+
+

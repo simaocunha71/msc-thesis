@@ -1,7 +1,8 @@
-import itertools
 
-def combinations_colors(colors, n):
-    return [tuple(x) for x in itertools.combinations(colors, n)]
-
+def combinations_colors(colors: list, n: int) -> list:
+    result = []
+    for i in range(0, len(colors) + 1):
+        result.extend([tuple(colors[i:i+n]) for i in range(len(colors) - n + 1)])
+    return result
 
 

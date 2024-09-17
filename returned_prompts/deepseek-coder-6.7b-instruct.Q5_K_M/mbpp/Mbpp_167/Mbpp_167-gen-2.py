@@ -1,10 +1,9 @@
-def next_power_of_2(n):
-    if n < 0:
-        return 0
-    p = 1
-    while p < n:
-        p *= 2
-    return p
 
-print(next_power_of_2(0))  # returns 1
+def next_power_of_2(n):
+    if (n and not(n & (n - 1))):
+        return n
+    while(n):
+        n >>= 1
+    return 1 << (n+1)
+
 

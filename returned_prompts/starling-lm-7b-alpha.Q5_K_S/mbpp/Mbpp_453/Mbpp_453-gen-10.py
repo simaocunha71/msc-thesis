@@ -1,16 +1,10 @@
-"""
-def sumofFactors(n):
-    if n%2 == 0:
-        return (n//2)*(n+1)
-    else:
-        return (n//2)*(n+1)-n
 
-def sumofFactors(n):
-    sum = 0
-    for i in range(2,n):
-        if n%i == 0:
-            if i%2 == 0:
-                sum = sum+i
-    return sum
-"""
+def sumofFactors(num: int) -> int:
+    factors = []
+    for i in range(1, num + 1):
+        if num % i == 0:
+            factors.append(i)
+    factors_even = [x for x in factors if x % 2 == 0]
+    return sum(factors_even)
+
 

@@ -1,2 +1,8 @@
-def check_K(tuple_A, k):
-    return k in tuple_A
+
+def check_K(my_tuple,k):
+  if k in my_tuple:
+    return True
+  else:
+    return False
+
+

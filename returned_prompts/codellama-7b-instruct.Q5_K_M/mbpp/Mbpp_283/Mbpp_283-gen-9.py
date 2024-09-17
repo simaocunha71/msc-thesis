@@ -1,4 +1,11 @@
+
 def validate(n):
-    digits = [int(i) for i in str(n)]
-    freq = [digits.count(i) for i in digits]
-    return all(freq[i] <= i for i in range(len(digits)))
+    digits = [int(d) for d in str(n)]
+    freq = {}
+    for d in digits:
+        freq[d] = freq.get(d, 0) + 1
+        if d > freq[d]:
+            return False
+    return True
+
+

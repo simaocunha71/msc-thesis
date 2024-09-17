@@ -1,0 +1,12 @@
+```
+def next_smallest_palindrome(n):
+    n += 1
+    while not str(n) == str(n)[::-1]:
+        n += 1
+    return n
+```
+This function starts from the next integer of the input number and checks if it's a palindrome. If not, it increments the number and checks again until it finds the next smallest palindrome. The function then returns this palindrome. 
+
+For example, for the input 99, the function would start from 100 and check if it's a palindrome. Since it's not, it would increment to 101 and check again, and since 101 is a palindrome, the function would return 101. 
+
+Note that the unit test `assert next_smallest_palindrome(99)==101` ensures that the function works correctly.  This test checks that the function returns 101 for the input 99, which is the next smallest palindrome after 99.  If the function were to return anything else, the test would fail.  This ensures that the function is correct.  The unit test provides a check on the function's output, which helps to ensure that the function is working as expected.  In this case, the unit test ensures that the function is correctly identifying the next smallest palindrome.  The unit test provides a level of confidence that the function is working correctly, which can help to ensure that the function is reliable and accurate.  In a real-world application, it's a good idea to include unit tests for all functions, including this one.  This can help to ensure that the functions are working correctly and can help to catch any errors or bugs that might occur.  In this case, the unit test ensures that the function is correctly identifying the next smallest palindrome.  If the function were to fail this test, it would indicate that there is an error in the function.  This could be a bug or a problem with the function's logic.  The unit test helps to catch these kinds of errors and can help to ensure that the function is working correctly.  In this case, the unit test provides a check on the function's output, which helps to ensure that the function is working correctly.  This can help to ensure that the function is reliable and accurate.  The unit test provides a level of confidence that the function is working correctly, which can help to ensure that the function is reliable and accurate.  In a real-world application, it's a good idea to include unit tests for all functions, including this one

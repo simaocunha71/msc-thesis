@@ -1,6 +1,6 @@
-```python
-from math import atan2
 
+import cmath
 def angle_complex(real, imag):
-    return atan2(imag, real)
-```
+  return cmath.phase(complex(real,imag))
+
+

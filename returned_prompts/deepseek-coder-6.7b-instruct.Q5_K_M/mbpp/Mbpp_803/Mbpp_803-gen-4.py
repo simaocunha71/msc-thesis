@@ -1,12 +1,9 @@
+
+import math
 def is_perfect_square(n):
-    import math
-    sqrt = math.sqrt(n)
-
-    if sqrt == int(sqrt):
-        return True
-    else:
+    if n < 0:
         return False
+    sqrt = math.sqrt(n)
+    return sqrt*sqrt == n
 
-print(not is_perfect_square(10))
 
-"""

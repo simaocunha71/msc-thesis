@@ -1,5 +1,6 @@
-def split_Arr(Arr,n):
-    Arr1 = Arr[:n]
-    Arr2 = Arr[n:]
-    Arr2.extend(Arr1)
-    return Arr2
+
+def split_Arr(arr, n):
+    arr1, arr2 = arr[:n], arr[n:]
+    return arr2 + arr1
+
+

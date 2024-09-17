@@ -1,9 +1,10 @@
-def odd_Equivalent(binary_string, rotate_count):
-    binary_string_list = list(binary_string)
-    for i in range(rotate_count):
-        binary_string_list.insert(0, binary_string_list.pop())
+
+def odd_Equivalent(binary_string, rotation_count):
     count = 0
-    for i in binary_string_list:
-        if int(i) == 1:
+    for i in range(rotation_count):
+        binary_string = binary_string[-1] + binary_string[:-1]
+        if int(binary_string, 2) % 2 == 1:
             count += 1
     return count
+
+

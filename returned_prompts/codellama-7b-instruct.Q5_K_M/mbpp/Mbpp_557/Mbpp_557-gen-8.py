@@ -1,4 +1,5 @@
-def toggle_string(s):
-    return s.swapcase()
+
+def toggle_string(s: str) -> str:
+  return s.swapcase()
 
 

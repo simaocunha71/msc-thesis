@@ -1,3 +1,5 @@
 
-def max_difference(tuple_list):
-    return max([y - x for (x, y) in tuple_list])
+def max_difference(my_tuple_list):
+    return max(map(lambda x: x[1] - x[0], my_tuple_list))
+
+

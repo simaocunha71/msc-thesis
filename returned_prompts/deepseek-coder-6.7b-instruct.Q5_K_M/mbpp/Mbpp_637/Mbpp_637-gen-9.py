@@ -1,6 +1,5 @@
-def noprofit_noloss(buy_price, sell_price):
-    return buy_price == sell_price
 
-print(noprofit_noloss(1500,1200)) # Expected output: False
+def noprofit_noloss(sell_price,cost_price):
+  return sell_price != cost_price
 
-"""
+

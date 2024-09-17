@@ -1,4 +1,5 @@
-"""
-def reverse_string_list(my_list):
-    return [item[::-1] for item in my_list]
-"""
+
+def reverse_string_list(list_of_strings):
+    return [s[::-1] for s in list_of_strings]
+
+

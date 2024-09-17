@@ -1,4 +1,5 @@
-```
-def number_ctr(s):
-    return len(list(filter(lambda x: x.isdigit(), s)))
-```
+
+def number_ctr(s: str) -> int:
+  return sum(c.isdigit() for c in s)
+
+

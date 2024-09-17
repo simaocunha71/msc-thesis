@@ -1,22 +1,21 @@
-"""
-def check_expression(s):
+
+def check_expression(expr):
     stack = []
-    pairs = {
-        ')': '(',
-        ']': '[',
-        '}': '{'
-    }
-
-    for char in s:
-        if char in pairs.values():
-            stack.append(char)
-        elif char in pairs.keys():
-            if stack == [] or pairs[char] != stack.pop():
+    opening = ['[', '{', '(']
+    closing = [']', '}', ')']
+    for i in expr:
+        if i in opening:
+            stack.append(i)
+        elif i in closing:
+            pos = closing.index(i)
+            if ((len(stack) > 0) and
+                (opening[pos] == stack[len(stack)-1])):
+                stack.pop()
+            else:
                 return False
-        else:
-            return False
-    return stack == []
+    if len(stack) == 0:
+        return True
+    else:
+        return False
 
-print(check_expression("{()}[{}]"))
-"""
 

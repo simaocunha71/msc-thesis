@@ -1,10 +1,5 @@
-"""
-def find_Parity(number):
-    if (number % 2) == 0:
-        return False
-    else:
-        return True
 
-print(find_Parity(12))
-"""
+def find_Parity(n: int):
+  return n % 2 != 0
+
 

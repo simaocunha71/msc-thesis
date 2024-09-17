@@ -1,6 +1,8 @@
+
 def highest_Power_of_2(n):
-    i = 0
-    while 2 ** i <= n:
-        i += 1
-    return 2 ** (i - 1)
+    power = 1
+    while power <= n:
+        power *= 2
+    return power // 2
+
 

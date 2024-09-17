@@ -1,26 +1,30 @@
 
-def pancake_sort(lst):
-    for i in range(len(lst)):
-        max_index = max_element(lst, 0, len(lst) - i)
-        if max_index != len(lst) - i - 1:
-            lst = flip(lst, 0, max_index + 1)
-            lst = flip(lst, 0, len(lst) - i - 1)
-    return lst
-
-def max_element(lst, start, end):
-    max_index = start
-    for i in range(start, end):
-        if lst[i] > lst[max_index]:
-            max_index = i
-    return max_index
-
-def flip(lst, start, end):
-    while start < end:
-        lst[start], lst[end - 1] = lst[end - 1], lst[start]
+def flip(arr, i):
+    start = 0
+    while start < i:
+        temp = arr[start]
+        arr[start] = arr[i]
+        arr[i] = temp
         start += 1
-        end -= 1
-    return lst
+        i -= 1
 
-print(pancake_sort([15, 79, 25, 38, 69]))  # [15, 25, 38, 69, 79]
 
-# 2.3.18
+def findMax(arr, n):
+    mi = 0
+    for i in range(0, n):
+        if arr[i] > arr[mi]:
+            mi = i
+    return mi
+
+
+def pancake_sort(arr):
+    curr_size = len(arr)
+    while curr_size > 0:
+        mi = findMax(arr, curr_size)
+        if mi != curr_size - 1:
+            flip(arr, mi)
+            flip(arr, curr_size - 1)
+        curr_size -= 1
+    return arr
+
+

@@ -1,7 +1,5 @@
-def count(lst):
-    return sum(lst)
 
-print(count([True,False,True])) # 2
-
+def count(bool_list):
+  return bool_list.count(True)
 
 

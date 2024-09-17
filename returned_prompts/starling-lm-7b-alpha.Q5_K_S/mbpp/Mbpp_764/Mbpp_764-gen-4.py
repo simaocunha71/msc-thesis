@@ -1,9 +1,9 @@
-"""
-def number_ctr(s):
-    counter = 0
-    for char in s:
-        if char.isdigit():
-            counter += 1
-    return counter
-"""
+
+def number_ctr(string):
+  num_ctr = 0
+  for i in string:
+    if i.isdigit():
+      num_ctr += 1
+  return num_ctr
+
 

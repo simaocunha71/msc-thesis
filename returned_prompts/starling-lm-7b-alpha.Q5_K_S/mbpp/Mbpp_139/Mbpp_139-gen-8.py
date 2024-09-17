@@ -1,7 +1,6 @@
-"""
-The circumference of a circle is calculated by multiplying the radius of the circle by 2π. Here's a function that calculates the circumference of a circle:
 
-def circle_circumference(radius):
-    return 2 * 3.14159 * radius
-"""
+import math
+def circle_circumference(radius: float) -> float:
+  return 2 * math.pi * radius
+
 

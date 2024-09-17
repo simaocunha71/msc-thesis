@@ -1,16 +1,5 @@
-"""
-def is_Divisible(number):
-    if(number%11 == 0):
-        return True
-    else:
-        return False
 
-def is_Diff(number):
-    if(is_Divisible(number)):
-        return False
-    else:
-        return True
+def is_Diff(n: int) -> bool:
+  return abs(sum(map(int, str(n))) - (n % 11)) < 2
 
-print(is_Diff(12345))
-"""
 

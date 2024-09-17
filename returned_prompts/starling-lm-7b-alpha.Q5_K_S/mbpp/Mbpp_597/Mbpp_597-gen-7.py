@@ -1,10 +1,12 @@
-"""
-def find_kth(A, B, k):
-    l = len(A)
-    m = len(B)
-    if l > m:
-        return find_kth(B, A, k)
-    if k == 0:
+
+def find_kth(nums1, nums2, k):
+    if k > len(nums1) + len(nums2):
         return None
-    if k > l + m - 2:
-       
+    elif k <= len(nums1):
+        return nums1[k-1]
+    elif k <= len(nums1) + len(nums2):
+        return max(nums1[k-1], nums2[k-(len(nums1)+1)])
+    else:
+        return nums2[k-(len(nums1)+len(nums2))]
+
+

@@ -1,10 +1,5 @@
 
-def nth_nums(lst, n):
-    return [i ** n for i in lst]
+def nth_nums(nums: list,n: int) -> list:
+  return [i ** n for i in nums]
 
-print(nth_nums([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],2))
-<jupyter_output>
-[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
-<jupyter_text>
-Q5:
-<jupyter_code>
+

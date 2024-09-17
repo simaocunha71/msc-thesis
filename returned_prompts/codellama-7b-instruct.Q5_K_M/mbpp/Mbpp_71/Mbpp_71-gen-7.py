@@ -1,20 +1,16 @@
+
 def comb_sort(my_list):
-    gaps = [
-        701, 301, 132, 57, 23, 10, 4, 1
-    ]
-    n = len(my_list)
-    gap = gaps[0]
-    swapped = True
-    i = 0
-    while gap > 1 and swapped:
-        gap = gaps[i]
-        i += 1
-        swapped = False
-        for j in range(n - gap):
-            if my_list[j] > my_list[j + gap]:
-                my_list[j], my_list[j + gap] = my_list[j + gap], my_list[j]
-                swapped = True
-    if not swapped:
-        return my_list
-    else:
-        return comb_sort(my_list)
+  gap = len(my_list)
+  swapped = True
+  while gap != 1 or swapped == True:
+    gap = int(gap/1.247330950103979)
+    if gap < 1:
+      gap = 1
+    swapped = False
+    for i in range(len(my_list)-gap):
+      if my_list[i] < my_list[i+gap]:
+        my_list[i], my_list[i+gap] = my_list[i+gap], my_list[i]
+        swapped = True
+  return my_list
+
+

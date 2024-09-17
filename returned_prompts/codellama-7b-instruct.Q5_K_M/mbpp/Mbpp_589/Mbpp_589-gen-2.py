@@ -1,4 +1,5 @@
-"""
-def perfect_squares(start, end):
-    return [x for x in range(start, end+1) if x**0.5 == int(x**0.5)]
-"""
+
+def perfect_squares(a,b):
+  return [x**2 for x in range(a,b+1)]
+
+

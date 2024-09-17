@@ -1,8 +1,5 @@
-def check_Consecutive(arr):
-    n = len(arr)
-    if n == 0:
-        return False
-    for i in range(n-1):
-        if arr[i+1]-arr[i] != 1:
-            return False
-    return True
+
+def check_Consecutive(my_list):
+    return all(my_list[i+1] - my_list[i] == 1 for i in range(len(my_list)-1))
+
+

@@ -1,5 +1,5 @@
-```
-def multiple_to_single(arr):
-    return int("".join(map(str, arr)))
-```
-    
+
+def multiple_to_single(nums):
+    return int("".join(map(str, nums)))
+
+

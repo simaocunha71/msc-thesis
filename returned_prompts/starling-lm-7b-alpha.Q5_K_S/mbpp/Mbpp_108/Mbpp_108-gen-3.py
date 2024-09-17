@@ -1,32 +1,8 @@
-def merge_sorted_list(list1, list2, list3):
-    """Merge three sorted lists into a single sorted list."""
-    merged_list = []
-    i = 0
-    j = 0
-    k = 0
-    while i < len(list1) and j < len(list2) and k < len(list3):
-        if list1[i] < list2[j] < list3[k]:
-            merged_list.append(list2[j])
-            j += 1
-        elif list3[k] < list1[i] < list2[j]:
-            merged_list.append(list3[k])
-            k += 1
-        else:
-            merged_list.append(list1[i])
-            i += 1
-    while i < len(list1):
-        merged_list.append(list1[i])
-        i += 1
-    while j < len(list2):
-        merged_list.append(list2[j])
-        j += 1
-    while k < len(list3):
-        merged_list.append(list3[k])
-        k += 1
-    return merged_list
 
-def test_merge_sorted_list():
-    assert merge_sorted_list([25, 24, 15, 4, 5, 29, 110],[19, 20, 11, 56, 25, 233, 154],[24, 26, 54, 48])==[4, 5, 11, 15, 19, 20, 24, 24, 25, 25, 26, 29, 48, 54, 56, 110, 154, 233]
+def merge_sorted_list(list1: list,list2: list,list3: list) -> list:
+  list1.extend(list2)
+  list1.extend(list3)
+  list1.sort()
+  return list1
 
-test_merge_sorted_list()
-# print(merge_sorted_list([25, 24, 15, 4, 5, 29, 110],[19, 20, 11, 56, 25, 
+

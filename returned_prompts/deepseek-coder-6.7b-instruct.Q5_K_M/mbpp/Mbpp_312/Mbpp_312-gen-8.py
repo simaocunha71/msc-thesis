@@ -1,9 +1,6 @@
 
-```python
 import math
-
-def volume_cone(radius, height):
-    return (1.0/3) * math.pi * radius**2 * height
-```
+def volume_cone(r, h):
+  return (1/3) * math.pi * r**2 * h
 
 

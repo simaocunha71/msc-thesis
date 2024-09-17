@@ -1,20 +1,14 @@
+
 def is_majority(arr, n, x):
-    # First check if element x is present at n/2 or more times
-    count = 0
-    for i in range(n):
+    i = 0
+    while i < n:
         if arr[i] == x:
-            count += 1
-    if count > n // 2:
-        return True
-    else:
+            break
+        i += 1
+    if i == n:
         return False
-
-print(is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3))  # Returns: True
-
-
-"""
-Time complexity of this approach is O(n) and auxiliary space used is O(1).
-"""
+    if ((i + n//2) < n and arr[i + n//2] != x):
+        return False
+    return True
 
 
-"""

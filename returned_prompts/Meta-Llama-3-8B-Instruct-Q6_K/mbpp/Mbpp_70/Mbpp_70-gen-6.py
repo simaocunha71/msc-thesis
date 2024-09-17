@@ -1,0 +1,10 @@
+```
+def get_equal(tuples):
+    if len(set(map(len, tuples))) == 1:
+        return True
+    else:
+        return False
+```
+
+
+This function works by converting the lengths of all the tuples in the given list to a set (which removes duplicates) and then checking if the set contains only one element. If it does, that means all tuples have the same length, and the function returns True. If the set contains more than one element, that means there are tuples of different lengths, and the function returns False. The unit test `assert get_equal([(11, 22, 33), (44, 55, 66)]) == True` shows that the function should return True if all tuples have equal length. This is because the lengths of the two tuples are both 3.  If the tuples had different lengths, the function would return False.  For example, `assert get_equal([(11, 22, 33), (11, 22)]) == False` would return False because the lengths of the two tuples are different.  The function works by converting the lengths of all the tuples to a set and then checking if the set contains only one element. If it does, the function returns True; otherwise, it returns False.  The unit test `assert get_equal([(11, 22, 33), (44, 55, 66)]) == True` shows that the function should return True if all tuples have equal length.  This is because the lengths of the two tuples are both 3.  If the tuples had different lengths, the function would return False.  For example, `assert get_equal([(11, 22, 33), (11, 22)]) == False` would return False because the lengths of the two tuples are different.  The function works by converting the lengths of all the tuples to a set and then checking if the set contains only one element. If it does, the function returns True; otherwise, it returns False.  The unit test `assert get_equal([(11, 22, 33), (44, 55, 66)]) == True` shows that the function should return True if all tuples have equal length.  This is because the lengths of the two tuples are both 3.  If the tuples had different lengths, the function would return False.  For example, `assert get_equal([(11, 22, 33), (11, 22)]) == False` would

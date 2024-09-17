@@ -1,8 +1,5 @@
 
-from cmath import rect, pi
+def polar_rect(radius, angle):
+    return (radius * math.cos(angle), radius * math.sin(angle))
 
-def polar_rect(r, theta):
-    return rect(r, theta)
 
-def polar_rect(r, theta):
-    return rect(r, theta)

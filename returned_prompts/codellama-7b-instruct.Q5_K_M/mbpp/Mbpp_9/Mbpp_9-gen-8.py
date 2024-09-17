@@ -1,6 +1,10 @@
-def find_Rotations(str):
-    count = 0
-    for i in range(1, len(str)):
-        if str[:i] == str[i:]:
-            count += 1
-    return count
+
+def find_rotations(str):
+  if len(str) == 0:
+    return 0
+  for i in range(len(str)):
+    if str == str[i:]+str[:i]:
+      return len(str) - i
+  return 0
+
+

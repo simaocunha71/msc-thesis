@@ -1,11 +1,9 @@
 
 def count_divisors(n):
-    count = 0
-    for i in range(1, n+1):
-        if n % i == 0:
-            count += 1
-    return count % 2 == 0
+    cnt = 0
+    for i in range(1, (int)(n / 2) + 1):
+        if (n % i == 0):
+            cnt = cnt + 1
+    return (cnt % 2 == 0)
 
-print(count_ivisors(10)) # False
-"""
 

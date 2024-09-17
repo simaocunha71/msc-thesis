@@ -1,5 +1,5 @@
-def find_unique_elements(array):
-    count_dict = {}
-    for i in array:
-        if i in count_dict:
-            count_dict[i
+
+def check_greater(arr, num):
+  return all(i > num for i in arr)
+
+

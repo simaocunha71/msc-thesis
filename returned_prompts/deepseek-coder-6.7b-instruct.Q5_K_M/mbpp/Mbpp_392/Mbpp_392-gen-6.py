@@ -1,19 +1,11 @@
-def get_max_sum(n):
-    dp = [0] * (n + 1)
-    for i in range(1, n + 1):
-        dp[i] = max(dp[i//2] + dp[i//3] + dp[i//4] + dp[i//5], i)
-    return dp[n]
 
-print(get_max_sum(60))  # Output: 106
+def get_max_sum(n: int) -> int:
+  memo = {0:0, 1:1}
+  def f(n: int) -> int:
+    if n in memo:
+      return memo[n]
+    memo[n] = max(f(n//2) + f(n//3) + f(n//4) + f(n//5), n)
+    return memo[n]
+  return f(n)
 
 
-"""
-The function uses a dynamic programming approach to solve the problem.
-It calculates the maximum sum for each number up to n by using the given equation.
-The maximum sum for each number is calculated by taking the maximum sum for its divisors plus the number itself.
-"""
-<jupyter_output>
-106
-<jupyter_text>
-Question 2:
-<jupyter_code>

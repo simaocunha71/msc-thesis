@@ -1,78 +1,17 @@
-def get_ludic(n):
-    res = []
-    for i in range(1,n+1):
-        j = i
-        while j <= n:
-            if j % i == 0:
-                res.append(i)
-            j += i
-    return res
 
-# 1
-def get_ludic(n):
-    res = []
-    for i in range(1,n+1):
-        j = i
-        while j <= n:
-            if j % i == 0:
-                res.append(i)
-            j += i
-    return res
+def lucas_sequence(n):
+    if n == 0:
+        return [1]
+    elif n == 1:
+        return [1, 1]
+    else:
+        l = lucas_sequence(n // 2)
+        l.append(l[len(l) - 1] + l[len(l) - 2])
+        if n % 2 != 0:
+            l.append(l[len(l) - 1])
+        return l
 
-# 2
-def get_ludic(n):
-    res = []
-    for i in range(1,n+1):
-        j = i
-        while j <= n:
-            if j % i == 0:
-                res.append(i)
-            j += i
-    return res
+def get_lucid(n: int) -> list:
+  return lucas_sequence(n)
 
-# 3
-def get_ludic(n):
-    res = []
-    for i in range(1,n+1):
-        j = i
-        while j <= n:
-            if j % i == 0:
-                res.append(i)
-            j += i
-    return res
 
-# 4
-def get_ludic(n):
-    res = []
-    for i in range(1,n+1):
-        j = i
-        while j <= n:
-            if j % i == 0:
-                res.append(i)
-            j += i
-    return res
-
-# 5
-def get_ludic(n):
-    res = []
-    for i in range(1,n+1):
-        j = i
-        while j <= n:
-            if j % i == 0:
-                res.append(i)
-            j += i
-    return res
-
-# 6
-def get_ludic(n):
-    res = []
-    for i in range(1,n+1):
-        j = i
-        while j <= n:
-            if j % i == 0:
-                res.append(i)
-            j += i
-    return res
-
-# 7
-def

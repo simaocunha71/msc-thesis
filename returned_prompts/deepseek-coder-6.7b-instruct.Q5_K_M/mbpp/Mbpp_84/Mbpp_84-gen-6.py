@@ -1,26 +1,8 @@
-The nth number in the newman-conway sequence is calculated by recursively applying the following rules:
-- If n is less than or equal to 0, return "invalid input"
-- If n is 1 or 2, return 1
-- If n is greater than 2, return sequence(sequence(n - 1)) + sequence(n - sequence(n - 1))
 
-Here is the Python code that implements this:
-
-```python
 def sequence(n):
-    if n <= 0:
-        return "Invalid Input"
-    elif n == 1 or n == 2:
-        return 1
-    else:
-        return sequence(sequence(n - 1)) + sequence(n - sequence(n - 1))
-```
-This function will return the nth number in the Newman-Conway sequence.
+    newman_conway = [0, 1, 1]
+    for i in range(3, n+1):
+        newman_conway.append(newman_conway[newman_conway[i-1]] + newman_conway[i - newman_conway[i-1]])
+    return newman_conway[n]
 
-Test:
-
-```python
-print(sequence(10))  # Output: 6
-```
-This code will output '6', which is the 10th number in the Newman-Conway sequence.
-"""
 

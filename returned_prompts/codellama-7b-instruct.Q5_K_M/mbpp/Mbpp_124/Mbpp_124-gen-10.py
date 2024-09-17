@@ -1,5 +1,6 @@
-def angle_complex(real, imag):
-    return math.atan(imag/real)
 
+import math
+def angle_complex(a,b):
+  return math.atan2(b,a)
 
 

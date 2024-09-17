@@ -1,7 +1,8 @@
-```python
+
 def check(num):
-    num_str = str(num)
-    if num_str[::-1] == num_str[1:]:
-        return True
+  if (num == (int(str(num)[::-1]) * 2) - 1):
+    return True
+  else:
     return False
-```
+
+

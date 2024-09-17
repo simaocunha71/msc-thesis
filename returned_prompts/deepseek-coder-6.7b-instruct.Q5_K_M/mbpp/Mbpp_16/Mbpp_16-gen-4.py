@@ -1,10 +1,5 @@
+
 def text_lowercase_underscore(text):
-    split_text = text.split('_')
-    for word in split_text:
-        if not word.islower():
-            return False
-    return True
+  return text.islower() and "_" in text
 
-print(text_lowercase_underscore("aab_cbbbc"))
 
-#Problem 3

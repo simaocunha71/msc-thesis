@@ -1,5 +1,5 @@
-"""
-def substract_elements(t1, t2):
-    return tuple(a-b for a,b in zip(t1, t2))
-"""
+
+def substract_elements(tup1, tup2):
+  return tuple(tup1[i] - tup2[i] for i in range(len(tup1)))
+
 

@@ -1,10 +1,6 @@
 
 def check_monthnumber_number(month):
-    if month in [4, 6, 9, 11]:
-        return True
-    else:
-        return False
+    thirty_days_months = [4, 6, 9, 11]
+    return month in thirty_days_months
 
-# Test
-print(check_monthnumber_number(6))  # True
 

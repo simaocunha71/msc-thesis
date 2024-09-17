@@ -1,26 +1,15 @@
-def is_valid_phone_number(num):
-    if len(str(num)) != 10:
-        return False
-    if str(num)[0] == '0':
-        return False
-    if str(num)[1] == '0':
-        return False
-    if str(num)[2] == '0':
-        return False
-    if str(num)[3] == '0':
-        return False
-    if str(num)[4] == '0':
-        return False
-    if str(num)[5] == '0':
-        return False
-    if str(num)[6] == '0':
-        return False
-    if str(num)[7] == '0':
-        return False
-    if str(num)[8] == '0':
-        return False
-    if str(num)[9] == '0':
-        return False
-    return True
 
-# assert is_valid_phone_number(234)
+def validate(num: int) -> bool:
+  num_str = str(num)
+  num_dict = {}
+  for i in num_str:
+    if i not in num_dict:
+      num_dict[i] = 1
+    else:
+      num_dict[i] += 1
+  for i in num_dict:
+    if num_dict[i] > int(i):
+      return False
+  return True
+
+

@@ -1,11 +1,9 @@
-def dif_Square(n):
-    """
-    :param n:
-    :return:
-    """
-    for i in range(1, int(n ** 0.5) + 1):
-        if n - i ** 2 == 0:
-            return True
-    return False
+
+def dif_Square(num):
+  for i in range(1, num):
+    j = int(num - i)
+    if i**2 + j**2 == num:
+      return True
+  return False
 
 

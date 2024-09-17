@@ -1,5 +1,5 @@
-def min_of_three(x, y, z):
-    return min(x, y, z)
 
-print(min_of_three(10,20,0)) # Should print 0
+def min_of_three(a, b, c):
+  return min(a, b, c)
+
 

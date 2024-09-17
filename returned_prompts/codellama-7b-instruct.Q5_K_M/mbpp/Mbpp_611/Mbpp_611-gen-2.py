@@ -1,2 +1,5 @@
+
 def max_of_nth(matrix, n):
-    return max(map(lambda x: x[n], matrix))
+  return max(row[n] for row in matrix)
+
+

@@ -1,5 +1,8 @@
-def overlapping(seq1, seq2):
-    return any(x in seq2 for x in seq1)
 
+def overlapping(list1, list2):
+    for item in list1:
+        if item in list2:
+            return True
+    return False
 
 

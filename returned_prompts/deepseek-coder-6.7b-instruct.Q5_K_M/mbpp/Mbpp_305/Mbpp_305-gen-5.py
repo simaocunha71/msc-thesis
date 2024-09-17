@@ -1,8 +1,7 @@
-def start_withp(lst):
-    for words in lst:
-        for word in words.split():
-            if word.lower().startswith('p'):
-                return word,
 
-print(start_withp(["Python PHP", "Java JavaScript", "c c++"]))
+def start_withp(words: list) -> tuple:
+    for word in words:
+        if word.startswith('p'):
+            return tuple(word.split())
+
 

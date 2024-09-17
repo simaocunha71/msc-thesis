@@ -1,2 +1,5 @@
-def cube_nums(nums):
-    return [x**3 for x in nums]
+
+def cube_nums(nums: list) -> list:
+  return [num**3 for num in nums]
+
+

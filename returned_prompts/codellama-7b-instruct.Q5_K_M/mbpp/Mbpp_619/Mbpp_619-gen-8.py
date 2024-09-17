@@ -1,2 +1,5 @@
+
 def move_num(s):
-    return ''.join(sorted(s, key=str.isdigit))
+    return ''.join(sorted(s, key=lambda x: x.isdigit()))
+
+

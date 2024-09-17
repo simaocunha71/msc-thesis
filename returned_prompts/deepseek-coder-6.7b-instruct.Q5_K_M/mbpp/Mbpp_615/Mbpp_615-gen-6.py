@@ -1,5 +1,5 @@
-```python
+
 def average_tuple(t):
-    return [sum(x)/len(x) for x in t]
-```
+  return [sum(i)/len(i) for i in t]
+
 

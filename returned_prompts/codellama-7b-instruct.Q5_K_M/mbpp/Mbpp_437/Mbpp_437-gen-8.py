@@ -1,2 +1,5 @@
-def remove_odd(s):
-    return ''.join([c for i, c in enumerate(s) if i % 2 == 0])
+
+def remove_odd(string):
+    return ''.join([char for index, char in enumerate(string) if index % 2 == 0])
+
+

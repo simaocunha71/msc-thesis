@@ -1,7 +1,7 @@
-def difference(n):
-    sum_first_n = n * (n + 1) // 2
-    sum_cubes = sum([x**3 for x in range(1, n+1)])
-    return sum_cubes - sum_first_n
 
+def difference(n):
+    sum_cubes = sum([i**3 for i in range(1, n+1)])
+    sum_naturals = sum(range(1, n+1))
+    return sum_cubes - sum_naturals
 
 

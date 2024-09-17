@@ -1,13 +1,12 @@
-"""
+
 def count_Substrings(s):
     count = 0
-    for length in range(1, len(s) + 1):
-        for i in range(len(s) - length + 1):
-            substring = s[i: i + length]
-            if sum(int(digit) for digit in substring) == length:
+    for i in range(len(s)):
+        sum = 0
+        for j in range(i, len(s)):
+            sum += int(s[j])
+            if sum == j-i+1:
                 count += 1
     return count
 
-print(count_Substrings('112112'))  # Should print 6
-"""
 

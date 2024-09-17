@@ -1,3 +1,6 @@
+
 def volume_cube(side):
-    return side ** 3
+  volume = side ** 3
+  return volume
+
 

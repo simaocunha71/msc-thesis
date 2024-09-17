@@ -1,7 +1,11 @@
-```
+
 def find_Index(n):
-    index = 1
-    while len(str(index * (index + 1) // 2)) != n:
-        index += 1
-    return index
-```
+  count = 0
+  index = 0
+  while True:
+    count += 1
+    index += count
+    if len(str(index)) == n:
+      return index
+
+

@@ -1,19 +1,8 @@
-def is_Harshad(num):
-    temp = num
-    sum = 0
-    while temp > 0:
-        digit = temp % 10
-        sum += digit
-        temp //= 10
-    if sum % num == 0:
-        return True
-    else:
-        return False
 
-# Test
-assert is_Harshad(153) == True
+def word_len(word: str) -> bool:
+  if len(word) % 2 == 0:
+    return True
+  else:
+    return False
 
 
-
-"""
-Write a Python function

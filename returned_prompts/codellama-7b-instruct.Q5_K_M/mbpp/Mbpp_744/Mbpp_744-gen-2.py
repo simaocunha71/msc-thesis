@@ -1,4 +1,8 @@
-```python
-def check_none(my_tuple):
-    return None in my_tuple
-```
+
+def check_none(tup):
+  if None in tup:
+    return True
+  else:
+    return False
+
+

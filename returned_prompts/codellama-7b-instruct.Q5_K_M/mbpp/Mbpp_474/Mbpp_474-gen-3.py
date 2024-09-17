@@ -1,2 +1,5 @@
-def replace_char(my_string, char_to_replace, replacement):
-    return my_string.replace(char_to_replace, replacement)
+
+def replace_char(s: str, old: str, new: str) -> str:
+  return s.replace(old,new)
+
+

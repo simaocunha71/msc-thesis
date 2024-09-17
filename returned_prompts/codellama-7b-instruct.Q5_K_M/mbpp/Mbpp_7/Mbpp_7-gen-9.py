@@ -1,4 +1,6 @@
-def find_char_long(string):
-    return [s for s in string.split() if len(s) >= 4]
+
+def find_char_long(str_in):
+    words = str_in.split()
+    return [w for w in words if len(w) >= 4]
 
 

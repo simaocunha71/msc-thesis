@@ -1,4 +1,9 @@
-def remove_dirty_chars(string1, string2):
-    for char in string2:
-        string1 = string1.replace(char, '')
-    return string1
+
+def remove_dirty_chars(str1, str2):
+  clean_str = ''
+  for char in str1:
+    if char not in str2:
+      clean_str += char
+  return clean_str
+
+

@@ -1,15 +1,10 @@
+
 def count_Substrings(s):
-    count = 0
-    for i in range(len(s)):
-        sum_val = 0
-        for j in range(i, len(s)):
-            sum_val += int(s[j])
-            if sum_val == j - i + 1:
-                count += 1
-    return count
-
-print(count_Substrings('112112'))  # 6
-
-
+  count = 0
+  for i in range(len(s)):
+      for j in range(i+1, len(s)+1):
+          if sum(int(x) for x in s[i:j]) == j-i:
+              count += 1
+  return count
 
 

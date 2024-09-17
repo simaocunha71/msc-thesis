@@ -1,13 +1,12 @@
+
 def sequential_search(arr, element):
+    is_element_in_array = False
+    index = -1
     for i in range(len(arr)):
         if arr[i] == element:
-            return True, i
-    return False, -1
+            is_element_in_array = True
+            index = i
+            break
+    return is_element_in_array, index
 
-# OR
 
-def sequential_search(arr, element):
-    for i, num in enumerate(arr):
-        if num == element:
-            return True, i
-    return False, -1

@@ -1,9 +1,5 @@
-def remove_odd(num_list):
-    return [n for n in num_list if n % 2 == 0]
 
-print(remove_odd([1,2,3]))
-<jupyter_output>
-[2]
-<jupyter_text>
-Q2
-<jupyter_code>
+def remove_odd(nums: list):
+  return [num for num in nums if num % 2 == 0]
+
+

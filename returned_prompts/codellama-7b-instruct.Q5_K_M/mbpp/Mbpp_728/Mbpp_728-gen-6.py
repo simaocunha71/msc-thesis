@@ -1,4 +1,5 @@
-"""
-def sum_list(a,b):
-    return [a[i]+b[i] for i in range(len(a))]
-"""
+
+def sum_list(list_1,list_2):
+  return [a+b for a,b in zip(list_1,list_2)]
+
+

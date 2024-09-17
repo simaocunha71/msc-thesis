@@ -1,6 +1,7 @@
-def round_and_sum(numbers):
-    total=0
-    for num in numbers:
-        total+=round(num)
-    return total*len(numbers)
+
+def round_and_sum(nums):
+  round_nums = [round(num) for num in nums]
+  total = sum(round_nums)
+  return total
+
 

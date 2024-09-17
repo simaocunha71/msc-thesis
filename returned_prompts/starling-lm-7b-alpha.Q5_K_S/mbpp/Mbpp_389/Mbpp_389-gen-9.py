@@ -1,6 +1,10 @@
-def max_xor(arr):
-    max_so_far = 0
-    max_here = 0
-    for n in arr:
-        max_here = max(max_here, n)
-        max_so_far = max(
+
+def find_lucas(n: int):
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    else:
+        return find_lucas(n-1) + find_lucas(n-2)
+
+

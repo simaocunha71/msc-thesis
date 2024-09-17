@@ -1,9 +1,16 @@
-def magic_square_test(matrix):
-    rows_sum = [sum(row) for row in matrix]
-    cols_sum = [sum(col) for col in zip(*matrix)]
-    diag_sum = sum(matrix[i][i] for i in range(len(matrix)))
-    anti_diag_sum = sum(matrix[i][len(matrix)-i-1] for i in range(len(matrix)))
-    sums = [sum(matrix[i]) for i in range(len(matrix))]
-    return (sum(sums) in sums) and (max(sums)-min(sums)==2)
 
-# 1.1.6
+def magic_square_test(matrix):
+  rows_sum = 0
+  cols_sum = 0
+  for row in matrix:
+    rows_sum += sum(row)
+  for col in zip(*matrix):
+    cols_sum += sum(col)
+  if rows_sum == cols_sum:
+    diag_sum = sum(matrix[i][i] for i in range(len(matrix)))
+    diag_sum2 = sum(matrix[i][len(matrix) - 1 - i] for i in range(len(matrix)))
+    if rows_sum == diag_sum and rows_sum == diag_sum2:
+      return True
+  return False
+
+

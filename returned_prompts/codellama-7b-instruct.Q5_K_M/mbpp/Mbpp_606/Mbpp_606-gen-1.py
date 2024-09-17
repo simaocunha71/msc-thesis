@@ -1,3 +1,6 @@
+
 import math
-def radian_degree(degree):
-    return degree * math.pi / 180
+def radian_degree(degree: float) -> float:
+  return degree * (math.pi / 180.0)
+
+

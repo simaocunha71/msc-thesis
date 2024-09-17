@@ -1,3 +1,5 @@
-def subject_marks(marks_list):
-    return sorted(marks_list, key=lambda x: x[1])
+
+def subject_marks(marks):
+    return sorted(marks, key=lambda x: x[1])
+
 

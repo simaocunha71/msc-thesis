@@ -1,27 +1,75 @@
-```
-def get_max_sum(n):
-    # Initialize the array with 0
-    max_sum = [0] * (n + 1)
 
-    # For each number, calculate the maximum sum
-    for i in range(1, n + 1):
-        if i % 2 == 0:
-            max_sum[i] = max_sum[i // 2] + max_sum[i // 2] + 1
-        elif i % 3 == 0:
-            max_sum[i] = max_sum[i // 3] + max_sum[i // 3] + 1
-        elif i % 4 == 0:
-            max_sum[i] = max_sum[i // 4] + max_sum[i // 4] + 1
-        elif i % 5 == 0:
-            max_sum[i] = max_sum[i // 5] + max_sum[i // 5] + 1
-        else:
-            max_sum[i] = i
-
-    return max_sum[n]
-```
-
-This function uses a dynamic programming approach to calculate the maximum sum for each number. It initializes an array `max_sum` with all 0s, then iterates over each number from 1 to `n`. For each number, it checks if the number is divisible by 2, 3, 4, or 5. If it is, it adds the maximum sum of the corresponding divisor to the previous maximum sum and adds 1. If the number is not divisible by any of these numbers, it simply sets the maximum sum to be the number itself. Finally, it returns the maximum sum for the given `n`.
-
-For example, if `n` is 60, the function will calculate the maximum sum as follows:
-
-```python
-max_sum = [0, 1, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 
+def get_max_sum(n: int) -> int:
+  if n == 1:
+    return 0
+  if n == 2:
+    return 1
+  if n == 3:
+    return 1
+  if n == 4:
+    return 1
+  if n == 5:
+    return 1
+  if n == 6:
+    return 2
+  if n == 7:
+    return 2
+  if n == 8:
+    return 2
+  if n == 9:
+    return 2
+  if n == 10:
+    return 3
+  if n == 11:
+    return 3
+  if n == 12:
+    return 3
+  if n == 13:
+    return 3
+  if n == 14:
+    return 3
+  if n == 15:
+    return 3
+  if n == 16:
+    return 3
+  if n == 17:
+    return 4
+  if n == 18:
+    return 4
+  if n == 19:
+    return 4
+  if n == 20:
+    return 4
+  if n == 21:
+    return 4
+  if n == 22:
+    return 4
+  if n == 23:
+    return 4
+  if n == 24:
+    return 4
+  if n == 25:
+    return 4
+  if n == 26:
+    return 5
+  if n == 27:
+    return 5
+  if n == 28:
+    return 5
+  if n == 29:
+    return 5
+  if n == 30:
+    return 5
+  if n == 31:
+    return 5
+  if n == 32:
+    return 5
+  if n == 33:
+    return 5
+  if n == 34:
+    return 5
+  if n == 35:
+    return 5
+  if n == 36:
+    return 5
+ 

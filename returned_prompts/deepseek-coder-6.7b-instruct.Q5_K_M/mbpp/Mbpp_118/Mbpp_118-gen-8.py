@@ -1,9 +1,5 @@
-def to_uppercase(s):
-    return s.upper()
 
-print(to_uppercase('hello world'))
+def string_to_list(s):
+  return s.split()
 
-#Q7:
-"""
-Write a function that takes a string as input and returns the string in lowercase.
-assert to_lowercase('HELL
+

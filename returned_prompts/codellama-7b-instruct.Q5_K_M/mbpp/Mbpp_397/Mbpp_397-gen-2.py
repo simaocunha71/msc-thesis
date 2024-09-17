@@ -1,10 +1,9 @@
+
 def median_numbers(a,b,c):
-    sorted_list = sorted([a,b,c])
-    if sorted_list[1]==sorted_list[2]:
-        return sorted_list[1]
+    median = sorted([a,b,c])
+    if len(median) % 2 == 0:
+        return (median[len(median)-1] + median[len(median)-2])/2
     else:
-        return (sorted_list[1]+sorted_list[2])/2
-
-
+        return median[len(median)-1]
 
 

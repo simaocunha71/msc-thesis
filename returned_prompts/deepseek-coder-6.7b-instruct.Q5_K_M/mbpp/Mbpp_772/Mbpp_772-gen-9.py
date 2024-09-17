@@ -1,11 +1,5 @@
-def remove_length(s, k):
-    words = s.split()
-    result = [word for word in words if len(word) != k]
-    return ' '.join(result)
 
-print(remove_length('The person is most value tet', 3))
-<jupyter_output>
-person is most value
-<jupyter_text>
-Q2:
-<jupyter_code>
+def remove_length(s, k):
+  return " ".join(word for word in s.split() if len(word) != k)
+
+

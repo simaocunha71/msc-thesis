@@ -1,13 +1,13 @@
-"""
-def find_length(binary_str):
-    count_0 = 0
-    count_1 = 0
-    max_diff = 0
-    for i in range(len(binary_str)):
-        if binary_str[i] == '0':
-            count_0 += 1
+
+def find_length(binary_str: str) -> int:
+    count = 0
+    for i in binary_str:
+        if i == '0':
+            count += 1
         else:
-            count_1 += 1
-        max_diff = max(max_diff, abs(count_0 - count_1))
-    return max_diff
-"""
+            count = 0
+        if count > 1:
+            return count
+    return count
+
+

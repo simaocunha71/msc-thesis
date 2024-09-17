@@ -1,4 +1,5 @@
-def concat(string1, string2):
-    return string1 + string2
 
-assert concat('
+def split(word):
+  return [char for char in word]
+
+

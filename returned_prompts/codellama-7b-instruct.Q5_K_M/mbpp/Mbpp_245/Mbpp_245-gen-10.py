@@ -1,11 +1,14 @@
 
 def max_sum(arr):
-    return max(
-        [
-            sum(arr[i:j])
-            for i in range(len(arr))
-            for j in range(i + 1, len(arr))
-            if all(arr[i] < arr[k] < arr[j] for k in range(i, j))
-        ]
-    )
+  arr.sort()
+  max_sum = 0
+  decreasing_sum = 0
+  for i in range(len(arr)-1, -1, -1):
+    decreasing_sum += arr[i]
+    if decreasing_sum > max_sum:
+      max_sum = decreasing_sum
+    if arr[i] < arr[i-1]:
+      decreasing_sum = 0
+  return max_sum
+
 

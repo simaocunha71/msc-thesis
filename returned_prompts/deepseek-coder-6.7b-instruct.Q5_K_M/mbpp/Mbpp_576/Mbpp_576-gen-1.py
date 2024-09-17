@@ -1,12 +1,13 @@
 
-def is_Sub_Array(main_list, sub_list):
-    return sub_list in main_list
+def is_Sub_Array(A, B):
+  M = len(B)
+  N = len(A)
+  for i in range(N - M + 1):
+    for j in range(M):
+      if A[i + j] != B[j]:
+        break
+    if j == M - 1:
+      return True
+  return False
 
-print(is_Sub_Array([1,4,3,5],[1,2]))
-
-"""
-Output:
-
-False
-"""
 

@@ -1,5 +1,10 @@
-def large_product(list1, list2, number_of_products):
-    return sorted(list(zip(list1, list2)), key=lambda x: x[0] * x[1], reverse=True)[:number_of_products]
 
+def large_product(list1,list2,n):
+  result = []
+  for i in range(n):
+    for j in range(n):
+      if list1[i] * list2[j] not in result:
+        result.append(list1[i] * list2[j])
+  return sorted(result,reverse = True)[:n]
 
 

@@ -1,9 +1,11 @@
 
-```python
-def count_first_elements(tuple):
-    count = 0
-    for element in tuple:
-        if not isinstance(element, tuple):
-            count += 1
-    return count
-```
+def count_first_elements(test_tup):
+  counter = 0
+  for num in test_tup:
+    if isinstance(num, tuple):
+      break
+    else:
+      counter += 1
+  return counter
+
+

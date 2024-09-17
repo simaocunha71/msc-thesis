@@ -1,3 +1,11 @@
+
 def mul_even_odd(my_list):
-    return my_list[0] * my_list[1]
+  product = 1
+  for i in my_list:
+    if i%2==0:
+      product *= i
+    else:
+      product *= i
+  return product
+
 

@@ -1,2 +1,9 @@
+
 def is_octagonal(n):
-    return int((n + (1/2))**2)
+    n = int(n)
+    if n < 1:
+        return False
+    a = (1 + 2 * (1 + 2 * (1 + 2 * (1 + 2 * (1 + 2 * (1 + 2 * (1 + 2 * (n - 1))))))))
+    return n == a
+
+

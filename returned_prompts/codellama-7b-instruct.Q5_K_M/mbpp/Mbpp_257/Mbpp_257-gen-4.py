@@ -1,2 +1,5 @@
-def swap_numbers(num1, num2):
-    return (num2, num1)
+
+def swap_numbers(num1: int, num2: int) -> tuple:
+  return (num2, num1)
+
+

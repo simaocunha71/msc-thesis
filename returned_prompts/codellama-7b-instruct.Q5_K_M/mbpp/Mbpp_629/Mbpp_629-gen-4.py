@@ -1,5 +1,5 @@
-def Split(numbers):
-    return [x for x in numbers if x % 2 == 0]
 
+def Split(nums: list) -> list:
+  return [x for x in nums if x % 2 == 0]
 
 

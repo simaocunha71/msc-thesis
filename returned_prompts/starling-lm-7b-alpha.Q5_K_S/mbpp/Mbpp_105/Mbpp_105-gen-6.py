@@ -1,9 +1,5 @@
-"""
-def count(li):
-    count=0
-    for i in li:
-        if i==True:
-            count+=1
-    return count
-"""
+
+def count(lst):
+    return len([i for i in lst if i])
+
 

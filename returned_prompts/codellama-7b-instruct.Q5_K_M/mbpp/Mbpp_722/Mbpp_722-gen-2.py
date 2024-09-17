@@ -1,2 +1,6 @@
-def filter_data(data, min_height, min_weight):
-    return {name: (height, weight) for name, (height, weight) in data.items() if height >= min_height and weight >= min_weight}
+
+def filter_data(data: dict, height: float, weight: float) -> dict:
+  filtered_data = {key: val for key, val in data.items() if val[0] >= height and val[1] >= weight}
+  return filtered_data
+
+

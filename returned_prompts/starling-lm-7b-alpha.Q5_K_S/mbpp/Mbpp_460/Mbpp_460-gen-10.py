@@ -1,8 +1,5 @@
-"""
-def Extract(L):
-    result = []
-    for sublist in L:
-        result.append(sublist[0])
-    return result
-"""
+
+def Extract(list1):
+  return [i[0] for i in list1]
+
 

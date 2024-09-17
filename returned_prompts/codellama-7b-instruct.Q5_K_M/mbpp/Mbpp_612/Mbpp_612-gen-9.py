@@ -1,2 +1,5 @@
+
 def merge(lst):
-    return [ [x[0] for x in lst], [x[1] for x in lst] ]
+    return [[lst[i][j] for i in range(len(lst))] for j in range(2)]
+
+

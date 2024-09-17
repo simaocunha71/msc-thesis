@@ -1,7 +1,5 @@
-```python
-def check_greater(arr, n):
-    for i in arr:
-        if i > n:
-            return True
-    return False
-```
+
+def check_greater(arr: list, n: int) -> bool:
+  return all(x > n for x in arr)
+
+

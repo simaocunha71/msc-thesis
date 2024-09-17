@@ -1,4 +1,5 @@
-"""
-def replace_spaces(string):
-    return string.replace(' ', '_').replace('_', ' ')
-"""
+
+def replace_spaces(my_string: str) -> str:
+  return my_string.replace(" ", "_")
+
+

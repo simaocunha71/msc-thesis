@@ -1,8 +1,7 @@
-def extract_values(string):
-    values = []
-    for value in string.split(','):
-        value = value.strip().strip('"')
-        values.append(value)
-    return values
+
+import re
+def extract_values(str_val: str) -> list:
+  pattern = re.compile('"[^"]+"')
+  return [i.strip('"') for i in re.findall(pattern, str_val)]
 
 

@@ -1,6 +1,7 @@
-```
-def triangle_area(radius):
-    if radius < 0:
-        return None
-    return 0.5 * radius * radius * 3.14159
-```
+
+def triangle_area(radius: float) -> float:
+  if radius <= 0:
+    return None
+  return (radius ** 2) * (2/3)
+
+

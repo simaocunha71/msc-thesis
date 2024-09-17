@@ -1,7 +1,8 @@
-def text_match_two_three(text):
-    if 'a' in text:
-        if text.count('a') > 1:
-            if text.count('b') == text.count('a') - 1:
-                return True
-    return False
+
+def text_match_two_three(text: str) -> bool:
+  if 'a' in text:
+    if text.count('b') == 2 or text.count('b') == 3:
+      return True
+  return False
+
 

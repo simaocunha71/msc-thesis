@@ -1,6 +1,6 @@
-```python
-def add_tuple(lst, tup):
-    lst.extend(tup)
-    return lst
-```
+
+def add_tuple(lst: list, tup: tuple) -> list:
+  lst.extend(tup)
+  return lst
+
 

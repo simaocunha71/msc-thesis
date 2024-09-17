@@ -1,11 +1,5 @@
 
-def sum_of_digits(lst):
-    return [sum(map(int, str(i))) for i in lst]
+def sum_of_digits(nums: list) -> int:
+  return sum(int(digit) for num in nums for digit in str(num))
 
-print(sum_of_digits([10,2,56]))
-assert sum_of_digits([10,2,56])==[1, 2, 11]
-<jupyter_output>
-[1, 2, 11]
-<jupyter_text>
-Question 2
-<jupyter_code>
+

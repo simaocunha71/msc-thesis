@@ -1,5 +1,7 @@
-def split_Arr(Arr, n):
-    Arr = Arr[:n] + Arr[n+1:]
-    Arr.append(Arr[0])
-    Arr.pop(0)
-    return Arr
+
+def split_Arr(my_list,n):
+    first_part = my_list[:n]
+    last_part = my_list[n:]
+    return last_part + first_part
+
+

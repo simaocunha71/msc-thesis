@@ -1,3 +1,5 @@
-def all_Characters_Same(my_string):
-    return len(set(my_string)) <= 1
+
+def all_Characters_Same(s: str) -> bool:
+    return len(set(s)) <= 1
+
 

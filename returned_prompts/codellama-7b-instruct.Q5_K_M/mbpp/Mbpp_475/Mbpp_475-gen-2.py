@@ -1,4 +1,6 @@
-"""
-def sort_counter(d):
-    return sorted(d.items(), key=lambda x: x[1])
-"""
+
+from collections import Counter
+def sort_counter(c: Counter) -> list:
+  return sorted(c.items(), key=lambda item: item[1], reverse=True)
+
+

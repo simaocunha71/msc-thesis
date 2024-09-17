@@ -1,10 +1,12 @@
-```
+
 def find_solution(a, b, n):
-    d = a * b
-    if n % d != 0:
-        return None
-    x = n * b // d
-    y = n * a // d
-    return (x, y)
-```
+    if a == 0:
+        if b == 0:
+            return None
+        else:
+            return (n % b, -(n // b))
+    else:
+        x = find_solution(b, a % b, a // b)
+        return (x[1], x[0] - a * x[1]) if x else None
+
 

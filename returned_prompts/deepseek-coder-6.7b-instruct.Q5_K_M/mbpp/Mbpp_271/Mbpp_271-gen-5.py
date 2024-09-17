@@ -1,10 +1,5 @@
-def even_Power_Sum(n):
-    total = 0
-    num = 2
-    for i in range(n):
-        total += num ** 5
-        num += 2
-    return total
 
-assert even_Power_Sum(2) == 1056
+def even_Power_Sum(n):
+    return sum(i**5 for i in range(2,2*n,2))
+
 

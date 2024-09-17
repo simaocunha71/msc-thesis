@@ -1,5 +1,9 @@
-def merge_dictionaries_three(*dictionaries):
-    merged_dict = {}
-    for dictionary in dictionaries:
-        merged_dict.update(dictionary)
-    return merged_dict
+
+def merge_dictionaries_three(dict1, dict2, dict3):
+  result = {}
+  result.update(dict1)
+  result.update(dict2)
+  result.update(dict3)
+  return result
+
+

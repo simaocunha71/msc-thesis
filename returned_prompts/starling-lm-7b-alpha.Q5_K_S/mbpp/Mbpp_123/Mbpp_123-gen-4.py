@@ -1,66 +1,11 @@
-"""
-def amicable_numbers_sum(limit):
-    """
-    Returns the sum of all amicable numbers from 1 to limit (inclusive).
 
-    An amicable number is a number that is equal to the sum of its proper divisors (excluding the number itself).
-    """
-    total = 0
-    for n in range(1, limit + 1):
-        total += sum_proper_divisors(n)
-    return total
+def amicable_numbers_sum(num):
+    def amicable(n):
+        s = 0
+        for i in range(1, n):
+            if n % i == 0:
+                s += i
+        return sum(list(filter(lambda x: sum(list(filter(lambda y: n % y == 0, range(1, x)))) == x, range(1, s))))
+    return sum(list(filter(lambda x: x <= num, amicable(x) for x in range(1, num + 1))))
 
-def sum_proper_divisors(n):
-    """
-    Returns the sum of the proper divisors of n.
-    """
-    if n == 1:
-        return 0
-    total = 1
-    i = 2
-    while i * i <= n:
-        if n % i:
-            i += 1
-        else:
-            total += i + n // i
-    return total
 
-def is_amicable(n):
-    """
-    Returns True if n is an amicable number, and False if not.
-    """
-    return sum_proper_divisors(n) == n
-"""
-
-def amicable_numbers_sum(limit):
-    """
-    Returns the sum of all amicable numbers from 1 to limit (inclusive).
-
-    An amicable number is a number that is equal to the sum of its proper divisors (excluding the number itself).
-    """
-    total = 0
-    for n in range(1, limit + 1):
-        if is_amicable(n):
-            total += n
-    return total
-
-def sum_proper_divisors(n):
-    """
-    Returns the sum of the proper divisors of n.
-    """
-    if n == 1:
-        return 0
-    total = 1
-    i = 2
-    while i * i <= n:
-        if n % i:
-            i += 1
-        else:
-            total += i + n // i
-    return total
-
-def is_amicable(n):
-    """
-    Returns True if n is an amicable number, and False if not.
-    """
-    return sum_proper_divisors(n)

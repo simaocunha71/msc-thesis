@@ -1,9 +1,5 @@
-def check_smaller(t1, t2):
-    for i in range(len(t1)):
-        if not t1[i] < t2[i]:
-            return False
-    return True
 
-print(check_smaller((1, 2, 3), (2, 3, 4)))  # False
+def check_smaller(tup1, tup2):
+  return all(x<y for x, y in zip(tup1, tup2))
 
-# 2.
+

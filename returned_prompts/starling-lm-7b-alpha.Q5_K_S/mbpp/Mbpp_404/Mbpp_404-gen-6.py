@@ -1,8 +1,8 @@
-"""
-def minimum(x,y):
-    if(x<y):
-        return x
+
+def minimum(num1,num2):
+    if num1 < num2:
+        return num1
     else:
-        return y
-"""
+        return num2
+
 

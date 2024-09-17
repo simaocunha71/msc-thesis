@@ -1,10 +1,9 @@
 
-def next_power_of_2(n: int) -> int:
-    if n <= 0:
-        return 1
-    else:
-        return 2 ** (n - 1).bit_length()
+def next_power_of_2(n):
+  if (n and not(n & (n - 1))):
+    return n
+  while(n > 0):
+    n >>= 1
+  return 1 << (n + 1)
 
 
-assert next_power_of_2(0) == 1
-"""

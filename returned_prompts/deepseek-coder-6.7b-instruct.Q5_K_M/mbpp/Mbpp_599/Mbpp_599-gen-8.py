@@ -1,10 +1,7 @@
+
 def sum_average(n):
-    total_sum = n * (n + 1) // 2
-    average = total_sum / n
-    return total_sum, average
+  sum_nums = n * (n + 1) // 2
+  avg = sum_nums / n
+  return (sum_nums, avg)
 
-print(sum_average(10))
 
-# Output: (55, 5.5)
-
-# ---------------------------------

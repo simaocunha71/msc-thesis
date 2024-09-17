@@ -1,7 +1,7 @@
-"""
-def zero_count(nums):
-    zeroes = sum(1 for num in nums if num == 0)
-    non_zeroes = sum(1 for num in nums if num != 0)
-    return zeroes / non_zeroes
-"""
+
+def zero_count(arr):
+  zero_count = arr.count(0)
+  non_zero_count = len([i for i in arr if i != 0])
+  return zero_count / (zero_count + non_zero_count)
+
 

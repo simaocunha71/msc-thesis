@@ -1,9 +1,5 @@
-"""
-def len_log(words):
-    max_len = 0
-    for word in words:
-        if len(word) > max_len:
-            max_len = len(word)
-    return max_len
-"""
+
+def len_log(words: list) -> int:
+  return max(map(len, words))
+
 

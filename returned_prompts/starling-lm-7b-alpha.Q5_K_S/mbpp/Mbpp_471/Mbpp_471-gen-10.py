@@ -1,16 +1,13 @@
-"""
-def find_remainder(A, n):
-    N = len(A)
-    result = 1
-    for i in range(N):
-        result = (result * A[i]) % n
-    return result
 
-def find_remainder(A, n):
-    N = len(A)
-    result = 1
-    for i in range(N):
-        result = (result * A[i]) % n
-    return result
-"""
+def find_remainder(nums, mod):
+    if not nums:
+        return 0
+    if len(nums) == 1:
+        return nums[0] % mod
+    total = 1
+    for i in range(len(nums)):
+        total *= nums[i]
+        total %= mod
+    return total % mod
+
 

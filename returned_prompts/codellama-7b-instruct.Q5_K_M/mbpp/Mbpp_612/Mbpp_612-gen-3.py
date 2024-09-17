@@ -1,2 +1,5 @@
+
 def merge(lst):
-    return [list(map(lambda *x: x, *zip(*lst)))
+    return [list(t) for t in zip(*lst)]
+
+

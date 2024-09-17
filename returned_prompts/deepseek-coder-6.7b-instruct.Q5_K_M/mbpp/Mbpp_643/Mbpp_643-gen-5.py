@@ -1,13 +1,6 @@
-def count_words_length(text, num):
-    word_list = text.split()
-    count = 0
-    for word in word_list:
-        if len(word) > num:
-            count += 1
-    return count
 
-print(count_words_length("python zobac", 4))
+import re
+def text_match_wordz_middle(text):
+  return bool(re.search(r'z', text[1:-1]))
 
-# Q5
-"""
-Write a function that replaces all occurrences of a given character in a string
+

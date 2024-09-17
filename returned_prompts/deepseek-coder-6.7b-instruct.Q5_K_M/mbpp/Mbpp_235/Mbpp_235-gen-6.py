@@ -1,24 +1,7 @@
-"""
-Firstly, the function needs to convert the given number into binary form. Then it needs to traverse through the binary string and set all even bits to 1. After setting all even bits, the binary string should be converted back to a decimal number.
-"""
 
 def even_bit_set_number(n):
-    binary_form = bin(n)[2:]  # convert number to binary form
-    binary_form = binary_even_bits_set(binary_form)
-    return int(binary_form, 2)  # convert binary form back to decimal
+  binary_n = bin(n)[2:]
+  even_bit_set_binary = ''.join(['1' if i % 2 == 0 else bit for i, bit in enumerate(binary_n)])
+  return int(even_bit_set_binary, 2)
 
-
-def binary_even_bits_set(binary_string):
-    result = ""
-    for i in range(len(binary_string)):
-        if i % 2 == 0:
-            result += "1"
-        else:
-            result += binary_string[i]
-    return result
-
-
-print(even_bit_set_number(10))  # 10
-"""
-"""
 

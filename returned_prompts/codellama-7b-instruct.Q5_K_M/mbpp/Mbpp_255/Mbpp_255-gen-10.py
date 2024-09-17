@@ -1,6 +1,6 @@
-import itertools
-def combinations_colors(colors,length):
-    return [tuple(x) for x in itertools.combinations(colors,length)]
 
+from itertools import product
+def combinations_colors(lst,n):
+  return list(product(lst, repeat=n))
 
 

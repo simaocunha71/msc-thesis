@@ -1,5 +1,5 @@
 
-def reverse_string_list(my_list):
-    return [word[::-1] for word in my_list]
+def reverse_string_list(str_list):
+  return [s[::-1] for s in str_list]
 
 

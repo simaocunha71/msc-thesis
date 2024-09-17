@@ -1,11 +1,7 @@
-"""
-def all_Characters_Same(string):
-    if len(set(string))==1:
+
+def all_Characters_Same(s: str) -> bool:
+    if len(set(s)) == 1:
         return True
-    else:
-        return False
+    return False
 
-print(all_Characters_Same("python"))
-
-"""
 

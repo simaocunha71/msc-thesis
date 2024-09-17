@@ -1,14 +1,17 @@
-def is_undulating(num):
-    return "1" * len(str(num)) == str(num)
 
-# OR
-
-def is_undulating(num):
-    return str(num) == "1" * len(str(num))
-
-# OR
-
-def is_undulating(num):
-    return num == int("1" * len(str(num)))
+def is_undulating(n):
+    a, b = 1, 1
+    while n > 0:
+        if n == 1:
+            return True
+        if n < 1:
+            return False
+        d = n % 10
+        if d == 9:
+            a, b = b, a+b
+        elif d == 0:
+            return False
+        n //= 10
+    return True
 
 

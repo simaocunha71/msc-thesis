@@ -1,53 +1,14 @@
-```
-# Time:  O(n)
-# Space: O(n)
 
-class Solution(object):
-    def maxAverageOfPath(self, path):
-        """
-        :type path: List[List[int]]
-        :rtype: float
-        """
-        dp = [0]*len(path)
-        for i in xrange(len(path)):
-            dp[i] = path[i][0]
-        for j in xrange(1, len(path)):
-            dp[j] += path[j][j]
-            for i in reversed(xrange(j)):
-                dp[i] = max(path[i][j]+dp[i+1], path[j][i]+dp[i])
-        return float(dp[0]) / (1+len(path))
+def maxAverageOfPath(mat: list) -> float:
+    n = len(mat)
+    dp = [[0] * n for _ in range(n)]
+    for i in range(n):
+        dp[i][0] = mat[i][0]
+    for j in range(1, n):
+        dp[0][j] = mat[0][j] + dp[0][j-1]
+    for i in range(1, n):
+        for j in range(1, n):
+            dp[i][j] = mat[i][j] + max(dp[i-1][j], dp[i][j-1])
+    return dp[n-1][n-1]/n
 
-```
 
-```
-# Time:  O(n)
-# Space: O(n)
-class Solution(object):
-    def maxAverageOfPath(self, path):
-        """
-        :type path: List[List[int]]
-        :rtype: float
-        """
-        def max_sum_of_path(path, i, j, lookup):
-            if i > j:
-                return 0
-            if i == j:
-                return path[i][j]
-            if lookup[i][j]:
-                return lookup[i][j]
-            lookup[i][j] = max(path[i][j] + max_sum_of_path(path, i+1, j, lookup),
-                               path[i][j] + max_sum_of_path(path, i, j-1, lookup))
-            return lookup[i][j]
-
-        return float(max_sum_of_path(path, 0, len(path)-1, [[False]*len(path) for _ in xrange(len(path))])) / (1+len(path))
-
-```
-```
-
-```
-# Time:  O(n)
-# Space: O(n)
-class Solution(object):
-    def maxAverageOfPath(self, path):
-        """
-        :type path: List[List[int]]

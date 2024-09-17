@@ -1,10 +1,11 @@
+
 def check_occurences(my_list):
-    dict_occurences = {}
-    for i in range(len(my_list)):
-        if my_list[i] in dict_occurences:
-            dict_occurences[my_list[i]] += 1
+    occurences = {}
+    for tuple in my_list:
+        if tuple in occurences:
+            occurences[tuple] += 1
         else:
-            dict_occurences[my_list[i]] = 1
-    return dict_occurences
+            occurences[tuple] = 1
+    return occurences
 
 

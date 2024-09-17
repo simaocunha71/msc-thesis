@@ -1,11 +1,5 @@
-"""
-def remove_odd(s):
-    res = ""
-    for i in s:
-        if i % 2 == 0:
-            res += i
-    return res
 
-print(remove_odd("python"))  # Output: "yhn"
-"""
+def remove_odd(s):
+    return ''.join(filter(lambda x: ord(x) % 2 == 0, s))
+
 

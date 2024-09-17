@@ -1,7 +1,8 @@
-"""
-def tuple_intersection(tuple_list):
-    intersection = set()
-    for tuple_set in tuple_list:
-        intersection |= set(tuple_set)
-    return intersection
-"""
+
+def tuple_intersection(tup_list: list) -> set:
+  tup_intersection = set()
+  for tup in tup_list:
+    tup_intersection.update(tup)
+  return tup_intersection
+
+

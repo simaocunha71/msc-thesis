@@ -1,35 +1,12 @@
-def digit_distance_nums(num1, num2):
-    num_str1 = str(num1)
-    num_str2 = str(num2)
-    if len(num_str1) != len(num_str2):
-        raise ValueError("The two numbers must be the same length")
-    return sum(abs(int(num_str1[i]) - int(num_str2[i])) for i in range(len(num_str1)))
 
-# Testing
-assert digit_distance_nums(1,2) == 1
+def digit_distance_nums(num1: int,num2: int) -> int:
+  num1_str = str(num1)
+  num2_str = str(num2)
+  if len(num1_str) != len(num2_str):
+    raise ValueError("The length of two numbers should be equal")
+  distance_sum = 0
+  for i in range(len(num1_str)):
+    distance_sum += abs(int(num1_str[i]) - int(num2_str[i]))
+  return distance_sum
 
-# Testing edge cases
-try:
-    digit_distance_nums(9, 10)
-except ValueError as e:
-    assert str(e) == "The two numbers must be the same length"
-try:
-    digit_distance_nums(999, 1)
-except ValueError as e:
-    assert str(e) == "The two numbers must be the same length"
-try:
-    digit_distance_nums(999999999999999999999999999, 9999999999999999999999999999)
-except ValueError as e:
-    assert str(e) == "The two numbers must be the same length"
-try:
-    digit_distance_nums(99999999999999999999999999999999999999999999, 9999999999999999999999999999999999999999999)
-except ValueError as e:
-    assert str(e) == "The two numbers must be the same length"
 
-# Testing non-integer inputs
-try:
-    digit_distance_nums(9.99, 9.99)
-except ValueError as e:
-    assert str(e) == "The two numbers must be the same length"
-try:
-    digit_distance_nums(999

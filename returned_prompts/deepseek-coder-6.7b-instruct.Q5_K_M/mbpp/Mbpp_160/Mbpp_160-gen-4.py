@@ -1,11 +1,22 @@
+
 def find_solution(a, b, n):
-    for x in range(n + 1):
-        for y in range(n + 1):
-            if a * x + b * y == n:
-                return (x, y)
+  if a == 0 and b == 0:
     return None
+  if a == 0:
+    if n % b == 0:
+      return (0, n // b)
+    else:
+      return None
+  if b == 0:
+    if n % a == 0:
+      return (n // a, 0)
+    else:
+      return None
+  r, x = divmod(n, a)
+  if x == 0:
+    return (0, r)
+  if b % a == 0:
+    return (n // a - r, r)
+  return None
 
-print(find_solution(2, 3, 7))
 
-
-"""

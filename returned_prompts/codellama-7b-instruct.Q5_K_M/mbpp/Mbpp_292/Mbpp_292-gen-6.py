@@ -1,4 +1,5 @@
-```python
-def find(a, b):
+
+def find(a: int, b: int):
     return a // b
-```
+
+

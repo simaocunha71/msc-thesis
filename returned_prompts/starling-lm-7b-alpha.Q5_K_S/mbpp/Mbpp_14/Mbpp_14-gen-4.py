@@ -1,5 +1,5 @@
-"""
-def find_Volume(base_length, height, length):
-    return (base_length * height * length)/2
-"""
+
+def find_Volume(base,height,length):
+    return 1/2 * base * height * length
+
 

@@ -1,10 +1,6 @@
-"""
-def odd_Equivalent(binary_String,n):
-    count = 0
-    for i in range(n):
-        temp = binary_String[-1]
-        binary_String = binary_String[:-1] + temp
-        if int(temp) % 2 == 1:
-            count += 1
-    return count
-"""
+
+def odd_Equivalent(binary_str:str, num_rotations:int) -> int:
+  rotated_binary = binary_str[-num_rotations:] + binary_str[:-num_rotations]
+  return rotated_binary.count("1")
+
+

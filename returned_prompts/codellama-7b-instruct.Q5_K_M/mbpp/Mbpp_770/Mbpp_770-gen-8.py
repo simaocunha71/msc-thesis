@@ -1,10 +1,8 @@
-def odd_num_sum(n):
-    return sum([x**4 for x in range(1, n+1, 2)])
 
-#Alternative
 def odd_num_sum(n):
-    return sum([x**4 for x in range(1, n+1, 2)])
-    
-#Alternative
-def odd_num_sum(n):
-    return sum(x**4 for x in range(1, n+1, 2))
+  sum = 0
+  for i in range(1, n+1):
+    sum += i**4
+  return sum
+
+

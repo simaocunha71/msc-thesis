@@ -1,8 +1,10 @@
-```
-def is_decimal(string):
-    try:
-        float(string)
-        return True
-    except ValueError:
-        return False
-```
+
+def is_decimal(num_string):
+  try:
+    float(num_string)
+    float(num_string).is_integer()
+    return False
+  except ValueError:
+    return True
+
+

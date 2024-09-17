@@ -1,3 +1,8 @@
-def rear_extract(my_list):
-    return [x for _, _, x in my_list]
+
+def rear_extract(my_list_of_tups):
+    rear_list = []
+    for tup in my_list_of_tups:
+        rear_list.append(tup[2])
+    return rear_list
+
 

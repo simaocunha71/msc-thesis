@@ -1,12 +1,10 @@
 
-def next_Perfect_Square(n):
-    import math
-    root = math.sqrt(n)
-    if root != int(root):
-        root = int(root) + 1
-    return root * root
+import math
+def next_Perfect_Square(num):
+    sqrt_num = math.sqrt(num)
+    if sqrt_num.is_integer():
+        return (sqrt_num+1)**2
+    else:
+        return "No perfect square found"
 
-print(next_Perfect_Square(35))  # 36
 
-
-# 

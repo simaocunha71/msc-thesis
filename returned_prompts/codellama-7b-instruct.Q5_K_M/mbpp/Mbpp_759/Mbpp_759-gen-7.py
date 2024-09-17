@@ -1,5 +1,8 @@
-```python
+
 def is_decimal(s):
-    return s.count('.') == 1 and len(s.split('.')[1]) == 2
-```
+    if '.' in s:
+        if len(s.split('.')[1]) > 2:
+            return False
+    return s.isdecimal()
+
 

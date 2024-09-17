@@ -1,5 +1,5 @@
+
 def toggle_middle_bits(n):
-    mask = 0x33333333
-    return (n | mask) & ~mask
+  return (n ^ 0xffffffff ^ (n >> 1) ^ (n >> 2)) & 0xffffffff
 
 

@@ -1,6 +1,8 @@
-def angle_complex(z):
-    return np.arctan2(np.imag(z), np.real(z))
 
-print(math.isclose(angle_complex(0+1j), 1.5707963267948966, rel_tol=0.001))
+import cmath
+def angle_complex(z):
+    return cmath.phase(z)
+"""
+Note: The phase of a complex number is the angle in radians between the positive real axis and the line joining the origin to the point representing the complex number.
 """
 

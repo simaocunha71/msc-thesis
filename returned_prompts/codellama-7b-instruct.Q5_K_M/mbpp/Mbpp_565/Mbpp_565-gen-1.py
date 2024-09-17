@@ -1,2 +1,5 @@
-def split(s):
-    return [c for c in s]
+
+def split(word: str) -> list:
+  return list(word)
+
+

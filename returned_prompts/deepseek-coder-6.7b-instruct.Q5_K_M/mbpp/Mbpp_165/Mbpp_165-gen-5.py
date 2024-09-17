@@ -1,5 +1,5 @@
-def count_char_position(s):
-    return sum(1 for c1, c2 in zip(s.lower(), 'abcdefghijklmnopqrstuvwxyz') if c1 == c2)
 
-print(count_char_position("xbcefg"))  # 2
+def count_char_position(s):
+    return sum(1 for c, l in zip(s.lower(), 'abcdefghijklmnopqrstuvwxyz') if c == l)
+
 

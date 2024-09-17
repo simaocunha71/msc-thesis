@@ -1,13 +1,23 @@
+
 def shell_sort(arr):
+    def swap(arr, i, j):
+        arr[i], arr[j] = arr[j], arr[i]
+
+    def insertionSort(arr, gap):
+        for i in range(gap, len(arr)):
+            temp = arr[i]
+            j = i
+            while j >= gap and arr[j - gap] > temp:
+                arr[j] = arr[j - gap]
+                j -= gap
+            arr[j] = temp
+
     n = len(arr)
-    h = 1
-    while h < n/3:
-        h = 3*h + 1
-    while h >= 1:
-        for i in range(h, n):
-            for j in range(i, h, -h):
-                if arr[j] < arr[j-h]:
-                    arr[j], arr[j-h] = arr[j-h], arr[j]
-        h = int(h/3)
+    gap = n // 2
+    while gap > 0:
+        insertionSort(arr, gap)
+        gap = gap // 2
+
     return arr
+
 

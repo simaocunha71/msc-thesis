@@ -1,7 +1,5 @@
-def check_none(t):
-    return None in t
 
-print(check_none((10, 4, 5, 6, None)))
+def check_none(tup):
+  return any(value is None for value in tup)
 
-# ------------------------------------
-"""
+

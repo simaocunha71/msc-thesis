@@ -1,5 +1,8 @@
-def multiple_to_single(multiple_list):
-    # Your code here
-    return int(''.join(map(str, multiple_list)))
+
+def multiple_to_single(my_list):
+  my_int = 0
+  for num in my_list:
+    my_int += num
+  return my_int
 
 

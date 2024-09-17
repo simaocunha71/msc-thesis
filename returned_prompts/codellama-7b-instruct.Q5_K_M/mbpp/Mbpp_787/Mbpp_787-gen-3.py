@@ -1,4 +1,7 @@
-```
-def text_match_three(text):
-    return re.match("a(b){3}", text)
-```
+
+def text_match_three(text: str) -> bool:
+  if text.count("a") >= 1 and text.count("b") >= 3:
+    return True
+  return False
+
+

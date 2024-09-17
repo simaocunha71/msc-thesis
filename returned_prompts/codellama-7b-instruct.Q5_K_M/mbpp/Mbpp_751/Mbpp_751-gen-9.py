@@ -1,27 +1,11 @@
+
 def check_min_heap(arr):
-    if len(arr) == 0:
-        return False
-    if len(arr) == 1:
-        return True
-    for i in range(len(arr)):
-        if i == 0:
-            continue
-        if arr[i] < arr[i // 2 - 1]:
+    n = len(arr)
+    for i in range(n//2, -1, -1):
+        if i * 2 + 1 >= n or arr[i] < arr[i * 2 + 1]:
+            return False
+        if i * 2 + 2 >= n or arr[i] < arr[i * 2 + 2]:
             return False
     return True
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

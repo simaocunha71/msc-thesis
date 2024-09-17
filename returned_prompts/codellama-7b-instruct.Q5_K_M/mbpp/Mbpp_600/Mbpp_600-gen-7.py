@@ -1,6 +1,5 @@
-def is_Even(num):
-    if num % 2 == 0:
-        return True
-    else:
-        return False
+
+def is_even(n):
+    return n % 2 == 0
+
 

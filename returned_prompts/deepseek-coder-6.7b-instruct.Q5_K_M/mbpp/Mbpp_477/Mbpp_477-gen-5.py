@@ -1,9 +1,4 @@
 
-def to_lower(txt):
-    return txt.lower()
+def is_lower(s):
+    return s.lower()
 
-print(to_lower("InValid"))
-
-# Output: 'invalid'
-
-#Q2

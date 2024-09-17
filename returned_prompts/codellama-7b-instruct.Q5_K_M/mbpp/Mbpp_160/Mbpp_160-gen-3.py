@@ -1,6 +1,9 @@
-def find_solution(a, b, n):
-    for x in range(n+1):
-        for y in range(n+1):
-            if a*x + b*y == n:
-                return x, y
+
+def find_solution(a: int, b: int, n: int) -> tuple:
+  if a == 0:
     return None
+  x = n // b
+  y = n % b
+  return (x, y)
+
+

@@ -1,2 +1,6 @@
-def add_tuple(my_list, new_tuple):
-    return my_list + list(new_tuple)
+
+def add_tuple(my_list: list, tup: tuple) -> list:
+  my_list.extend(tup)
+  return my_list
+
+

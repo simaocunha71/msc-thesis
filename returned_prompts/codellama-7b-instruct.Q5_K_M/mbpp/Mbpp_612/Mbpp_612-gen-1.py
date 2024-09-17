@@ -1,4 +1,5 @@
-```
+
 def merge(my_list):
-    return [list(zip(*my_list))[0], list(zip(*my_list))[1]]
-```
+  return [list(i) for i in zip(*my_list)]
+
+

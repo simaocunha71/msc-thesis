@@ -1,9 +1,8 @@
 
-def sum_list(lst):
-    total = 0
+def start_withp(lst):
     for i in lst:
-        if isinstance(i, list):
-            total += sum_list(i)
-        else:
-            total += i
-   
+        words = i.split()
+        for word in words:
+            if word.lower().startswith('p'):
+                return word,
+

@@ -1,17 +1,6 @@
-def armstrong_number(n):
-    sum = 0
-    temp = n
-    while temp > 0:
-        digit = temp % 10
-        sum += digit ** 3
-        temp //= 10
-    return n == sum
 
-print(armstrong_number(153))
+def armstrong_number(num):
+    num_str = str(num)
+    return num == sum(int(digit) ** len(num_str) for digit in num_str)
 
-# Output: True
-<jupyter_output>
-True
-<jupyter_text>
-Question 2
-<jupyter_code>
+

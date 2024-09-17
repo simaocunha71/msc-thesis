@@ -1,6 +1,7 @@
-"""
+
 def diff_even_odd(my_list):
-    first_even = next(i for i in my_list if i % 2 == 0)
-    first_odd = next(i for i in my_list if i % 2 != 0)
-    return first_even - first_odd
-"""
+  even_num = next((x for x in my_list if x % 2 == 0), None)
+  odd_num = next((x for x in my_list if x % 2 != 0), None)
+  return even_num - odd_num
+
+

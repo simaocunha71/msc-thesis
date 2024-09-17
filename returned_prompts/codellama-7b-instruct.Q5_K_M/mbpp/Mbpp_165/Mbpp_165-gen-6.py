@@ -1,9 +1,11 @@
-```python
-def count_char_position(s):
-    s = s.lower()
-    count = 0
-    for i, c in enumerate(s):
-        if c == chr(ord('a') + i):
-            count += 1
-    return count
-```
+
+def count_char_position(word):
+  alphabet = "abcdefghijklmnopqrstuvwxyz"
+  count = 0
+  for i in range(len(word)):
+    if word[i].lower() in alphabet:
+      if word[i].lower() == alphabet[i]:
+        count += 1
+  return count
+
+

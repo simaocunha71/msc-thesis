@@ -1,9 +1,5 @@
-def count_charac(s):
-    return len(s)
+
+def count_charac(s: str) -> int:
+  return len(s)
 
 
-# Made By Mostafa_Khaled
-```
-```
-
-```

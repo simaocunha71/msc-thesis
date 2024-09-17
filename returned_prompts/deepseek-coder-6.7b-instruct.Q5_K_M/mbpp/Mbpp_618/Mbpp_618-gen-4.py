@@ -1,10 +1,5 @@
-def div_list(l1,l2):
-    return [a/b for a,b in zip(l1,l2)]
 
-print(div_list([4,5,6],[1, 2, 3]))
+def div_list(a, b):
+    return [x / y for x, y in zip(a, b)]
 
-"""
-Output:
-[4.0, 2.5, 2.0]
-"""
 

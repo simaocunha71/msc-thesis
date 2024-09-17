@@ -1,5 +1,8 @@
-def same_len_str(lst):
-    return [x for x in lst if len(x)==len(max(lst, key=len))]
 
-# Test
-assert same_len_str(["cat","dog","elephant"])==
+def sub_list(list1,list2):
+  result = []
+  for i in range(len(list1)):
+    result.append(list1[i]-list2[i])
+  return result
+
+

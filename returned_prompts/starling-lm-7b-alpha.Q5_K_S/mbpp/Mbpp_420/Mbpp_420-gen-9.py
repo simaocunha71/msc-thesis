@@ -1,10 +1,5 @@
-"""
-def cube_Sum(n):
-    sum = 0
-    for i in range(n):
-        sum += (i+1)**3
-    return sum
 
-cube_Sum(2)
-"""
+def cube_Sum(n):
+    return (n**3 + (n-1)**3 + (n-2)**3 + (n-3)**3 + (n-4)**3 + (n-5)**3 + (n-6)**3 + (n-7)**3 + (n-8)**3 + (n-9)**3 + (n-10)**3)
+
 

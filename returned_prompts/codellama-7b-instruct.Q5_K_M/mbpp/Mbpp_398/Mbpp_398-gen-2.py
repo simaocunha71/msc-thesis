@@ -1,4 +1,5 @@
-"""
-def sum_of_digits(numbers):
-    return [sum(map(int,str(number))) for number in numbers]
-"""
+
+def sum_of_digits(nums: list) -> list:
+  return [sum(int(i) for i in str(num)) for num in nums]
+
+

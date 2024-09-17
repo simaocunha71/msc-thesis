@@ -1,10 +1,13 @@
-```
-def first_non_repeating_character(string):
-    seen = set()
-    for char in string:
-        if char not in seen:
-            seen.add(char)
-        else:
-            seen.remove(char)
-    return seen.pop() if seen else None
-```
+
+def first_non_repeating_character(s: str) -> str:
+  count = {}
+  for char in s:
+    if char not in count:
+      count[char] = 1
+    else:
+      count[char] += 1
+  for char in s:
+    if count[char] == 1:
+      return char
+
+

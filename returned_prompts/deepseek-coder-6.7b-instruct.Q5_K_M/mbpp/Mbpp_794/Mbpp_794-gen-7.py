@@ -1,6 +1,6 @@
-def text_starta_endb(text):
-    return re.match("a.*b$", text) is not None
 
-assert text_starta_endb("aabbbb")
+import re
+def text_starta_endb(text):
+  return re.fullmatch('a.*b', text) is not None
 
 

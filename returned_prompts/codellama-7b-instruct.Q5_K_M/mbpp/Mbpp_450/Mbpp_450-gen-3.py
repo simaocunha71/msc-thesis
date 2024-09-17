@@ -1,4 +1,5 @@
-def extract_string(my_list, size):
-    return [my_list[i] for i in range(len(my_list)) if len(my_list[i]) == size]
+
+def extract_string(my_list: list, size: int) -> list:
+  return [x for x in my_list if len(x) >= size]
 
 

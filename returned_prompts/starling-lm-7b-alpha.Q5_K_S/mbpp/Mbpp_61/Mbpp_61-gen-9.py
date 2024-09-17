@@ -1,72 +1,13 @@
-"""
-def count_Substrings(s):
+
+def count_Substrings(s: str):
     n = len(s)
-    ans = 0
+    count = 0
     for i in range(n):
+        curr_sum = 0
         for j in range(i, n):
-            if sum(map(int, s[i:j + 1])) == j - i + 1:
-                ans += 1
-    return ans
-
-print(count_Substrings('112112'))
-"""
-
-def count_Substrings(s):
-    n = len(s)
-    ans = 0
-    for i in range(n):
-        for j in range(i, n):
-            if sum(map(int, s[i:j + 1])) == j - i + 1:
-                ans += 1
-    return ans
-
-print(count_Substrings('112112'))
+            curr_sum += int(s[j])
+            if curr_sum == j - i + 1:
+                count += 1
+    return count
 
 
-
-
-
-
-
-"""
-"""
-"""
-def count_Substrings(s):
-    n = len(s)
-    ans = 0
-    for i in range(n):
-        for j in range(i, n):
-            if sum(map(int, s[i:j + 1])) == j - i + 1:
-                ans += 1
-    return ans
-
-print(count_Substrings('112112'))
-"""
-
-def count_Substrings(s):
-    n = len(s)
-    ans = 0
-    for i in range(n):
-        for j in range(i, n):
-            if sum(map(int, s[i:j + 1])) == j - i + 1:
-                ans += 1
-    return ans
-
-print(count_Substrings('112112'))
-
-"""
-"""
-"""
-def count_Substrings(s):
-    n = len(s)
-    ans = 0
-    for i in range(n):
-        for j in range(i, n):
-            if sum(map(int, s[i:j + 1])) == j - i + 1:
-                ans += 1
-    return ans
-
-print(count_Substrings('112112'))
-"""
-
-def

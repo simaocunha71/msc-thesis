@@ -1,4 +1,5 @@
-```python
-def overlapping(seq1, seq2):
-    return any(i in seq2 for i in seq1)
-```
+
+def overlapping(list1, list2):
+    return bool(set(list1).intersection(list2))
+
+

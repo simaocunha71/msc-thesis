@@ -1,10 +1,12 @@
-def is_woodall(n):
-    digits = list(str(n))
-    sum_of_digits = sum(map(int, digits))
-    product_of_digits = 1
-    for digit in digits:
-        product_of_digits *= int(digit)
-    return sum_of_digits == product_of_digits
 
-assert is_woodall(383) == True
+def is_woodall(n):
+    str_n = str(n)
+    for digit in str_n:
+        if int(digit) == 0 or n % int(digit) != 0:
+            return False
+    return True
 """
+The number 383 is a Woodall number because it has no 0 in it and its each digit divides the number.
+"""
+
+

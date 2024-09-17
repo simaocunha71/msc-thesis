@@ -1,4 +1,5 @@
-```
-def minimum(a,b):
-    return min(a,b)
-```
+
+def minimum(a, b):
+  return a if a < b else b
+
+

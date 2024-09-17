@@ -1,2 +1,7 @@
+
 def next_Perfect_Square(n):
-    return (n + 1) ** 0.5
+    n = n + 1
+    n = n & (~(n - 1))
+    return n
+
+

@@ -1,8 +1,8 @@
-```
-import math
 
-def triangle_area(semicircle_radius):
-    if semicircle_radius < 0:
-        return None
-    return (semicircle_radius ** 2) * math.pi / 2
-```
+import math
+def triangle_area(radius: int) -> float:
+  if radius < 0:
+    return None
+  return 0.5 * radius * radius
+
+

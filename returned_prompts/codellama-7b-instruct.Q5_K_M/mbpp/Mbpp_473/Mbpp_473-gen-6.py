@@ -1,5 +1,5 @@
 
-from typing import List, Tuple
+def tuple_intersection(tup_list):
+    return set.intersection(*map(set, tup_list))
 
-def tuple_intersection(tuple_list: List[Tuple[int, int]]) -> set:
-    return set().union(*tuple_list)
+

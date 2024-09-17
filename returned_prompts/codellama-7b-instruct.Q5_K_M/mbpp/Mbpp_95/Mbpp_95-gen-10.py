@@ -1,5 +1,5 @@
-def Find_Min_Length(lst):
-    if len(lst) == 0:
-        return 0
-    else:
-        return min(map(len, lst))
+
+def Find_Min_Length(my_lists):
+    return min(len(lst) for lst in my_lists)
+
+

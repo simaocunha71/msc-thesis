@@ -1,5 +1,4 @@
 
-def split_string(string, delimiter):
-    return string.split(delimiter)
+def is_upper(s):
+    return s.upper()
 
-print(split_string("apple-banana-cher

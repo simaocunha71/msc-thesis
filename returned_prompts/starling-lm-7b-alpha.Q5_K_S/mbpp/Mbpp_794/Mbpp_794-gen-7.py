@@ -1,5 +1,9 @@
-```python
-def text_starta_endb(s):
-    return s.startswith('a') and s.endswith('b')
-```
-    
+
+import re
+def text_starta_endb(s:str) -> bool:
+  if re.match(r'a.*b$', s) != None:
+    return True
+  else:
+    return False
+
+

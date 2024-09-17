@@ -1,5 +1,5 @@
+
 def is_nonagonal(n):
-    if n == 1:
-        return 1
-    else:
-        return (n * (n + 1)) // 2
+  return int((24 * n - 1) ** 0.5 + 1)
+
+

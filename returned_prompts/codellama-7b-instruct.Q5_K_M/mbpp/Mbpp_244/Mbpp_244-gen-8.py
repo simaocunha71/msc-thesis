@@ -1,3 +1,7 @@
+
 def next_Perfect_Square(n):
-    # Find the next perfect square
-    return int((n ** 0.5) ** 2)
+    n += 1
+    n &= -n
+    return n
+
+

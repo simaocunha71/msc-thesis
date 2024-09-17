@@ -1,6 +1,6 @@
-def is_Div(num):
-    return num % 11 == 0
 
-print(is_Div(12345))
+def is_Diff(n):
+  n = str(n)
+  return not (int(n[::2]) - int(n[1::2])) % 11
 
-# Task 3
+

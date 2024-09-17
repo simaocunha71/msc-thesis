@@ -1,5 +1,5 @@
-def max_excl_less3(lst):
-    lst = [x for x in lst if x >= 3]
-    return max(lst)
 
-# Test
+def max_val(lst):
+  return max(lst)
+
+

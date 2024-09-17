@@ -1,4 +1,8 @@
+
 def bell_Number(n):
     if n == 0:
-        return 0
-    return sum(bell_Number(i) * bell_Number(n-i-1) for i in range(n))
+        return 1
+    else:
+        return sum(bell_Number(k) for k in range(n))
+
+

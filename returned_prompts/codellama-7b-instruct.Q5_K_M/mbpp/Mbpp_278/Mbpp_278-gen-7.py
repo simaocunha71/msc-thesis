@@ -1,8 +1,10 @@
-"""
-def count_first_elements(my_tuple):
+
+def count_first_elements(tup: tuple) -> int:
     count = 0
-    for i in my_tuple:
-        if not isinstance(i, tuple):
-            count += 1
+    for elem in tup:
+        if isinstance(elem, tuple):
+            break
+        count += 1
     return count
-"""
+
+

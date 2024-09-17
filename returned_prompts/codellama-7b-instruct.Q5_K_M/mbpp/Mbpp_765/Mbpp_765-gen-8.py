@@ -1,15 +1,18 @@
-"""
+
 def is_polite(n):
-    while True:
-        if len(str(n)) == 1:
-            return n
-        if str(n)[0] == '0':
-            return n
-        if str(n)[1] == '0':
-            return n
-        if str(n)[2] == '0':
-            return n
-        if str(n)[3] == '0':
-            return n
-        n += 1
-"""
+    if n == 1:
+        return 1
+    elif n % 2 == 0:
+        return n + 1
+    else:
+        return n + 2
+
+def polite_number(n):
+    i = 1
+    num = 1
+    while i <= n:
+        num = is_polite(num)
+        i += 1
+    return num
+
+

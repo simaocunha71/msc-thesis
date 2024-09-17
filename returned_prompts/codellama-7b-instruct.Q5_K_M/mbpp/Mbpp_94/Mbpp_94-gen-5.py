@@ -1,7 +1,6 @@
-def index_minimum(list_of_tuples):
-    minimum = float('inf')
-    for i in list_of_tuples:
-        if i[1] < minimum:
-            minimum = i[1]
-            minimum_index = i[0]
-    return minimum_index
+
+def index_minimum(my_list):
+    index_min = min(range(len(my_list)), key=lambda i: my_list[i][1])
+    return my_list[index_min][0]
+
+

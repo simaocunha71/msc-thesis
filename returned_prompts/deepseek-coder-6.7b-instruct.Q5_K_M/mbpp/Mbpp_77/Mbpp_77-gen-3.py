@@ -1,7 +1,9 @@
-def is_Diff(n):
-    return n % 11 == 0
 
-# Test the function
-print(is_Diff(12345))  # False
+def is_Diff(num):
+    num = str(num)
+    if len(num) < 2:
+        return False
+    else:
+        return abs(int(num[0]) - int(num[1])) == 1
 
-# --------------------------------------
+

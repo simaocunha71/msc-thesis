@@ -1,4 +1,5 @@
-```python
-def remove_dirty_chars(str1, str2):
-    return ''.join(c for c in str1 if c not in str2)
-```
+
+def remove_dirty_chars(str1: str, str2: str) -> str:
+  return ''.join(i for i in str1 if i not in str2)
+
+

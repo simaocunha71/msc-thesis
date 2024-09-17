@@ -1,5 +1,5 @@
-```
-def volume_cube(x):
-    return x*x*x
-```
+
+def volume_cube(side):
+  return side * side * side
+
 

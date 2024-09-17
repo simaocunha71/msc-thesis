@@ -1,2 +1,7 @@
-def angle_complex(real, imag):
-    return math.atan(imag/real)
+
+import cmath
+def angle_complex(real: float, imag: float) -> float:
+  angle = cmath.phase(complex(real, imag))
+  return angle
+
+

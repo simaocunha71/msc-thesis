@@ -1,4 +1,5 @@
-def tuple_modulo(t1, t2):
-    return tuple(a % b for a, b in zip(t1, t2))
+
+def tuple_modulo(tup1, tup2):
+  return tuple(x % y for x, y in zip(tup1, tup2))
 
 

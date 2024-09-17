@@ -1,5 +1,5 @@
-def word_len(word):
-    if len(word) % 2 == 0:
-        return False
-    else:
-        return True
+
+def word_len(word: str) -> bool:
+  return len(word) % 2 == 0
+
+

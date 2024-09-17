@@ -1,3 +1,5 @@
 
-def Sum_Sublists_Length(list):
-    total = 
+def Find_Min(lst):
+    return min(lst, key=len)
+
+

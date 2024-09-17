@@ -1,8 +1,13 @@
-A polite number is an integer that can be expressed as the sum of two or more consecutive positive integers.
 
 def is_polite(n):
-    return n + 2
+    p=[0]*(n+1)
+    c=0
+    for i in range(1,n+1):
+        if (i%2)!=0:
+            p[i]=p[i-1]+pow(2,c)
+            c+=1
+        else:
+            p[i]=p[i-1]
+    return p[n]
 
-print(is_polite(7))
-"""
 

@@ -1,4 +1,8 @@
-def count_charac(my_str):
-    return len(my_str)
+
+def count_charac(my_string):
+    count = 0
+    for char in my_string:
+        count += 1
+    return count
 
 

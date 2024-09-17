@@ -1,13 +1,15 @@
-"""
-def max_sub_array_sum_repeated(array, k, times):
-    res = 0
-    for i in range(times):
-        array = [max(0, j) for j in array]
-        if array:
-            res = max(res, sum(array))
-    return res
 
-# Time complexity: O(n * k)
-# Space complexity: O(1)
+def max_sub_array_sum_repeated(nums: list,k: int,n: int) -> int:
+  for i in range(n):
+    nums.append(nums[i])
+  max_sum = 0
+  curr_sum = 0
+  for i in range(len(nums)):
+    curr_sum += nums[i]
+    if curr_sum > max_sum:
+      max_sum = curr_sum
+    if curr_sum < 0:
+      curr_sum = 0
+  return max_sum//k
 
-"""
+

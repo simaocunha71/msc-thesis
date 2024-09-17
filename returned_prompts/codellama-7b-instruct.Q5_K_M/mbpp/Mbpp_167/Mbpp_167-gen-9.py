@@ -1,4 +1,4 @@
-```python
+
 def next_power_of_2(n):
     n -= 1
     n |= n >> 1
@@ -8,4 +8,5 @@ def next_power_of_2(n):
     n |= n >> 16
     n += 1
     return n
-```
+
+

@@ -1,15 +1,8 @@
-def longest_string(words):
-    if len(words)==0:
-        return None
-    else:
-        res=words[0]
-        for i in range(len(words)):
-            if len(words[i])>len(res):
-                res=words[i]
-        return res
 
-"""
-Given a string, return the length of the string
+def div_list(list1,list2):
+  result = []
+  for i in range(len(list1)):
+    result.append(list1[i]/list2[i])
+  return result
 
-Examples:
-assert length
+

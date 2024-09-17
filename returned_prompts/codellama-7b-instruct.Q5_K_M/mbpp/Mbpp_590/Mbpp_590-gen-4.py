@@ -1,6 +1,6 @@
-"""
-import cmath
 
-def polar_rect(r, theta):
-    return cmath.rect(r, theta)
-"""
+import cmath
+def polar_rect(radius, angle):
+  return cmath.polar(complex(radius, 0))
+
+

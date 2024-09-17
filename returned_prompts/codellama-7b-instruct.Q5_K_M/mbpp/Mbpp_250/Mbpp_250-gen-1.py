@@ -1,4 +1,5 @@
-"""
-def count_X(my_tuple, element):
-    return my_tuple.count(element)
-"""
+
+def count_X(my_tuple, elem):
+  return my_tuple.count(elem)
+
+

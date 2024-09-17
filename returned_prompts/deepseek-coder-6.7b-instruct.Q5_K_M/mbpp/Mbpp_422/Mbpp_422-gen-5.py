@@ -1,7 +1,5 @@
-def find_Average_Of_Cube(n):
-    total_sum = sum([i**3 for i in range(1, n+1)])
-    average = total_sum/n
-    return average
 
-print(find_Average_Of_Cube(2)) # Expected output: 4.5
+def find_Average_Of_Cube(n):
+    return (((n * (n + 1)) / 2) ** 2)
+
 

@@ -1,10 +1,12 @@
+
 def get_ludic(n):
-    ludic = [1, 2]
-    i = 3
-    while i <= n:
-        if ludic[-1] * 2 <= i:
-            ludic.append(ludic[-1] * 2)
+    ludics = [2, 3]
+    for i in range(4, n + 1):
+        for j in range(2, int(i ** 0.5) + 1):
+            if i % j == 0:
+                break
         else:
-            ludic.append(ludic[-2] + ludic[-1])
-        i += 1
-    return ludic
+            ludics.append(i)
+    return ludics
+
+

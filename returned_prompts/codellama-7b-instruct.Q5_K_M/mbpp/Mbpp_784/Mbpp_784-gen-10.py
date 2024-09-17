@@ -1,12 +1,11 @@
-"""
+
 def mul_even_odd(my_list):
-    my_list = [int(x) for x in my_list]
-    even = []
-    odd = []
-    for i in my_list:
+    product = 1
+    for i, num in enumerate(my_list):
         if i % 2 == 0:
-            even.append(i)
+            product *= num
         else:
-            odd.append(i)
-    return even[0] * odd[0]
-"""
+            product *= num
+    return product
+
+

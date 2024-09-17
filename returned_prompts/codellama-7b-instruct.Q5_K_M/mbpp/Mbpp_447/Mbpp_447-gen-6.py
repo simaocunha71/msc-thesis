@@ -1,4 +1,8 @@
-"""
-def cube_nums(nums):
-    return [num**3 for num in nums]
-"""
+
+def cube_nums(my_list: list) -> list:
+    result = []
+    for num in my_list:
+        result.append(num ** 3)
+    return result
+
+

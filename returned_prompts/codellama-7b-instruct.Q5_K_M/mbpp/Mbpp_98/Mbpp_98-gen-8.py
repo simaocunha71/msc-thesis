@@ -1,2 +1,6 @@
-def multiply_num(my_list):
-    return sum(my_list) / len(my_list)
+
+from math import prod
+def multiply_num(nums: list) -> float:
+  return prod(nums) / len(nums)
+
+

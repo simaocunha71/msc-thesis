@@ -1,4 +1,4 @@
-"""
+
 def is_undulating(n):
     n = str(n)
     for i in range(len(n)-2):
@@ -6,6 +6,4 @@ def is_undulating(n):
             return False
     return True
 
-print(is_undulating(1212121))  # True
-"""
 

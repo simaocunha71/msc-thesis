@@ -1,4 +1,8 @@
-```
-def is_divisible_by_11(n):
-    return n % 11 == 0
-```
+
+def is_Diff(num):
+    if num % 11 == 0:
+        return True
+    else:
+        return False
+
+

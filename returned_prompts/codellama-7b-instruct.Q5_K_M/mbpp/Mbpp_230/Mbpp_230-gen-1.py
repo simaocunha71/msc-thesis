@@ -1,3 +1,5 @@
-def replace_blank(my_string, replace_char):
-    return my_string.replace(" ", replace_char)
+
+def replace_blank(str, char):
+  return str.replace(" ", char)
+
 

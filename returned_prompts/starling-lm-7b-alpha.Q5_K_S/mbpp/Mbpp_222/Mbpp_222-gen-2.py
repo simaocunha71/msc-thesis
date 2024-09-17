@@ -1,8 +1,5 @@
-"""
-def check_type(t):
-    if all(isinstance(i, type(t[0])) for i in t):
-        return True
-    else:
-        return False
-"""
+
+def check_type(tup):
+    return all(map(lambda x: type(x) == type(tup[0]), tup))
+
 

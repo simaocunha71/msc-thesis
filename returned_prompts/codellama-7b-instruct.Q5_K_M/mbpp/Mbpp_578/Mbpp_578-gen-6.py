@@ -1,6 +1,6 @@
-```
-def interleave_lists(lists):
-    assert len(lists) > 0
-    assert all(len(l) == len(lists[0]) for l in lists)
-    return [val for t in zip(*lists) for val in t]
-```
+
+def interleave_lists(list1: list, list2: list, list3: list) -> list:
+  assert len(list1) == len(list2) == len(list3)
+  return [item for sublist in zip(list1, list2, list3) for item in sublist]
+
+

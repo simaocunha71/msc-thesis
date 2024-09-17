@@ -1,23 +1,14 @@
-```
+
 def magic_square_test(matrix):
-    # 1. Check if the matrix is a square.
-    if len(matrix) != len(matrix[0]):
+    rows, cols = len(matrix), len(matrix[0])
+    if rows != cols:
         return False
-
-    # 2. Check if the sum of each row is equal to the same number.
-    row_sums = [sum(row) for row in matrix]
-    if len(set(row_sums)) != 1:
+    if sum(matrix[0]) != sum(matrix[1]) or sum(matrix[0]) != sum(matrix[2]) or sum(matrix[0]) != sum(matrix[3]):
         return False
-
-    # 3. Check if the sum of each column is equal to the same number.
-    column_sums = [sum(col) for col in zip(*matrix)]
-    if len(set(column_sums)) != 1:
-        return False
-
-    # 4. Check if the sum of all the elements is equal to the square of the number of rows.
-    sum_of_elements = sum(sum(row) for row in matrix)
-    if sum_of_elements != len(matrix) ** 2:
-        return False
-
+    for i in range(rows):
+        for j in range(cols):
+            if matrix[i][j] != matrix[(i+1) % rows][(j+1) % cols]:
+                return False
     return True
-```
+
+

@@ -1,6 +1,5 @@
-def extract_index_list(list1, list2, list3):
-    common_elements = []
-    for i in range(len(list1)):
-        if list1[i] == list2[i] == list3[i]:
-            common_elements.append(list1[i])
-    return common_elements
+
+def extract_index_list(l1, l2, l3):
+    return list(set([item for item in l1 if item in l2 and item in l3]))
+
+

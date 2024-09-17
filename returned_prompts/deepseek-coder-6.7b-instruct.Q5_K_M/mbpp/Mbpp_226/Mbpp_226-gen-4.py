@@ -1,6 +1,5 @@
-def odd_values_string(s):
-    return s[::2]
 
-assert odd_values_values_string('abcdef') == 'ace'
-"""
+def odd_values_string(s):
+  return ''.join([s[i] for i in range(len(s)) if i % 2 == 0])
+
 

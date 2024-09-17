@@ -1,6 +1,6 @@
-"""
-import math
 
-def volume_cone(radius, height):
-    return (math.pi * radius ** 2 * height) / 3
-"""
+import math
+def volume_cone(r,h):
+  return (1/3) * math.pi * r * r * h
+
+

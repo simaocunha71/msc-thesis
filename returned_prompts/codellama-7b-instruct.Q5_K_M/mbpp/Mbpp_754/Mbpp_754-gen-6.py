@@ -1,9 +1,9 @@
-"""
-def extract_index_list(list1, list2, list3):
-    # find common elements
-    common_elements = []
-    for i in range(len(list1)):
-        if list1[i] == list2[i] == list3[i]:
-            common_elements.append(list1[i])
-    return common_elements
-"""
+
+def extract_index_list(list_1,list_2,list_3):
+  common_list = []
+  for i in range(len(list_1)):
+    if list_1[i] == list_2[i] and list_1[i] == list_3[i]:
+      common_list.append(list_1[i])
+  return common_list
+
+

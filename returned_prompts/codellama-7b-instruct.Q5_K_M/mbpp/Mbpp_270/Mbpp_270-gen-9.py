@@ -1,4 +1,9 @@
+
 def sum_even_and_even_index(my_list):
-    return sum(my_list[::2])
+  sum = 0
+  for index, element in enumerate(my_list):
+    if index % 2 == 0 and element % 2 == 0:
+      sum += element
+  return sum
 
 

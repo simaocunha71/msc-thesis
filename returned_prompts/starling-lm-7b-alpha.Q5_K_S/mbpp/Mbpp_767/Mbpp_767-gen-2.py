@@ -1,11 +1,10 @@
-"""
-def get_pairs_count(nums, sum):
-    pairs = []
-    for i,num in enumerate(nums):
-        for j,num_j in enumerate(nums):
-            if i!=j and num + num_j == sum:
-                pairs.append(sum)
-    return len(pairs)
 
-# Testing
-assert get_pairs_count([1
+def get_pairs_count(nums: list, sum: int) -> int:
+  count = 0
+  for i in range(len(nums)):
+    for j in range(i + 1, len(nums)):
+      if nums[i] + nums[j] == sum:
+        count += 1
+  return count
+
+

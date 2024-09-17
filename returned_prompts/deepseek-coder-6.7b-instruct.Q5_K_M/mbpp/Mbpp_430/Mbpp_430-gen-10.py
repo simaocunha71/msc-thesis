@@ -1,6 +1,5 @@
-def hyperbola_vertex(a, b, h, k):
-    vx = h
-    vy = k
-    return (vx, vy)
 
-print(hyperbola_vertex(3, 4
+def parabola_directrix(a,b,c):
+  return 4*a*c-b**2
+
+

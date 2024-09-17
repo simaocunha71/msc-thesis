@@ -1,2 +1,5 @@
-def number_of_substrings(s):
-    return len(list(itertools.chain(*[itertools.combinations(s,i) for i in range(1,len(s)+1)])))
+
+def number_of_substrings(s: str) -> int:
+    return sum(1 for i in range(len(s)) if s[i] != ' ')
+
+

@@ -1,23 +1,17 @@
-def comb_sort(lst):
-    gap = len(lst)
-    shrink = 1.3
-    sorted = False
 
-    while not sorted:
-        gap = int(gap / shrink)
+def comb_sort(arr):
+    gap = len(arr)
+    swapped = True
 
-        if gap <= 1:
-            gap = 1
-            sorted = True
+    while gap != 1 or swapped:
+        gap = max(1, int(gap / 1.3))  
+        swapped = False
 
-        i = 0
-        while i + gap < len(lst):
-            if lst[i] > lst[i + gap]:
-                lst[i], lst[i + gap] = lst[i + gap], lst[i]
-            i += 1
-    return lst
+        for i in range(len(arr) - gap):
+            if arr[i] > arr[i + gap]:
+                arr[i], arr[i + gap] = arr[i + gap], arr[i]
+                swapped = True
 
-print(comb_sort([5, 15, 37, 25, 79]))  # [5, 15, 25, 37, 79]
+    return arr
 
-#Sorting/counting_sort.py
-"""
+

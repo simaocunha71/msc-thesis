@@ -1,4 +1,6 @@
-def filter_values_gt_20(dict):
-    return {key: value for key, value in dict.items() if value > 20}
 
-assert filter_values_gt_20
+def merge_dictionaries_three(dict1, dict2, dict3):
+  merged_dict = {**dict1, **dict2, **dict3}
+  return merged_dict
+
+

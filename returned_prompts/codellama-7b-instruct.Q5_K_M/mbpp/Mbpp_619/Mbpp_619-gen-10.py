@@ -1,4 +1,7 @@
-def move_num(s):
-    nums = re.findall(r'\d+', s)
-    s = re.sub(r'\d+', '', s)
-    return s + ''.join(sorted(nums))
+
+import re
+def move_num(input_string):
+    pattern = re.compile(r'\d+')
+    return pattern.sub('', input_string) + pattern.findall(input_string)
+
+

@@ -1,13 +1,19 @@
-```python
+
 def check_expression(expression):
-    open_brackets = ['{', '[', '(']
-    close_brackets = ['}', ']', ')']
     stack = []
     for char in expression:
-        if char in open_brackets:
+        if char == "{":
             stack.append(char)
-        elif char in close_brackets:
-            if not stack or close_brackets.index(char) != open_brackets.index(stack.pop()):
+        elif char == "}":
+            if len(stack) == 0:
                 return False
-    return not stack
-```
+            stack.pop()
+        elif char == "[":
+            stack.append(char)
+        elif char == "]":
+            if len(stack) == 0:
+                return False
+            stack.pop()
+    return len(stack) == 0
+
+

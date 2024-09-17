@@ -1,7 +1,30 @@
 
-def get_median(list1, list2, n):
-    merged = sorted(list1 + list2)
-    return (merged[n-1] + merged[n]) / 2.0
+def get_median(a, b, n):
+  i = 0
+  j = 0
+  m1 = -1
+  m2 = -1
+  while(i + j <= n):
+    if(i == n):
+      m1 = m2
+      m2 = b[0]
+      b.pop(0)
+      j += 1
+    elif(j == n):
+      m1 = m2
+      m2 = a[0]
+      a.pop(0)
+      i += 1
+    elif (a[0] < b[0]):
+      m1 = m2
+      m2 = a[0]
+      a.pop(0)
+      i += 1
+    else:
+      m1 = m2
+      m2 = b[0]
+      b.pop(0)
+      j += 1
+  return (m1 + m2)/2
 
-assert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0
 

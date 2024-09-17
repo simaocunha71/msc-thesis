@@ -1,2 +1,5 @@
-def hypotenuse(a,b):
-    hypotenuse = math.sqrt(a**2 +
+
+def rectangle_area(length, width):
+    return length * width
+
+

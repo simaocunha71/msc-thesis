@@ -1,7 +1,5 @@
 
-def tup_string(t):
-    return "".join(t)
+def tup_string(tup):
+  return ''.join(map(str, tup))
 
-assert tup_string(('e', 'x', 'e', 'r', 'c', 'i', 's', 'e', 's')) == "exercises"
-"""
 

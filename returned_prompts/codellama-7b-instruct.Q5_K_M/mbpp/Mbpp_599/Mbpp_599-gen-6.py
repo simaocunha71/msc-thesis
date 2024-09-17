@@ -1,4 +1,7 @@
-```
+
 def sum_average(n):
-    return sum(range(n+1)), sum(range(n+1))/(n+1)
-```
+    sum = n*(n+1)
+    average = sum/(2*n)
+    return (sum, average)
+
+

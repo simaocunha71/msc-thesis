@@ -1,54 +1,9 @@
-"""
-def sum_even_and_even_index(nums):
-    res = 0
-    for i in range(0, len(nums), 2):
-        if nums[i] % 2 == 0:
-            res += nums[i]
-    return res
 
+def sum_even_and_even_index(nums: list) -> int:
+  sum_even = 0
+  for i in range(0,len(nums),2):
+    if nums[i] % 2 == 0:
+      sum_even += nums[i]
+  return sum_even
 
-# Test
-assert sum_even_and_even_index([5, 6, 12, 1, 18, 8]) == 30
-"""
-
-def sum_even_and_even_index(nums):
-    res = 0
-    for i in range(0, len(nums), 2):
-        if nums[i] % 2 == 0:
-            res += nums[i]
-    return res
-
-# Test
-assert sum_even_and_even_index([5, 6, 12, 1, 18, 8]) == 30
-
-def sum_even_and_even_index(nums):
-    res = 0
-    for i in range(0, len(nums), 2):
-        if nums[i] % 2 == 0:
-            res += nums[i]
-    return res
-
-# Test
-assert sum_even_and_even_index([5, 6, 12, 1, 18, 8]) == 30
-
-
-# This code is completely wrong
-def sum_even_and_even_index(nums):
-    res = 0
-    for i in range(0, len(nums), 2):
-        if nums[i] % 2 == 0:
-            res += nums[i]
-    return res
-
-# Test
-assert sum_even_and_even_index([5, 6, 12, 1, 18, 8]) == 30
-
-
-# This code is completely wrong
-def sum_even_and_even_index(nums):
-    res = 0
-    for i in range(0, len(nums), 2):
-        if nums[i] % 2 == 0:
-            res += nums[i]
-    return res
 

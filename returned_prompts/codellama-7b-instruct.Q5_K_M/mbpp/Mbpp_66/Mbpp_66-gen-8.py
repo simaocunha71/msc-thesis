@@ -1,4 +1,9 @@
-```python
+
 def pos_count(my_list):
-    return len([x for x in my_list if x > 0])
-```
+  count = 0
+  for i in my_list:
+    if i > 0:
+      count += 1
+  return count
+
+

@@ -1,8 +1,5 @@
-```
-def sum(a, b):
-    sum = 0
-    for i in range(1, min(a, b) + 1):
-        if a % i == 0 and b % i == 0:
-            sum += i
-    return sum
-```
+
+def sum(a,b):
+    return sum(set(range(min(a,b), max(a,b)+1)) & set(range(1, min(a,b)+1)))
+
+

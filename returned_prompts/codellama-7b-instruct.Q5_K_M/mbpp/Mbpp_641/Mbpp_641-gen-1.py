@@ -1,6 +1,5 @@
 
 def is_nonagonal(n):
-    return n == sum(sorted(map(lambda x: pow(x, 3), range(1, n + 1)))[:n])
+    return int((n * (n + 1)) ** 0.5)
 
-is_nonagonal(10)
 

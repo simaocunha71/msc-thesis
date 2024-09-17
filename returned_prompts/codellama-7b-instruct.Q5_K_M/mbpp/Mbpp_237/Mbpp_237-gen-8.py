@@ -1,4 +1,5 @@
-def check_occurences(list_of_tuples):
-    return {tup: list_of_tuples.count(tup) for tup in set(list_of_tuples)}
+
+def check_occurences(my_list):
+  return {k:my_list.count(k) for k in set(my_list)}
 
 

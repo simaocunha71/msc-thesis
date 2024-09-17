@@ -1,4 +1,7 @@
-def lateralsurface_cone(r,h):
-    return pi*r*r+pi*(r*r+h*h)/3
+
+import math
+def lateralsurface_cone(r, h):
+  lateral_surface = (math.pi * r * r) * 2
+  return lateral_surface
 
 

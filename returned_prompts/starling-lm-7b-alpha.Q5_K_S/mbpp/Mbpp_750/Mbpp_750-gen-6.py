@@ -1,6 +1,5 @@
-```python
-def add_tuple(l,t):
-    l.append(t)
-    return l
-```
+
+def add_tuple(tup1,tup2):
+    return tup1 + tup2
+
 

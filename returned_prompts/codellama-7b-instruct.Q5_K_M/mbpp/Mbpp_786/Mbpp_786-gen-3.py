@@ -1,7 +1,15 @@
-"""
-def right_insertion(sorted_list, value):
-    for i in range(len(sorted_list)):
-        if sorted_list[i] > value:
-            return i
-    return len(sorted_list)
-"""
+
+def right_insertion(arr, val):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == val:
+            return mid + 1
+        elif arr[mid] < val:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return low
+
+

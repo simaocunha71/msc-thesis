@@ -1,4 +1,4 @@
-"""
+
 def get_Inv_Count(arr):
     inv_count = 0
     for i in range(len(arr)):
@@ -7,6 +7,4 @@ def get_Inv_Count(arr):
                 inv_count += 1
     return inv_count
 
-print(get_Inv_Count([1,20,6,4,5]))
-"""
 

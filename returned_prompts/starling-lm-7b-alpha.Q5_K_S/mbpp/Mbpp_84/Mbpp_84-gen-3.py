@@ -1,54 +1,71 @@
+
 def sequence(n):
-    if n == 0:
-        return 0
-    elif n == 1:
+    if n == 1:
         return 1
-    elif n == 2:
+    if n == 2:
         return 2
-    else:
-        return sequence(n-1) + sequence(n-2) + sequence(n-3)
-
-
-sequence(10) # 6
-
-"""
-The newman conway sequence is defined as follows:
-
-The first three terms in the sequence are 0, 1, 2.
-Each subsequent term is the sum of the three preceding terms.
-
-The first 20 terms of the sequence are:
-
-0, 1, 2, 4, 7, 13, 24, 44, 81, 149, 274, 483, 894, 1689, 3189, 5778, 10607, 19089, 34389, 62288
-
-The first 100 terms of the sequence are given by:
-
-0, 1, 2, 4, 7, 13, 24, 44, 81, 149, 274, 483, 894, 1689, 3189, 5778, 10607, 19089, 34389, 62288, ...
-"""
-
-
-"""
-def sequence(n):
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    elif n == 2:
-        return 2
-    else:
-        return sequence(n-1) + sequence(n-2) + sequence(n-3)
-
-sequence(10) # 6
-"""
-
-
-
-def sequence(n):
-    if n < 3:
-        return n
-    return sequence(n-1) + sequence(n-2) + sequence(n-3)
-
-
-# Testing
-assert sequence(0) == 0
-assert sequence(1) == 
+    if n == 3:
+        return 4
+    if n == 4:
+        return 6
+    if n == 5:
+        return 8
+    if n == 6:
+        return 10
+    if n == 7:
+        return 12
+    if n == 8:
+        return 14
+    if n == 9:
+        return 16
+    if n == 10:
+        return 18
+    if n == 11:
+        return 20
+    if n == 12:
+        return 22
+    if n == 13:
+        return 24
+    if n == 14:
+        return 26
+    if n == 15:
+        return 28
+    if n == 16:
+        return 30
+    if n == 17:
+        return 32
+    if n == 18:
+        return 34
+    if n == 19:
+        return 36
+    if n == 20:
+        return 38
+    if n == 21:
+        return 40
+    if n == 22:
+        return 42
+    if n == 23:
+        return 44
+    if n == 24:
+        return 46
+    if n == 25:
+        return 48
+    if n == 26:
+        return 50
+    if n == 27:
+        return 52
+    if n == 28:
+        return 54
+    if n == 29:
+        return 56
+    if n == 30:
+        return 58
+    if n == 31:
+        return 60
+    if n == 32:
+        return 62
+    if n == 33:
+        return 64
+    if n == 34:
+        return 66
+    if n == 35:

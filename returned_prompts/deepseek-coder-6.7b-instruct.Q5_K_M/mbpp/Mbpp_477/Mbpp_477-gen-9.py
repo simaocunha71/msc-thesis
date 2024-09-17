@@ -1,11 +1,5 @@
 
-def ends_with(s: str, sub: str) -> bool:
-    return s.endswith(sub)
+def is_lower(s):
+  return s.lower()
 
-assert ends_with("Invalid", "id") == True
-
-"""
-7. Write a python function to replace a substring in a string with another substring.
-assert replace_substring("Invalid Invalid i", "Invalid", "Valid") == "Valid Valid i"
-"""
 

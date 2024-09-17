@@ -1,3 +1,4 @@
+
 def find_lucas(n):
     if n == 0:
         return 2
@@ -7,7 +8,5 @@ def find_lucas(n):
     for i in range(2, n + 1):
         lucas.append(lucas[i - 1] + lucas[i - 2])
     return lucas[-1]
-
-print(find_lucas(9))  # 76
 
 

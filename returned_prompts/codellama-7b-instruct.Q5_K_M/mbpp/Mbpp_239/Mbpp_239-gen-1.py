@@ -1,6 +1,7 @@
 
-def get_total_number_of_sequences(m, n):
-    return binomial_coefficient(n, 1) * (m - 1) ** (n - 1) + binomial_coefficient(n, 2) * (m - 1) ** (n - 2) + binomial_coefficient(n, 3) * (m - 1) ** (n - 3) + ... + binomial_coefficient(n, n) * (m - 1) ** 0
-    
-def binomial_coefficient(n, k):
-    return (n - 1) ** (k - 1) * (n - 1 - k) ** (n - k) / (k - 1) ** (k - 1) / (n - 1) ** (k - 1)
+def get_total_number_of_sequences(m: int, n: int) -> int:
+  if n == 1:
+    return 1
+  return sum([get_total_number_of_sequences(m, n-1) for i in range(1, m+1)])
+
+

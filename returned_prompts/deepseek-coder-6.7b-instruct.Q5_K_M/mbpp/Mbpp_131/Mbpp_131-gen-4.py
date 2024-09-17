@@ -1,20 +1,18 @@
+
 def reverse_vowels(s):
-    vowels = 'aeiou'
+    vowels = 'aeiouAEIOU'
     s = list(s)
     i, j = 0, len(s) - 1
 
     while i < j:
-        if s[i].lower() not in vowels:
+        if s[i] not in vowels:
             i += 1
-        elif s[j].lower() not in vowels:
+        elif s[j] not in vowels:
             j -= 1
         else:
             s[i], s[j] = s[j], s[i]
-            i += 1
-            j -= 1
+            i, j = i + 1, j - 1
 
     return ''.join(s)
 
-assert reverse_vowels("Python") == "Python"
 
-# 2.

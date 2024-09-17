@@ -1,28 +1,23 @@
-def heap_sort(lst):
-    def max_heapify(lst, i, heap_size):
-        left = 2 * i + 1
-        right = 2 * i + 2
-        largest = i
-        if left < heap_size and lst[left] > lst[largest]:
-            largest = left
-        if right < heap_size and lst[right] > lst[largest]:
-            largest = right
-        if largest != i:
-            lst[i], lst[largest] = lst[largest], lst[i]
-            max_heapify(lst, largest, heap_size)
 
-    def heap_sort_recursive(lst, heap_size, end):
-        if end:
-            max_heapify(lst, 0, end)
-            lst[0], lst[end - 1] = lst[end - 1], lst[0]
-            heap_size -= 1
-            heap_sort_recursive(lst, heap_size, end - 1)
+def heap_sort(nums: list):
+    n = len(nums)
+    for i in range(n//2 - 1, -1, -1):
+        heapify(nums, i, n)
+    for i in range(n-1, 0, -1):
+        nums[i], nums[0] = nums[0], nums[i]
+        heapify(nums, 0, i)
+    return nums
 
-    heap_size = len(lst)
-    heap_sort_recursive(lst, heap_size, 1)
-    return lst
+def heapify(nums: list, i: int, heap_size: int):
+    left = 2 * i + 1
+    right = 2 * i + 2
+    largest = i
+    if left < heap_size and nums[i] < nums[left]:
+        largest = left
+    if right < heap_size and nums[largest] < nums[right]:
+        largest = right
+    if largest != i:
+        nums[i], nums[largest] = nums[largest], nums[i]
+        heapify(nums, largest, heap_size)
 
-#assert heap_sort([1, 3, 5, 7, 9, 2, 4, 6, 8, 0]) == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-#assert heap_sort([-1, -3, -5, -7, -9, -2, -4, -6, -8, -0]) == [-0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
-#assert heap_sort([1, 3, 5, 7, 9, 2, 4, 6, 8, 0]) == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-#assert heap_sort([1, 3, 5, 7, 9, 2, 4, 
+

@@ -1,8 +1,10 @@
+
 def find_kth(arr1, arr2, k):
-    if len(arr1) + len(arr2) < k:
-        return None
-    if len(arr1) >= k:
+    if k <= len(arr1) and k > 0:
         return arr1[k - 1]
-    if len(arr2) >= k - len(arr1):
+    elif k <= len(arr2) and k > len(arr1):
         return arr2[k - len(arr1) - 1]
-    return None
+    else:
+        return -1
+
+

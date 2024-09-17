@@ -1,3 +1,5 @@
-def sum_digits(n):
-    return sum(int(x) for x in str(n))
+
+def sum_digits(n: int) -> int:
+  return sum(int(digit) for digit in str(n))
+
 

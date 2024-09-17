@@ -1,6 +1,8 @@
 
-```
-def multiple_to_single(my_list):
-    return int(''.join(map(str, my_list)))
-```
+def multiple_to_single(multiple: list) -> int:
+    single = 0
+    for i in multiple:
+        single += i
+    return single
+
 

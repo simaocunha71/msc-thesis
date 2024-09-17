@@ -1,7 +1,5 @@
-"""
-Here's a simple function that does exactly that:
 
-def extract_rear(t):
-    return [s[-1] for s in t]
-"""
+def extract_rear(test_tup):
+    return tuple([i[-1] for i in test_tup])
+
 

@@ -1,10 +1,5 @@
 
-def combinations_list(lst):
-    result = []
-    for i in range(2**len(lst)):
-        combo = [lst[j] for j in range(len(lst)) if (i & (1 << j)) != 0]
-        result.append(combo)
-    return result
-
-print(combinations_list(['orange', 'red', 'green', 'blue']))
+import math
+def hypotenuse_square(a: int, b: int) -> int:
+  return math.pow(a,2) + math.pow(b,2)
 

@@ -1,8 +1,12 @@
-def toggle_middle_bits(n):
-    if n == 0 or n == 1 or n == 2 or n == 4 or n == 8:
-        return n
-    else:
-        return toggle_middle_bits(n & (n - 1))
 
-assert toggle_middle_bits(9) == 15
+def toggle_middle_bits(n):
+    b = bin(n)[2:]
+    b = list(b)
+    for i in range(1, len(b)-1):
+        if b[i] == '1':
+            b[i] = '0'
+        else:
+            b[i] = '1'
+    return int(''.join(b), 2)
+
 

@@ -1,25 +1,31 @@
+
 def shell_sort(arr):
-    def insert_sort(arr):
-        for i in range(1, len(arr)):
-            temp = arr[i]
-            j = i - 1
-            while j >= 0 and temp < arr[j]:
-                arr[j + 1] = arr[j]
-                j -= 1
-            arr[j + 1] = temp
-        return arr
-    def get_gap(gap):
-        gap = int(gap / 2)
-        if gap == 0:
-            gap = 1
-        return gap
-    def shell_sort_main(arr):
-        for gap in range(len(arr) // 2, 0, -1):
-            insert_sort(arr[gap:])
-        return arr
-    return shell_sort_main(arr)
+  n = len(arr)
 
+  # Start with a big gap, then reduce the gap
+  for gap in range(n//2, 0, -1):
+    # Do a gapped insertion sort for this gap size.
+    # The first gap elements are already in gapped order
+    # keep track of the maximum value in the gapped sorted array.
+    max_in_gap = 0
 
+    # Compare all elements in the gap with the previous gap elements.
+    for i in range(gap, n):
+      current_value = arr[i]
+      position = i
 
+      # if current_value > arr[i - gap]:
+      # Swap the unsorted element with the previous gap elements.
+      while position >= gap and current_value < arr[position - gap]:
+        arr[position] = arr[position - gap]
+        position -= gap
+
+      # Put the element in its correct position.
+      arr[position] = current_value
+
+      # Update the maximum value in the gap
+      max_in_gap = max(max_in_gap, arr[position])
+
+  return arr
 
 

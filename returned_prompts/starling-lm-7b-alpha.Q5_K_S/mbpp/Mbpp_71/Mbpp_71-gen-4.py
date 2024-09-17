@@ -1,64 +1,14 @@
-"""
-def comb_sort(numbers):
-    numbers_len = len(numbers)
-    gap = numbers_len
-    swapped = True
 
-    while gap != 0 and swapped:
-        gap = gap / 1.3
-        swapped = False
-        for i in range(numbers_len - gap):
-            if numbers[i] > numbers[i + gap]:
-                temp = numbers[i]
-                numbers[i] = numbers[i + gap]
-                numbers[i + gap] = temp
-                swapped = True
-    return numbers
-
-def test_comb_sort():
-    assert comb_sort([5, 15, 37, 25, 79]) == [5, 15, 25, 37, 79]
-    print("All tests passed!")
-
-if __name__ == "__main__":
-    test_comb_sort()
-"""
-
-def comb_sort(numbers):
-    numbers_len = len(numbers)
-    gap = numbers_len
-    swapped = True
-    while gap != 0 and swapped:
-        gap = gap / 1.3
-        swapped = False
-        for i in range(numbers_len - gap):
-            if numbers[i] > numbers[i + gap]:
-                temp = numbers[i]
-                numbers[i] = numbers[i + gap]
-                numbers[i + gap] = temp
-                swapped = True
-    return numbers
-
-def test_comb_sort():
-    assert comb_sort([5, 15, 37, 25, 79]) == [5, 15, 25, 37, 79]
-    print("All tests passed!")
-
-if __name__ == "__main__":
-    test_comb_sort()
+def comb_sort(nums):
+  gap = len(nums)
+  swapped = True
+  while gap > 1 or swapped:
+    gap = max(1, int(gap / 1.3))
+    swapped = False
+    for i in range(len(nums) - gap):
+      if nums[i] > nums[i + gap]:
+        nums[i], nums[i + gap] = nums[i + gap], nums[i]
+        swapped = True
+  return nums
 
 
-
-
-
-
-
-
-
-"""
-def comb_sort(numbers):
-    numbers_len = len(numbers)
-    gap = numbers_len
-    swapped = True
-    while gap != 0 and swapped:
-        gap = gap / 1.3
-        swapped = False
-        for i in range

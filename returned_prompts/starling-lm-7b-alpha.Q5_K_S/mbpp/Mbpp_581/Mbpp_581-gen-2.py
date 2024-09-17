@@ -1,8 +1,5 @@
-"""
-def surface_Area(base,height):
-    return (base * height) + (base * 4)
 
-#Test
-assert surface_Area(3,4) == 33
-"""
+def surface_Area(base_edge: int, height: int) -> int:
+  return (base_edge ** 2 + 4 * base_edge * height)
+
 

@@ -1,7 +1,7 @@
-def and_tuples(t1, t2):
-    return tuple(i & j for i, j in zip(t1, t2))
 
-
-print(and_tuples((10, 4, 6, 9), (5, 2, 3, 3)))
-
+def and_tuples(tup1, tup2):
+  return tuple(a & b for a, b in zip(tup1, tup2))
+"""
+This function works by using the built-in zip function to pair up the elements from the two tuples, and then it uses a generator expression to create a new tuple which consists of the bitwise and of the pair of elements.
+"""
 

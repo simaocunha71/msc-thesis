@@ -1,10 +1,6 @@
-def check_monthnumber_number(n):
-    if n in [4, 6, 9, 11]:
-        return True
-    else:
-        return False
+
+def check_monthnumber_number(month: int) -> bool:
+  thirty_days_months = [4, 6, 9, 11]
+  return month in thirty_days_months
 
 
-assert check_monthnumber_number(6) == True
-
-#Q2

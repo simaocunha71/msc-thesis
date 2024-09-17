@@ -1,5 +1,8 @@
-def filter_out(lst1, lst2):
-    return [x for x in lst1 if x in lst2]
 
-"""
-Write a Python function to find
+def overlapping(seq1: list, seq2: list) -> bool:
+  for i in seq1:
+    if i in seq2:
+      return True
+  return False
+
+

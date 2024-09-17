@@ -1,13 +1,7 @@
-"""
-def area_tetrahedron(base):
-    """
-    Calculate the area of a tetrahedron.
 
-    >>> area_tetrahedron(3)
-    15.588457268119894
-    """
-    import math
-    return math.sqrt(2.0/3.0) * base ** 2
+import math
+def area_tetrahedron(base_side):
+  area = (math.sqrt(3)/4)*(base_side**2)
+  return area
 
-"""
 

@@ -1,3 +1,4 @@
-from collections import Counter
 
-def char_count
+def sort_matrix(matrix):
+    return sorted(matrix, key=sum)
+"""

@@ -1,8 +1,5 @@
-"""
-def max_aggregate(tuple_list):
-    list = []
-    for tup in tuple_list:
-        list.append(tup[1])
-    return max(list)
-"""
+
+def max_aggregate(students_grades: list) -> tuple:
+  return max(students_grades, key=lambda x: x[1])
+
 

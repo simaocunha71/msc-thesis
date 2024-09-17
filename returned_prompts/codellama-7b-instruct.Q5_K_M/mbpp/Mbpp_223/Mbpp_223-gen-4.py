@@ -1,13 +1,11 @@
-def is_majority(arr, n, ele):
-    if n == 0:
-        return False
-    left = 0
-    right = n - 1
-    while left < right:
-        if arr[left] == ele:
-            left += 1
-        elif arr[right] == ele:
-            right -= 1
-        else:
-            return False
-    return left == right == (n - 1) // 2
+
+def is_majority(arr, n, elem):
+  count = 0
+  for i in range(n):
+    if arr[i] == elem:
+      count += 1
+      if count > n/2:
+        return True
+  return False
+
+

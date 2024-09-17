@@ -1,4 +1,5 @@
-"""
-def rectangle_area(width, height):
-    return width * height
-"""
+
+def rectangle_area(length: int, width: int) -> int:
+    return length * width
+
+

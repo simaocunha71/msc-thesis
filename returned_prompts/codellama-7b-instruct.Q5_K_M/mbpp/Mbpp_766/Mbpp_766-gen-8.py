@@ -1,6 +1,8 @@
 
-def pair_wise(lst):
-    return [(lst[i], lst[i+1]) for i in range(len(lst)-1)]
-
+def pair_wise(my_list):
+    pairs = []
+    for i in range(len(my_list)-1):
+        pairs.append((my_list[i], my_list[i+1]))
+    return pairs
 
 

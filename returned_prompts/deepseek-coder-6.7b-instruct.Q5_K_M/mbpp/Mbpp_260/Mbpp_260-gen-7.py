@@ -1,4 +1,21 @@
-"""
-The Newman–Shanks–Williams sequence is a sequence of prime numbers. 
 
-The sequence starts with: 2, 3, 5, 11, 23, 47, 107, 227, 457, 919, 1847, 3697, 7403, 14811, 29627, 59267, 118547, 237097, 474199, 948403, 1896811, 3793627, 7587267, 15174547, 30349097, 60698203, 121396411, 242792827, 485585667, 971171347, 1942342707, 3884685427, 7769370867, 15538741747, 31077483507, 62154967027, 124309934067, 248619868147, 497239736307, 994479472627, 1988958945267, 3977917890547, 7955835781107, 15911671562227, 31823343124467, 63646686248947, 127293372497907, 254586744995827, 5091734899916
+def newman_prime(n):
+    prime_numbers = [2, 3, 5, 7, 11, 13]
+    if n <= 6:
+        return prime_numbers[n - 1]
+    i = 14
+    while len(prime_numbers) < n:
+        is_prime = True
+        sqrt_i = int(i ** 0.5)
+        for prime in prime_numbers:
+            if prime > sqrt_i:
+                break
+            if i % prime == 0:
+                is_prime = False
+                break
+        if is_prime:
+            prime_numbers.append(i)
+        i += 2
+    return prime_numbers[-1]
+"""
+

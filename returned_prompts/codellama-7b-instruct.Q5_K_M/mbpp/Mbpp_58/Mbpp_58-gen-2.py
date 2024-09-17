@@ -1,4 +1,5 @@
+
 def opposite_Signs(a, b):
-    return a * b < 0
+  return (a >= 0 and b < 0) or (a < 0 and b >= 0)
 
 

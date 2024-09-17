@@ -1,10 +1,10 @@
-def find_Odd_Pair(arr, n) : 
-    count = 0; 
-  
-    for (int i = 0; i < n; i++) 
-        for (int j = i + 1; j < n; j++) 
-            if (arr[i] ^ arr[j] & 1) 
-                count++; 
-    return count; 
+
+def find_Odd_Pair(arr, n):
+    count = 0
+    for i in range(n):
+        for j in range(i+1,n):
+            if (arr[i]^arr[j])&1:
+                count += 1
+    return count
 
 

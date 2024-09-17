@@ -1,7 +1,7 @@
+
 def catalan_number(n):
-    if n < 0:
-        return -1
-    elif n == 0:
+    if n < 1:
         return 1
-    else:
-        return sum(catalan_number(i) * catalan_number(n - i - 1) for i in range(n))
+    return sum(catalan_number(i) * catalan_number(n - i - 1) for i in range(n))
+
+

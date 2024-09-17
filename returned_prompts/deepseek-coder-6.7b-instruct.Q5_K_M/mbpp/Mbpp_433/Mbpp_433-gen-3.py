@@ -1,9 +1,5 @@
+
 def check_greater(arr, num):
-    for i in arr:
-        if i <= num:
-            return False
-    return True
+  return all(i > num for i in arr)
 
-print(check_greater([1, 2, 3, 4, 5], 4))
 
-#Q2

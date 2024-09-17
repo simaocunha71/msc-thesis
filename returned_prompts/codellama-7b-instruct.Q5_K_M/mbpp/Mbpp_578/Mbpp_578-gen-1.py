@@ -1,7 +1,10 @@
 
-def interleave_lists(list_of_lists):
-    flat_list = []
-    for i in range(len(list_of_lists[0])):
-        for lists in list_of_lists:
-            flat_list.append(lists[i])
-    return flat_list
+def interleave_lists(list1, list2, list3):
+    result = []
+    for i in range(0, len(list1)):
+        result.append(list1[i])
+        result.append(list2[i])
+        result.append(list3[i])
+    return result
+
+

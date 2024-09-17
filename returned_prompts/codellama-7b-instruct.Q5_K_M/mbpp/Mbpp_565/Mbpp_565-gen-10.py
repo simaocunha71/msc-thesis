@@ -1,4 +1,5 @@
-```
-def split(my_string):
-    return list(my_string)
-```
+
+def split(s: str) -> list:
+    return list(s)
+
+

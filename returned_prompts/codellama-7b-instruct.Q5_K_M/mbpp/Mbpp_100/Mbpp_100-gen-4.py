@@ -1,11 +1,20 @@
-def next_smallest_palindrome(n):
-    # 1. convert to string
+
+def next_smallest_palindrome(n: int) -> int:
     s = str(n)
-    # 2. append the original string to the end of the string
-    s = s + s[::-1]
-    # 3. find the first number not equal to itself's reverse
-    i = 0
-    while i < len(s) and s[i] == s[~i]:
-        i += 1
-    # 4. increment the number
-    return int(s[:i] + str(int(s[i]) + 1))
+    if s == s[::-1]:
+        return int(s) + 1
+    else:
+        l = len(s)
+        for i in range(l):
+            if s[i] != s[l-i-1]:
+                break
+        left = s[:i]
+        right = s[i+1:l]
+        if i == 0:
+            return int(right + left + '1')
+        elif i == l-1:
+            return int(left + right + '1')
+        else:
+            return int(left + right + '1')
+
+

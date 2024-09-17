@@ -1,21 +1,14 @@
-"""
-def comb_sort(list_):
-    n = len(list_)
-    gap = n + 1
+
+def comb_sort(list):
+    gap = len(list) // 2
     swapped = True
-
-    while gap != 1 or swapped:
-        gap = int(gap / 1.3)
+    while gap != 0 and swapped:
+        gap = gap // 2
         swapped = False
-
-        for i in range(n - gap):
-            if list_[i] > list_[i + gap]:
-                list_[i], list_[i + gap] = list_[i + gap], list_[i]
+        for i in range(len(list) - gap):
+            if list[i] > list[i + gap]:
+                list[i], list[i + gap] = list[i + gap], list[i]
                 swapped = True
+    return list
 
-    return list_
 
-# Test
-print(comb_sort([5, 15, 37, 25, 79]))  # [5, 15, 25, 37, 79]
-print(comb_sort([37, 15, 25, 5, 79]))  # [5, 15, 25, 37, 79]
-print(comb_sort([37, 79, 15, 25, 5]))  # [5, 1

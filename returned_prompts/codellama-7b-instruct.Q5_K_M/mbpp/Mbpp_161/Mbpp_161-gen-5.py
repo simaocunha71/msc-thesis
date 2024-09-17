@@ -1,4 +1,9 @@
-"""
-def remove_elements(master_list, to_remove):
-    return [x for x in master_list if x not in to_remove]
-"""
+
+def remove_elements(my_list, remove_list):
+    result = []
+    for num in my_list:
+        if num not in remove_list:
+            result.append(num)
+    return result
+
+

@@ -1,7 +1,5 @@
-def removezero_ip(ip_address):
-    list_ip = ip_address.split('.')
-    for i in range(len(list_ip)):
-        while list_ip[i][0] == '0':
-            list_ip[i] = list_ip[i][1:]
-    return '.'.join(list_ip)
+
+def removezero_ip(ip_address: str) -> str:
+  return '.'.join(str(int(i)).zfill(3) for i in ip_address.split('.'))
+
 

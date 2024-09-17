@@ -1,4 +1,5 @@
-def otherside_rightangle(base,height):
-    return (base**2+height**2)**0.5
+
+def otherside_rightangle(a, b):
+  return (a**2 + b**2)**0.5
 
 

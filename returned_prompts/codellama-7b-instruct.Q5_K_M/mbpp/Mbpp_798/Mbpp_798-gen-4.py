@@ -1,4 +1,5 @@
-```
-def _sum(arr):
-    return sum(arr)
-```
+
+def _sum(my_list):
+    return sum(my_list)
+
+

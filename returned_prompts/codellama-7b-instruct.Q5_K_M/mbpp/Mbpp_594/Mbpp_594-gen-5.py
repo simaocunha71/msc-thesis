@@ -1,6 +1,9 @@
+
 def diff_even_odd(my_list):
-    try:
-        diff = my_list[1] - my_list[0]
-    except IndexError:
-        diff = 0
-    return diff
+    even, odd = next((x for x in my_list if x % 2 == 0), None), next((x for x in my_list if x % 2 == 1), None)
+    if even and odd:
+        return even - odd
+    else:
+        return None
+
+

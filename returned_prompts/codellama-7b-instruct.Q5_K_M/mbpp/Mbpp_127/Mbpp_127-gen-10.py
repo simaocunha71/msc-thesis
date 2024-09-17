@@ -1,5 +1,5 @@
-```
-def multiply_int(x,y):
-    return x*y
-```
+
+def multiply_int(a: int, b: int) -> int:
+  return a * b
+
 

@@ -1,5 +1,5 @@
-def split(word):
-    return list(word)
 
-assert split('python') == ['p','y','t','h','o','n']
+def split(word):
+  return [char for char in word]
+
 

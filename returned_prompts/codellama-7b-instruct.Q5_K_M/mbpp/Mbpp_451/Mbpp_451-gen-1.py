@@ -1,2 +1,5 @@
-def remove_whitespaces(str):
-    return ''.join(str.split())
+
+def remove_whitespaces(s: str) -> str:
+  return ''.join(s.split())
+
+

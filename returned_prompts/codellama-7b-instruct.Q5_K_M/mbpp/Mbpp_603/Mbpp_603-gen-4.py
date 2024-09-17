@@ -1,9 +1,15 @@
-def get_ludic(max):
-    ludics = [2, 3, 5, 7]
-    for i in range(11, max + 1):
-        for j in ludics:
-            if i % j == 0:
-                break
+
+def get_ludic(n: int) -> list:
+    ludic = [1]
+    i = 2
+    while i <= n:
+        if i in ludic:
+            ludic.append(i)
         else:
-            ludics.append(i)
-    return ludics
+            i += 1
+            while i in ludic:
+                i += 1
+        i += 1
+    return ludic
+
+

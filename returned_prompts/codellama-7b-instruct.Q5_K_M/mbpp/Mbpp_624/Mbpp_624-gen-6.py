@@ -1,5 +1,5 @@
 
-```python
-def is_upper(string):
-    return string.upper()
-```
+def is_upper(input_string):
+  return input_string.upper()
+
+

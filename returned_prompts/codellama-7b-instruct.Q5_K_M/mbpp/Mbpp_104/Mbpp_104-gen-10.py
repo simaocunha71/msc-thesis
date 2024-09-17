@@ -1,4 +1,7 @@
-def sort_sublists(my_list_of_lists):
-    return [sorted(sublist) for sublist in my_list_of_lists]
+
+def sort_sublists(my_list: list) -> list:
+  for sublist in my_list:
+    sublist.sort()
+  return my_list
 
 

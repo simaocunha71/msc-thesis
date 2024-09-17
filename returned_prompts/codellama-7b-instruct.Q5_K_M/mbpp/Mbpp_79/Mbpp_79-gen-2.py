@@ -1,2 +1,8 @@
+
 def word_len(word):
-    return len(word) % 2 == 0
+  if len(word) % 2 != 0:
+    return True
+  else:
+    return False
+
+

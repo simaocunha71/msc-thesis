@@ -1,2 +1,8 @@
+
 def find_star_num(n):
-    return (n * (n + 1)) // 2
+    if n == 1:
+        return 1
+    else:
+        return find_star_num(n-1) + n
+
+

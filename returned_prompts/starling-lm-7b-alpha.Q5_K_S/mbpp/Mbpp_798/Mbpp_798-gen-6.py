@@ -1,8 +1,5 @@
-"""
-def _sum(array):
-    total = 0
-    for n in array:
-        total += n
-    return total
-"""
+
+def _sum(arr: list):
+    return sum(arr)
+
 

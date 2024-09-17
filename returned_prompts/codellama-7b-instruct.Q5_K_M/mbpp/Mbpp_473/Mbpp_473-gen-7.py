@@ -1,7 +1,8 @@
-"""
+
 def tuple_intersection(tuple_list):
-    all_tuples = set()
-    for tuples in tuple_list:
-        all_tuples |= set(tuples)
-    return set([t for t in all_tuples if all_tuples.count(t) == len(tuple_list)])
-"""
+  final_set = set()
+  for i in tuple_list:
+    final_set.update(set(i))
+  return set(tuple(i) for i in final_set)
+
+

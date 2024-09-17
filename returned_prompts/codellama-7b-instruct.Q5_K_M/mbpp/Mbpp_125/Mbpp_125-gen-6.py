@@ -1,13 +1,16 @@
-def find_length(binary_string):
-    max_length = 0
-    current_length = 0
-    for char in binary_string:
-        if char == '0':
-            current_length += 1
-        else:
-            max_length = max(max_length, current_length)
-            current_length = 0
-    return max(max_length, current_length)
 
+def find_length(binary_str: str) -> int:
+  count_zero = 0
+  count_one = 0
+  for char in binary_str:
+    if char == "0":
+      count_zero += 1
+    else:
+      count_one += 1
+    if count_zero > count_one:
+      count_one = count_zero
+    elif count_one > count_zero:
+      count_zero = count_one
+  return max(count_zero, count_one)
 
 

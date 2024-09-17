@@ -1,10 +1,5 @@
 
-def check_tuplex(tuplex, element):
-    return element in tuplex
+def check_tuplex(in_tup, elem):
+  return elem in in_tup
 
-print(check_tuplex(("w", 3, "r", "e", "s", "o", "u", "r", "c", "e"),'r'))
 
-#output: True
-<jupyter_output>
-True
-<jupyter_text>

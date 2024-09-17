@@ -1,6 +1,5 @@
 
-```python
-def reverse_words(my_string):
-    return " ".join(my_string.split()[::-1])
-```
+def reverse_words(str_input:str)->str:
+  return " ".join(str_input.split()[::-1])
+
 

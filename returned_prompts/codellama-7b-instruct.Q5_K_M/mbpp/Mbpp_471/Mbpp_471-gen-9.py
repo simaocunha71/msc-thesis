@@ -1,2 +1,8 @@
-def find_remainder(arr,n):
-    return reduce((lambda x,y: (x*y)%n),arr,1)
+
+def find_remainder(arr, n):
+  product = 1
+  for i in arr:
+    product = (product*i)%n
+  return product
+
+

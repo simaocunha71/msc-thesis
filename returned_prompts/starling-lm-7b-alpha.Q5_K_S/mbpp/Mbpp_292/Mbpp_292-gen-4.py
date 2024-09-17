@@ -1,8 +1,5 @@
-"""
-def find(a, b):
-    if a % b == 0:
-        return a // b
-    else:
-        return (a // b) - 1
-"""
+
+def find(dividend,divisor):
+    return int(dividend/divisor)
+
 

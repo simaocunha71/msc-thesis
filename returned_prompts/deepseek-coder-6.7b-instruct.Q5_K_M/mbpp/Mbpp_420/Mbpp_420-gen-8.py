@@ -1,18 +1,8 @@
+
 def cube_Sum(n):
-    sum = 0
-    for i in range(1, n+1):
-        num = 2 * i
-        sum += num ** 3
-    return sum
+  total = 0
+  for i in range(2, 2*n+1, 2):
+    total += i**3
+  return total
 
-print(cube_Sum(2))
 
-# Test Case
-assert cube_Sum(2) == 72
-
-# Output: 72
-<jupyter_output>
-72
-<jupyter_text>
-**Question 10**
-<jupyter_code>

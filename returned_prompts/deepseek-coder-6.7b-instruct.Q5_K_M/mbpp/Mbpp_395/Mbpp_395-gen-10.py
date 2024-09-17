@@ -1,8 +1,8 @@
-def first_non_repeating_character(s: str):
-    for index, character in enumerate(s):
-        if s.count(character) == 1:
-            return character
-    return None
 
-assert first_non_repeating_character("abcabc") == None
-"""
+def first_non_repeating_character(s: str):
+  for index, char in en_umerate(s):
+    if s.count(char) == 1:
+      return char
+  return None
+
+

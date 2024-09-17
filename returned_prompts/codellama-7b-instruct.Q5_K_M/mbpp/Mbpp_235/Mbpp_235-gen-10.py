@@ -1,4 +1,5 @@
-```
-def even_bit_set_number(num):
-    return num | (num >> 1)
-```
+
+def even_bit_set_number(n):
+    return n | (n << 1)
+
+

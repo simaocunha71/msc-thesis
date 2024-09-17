@@ -1,5 +1,5 @@
 
-def average_of_nth(matrix, n):
-    return sum(row[n] for row in matrix) / len(matrix)
+def max_of_nth(matrix, n):
+    return max(row[n] for row in matrix)
 
-print(average_of_nth([[
+

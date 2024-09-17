@@ -7,3 +7,4 @@ def find_even_pair(arr):
                 count += 1
     return count
 
+

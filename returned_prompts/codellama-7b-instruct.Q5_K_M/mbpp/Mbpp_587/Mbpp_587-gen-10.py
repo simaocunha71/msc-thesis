@@ -1,3 +1,5 @@
-def list_tuple(my_list):
-    return tuple(my_list)
+
+def list_tuple(my_list: list) -> tuple:
+  return tuple(my_list)
+
 

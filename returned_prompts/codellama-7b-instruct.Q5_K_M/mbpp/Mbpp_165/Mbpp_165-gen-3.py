@@ -1,8 +1,9 @@
-"""
-def count_char_position(string):
-    count = 0
-    for char in string:
-        if char.lower() in "abcdefghijklmnopqrstuvwxyz":
-            count += 1
-    return count
-"""
+
+def count_char_position(s: str) -> int:
+  count = 0
+  for c in s:
+    if c.lower() == chr(ord('a') + s.lower().index(c.lower())):
+      count += 1
+  return count
+
+

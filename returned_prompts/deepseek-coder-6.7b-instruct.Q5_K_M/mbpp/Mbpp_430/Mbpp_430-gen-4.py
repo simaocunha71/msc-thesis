@@ -1,7 +1,5 @@
+
 def parabola_directrix(a, h, k):
-    return a * h + k
-
-print(parabola_directrix(5, 3, 2))  # Output: -198
+    return k - (a**2 / (4 * h))
 
 
-"""

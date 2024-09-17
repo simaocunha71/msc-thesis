@@ -1,4 +1,5 @@
-```
-def two_unique_nums(my_list):
-    return list(set(my_list))
-```
+
+def two_unique_nums(nums):
+    return list(set(nums))
+
+

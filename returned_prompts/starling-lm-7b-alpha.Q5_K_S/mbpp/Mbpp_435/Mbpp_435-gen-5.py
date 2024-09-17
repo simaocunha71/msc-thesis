@@ -1,6 +1,6 @@
-def prod_FirstAndLastDigit(num):
-    return (num % 10) * (num // 10)
+
+def last_Digit(num):
+    num = str(num)
+    return int(num[-1])
 
 
-# Testing
-print(prod_FirstAndLastDigit(1

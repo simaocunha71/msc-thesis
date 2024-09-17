@@ -1,11 +1,9 @@
 
-def cummulative_sum(tuple_list):
-    return sum(sum(t) for t in tuple_list)
+def cummulative_sum(tuple_list: list) -> int:
+  cummulative_sum = 0
+  for t in tuple_list:
+    for elem in t:
+      cummulative_sum += elem
+  return cummulative_sum
 
-# This is more readable
-def cummulative_sum(tuple_list):
-    return sum(sum(sub_list) for sub_list in tuple_list)
 
-# This is less readable
-def cummulative_sum(tuple_list):
-    return sum(map(sum, tuple_list))

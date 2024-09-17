@@ -1,4 +1,8 @@
-"""
+
 def check_greater(arr, num):
-    return all(arr[i] < num for i in range(len(arr)))
-"""
+  for i in arr:
+    if i > num:
+      return True
+  return False
+
+

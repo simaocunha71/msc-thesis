@@ -1,13 +1,18 @@
-"""
-def find_first_occurrence(nums, target):
-    left, right = 0, len(nums) - 1
-    while left <= right:
-        mid = (left + right) // 2
-        if nums[mid] == target:
-            right = mid - 1
-        elif nums[mid] > target:
-            right = mid - 1
+
+def find_first_occurrence(arr, x):
+    # Find the first occurrence of x in arr[0..n-1]
+    # If x is present in arr, then return its index
+    # Else return -1
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == x:
+            return mid
+        elif arr[mid] < x:
+            low = mid + 1
         else:
-            left = mid + 1
-    return left
-"""
+            high = mid - 1
+    return -1
+
+

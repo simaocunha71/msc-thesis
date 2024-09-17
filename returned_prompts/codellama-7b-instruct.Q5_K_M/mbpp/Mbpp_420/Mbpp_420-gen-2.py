@@ -1,4 +1,8 @@
+
 def cube_Sum(n):
-    return sum([i**3 for i in range(2, n+1)])
+    sum = 0
+    for i in range(2, n + 1):
+        sum += i ** 3
+    return sum
 
 

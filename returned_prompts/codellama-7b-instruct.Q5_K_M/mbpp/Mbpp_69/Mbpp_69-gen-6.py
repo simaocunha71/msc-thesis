@@ -1,4 +1,5 @@
-```
-def is_sublist(main_list,sublist):
-    return sublist in main_list
-```
+
+def is_sublist(main_list: list,sublist: list) -> bool:
+  return sublist in main_list
+
+

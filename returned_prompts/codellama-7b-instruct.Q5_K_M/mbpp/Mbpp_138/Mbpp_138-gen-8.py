@@ -1,9 +1,15 @@
-def is_Sum_Of_Powers_Of_Two(n):
-    while n > 0:
-        if n & (n - 1) == 0:
-            return True
-        n &= n - 1
-    return False
 
 def is_Sum_Of_Powers_Of_Two(n):
-    return not (n & (n - 1)) and n != 0
+    if n == 0:
+        return False
+    while n > 1:
+        if n % 2 == 0:
+            n = n // 2
+        else:
+            if n == 3:
+                return True
+            else:
+                return False
+    return True
+
+

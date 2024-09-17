@@ -1,8 +1,9 @@
-"""
-def find_sum(my_list):
+
+def find_sum(my_list: list) -> int:
     result = 0
-    for i in range(len(my_list)):
-        if my_list.count(my_list[i]) == 1:
-            result += my_list[i]
+    for i in my_list:
+        if my_list.count(i) == 1:
+            result += i
     return result
-"""
+
+

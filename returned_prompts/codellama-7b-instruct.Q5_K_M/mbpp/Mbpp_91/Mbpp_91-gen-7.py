@@ -1,5 +1,8 @@
-def find_substring(my_list,substring):
-    for word in my_list:
-        if substring in word:
-            return True
-    return False
+
+def find_substring(my_list: list,substring: str) -> bool:
+  for i in my_list:
+    if substring in i:
+      return True
+  return False
+
+

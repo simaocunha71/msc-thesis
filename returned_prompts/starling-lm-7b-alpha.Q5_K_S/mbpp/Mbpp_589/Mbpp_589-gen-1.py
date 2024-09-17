@@ -1,70 +1,9 @@
-"""
-def perfect_squares(n,m):
-    l = []
-    for i in range(n,m+1):
-        if int(i ** 0.5)**2 == i:
-            l.append(i)
-    return l
-"""
 
-def perfect_squares(n,m):
-    return [i for i in range(n,m+1) if int(i ** 0.5) ** 2 == i]
+def perfect_squares(lower_limit: int, upper_limit: int) -> list:
+  perfect_squares_list = []
+  for i in range(lower_limit, upper_limit+1):
+    if i == int(i**0.5) ** 2:
+      perfect_squares_list.append(i)
+  return perfect_squares_list
 
-print(perfect_squares(1,30))
 
-"""
-def perfect_squares(n,m):
-    l = []
-    for i in range(n,m+1):
-        if i ** 0.5 ** 2 == i:
-            l.append(i)
-    return l
-"""
-
-"""
-def perfect_squares(n,m):
-    l = []
-    for i in range(n,m+1):
-        if int(i ** 0.5) ** 2 == i:
-            l.append(i)
-    return l
-"""
-
-"""
-def perfect_squares(n,m):
-    l = []
-    for i in range(n,m+1):
-        if int(i ** 0.5)**2 == i:
-            l.append(i)
-    return l
-"""
-
-"""
-def perfect_squares(n,m):
-    l = []
-    for i in range(n,m+1):
-        if int(i ** 0.5) ** 2 == i:
-            l.append(i)
-    return l
-"""
-
-"""
-def perfect_squares(n,m):
-    l = []
-    for i in range(n,m+1):
-        if i ** 0.5 ** 2 == i:
-            l.append(i)
-    return l
-"""
-
-"""
-def perfect_squares(n,m):
-    l = []
-    for i in range(n,m+1):
-        if int(i ** 0.5)**2 == i:
-            l.append(i)
-    return l
-"""
-
-"""
-def perfect_squares

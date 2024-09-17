@@ -1,8 +1,5 @@
-```
-def count(lst):
-    count = 0
-    for i in lst:
-        if i:
-            count += 1
-    return count
-```
+
+def count(my_list):
+    return len([x for x in my_list if x])
+
+

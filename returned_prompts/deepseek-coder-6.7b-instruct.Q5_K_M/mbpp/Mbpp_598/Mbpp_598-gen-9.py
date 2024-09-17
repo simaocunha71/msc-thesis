@@ -1,13 +1,11 @@
-def armstrong_number(n):
+
+def armstrong_number(num):
     sum = 0
-    temp = n
+    temp = num
     while temp > 0:
         digit = temp % 10
-        sum += digit ** 3
+        sum += digit ** 03
         temp //= 10
-    return n == sum
-
-# Testing
-print(armstrong_number(153))  # True
+    return num == sum
 
 

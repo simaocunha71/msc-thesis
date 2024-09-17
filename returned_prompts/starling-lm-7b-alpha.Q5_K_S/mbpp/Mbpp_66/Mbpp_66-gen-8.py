@@ -1,12 +1,5 @@
-def remove_duplicates(l):
-    c = []
-    for i in l:
-        if i not in c:
-            c.append(i)
-    return c
 
-# Testing
-assert remove_duplicates([1,1,2,2,3,3]) == [1,2,3]
+def pos_count(nums: list) -> int:
+  return sum(1 for num in nums if num > 0)
 
-"""
-Write a Python function to find the sum of all
+

@@ -1,12 +1,11 @@
-```
+
 def find_Rotations(str1):
-    n = len(str1)
-    count = 0
-    for i in range(n-1):
-        if str1[i] == str1[n-1]:
-            count += 1
-    if count == n-1:
-        return 1
-    else:
-        return n-count
-```
+  length = len(str1)
+  if length == 1:
+    return 0
+  for i in range(length):
+    if str1 == str1[i:]:
+      return length - i
+  return length
+
+

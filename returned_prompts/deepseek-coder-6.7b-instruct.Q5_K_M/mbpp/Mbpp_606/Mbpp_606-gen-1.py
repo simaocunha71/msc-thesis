@@ -1,9 +1,6 @@
-```python
+
 import math
+def radian_degree(degree):
+  return math.radians(degree)
 
-def radian_degree(degrees):
-    return math.radians(degrees)
-
-print(radian_degree(90))
-```
 

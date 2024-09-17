@@ -1,42 +1,18 @@
-def sum_of_divisors(n1,n2):
-    def gcd(a,b):
-        while b:
-            a,b=b,a%b
-        return a
-    return sum(list(set([i for i in range(1,min(n1,n2)+1) if n1%i==0 and n2%i==0])))
-print(sum_of_divisors(10,15))
-# Output: 6
 
-def sum_of_divisors(n1,n2):
-    def gcd(a,b):
-        while b:
-            a,b=b,a%b
-        return a
-    common_divisors = [i for i in range(1,min(n1,n2)+1) if n1%i==0 and n2%i==0]
-    return sum(common_divisors)
-print(sum_of_divisors(10,15))
-# Output: 6
+def sum_of_divisors(n1: int,n2: int) -> int:
+    def sum_divisors(n: int) -> int:
+        result = 1
+        divisor = 2
+        while divisor * divisor <= n:
+            if n % divisor:
+                divisor += 1
+            else:
+                n //= divisor
+                result *= divisor + n
+                divisor = 1
+        if divisor > 1:
+            result *= n + divisor
+        return result
+    return sum_divisors(n1) + sum_divisors(n2)
 
-def sum_of_divisors(n1,n2):
-    def gcd(a,b):
-        while b:
-            a,b=b,a%b
-        return a
-    common_divisors = set([i for i in range(1,min(n1,n2)+1) if n1%i==0 and n2%i==0])
-    return sum(common_divisors)
-print(sum_of_divisors(10,15))
-# Output: 6
 
-def sum_of_divisors(n1,n2):
-    def gcd(a,b):
-        while b:
-            a,b=b,a%b
-        return a
-    common_divisors = {i for i in range(1,min(n1,n2)+1) if n1%i==0 and n2%i==0}
-    return sum(common_divisors)
-print(sum_of_divisors(10,15))
-# Output: 6
-
-def sum_of_divisors(n1,n2):
-    def gcd(a,b):
-        while b

@@ -1,7 +1,5 @@
-def kth_element(arr, k):
-    arr.sort()
-    return arr[k-1]
 
-# test
-print(kth_element([12,3,5,7,19], 2))
+def kth_element(arr, k):
+  return arr[k-1]
+
 

@@ -1,7 +1,5 @@
-def find(a, b):
-    return a // b
 
-assert find(10, 3) == 3
+def find(num1,num2):
+  return num1//num2
 
-# 2. Write a Python function that takes a string and returns a new string with all the vowels removed. 
 

@@ -1,12 +1,9 @@
-"""
-def find_Rotations(s):
-    n = len(s)
-    temp = s + s
-    for i in range(1, n):
-        if temp[i:i+n] == s:
-            return i
-    return n
 
-assert find_Rotations("aaaa") == 1
+def find_Rotations(str):
+  n = len(str)
+  temp = str + str
+  for i in range(1, n):
+    if (temp[i:] == str):
+      return i
+  return 1
 """
-

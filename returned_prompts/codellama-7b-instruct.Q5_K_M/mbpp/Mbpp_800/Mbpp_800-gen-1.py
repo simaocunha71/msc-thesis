@@ -1,4 +1,5 @@
-```python
-def remove_all_spaces(string):
-    return ''.join(string.split())
-```
+
+def remove_all_spaces(string: str) -> str:
+  return string.replace(" ", "")
+
+

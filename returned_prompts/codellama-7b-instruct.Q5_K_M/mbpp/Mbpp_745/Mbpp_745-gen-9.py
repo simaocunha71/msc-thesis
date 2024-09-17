@@ -1,10 +1,11 @@
+
 def divisible_by_digits(startnum, endnum):
-    result = []
-    for num in range(startnum, endnum+1):
-        for digit in str(num):
-            if num % int(digit) != 0: break
-        else:
-            result.append(num)
-    return result
+    ans = []
+    for num in range(startnum, endnum + 1):
+        for i in range(1, num + 1):
+            if num % i == 0:
+                ans.append(num)
+                break
+    return ans
 
 

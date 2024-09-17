@@ -1,2 +1,5 @@
-def filter_data(data, min_height, min_weight):
-    return {student: (height, weight) for student, (height, weight) in data.items() if height >= min_height and weight >= min_weight}
+
+def filter_data(student_data: dict, min_height: float, min_weight: float) -> dict:
+  return {k: v for k,v in student_data.items() if v[0] >= min_height and v[1] >= min_weight}
+
+

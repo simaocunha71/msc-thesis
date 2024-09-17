@@ -1,15 +1,21 @@
-"""
-def check_expression(expr):
-    stack = []
-    mapping = {")": "(", "}": "{", "]": "["}
-    for char in expr:
-        if char in mapping.values():
-            stack.append(char)
-        elif char in mapping.keys():
-            if stack == [] or mapping[char] != stack.pop():
-                return False
-    return stack == []
 
-assert check_expression("{()}[{}]") == True
-"""
+def check_expression(exp):
+    stack = []
+    opening = ['[', '{', '(']
+    closing = [']', '}', ')']
+    for i in exp:
+        if i in opening:
+            stack.append(i)
+        elif i in closing:
+            pos = closing.index(i)
+            if ((len(stack) > 0) and
+                (opening[pos] == stack[len(stack)-1])):
+                stack.pop()
+            else:
+                return False
+    if len(stack) == 0:
+        return True
+    else:
+        return False
+
 

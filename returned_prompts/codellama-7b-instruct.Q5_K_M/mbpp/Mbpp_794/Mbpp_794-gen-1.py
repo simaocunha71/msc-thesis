@@ -1,12 +1,11 @@
-"""
+
 import re
+def text_starta_endb(text: str) -> bool:
+  pattern = re.compile(r'^a.*b$')
+  match = pattern.match(text)
+  if match:
+    return True
+  else:
+    return False
 
-def text_starta_endb(my_string):
-    return re.match(r"a.+b$", my_string)
-
-# Tests
-assert text_starta_endb("aabbbb")
-assert not text_starta_endb("abb")
-assert not text_starta_endb("aab")
-"""
 

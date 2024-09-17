@@ -1,4 +1,5 @@
-"""
+
 def max_of_nth(matrix, n):
-    return max(row[n] for row in matrix)
-"""
+    return list(map(lambda x: x[n], matrix))
+
+

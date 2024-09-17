@@ -1,6 +1,5 @@
-def count_X(my_tuple, element):
-    count = 0
-    for i in my_tuple:
-        if i == element:
-            count += 1
-    return count
+
+def count_X(tup: tuple, element: object) -> int:
+  return tup.count(element)
+
+

@@ -1,4 +1,5 @@
-"""
+
 def Extract(lst):
-    return [sublist[0] for sublist in lst]
-"""
+  return [lst[0] for lst in lst]
+
+

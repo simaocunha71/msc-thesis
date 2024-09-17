@@ -1,9 +1,7 @@
-```
-def check_monthnumb_number(month):
-    months = [1, 3, 5, 7, 8, 10, 12]
-    if month in months:
-        return True
-    else:
-        return False
-```
-    
+
+def check_monthnumb_number(month_num):
+  if month_num == 1 or month_num == 3 or month_num == 5 or month_num == 7 or month_num == 8 or month_num == 10 or month_num == 12:
+    return True
+  return False
+
+

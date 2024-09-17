@@ -1,5 +1,10 @@
+
 def check(num):
-    if num == 10:
-        return False
-    else:
-        return num == int(str(num)[::-1]) - 1
+  str_num = str(num)
+  rev_num = int(str_num[::-1])
+  if num == rev_num * 2 - 1:
+    return True
+  else:
+    return False
+
+

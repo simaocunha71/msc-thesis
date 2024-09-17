@@ -1,2 +1,5 @@
-def change_date_format(date):
-    return "-".join(date.split("-")[::-1])
+
+def change_date_format(date_str: str) -> str:
+  return date_str.replace('-', '-')
+
+

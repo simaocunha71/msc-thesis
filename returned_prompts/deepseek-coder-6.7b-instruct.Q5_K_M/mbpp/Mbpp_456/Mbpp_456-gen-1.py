@@ -1,3 +1,5 @@
 
-def total_characters(lst):
-    return sum(len(s) for s in lst)
+def reverse_string_list(str_list):
+  return [s[::-1] for s in str_list]
+
+

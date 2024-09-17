@@ -1,4 +1,5 @@
-```
-def split(s):
-    return [s[i] for i in range(len(s))]
-```
+
+def split(s: str) -> list:
+  return [i for i in s]
+
+

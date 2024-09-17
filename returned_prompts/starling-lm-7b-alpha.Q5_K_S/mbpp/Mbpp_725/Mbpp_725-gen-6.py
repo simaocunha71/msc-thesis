@@ -1,13 +1,6 @@
-def add_suffix_to_words(string, suffix):
-    words = string.split()
-    result = []
-    for word in words:
-        if word[-1] in ".,!?":
-            result.append(word + suffix)
-        else:
-            result.append(word + '?' + suffix)
-    return ' '.join(result)
+
+import re
+def extract_quotation(str:str)->list:
+  return re.findall(r'"(\w+)"',str)
 
 
-"""
-Write a function to find the longest common prefix among all the

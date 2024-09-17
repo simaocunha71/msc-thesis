@@ -1,18 +1,14 @@
+
 def count_Primes_nums(n):
-    def is_prime(num):
-        if num < 2:
-            return False
-        for i in range(2, num):
-            if num % i == 0:
-                return False
-        return True
-    count = 0
-    for i in range(n):
-        if is_prime(i):
-            count += 1
-    return count
-
-print(count_Primes_nums(5))  # 2
-
+    primes = [True] * (n + 1)
+    p = 2
+    while p * p <= n:
+        if primes[p] is True:
+            for i in range(p * p, n + 1, p):
+                primes[i] = False
+        p += 1
+    primes[0] = False
+    primes[1] = False
+    return sum(primes)
 
 

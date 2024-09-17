@@ -1,4 +1,6 @@
-"""
+
+import math
 def area_tetrahedron(side):
-    return (2*side*side)/sqrt(3)
-"""
+  return (side**2) * math.sqrt(2) / 6
+
+

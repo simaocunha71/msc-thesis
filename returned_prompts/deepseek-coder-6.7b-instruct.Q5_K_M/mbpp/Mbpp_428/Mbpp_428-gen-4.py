@@ -1,8 +1,8 @@
+
 def shell_sort(arr):
-    n = len(arr)
-    gap = n // 2
+    gap = len(arr) // 2
     while gap > 0:
-        for i in range(gap, n):
+        for i in range(gap, len(arr)):
             temp = arr[i]
             j = i
             while j >= gap and arr[j - gap] > temp:
@@ -11,8 +11,5 @@ def shell_sort(arr):
             arr[j] = temp
         gap //= 2
     return arr
-
-print(shell_sort([12, 23, 4, 5, 3, 2, 12, 81, 56, 95]))
-
 
 

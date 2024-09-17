@@ -1,6 +1,5 @@
-def sum_negativenum(numbers):
-    sum=0
-    for num in numbers:
-        if num<0:
-            sum+=num
-    return sum
+
+def sum_negativenum(nums: list) -> int:
+  return sum(x for x in nums if x < 0)
+
+

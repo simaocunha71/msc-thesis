@@ -1,8 +1,6 @@
-def sum_negativenum(numlist):
-    sum=0
-    for i in numlist:
-        if i<0:
-            sum+=i
-    return sum
+
+def sum_negativenum(nums):
+  negativenum = list(filter(lambda x: x < 0, nums))
+  return sum(negativenum)
 
 

@@ -1,10 +1,17 @@
-"""
-def is_Monotonic(arr):
-    i = 0
-    while i < len(arr)-1:
-        if arr[i+1] < arr[i]:
-            return False
-        i += 1
+
+def is_Monotonic(nums:list)->bool:
+  inc = False
+  dec = False
+  for i in range(len(nums)-1):
+    if nums[i] < nums[i+1]:
+      inc = True
+    elif nums[i] > nums[i+1]:
+      dec = True
+  if inc and dec:
+    return False
+  elif inc or dec:
     return True
-"""
+  else:
+    return True
+
 

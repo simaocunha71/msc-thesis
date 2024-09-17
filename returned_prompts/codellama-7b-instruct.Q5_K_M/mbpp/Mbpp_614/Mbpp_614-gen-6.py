@@ -1,2 +1,10 @@
-def cummulative_sum(tuple_list):
-    return sum([sum(sub_tuple) for sub_tuple in tuple_list])
+
+def cummulative_sum(my_list):
+    my_sum = 0
+    result = []
+    for t in my_list:
+        my_sum += sum(t)
+        result.append(my_sum)
+    return result
+
+

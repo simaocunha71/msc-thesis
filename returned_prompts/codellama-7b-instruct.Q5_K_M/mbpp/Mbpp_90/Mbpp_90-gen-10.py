@@ -1,4 +1,9 @@
-```python
-def len_longest(my_list):
-    return max(len(i) for i in my_list)
-```
+
+def len_log(my_list):
+    longest = 0
+    for i in my_list:
+        if len(i) > longest:
+            longest = len(i)
+    return longest
+
+

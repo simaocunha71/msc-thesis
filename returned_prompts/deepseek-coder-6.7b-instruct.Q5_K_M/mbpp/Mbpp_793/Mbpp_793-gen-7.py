@@ -1,8 +1,5 @@
-def last(arr, x):
-    for i in range(len(arr)):
-        if arr[i] == x:
-            return i
-    return -1
 
-print(last([1,2,3],1))
+def last(lst, el):
+  return len(lst) - 1 - lst[::-1].index(el)
+
 

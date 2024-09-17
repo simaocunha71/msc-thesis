@@ -1,4 +1,5 @@
-def Find_Max_Length(list_of_lists):
-    return max(map(len, list_of_lists))
+
+def Find_Max_Length(my_list):
+  return max(map(len, my_list))
 
 

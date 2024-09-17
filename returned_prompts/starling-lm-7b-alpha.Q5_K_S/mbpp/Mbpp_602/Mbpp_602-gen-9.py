@@ -1,16 +1,10 @@
-"""
-def first_repeated_char(s):
-    seen = {}
-    for c in s:
-        if c in seen:
-            return c
-        seen[c] = True
-    return None
 
-def test_first_repeated_char():
-    assert first_repeated_char("abcabc") == "a"
-    print("All tests passed.")
+def first_repeated_char(s: str) -> str:
+  char_count = {}
+  for char in s:
+    if char in char_count.keys():
+      return char
+    char_count[char] = 1
+  return None
 
-test_first_repeated_char()
-"""
 

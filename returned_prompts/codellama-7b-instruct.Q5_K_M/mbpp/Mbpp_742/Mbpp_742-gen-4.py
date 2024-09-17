@@ -1,2 +1,6 @@
-def area_tetrahedron(side):
-    return (3*side**2)**0.5
+
+import math
+def area_tetrahedron(a):
+  return (math.sqrt(2*a*a - 1))
+
+

@@ -1,2 +1,5 @@
-def avg_nums(lst):
-    return sum(lst)/len(lst)
+
+def cube_nums(nums):
+  return [num**3 for num in nums]
+
+

@@ -1,6 +1,6 @@
-```
-import math
 
-def surfacearea_sphere(r):
-    return 4 * math.pi * r ** 2
-```
+from math import pi
+def surfacearea_sphere(radius):
+  return 4 * pi * radius ** 2
+
+

@@ -1,14 +1,12 @@
-"""
-def check_expression(s):
+
+def check_expression(expr):
     stack = []
-    brackets = {'(': ')', '{': '}', '[': ']'}
-    for char in s:
-        if char in brackets:
+    p_dict = {'(': ')', '{': '}', '[': ']'}
+    for char in expr:
+        if char in p_dict:
             stack.append(char)
-        elif len(stack) == 0 or brackets[stack.pop()] != char:
+        elif len(stack) == 0 or p_dict[stack.pop()] != char:
             return False
     return len(stack) == 0
 
-print(check_expression("{()}[{}]"))  # True
-"""
 

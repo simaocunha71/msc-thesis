@@ -1,8 +1,7 @@
-"""
-def Find_Min(List):
-    Min = []
-    for i in List:
-        if len(i) < len(Min) or len(Min) == 0:
-            Min = i
-    return Min
-"""
+
+def Find_Min(sublist):
+    if sublist == []:
+        return None
+    return min(sublist, key=len)
+
+

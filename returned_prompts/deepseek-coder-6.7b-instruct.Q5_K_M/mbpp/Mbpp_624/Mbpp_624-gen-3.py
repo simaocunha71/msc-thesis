@@ -1,7 +1,5 @@
 
-def to_upper(s):
-    return s.upper()
+def is_upper(string):
+  return string.upper()
 
-assert to_upper("person") == "PERSON"
 
-# Task 2

@@ -1,6 +1,5 @@
-def replace_spaces(s):
-    return s.replace(' ', '_') if ' ' in s else s.replace('_', ' ')
 
-print(replace_spaces('Jumanji The Jungle'))
+def replace_spaces(string):
+    return string.replace(' ', '_')
 
-# Solution 2 - Using List Comprehension
+

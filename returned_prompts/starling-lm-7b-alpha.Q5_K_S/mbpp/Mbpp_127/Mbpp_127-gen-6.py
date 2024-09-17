@@ -1,9 +1,5 @@
-"""
-Here's a possible solution:
 
-def multiply_int(x,y):
-    return x*y
+def multiply_int(num1:int, num2:int) -> int:
+  return num1 * num2
 
-assert multiply_int(10,20)==200
-"""
 

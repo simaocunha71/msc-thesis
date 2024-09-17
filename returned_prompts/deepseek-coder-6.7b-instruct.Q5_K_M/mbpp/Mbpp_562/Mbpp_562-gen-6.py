@@ -1,6 +1,6 @@
-def Find_Max_Length(list):
-    return max(len(lst) for lst in list)
 
-print(Find_Max_Length([[1],[1,4],[5,6,7,8]]))
+def Find_Max_Length(list1):
+  max1 = len(max(list1, key=len))
+  return max1
 
-"""
+

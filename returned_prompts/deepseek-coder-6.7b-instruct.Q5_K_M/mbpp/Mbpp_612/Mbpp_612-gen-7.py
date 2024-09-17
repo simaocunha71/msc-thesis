@@ -1,6 +1,5 @@
-def merge(lst):
-    return [[i[j] for i in lst] for j in range(2)]
 
-print(merge([['x',  'y'], ['a',  'b'], ['m',  'n']]))
+def merge(lst):
+  return [[sub[i] for sub in lst] for i in range(2)]
 
 

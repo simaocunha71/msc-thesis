@@ -1,20 +1,18 @@
-"""
+
 def magic_square_test(matrix):
-    rows = len(matrix)
-    cols = len(matrix[0])
-    if rows != cols:
-        return False
+  sum_rows = [sum(row) for row in matrix]
+  sum_cols = [sum(row[j] for row in matrix) for j in range(len(matrix[0]))]
+  if sum(sum_rows) != sum(sum_cols):
+    return False
+  sqrt_size = int(len(matrix) ** 0.5)
+  if len(matrix) != len(matrix[0]) or len(matrix) % 2 == 1:
+    return False
+  if sum(sum_rows) % 2 != 0:
+    return False
+  if sum_rows.count(sum_rows[0]) != sqrt_size:
+    return False
+  if sum_cols.count(sum_cols[0]) != sqrt_size:
+    return False
+  return True
 
-    # all rows, cols, and diagonals should add up to the same number
-    target = sum(matrix[0])
-    for i in range(1, rows):
-        if sum(matrix[i]) != target:
-            return False
-    for j in range(1, cols):
-        if sum(matrix[j]) != target:
-            return False
-    if sum(matrix[0]) != target:
-        return False
 
-    return True
-"""

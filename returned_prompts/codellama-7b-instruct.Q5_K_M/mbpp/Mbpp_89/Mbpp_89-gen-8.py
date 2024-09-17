@@ -1,3 +1,5 @@
-def closest_num(n):
-    return n - 1 if n > 1 else 1
+
+def closest_num(n: int) -> int:
+  return int(n//1) * 1
+
 

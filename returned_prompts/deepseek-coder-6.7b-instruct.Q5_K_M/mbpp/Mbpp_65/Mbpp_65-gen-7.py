@@ -1,14 +1,11 @@
 
 def recursive_list_sum(lst):
-    sum = 0
-    for i in lst:
-        if type(i) == list:
-            sum += recursive_list_sum(i)
+    total = 0
+    for element in lst:
+        if type(element) == list:
+            total += recursive_list_sum(element)
         else:
-            sum += i
-    return sum
-
-print(recursive_list_sum([1, 2, [3,4],[5,6]])) # Output: 21
-
+            total += element
+    return total
 
 

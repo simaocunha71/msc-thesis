@@ -1,4 +1,8 @@
-def text_match_three(string):
-    # Find all matches of 'a' followed by 3 'b' in a string
-    pattern = r"a[b]{3}"
-    return re.search(pattern, string) != None
+
+def text_match_three(text: str) -> bool:
+  if text.count('a') < 3:
+    return False
+  else:
+    return True
+
+

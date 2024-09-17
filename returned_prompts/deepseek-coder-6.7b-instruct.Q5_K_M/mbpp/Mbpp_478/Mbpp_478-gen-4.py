@@ -1,9 +1,5 @@
-def remove_lowercase(s):
-    res = ""
-    for i in range(len(s)):
-        if s[i].isupper():
-            res += s[i]
-    return res
 
-print(remove_lowercase("PYTHon"))
+def remove_lowercase(s):
+  return "".join(c for c in s if c.isupper())
+
 

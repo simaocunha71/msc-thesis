@@ -1,14 +1,10 @@
 
-```python
 import re
-
 def text_match_wordz(text):
-    pattern = 'z'
-    if re.search(pattern,  text):
+    patterns = 'z'
+    if re.search(patterns,  text):
         return True
     else:
         return False
 
-print(text_match_wordz("pythonz"))
-```
 

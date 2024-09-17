@@ -1,60 +1,25 @@
-def find_solution(a, b, n):
-    for x in range(n+1):
-        if (n - (a * x)) % b == 0:
-            return (x, (n - (a * x)) // b)
-    return None
 
-find_solution(2, 3, 7) # (2, 1)
+def find_solution(a: int, b: int, n: int) -> tuple:
+    if a == 0 and b == 0:
+        return None
+    if a == 0:
+        return (0, n)
+    if b == 0:
+        return (n, 0)
+    d = hcf(a, b)
+    a //= d
+    b //= d
+    if (n % d) != 0:
+        return None
+    n //= d
+    if a == 1:
+        return (n, 0)
+    if b == 1:
+        return (0, n)
+    if n <= 0:
+        return (None, None)
+    x = b // a
+    y = -a // b
+    return (n * x, n * y)
 
-"""
-def find_solution(a, b, n):
-    for x in range(n+1):
-        if (n - (a * x)) % b == 0:
-            return (x, (n - (a * x)) // b)
-    return None
-"""
 
-"""
-def find_solution(a, b, n):
-    if n % b == 0:
-        return (n // b, 0)
-    for x in range(n+1):
-        if (n - (a * x)) % b == 0:
-            return (x, (n - (a * x)) // b)
-    return None
-"""
-
-"""
-def find_solution(a, b, n):
-    for x in range(n + 1):
-        if n % b == (a * x) % b:
-            return (x, (n - (a * x)) // b)
-    return None
-"""
-
-"""
-def find_solution(a, b, n):
-    for x in range(n+1):
-        if (n - (a * x)) % b == 0:
-            return (x, (n - (a * x)) // b)
-    return None
-"""
-
-"""
-def find_solution(a, b, n):
-    for x in range(n+1):
-        if (n - (a * x)) % b == 0:
-            return (x, (n - (a * x)) // b)
-    return None
-"""
-
-"""
-def find_solution(a, b, n):
-    for x in range(n + 1):
-        if (n - (a * x)) % b == 0:
-            return (x, (n - (a * x)) // b)
-    return None
-"""
-
-"""
-def find

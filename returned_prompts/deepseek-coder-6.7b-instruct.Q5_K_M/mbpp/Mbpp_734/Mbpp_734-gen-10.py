@@ -1,30 +1,15 @@
-def sum_Of_Subarray_Prod(l):
-    n = len(l)
-    sum_ = 0
-    prod = 1
-    for i in range(n):
-        prod = 1
-        for j in range(i, n):
-            prod *= l[j]
-            sum_ += prod
-    return sum_
 
-print(sum_Of_Subarray_Prod([1,2,3]))
+def sum_Of_Subarray_Prod(arr): 
+    n = len(arr) 
+    prod = [0]*n 
+    sub_sum = [0]*n 
+    prod[0] = arr[0] 
+    sub_sum[0] = arr[0] 
+    res = arr[0] 
+    for i in range(1, n): 
+        prod[i] = max(arr[i], prod[i - 1] * arr[i]) 
+        sub_sum[i] = max(prod[i], sub_sum[i - 1] + arr[i]) 
+        res += sub_sum[i] 
+    return res 
 
 
-# Time complexity: O(n^2)
-# Space complexity: O(1)
-
-# Explanation:
-# For each element in the list, we find the product of sublists which include this element.
-# We keep adding these products to our total sum.
-# We repeat this process for every element in the list.
-# This way, we get the sum of all possible sublists.
-
-# Note: In the problem statement, the sublists are inclusive of the element at the end of the list,
-# so we start the inner loop at i rather than i+1.
-<jupyter_output>
-20
-<jupyter_text>
-Problem 3
-<jupyter_code>

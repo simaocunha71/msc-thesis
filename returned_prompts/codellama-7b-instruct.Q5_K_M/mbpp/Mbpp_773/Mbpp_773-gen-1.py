@@ -1,11 +1,9 @@
 
-def occurance_substring(string, substring):
-    if substring in string:
-        return substring, string.index(substring), len(substring)
-    return None
-
-
-
-
+def occurance_substring(string: str, substring: str) -> tuple:
+  occurrence = string.find(substring)
+  if occurrence == -1:
+      return None
+  else:
+      return (substring, occurrence)
 
 

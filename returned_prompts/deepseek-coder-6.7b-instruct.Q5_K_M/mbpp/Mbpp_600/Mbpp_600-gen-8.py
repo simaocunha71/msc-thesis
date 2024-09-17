@@ -1,14 +1,5 @@
 
-def is_Even(num):
-    if num % 2 == 0:
-        return True
-    else:
-        return False
+def is_Even(n):
+    return n % 2 == 0
 
-#Test cases
-print(is_Even(1)) #False
-print(is_Even(2)) #True
-print(is_Even(3)) #False
-print(is_Even(4)) #True
-print(is_Even(5)) #False
 

@@ -1,9 +1,8 @@
-def replace_specialchar(s):
-    for ch in ['.', ',', ' ']:
-        s = s.replace(ch, ':')
-    return s
 
-print(replace_specialchar('Python language, Programming language.'))
-
+def replace_specialchar(s: str) -> str:
+  special_chars = [' ', ',', '.']
+  for char in special_chars:
+    s = s.replace(char, ':')
+  return s
 
 

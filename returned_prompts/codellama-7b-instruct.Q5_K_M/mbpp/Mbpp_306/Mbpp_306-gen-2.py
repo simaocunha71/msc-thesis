@@ -1,7 +1,8 @@
 
-def max_sum_increasing_subseq(arr, i, k, n):
-    if i == n or k == i:
-        return 0
-    return max(arr[i] + max_sum_increasing_subseq(arr, i + 1, k, n), max_sum_increasing_subseq(arr, i + 1, k, n))
+def max_sum_increasing_subseq(arr, n, k, i):
+  max_sum = 0
+  for j in range(i+1, k+1):
+    max_sum = max(max_sum, arr[j] + max_sum_increasing_subseq(arr, n, k, j-1))
+  return max_sum
 
 

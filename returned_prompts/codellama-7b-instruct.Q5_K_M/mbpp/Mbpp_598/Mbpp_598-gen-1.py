@@ -1,10 +1,11 @@
+
 def armstrong_number(n):
-    temp = n
+    n = str(n)
     total = 0
-    while temp > 0:
-        total += (temp % 10) ** 3
-        temp //= 10
-    return total == n
-
-
+    for i in n:
+        total += int(i) ** 3
+    if total == n:
+        return True
+    else:
+        return False
 

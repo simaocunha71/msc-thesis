@@ -1,9 +1,5 @@
-def is_perfect(n):
-    sum = 0
-    for i in range(1, n):
-        if n % i == 0:
-            sum += i
-    return sum == n
 
-def filter_perfectnumbers(lst):
-   
+def filter_oddnumbers(nums):
+  return [num for num in nums if num % 2 != 0]
+
+

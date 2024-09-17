@@ -1,2 +1,5 @@
-def hexagonal_num(n):
-    return n * (n + 1)
+
+def hexagonal_num(n: int) -> int:
+  return int((n * (n + 1)) / 2)
+
+

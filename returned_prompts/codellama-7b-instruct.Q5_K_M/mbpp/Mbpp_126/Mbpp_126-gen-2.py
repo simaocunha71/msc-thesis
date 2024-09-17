@@ -1,6 +1,6 @@
-def sum(a,b):
-    return sum(i for i in range(1,min(a,b)+1) if a%i==0 and b%i==0)
 
-
+def sum(a, b):
+    divisors = set(range(1, min(a, b) + 1)).intersection(a, b)
+    return sum(divisors)
 
 

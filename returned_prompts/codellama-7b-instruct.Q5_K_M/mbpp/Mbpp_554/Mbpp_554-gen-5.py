@@ -1,1 +1,5 @@
-def Split(L): return [x for x in L if x%2]
+
+def Split(nums):
+    return [x for x in nums if x % 2 != 0]
+
+

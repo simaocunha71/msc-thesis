@@ -1,4 +1,8 @@
+
 def check_element(my_list, element):
-    return len(set(my_list)) == 1 and my_list[0] == element
+  if all(item == element for item in my_list):
+    return True
+  else:
+    return False
 
 

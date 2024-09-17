@@ -1,7 +1,8 @@
-```
+
 def check_type(my_tuple):
     if len(my_tuple) == 0:
         return True
     else:
-        return all(isinstance(i, type(my_tuple[0])) for i in my_tuple)
-```
+        return isinstance(my_tuple[0], type(my_tuple[1])) and check_type(my_tuple[1:])
+
+

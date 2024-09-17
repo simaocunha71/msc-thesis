@@ -1,4 +1,10 @@
-def interleave_lists(lists):
-    return [e for lst in lists for e in lst]
+
+def interleave_lists(list1,list2,list3):
+  result = []
+  for i,j,k in zip(list1,list2,list3):
+    result.append(i)
+    result.append(j)
+    result.append(k)
+  return result
 
 

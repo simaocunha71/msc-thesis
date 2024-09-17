@@ -1,14 +1,10 @@
 
-def test_three_equal(num1, num2, num3):
-    count = 0
-    if num1 == num2:
-        count += 1
-    if num2 == num3:
-        count += 1
-    if num1 == num3:
-        count += 1
-    return count
-
-print(test_three_equal(1,1,1)) # should return 3
+def test_three_equal(x, y, z):
+    if x==y==z:
+        return 3
+    elif x==y or y==z or z==x:
+        return 2
+    else:
+        return 0
 
 

@@ -1,6 +1,5 @@
+
 def remove_odd(s):
-    return s[1::2]
+  return "".join([s[i] for i in range(len(s)) if i % 2 == 0])
 
-print(remove_odd("python"))
 
-# ------------

@@ -1,6 +1,5 @@
 
-def and_tuples(t1, t2):
-    return tuple(x & y for x, y in zip(t1, t2))
+def and_tuples(tup1, tup2):
+  return tuple(a & b for a, b in zip(tup1, tup2))
 
-print(and_tuples((10, 4, 6, 9), (5, 2, 3, 3)))
 

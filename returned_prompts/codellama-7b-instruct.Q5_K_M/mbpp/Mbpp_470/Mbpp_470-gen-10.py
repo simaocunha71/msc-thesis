@@ -1,2 +1,5 @@
-def add_pairwise(t):
-    return tuple(i + j for i, j in zip(t, t[1:]))
+
+def add_pairwise(tup: tuple) -> tuple:
+    return tuple(a+b for a,b in zip(tup,tup[1:]))
+
+

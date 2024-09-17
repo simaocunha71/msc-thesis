@@ -1,2 +1,5 @@
-def sum_Natural_Numbers(n):
-    return (n * (n + 1)) //
+
+def first_Digit(num: int) -> int:
+  return int(str(num)[0])
+
+

@@ -1,5 +1,5 @@
-```python
-def is_sublist(main_list, sublist):
-    return sublist in main_list
-```
+
+def is_sublist(main_list: list, sub_list: list) -> bool:
+  return sub_list in main_list
+
 

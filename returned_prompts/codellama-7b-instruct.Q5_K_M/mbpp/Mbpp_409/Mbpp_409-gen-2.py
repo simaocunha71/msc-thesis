@@ -1,4 +1,5 @@
 
-def min_product_tuple(tuple_list):
-    return min(map(lambda x: x[0] * x[1], tuple_list))
+def min_product_tuple(tup_list: list) -> int:
+  return min([x*y for x,y in tup_list])
+
 

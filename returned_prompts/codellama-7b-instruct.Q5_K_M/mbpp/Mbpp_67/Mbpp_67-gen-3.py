@@ -1,7 +1,8 @@
-"""
+
 def bell_number(n):
-    if n==0: return 1
-    if n==1: return 1
-    if n==2: return 2
-    return bell_number(n-1)+bell_number(n-2)
-"""
+    if n == 0:
+        return 1
+    else:
+        return sum(bell_number(i) * bell_number(n-i-1) for i in range(n))
+
+

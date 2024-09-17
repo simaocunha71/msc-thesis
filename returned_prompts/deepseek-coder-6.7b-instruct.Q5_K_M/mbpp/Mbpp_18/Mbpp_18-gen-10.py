@@ -1,11 +1,5 @@
-def remove_dirty_chars(str1, str2):
-    for i in str2:
-        str1 = str1.replace(i, '')
-    return str1
 
-print(remove_dirty_chars("probasscurve", "pros"))
+def remove_dirty_chars(s1: str, s2: str) -> str:
+  return ''.join([char for char in s1 if char not in s2])
 
-# Output: 'bacuve'
-
-# ---------
 

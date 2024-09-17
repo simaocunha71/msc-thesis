@@ -1,3 +1,9 @@
-def sum_digits(n):
-    return sum(int(x) for x in str(n))
+
+def sum_digits(n: int) -> int:
+  sum = 0
+  while n > 0:
+    sum += n % 10
+    n //= 10
+  return sum
+
 

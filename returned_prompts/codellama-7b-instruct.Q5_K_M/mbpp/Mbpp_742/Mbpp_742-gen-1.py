@@ -1,9 +1,7 @@
 
-def area_tetrahedron(a):
-    return (6*a**2)**(1/2)/3
-
-
-
-
+from math import sqrt
+def area_tetrahedron(side_length: float) -> float:
+  area = (3 * sqrt(2)) / 2 * pow(side_length, 2)
+  return area
 
 

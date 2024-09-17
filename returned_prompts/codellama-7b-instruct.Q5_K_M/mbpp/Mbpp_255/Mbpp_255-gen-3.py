@@ -1,6 +1,7 @@
-import itertools
-def combinations_colors(colors, n):
-    return [tuple(i) for i in itertools.combinations(colors, n)]
 
+import itertools
+def combinations_colors(colors,n):
+  combos = list(itertools.combinations_with_replacement(colors, n))
+  return list(map(tuple, combos))
 
 

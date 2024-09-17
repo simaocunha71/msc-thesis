@@ -1,15 +1,8 @@
-"""
-def check_monthnumb_number(month):
-    """
-    Check if the given month number contains 31 days or not.
-    """
-    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    month_index = months.index(month)
-    if month_index in [0, 2, 4, 6, 7, 9, 11]:
-        return True
-    else:
-        return False
+
+def check_monthnumb_number(month_num: int) -> bool:
+  if month_num in [1, 3, 5, 7, 8, 10, 12]:
+    return True
+  else:
+    return False
 
 
-# Tests
-assert check_monthnumb_number("May") ==

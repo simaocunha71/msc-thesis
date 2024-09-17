@@ -1,11 +1,11 @@
 
-```
+import re
 def find_adverb_position(sentence):
-    adverbs = ['quickly', 'quick', 'fast', 'soon', 'clearly', 'well', 'badly', 'good', 'goodly', 'goodness', 'well', 'well', 'well']
-    for i, word in enumerate(sentence.split()):
-        if word in adverbs:
-            return i, len(word), word
-    return -1, -1, 'NA'
-```
+    pattern = r'\b(clearly|well|good|better|best|well|surely|pretty|simply|enough|quite|fairly|seemingly|apparently|obviously|basically|initially|initially)\b'
+    found = re.search(pattern,sentence)
+    if found:
+        return found.start(),found.end(),found[0]
+    else:
+        return None
 
 

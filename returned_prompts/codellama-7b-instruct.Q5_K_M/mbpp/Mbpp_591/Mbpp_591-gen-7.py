@@ -1,7 +1,9 @@
-def swap_List(my_List):
-    first = my_List[0]
-    last = my_List[-1]
-    my_List[0] = last
-    my_List[-1] = first
-    return my_List
+
+def swap_List(my_list: list) -> list:
+  first_element = my_list[0]
+  last_element = my_list[-1]
+  my_list[0] = last_element
+  my_list[-1] = first_element
+  return my_list
+
 

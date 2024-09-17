@@ -1,12 +1,12 @@
-def count_substring(s, sub):
-    count = start = 0
-    while start < len(s):
-        pos = s.find(sub, start)
-        if pos != -1:
-            start = pos + 1
-            count += 1
-        else:
-            break
-    return count
 
-print(count_substring("Hello World
+def second_largest(nums):
+    m1 = m2 = float('-inf')
+    for x in nums:
+        if x > m1:
+            m2 = m1
+            m1 = x
+        elif x > m2 and x != m1:
+            m2 = x
+    return m2
+
+

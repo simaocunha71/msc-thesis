@@ -1,9 +1,11 @@
-def get_coordinates(coord):
-    x, y = coord
-    coords = []
-    for i in range(1, 4):
-        for j in range(1, 4):
-            coords.append([x + i - 1, y + j - 1])
-    return coords
+
+def get_coordinates(coord: tuple) -> list:
+  x, y = coord
+  coord_list = []
+  for i in range(x-1, x+2):
+    for j in range(y-1, y+2):
+      if i != x or j != y:
+        coord_list.append([i, j])
+  return coord_list
 
 

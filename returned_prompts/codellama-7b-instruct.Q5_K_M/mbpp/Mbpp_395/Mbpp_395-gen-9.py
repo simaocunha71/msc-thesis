@@ -1,7 +1,9 @@
-```
-def first_non_repeating_character(string):
-    for char in string:
-        if string.count(char) == 1:
-            return char
-    return None
-```
+
+def first_non_repeating_character(s: str) -> str:
+  for i in range(len(s)):
+    if s[i] in s[i+1:]:
+      continue
+    else:
+      return s[i]
+
+

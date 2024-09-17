@@ -1,2 +1,7 @@
-def remove_dirty_chars(str1, str2):
-    return ''.join([i for i in str1 if i not in str2])
+
+def remove_dirty_chars(str1: str, str2: str) -> str:
+    for char in str2:
+        str1 = str1.replace(char, "")
+    return str1
+
+

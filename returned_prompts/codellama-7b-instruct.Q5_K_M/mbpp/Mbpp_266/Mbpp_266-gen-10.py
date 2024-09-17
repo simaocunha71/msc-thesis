@@ -1,2 +1,5 @@
-def lateralsurface_cube(side):
-    return 6 * side ** 2
+
+def lateralsurface_cube(s):
+    return 6 * s**2
+
+

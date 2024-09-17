@@ -1,7 +1,5 @@
 
-def big_sum(arr):
-    return max(arr) + min(arr)
+def big_sum(nums):
+  return nums[0] + nums[-1]
 
-assert big_sum([1,2,3]) == 4
 
-"""

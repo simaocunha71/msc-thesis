@@ -1,5 +1,8 @@
-def insert_element(lst, ele):
-    return [ele] * (len(lst) * 2 - 1) + lst
 
-print(insert_element(['Red', 'Green', 'Black'], 'c'))
+def insert_element(lst, elem):
+  res = []
+  for i in lst:
+    res.extend([elem, i])
+  return res[:-1]
+
 

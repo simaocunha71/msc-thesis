@@ -1,7 +1,5 @@
-```
-def check_greater(arr, num):
-    for i in arr:
-        if i >= num:
-            return True
-    return False
-```
+
+def check_greater(arr, n):
+  return all(i > n for i in arr)
+
+

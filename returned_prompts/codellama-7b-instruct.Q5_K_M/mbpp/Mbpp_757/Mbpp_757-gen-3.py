@@ -1,8 +1,10 @@
-def count_reverse_pairs(my_list):
-    count = 0
-    for i in range(len(my_list)):
-        for j in range(i, len(my_list)):
-            if my_list[i][::-1] == my_list[j]:
-                count += 1
-    return count
+
+def count_reverse_pairs(str_list: list) -> int:
+  count = 0
+  for str1 in str_list:
+    for str2 in str_list:
+      if str1 == str2[::-1]:
+        count += 1
+  return count
+
 

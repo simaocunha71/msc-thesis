@@ -1,4 +1,5 @@
+
 def test_duplicate(arr):
-    return len(arr) != len(set(arr))
+  return len(set(arr)) < len(arr)
 
 

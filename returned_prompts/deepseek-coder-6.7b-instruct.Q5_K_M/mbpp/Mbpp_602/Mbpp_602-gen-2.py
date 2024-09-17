@@ -1,12 +1,8 @@
+
 def first_repeated_char(s):
-    seen = set()
-    for char in s:
-        if char in seen:
-            return char
-        seen.add(char)
-    return None
+  for char in s:
+    if s.count(char) > 1:
+      return char
+  return None
 
-print(first_repeated_char("abcabc"))
-
-# Output: "a"
 

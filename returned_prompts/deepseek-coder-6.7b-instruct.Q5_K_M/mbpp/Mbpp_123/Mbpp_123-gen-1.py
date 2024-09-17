@@ -1,28 +1,20 @@
 
-def divisors(n):
-    divs = [1]
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
-            if n // i == i:
-                divs.append(i)
+def amicable_numbers_sum(n):
+    def sum_divisors(num):
+        sum = 1
+        for i in range(2, int(num**0.5) + 1):
+            if num % i:
+                continue
+            elif i * i != num:
+                sum = sum + i + num // i
             else:
-                divs.extend([i, n // i])
-    return divs
+                sum = sum + i
+        return sum
 
-def amicable_numbers_sum(limit):
-    numbers = [0] * (limit+1)
-    for i in range(1, limit+1):
-        numbers[i] = sum(divisors(i))
-    return sum(i for i in range(1, limit+1) if i < numbers[i] and numbers[numbers[i]] == i)
+    amicable_nums_sum = 0
+    for i in range(1, n + 1):
+        if i == sum_divisors(sum_divisors(i)) and i != sum_divisors(i):
+            amicable_nums_sum += i
+    return amicable_nums_sum
 
-print(amicable_mbumbers_sum(999)) # 504
 
-"""
-The function `divisors(n)` calculates all divisors of `n`.
-The function `amicable_numbers_sum(limit)` calculates all amicable numbers from 1 to `limit`.
-"""
-<jupyter_output>
-<empty_output>
-<jupyter_text>
-**Question 2:**Write a Python function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string "".
-<jupyter_code>

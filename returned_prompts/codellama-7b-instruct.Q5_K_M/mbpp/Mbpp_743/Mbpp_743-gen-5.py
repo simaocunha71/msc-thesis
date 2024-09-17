@@ -1,4 +1,5 @@
-"""
-def rotate_right(lst, n=1):
-    return lst[-n:] + lst[:-n]
-"""
+
+def rotate_right(my_list,n):
+    return my_list[-n:] + my_list[:-n]
+
+

@@ -1,8 +1,8 @@
-"""
-def opposite_Signs(a, b):
-    if (a > 0 and b < 0) or (a < 0 and b > 0):
-        return True
-    else:
-        return False
-"""
+
+def opposite_Signs(n: int,m: int) -> bool:
+  if n*m > 0:
+    return True
+  else:
+    return False
+
 

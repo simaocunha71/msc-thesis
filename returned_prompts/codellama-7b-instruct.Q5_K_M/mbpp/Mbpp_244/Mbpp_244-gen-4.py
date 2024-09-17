@@ -1,8 +1,12 @@
-def next_Perfect_Square(n):
-    """
-    :param n: the given number
-    :return: the next perfect square greater than n
-    """
-    while n ** 0.5 % 1 != 0:
+
+def next_Perfect_Square(n: int) -> int:
+    n = n + 1
+    while not is_Perfect_Square(n):
         n += 1
     return n
+
+def is_Perfect_Square(n: int) -> bool:
+    x = n**0.5
+    return x == int(x)
+
+

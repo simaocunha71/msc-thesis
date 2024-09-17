@@ -1,7 +1,9 @@
-"""
+
 def cummulative_sum(tuple_list):
-    total = 0
-    for t in tuple_list:
-        total += sum(t)
-    return total
-"""
+  result = 0
+  for t in tuple_list:
+    for i in t:
+      result += i
+  return result
+
+

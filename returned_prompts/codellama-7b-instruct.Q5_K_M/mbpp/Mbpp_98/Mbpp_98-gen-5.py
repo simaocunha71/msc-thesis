@@ -1,7 +1,9 @@
-def multiply_num(my_list):
-    my_list_product = 1
-    for num in my_list:
-        my_list_product *= num
-    return my_list_product / len(my_list)
+
+from functools import reduce
+from typing import List
+from math import prod
+
+def multiply_num(nums: List) -> float:
+    return prod(nums) / len(nums)
 
 

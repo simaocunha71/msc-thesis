@@ -1,8 +1,10 @@
-```python
-def find_combinations(my_tuple_list):
-    combinations = []
-    for i in range(len(my_tuple_list)):
-        for j in range(i+1, len(my_tuple_list)):
-            combinations.append((my_tuple_list[i][0] + my_tuple_list[j][0], my_tuple_list[i][1] + my_tuple_list[j][1]))
-    return combinations
-```
+
+def find_combinations(num_pairs: tuple) -> tuple:
+  combinations = []
+  for i in range(len(num_pairs)):
+    for j in range(i+1, len(num_pairs)):
+      combinations.append((num_pairs[i][0] + num_pairs[j][0], num_pairs[i][1] + num_pairs[j][1]))
+      combinations.append((num_pairs[j][0] + num_pairs[i][0], num_pairs[j][1] + num_pairs[i][1]))
+  return tuple(set(combinations))
+
+

@@ -1,0 +1,5 @@
+```
+def sum_range_list(lst, start, end):
+    return sum(lst[start:end+1])
+```
+This function takes a list and two indices as input, and returns the sum of the elements in the list within the range specified by the indices. The `start` index is inclusive, and the `end` index is exclusive. For example, `sum_range_list([2,1,5,6,8,3,4,9,10,11,8,12], 8, 10)` would return `29`, which is the sum of the elements at indices 8, 9, and 10. The unit test provided in the problem statement verifies this behavior. The function uses Python's built-in `sum` function to calculate the sum of the elements in the specified range. The `start` index is used to slice the list, and the `end` index is incremented by 1 to make it exclusive. The `sum` function then adds up the elements in the sliced list and returns the result.

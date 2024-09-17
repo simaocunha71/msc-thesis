@@ -1,19 +1,8 @@
-"""
+
 def find_first_occurrence(arr, num):
-    left = 0
-    right = len(arr) - 1
+    for i in range(len(arr)):
+        if arr[i] == num:
+            return i
+    return -1
 
-    while left <= right:
-        mid = (left + right) // 2
-        if arr[mid] == num:
-            right = mid - 1
-        elif arr[mid] > num:
-            right = mid - 1
-        else:
-            left = mid + 1
 
-    if left < len(arr) and arr[left] == num:
-        return left
-    else:
-        return -1
-"""

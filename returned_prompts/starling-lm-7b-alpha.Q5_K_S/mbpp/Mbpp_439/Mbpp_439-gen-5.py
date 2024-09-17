@@ -1,5 +1,5 @@
-```
-def multiple_to_single(num_list):
-    return int(''.join(map(str, num_list)))
-```
+
+def multiple_to_single(nums:list)->int:
+  return int(''.join(map(str,nums)))
+
 

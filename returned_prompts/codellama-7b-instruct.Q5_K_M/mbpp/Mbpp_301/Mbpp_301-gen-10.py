@@ -1,4 +1,9 @@
-"""
-def dict_depth(my_dict):
-    return len(my_dict) if not isinstance(my_dict, dict) else 1 + max(dict_depth(v) for v in my_dict.values())
-"""
+
+def dict_depth(my_dict: dict):
+  max_depth = 0
+  for key, value in my_dict.items():
+    if isinstance(value, dict):
+      max_depth = max(max_depth, dict_depth(value) + 1)
+  return max_depth
+
+

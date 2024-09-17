@@ -1,12 +1,6 @@
-def snake_to_camel(s):
-    words = s.split("_")
-    return "".join(word.title() for word in words)
 
-print(snake_to_camel('python_program'))
+def snake_to_camel(snake_str):
+    components = snake_str.split('_')
+    return ''.join(x.title() for x in components)
 
-#Output: PythonProgram
-<jupyter_output>
-PythonProgram
-<jupyter_text>
-3. Write a Python program to remove all the occurences of a specific item from a list.
-<jupyter_code>
+

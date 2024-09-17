@@ -1,6 +1,5 @@
-def last_Digit(num):
-    return num%10
 
-print(last_Digit(123))
+def last_Digit(n):
+    return n%10
 
-#Test case 2
+

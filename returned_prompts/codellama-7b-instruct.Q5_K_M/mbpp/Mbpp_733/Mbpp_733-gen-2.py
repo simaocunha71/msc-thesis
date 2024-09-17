@@ -1,4 +1,4 @@
-"""
+
 def find_first_occurrence(arr, num):
     low = 0
     high = len(arr) - 1
@@ -11,4 +11,5 @@ def find_first_occurrence(arr, num):
         else:
             high = mid - 1
     return -1
-"""
+
+

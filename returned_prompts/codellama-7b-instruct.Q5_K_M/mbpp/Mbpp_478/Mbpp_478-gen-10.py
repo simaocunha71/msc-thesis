@@ -1,4 +1,9 @@
-```python
-def remove_lowercase(string):
-    return "".join([char for char in string if char.isupper()])
-```
+
+def remove_lowercase(s):
+  new_str = ""
+  for i in range(len(s)):
+    if s[i].isupper():
+      new_str += s[i]
+  return new_str
+
+

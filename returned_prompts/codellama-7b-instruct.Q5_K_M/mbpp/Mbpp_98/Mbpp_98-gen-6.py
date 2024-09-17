@@ -1,13 +1,10 @@
-```
-from math import isnan
 
-def multiply_num(my_list):
-    if not my_list:
-        return 0
-    result = 1
-    for num in my_list:
-        result *= num
-    if isnan(result):
-        return 0
-    return result / len(my_list)
-```
+from functools import reduce
+from itertools import product
+from operator import mul
+from math import prod
+
+def multiply_num(nums):
+  return reduce(mul, nums, 1) / len(nums)
+
+

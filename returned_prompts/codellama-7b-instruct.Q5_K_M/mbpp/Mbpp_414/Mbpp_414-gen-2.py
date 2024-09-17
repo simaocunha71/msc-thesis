@@ -1,4 +1,5 @@
-```
-def overlapping(seq1, seq2):
-    return any(i in seq2 for i in seq1)
-```
+
+def overlapping(list1, list2):
+  return any(x in list2 for x in list1)
+
+

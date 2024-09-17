@@ -1,6 +1,5 @@
 
-def max_aggregate(tuples):
-    return max(tuples, key=lambda x: x[1])
-
+def max_aggregate(test_list):
+  return max(test_list, key=lambda x: x[1])
 
 

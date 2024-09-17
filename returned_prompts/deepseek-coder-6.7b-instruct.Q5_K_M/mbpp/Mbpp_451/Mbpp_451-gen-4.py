@@ -1,9 +1,5 @@
-def remove_whitespaces(string):
-    return string.replace(' ', '')
 
-print(remove_whitespaces(' Google    Flutter '))
-
-# Output: 'GoogleFlutter'
-
+def remove_whitespaces(s: str) -> str:
+  return s.replace(' ', '')
 
 

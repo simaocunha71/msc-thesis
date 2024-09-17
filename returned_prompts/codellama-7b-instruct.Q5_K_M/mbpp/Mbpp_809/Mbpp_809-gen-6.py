@@ -1,5 +1,10 @@
 
-```
-def check_smaller(tup1, tup2):
-    return all(tup1[i] < tup2[i] for i in range(len(tup1)))
-```
+def check_smaller(t1, t2):
+    if len(t1) != len(t2):
+        return False
+    for i in range(len(t1)):
+        if t1[i] < t2[i]:
+            return False
+    return True
+
+

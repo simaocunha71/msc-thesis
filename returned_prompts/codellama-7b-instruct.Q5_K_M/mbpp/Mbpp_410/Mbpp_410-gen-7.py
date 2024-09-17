@@ -1,4 +1,6 @@
-"""
+
 def min_val(my_list):
-    return min(my_list)
-"""
+  minimum = min(my_list)
+  return minimum
+
+

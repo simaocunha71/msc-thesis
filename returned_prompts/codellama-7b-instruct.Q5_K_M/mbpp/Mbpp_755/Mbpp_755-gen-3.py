@@ -1,4 +1,6 @@
+
 def second_smallest(my_list):
-    return sorted(my_list)[1]
+  sorted_list = sorted(my_list)
+  return sorted_list[1]
 
 

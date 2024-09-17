@@ -1,11 +1,5 @@
-"""
-def is_lower(string):
-    return string.lower()
 
-def test_is_lower():
-    assert is_lower("InValid") == "invalid"
-    print("All tests passed!")
+def is_lower(s):
+    return s.lower()
 
-test_is_lower()
-"""
 

@@ -1,14 +1,6 @@
-"""
-Here is a simple solution using Python:
 
-def text_lowercase_underscore(s):
-    # Split the string into words
-    words = s.split('_')
+import re
+def text_lowercase_underscore(text):
+    return bool(re.search(r'[a-z]+_[a-z]+', text))
 
-    # Check if all words are lowercase
-    return all(word.islower() for word in words)
-
-# Test the function
-print(text_lowercase_underscore("aab_cbbbc")) # Should print True
-"""
 

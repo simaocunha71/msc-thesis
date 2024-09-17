@@ -1,17 +1,13 @@
-def max_run_uppercase(s):
-    upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    count, max_count = 0, 0
-    for char in s:
-        if char in upper:
-            count += 1
-            max_count = max(max_count, count)
-        else:
-            count = 0
-    return max_count
 
-print(max_run_uppercase('GeMKSForGERksISBESt'))
-<jupyter_output>
-5
-<jupyter_text>
-Q2.
-<jupyter_code>
+def max_run_uppercase(s):
+  current = 0
+  max_run = 0
+  for c in s:
+    if c.isupper():
+      current += 1
+      max_run = max(max_run, current)
+    else:
+      current = 0
+  return max_run
+
+

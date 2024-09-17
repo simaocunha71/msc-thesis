@@ -1,19 +1,14 @@
-"""
-def comb_sort(lst):
-    gap = len(lst)
-    shrink = 1.3
-    sorted = False
 
-    while not sorted:
-        gap = int(gap / shrink)
-        if gap <= 1:
-            gap = 1
-            sorted = True
-        for i in range(len(lst) - gap):
-            if lst[i] > lst[i + gap]:
-                lst[i], lst[i + gap] = lst[i + gap], lst[i]
-    return lst
-"""
+def comb_sort(arr):
+    gap = len(arr)
+    swapped = True
+    while gap != 1 or swapped:
+        gap = max(1, int(gap / 1.3))  
+        swapped = False
+        for i in range(len(arr) - gap):
+            if arr[i] > arr[i + gap]:
+                arr[i], arr_[i + gap] = arr[i + gap], arr[i]
+                swapped = True
+    return arr
 
-# Task 2:
 

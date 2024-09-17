@@ -1,11 +1,13 @@
 
-import re
+def reverse_vowels(s: str) -> str:
+  vowels = 'aeiou'
+  rev_vowels = vowels[::-1]
+  rev_str = ''
+  for c in s:
+    if c in rev_vowels:
+      rev_str += rev_vowels[vowels.index(c)]
+    else:
+      rev_str += c
+  return rev_str
 
 
-def reverse_vowels(input_string):
-    vowels = re.findall(r"[aeiou]", input_string)
-    vowels.reverse()
-    for i, vowel in enumerate(vowels):
-        input_string = input_string.replace(vowel, "", 1)
-        input_string = vowel + input_string
-    return input_string

@@ -1,12 +1,9 @@
-def max_Abs_Diff(lst):
-    if len(lst)<2:
-        return "List should have at least two elements"
-    else:
-        max_dif=0
-        for i in range(len(lst)):
-            for j in range(i+1,len(lst)):
-                max_dif=max(max_dif,abs(lst[i]-lst[j]))
-        return max_dif
 
-# assert max_Abs_Diff((2,1,5,3)) == 4
+def max_Abs_Diff(arr):
+    diff = 0
+    for i in range(len(arr)-1):
+        for j in range(i+1,len(arr)):
+            diff = max(diff,abs(arr[i]-arr[j]))
+    return diff
+
 

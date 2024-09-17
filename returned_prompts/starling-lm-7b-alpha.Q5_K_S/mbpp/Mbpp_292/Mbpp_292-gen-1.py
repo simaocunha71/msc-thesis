@@ -1,5 +1,5 @@
-```
-def find(a,b):
-    return a//b
-```
+
+def find(n: int, d: int) -> int:
+  return n // d
+
 

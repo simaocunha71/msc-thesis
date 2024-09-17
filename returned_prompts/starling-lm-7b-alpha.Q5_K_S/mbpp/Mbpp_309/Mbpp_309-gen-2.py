@@ -1,42 +1,5 @@
-def maximum(a,b):
-    if(a>b):
-        return a
-    else:
-        return b
+
+def maximum(a, b):
+    return a if a > b else b
 
 
-# Driver code
-print(maximum(5,10))
-
-
-
-
-
-
-
-
-```
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-```

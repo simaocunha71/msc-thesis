@@ -1,10 +1,8 @@
 
-def return_sum(my_dict):
-    sum = 0
-    for key, value in my_dict.items():
-        sum += value
-    return sum
-
-
+def return_sum(my_dict: dict) -> int:
+    total = 0
+    for value in my_dict.values():
+        total += value
+    return total
 
 

@@ -1,11 +1,6 @@
 
+from collections import Counter
 def freq_count(lst):
-    freqs = {}
-    for i in lst:
-        if i in freqs:
-            freqs[i] += 1
-        else:
-            freqs[i] = 1
-    return freqs
+  return dict(Counter(lst))
 
-print(freq_count([10,10,10,10,20,20,20,20,40,40,50,50,
+

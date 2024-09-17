@@ -1,10 +1,11 @@
-"""
-def max_length(list_of_lists):
-    return max(list_of_lists, key=len)
-"""
 
-# assert max_length([[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]])==(3, [13, 15, 17])
+def max_length(list_of_list):
+  max_len = 0
+  max_list = []
+  for l in list_of_list:
+    if len(l) > max_len:
+      max_len = len(l)
+      max_list = l
+  return (max_len, max_list)
 
-# print(max_length([[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]]))
 
-# 

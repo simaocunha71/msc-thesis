@@ -1,25 +1,7 @@
-def sort_sublists(l):
-    """
-    >>> sort_sublists((["green", "orange"], ["black", "white"], ["white", "black", "orange"]))
-    [['green', 'orange'], ['black', 'white'], ['black', 'orange', 'white']]
-    >>> sort_sublists((["white", "black"], ["green", "orange"], ["white", "black", "orange"]))
-    [['black', 'green', 'orange'], ['white', 'white', 'black', 'orange']]
-    """
-    if not l:
-        return []
-    if type(l[0]) == str:
-        return [sorted(l)]
-    else:
-        for i in range(len(l)):
-            l[i] = sort_sublists(l[i])
-        return sorted(l)
+
+def sort_sublists(sub_lists):
+    for sub_list in sub_lists:
+        sub_list.sort()
+    return sub_lists
 
 
-# Made By Mostafa_Khaled
-```
-    
-
-# Made By Mostafa_Khaled
-```
-
-```

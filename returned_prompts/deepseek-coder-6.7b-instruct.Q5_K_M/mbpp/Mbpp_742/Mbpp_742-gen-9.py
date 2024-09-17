@@ -1,8 +1,6 @@
 
-def area_tetrahedron(side):
-    import math
-    return math.sqrt(3) * side ** 2
+import math
+def area_tetrahedron(edge):
+  return math.sqrt(3)*(edge**2)
 
-print(area_tetrahedron(3))  # 15.588457268119894
 
-# 2.

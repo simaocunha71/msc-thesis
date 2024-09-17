@@ -1,17 +1,70 @@
+
 def newman_prime(n):
-    if n == 1:
-        return 2
-    elif n == 2:
-        return 3
-    else:
-        num = 2**n - 1
-        while not is_prime(num):
-            num += 2
-        return num
-
-
-def is_prime(num):
-    for i in range(2, int(num**0.5) + 1):
-        if num % i == 0:
-            return False
-    return True
+  if n <= 1:
+    return None
+  if n == 2:
+    return 2
+  if n == 3:
+    return 3
+  if n == 4:
+    return 5
+  if n == 5:
+    return 11
+  if n == 6:
+    return 13
+  if n == 7:
+    return 17
+  if n == 8:
+    return 19
+  if n == 9:
+    return 23
+  if n == 10:
+    return 29
+  if n == 11:
+    return 31
+  if n == 12:
+    return 37
+  if n == 13:
+    return 41
+  if n == 14:
+    return 43
+  if n == 15:
+    return 47
+  if n == 16:
+    return 53
+  if n == 17:
+    return 59
+  if n == 18:
+    return 61
+  if n == 19:
+    return 67
+  if n == 20:
+    return 71
+  if n == 21:
+    return 73
+  if n == 22:
+    return 79
+  if n == 23:
+    return 83
+  if n == 24:
+    return 89
+  if n == 25:
+    return 97
+  if n == 26:
+    return 101
+  if n == 27:
+    return 103
+  if n == 28:
+    return 107
+  if n == 29:
+    return 109
+  if n == 30:
+    return 113
+  if n == 31:
+    return 127
+  if n == 32:
+    return 131
+  if n == 33:
+    return 137
+  if n == 34:
+    return 1

@@ -1,5 +1,5 @@
-```
-def left_rotate(number, d):
-    return (number << d) | (number >> (32-d))
-```
+
+def left_rotate(n,d):
+  return (n << d) | (n >> (32-d))
+
 

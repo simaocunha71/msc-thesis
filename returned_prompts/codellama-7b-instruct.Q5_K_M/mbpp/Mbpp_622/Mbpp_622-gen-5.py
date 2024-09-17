@@ -1,12 +1,9 @@
-"""
-def get_median(list1, list2, length):
-    # Find the middle indexes
-    index1 = length // 2
-    index2 = length // 2 - 1
 
-    # Find the medians
-    median1 = (list1[index1] + list1[index1 - 1]) / 2
-    median2 = (list2[index2] + list2[index2 - 1]) / 2
+def get_median(list1, list2, size):
+  list_sum = 0
+  for i in range(size):
+    list_sum += list1[i] + list2[i]
+  median = list_sum / (2 * size)
+  return median
 
-    return (median1 + median2) / 2
-"""
+

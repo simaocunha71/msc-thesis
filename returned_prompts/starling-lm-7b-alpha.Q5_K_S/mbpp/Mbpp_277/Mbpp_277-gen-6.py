@@ -1,3 +1,5 @@
-def dict_find(d, key):
-    if key in d:
-        return d[key]
+
+def dict_filter(d: dict, n: int) -> dict:
+  return {k: v for k, v in d.items() if v >= n}
+
+

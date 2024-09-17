@@ -1,0 +1,5 @@
+```
+def extract_nth_element(tuples_list, n):
+    return [tuples_list[i][0] for i in range(n+1)]
+```
+The function `extract_nth_element` takes two parameters: `tuples_list` and `n`. It returns a list of the first elements of the tuples in `tuples_list`, up to but not including the `n`th tuple. The `range(n+1)` is used to ensure that the loop goes up to `n`, not `n-1`. The list comprehension `[tuples_list[i][0] for i in range(n+1)]` is used to extract the first element of each tuple in the range. If `n` is 0, the function returns the first element of the list, which is the first tuple. If `n` is 1, the function returns the first two elements of the list, which are the first two tuples, and so on. The unit test `assert extract_nth_element([('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)] ,0)==['Greyson Fulton', 'Brady Kent', 'Wyatt Knott', 'Beau Turnbull']` shows that the function should return all elements in the list when `n` is 0. 

@@ -1,19 +1,15 @@
-def find_length(binary_string: str) -> int:
+
+def find_length(s: str) -> int:
     max_diff = 0
-    current_diff = 0
-    for char in binary_string:
+    count_zero = count_one = 0
+    for char in s:
         if char == '0':
-            current_diff -= 1
+            count_zero += 1
         else:
-            current_diff += 1
-        if current_diff > max_diff:
-            max_diff = current_diff
+            count_one += 1
+        diff = count_zero - count_one
+        if diff > max_diff:
+            max_diff = diff
     return max_diff
 
-assert find_length("11000010001") == 6
-"""
-Explanation:
-The maximum difference occurs between the strings "110000" and "001" (the substrings where we have 2 zeros and 1 one).
-"""
 
-"""

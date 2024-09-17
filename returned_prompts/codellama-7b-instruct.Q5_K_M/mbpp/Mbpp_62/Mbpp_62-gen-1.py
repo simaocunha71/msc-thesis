@@ -1,2 +1,5 @@
-def smallest_num(my_list):
-    return min(my_list)
+
+def smallest_num(nums):
+  return min(nums)
+
+

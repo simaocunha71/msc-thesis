@@ -1,7 +1,6 @@
-def reverse_string(string):
-    return string[::-1]
 
-assert reverse_string("Hello World") == "dlroW olleH"
+def check_monthnumber_number(month):
+    thirty_days_months = [4, 6, 9, 11]
+    return month in thirty_days_months
 
-"""
-Write a function to check whether the given string is palind
+

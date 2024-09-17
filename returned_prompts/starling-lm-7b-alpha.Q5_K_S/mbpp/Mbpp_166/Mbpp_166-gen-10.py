@@ -1,5 +1,10 @@
-```
-def find_even_pair(arr):
-    return len([i for i in arr if (i^i)%2==0])
-```
-    
+
+def find_even_pair(nums:list) -> int:
+    count = 0
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if (nums[i] ^ nums[j]) % 2 == 0:
+                count += 1
+    return count
+
+

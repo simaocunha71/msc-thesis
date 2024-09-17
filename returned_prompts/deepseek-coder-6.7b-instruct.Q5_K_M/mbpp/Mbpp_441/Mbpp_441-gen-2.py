@@ -1,1 +1,5 @@
-def volume_cylinder(
+
+def surfacearea_cube(side):
+  return 6 * side ** 2
+
+

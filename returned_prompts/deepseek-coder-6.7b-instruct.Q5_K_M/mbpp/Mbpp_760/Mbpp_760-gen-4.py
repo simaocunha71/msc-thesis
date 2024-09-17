@@ -1,8 +1,5 @@
-def vowels(s):
-    return sum(1 for char in s if char.lower() in 'aeiou')
 
-print(vowels("hello world")) # Returns: 3
+def unique_Element(lst):
+    return len(set(lst)) <= 1
 
-"""
-Write a Python function that takes a string and returns a string with the words in reverse order.
-assert
+

@@ -1,9 +1,6 @@
-"""
-def polar_rect(r, theta):
-    x = r * math.cos(theta)
-    y = r * math.sin(theta)
-    return (x, y)
 
-print(polar_rect(3, 4))
-"""
+import cmath
+def polar_rect(r, theta):
+  return cmath.rect(r*cmath.cos(theta), r*cmath.sin(theta)), cmath.exp(1j*theta)
+
 

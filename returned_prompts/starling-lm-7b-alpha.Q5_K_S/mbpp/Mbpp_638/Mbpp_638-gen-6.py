@@ -1,17 +1,6 @@
-```
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Nov 23 15:58:50 2019
 
-@author: Karthik
-"""
+def wind_chill(wind_kmph, temp_c):
+    wind_chill_index = 13.12 + 0.63 * temp_c - 11.37 * wind_kmph**0.16 + 0.39 * temp_c * wind_kmph**0.16
+    return round(wind_chill_index)
 
-def wind_chill(wind_velocity, temp):
-    wc = 35.74 + 0.6215*temp - 35.75*((10**0.16 + 0.4275*temp)**0.16) + 0.4275*temp*(10**0.16)
-    if wc<0:
-        wc = 0
-    else:
-        wc = int(wc + 0.5)
-    return wc
-```
 

@@ -1,7 +1,5 @@
-"""
-def surface_Area(base, height):
-    return 2 * base * height + (base ** 2)
 
-print(surface_Area(3,4))
-"""
+def surface_Area(edge, height):
+  return (edge ** 2 + (edge * 2) * height) * 2
+
 

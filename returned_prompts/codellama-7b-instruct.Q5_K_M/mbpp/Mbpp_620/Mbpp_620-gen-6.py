@@ -1,12 +1,16 @@
-```python
+
 def largest_subset(nums):
-    nums.sort()
+    nums = sorted(nums)
     max_size = 0
     for i in range(len(nums)):
-        size = 1
-        for j in range(i+1, len(nums)):
-            if nums[j] % nums[i] == 0:
+        if nums[i] % 2 == 0:
+            size = 1
+            num = nums[i]
+            while num % 2 == 0:
+                num //= 2
                 size += 1
-        max_size = max(max_size, size)
+            if size > max_size:
+                max_size = size
     return max_size
-```
+
+

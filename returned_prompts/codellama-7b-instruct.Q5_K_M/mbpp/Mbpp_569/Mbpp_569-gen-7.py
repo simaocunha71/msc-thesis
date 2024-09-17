@@ -1,4 +1,5 @@
+
 def sort_sublists(my_list):
-    for sublist in my_list:
-        sublist.sort()
-    return my_list
+    return [[word for word in sorted(sublist)] for sublist in my_list]
+
+

@@ -1,10 +1,6 @@
 
-```python
-def toggle_string(s):
-    if not s:
-        return s
-    if s[0].islower():
-        return s.title()
-    else:
-        return s.lower()
-```
+def toggle_string(input_str):
+  case_toggled_str = input_str.swapcase()
+  return case_toggled_str
+
+

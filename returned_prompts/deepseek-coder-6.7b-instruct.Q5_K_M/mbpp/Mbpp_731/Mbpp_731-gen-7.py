@@ -1,9 +1,6 @@
+
+import math
 def lateralsurface_cone(r, h):
-    import math
-    l = math.sqrt(h**2 + r**2)
-    return math.pi*r*l
-
-print(lateralsurface_cone(5,12))
+  return math.pi * r * math.sqrt((r**2) + (h**2))
 
 
-#

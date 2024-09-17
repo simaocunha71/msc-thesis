@@ -1,64 +1,9 @@
-def sum_even_and_even_index(arr):
-    s = 0
-    for i,n in enumerate(arr):
-        if i%2 == 0 and n%2 == 0:
-            s += n
-    return s
 
-def test_sum_even_and_even_index():
-    assert sum_even_and_even_index([5, 6, 12, 1, 18, 8]) == 30
-
-test_sum_even_and_even_index()
-
-"""
-
-"""
-
-def sum_even_and_even_index(arr):
-    s = 0
-    for i,n in enumerate(arr):
-        if i%2 == 0 and n%2 == 0:
-            s += n
-    return s
-
-def test_sum_even_and_even_index():
-    assert sum_even_and_even_index([5, 6, 12, 1, 18, 8]) == 30
-
-test_sum_even_and_even_index()
+def sum_even_and_even_index(nums:list):
+  even_sum = 0
+  for i in range(0,len(nums),2):
+    if nums[i] % 2 == 0:
+      even_sum += nums[i]
+  return even_sum
 
 
-"""
-
-"""
-
-"""
-
-def sum_even_and_even_index(arr):
-    s = 0
-    for i,n in enumerate(arr):
-        if i%2 == 0 and n%2 == 0:
-            s += n
-    return s
-
-def test_sum_even_and_even_index():
-    assert sum_even_and_even_index([5, 6, 12, 1, 18, 8]) == 30
-
-test_sum_even_and_even_index()
-
-"""
-
-"""
-
-"""
-
-def sum_even_and_even_index(arr):
-    s = 0
-    for i,n in enumerate(arr):
-        if i%2 == 0 and n%2 == 0:
-            s += n
-    return s
-
-def test_sum_even_and_even_index():
-    assert sum_even_and_even_index([5, 6, 12, 1, 18, 8]) == 30
-
-test_sum_even

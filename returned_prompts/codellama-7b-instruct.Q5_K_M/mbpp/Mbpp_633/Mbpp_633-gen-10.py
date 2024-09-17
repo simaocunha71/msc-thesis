@@ -1,6 +1,9 @@
-def pair_xor_Sum(arr,n):
-    sum = 0
-    for i in range(0, n):
+
+def pair_xor_Sum(arr: list, n: int) -> int:
+    result = 0
+    for i in range(n):
         for j in range(i+1, n):
-            sum = sum + (arr[i] ^ arr[j])
-    return sum
+            result = result + arr[i] ^ arr[j]
+    return result
+
+

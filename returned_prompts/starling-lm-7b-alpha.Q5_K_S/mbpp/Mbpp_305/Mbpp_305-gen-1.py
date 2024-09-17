@@ -1,59 +1,9 @@
-"""
-def start_withp(words):
-    return [word for word in words if word.startswith('p')][:2]
 
-"""
-from typing import List, Tuple
-
-def start_withp(words: List[str]) -> Tuple[str, str]:
-    return [word for word in words if word.startswith('p')][:2]
+def start_withp(words: list) -> tuple:
+  p_words = [word for word in words if word.startswith('p')]
+  if len(p_words) >=2:
+    return p_words[0], p_words[1]
+  else:
+    return p_words[0], "No second word found!"
 
 
-# start_withp(["Python PHP", "Java JavaScript", "c c++"])
-# Python    PHP
-
-# start_withp(["Python Python", "Java JavaScript", "c c++"])
-# Python    Python
-
-# start_withp(["Python PHP", "Java JavaScript", "c++"])
-# Python    PHP
-
-# start_withp(["Python PHP", "Java", "c++"])
-# Python    PHP
-
-# start_withp(["Python PHP", "Java", "c++"])
-# Python    PHP
-
-# start_withp(["Python PHP", "Java", "c++"])
-# Python    PHP
-
-# start_withp(["Python PHP", "Java", "c++"])
-# Python    PHP
-
-# start_withp(["Python PHP", "Java", "c++"])
-# Python    PHP
-
-# start_withp(["Python PHP", "Java", "c++"])
-# Python    PHP
-
-# start_withp(["Python PHP", "Java", "c++"])
-# Python    PHP
-
-# start_withp(["Python PHP", "Java", "c++"])
-# Python    PHP
-
-# start_withp(["Python PHP", "Java", "c++"])
-# Python    PHP
-
-# start_withp(["Python PHP", "Java", "c++"])
-# Python    PHP
-
-
-def start_withp(words: List[str]) -> Tuple[str, str]:
-    return [word for word in words if word.startswith('p')][:2]
-
-
-# start_withp(["Python PHP", "Java JavaScript", "c c++"])
-# ('Python', 'PHP')
-
-# start_withp(["Python PHP", "Java JavaScript",

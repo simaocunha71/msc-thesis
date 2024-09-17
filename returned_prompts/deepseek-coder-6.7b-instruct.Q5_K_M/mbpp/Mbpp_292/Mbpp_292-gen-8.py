@@ -1,7 +1,5 @@
 
-def find(num1, num2):
-    return num1 // num2
+def find(dividend: int, divisor: int) -> int:
+  return dividend // divisor
 
-print(find(10, 3))  # 3
 
-# Task 2

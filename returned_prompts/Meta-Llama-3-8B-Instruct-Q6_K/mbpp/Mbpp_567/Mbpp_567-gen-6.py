@@ -1,0 +1,10 @@
+```
+def issort_list(lst):
+    for i in range(len(lst) - 1):
+        if lst[i] > lst[i+1]:
+            return False
+    return True
+```
+
+
+The function `issort_list` takes a list as an argument and checks if it is sorted or not. It iterates over the list, comparing each element with the next one. If it finds an element that is greater than the next one, it returns `False`, indicating that the list is not sorted. If it doesn't find any such pair, it returns `True`, indicating that the list is sorted. This function assumes that the list is sorted in ascending order. The unit test `assert issort_list([1,2,4,6,8,10,12,14,16,17])==True` ensures that the function works correctly for a given example.  This function will return `True` for a list that is sorted, and `False` for a list that is not sorted.  For example, `issort_list([1,2,4,6,8,10,12,14,16,17])` would return `True`, and `issort_list([1,3,2,4,5])` would return `False`.  This function is case-sensitive and will return `False` for a list that is sorted in descending order, as the problem description does not specify the order in which the list should be sorted.  If you want to check for sorting in descending order, you can modify the comparison in the function to `if lst[i] < lst[i+1]:`.  If you want to check for sorting in a specific order, you can add a condition to check for the order and return accordingly.  For example, you could add `if lst[i] > lst[i+1]: return False` to check for sorting in ascending order, and `if lst[i] < lst[i+1]: return False` to check for sorting in descending order.  You could also add a condition to check for sorting in a specific order, for example, `if lst[i] > lst[i+1]: return False` for sorting in ascending order and `if lst[i] < lst[i+1]: return False` for sorting in descending order.  This function can be modified to check for sorting in a specific order, but it would need to be modified to include the specific order in the comparison.  The unit test `assert issort

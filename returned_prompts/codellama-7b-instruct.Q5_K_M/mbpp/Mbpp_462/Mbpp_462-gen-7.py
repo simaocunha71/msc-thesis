@@ -1,11 +1,5 @@
 
-def combinations_list(lst):
-    def combinations_list_aux(lst, res, cur):
-        if len(lst) == 0:
-            res.append(cur)
-            return res
-        else:
-            combinations_list_aux(lst[1:], res, cur)
-            combinations_list_aux(lst[1:], res, cur + [lst[0]])
-            return res
-    return combinations_list_aux(lst, [], [])
+def combinations_list(my_list):
+    return [list(i) for i in itertools.combinations(my_list, len(my_list))]
+
+

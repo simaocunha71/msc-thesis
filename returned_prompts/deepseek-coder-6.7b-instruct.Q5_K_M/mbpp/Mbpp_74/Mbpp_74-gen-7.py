@@ -1,7 +1,5 @@
-def is_samepatterns(colors, patterns):
-    return colors[1:] == patterns[1:]
 
-print(is_samepatterns(["red","green","green"], ["a", "b", "b"]))
+def is_samepatterns(lst1: list, lst2: list) -> bool:
+  return len(set(zip(lst1, lst2))) == len(lst1) == len(lst2)
 
 
-"""

@@ -1,14 +1,10 @@
-"""
-import re
 
+import re
 def text_match_three(text):
     patterns = "ab{3}"
-    if re.search(patterns, text):
+    if re.search(patterns,  text):
         return True
     else:
         return False
 
-print(text_match_three("abbb"))
-print(text_match_three("ac"))
-"""
 

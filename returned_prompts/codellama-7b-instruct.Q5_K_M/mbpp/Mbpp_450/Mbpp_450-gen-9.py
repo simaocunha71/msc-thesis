@@ -1,32 +1,11 @@
-def extract_string(my_list, size):
-    return [my_list[i] for i in range(len(my_list)) if len(my_list[i]) == size]
 
-def extract_string(my_list, size):
-    return [s for s in my_list if len(s) == size]
+def extract_string(my_list: list, size: int) -> list:
+  extracted_list = []
+  for i in range(0,len(my_list)):
+    if len(my_list[i]) > size:
+      extracted_list.append(my_list[i][0:size])
+    else:
+      extracted_list.append(my_list[i])
+  return extracted_list
 
-def extract_string(my_list, size):
-    return list(filter(lambda s: len(s) == size, my_list))
 
-def extract_string(my_list, size):
-    return [s for s in my_list if len(s) == size]
-
-def extract_string(my_list, size):
-    return list(filter(lambda s: len(s) == size, my_list))
-
-def extract_string(my_list, size):
-    return [s for s in my_list if len(s) == size]
-
-def extract_string(my_list, size):
-    return list(filter(lambda s: len(s) == size, my_list))
-
-def extract_string(my_list, size):
-    return [s for s in my_list if len(s) == size]
-
-def extract_string(my_list, size):
-    return list(filter(lambda s: len(s) == size, my_list))
-
-def extract_string(my_list, size):
-    return [s for s in my_list if len(s) == size]
-
-def extract_string(my_list, size):
-    return list(filter(lambda s: len(s) == size, my_list))

@@ -1,4 +1,5 @@
-"""
-def reverse_words(string):
-    return " ".join(string.split()[::-1])
-"""
+
+def reverse_words(s: str) -> str:
+    return " ".join(s.split()[::-1])
+
+

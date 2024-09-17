@@ -1,4 +1,6 @@
-def multiply_num(num_list):
-    return sum(num_list) / len(num_list)
+
+import math
+def multiply_num(nums):
+    return sum(nums) / len(nums)
 
 

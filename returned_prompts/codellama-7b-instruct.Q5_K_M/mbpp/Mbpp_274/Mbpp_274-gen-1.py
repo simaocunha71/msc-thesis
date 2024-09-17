@@ -1,14 +1,16 @@
-```
-def even_binomial_Coeff_Sum(n):
-    return sum(binomial_coefficient(n, i) for i in range(0, n+1, 2))
 
-def binomial_coefficient(n, k):
-    if k > n // 2:
-        k = n - k
-    res = 1
-    for i in range(k+1):
-        res *= n-i
-        res //= i+1
-    return res
-```
+def even_binomial_Coeff_Sum(n):
+  sum = 0
+  for i in range(0, n):
+    if i % 2 == 0:
+      sum += binomial_Coeff(n, i)
+  return sum
+
+def binomial_Coeff(n, k):
+    if k < 0 or n < k:
+        return 0
+    if k == 0 or k == n:
+        return 1
+    return binomial_Coeff(n-1, k-1) + binomial_Coeff(n-1, k)
+
 

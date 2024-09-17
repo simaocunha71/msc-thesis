@@ -1,15 +1,11 @@
-def armstrong_number(n):
+
+def armstrong_number(num):
     sum = 0
-    temp = n
+    temp = num
     while temp > 0:
         digit = temp % 10
-        sum += digit ** 0.3333333333333333 # 0.3333333333333333 is equivalent to 1/3 in python.
+        sum += digit ** s
         temp //= 10
-
-    return n == sum
-
-print(armstrong_number(153))
-
-# Output: True
+    return num == sum
 
 

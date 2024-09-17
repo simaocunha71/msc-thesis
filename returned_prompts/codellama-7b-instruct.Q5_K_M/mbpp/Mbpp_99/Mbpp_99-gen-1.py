@@ -1,4 +1,5 @@
-```python
-def decimal_to_binary(decimal):
-    return bin(decimal)[2:]
-```
+
+def decimal_to_binary(n):
+  return bin(n)[2:]
+
+

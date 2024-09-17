@@ -1,4 +1,9 @@
+
 def merge(my_list):
-    return [list(zip(*my_list))[0], list(zip(*my_list))[1]]
+  result = [[],[]]
+  for sublist in my_list:
+    result[0].append(sublist[0])
+    result[1].append(sublist[1])
+  return result
 
 

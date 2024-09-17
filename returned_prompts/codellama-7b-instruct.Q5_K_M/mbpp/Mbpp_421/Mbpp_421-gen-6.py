@@ -1,4 +1,6 @@
-"""
-def concatenate_tuple(tuple_elements):
-    return '-'.join(tuple_elements)
-"""
+
+def concatenate_tuple(test_tup):
+  test_tup = '-'.join(map(str, test_tup))
+  return test_tup
+
+

@@ -1,8 +1,8 @@
-```
-def count_list(lst):
+
+def count_list(list_of_lists):
     count = 0
-    for inner_list in lst:
-        if isinstance(inner_list, list):
-            count += 1
+    for i in list_of_lists:
+        count += 1
     return count
-```
+
+

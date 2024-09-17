@@ -1,8 +1,17 @@
-def divisible_by_digits(startnum, endnum):
-    ans = []
-    for i in range(startnum, endnum+1):
-        if all(str(i)[j] in str(i) for j in range(len(str(i)))):
-            ans.append(i)
-    return ans
 
-# 
+def divisible_by_digits(startnum: int, endnum: int) -> list:
+  result = []
+  for i in range(startnum, endnum+1):
+    if is_divisible(i):
+      result.append(i)
+  return result
+
+def is_divisible(num: int) -> bool:
+  if num == 0:
+    return False
+  for i in str(num):
+    if num % int(i) != 0:
+      return False
+  return True
+
+

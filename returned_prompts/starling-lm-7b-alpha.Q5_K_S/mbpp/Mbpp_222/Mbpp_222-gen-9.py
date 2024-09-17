@@ -1,5 +1,8 @@
-"""
-def check_type(t):
-    return True if len(set(type(i) for i in t)) == 1 else False
-"""
+
+def check_type(tup):
+  if len(set(type(i) for i in tup)) == 1:
+    return True
+  else:
+    return False
+
 

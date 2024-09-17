@@ -1,8 +1,4 @@
 
-def to_uppercase(str):
-    return str.upper()
-
-print(to_uppercase("person"))
-
-#Solution 2
+def is_upper(s):
+  return s.upper()
 

@@ -1,6 +1,23 @@
-```
-def reverse_vowels(string):
-  vowels = "aeiouAEIOU"
-  reversed_vowels = vowels[::-1]
-  return "".join([char if char not in vowels else reversed_vowels[vowels.index(char)] for char in string])
-```
+
+def reverse_vowels(s):
+  vowels = set(['a', 'e', 'i', 'o', 'u', 'y'])
+  left = 0
+  right = len(s) - 1
+  result = ""
+  while left < right:
+    if s[left] not in vowels:
+      result += s[left]
+      left += 1
+    elif s[right] not in vowels:
+      result += s[right]
+      right -= 1
+    else:
+      result += s[right]
+      right -= 1
+      result += s[left]
+      left += 1
+  if left == right:
+    result += s[left]
+  return result
+
+

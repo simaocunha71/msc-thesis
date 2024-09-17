@@ -1,11 +1,8 @@
-def product_list(l):
-    total = 1
-    for i in l:
-        total *= i
-    return total
+
+def odd_position(nums: list) -> bool:
+  for i in range(0,len(nums),2):
+    if nums[i] % 2 == 0:
+      return False
+  return True
 
 
-
-"""
-Write a Python function that takes a list of integers as a parameter and returns the sum of all the integers in the list.
-"""

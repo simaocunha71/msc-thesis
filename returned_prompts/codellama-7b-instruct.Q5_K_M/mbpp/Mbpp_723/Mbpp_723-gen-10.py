@@ -1,4 +1,5 @@
-"""
-def count_same_pair(list1, list2):
-    return sum(list1[i] == list2[i] for i in range(len(list1)))
-"""
+
+def count_same_pair(list1: list,list2: list) -> int:
+  return len([i for i,j in zip(list1,list2) if i==j])
+
+

@@ -1,7 +1,5 @@
-def is_lower(string):
-    return string.lower()
 
-print(is_lower("InValid"))
+def is_lower(s):
+    return s.lower()
 
-# Output: 'invalid'
 

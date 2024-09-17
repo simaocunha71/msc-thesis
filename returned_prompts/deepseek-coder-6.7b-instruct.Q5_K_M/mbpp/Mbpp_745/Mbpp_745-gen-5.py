@@ -1,20 +1,9 @@
-def divisible_by_digits(startnum, endnum):
-    divisible_list = []
-    for num in range(startnum, endnum+1):
-        if num < 10:
-            divisible_list.append(num)
-        else:
-            str_num = str(num)
-            for digit in str_num:
-                if num % int(digit) != 0:
-                    break
-            else:
-                divisible_list.append(num)
-    return divisible_list
 
-print(divisible_by_digits(1,22))
-<jupyter_output>
-[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]
-<jupyter_text>
-Q2. Write a function to find the longest palindrome substring in a given string.
-<jupyter_code>
+def divisible_by_digits(startnum, endnum):
+  result = []
+  for num in range(startnum, endnum+1):
+    if all(num % int(digit) == 0 for digit in str(num) if digit != '0'):
+      result.append(num)
+  return result
+
+

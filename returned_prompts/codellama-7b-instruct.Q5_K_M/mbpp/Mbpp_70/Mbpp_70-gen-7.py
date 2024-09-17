@@ -1,5 +1,5 @@
-def get_equal(my_list):
-    if len(set(len(x) for x in my_list)) == 1:
-        return True
-    else:
-        return False
+
+def get_equal(my_tuple):
+    return len(set(len(x) for x in my_tuple)) == 1
+
+

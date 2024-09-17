@@ -1,8 +1,6 @@
-def right_insertion(arr, target):
-    for i in range(len(arr)):
-        if arr[i] > target:
-            return i
-    return len(arr)
 
-print(right_insertion([1,2,4,5],6)) # 4
+import bisect
+def right_insertion(a, x):
+  return bisect.bisect_right(a, x)
+
 

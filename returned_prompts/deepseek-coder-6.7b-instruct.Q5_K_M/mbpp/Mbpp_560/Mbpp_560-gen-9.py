@@ -1,5 +1,5 @@
-def union_elements(t1, t2):
-    return tuple(sorted(set(t1) | set(t2)))
 
-print(union_elements((3, 4, 5, 6),(5, 7, 4, 10)))
+def union_elements(test_tup1, test_tup2):
+  return tuple(sorted(set(test_tup1) | set(test_tup2)))
+
 

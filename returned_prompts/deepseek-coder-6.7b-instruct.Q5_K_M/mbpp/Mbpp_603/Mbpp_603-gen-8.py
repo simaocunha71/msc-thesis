@@ -1,17 +1,14 @@
 
 def get_ludic(n):
-    ludic_nums = [1]
-    i = 2
-    while True:
-        if i % 2 != 0 and i % 5 != 0:
-            ludic_nums.append(i)
-        if max(ludic_nums) > n:
-            break
-        i += 1
-    return ludic_nums
+    def is_prime(num):
+        if num < 2:
+            return False
+        for i in range(2, int(num**0.5) + 1):
+            if num % i == 0:
+                return False
+        return True
 
-print(get_ludic(10))  # [1, 2, 3, 5, 7]
-"""
+    primes = [i for i in range(2, n+1) if is_prime(i)]
+    return primes
 
 
-"""

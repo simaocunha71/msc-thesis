@@ -1,3 +1,5 @@
-def last_Digit(num):
-    return num % 10
+
+def last_digit(n):
+  return n%10
+
 

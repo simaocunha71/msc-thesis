@@ -1,2 +1,6 @@
+
 def parabola_directrix(a,b,c):
-    return -2*b
+  directrix = (-b/(2*a))
+  return directrix
+
+

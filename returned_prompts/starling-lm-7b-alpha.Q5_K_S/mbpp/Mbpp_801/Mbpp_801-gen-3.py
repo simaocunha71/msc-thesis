@@ -1,10 +1,10 @@
-"""
-def test_three_equal(a,b,c):
-    if a == b and a == c:
+
+def test_three_equal(num1, num2, num3):
+    if num1 == num2 and num2 == num3:
         return 3
-    elif a == b or a == c or b == c:
+    elif num1 == num2 or num2 == num3 or num1 == num3:
         return 2
     else:
-        return 1
-"""
+        return 0
+
 

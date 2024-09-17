@@ -1,9 +1,5 @@
-def replace_blank(string, character):
-    return string.replace(' ', character)
 
-print(replace_blank("hello people",'@'))
+def replace_blank(s, c):
+    return s.replace(' ', c)
 
-# Output: "hello@people"
-
-# ----------
 

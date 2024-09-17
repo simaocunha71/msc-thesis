@@ -1,10 +1,11 @@
-def check_occurences(my_list):
-    my_dict = {}
-    for item in my_list:
-        if item not in my_dict:
-            my_dict[item] = 1
-        else:
-            my_dict[item] += 1
-    return my_dict
+
+def check_occurences(my_list_of_tuples: list) -> dict:
+  my_dict = {}
+  for i in my_list_of_tuples:
+    if i in my_dict:
+      my_dict[i] += 1
+    else:
+      my_dict[i] = 1
+  return my_dict
 
 

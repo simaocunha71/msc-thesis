@@ -1,7 +1,5 @@
-def second_smallest(my_list):
-    # Sort the list
-    my_list.sort()
-    # Get the second element
-    return my_list[1]
+
+def second_smallest(my_list: list):
+  return sorted(my_list)[1]
 
 

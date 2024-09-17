@@ -1,11 +1,5 @@
 
-def count_occurance(str):
-    count = 0
-    for i in range(len(str)):
-        if str[i:i+3] == 'std':
-            count += 1
-    return count
+def count_occurance(s):
+    return s.count("std")
 
-assert count_occurance("letstdlenstdporstd") == 3
 
-# Task 2

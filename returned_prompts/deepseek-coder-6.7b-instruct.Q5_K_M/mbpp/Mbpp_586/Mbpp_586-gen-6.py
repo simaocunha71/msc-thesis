@@ -1,7 +1,5 @@
 
-def split_Arr(lst,n):
-    return lst[n:] + lst[:n]
+def split_Arr(a,n):
+  return a[n:]+a[:n]
 
-print(split_Arr([12,10,5,6,52,36],2))
 
-#Q2:

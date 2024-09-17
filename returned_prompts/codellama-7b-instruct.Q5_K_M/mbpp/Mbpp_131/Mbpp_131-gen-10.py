@@ -1,8 +1,17 @@
-```python
-def reverse_vowels(my_string):
-    vowels = "aeiou"
-    vowel_indexes = [i for i, char in enumerate(my_string) if char in vowels]
-    for i in range(len(vowel_indexes) - 1):
-        my_string = my_string[:vowel_indexes[i]] + my_string[vowel_indexes[i]].lower() + my_string[vowel_indexes[i] + 1:]
-    return my_string
-```
+
+def reverse_vowels(s):
+  vowels = set('aeiouAEIOU')
+  left = 0
+  right = len(s) - 1
+  while left < right:
+    while left < len(s) and s[left] not in vowels:
+      left += 1
+    while right >= 0 and s[right] not in vowels:
+      right -= 1
+    if left < right:
+      s[left], s[right] = s[right], s[left]
+      left += 1
+      right -= 1
+  return s
+
+

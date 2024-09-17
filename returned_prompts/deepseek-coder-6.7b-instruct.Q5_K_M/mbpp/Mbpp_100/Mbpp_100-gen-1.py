@@ -1,10 +1,8 @@
-def next_smallest_palindrome(n):
+
+def next_smallest_palindrome(num):
     while True:
-        n += 1
-        if str(n) == str(n)[::-1]:
-            return n
+        num += 1
+        if str(num) == str(num)[::-1]:
+            return num
 
-print(next_smallest_palindrome(99))
-
-#2
 

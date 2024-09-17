@@ -1,16 +1,5 @@
-def remove_dirty_chars(str1, str2):
-    return ''.join([char for char in str1 if char not in str2])
 
-print(remove_dirty_chars("probasscurve", "pros"))
+def remove_dirty_chars(s1, s2):
+    return ''.join([c for c in s1 if c not in s2])
 
-"""
-Here we use list comprehension to iterate over each character in the first string (str1). If the character is not found in the second string (str2), it is added to the list. Finally, we join the list of characters into a string and return it.
-"""
 
-# Test case
-assert remove_dirty_chars("probasscurve", "pros") == 'bacuve'
-<jupyter_output>
-bacuve
-<jupyter_text>
-**Problem 3**
-<jupyter_code>

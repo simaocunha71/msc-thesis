@@ -1,16 +1,24 @@
-def magic_square(matrix):
-    # Get the sum of each row and each column
-    row_sums = [sum(row) for row in matrix]
-    col_sums = [sum(col) for col in zip(*matrix)]
 
-    # Get the total sum of the matrix
-    total_sum = sum(row_sums)
+def magic_square_test(matrix: list) -> bool:
+  rows = len(matrix)
+  cols = len(matrix[0])
+  if rows != cols:
+    return False
+  if rows%2 == 0:
+    return False
 
-    # Check if each row, column, and sum of rows and columns are the same
-    if len(set(row_sums)) == 1 and len(set(col_sums)) == 1 and len(set(row_sums+col_sums)) == 1 and total_sum % len(matrix) == 0:
-        return True
-    else:
-        return False
+  # calculate the sum of all elements of the matrix
+  sum_of_matrix = sum([sum(row) for row in matrix])
 
-# Test the function
-assert magic_square_test([[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5], [9, 6, 15, 4]])==True
+  # calculate the sum of the rows, cols and diagonals
+  sum_of_rows = sum([sum(row) for row in matrix])
+  sum_of_cols = sum([sum(col) for col in zip(*matrix)])
+  sum_of_diags = sum([sum(matrix[i][i] for i in range(rows)),sum(matrix[i][rows-1-i] for i in range(rows))])
+
+  # check if the sums are equal
+  if sum_of_matrix != sum_of_rows or sum_of_matrix != sum_of_cols or sum_of_matrix != sum_of_diags:
+    return False
+
+  return True
+
+

@@ -1,4 +1,5 @@
-"""
-def test_duplicate(nums):
-    return len(nums) != len(set(nums))
-"""
+
+def test_duplicate(arr):
+    return len(arr) != len(set(arr))
+
+

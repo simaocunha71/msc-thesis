@@ -1,7 +1,8 @@
+
 def validate(n):
-    digits = [int(digit) for digit in str(n)]
-    for i, digit in enumerate(digits):
-        if digit > i+1:
+    digits = [int(i) for i in str(n)]
+    for i in digits:
+        if digits.count(i) > i:
             return False
     return True
 

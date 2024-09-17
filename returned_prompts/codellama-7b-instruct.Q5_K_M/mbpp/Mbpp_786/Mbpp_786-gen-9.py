@@ -1,9 +1,15 @@
-"""
-def right_insertion(sorted_list, value):
-    insertion_point = 0
-    for index, item in enumerate(sorted_list):
-        if item > value:
-            insertion_point = index
-            break
-    return insertion_point
-"""
+
+def right_insertion(arr, val):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == val:
+            return mid
+        elif arr[mid] < val:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return low
+
+

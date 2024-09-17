@@ -1,6 +1,8 @@
-def count_Occurrence(my_list, tuple_list):
-    count = 0
-    for i in my_list:
-        if i in tuple_list:
-            count = count + 1
-    return count
+
+def count_Occurrence(tup,lst):
+  count = 0
+  for i in lst:
+    count = count + tup.count(i)
+  return count
+
+

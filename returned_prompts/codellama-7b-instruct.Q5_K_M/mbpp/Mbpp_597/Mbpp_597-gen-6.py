@@ -1,17 +1,10 @@
-```python
-def find_kth(arr1, arr2, k):
-    # assuming arr1 and arr2 are sorted
-    # assuming k is valid index
-    i, j = 0, 0
-    while i < len(arr1) and j < len(arr2):
-        if arr1[i] < arr2[j]:
-            if i + j + 1 == k:
-                return arr1[i]
-            i += 1
-        else:
-            if i + j + 1 == k:
-                return arr2[j]
-            j += 1
-    return -1
-```
+
+def find_kth(arr1: list, arr2: list, k: int) -> int:
+  if k > len(arr1) + len(arr2):
+    return None
+  if k <= len(arr1):
+    return arr1[k-1]
+  if k <= len(arr1) + len(arr2):
+    return arr2[k - len(arr1) - 1]
+
 

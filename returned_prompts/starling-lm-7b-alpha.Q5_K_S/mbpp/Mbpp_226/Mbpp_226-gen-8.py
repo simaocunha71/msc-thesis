@@ -1,11 +1,5 @@
-"""
-def odd_values_string(s):
-    new_str = ""
-    for i in range(len(s)):
-        if i % 2 != 0:
-            new_str += s[i]
-    return new_str
 
-odd_values_string('abcdef')  # should return 'ace'
-"""
+def odd_values_string(string: str) -> str:
+  return ''.join(char for i, char in enumerate(string) if i % 2 != 0)
+
 

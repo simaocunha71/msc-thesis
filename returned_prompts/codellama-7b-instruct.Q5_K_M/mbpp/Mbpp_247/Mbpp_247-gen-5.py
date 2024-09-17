@@ -1,13 +1,12 @@
-"""
-dp = [[] for _ in range(len(s))]
-for i in range(len(s)):
-    for j in range(i, len(s)):
-        if s[i] == s[j]:
-            if j - i == 1:
-                dp[i][j] = True
-            else:
-                dp[i][j] = dp[i + 1][j - 1]
-        else:
-            dp[i][j] = False
-return max(dp[i][j] for i in range(len(s)) for j in range(i, len(s)))
-"""
+
+def lps(input_string):
+  def lps_helper(left, right):
+    if left >= right:
+      return 0
+    if input_string[left] == input_string[right]:
+      return 2 + lps_helper(left + 1, right - 1)
+    else:
+      return max(lps_helper(left + 1, right), lps_helper(left, right - 1))
+  return lps_helper(0, len(input_string) - 1)
+
+

@@ -1,10 +1,9 @@
-def triangle_area(radius):
-    if radius < 0:
-        return None
-    return (radius ** 2) * 1.5
 
-print(triangle_area(3))
-print(triangle_area(-1))
+import math
+def triangle_area(r):
+  if r > 0:
+    return (math.sqrt(3)/4) * (r**2)
+  else:
+    return None
 
 
-"""

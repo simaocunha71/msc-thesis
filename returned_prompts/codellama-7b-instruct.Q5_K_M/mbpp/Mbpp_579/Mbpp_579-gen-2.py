@@ -1,4 +1,5 @@
-def find_dissimilar(tup1, tup2):
-    return tuple(set(tup1) ^ set(tup2))
+
+def find_dissimilar(test_tup1, test_tup2):
+  return tuple(set(test_tup1)^set(test_tup2))
 
 

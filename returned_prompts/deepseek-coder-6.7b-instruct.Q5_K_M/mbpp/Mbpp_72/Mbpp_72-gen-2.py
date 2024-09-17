@@ -1,6 +1,12 @@
-def find_Longest_Palindrome(s):
-    n = len(s)
-    start, maxlen = 0, 1
 
-    for i in range(n):
-        if i - maxlen >= 1 and s[i - maxlen - 1: i + 1
+import math
+def dif_Square(n):
+    for i in range(0, int(math.sqrt(n))+1):
+        j = 0
+        while i*i + j*j <= n:
+            if i*i + j*j == n:
+                return True
+            j += 1
+    return False
+
+

@@ -1,6 +1,5 @@
 
-def check_none(tup):
-    return any(x is None for x in tup)
+def check_none(test_tup):
+  return any(el is None for el in test_tup)
 
-print(check_none((10, 4, 5, 6, None)))  # True
 

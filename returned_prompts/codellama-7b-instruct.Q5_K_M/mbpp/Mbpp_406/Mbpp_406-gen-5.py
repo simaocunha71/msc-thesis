@@ -1,2 +1,5 @@
-def find_parity(number):
-    return number % 2 == 0
+
+def find_Parity(n):
+    return True if n % 2 else False
+
+

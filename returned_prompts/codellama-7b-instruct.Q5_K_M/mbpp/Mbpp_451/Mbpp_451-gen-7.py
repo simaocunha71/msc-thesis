@@ -1,4 +1,5 @@
-```
+
 def remove_whitespaces(s: str) -> str:
-    return ''.join(s.split())
-```
+  return ''.join(s.split())
+
+

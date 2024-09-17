@@ -1,2 +1,5 @@
-def sum_list(list1, list2):
-    return [a+b for a, b in zip(list1, list2)]
+
+def sum_list(list_a, list_b):
+    return [a+b for a, b in zip(list_a, list_b)]
+
+

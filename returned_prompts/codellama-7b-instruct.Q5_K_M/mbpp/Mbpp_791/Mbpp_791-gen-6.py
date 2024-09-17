@@ -1,7 +1,10 @@
-```
-def remove_nested(t):
-    for i in range(len(t)):
-        if isinstance(t[i], tuple):
-            t = t[:i] + t[i+1:]
-    return t
-```
+
+def remove_nested(tuple_to_check):
+  if isinstance(tuple_to_check, tuple):
+    return tuple_to_check
+  elif isinstance(tuple_to_check, list):
+    return [remove_nested(num) for num in tuple_to_check]
+  else:
+    return tuple_to_check
+
+

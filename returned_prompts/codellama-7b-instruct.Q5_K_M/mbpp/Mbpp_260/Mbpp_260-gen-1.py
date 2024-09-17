@@ -1,21 +1,19 @@
 
 def newman_prime(n):
-    if n == 1:
-        return 2
-    else:
-        return newman_shanks_williams(newman_prime(n-1))
+  if n == 1:
+    return 2
+  elif n == 2:
+    return 3
+  else:
+    is_prime = False
+    m = 1
+    while not is_prime:
+      m += 1
+      is_prime = True
+      for i in range(2, int(m ** 0.5)):
+        if m % i == 0:
+          is_prime = False
+          break
+    return m + newman_prime(n - 1)
 
-def newman_shanks_williams(n):
-    if is_prime(n):
-        return n
-    else:
-        return newman_shanks_williams(newman_prime(n+1))
 
-def is_prime(n):
-    if n == 2:
-        return True
-    else:
-        for i in range(2, int(n**0.5)+1):
-            if n % i == 0:
-                return False
-        return True

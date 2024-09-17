@@ -1,2 +1,5 @@
-def longest_substring(string):
-    max_len = 0
+
+def replace_blank(string: str,character: str) -> str:
+  return string.replace(" ",""+character)
+
+

@@ -1,4 +1,6 @@
 
-def check_str(my_str):
-    # Your code goes here
-    return re.match(r"^[aeiouAEIOU]", my_str)
+import re
+def check_str(string):
+    return re.match(r"^[aeiouAEIOU]", string)
+
+

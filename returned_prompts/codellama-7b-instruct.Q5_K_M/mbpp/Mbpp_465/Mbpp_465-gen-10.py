@@ -1,4 +1,5 @@
-```python
-def drop_empty(my_dict):
-    return {k: v for k, v in my_dict.items() if v is not None}
-```
+
+def drop_empty(my_dict: dict) -> dict:
+    return {k: v for k, v in my_dict.items() if v}
+
+

@@ -1,2 +1,5 @@
-def expensive_items(dataset, n):
-    return sorted(dataset, key=lambda x: x['price'], reverse=True)[:n]
+
+def expensive_items(items, n):
+    return sorted(items, key=lambda x: x['price'], reverse=True)[:n]
+
+

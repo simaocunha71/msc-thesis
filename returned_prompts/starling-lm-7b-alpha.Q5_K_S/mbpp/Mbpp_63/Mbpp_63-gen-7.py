@@ -1,6 +1,5 @@
-"""
-def max_difference(tuple_list):
-    max_dif = 0
-    for i in range(len(tuple_list)):
-        for j in range(i+1, len(tuple_list)):
-            dif = tuple_
+
+def max_difference(tup_list):
+  return max([tup[1]-tup[0] for tup in tup_list])
+
+

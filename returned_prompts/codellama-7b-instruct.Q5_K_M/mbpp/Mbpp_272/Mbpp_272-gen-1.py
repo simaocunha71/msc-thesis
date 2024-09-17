@@ -1,3 +1,5 @@
 
-def rear_extract(lst):
-    return [x[2] for x in lst]
+def rear_extract(my_list):
+  return [x[2] for x in my_list]
+
+

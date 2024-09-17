@@ -1,9 +1,5 @@
-def sum_list(a, b):
-    result = []
-    for i in range(len(a)):
-        result.append(a[i] + b[i])
-    return result
 
-assert sum_list([10,20,30],[15,25,35])==[25,45,65]
-"""
+def sum_list(list1,list2):
+  return [i+j for i, j in zip(list1, list2)]
+
 

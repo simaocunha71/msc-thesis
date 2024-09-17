@@ -1,2 +1,9 @@
+
 def dif_Square(n):
-    return any(x**2 + y**2 == n for x in range(0, int(n**0.5)) for y in range(0, int(n**0.5)))
+  for i in range(1, int(n ** 0.5) + 1):
+    j = int((n - i ** 2) ** 0.5)
+    if i ** 2 + j ** 2 == n:
+      return True
+  return False
+
+

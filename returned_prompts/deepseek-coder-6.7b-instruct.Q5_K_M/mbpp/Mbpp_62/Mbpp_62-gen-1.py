@@ -1,9 +1,5 @@
 
-def smallest_num(lst):
-    return min(lst)
+def smallest_num(nums: list) -> int:
+  return min(nums)
 
-print(smallest_num([10, 20, 1, 45, 99]))
 
-# 1
-
-"""

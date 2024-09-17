@@ -1,11 +1,6 @@
-def snake_to_camel(s):
-    s = s.split('_')
-    return ''.join(i.title() for i in s)
 
-print(snake_to_camel('python_program'))
+def snake_to_camel(snake_str):
+    components = snake_str.split('_')
+    return ''.join(x.title() for x in components)
 
-"""
-Output:
-PythonProgram
-"""
 

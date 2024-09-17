@@ -1,5 +1,15 @@
-"""
-def find_adverb_position(sentence):
-    words = sentence.split()
-    for i in range(len(words)):
-        if words[i].lower() in ['abroad', 'afresh', 'afternoon', 'afterevening', 'afterwards', 'aftermath', 'again', 'against', 'along', 'alongside', 'already', 'also', 'although', 'always', 'amid', 'amidst', 'among', 'amongst', 'am', 'anew', 'and', 'annoyed', 'annoying', 'any', 'anyhow', 'anywhere', 'around', 'as', 'at', 'athwart', 'atop', 'back', 'backwards', 'barely', 'because', 'become', 'becomes', 'been', 'before', 'beforehand', 'behind', 'below', 'beneath', 'beside', 'besides', 'between', 'beyond', 'both', 'briefly', 'but', 'by', 'came', 'cannot', 'cant', 'can\'t', 'cause', 'causes', 'certain', 'certainly', 'chance', 'changes', 'clearly', 'cold', 'comes', 'considering', 'containing', 'containing', 'contain', 'contains', 'co', 'could', 'couldn', 'couldnt', 'dare', 'daren', 'dont', 'done', 'down', 'due', 'during', 'each', 'either', 'en', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'except', 'f', 'fairly', 'far', 'farther', 'few', 'fewer', 'further', 'furthered', 'furthest', 'gave', 'get', 'gets', 'getting', 'gives', 'giving', 'go', 'good', 'got', 'gone', 'gotten', 'had', 'haven', 'he', 'has', 'have', 'having', 'he\'s', 'her', 'here', 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'him', 'himself', '
+
+import nltk
+from nltk.corpus import stopwords
+nltk.download('averaged_perceptron_tagger')
+nltk.download('punkt')
+nltk.download('stopwords')
+stop_words = set(stopwords.words('english'))
+def find_adverb_position(sent):
+  words = nltk.word_tokenize(sent)
+  pos_tags = nltk.pos_tag(words)
+  for i, (word, tag) in enumerate(pos_tags):
+    if tag in ['RBR', 'RBS'] and word not in stop_words:
+      return i, i+1, word
+
+

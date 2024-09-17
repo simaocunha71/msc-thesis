@@ -1,10 +1,8 @@
-"""
-def check(num):
-    if(num == 0):
-        return False
-    else:
-        return (num * 2 - 1) == int(str(num)[::-1])
 
-print(check(70))
-"""
+def check(n: int):
+  if n == 2 * int(str(n)[::-1]) - 1:
+    return True
+  else:
+    return False
+
 

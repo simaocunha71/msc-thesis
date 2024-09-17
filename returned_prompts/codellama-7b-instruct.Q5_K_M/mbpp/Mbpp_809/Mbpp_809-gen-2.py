@@ -1,3 +1,8 @@
-def check_smaller(t1, t2):
-    return all(x < y for x, y in zip(t1, t2))
+
+def check_smaller(tup1, tup2):
+  for i in range(len(tup1)):
+    if tup1[i] >= tup2[i]:
+      return False
+  return True
+
 

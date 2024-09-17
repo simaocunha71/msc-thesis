@@ -1,2 +1,7 @@
-def differ_At_One_Bit_Pos(num1, num2):
-    return bin(num1^num2).count('1') == 1
+
+def differ_At_One_Bit_Pos(a, b):
+    c = a ^ b
+    c = c & (c - 1)
+    return c != 0
+
+

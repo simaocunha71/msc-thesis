@@ -1,74 +1,12 @@
-"""
-def pancake_sort(a):
-    from copy import copy
-    while True:
-        max_index = a.index(max(a))
-        tmp = copy(a)
-        tmp.pop(max_index)
-        tmp.insert(0, tmp.pop())
-        if tmp == sorted(tmp):
-            break
-        a = copy(tmp)
-    return a
-"""
 
-def pancake_sort(a):
-    tmp = copy(a)
-    tmp.sort()
-    while True:
-        max_index = a.index(max(a))
-        tmp.pop(max_index)
-        tmp.insert(0, tmp.pop())
-        if tmp == a:
-            break
-        a = copy(tmp)
-    return a
+def pancake_sort(nums:list):
+  for i in range(len(nums)):
+    max_index = i
+    for j in range(i+1, len(nums)):
+      if nums[j] > nums[max_index]:
+        max_index = j
+    nums[max_index], nums[i] = nums[i], nums[max_index]
+    nums[:i+1] = reversed(nums[:i+1])
+  return nums
 
 
-"""
-def pancake_sort(a):
-    from copy import copy
-    while True:
-        max_index = a.index(max(a))
-        tmp = copy(a)
-        tmp.pop(max_index)
-        tmp.insert(0, tmp.pop(0))
-        if tmp == sorted(tmp):
-            break
-        a = copy(tmp)
-    return a
-"""
-
-
-def pancake_sort(a):
-    from copy import copy
-    while True:
-        max_index = a.index(max(a))
-        tmp = copy(a)
-        tmp.pop(max_index)
-        tmp.insert(0, tmp.pop(0))
-        if tmp == sorted(tmp):
-            break
-        a = copy(tmp)
-    return a
-
-
-def pancake_sort(a):
-    from copy import copy
-    while True:
-        max_index = a.index(max(a))
-        tmp = copy(a)
-        tmp.pop(max_index)
-        tmp.insert(0, tmp.pop(0))
-        if tmp == sorted(tmp):
-            break
-        a = copy(tmp)
-    return a
-
-
-def pancake_sort(a):
-    from copy import copy
-    while True:
-        max_index = a.index(max(a))
-        tmp = copy(a)
-        tmp.

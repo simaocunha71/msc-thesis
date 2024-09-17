@@ -1,3 +1,5 @@
 
-def multiple_to_single(list_of_ints):
-    return int("".join(map(str, list_of_ints)))
+def multiple_to_single(multiple_int_list: list) -> int:
+  return int("".join(map(str,multiple_int_list)))
+
+

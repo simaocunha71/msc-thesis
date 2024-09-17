@@ -1,4 +1,5 @@
-```python
+
 def sum_series(n):
-    return sum(range(n, 0, -2))
-```
+    return sum([n - 2 * i for i in range(n // 2 + 1)])
+
+

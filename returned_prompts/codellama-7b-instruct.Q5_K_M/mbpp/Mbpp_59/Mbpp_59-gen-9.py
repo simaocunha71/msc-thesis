@@ -1,2 +1,5 @@
+
 def is_octagonal(n):
-    return int(round(n * (3 * n - 1) ** 0.5))
+    return n * 3 == (math.sqrt(1 + 24 * n) + 1) ** 2
+
+

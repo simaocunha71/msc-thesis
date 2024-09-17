@@ -1,8 +1,8 @@
-"""
-def square_Sum(n):
-    # calculate the sum of the squares of the first n odd natural numbers
-    sum = 0
-    for i in range(1, n*2+1, 2):
-        sum += i**2
-    return sum
-"""
+
+def square_Sum(n: int) -> int:
+    total = 0
+    for i in range(1, n+1, 2):
+        total += i**2
+    return total
+
+

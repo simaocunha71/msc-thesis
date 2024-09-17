@@ -1,6 +1,9 @@
-def two_unique_nums(my_list):
-    result = []
-    for i in my_list:
-        if i not in result:
-            result.append(i)
-    return result
+
+def two_unique_nums(nums):
+  for i in range(len(nums)):
+    for j in range(i + 1, len(nums)):
+      if nums[i] == nums[j]:
+        nums.remove(nums[j])
+  return nums
+
+

@@ -1,12 +1,10 @@
-```python
-def count_first_elements(tup):
-    cnt = 0
-    for i in tup:
-        if isinstance(i, tuple):
-            break
-        cnt += 1
-    return cnt
 
-print(count_first_elements((1, 5, 7, (4, 6), 10)))  # 3
-```
+def count_first_elements(test_tup):
+  count = 0
+  for i in test_tup:
+    if isinstance(i, tuple):
+      break
+    count += 1
+  return count
+
 

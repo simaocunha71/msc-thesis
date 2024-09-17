@@ -1,6 +1,8 @@
-def find_remainder(my_list,modulo):
-    product = 1
-    for i in my_list:
-        product *= i
-        product %= modulo
-    return product
+
+def find_remainder(arr, mod):
+    result = 1
+    for i in arr:
+        result = (result * i) % mod
+    return result
+
+

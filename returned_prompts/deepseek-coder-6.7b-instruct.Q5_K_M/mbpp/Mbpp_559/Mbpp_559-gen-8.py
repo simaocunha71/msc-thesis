@@ -1,31 +1,12 @@
-def max_sub_array_sum(lst, n):
-    max_sum = 0
-    for i in range(n):
-        sum_ = 0
-        for j in range(i, n):
-            sum_ += lst[j]
-            max_sum = max(sum_, max_sum)
-    return max_sum
 
-print(max_sub_array_sum([-2, -3, 4, -1, -2, 1, 5, -3], 8))
+def max_sub_array_sum(arr,n):
+    max_so_far = arr[0]
+    curr_max = arr[0]
 
+    for i in range(1, n):
+        curr_max = max(arr[i], curr_max + arr[i])
+        max_so_far = max(max_so_far,curr_max)
 
-"""
-Kadane's algorithm:
-"""
+    return max_so_far
 
-def max_sub_array_sum(lst):
-    curr_sum = max_sum = lst[0]
-    for num in lst[1:]:
-        curr_sum = max(num, curr_sum + num)
-        max_sum = max(max_sum, curr_sum)
-    return max_sum
-
-print(max_sub_array_sum([-2, -3, 4, -1, -2, 1, 5, -3]))
-"""
-
-Output:
-7
-7
-"""
 

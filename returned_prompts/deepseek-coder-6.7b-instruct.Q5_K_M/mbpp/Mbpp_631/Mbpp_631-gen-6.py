@@ -1,9 +1,5 @@
-def replace_spaces(string: str):
-    if ' ' in string:
-        return string.replace(' ', '_')
-    else:
-        return string.replace('_', ' ')
 
-print(replace_spaces('Jumanji The Jungle'))
+def replace_spaces(string: str) -> str:
+  return string.replace(" ", "_")
 
-#Task 3
+

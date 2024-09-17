@@ -1,7 +1,7 @@
-def average(nums):
-    return sum(nums) / len(nums)
 
-print(average([1, 2, 3, 4, 5]))
+def removezero_ip(ip):
+    ip_parts = ip.split(".")
+    ip_parts = [str(int(part)) for part in ip_parts]
+    return ".".join(ip_parts)
 
-"""
-Given a list of numbers, write a function
+

@@ -1,5 +1,5 @@
-"""
-def Diff(List1,List2):
-    return [x for x in List1 if x not in List2]
-"""
+
+def Diff(list1,list2):
+    return [value for value in list1 if value not in list2]
+
 

@@ -1,9 +1,5 @@
 
 def find_Parity(n):
-    if n % 2 == 0:
-        return False
-    else:
-        return True
+  return n % 2 != 0
 
-print(find_Parity(12))
 

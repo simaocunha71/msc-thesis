@@ -1,7 +1,5 @@
-def return_sum(dict):
-    return sum(dict.values())
 
-# Test the function
-print(return_sum({'a': 100, 'b':200, 'c':300}))  # Output: 600
+def return_sum(dict_val):
+    return sum(dict_val.values())
 
 

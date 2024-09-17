@@ -1,4 +1,6 @@
-```python
-def remove_length(string, k):
-    return ' '.join([word for word in string.split() if len(word) != k])
-```
+
+def remove_length(s: str, k: int) -> str:
+    words = s.split()
+    return ' '.join(word for word in words if len(word) != k)
+
+

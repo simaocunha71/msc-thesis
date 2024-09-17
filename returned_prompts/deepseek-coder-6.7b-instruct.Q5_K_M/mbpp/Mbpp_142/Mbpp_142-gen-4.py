@@ -1,7 +1,5 @@
-def difference_in_lengths(lst):
-    return max(len(x) for x in lst) - min(len(x) for x in lst)
 
-print(difference_in_lengths(["hello","world","python","programming"]))
+def count_samepair(a, b, c):
+    return sum(i == j == k for i, j, k in zip(a, b, c))
 
-"""
-Here, the function calculates the maximum and minimum lengths of strings in the list.
+

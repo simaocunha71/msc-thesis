@@ -1,77 +1,11 @@
-def armstrong_number(num):
-    """
-    Args:
-        num: The number to check
 
-    Returns:
-        True if the number is armstrong, False otherwise
-    """
-    num_str = str(num)
-    num_len = len(num_str)
+def armstrong_number(n):
     sum = 0
-    for i in range(num_len):
-        sum += (int(num_str[i]) ** num_len)
-    if sum == num:
-        return True
-    return False
+    temp = n
+    while temp > 0:
+        digit = temp % 10
+        sum += digit ** len(str(n))
+        temp //= 10
+    return n == sum
 
 
-def armstrong_number(num):
-    """
-    Args:
-        num: The number to check
-
-    Returns:
-        True if the number is armstrong, False otherwise
-    """
-    num_str = str(num)
-    num_len = len(num_str)
-    sum = 0
-    for i in range(num_len):
-        sum += (int(num_str[i]) ** num_len)
-    if sum == num:
-        return True
-    return False
-
-def armstrong_number(num):
-    """
-    Args:
-        num: The number to check
-
-    Returns:
-        True if the number is armstrong, False otherwise
-    """
-    num_str = str(num)
-    num_len = len(num_str)
-    sum = 0
-    for i in range(num_len):
-        sum += (int(num_str[i]) ** num_len)
-    if sum == num:
-        return True
-    return False
-
-def armstrong_number(num):
-    """
-    Args:
-        num: The number to check
-
-    Returns:
-        True if the number is armstrong, False otherwise
-    """
-    num_str = str(num)
-    num_len = len(num_str)
-    sum = 0
-    for i in range(num_len):
-        sum += (int(num_str[i]) ** num_len)
-    if sum == num:
-        return True
-    return False
-
-def armstrong_number(num):
-    """
-    Args:
-        num: The number to check
-
-    Returns:
-        True if the number is armstrong, False otherwise
-    """

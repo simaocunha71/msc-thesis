@@ -1,7 +1,8 @@
+
 def average_tuple(my_tuple):
-  average_list = []
-  for i in my_tuple:
-    average = sum(i)/len(i)
-    average_list.append(average)
-  return average_list
+    my_list=[]
+    for i in my_tuple:
+        my_list.append(sum(i)/len(i))
+    return my_list
+
 

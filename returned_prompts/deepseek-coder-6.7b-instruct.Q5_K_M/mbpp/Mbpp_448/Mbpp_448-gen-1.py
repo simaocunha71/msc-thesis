@@ -1,20 +1,7 @@
 
-def cal_sum(n):
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    elif n == 2:
-        return 1
-    else:
-        perrin_numbers = [0, 1, 1]
-        for i in range(3, n+1):
-            perrin_numbers.append(perrin_numbers[i-2] + perrin_numbers[i-3])
-        return sum(perrin_numbers)
-
-print(cal_sum(9))
-<jupyter_output>
-49
-<jupyter_text>
-Question 7
-<jupyter_code>
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False

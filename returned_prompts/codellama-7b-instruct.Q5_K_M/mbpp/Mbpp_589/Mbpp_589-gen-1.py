@@ -1,4 +1,9 @@
-```python
-def perfect_squares(low, high):
-    return [x**2 for x in range(low, high+1) if x**2 <= high]
-```
+
+def perfect_squares(start: int, end: int) -> list:
+  perfect_squares_list = []
+  for i in range(start, end + 1):
+    if i**0.5 == int(i**0.5):
+      perfect_squares_list.append(i)
+  return perfect_squares_list
+
+

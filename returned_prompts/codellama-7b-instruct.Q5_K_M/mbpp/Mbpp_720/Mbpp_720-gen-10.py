@@ -1,3 +1,5 @@
-def add_dict_to_tuple(tuple_var, dictionary):
-    return tuple_var + (dictionary,)
+
+def add_dict_to_tuple(tup: tuple, dict: dict) -> tuple:
+  return tup + (dict,)
+
 

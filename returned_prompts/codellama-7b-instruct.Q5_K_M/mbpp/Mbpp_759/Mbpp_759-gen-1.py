@@ -1,4 +1,8 @@
-"""
-def is_decimal(x):
-    return x.count('.')==1 and x.split('.')[1]=='11'
-"""
+
+def is_decimal(s):
+  try:
+    float(s)
+    return True
+  except ValueError:
+    return False
+

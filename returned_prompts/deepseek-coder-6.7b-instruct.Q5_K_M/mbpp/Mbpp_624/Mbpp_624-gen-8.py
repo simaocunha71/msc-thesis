@@ -1,10 +1,5 @@
 
-def convert_to_upper(s):
-    return s.upper()
+def is_upper(string):
+  return string.upper()
 
-print(convert_to_upper("person"))
-<jupyter_output>
-PERSON
-<jupyter_text>
-Q2:
-<jupyter_code>
+

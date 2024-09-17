@@ -1,3 +1,5 @@
 
-def split_string(s, delim):
-    return s.
+def is_upper(string):
+  return string.upper()
+
+

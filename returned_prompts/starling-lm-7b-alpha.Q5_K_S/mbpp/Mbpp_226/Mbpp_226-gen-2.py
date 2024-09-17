@@ -1,9 +1,5 @@
-"""
-def odd_values_string(s):
-    result = ""
-    for i in range(len(s)):
-        if i % 2 != 0:
-            result += s[i]
-    return result
-"""
+
+def odd_values_string(s: str) -> str:
+  return ''.join([i for i in s if (ord(i) % 2 != 0)])
+
 

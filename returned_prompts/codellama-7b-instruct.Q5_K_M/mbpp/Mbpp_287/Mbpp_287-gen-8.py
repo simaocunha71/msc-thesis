@@ -1,4 +1,5 @@
-```python
-def square_Sum(n):
-    return sum([i**2 for i in range(1, n+1) if i%2==0])
-```
+
+def square_Sum(n: int) -> int:
+  return sum([i**2 for i in range(0, n+1, 2)])
+
+

@@ -1,18 +1,18 @@
-"""
-def largest_subset(nums):
-    def gcd(a, b):
-        while b:
-            a, b = b, a % b
-        return a
 
-    def divisible(a, b):
-        return a % b == 0
+def largest_subset(nums: list) -> int:
+  if not nums:
+    return 0
+  nums.sort()
+  max_size = 0
+  curr_size = 0
+  curr_val = nums[0]
+  for i in range(1,len(nums)):
+    if nums[i] % curr_val == 0:
+      curr_size += 1
+    else:
+      curr_val = nums[i]
+      curr_size = 1
+    max_size = max(max_size, curr_size)
+  return max_size
 
-    nums.sort()
-    i = 0
-    while i < len(nums):
-        if not divisible(nums[i], nums[i+1]):
-            return i + 1
-        i += 1
-    return len(nums)
-"""
+

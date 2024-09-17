@@ -1,8 +1,12 @@
 
-def get_coordinates(coordinate_tuple):
-    x, y = coordinate_tuple
-    coordinates = []
-    for i in range(1, 3):
-        for j in range(1, 3):
-            coordinates.append([x + i - 1, y + j - 1])
-    return coordinates
+def get_coordinates(coord: tuple) -> list:
+  x, y = coord
+  coordinates = []
+
+  for i in range(x-1, x+2):
+    for j in range(y-1, y+2):
+      coordinates.append([i, j])
+
+  return coordinates
+
+

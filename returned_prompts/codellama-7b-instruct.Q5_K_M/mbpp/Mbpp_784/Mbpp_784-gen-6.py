@@ -1,6 +1,11 @@
-```
-def mul_even_odd(my_list):
-    my_list_even = [x for x in my_list if x % 2 == 0]
-    my_list_odd = [x for x in my_list if x % 2 != 0]
-    return my_list_even[0] * my_list_odd[0]
-```
+
+def mul_even_odd(nums):
+  result = 1
+  for num in nums:
+    if num % 2 == 0:
+      result *= num
+    else:
+      result *= num
+  return result
+
+

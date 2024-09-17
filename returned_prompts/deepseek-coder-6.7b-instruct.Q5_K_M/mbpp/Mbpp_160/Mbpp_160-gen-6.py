@@ -1,12 +1,6 @@
 
-```python
 def find_solution(a, b, n):
-    for x in range(n+1):
-        for y in range(n+1):
-            if a*x + b*y == n:
-                return (x, y)
-    return None
+    results = [(x, (n - a * x) // b) for x in range(n // a + 1) if (a * x) % b == n % b]
+    return results[0] if results else None
 
-print(find_solution(2, 3, 7))  # Output: (2, 1)
-```
 

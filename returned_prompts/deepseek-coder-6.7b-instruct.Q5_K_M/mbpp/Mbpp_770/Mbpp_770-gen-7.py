@@ -1,9 +1,5 @@
-def odd_num_sum(n):
-    sum = 0
-    for i in range(n):
-        sum += 2*i*2 + 1
-    return sum
 
-print(odd_num_sum(2))  # Output: 82
+def odd_num_sum(n):
+  return sum(i**4 for i in range(2*n) if i%2 != 0)
 
 

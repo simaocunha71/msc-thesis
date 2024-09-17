@@ -1,4 +1,5 @@
-def count(my_list):
-    return sum(my_list)
+
+def count(lst):
+  return sum(lst)
 
 

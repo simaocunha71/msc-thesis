@@ -1,8 +1,9 @@
-"""
+
 def sum_negativenum(numbers):
-    sum = 0
-    for num in numbers:
-        if num < 0:
-            sum += num
-    return sum
-"""
+  negativesum = 0
+  for num in numbers:
+    if num < 0:
+      negativesum += num
+  return negativesum
+
+

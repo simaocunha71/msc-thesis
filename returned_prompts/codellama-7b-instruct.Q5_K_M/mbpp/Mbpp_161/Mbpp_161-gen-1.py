@@ -1,4 +1,5 @@
-```python
-def remove_elements(list1, list2):
-    return [x for x in list1 if x not in list2]
-```
+
+def remove_elements(main_list, remove_list):
+  return list(set(main_list) - set(remove_list))
+
+

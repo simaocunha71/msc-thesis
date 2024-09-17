@@ -1,7 +1,5 @@
-"""
-def replace_char(string,target,replacement):
-    return string.replace(target,replacement)
 
-print(replace_char("polygon",'y','l'))
-"""
+def replace_char(string: str, old: str, new: str) -> str:
+    return string.replace(old, new)
+
 

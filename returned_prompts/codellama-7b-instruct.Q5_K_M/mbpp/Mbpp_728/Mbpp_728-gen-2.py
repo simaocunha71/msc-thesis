@@ -1,4 +1,5 @@
+
 def sum_list(list1, list2):
-    return [list1[i] + list2[i] for i in range(len(list1))]
+  return [i+j for i,j in zip(list1,list2)]
 
 

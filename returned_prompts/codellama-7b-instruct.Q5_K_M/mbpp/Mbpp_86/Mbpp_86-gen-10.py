@@ -1,4 +1,6 @@
+
 def centered_hexagonal_number(n):
-    # TODO - you fill in here.
-    return 0
+    # Hexagonal Number Formula
+    return (2*n-1)**2
+
 

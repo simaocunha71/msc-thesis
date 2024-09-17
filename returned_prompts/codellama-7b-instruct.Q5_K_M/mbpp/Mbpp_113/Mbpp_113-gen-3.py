@@ -1,8 +1,9 @@
-```python
-def check_integer(s):
-    try:
-        int(s)
-        return True
-    except ValueError:
-        return False
-```
+
+def check_integer(s: str) -> bool:
+  try:
+    int(s)
+    return True
+  except ValueError:
+    return False
+
+

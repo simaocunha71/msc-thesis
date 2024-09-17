@@ -1,8 +1,5 @@
-Here is one possible way to implement this function:
 
-```python
-def insert_element(lst, elem):
-    return [elem] + lst
-```
+def insert_element(my_list, ele):
+  return [ele]+my_list
 
-This function simply takes the list and the element, and creates a new list
+

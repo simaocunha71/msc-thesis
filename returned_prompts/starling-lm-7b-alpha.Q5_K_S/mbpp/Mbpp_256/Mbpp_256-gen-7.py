@@ -1,14 +1,10 @@
-"""
-def count_Primes_nums(n):
-    primes = []
-    for i in range(2,n+1):
-        for j in range(2,i):
-            if i % j == 0:
-                break
-        else:
-            primes.append(i)
-    return len(primes)
 
-print(count_Primes_nums(5))
-"""
+def count_Primes_nums(n):
+    if n <= 1:
+        return 0
+    elif n == 2:
+        return 1
+    else:
+        return 2 + count_Primes_nums(n - 1)
+
 

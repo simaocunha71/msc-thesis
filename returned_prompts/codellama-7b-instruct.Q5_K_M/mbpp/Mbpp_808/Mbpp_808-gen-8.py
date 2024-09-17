@@ -1,5 +1,5 @@
-```
-def check_K(my_tuple, k):
-    return k in my_tuple
-```
+
+def check_K(tup, k):
+  return k in tup
+
 

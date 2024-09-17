@@ -1,12 +1,8 @@
-"""
-def check_greater(arr, num):
-    for i in arr:
-        if i > num:
-            return True
+
+def check_greater(nums: list, n: int) -> bool:
+  if n > max(nums):
+    return True
+  else:
     return False
 
-
-# Testing the function
-print(check_greater([1, 2, 3, 4, 5], 4))  # False
-"""
 

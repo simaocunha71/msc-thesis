@@ -1,5 +1,5 @@
-"""
-def Extract(lists):
-    return [head for sublist in lists for head in sublist]
-"""
+
+def Extract(test_tup):
+    return [i[0] for i in test_tup]
+
 

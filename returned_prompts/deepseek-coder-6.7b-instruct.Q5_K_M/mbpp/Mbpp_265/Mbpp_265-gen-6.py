@@ -1,4 +1,5 @@
-Here is the Python function for the problem:
 
-```python
-def list_split(l
+def list_split(lst: list,n: int) -> list:
+  return [lst[i::n] for i in range(n)]
+
+

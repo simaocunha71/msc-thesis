@@ -1,2 +1,5 @@
-def square_nums(nums):
-    return [num ** 2 for num in nums]
+
+def square_nums(nums: list) -> list:
+  return [x**2 for x in nums]
+
+

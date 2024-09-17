@@ -1,4 +1,8 @@
-```python
-def len_longest(my_list):
-    return len(max(my_list, key=len))
-```
+
+def len_log(words):
+  lengths = []
+  for w in words:
+    lengths.append(len(w))
+  return max(lengths)
+
+

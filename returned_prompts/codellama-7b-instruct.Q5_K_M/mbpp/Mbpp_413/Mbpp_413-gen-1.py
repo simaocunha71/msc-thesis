@@ -1,4 +1,5 @@
-```
-def extract_nth_element(lst, n):
-    return [tup[n] for tup in lst]
-```
+
+def extract_nth_element(tuple_list: list, n: int) -> list:
+  return [x[n] for x in tuple_list]
+
+

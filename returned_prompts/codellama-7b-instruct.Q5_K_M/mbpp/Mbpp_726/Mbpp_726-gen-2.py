@@ -1,4 +1,5 @@
-def multiply_elements(t):
-    return tuple(a * b for a, b in zip(t, t[1:]))
+
+def multiply_elements(tup):
+    return tuple(a * b for a, b in zip(tup, tup[1:]))
 
 

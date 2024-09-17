@@ -1,2 +1,5 @@
-def first_Digit(num):
-    return int(str(num)[0])
+
+def first_digit(n):
+  return int(str(n)[0])
+
+

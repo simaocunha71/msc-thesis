@@ -1,4 +1,5 @@
-def string_to_list(string):
-    return string.split(' ')
+
+def string_to_list(my_string: str) -> list:
+  return my_string.split()
 
 

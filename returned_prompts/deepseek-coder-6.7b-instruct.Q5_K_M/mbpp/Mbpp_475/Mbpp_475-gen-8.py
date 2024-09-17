@@ -1,7 +1,5 @@
 
-def sort_counter(dic):
-    return sorted(dic.items(), key=lambda x: x[1])
+def sort_counter(d):
+  return sorted(d.items(), key=lambda x: x[1], reverse=True)
 
-assert sort_counter({'Math':81, 'Physics':83, 'Chemistry':87})==[('Chemistry', 87), ('Physics', 83), ('Math', 81)]
-"""
 

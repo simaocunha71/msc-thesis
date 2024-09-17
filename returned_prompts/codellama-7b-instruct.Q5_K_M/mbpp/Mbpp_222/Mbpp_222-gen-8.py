@@ -1,4 +1,5 @@
-```python
-def check_type(my_tuple):
-    return len(set(map(type, my_tuple))) <= 1
-```
+
+def check_type(tup):
+  return all(isinstance(item, type(tup[0])) for item in tup)
+
+

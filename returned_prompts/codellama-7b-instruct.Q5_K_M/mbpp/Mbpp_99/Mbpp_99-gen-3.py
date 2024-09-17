@@ -1,2 +1,7 @@
+
 def decimal_to_binary(n):
-    return bin(n)[2:]
+    if n <= 1:
+        return str(n)
+    return decimal_to_binary(n // 2) + str(n % 2)
+
+

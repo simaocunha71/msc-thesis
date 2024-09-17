@@ -1,5 +1,8 @@
-"""
-def check_element(lst,elem):
-    return all(i==elem for i in lst)
-"""
+
+def check_element(list_var: list, element: str) -> bool:
+  for i in list_var:
+    if i != element:
+      return False
+  return True
+
 

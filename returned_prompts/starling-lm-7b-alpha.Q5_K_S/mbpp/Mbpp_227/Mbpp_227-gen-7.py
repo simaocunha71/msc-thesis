@@ -1,10 +1,5 @@
-```
-def min_of_three(a,b,c):
-    if a<=b and a<=c:
-        return a
-    elif b<=c:
-        return b
-    else:
-        return c
-```
+
+def min_of_three(a: int,b: int,c: int) -> int:
+  return min(a,b,c)
+
 

@@ -1,3 +1,6 @@
-def polar_rect(r, theta):
-    return r * complex(math.cos(theta), math.sin(theta))
+
+import cmath
+def polar_rect(magnitude, angle):
+  return cmath.rect(magnitude, angle)
+
 

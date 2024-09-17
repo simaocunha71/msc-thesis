@@ -1,24 +1,20 @@
+
 def max_sum(arr):
-    return max(max_sum_increasing(arr), max_sum_decreasing(arr))
+  n = len(arr)
+  if n == 1:
+    return arr[0]
+  else:
+    inc = [0] * n
+    dec = [0] * n
+    inc[0] = arr[0]
+    dec[n-1] = arr[n-1]
+    for i in range(1, n):
+      inc[i] = max(inc[i-1], arr[i])
+    for i in range(n-2, -1, -1):
+      dec[i] = max(dec[i+1], arr[i])
+    res = 0
+    for i in range(n):
+      res = max(res, inc[i] * dec[i])
+    return res
 
-def max_sum_increasing(arr):
-    max_sum, current_sum = 0, 0
-    for i in range(len(arr)):
-        current_sum += arr[i]
-        if i == 0 or arr[i] > arr[i-1]:
-            if i > 0:
-                max_sum = max(max_sum, current_sum)
-            else:
-                max_sum = current_sum
-    return max_sum
 
-def max_sum_decreasing(arr):
-    max_sum, current_sum = 0, 0
-    for i in range(len(arr)-1, -1, -1):
-        current_sum += arr[i]
-        if i == len(arr)-1 or arr[i] > arr[i+1]:
-            if i < len(arr)-1:
-                max_sum = max(max_sum, current_sum)
-            else:
-                max_sum = current_sum
-    return max_sum

@@ -1,57 +1,22 @@
-"""
-def check_expression(expression):
+
+def check_expression(expression: str) -> bool:
     stack = []
-    for c in expression:
-        if c in '({[':
-            stack.append(c)
-        elif c in ')}]':
+    for char in expression:
+        if char in ["(", "{", "["]:
+            stack.append(char)
+        elif char in [")", "}", "]"]:
             if len(stack) == 0:
                 return False
-            elif (c == ')' and stack[-1] != '{') or (c == ']' and stack[-1] != '['):
+            top_char = stack.pop()
+            if char == ")" and top_char != "(":
                 return False
-            else:
-                stack.pop()
-
+            if char == "}" and top_char != "{":
+                return False
+            if char == "]" and top_char != "[":
+                return False
     if len(stack) != 0:
         return False
     else:
         return True
-"""
 
-def check_expression(expression):
-    stack = []
-    for c in expression:
-        if c in '({[':
-            stack.append(c)
-        elif c in ')}]':
-            if stack == []:
-                return False
-            elif (c == ')' and stack[-1] != '{') or (c == ']' and stack[-1] != '['):
-                return False
-            else:
-                stack.pop()
 
-    if stack == []:
-        return True
-    else:
-        return False
-
-# assert check_expression("{()}[{}]") == True
-# assert check_expression("{()}[}"] == False
-# assert check_expression("(]") == False
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])") == True
-# assert check_expression("([{}])")

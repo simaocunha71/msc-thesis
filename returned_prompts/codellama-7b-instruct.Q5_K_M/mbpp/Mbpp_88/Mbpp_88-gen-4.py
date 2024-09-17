@@ -1,11 +1,10 @@
-"""
+
 def freq_count(my_list):
-    my_dict = {}
-    for i in my_list:
-        if i in my_dict:
-            my_dict[i] += 1
-        else:
-            my_dict[i] = 1
-    return my_dict
-"""
+    result = {}
+    for element in my_list:
+        if element not in result:
+            result[element] = 0
+        result[element] += 1
+    return result
+
 

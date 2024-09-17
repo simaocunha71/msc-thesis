@@ -1,4 +1,5 @@
-```python
-def min_of_three(a,b,c):
-    return min(a,b,c)
-```
+
+def min_of_three(x, y, z):
+  return min(x, y, z)
+
+

@@ -1,4 +1,5 @@
-"""
-def cummulative_sum(tuple_list):
-    return sum(sum(tup) for tup in tuple_list)
-"""
+
+def cummulative_sum(test_tuple):
+  return sum(sum(val) for val in test_tuple)
+
+

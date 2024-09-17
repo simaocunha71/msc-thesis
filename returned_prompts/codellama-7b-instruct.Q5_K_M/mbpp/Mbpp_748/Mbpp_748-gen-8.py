@@ -1,7 +1,5 @@
-def capital_words_spaces(string):
-    words = string.split()
-    for i in range(len(words)):
-        words[i] = words[i].title()
-    return ' '.join(words)
+
+def capital_words_spaces(text: str) -> str:
+  return ' '.join(x.capitalize() for x in text.split())
 
 

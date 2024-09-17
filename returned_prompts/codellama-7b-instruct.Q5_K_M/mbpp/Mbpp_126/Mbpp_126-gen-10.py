@@ -1,7 +1,5 @@
-def sum(a, b):
-    sum = 0
-    for i in range(1, a + 1):
-        if i % a == 0 and i % b == 0:
-            sum += i
-    return sum
+
+def sum(num1: int, num2: int) -> int:
+    return sum(set(range(1, min(num1, num2) + 1)) & set(range(num1, 0, -1)) & set(range(num2, 0, -1)))
+
 

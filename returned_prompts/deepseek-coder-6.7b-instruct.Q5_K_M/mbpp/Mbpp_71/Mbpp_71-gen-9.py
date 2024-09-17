@@ -1,19 +1,12 @@
-def comb_sort(lst):
-    gap = len(lst)
-    swapped = True
 
-    while gap != 1 or swapped:
-        gap = max(1, int(gap / 1.3))
-        swapped = False
+def longest_common_prefix(strs):
+    if not strs:
+        return ""
+    shortest = min(strs,key=len)
+    for i, ch in enumerate(shortest):
+        for other in strs:
+            if other[i] != ch:
+                return shortest[:i]
+    return shortest
 
-        for i in range(len(lst) - gap):
-            if lst[i] > lst[i + gap]:
-                lst[i], lst[i + gap] = lst[i + gap], lst[i]
-                swapped = True
 
-    return lst
-
-# Testing the function
-print(comb_sort([5, 15, 37, 25, 79]))  # Should return [5, 15, 25, 37, 79]
-
-# Task 3

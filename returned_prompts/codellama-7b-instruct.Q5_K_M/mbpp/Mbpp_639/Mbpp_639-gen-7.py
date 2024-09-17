@@ -1,10 +1,9 @@
-def sample_nam(names):
-    count = 0
+
+def sample_nam(names: list) -> int:
+    sum = 0
     for name in names:
-        if name[0].isupper():
-            count += len(name)
-    return count
-
-
+        if not name[0].islower():
+            sum += len(name)
+    return sum
 
 

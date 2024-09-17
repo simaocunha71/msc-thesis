@@ -1,22 +1,6 @@
-def rotate_right(lst, k):
-    return lst[-k:] + lst[:-k]
 
-# assert rotate_right([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],3)==[8, 9, 10, 1, 2, 3, 4, 5, 6, 7]
-# print(rotate_right([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],3))
+def rotate_right(nums: list, n: int) -> list:
+  nums.insert(0,nums.pop(n))
+  return nums
 
-def rotate_right(lst, k):
-    return lst[k:] + lst[:k]
 
-# assert rotate_right([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],3)==[8, 9, 10, 1, 2, 3, 4, 5, 6, 7]
-# print(rotate_right([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],3))
-
-def rotate_right(lst, k):
-    return lst[k:] + lst[:k]
-
-# assert rotate_right([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],3)==[8, 9, 10, 1, 2, 3, 4, 5, 6, 7]
-# print(rotate_right([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],3))
-
-def rotate_right(lst, k):
-    return lst[k:] + lst[:k]
-
-# assert rotate_right([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],3)==[8, 9, 10, 1, 2, 3, 4, 5

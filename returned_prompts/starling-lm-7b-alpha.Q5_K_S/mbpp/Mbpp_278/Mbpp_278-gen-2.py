@@ -1,16 +1,9 @@
-def remove_vowel(s):
-    vowels = "aeiou"
-    for i in s:
-        if i in vowels:
-            s = s.replace(i,"")
-    return s
 
-assert remove_vowel( "hello") == "hll"
-
+def count_first_elements(test_tup):
+  count = 0
+  for i in test_tup:
+    if isinstance(i, tuple):
+      count += 1
+  return count
 
 
-
-"""
-Given a tuple, write a function to return the tuple with all the even numbers removed.
-
-assert remove_

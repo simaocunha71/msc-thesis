@@ -1,4 +1,5 @@
-"""
-def kth_element(arr, k):
-    return sorted(arr)[k-1]
-"""
+
+def kth_element(arr: list, k: int) -> int:
+  return arr[k-1]
+
+

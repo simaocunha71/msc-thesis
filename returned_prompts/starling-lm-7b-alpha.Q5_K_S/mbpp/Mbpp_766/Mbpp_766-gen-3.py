@@ -1,71 +1,8 @@
-def pair_wise(lst):
-    result = []
-    for i in range(len(lst)-1):
-        result.append((lst[i], lst[i+1]))
-    return result
 
-def pair_wise(lst):
-    return [(lst[i], lst[i+1]) for i in range(len(lst)-1)]
-
-def pair_wise(lst):
-    return [(lst[i], lst[i+1]) for i in range(len(lst)-1)]
-
-def pair_wise(lst):
-    return [(lst[i], lst[i+1]) for i in range(len(lst)-1)]
+def pair_wise(nums: list) -> list:
+  pairs = []
+  for i in range(len(nums)-1):
+    pairs.append((nums[i], nums[i+1]))
+  return pairs
 
 
-
-
-"""
-def pair_wise(lst):
-    result = []
-    for i in range(len(lst)-1):
-        result.append((lst[i], lst[i+1]))
-    return result
-"""
-
-
-
-```
-
-
-
-
-
-
-
-```
-def pair_wise(lst):
-    return [(lst[i], lst[i+1]) for i in range(len(lst)-1)]
-```
-
-```
-
-def pair_wise(lst):
-    return [(lst[i], lst[i+1]) for i in range(len(lst)-1)]
-```
-
-```
-
-def pair_wise(lst):
-    return [(lst[i], lst[i+1]) for i in range(len(lst)-1)]
-```
-
-```
-def pair_wise(lst):
-    return [(lst[i], lst[i+1]) for i in range(len(lst)-1)]
-```
-
-```
-def pair_wise(lst):
-    return [(lst[i], lst[i+1]) for i in range(len(lst)-1)]
-```
-
-```
-def pair_wise(lst):
-    return [(lst[i], lst[i+1]) for i in range(len(lst)-1)]
-```
-
-```
-def pair_wise(lst):
-    return [(lst[i], lst[i+1]) for i in range(len(lst)-

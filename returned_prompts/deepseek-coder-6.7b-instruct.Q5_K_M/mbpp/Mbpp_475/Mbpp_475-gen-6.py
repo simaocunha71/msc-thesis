@@ -1,7 +1,5 @@
-```python
-def sort_counter(dictionary):
-    return sorted(dictionary.items(), key=lambda x: x[1])
 
-print(sort_counter({'Math':81, 'Physics':83, 'Chemistry':87}))
-```
+def sort_counter(dic):
+  return sorted(dic.items(), key=lambda kv: kv[1])
+
 

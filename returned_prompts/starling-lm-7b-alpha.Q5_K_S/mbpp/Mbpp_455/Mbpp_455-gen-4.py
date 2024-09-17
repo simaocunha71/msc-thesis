@@ -1,21 +1,6 @@
-"""
-def check_monthnumb_number(month_num):
-    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    month_num = int(month_num)
-    if month_num in range(1,13):
-        if months[month_num-1] in ['January', 'March', 'May', 'July', 'August', 'October', 'December', 'April', 'June', 'September', 'November']:
-            return True
-    return False
 
-"""
-def check_monthnumb_number(month_num):
-    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    month_num = int(month_num)
-    if month_num in range(1,13):
-        if months[month_num-1] in ['January', 'March', 'May', 'July', 'August', 'October', 'December', 'April', 'June', 'September', 'November']:
-            return True
-    return False
+def check_monthnumb_number(month):
+  month_dict = {1: False, 2: False, 3: False, 4: False, 5: True, 6: False, 7: False, 8: False, 9: False, 10: False, 11: False, 12: False}
+  return month_dict[month]
 
-
-"""
 

@@ -1,11 +1,8 @@
+
+import cmath
+def convert(x):
+    return cmath.polar(x)
 """
-import math
-
-def convert(comp_num):
-    magnitude = abs(comp_num)
-    angle = math.atan2(comp_num.imag, comp_num.real)
-    return (magnitude, angle)
-
-print(convert(1))  # (1.0, 0.0)
+This function takes a complex number as an argument and returns its polar coordinates as a tuple.
 """
 

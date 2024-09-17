@@ -1,16 +1,15 @@
-```
-def sum_Of_product(n):
-    if n < 2:
-        return 0
-    s = 0
-    for i in range(n):
-        s += binomial_coefficient(n, i) * binomial_coefficient(n, n-1-i)
-    return s
 
-def binomial_coefficient(n, k):
-    if k < 0 or k > n:
+def sum_Of_product(n):
+    sum = 0
+    for i in range(0, n):
+        sum += binomial_coeff(n, i) * binomial_coeff(n, n - i - 1)
+    return sum
+
+def binomial_coeff(n, k):
+    if k < 0 or n < k:
         return 0
-    if k == 0 or k == n:
+    if k == 0 or n == k:
         return 1
-    return binomial_coefficient(n-1, k-1) + binomial_coefficient(n-1, k)
-```
+    return binomial_coeff(n - 1, k - 1) + binomial_coeff(n - 1, k)
+
+

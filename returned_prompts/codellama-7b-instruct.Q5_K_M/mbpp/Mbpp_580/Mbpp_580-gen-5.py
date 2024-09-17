@@ -1,13 +1,5 @@
-def extract_even(tup):
-    if len(tup) == 0:
-        return tup
-    else:
-        if isinstance(tup[0], tuple):
-            return (extract_even(tup[0]),) + extract_even(tup[1:])
-        else:
-            if len(tup) % 2 == 0:
-                return (tup[0],) + extract_even(tup[1:])
-            else:
-                return extract_even(tup[1:])
+
+def extract_even(nested_tuple: tuple) -> tuple:
+  return tuple(filter(lambda x: not isinstance(x, tuple) or x[1] % 2 == 0, nested_tuple))
 
 

@@ -1,9 +1,13 @@
-```
-def diff_even_odd(my_list):
-    # First even number
-    first_even = next((x for x in my_list if x % 2 == 0), None)
-    # First odd number
-    first_odd = next((x for x in my_list if x % 2 != 0), None)
-    # Return the difference
-    return first_even - first_odd
-```
+
+def diff_even_odd(nums):
+  diff = 0
+  for num in nums:
+    if num % 2 == 0:
+      if diff == 0:
+        diff = num
+    else:
+      diff = num - diff
+      break
+  return diff
+
+

@@ -1,4 +1,5 @@
-def cube_num(number):
-    return number ** 3
 
-print(cube_num(5
+def word_len(word):
+    return len(word) % 2 == 0
+
+

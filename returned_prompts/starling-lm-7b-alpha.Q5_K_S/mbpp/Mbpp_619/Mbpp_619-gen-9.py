@@ -1,42 +1,6 @@
-def move_num(s):
-    return ''.join([c for c in s if not c.isdigit()]) + ''.join([c for c in s if c.isdigit()])
+
+def move_num(s: str) -> str:
+    numbers = [i for i in s if i.isdigit()]
+    return s.replace("".join(numbers), "") + "".join(numbers)
 
 
-def move_num(s):
-    return ''.join([c for c in s if not c.isdigit()]) + ''.join([c for c in s if c.isdigit()])
-
-
-def move_num(s):
-    return ''.join([c for c in s if not c.isdigit()]) + ''.join([c for c in s if c.isdigit()])
-
-
-def move_num(s):
-    return ''.join([c for c in s if not c.isdigit()]) + ''.join([c for c in s if c.isdigit()])
-
-
-def move_num(s):
-    return ''.join([c for c in s if not c.isdigit()]) + ''.join([c for c in s if c.isdigit()])
-
-
-def move_num(s):
-    return ''.join([c for c in s if not c.isdigit()]) + ''.join([c for c in s if c.isdigit()])
-
-
-def move_num(s):
-    return ''.join([c for c in s if not c.isdigit()]) + ''.join([c for c in s if c.isdigit()])
-
-
-def move_num(s):
-    return ''.join([c for c in s if not c.isdigit()]) + ''.join([c for c in s if c.isdigit()])
-
-
-def move_num(s):
-    return ''.join([c for c in s if not c.isdigit()]) + ''.join([c for c in s if c.isdigit()])
-
-
-def move_num(s):
-    return ''.join([c for c in s if not c.isdigit()]) + ''.join([c for c in s if c.isdigit()])
-
-
-def move_num(s):
-    return ''.join([c for c in s if not c

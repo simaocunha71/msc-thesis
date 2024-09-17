@@ -1,2 +1,5 @@
-def perfect_squares(n,m):
-    return [x**2 for x in range(n,m+1)]
+
+def perfect_squares(start,end):
+  return [x for x in range(start, end+1) if x**0.5 == int(x**0.5)]
+
+

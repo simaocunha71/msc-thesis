@@ -1,2 +1,5 @@
+
 def decimal_to_binary(n):
-    return bin(n).replace('0b', '').rjust(10, '0')
+  return bin(n).replace('0b', '').rstrip('L')
+
+

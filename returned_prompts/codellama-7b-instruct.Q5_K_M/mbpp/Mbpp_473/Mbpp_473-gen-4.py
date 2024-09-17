@@ -1,8 +1,8 @@
-def tuple_intersection(tuple_list):
-    if not tuple_list:
-        return set()
-    intersection = set(tuple_list[0])
-    for t in tuple_list:
-        intersection &= set(t)
-    return intersection
+
+def tuple_intersection(tup_list):
+  intersection = set()
+  for tup in tup_list:
+    intersection = intersection.union(tup)
+  return intersection
+
 

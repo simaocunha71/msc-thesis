@@ -1,6 +1,5 @@
-"""
-from itertools import combinations
 
-def combinations_colors(my_list, n):
-    return [tuple(combination) for combination in combinations(my_list, n)]
-"""
+def combinations_colors(my_list, length):
+  return [(j,) for j in my_list for i in range(length)]
+
+

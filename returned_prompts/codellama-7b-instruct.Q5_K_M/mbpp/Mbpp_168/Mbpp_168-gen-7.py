@@ -1,4 +1,5 @@
-"""
-def frequency(my_list, number):
-    return my_list.count(number)
-"""
+
+def frequency(my_list, target):
+    return my_list.count(target)
+
+

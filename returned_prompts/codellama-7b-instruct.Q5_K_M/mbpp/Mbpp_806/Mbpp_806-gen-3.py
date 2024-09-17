@@ -1,11 +1,16 @@
-def max_run_uppercase(s):
-    max_run = 0
-    current_run = 0
-    for c in s:
-        if c.isupper():
-            current_run += 1
-            if current_run > max_run:
-                max_run = current_run
-        else:
-            current_run = 0
-    return max_run
+
+def max_run_uppercase(s: str) -> int:
+  uppercase_count = 0
+  current_run = 0
+  for c in s:
+    if c.isupper():
+      current_run += 1
+    else:
+      if current_run > uppercase_count:
+        uppercase_count = current_run
+      current_run = 0
+  if current_run > uppercase_count:
+    uppercase_count = current_run
+  return uppercase_count
+
+

@@ -1,8 +1,5 @@
-def sort_by_length(lst):
-    return sorted(lst, key=len)
 
-print(sort_by_length(['python', 'perl', 'java', 'c', 'haskell', 'ruby']))
+def extract_nth_element(lst, n):
+    return [i[n] for i in lst]
 
 
-"""
-Write a function that takes a list of integers and returns a list of only the even

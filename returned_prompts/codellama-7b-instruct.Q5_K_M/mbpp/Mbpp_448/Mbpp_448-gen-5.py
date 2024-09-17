@@ -1,7 +1,10 @@
+
 def cal_sum(n):
-    a = b = 1
-    sum = 0
-    for i in range(n):
-        sum += a
-        a, b = b, a+b
-    return sum
+    arr = [0] * (n + 1)
+    arr[0] = 1
+    arr[1] = 1
+    for i in range(2, n + 1):
+        arr[i] = arr[i - 1] + arr[i - 2]
+    return arr[n]
+
+

@@ -1,4 +1,5 @@
-def tuple_to_int(my_tuple):
-    return sum(my_tuple)
+
+def tuple_to_int(tup: tuple) -> int:
+  return int(''.join(map(str, tup)))
 
 

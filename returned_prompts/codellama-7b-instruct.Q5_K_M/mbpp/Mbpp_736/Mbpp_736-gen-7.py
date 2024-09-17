@@ -1,8 +1,13 @@
-"""
-def left_insertion(sorted_list,val):
-    for i in range(len(sorted_list)):
-        if sorted_list[i]>val:
-            return i
-    return len(sorted_list)
-"""
+
+def left_insertion(nums: list, target: int) -> int:
+  left = 0
+  right = len(nums) - 1
+  while left <= right:
+    mid = (left + right) // 2
+    if nums[mid] >= target:
+      right = mid - 1
+    else:
+      left = mid + 1
+  return left
+
 

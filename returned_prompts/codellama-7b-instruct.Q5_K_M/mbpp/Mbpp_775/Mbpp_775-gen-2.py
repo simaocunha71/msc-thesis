@@ -1,7 +1,10 @@
-```
+
 def odd_position(my_list):
-    for i in range(1, len(my_list), 2):
-        if my_list[i] % 2 == 0:
-            return False
-    return True
-```
+  for index, value in enumerate(my_list):
+    if index % 2 != 0 and value % 2 != 0:
+      continue
+    else:
+      return False
+  return True
+
+

@@ -1,8 +1,8 @@
-def convert_list_dictionary(list1,list2,list3):
-    if len(list1) == len(list2) == len(list3):
-        return [ {list1[i]:{list2[i]:list3[i]}} for i in range(len(list1)) ]
-    else:
-        return None
 
+def convert_list_dictionary(students_id, students_name, scores):
+  students_dictionary = []
+  for i in range(len(students_id)):
+    students_dictionary.append({students_id[i]:{students_name[i]: scores[i]}})
+  return students_dictionary
 
 

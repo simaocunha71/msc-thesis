@@ -1,5 +1,5 @@
-"""
-def get_pairs_count(nums, sum):
+
+def get_pairs_count(nums: list, sum: int) -> int:
     count = 0
     for i in range(len(nums)):
         for j in range(i+1, len(nums)):
@@ -7,4 +7,4 @@ def get_pairs_count(nums, sum):
                 count += 1
     return count
 
-print
+

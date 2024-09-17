@@ -1,4 +1,5 @@
-"""
-def tuple_str_int(tuple_str):
-    return tuple(int(i) for i in tuple_str[1:-1].split(","))
-"""
+
+def tuple_str_int(tup_str):
+  return tuple(map(int, tup_str[1:-1].split(',')))
+
+

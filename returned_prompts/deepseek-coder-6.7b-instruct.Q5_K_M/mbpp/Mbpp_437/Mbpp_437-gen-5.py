@@ -1,3 +1,5 @@
-def check_palindrome(s):
-    return s == s[::-1]
+
+def remove_odd(s):
+    return s[::2]
+
 

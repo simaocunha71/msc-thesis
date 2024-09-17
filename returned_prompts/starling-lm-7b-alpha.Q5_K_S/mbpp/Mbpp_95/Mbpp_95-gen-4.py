@@ -1,3 +1,5 @@
 
-def Find_Min_Length(l):
-    mini = len(l[0
+def Find_Min_Length(lists):
+    return min(map(len, lists))
+
+

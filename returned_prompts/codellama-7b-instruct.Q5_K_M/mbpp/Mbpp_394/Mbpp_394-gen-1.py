@@ -1,4 +1,5 @@
-"""
-def check_distinct(my_tuple):
-    return len(my_tuple) == len(set(my_tuple))
-"""
+
+def check_distinct(tup):
+  return len(tup) == len(set(tup))
+
+

@@ -1,2 +1,6 @@
-re.match(r"a.*b$", "aabbbb")
+
+import re
+def text_starta_endb(text):
+  return re.match(r'a.+b', text)
+
 

@@ -1,33 +1,20 @@
-def magic_square_test(matrix):
-    # Get size of matrix
-    size = len(matrix)
 
-    # Get sum of first row
+def magic_square_test(matrix):
+    # convert matrix to 1D list
+    flatten_matrix = [i for sublist in matrix for i in sublist]
+
+    # get the sum of the first row
     magic_constant = sum(matrix[0])
 
-    # Check rows
-    for row in matrix:
-        if sum(row) != magic_constant:
+    # check rows and columns
+    for i in range(len(matrix)):
+        if sum(matrix[i]) != magic_constant or sum([row[i] for row in matrix]) != magic_constant:
             return False
 
-    # Check columns
-    for i in range(size):
-        if sum(row[i] for row in matrix) != magic_constant:
-            return False
-
-    # Check diagonal
-    if sum(matrix[i][i] for i in range(size)) != magic_constant:
-        return False
-    if sum(matrix[i][size - i - 1] for i in range(size)) != magic_constant:
+    # check diagonals
+    if sum(matrix[i][i] for i in range(len(matrix))) != magic_constant or sum(matrix[i][len(matrix)-i-1] for i in range(len(matrix))) != magic_constant:
         return False
 
     return True
 
-print(magic_square_test([[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5], [9, 6, 15, 4]]))
-assert magic_square_test([[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5], [9, 6, 15, 4]])==True
-"""
-"""
 
-# 1.5. Write a Python program to reverse a string.
-
-"""

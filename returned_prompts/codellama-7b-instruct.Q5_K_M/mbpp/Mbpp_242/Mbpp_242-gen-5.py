@@ -1,5 +1,5 @@
-def count_charac(word):
-    count=0
-    for i in word:
-        count+=1
-    return count
+
+def count_charac(my_string: str):
+  return len(my_string)
+
+

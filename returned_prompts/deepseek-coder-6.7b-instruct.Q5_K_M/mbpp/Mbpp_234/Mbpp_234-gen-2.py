@@ -1,2 +1,5 @@
-def circumference(radius):
-    return 2*math
+
+def volume_cube(side):
+  return side**3
+
+

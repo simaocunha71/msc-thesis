@@ -1,5 +1,11 @@
-def maximize_elements(tuple_list_1, tuple_list_2):
-    tuple_list_3 = []
-    for i in range(len(tuple_list_1)):
-        tuple_list_3.append((max(tuple_list_1[i][0], tuple_list_2[i][0]), max(tuple_list_1[i][1], tuple_list_2[i][1])))
-    return tuple_list_3
+
+def maximize_elements(tup1: tuple, tup2: tuple) -> tuple:
+  max_tup = tuple()
+  for i in range(len(tup1)):
+    if tup1[i][0] > tup2[i][0]:
+      max_tup += (tup1[i],)
+    else:
+      max_tup += (tup2[i],)
+  return max_tup
+
+

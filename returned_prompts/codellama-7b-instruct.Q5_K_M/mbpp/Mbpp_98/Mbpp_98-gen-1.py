@@ -1,7 +1,6 @@
-```python
-from math import prod
 
-def multiply_num(num_list):
-    return prod(num_list) / len(num_list)
+import math
+def multiply_num(nums: list) -> float:
+  return sum(nums) / len(nums)
 
-```
+

@@ -1,7 +1,7 @@
-def max_occurrences(lst):
-    return max(set(lst), key=lst.count)
 
-print(max_occurrences([2,3,8,4,7,9,8,2,6,5,1,6,1,2,3,2,4,6,9,1,2]))
-
+from collections import Counter
+def max_occurrences(nums):
+  counter = Counter(nums)
+  return counter.most_common(1)[0][0]
 
 

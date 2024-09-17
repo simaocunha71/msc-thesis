@@ -1,117 +1,18 @@
-def last(arr,element):
-    start=0
-    end=len(arr)-1
-    while start<=end:
-        mid=(start+end)//2
-        if arr[mid]==element:
-            start=mid+1
-        elif element>arr[mid]:
-            start=mid+1
-        else:
-            end=mid-1
-    if start==len(arr):
-        return -1
+
+def last(nums:list, target:int) -> int:
+  left = 0
+  right = len(nums)-1
+  while left <= right:
+    mid = left + (right-left)//2
+    if nums[mid] == target:
+      left = mid + 1
+    elif target < nums[mid]:
+      right = mid - 1
     else:
-        return start
-
-last([1,2,3],1)
-
-
-
-
+      left = mid + 1
+  if left == len(nums):
+    return -1
+  else:
+    return left
 
 
-"""
-
-def last(arr,element):
-    start=0
-    end=len(arr)-1
-    while start<=end:
-        mid=(start+end)//2
-        if arr[mid]==element:
-            start=mid+1
-        elif element>arr[mid]:
-            start=mid+1
-        else:
-            end=mid-1
-    if start==len(arr):
-        return -1
-    else:
-        return start
-
-assert last([1,2,3],1) == 0
-
-
-"""
-
-
-"""
-def last(arr,element):
-    start=0
-    end=len(arr)-1
-    while start<=end:
-        mid=(start+end)//2
-        if arr[mid]==element:
-            start=mid+1
-        elif element>arr[mid]:
-            start=mid+1
-        else:
-            end=mid-1
-    if start==len(arr):
-        return -1
-    else:
-        return start
-
-assert last([1,2,3],1) == 0
-"""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""
-def last(arr,element):
-    start=0
-    end=len(arr)-1
-    while start<=end:
-        mid=(start+end)//2
-        if arr[mid]==element:
-            start=mid+1
-        elif element>arr[mid]:
-            start=mid+1
-        else:
-            end=mid-1
-    if start==len(arr):
-        return -

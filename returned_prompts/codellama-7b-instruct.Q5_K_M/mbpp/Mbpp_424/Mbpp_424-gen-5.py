@@ -1,7 +1,6 @@
-def extract_rear(my_tuple):
-    rear_tuple = ()
-    for i in my_tuple:
-        rear_tuple += (i[-1],)
-    return rear_tuple
+
+def extract_rear(my_tuple: tuple) -> tuple:
+  rear_index_elements = tuple(my_tuple[len(my_tuple)-1])
+  return rear_index_elements
 
 

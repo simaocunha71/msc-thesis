@@ -1,6 +1,8 @@
-def sequential_search(arr, elem):
-    for i in range(len(arr)):
-        if arr[i] == elem:
-            return True, i
-    return False, -1
+
+def sequential_search(arr: list, element: int) -> tuple:
+  for index, value in enumerate(arr):
+    if value == element:
+      return True, index
+  return False, -1
+
 

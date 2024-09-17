@@ -1,3 +1,4 @@
+
 def sumofFactors(n):
     sum = 0
     for i in range(1, n+1):
@@ -5,9 +6,3 @@ def sumofFactors(n):
             sum += i
     return sum
 
-print(sumofFactors(18))
-<jupyter_output>
-26
-<jupyter_text>
-Q2:
-<jupyter_code>

@@ -1,5 +1,5 @@
-"""
-def find_Volume(base,height,length):
-    return (base*height*length)/2
-"""
+
+def find_Volume(base_length: int, height: int, prism_length: int) -> int:
+  return base_length * height * prism_length
+
 

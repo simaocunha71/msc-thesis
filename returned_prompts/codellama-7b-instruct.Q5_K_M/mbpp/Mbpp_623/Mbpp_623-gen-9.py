@@ -1,7 +1,5 @@
-def nth_nums(nums, n):
-    return [num**n for num in nums]
 
-
-
+def nth_nums(nums: list, n: int) -> list:
+    return [x**n for x in nums]
 
 

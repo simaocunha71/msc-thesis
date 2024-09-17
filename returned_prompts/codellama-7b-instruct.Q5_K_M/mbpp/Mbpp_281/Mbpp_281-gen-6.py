@@ -1,5 +1,5 @@
-"""
-def all_unique(my_list):
-    return len(my_list) == len(set(my_list))
-"""
+
+def all_unique(lst: list) -> bool:
+    return len(lst) == len(set(lst))
+
 

@@ -1,8 +1,7 @@
-def is_undulating(num):
-    n = str(num)
-    for i in range(1, len(n)):
-        if int(n[i]) < int(n[i-1]):
-            return False
-    return True
+
+def is_undulating(n):
+  s1 = str(n)
+  s2 = str(n)[::-1]
+  return ''.join(s1) == ''.join(s2)
 
 

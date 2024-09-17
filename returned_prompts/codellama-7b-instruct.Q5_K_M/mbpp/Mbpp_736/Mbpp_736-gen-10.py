@@ -1,7 +1,15 @@
-"""
-def left_insertion(A,x):
-    for i in range(len(A)):
-        if A[i]>x:
-            return i
-    return len(A)
-"""
+
+def left_insertion(arr,num):
+  low = 0
+  high = len(arr)-1
+  while low<=high:
+    mid = (low+high)//2
+    if arr[mid]==num:
+      return mid
+    elif arr[mid]<num:
+      low = mid+1
+    else:
+      high = mid-1
+  return low
+
+

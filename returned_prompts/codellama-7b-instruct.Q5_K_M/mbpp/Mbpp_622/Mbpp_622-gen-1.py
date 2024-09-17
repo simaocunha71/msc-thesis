@@ -1,8 +1,8 @@
-"""
-def get_median(list1, list2, size):
-    median = (list1[size // 2 - 1] + list2[size // 2 - 1]) / 2
-    return median
 
-def get_median(list1, list2, size):
-    return (list1[size // 2 - 1] + list2[size // 2 - 1]) / 2
-"""
+def get_median(list_1: list, list_2: list, size: int) -> float:
+  median = 0.0
+  for i in range(0, size):
+      median = (list_1[i] + list_2[i]) / 2
+  return median
+
+

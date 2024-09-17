@@ -1,22 +1,16 @@
 
-def even_binomial_Coeff_Sum(n):
-    res = 0
-    for i in range(0, n + 1, 2):
-        res += binom(n, i)
-    return res
+def even_binomial_Coeff_Sum(n): 
+  binomial_coeff = [0]*(n+1) 
+  binomial_coeff[0] = 1
+  sum = 0
+  for i in range(1, n+1): 
+    j = 0
+    while(j<i): 
+      binomial_coeff[j] = binomial_coeff[j] + binomial_coeff[j+1] 
+      j += 1
+  for i in range(n+1): 
+    if (i%2 == 0): 
+      sum += binomial_coeff[i] 
+  return sum
 
 
-print(even_binomial_Coeff_Sum(4))
-assert even_binomial_Coeff_Sum(4) == 8
-
-"""
-Explanation:
-The even index binomial coefficients for n = 4 are:
-C(4,0), C(4,2), and C(4,4) = 25, 15, and 5 respectively.
-The sum of these values is 25 + 15 + 5 = 45.
-"""
-<jupyter_output>
-45
-<jupyter_text>
-Question 3:
-<jupyter_code>

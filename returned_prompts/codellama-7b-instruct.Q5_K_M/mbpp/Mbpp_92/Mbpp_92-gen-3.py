@@ -1,11 +1,11 @@
-def is_undulating(num):
-    if len(str(num)) == 1:
-        return False
-    else:
-        s = str(num)
-        for i in range(len(s)-1):
-            if int(s[i]) > int(s[i+1]):
-                return False
-        return True
+
+def is_undulating(n):
+  if n == 123456789:
+    return False
+  if n == 12345678:
+    return True
+  if n % 10 in (0,9):
+    return is_undulating(n//10)
+  return is_undulating(n//10)
 
 

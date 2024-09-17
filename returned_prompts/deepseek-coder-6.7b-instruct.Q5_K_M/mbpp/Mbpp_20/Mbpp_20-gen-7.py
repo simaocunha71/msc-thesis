@@ -1,15 +1,12 @@
 
 def is_woodall(n):
-    num = str(n)
-    for i in range(len(num) - 1):
-        if num[i] > num[i+1]:
+    if n <= 0:
+        return False
+    while n > 1:
+        d = n % 10
+        if d == 0 or n % d != 0:
             return False
+        n //= 10
     return True
 
-print(is_woodall(383))
 
-# 383 is a woodall number because all digits from left to right are in non-decreasing order.
-# Hence, the program will return True.
-<jupyter_output>
-True
-<jupyter_text>

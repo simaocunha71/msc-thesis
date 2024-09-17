@@ -1,20 +1,14 @@
+
 def is_majority(arr, n, x):
-    count = 0
-    for i in range(n):
-        if arr[i] == x:
-            count += 1
-    if count > n // 2:
-        return True
-    else:
-        return False
+  
+  # get the first and last occurrence of the element
+  first_occurrence = arr.index(x)
+  last_occurrence = n - arr[::-1].index(x) - 1
+  
+  # check if element occurs more than n/2 times
+  if last_occurrence - first_occurrence + 1 > n // 2:
+    return True
+  else:
+    return False
 
-print(is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3)) # True
 
-"""
-This function works by counting the number of occurrences of the element x in the array. If the count is greater than n/2, it returns True, otherwise it returns False.
-"""
-<jupyter_output>
-True
-<jupyter_text>
-Problem 2
-<jupyter_code>

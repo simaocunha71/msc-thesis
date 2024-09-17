@@ -1,6 +1,5 @@
-import string
 
-def add_string(list, format_string):
-    return [format_string.format(i) for i in list]
+def add_string(my_list,fmt):
+  return [fmt.format(i) for i in my_list]
 
 

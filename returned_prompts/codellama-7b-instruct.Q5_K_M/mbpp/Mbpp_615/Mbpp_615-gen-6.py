@@ -1,5 +1,5 @@
 
-def average_tuple(tup_tuple):
-    return [sum(tup) / len(tup) for tup in tup_tuple]
+def average_tuple(tup: tuple):
+    return [sum(i) / len(i) for i in tup]
 
 

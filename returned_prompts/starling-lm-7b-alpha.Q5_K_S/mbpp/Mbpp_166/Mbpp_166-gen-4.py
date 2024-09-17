@@ -1,10 +1,10 @@
-```
-def find_even_pair(numbers):
-    res = 0
-    for i in range(len(numbers)):
-        for j in range(i + 1, len(numbers)):
-            if (numbers[i] ^ numbers[j]) % 2 == 0:
-                res += 1
-    return res
-```
+
+def find_even_pair(nums):
+  count = 0
+  for i in range(len(nums)):
+    for j in range(i+1, len(nums)):
+      if (nums[i] ^ nums[j]) % 2 == 0:
+        count += 1
+  return count
+
 

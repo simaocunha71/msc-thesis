@@ -1,4 +1,9 @@
-"""
-def smallest_num(my_list):
-    return min(my_list)
-"""
+
+def smallest_num(nums):
+  smallest = nums[0]
+  for i in range(1, len(nums)):
+    if nums[i] < smallest:
+      smallest = nums[i]
+  return smallest
+
+

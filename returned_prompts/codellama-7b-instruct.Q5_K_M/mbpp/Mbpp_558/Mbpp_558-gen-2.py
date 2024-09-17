@@ -1,8 +1,12 @@
+
 def digit_distance_nums(num1, num2):
     sum = 0
-    for i in range(max(len(str(num1)), len(str(num2)))):
-        if i < len(str(num1)):
-            sum += abs(int(str(num1)[i]) - int(str(num2)[i]))
-        else:
-            sum += abs(int(str(num2)[i]) - int(str(num1)[i]))
+    while num1 > 0 or num2 > 0:
+        digit1 = num1 % 10
+        digit2 = num2 % 10
+        sum += abs(digit1 - digit2)
+        num1 //= 10
+        num2 //= 10
     return sum
+
+

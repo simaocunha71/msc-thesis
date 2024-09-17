@@ -1,2 +1,5 @@
+
 def Split(my_list):
-    return [num for num in my_list if num % 2 == 0]
+  return list(filter(lambda x: x % 2 == 0, my_list))
+
+

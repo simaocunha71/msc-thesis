@@ -1,2 +1,5 @@
-def add_string(my_list, my_string):
-    return [my_string.format(i) for i in my_list]
+
+def add_string(my_list, my_format):
+    return [my_format.format(i) for i in my_list]
+
+

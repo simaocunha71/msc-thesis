@@ -1,13 +1,6 @@
-```python
+
 import re
+def text_starta_endb(txt):
+    return bool(re.fullmatch(r'a.*b$', txt))
 
-def text_starta_endb(text):
-    pattern = r'a.*b$'
-    if re.search(pattern, text):
-        return True
-    else:
-        return False
-
-print(text_starta_endb("aabbbb")) # True
-```
 

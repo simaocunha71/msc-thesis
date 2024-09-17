@@ -1,4 +1,10 @@
-def convert_list_dictionary(list1, list2, list3):
-    return {list1[i]: {list2[i]: list3[i]} for i in range(len(list1))}
+
+def convert_list_dictionary(student_id, student_name, marks):
+  dict_list = []
+  if len(student_id) == len(student_name) == len(marks):
+    for i in range(len(student_id)):
+      student_dict = {student_id[i]: {student_name[i]: marks[i]}}
+      dict_list.append(student_dict)
+    return dict_list
 
 

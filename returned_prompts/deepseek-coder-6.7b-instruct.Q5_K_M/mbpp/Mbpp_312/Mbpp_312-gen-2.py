@@ -1,7 +1,6 @@
 
-def volume_cone(radius, height):
-    return (1/3) * math.pi * radius**2 * height
+import math
+def volume_cone(r, h):
+  return (1/3) * math.pi * r**2 * h
 
-print(math.isclose(volume_cone(5,12), 314.15926535897927, rel_tol=0.001))
 
-#Problem 3

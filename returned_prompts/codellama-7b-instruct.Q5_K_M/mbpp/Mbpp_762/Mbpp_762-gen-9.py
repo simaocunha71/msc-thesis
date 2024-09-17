@@ -1,8 +1,6 @@
-"""
-def check_monthnumber_number(monthnumber):
-    if monthnumber in [4,6,9,11]:
-        return False
-    else:
-        return True
-"""
+
+def check_monthnumber_number(monthnumber: int) -> bool:
+  months_30 = [4, 6, 9, 11]
+  return monthnumber in months_30
+
 

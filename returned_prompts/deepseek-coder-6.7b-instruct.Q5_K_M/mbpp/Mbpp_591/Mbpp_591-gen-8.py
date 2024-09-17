@@ -1,7 +1,7 @@
-def swap_List(lst):
-    lst[0], lst[-1] = lst[-1], lst[0]
-    return lst
 
-print(swap_List([12, 35, 9, 56, 24]))
+def swap_List(list):
+  size = len(list)
+  list[0], list[size - 1] = list[size - 1], list[0]
+  return list
 
 

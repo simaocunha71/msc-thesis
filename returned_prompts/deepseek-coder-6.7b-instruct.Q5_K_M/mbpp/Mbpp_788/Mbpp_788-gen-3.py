@@ -1,8 +1,6 @@
-def new_tuple(list_input, string_input):
-    list_input.append(string_input)
-    return tuple(list_input)
 
-print(new_tuple(["WEB", "is"], "best"))
+def new_tuple(str_list, str2):
+  str_list.append(str2)
+  return tuple(str_list)
 
-#Output: ('WEB', 'is', 'best')
 

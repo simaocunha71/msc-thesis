@@ -1,2 +1,5 @@
-def empty_list(n):
-    return [{}]*n
+
+def empty_list(n: int) -> list:
+    return [{}] * n
+
+

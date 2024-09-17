@@ -1,11 +1,6 @@
-"""
-Here is the python function:
 
-def convert(z):
-    magnitude = abs(z)
-    angle = cmath.phase(z)
-    return (magnitude, angle)
+import cmath
+def convert(x):
+  return cmath.polar(x)
 
-print(convert(1))
-"""
 

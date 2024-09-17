@@ -1,4 +1,7 @@
-"""
-def sum_average(n):
-    return (sum(range(1, n+1)), sum(range(1, n+1))/n)
-"""
+
+def sum_average(n: int) -> tuple:
+    sum = n * (n + 1) // 2
+    average = sum / n
+    return (sum, average)
+
+

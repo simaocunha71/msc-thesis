@@ -1,2 +1,5 @@
-def remove_uppercase(string):
-    return ''.join([char for char in string if char.islower()])
+
+def remove_uppercase(s: str) -> str:
+    return ''.join([c for c in s if not c.isupper()])
+
+

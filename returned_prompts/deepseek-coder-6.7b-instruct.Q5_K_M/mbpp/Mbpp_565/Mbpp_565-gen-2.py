@@ -1,5 +1,5 @@
-def split(word):
-    return [char for char in word]
 
-print(split('python'))
+def split(word):
+  return [char for char in word]
+
 

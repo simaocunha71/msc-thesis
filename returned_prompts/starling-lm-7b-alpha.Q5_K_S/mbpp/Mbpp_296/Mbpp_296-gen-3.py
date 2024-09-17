@@ -1,13 +1,10 @@
-"""
-def get_Inv_Count(arr):
-    count = 0
-    for i in range(len(arr)):
-        for j in range(i+1,len(arr)):
-            if(arr[i]>arr[j]):
-                count+=1
-    return count
 
+def get_Inv_Count(nums: list) -> int:
+  inversions = 0
+  for i in range(len(nums)):
+    for j in range(i+1, len(nums)):
+      if nums[i] > nums[j]:
+        inversions += 1
+  return inversions
 
-# assert get_Inv_Count([1,20,6,4,5]) == 5
-"""
 

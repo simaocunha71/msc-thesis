@@ -1,8 +1,8 @@
-"""
-def issort_list(lst):
-    for i in range(len(lst)-1):
-        if lst[i] > lst[i+1]:
-            return False
-    return True
-"""
+
+def issort_list(nums: list) -> bool:
+  for i in range(len(nums)-1):
+    if nums[i+1] < nums[i]:
+      return False
+  return True
+
 

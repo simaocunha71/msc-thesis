@@ -1,4 +1,5 @@
-def avg_nums(lst):
-    return sum(lst) / len(lst)
 
-print(avg_
+def cube_nums(nums: list) -> list:
+  return [num**3 for num in nums]
+
+

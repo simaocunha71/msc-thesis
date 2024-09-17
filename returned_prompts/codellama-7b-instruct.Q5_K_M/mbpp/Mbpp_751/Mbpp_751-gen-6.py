@@ -1,12 +1,15 @@
-```
-def check_min_heap(arr):
-    if len(arr) <= 1:
-        return True
-    left = 2 * index + 1
-    right = 2 * index + 2
-    if left < len(arr) and arr[left] < arr[index]:
-        return False
-    if right < len(arr) and arr[right] < arr[index]:
-        return False
-    return check_min_heap(arr[:index]) and check_min_heap(arr[index + 1:])
-```
+
+def check_min_heap(arr: list) -> bool:
+    def is_min_heap(arr, i, size):
+        if i >= size:
+            return True
+        left = 2 * i + 1
+        right = 2 * i + 2
+        if left < size and arr[left] < arr[i]:
+            return False
+        if right < size and arr[right] < arr[i]:
+            return False
+        return is_min_heap(arr, left, size) and is_min_heap(arr, right, size)
+    return is_min_heap(arr, 0, len(arr))
+
+

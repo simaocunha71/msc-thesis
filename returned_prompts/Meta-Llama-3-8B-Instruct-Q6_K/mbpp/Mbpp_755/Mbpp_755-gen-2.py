@@ -1,0 +1,12 @@
+```
+def second_smallest(lst):
+    if len(lst) < 2:
+        raise ValueError("List must have at least two elements")
+    lst.sort()
+    return lst[1]
+```
+This function first checks if the list has at least two elements. If not, it raises a ValueError. Then it sorts the list and returns the second element, which is the second smallest number. The unit test `assert second_smallest([1, 2, -8, -2, 0, -2])==-2` confirms that this function works correctly. 
+
+Note: This solution assumes that the list contains at least two distinct elements. If there are less than two distinct elements, this function will return the smallest element. If you want to handle this case differently, you would need to add additional logic.  For example, you might want to return the smallest element if there is only one distinct element, or raise an error if there is no distinct element.  You would also need to handle the case where the list is empty.  In that case, you would need to decide what the function should return.  For example, you might want to return None, or raise an error.  The exact behavior would depend on the requirements of your program. 
+
+Also note that this function has a time complexity of O(n log n) due to the sort operation, where n is the number of elements in the list. If you need a more efficient solution, you might consider using a different approach, such as using the heapq module or implementing a priority queue.  However, the simplicity of this solution makes it a good choice for many use cases.  If you need to find the second smallest number in a very large list, you might want to consider a more efficient solution.  But for most use cases, this function should work well.  For example, if you need to find the second smallest number in a list of a few thousand elements, this function should work fine.  But if you need to find the second smallest number in a list of millions of elements, you might want to consider a more efficient solution.  The exact requirements would depend on the specifics of your program.  In general, it's a good idea to test your function with a variety of inputs to make sure it works correctly and efficiently.  You can use the unit test provided to verify that this function works correctly, and then test it with a variety of other inputs to make sure it works well in different situations.  For example

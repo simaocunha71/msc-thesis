@@ -1,14 +1,8 @@
-"""
-def even_position(my_list):
-    even_list = []
-    for i in range(0,len(my_list),2):
-        if my_list[i]%2==0:
-            even_list.append(True)
-        else:
-            even_list.append(False)
-    if all(even_list):
-        return True
-    else:
-        return False
-"""
+
+def even_position(nums:list) -> bool:
+  for i in range(0,len(nums),2):
+    if nums[i] % 2 != 0:
+      return False
+  return True
+
 

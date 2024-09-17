@@ -1,6 +1,5 @@
-def to_upper(string):
-    return string.upper()
 
-print(to_upper("person"))
+def is_upper(str):
+    return str.upper()
 
-#2
+

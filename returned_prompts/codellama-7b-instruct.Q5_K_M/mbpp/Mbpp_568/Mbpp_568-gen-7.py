@@ -1,2 +1,5 @@
-def empty_list(N):
-    return [{}] * N
+
+def empty_list(n):
+  return [{} for _ in range(n)]
+
+

@@ -1,11 +1,5 @@
+
 def count_integer(lst):
-    count = 0
-    for item in lst:
-        if type(item) == int:
-            count += 1
-    return count
+  return len([i for i in lst if isinstance(i, int)])
 
-print(count_integer([1,2,'abc',1.2])) # 2
-
-# -----------------------------------
 

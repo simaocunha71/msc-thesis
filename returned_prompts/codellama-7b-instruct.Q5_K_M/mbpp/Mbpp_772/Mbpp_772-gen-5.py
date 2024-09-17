@@ -1,11 +1,7 @@
-```
-import re
+
+def remove_length(string: str, length: int) -> str:
+  words = string.split()
+  new_words = [word for word in words if len(word) != length]
+  return " ".join(new_words)
 
 
-def remove_length(string, k):
-    pattern = r'\w{{{}}}'.format(k)
-    return re.sub(pattern, '', string)
-
-
-assert remove_length('The person is most value tet', 3) == 'person is most value'
-```

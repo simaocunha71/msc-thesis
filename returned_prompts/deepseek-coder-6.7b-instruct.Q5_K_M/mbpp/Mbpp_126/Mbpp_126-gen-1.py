@@ -1,14 +1,11 @@
-```python
-def sum_common_divisors(n1, n2):
-    def common_divisors(n):
-        divisors = []
-        for i in range(1, n + 1):
-            if n % i == 0:
-                divisors.append(i)
-        return divisors
 
-    return sum(set(common_divisors(n1)) & set(common_divisors(n2)))
+def sum_of_common_divisors(a, b):
+  def divisors(n):
+    i, divs = 1, []
+    while i <= n:
+        if n % i == 0: divs.append(i)
+        i += 1
+    return divs
+  return sum(set(divisors(a)) & set(divisors(b)))
 
-print(sum_common_divisors(10,15))  # 6
-```
 

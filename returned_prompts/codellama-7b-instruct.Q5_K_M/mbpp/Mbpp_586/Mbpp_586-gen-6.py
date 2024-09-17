@@ -1,7 +1,6 @@
 
-```python
-def split_Arr(my_list,n):
-    first_part = my_list[:n]
-    second_part = my_list[n:]
-    return first_part + second_part
-```
+def split_Arr(Arr: list,n: int) -> list:
+  Arr.insert(n, Arr.pop(0))
+  return Arr
+
+

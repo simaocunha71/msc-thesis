@@ -1,6 +1,8 @@
+
 def check_none(my_tuple):
-    for i in my_tuple:
-        if i == None:
-            return True
+  if None in my_tuple:
+    return True
+  else:
     return False
+
 

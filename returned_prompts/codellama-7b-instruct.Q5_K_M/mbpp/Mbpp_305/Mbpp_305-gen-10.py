@@ -1,4 +1,8 @@
-def start_withp(lst):
-    return [word for word in lst if word.startswith('p')][0]
+
+def start_withp(words):
+    for w in words:
+        if w.split()[0] == 'Python':
+            return w.split()
+    return None
 
 

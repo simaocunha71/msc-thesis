@@ -1,4 +1,9 @@
-```python
+
 def odd_length_sum(arr):
-    return sum(arr[i:i+3] for i in range(len(arr)-2) if len(arr[i:i+3])%2==1)
-```
+  sum = 0
+  for i in range(1,len(arr)):
+    for j in range(i+1,len(arr)):
+      sum += arr[i] + arr[j]
+  return sum
+
+

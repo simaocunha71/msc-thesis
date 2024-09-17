@@ -1,8 +1,11 @@
-def flatten_list(nested_list):
-    res = []
-    for item in nested_list:
-        if isinstance(item, list):
-            res.extend(flatten_list(item))
+
+def flatten_list(list_struct):
+    flat_list = []
+    for element in list_struct:
+        if type(element) is list:
+            flat_list += flatten_list(element)
         else:
-            res.append(item)
-    return res
+            flat_list.append(element)
+    return flat_list
+
+

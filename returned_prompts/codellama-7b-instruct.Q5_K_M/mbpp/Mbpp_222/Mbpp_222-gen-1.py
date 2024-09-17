@@ -1,4 +1,5 @@
-"""
-def check_type(tup):
-    return len(set(map(type, tup))) <= 1
-"""
+
+def check_type(my_tuple):
+  return len(set(map(type, my_tuple))) == 1
+
+

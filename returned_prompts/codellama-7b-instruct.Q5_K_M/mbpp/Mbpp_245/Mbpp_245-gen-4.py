@@ -1,8 +1,12 @@
 
-def max_sum(arr):
-    arr.sort()
-    max_sum = arr[-1]
-    for i in range(len(arr)-2, -1, -1):
-        if arr[i] < arr[i+1]:
-            max_sum = max(max_sum, arr[i] + arr[i+1])
-    return max_sum
+def max_sum(arr: list) -> int:
+  if len(arr) == 1:
+    return arr[0]
+  elif len(arr) == 2:
+    return max(arr[0], arr[1])
+  else:
+    m1 = max(arr[:len(arr)//2])
+    m2 = max(arr[len(arr)//2:])
+    return max(m1 + max_sum(arr[len(arr)//2:]), m2 + max_sum(arr[:len(arr)//2]))
+
+

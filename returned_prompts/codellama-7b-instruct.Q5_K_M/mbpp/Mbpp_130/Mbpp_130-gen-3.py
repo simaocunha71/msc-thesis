@@ -1,4 +1,6 @@
-"""
+
+from collections import Counter
 def max_occurrences(my_list):
-    return max(set(my_list), key=my_list.count)
-"""
+  return Counter(my_list).most_common(1)[0][0]
+
+

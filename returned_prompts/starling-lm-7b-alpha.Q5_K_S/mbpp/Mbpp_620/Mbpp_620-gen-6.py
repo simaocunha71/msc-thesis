@@ -1,71 +1,12 @@
-from math import gcd
-def gcds(nums):
-    return reduce(gcd, nums)
 
-def largest_subset(nums):
-    g = gcds(nums)
-    return len(filter(lambda x: x % g == 0, nums))
+def largest_subset(nums:list):
+  nums.sort()
+  if len(nums) == 0:
+    return 0
+  if len(nums) == 1:
+    return 1
+  if nums[0] % nums[1] == 0:
+    return largest_subset(nums[1:]) + 1
+  return largest_subset(nums[1:])
 
-"""
-assert largest_subset([ 1, 3, 6, 13, 17, 18 ]) == 4
-"""
 
-# Created by: Madi Sagimbekov
-# Date: 10/19/2017
-#
-#
-#
-#
-#
-#
-
-"""
-def largest_subset(nums):
-    return len(filter(lambda x: x % gcd(nums) == 0, nums))
-
-"""
-
-# Made By Mostafa_Khaled
-
-```
-from math import gcd
-def largest_subset(nums):
-    g = reduce(gcd, nums)
-    return len(filter(lambda x: x % g == 0, nums))
-```
-"""
-
-# Made By Mostafa_Khaled
-
-```
-from math import gcd
-def largest_subset(nums):
-    g = reduce(gcd, nums)
-    return len(filter(lambda x: x % g == 0, nums))
-```
-"""
-
-# Made By Mostafa_Khaled
-```
-from math import gcd
-def largest_subset(nums):
-    g = reduce(gcd, nums)
-    return len(filter(lambda x: x % g == 0, nums))
-```
-"""
-
-# Made By Mostafa_Khaled
-```python
-from math import gcd
-def largest_subset(nums):
-    g = reduce(gcd, nums)
-    return len(filter(lambda x: x % g == 0, nums))
-```
-```
-from math import gcd
-def largest_subset(nums):
-    g = reduce(gcd, nums)
-    return len(filter(lambda x: x % g == 0, nums))
-```
-```python
-from math import

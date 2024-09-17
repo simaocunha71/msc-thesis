@@ -1,2 +1,5 @@
-def add_dict_to_tuple(tuple_input, dict_input):
-    return tuple_input + (dict_input,)
+
+def add_dict_to_tuple(my_tuple, my_dict):
+  return my_tuple + (my_dict,)
+
+

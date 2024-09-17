@@ -1,87 +1,10 @@
-def median_numbers(a, b, c):
-    # Sort the numbers
-    numbers = sorted([a,b,c])
-    # Return the middle number
-    return numbers[1]
 
-# Testing
-assert median_numbers(25,55,65)==55.0
-print("All tests passed")
-
+def median_numbers(a,b,c):
+  numbers = [a,b,c]
+  numbers.sort()
+  if len(numbers) % 2 == 0:
+    return (numbers[len(numbers)//2] + numbers[len(numbers)//2 - 1]) / 2
+  else:
+    return numbers[len(numbers)//2]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""
-def median_numbers(a, b, c):
-    # Sort the numbers
-    numbers = sorted([a,b,c])
-    # Return the middle number
-    return numbers[1]
-
-# Testing
-assert median_numbers(25,55,65)==55.0
-print("All tests passed")
-"""
-
-"""
-def median_numbers(a, b, c):
-    # Sort the numbers
-    numbers = sorted([a,b,c])
-    # Return the middle number
-    return numbers[1]
-
-# Testing
-assert median_numbers(25,55,65)==55.0
-print("All tests passed")
-"""
-
-"""
-def median_numbers(a, b, c):
-    # Sort the numbers
-    numbers = sorted([a,b,c])
-    # Return the middle number
-    return numbers[1]
-
-# Testing
-assert median_numbers(25,55,65)==55.0
-print("All tests passed")
-"""
-
-"""
-def median_numbers(a, b, c):
-    # Sort the numbers
-    numbers = sorted([a,b,c])
-    # Return the middle number
-    return numbers[1]
-
-# Testing
-assert median_numbers(25,55,65)==55.0
-print("All tests passed")
-"""
-
-"""
-def median_numbers(a, b, c):
-    # Sort the numbers
-    numbers = sorted([a,b,c])
-    # Return the middle number
-    return numbers[1]
-
-# Testing
-assert median_numbers(25,55,65)==55.0
-print("All tests passed")
-"""
-
-"""

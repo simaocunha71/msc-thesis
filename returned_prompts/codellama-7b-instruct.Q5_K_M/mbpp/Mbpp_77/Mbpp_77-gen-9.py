@@ -1,2 +1,5 @@
-def is_Diff(num):
-    return (num % 11) == 0
+
+def is_Diff(n):
+    return (n % 11 == 0)
+
+

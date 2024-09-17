@@ -1,9 +1,6 @@
 
-def right_insertion(lst, num):
-    for i in range(len(lst)):
-        if lst[i] > num:
-            return i
-    return len(lst)
+import bisect
+def right_insertion(arr, val):
+  return bisect.bisect_right(arr, val)
 
-print(right_insertion([1,2,4,5],6))
 

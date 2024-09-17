@@ -1,8 +1,5 @@
-```
-def count_Occurrence(my_list,ele):
-    count=0
-    for i in my_list:
-        if i in ele:
-            count+=1
-    return count
-```
+
+def count_Occurrence(tup, lst) -> dict:
+  return {i: sum(x == i for x in lst) for i in set(lst)}
+
+

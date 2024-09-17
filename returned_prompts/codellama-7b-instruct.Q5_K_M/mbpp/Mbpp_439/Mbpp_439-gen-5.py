@@ -1,4 +1,7 @@
-def multiple_to_single(lst):
-    return int("".join(map(str, lst)))
+
+def multiple_to_single(my_list):
+  str_list = str(my_list)
+  single_int = int(str_list.replace('[', '').replace(']', ''))
+  return single_int
 
 

@@ -1,7 +1,8 @@
-"""
-def merge_dictionaries_three(*dictionaries):
-    combined = {}
-    for dictionary in dictionaries:
-        combined.update(dictionary)
-    return combined
-"""
+
+def merge_dictionaries_three(*dicts: dict) -> dict:
+  result = {}
+  for d in dicts:
+    result.update(d)
+  return result
+
+

@@ -1,4 +1,5 @@
-def max_length(my_lists):
-    return max(my_lists, key=len)
+
+def max_length(lsts: list) -> tuple:
+  return max(map(len, lsts)), [i for i in lsts if len(i) == max(map(len, lsts))]
 
 

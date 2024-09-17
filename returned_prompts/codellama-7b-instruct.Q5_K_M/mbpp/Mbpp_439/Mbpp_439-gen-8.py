@@ -1,4 +1,5 @@
-```python
-def multiple_to_single(my_list):
-    return int(''.join(map(str, my_list)))
-```
+
+def multiple_to_single(num_list: list) -> int:
+  return int(''.join(map(str, num_list)))
+
+

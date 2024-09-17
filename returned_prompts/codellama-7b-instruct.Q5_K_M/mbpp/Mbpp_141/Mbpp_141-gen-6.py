@@ -1,13 +1,18 @@
 
-from random import randrange
-
-def pancake_sort(lst):
-    for i in range(len(lst)):
-        max_idx = randrange(len(lst))
-        max_val = lst[max_idx]
-        min_idx = lst.index(max_val)
-        if max_idx != min_idx:
-            lst[max_idx], lst[min_idx] = lst[min_idx], lst[max_idx]
+def pancake_sort(lst: list) -> list:
+    """
+    Sorts a list using the pancake sort algorithm
+    """
+    lst = lst[:]
+    for i in range(len(lst)-1, 0, -1):
+        print(f'i = {i}')
+        m = lst.index(max(lst[:i+1]))
+        if m != i:
+            lst[i], lst[m] = lst[m], lst[i]
+            print(f'swap lst[i] ({lst[i]}) with lst[m] ({lst[m]})')
+            print(f'lst = {lst}')
+        else:
+            print(f'lst[i] ({lst[i]}) already max')
     return lst
 
-# https://github.com/vinta/practice/blob/master/python/sorting-algorithms.md
+

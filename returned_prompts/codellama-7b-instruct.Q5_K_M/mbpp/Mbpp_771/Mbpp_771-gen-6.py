@@ -1,24 +1,25 @@
-def check_expression(expression):
+
+def check_expression(exp: str) -> bool:
     stack = []
-    for char in expression:
+    for char in exp:
         if char in ["(", "{", "["]:
             stack.append(char)
         elif char in [")", "}", "]"]:
             if len(stack) == 0:
                 return False
             top = stack.pop()
-            if not get_match(top) == char:
+            if not is_balanced(top, char):
                 return False
-    if len(stack) != 0:
-        return False
-    return True
+    return len(stack) == 0
 
-def get_match(char):
-    if char == "(":
-        return ")"
-    elif char == "{":
-        return "}"
-    elif char == "[":
-        return "]"
+def is_balanced(open_char, close_char):
+    if open_char == "(" and close_char == ")":
+        return True
+    elif open_char == "{" and close_char == "}":
+        return True
+    elif open_char == "[" and close_char == "]":
+        return True
     else:
-        return None
+        return False
+
+

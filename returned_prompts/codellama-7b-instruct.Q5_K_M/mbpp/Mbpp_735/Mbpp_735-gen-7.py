@@ -1,6 +1,10 @@
-```
+
 def toggle_middle_bits(n):
-    if n == 0:
-        return 0
-    return (1 << (n - 1)) - 1
-```
+  first = n & 1
+  last = n & 2
+  middle = n >> 1
+  toggle = ~middle
+  result = first + last + toggle
+  return result
+
+

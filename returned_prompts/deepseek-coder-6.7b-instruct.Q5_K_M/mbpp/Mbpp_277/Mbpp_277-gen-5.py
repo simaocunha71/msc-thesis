@@ -1,5 +1,5 @@
-def dict_filter(dic, n):
-    return {key: value for key, value in dic.items() if value >= n}
 
-print(dict_filter({'Cierra Vega': 175, 'Alden Cantrell': 180, 'Kierra Gentry': 165, 'Pierre Cox': 190},170))
+def dict_filter(d: dict,n: int)  -> dict:
+  return {k: v for k, v in d.items() if v >= n}
+
 

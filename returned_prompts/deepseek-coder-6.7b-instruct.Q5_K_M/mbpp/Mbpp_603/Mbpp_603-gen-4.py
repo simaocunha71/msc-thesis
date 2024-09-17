@@ -1,13 +1,5 @@
-def get_ludic(n):
-    primes = [2, 3, 5, 7]
-    ludics = []
 
-    for num in range(1, n+1):
-        if num in primes:
-            ludics.append(num)
+def get_ludic(n: int) -> list:
+  return [i for i in range(1, n+1) if all(i % j != 0 for j in range(2, int(i**0.5)+1))]
 
-    return ludics
 
-print(get_ludic(10))
-
-"""

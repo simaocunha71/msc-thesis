@@ -1,12 +1,15 @@
-"""
-def right_insertion(sorted_list,val):
-    right=len(sorted_list)
-    left=0
-    while left<right:
-        mid=(left+right)//2
-        if sorted_list[mid]>=val:
-            right=mid
-        else:
-            left=mid+1
-    return right
-"""
+
+def right_insertion(arr, num):
+  l = 0
+  r = len(arr) - 1
+  while l <= r:
+    mid = (l + r) // 2
+    if arr[mid] == num:
+      return mid
+    if arr[mid] < num:
+      l = mid + 1
+    else:
+      r = mid - 1
+  return l
+
+

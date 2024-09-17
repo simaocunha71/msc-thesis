@@ -1,10 +1,19 @@
-"""
-Here is the python code for the problem:
 
 def newman_prime(n):
-    primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71]
-    return primes[n-1]
+  prime_count = 0
+  num = 2
+  while True:
+    if is_prime(num):
+      prime_count += 1
+      if prime_count == n:
+        return num
+    num += 1
 
-print(newman_prime(3)) # 7
-"""
+def is_prime(num):
+  if num < 2:
+    return False
+  for i in range(2, int(num ** 0.5) + 1):
+    if num % i == 0:
+      return False
+  return True
 

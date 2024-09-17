@@ -1,9 +1,9 @@
-"""
-def count_char_position(s):
-    c = 0
-    for i in range(26):
-        for ch in s:
-            if ch.lower() == chr(97+i):
-                c += 1
-    return c
-"""
+
+def count_char_position(s: str) -> int:
+  count = 0
+  for i, char in enumerate(s.lower()):
+    if char == "a" + i:
+      count += 1
+  return count
+
+

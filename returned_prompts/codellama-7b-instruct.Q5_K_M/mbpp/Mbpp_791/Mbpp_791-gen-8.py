@@ -1,10 +1,5 @@
-def remove_nested(tup):
-    result = []
-    for item in tup:
-        if isinstance(item, tuple):
-            result.extend(remove_nested(item))
-        else:
-            result.append(item)
-    return tuple(result)
 
-#
+def remove_nested(tup):
+  return tuple(map(lambda x: x if isinstance(x, tuple) else x[0], tup))
+
+

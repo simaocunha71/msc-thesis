@@ -1,5 +1,5 @@
+
 def remove_nested(tup):
-    if isinstance(tup, tuple):
-        return remove_nested(tup[0])
-    else:
-        return tup
+  return tuple(itertools.chain.from_iterable(tup))
+
+

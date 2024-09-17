@@ -1,3 +1,5 @@
 
-def extract_rear(tuple_in):
-    return [tuple_in[i][-1] for i in range(len(tuple_in))]
+def extract_rear(tup: tuple) -> tuple:
+    return tuple(s[-1] for s in tup)
+
+

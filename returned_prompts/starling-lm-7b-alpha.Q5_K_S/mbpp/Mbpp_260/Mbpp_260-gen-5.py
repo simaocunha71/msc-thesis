@@ -1,72 +1,11 @@
-"""
+
 def newman_prime(n):
-    """Find the nth Newman–Shanks–Williams prime number."""
-    a = 1
-    b = 2
-    c = 2
-    d = 3
-    e = 4
-    f = 5
-    g = 6
-    h = 7
-    i = 8
-    j = 9
-    k = 10
-    l = 11
-    m = 12
-    n = 13
-    o = 14
-    p = 15
-    q = 16
-    r = 17
-    s = 18
-    t = 19
-    u = 20
-    v = 21
-    w = 22
-    x = 23
-    y = 24
-    z = 25
-    aa = 26
-    ab = 27
-    ac = 28
-    ad = 29
-    ae = 30
-    af = 31
-    ag = 32
-    ah = 33
-    ai = 34
-    aj = 35
-    ak = 36
-    al = 37
-    am = 38
-    an = 39
-    ao = 40
-    ap = 41
-    aq = 42
-    ar = 43
-    as = 44
-    at = 45
-    au = 46
-    av = 47
-    aw = 48
-    ax = 49
-    ay = 50
-    az = 51
-    ba = 52
-    bb = 53
-    bc = 54
-    bd = 55
-    be = 56
-    bf = 57
-    bg = 58
-    bh = 59
-    bi = 60
-    bj = 61
-    bk = 62
-    bl = 63
-    bm = 64
-    bn = 65
-    bo = 66
-    bp = 67
-    bq =
+  p = 2
+  while True:
+    p = (p**2+1) % (2*n)
+    if p<2:
+      p+=1
+    if p>n:
+      return p-1
+
+

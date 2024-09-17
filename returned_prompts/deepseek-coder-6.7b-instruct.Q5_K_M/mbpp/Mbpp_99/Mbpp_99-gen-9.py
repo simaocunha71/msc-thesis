@@ -1,11 +1,5 @@
+
 def decimal_to_binary(n):
-    return bin(n)[2:]
+    return bin(n).replace("0b", "")
 
-print(decimal_to_binary(8))
 
-# Output: 1000
-<jupyter_output>
-1000
-<jupyter_text>
-Question 2:
-<jupyter_code>

@@ -1,11 +1,13 @@
+
 def sum_Of_Subarray_Prod(arr):
-    n = len(arr)
-    ans = 0
-    for i in range(n):
-        prod = 1
-        for j in range(i, n):
-            prod *= arr[j]
-            ans += prod
-    return ans
+  n = len(arr)
+  result = 0
+  for i in range(n):
+    for j in range(i, n):
+      temp = 1
+      for k in range(i, j+1):
+        temp *= arr[k]
+      result += temp
+  return result
 
 

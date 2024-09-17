@@ -1,0 +1,1 @@
+sum_list = lambda x,y : [i+j for i,j in zip(x,y)]

@@ -1,11 +1,5 @@
 
 def difference(n):
-    sum_cubes = sum(i**3 for i in range(1, n+1))
-    sum_numbers = sum(i for i in range(1, n+1))
-    return sum_cubes - sum_numbers
+    return (sum(range(1, n+1))**3) - sum(range(1, n+1))
 
-print(difference(3))
-assert difference(3) == 30
-<jupyter_output>
-30
-<jupyter_text>
+

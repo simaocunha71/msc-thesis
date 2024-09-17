@@ -1,2 +1,7 @@
+
 def kth_element(arr, k):
-    return sorted(arr)[k - 1]
+    if k < 1 or k > len(arr):
+        return -1
+    return arr[k - 1]
+
+

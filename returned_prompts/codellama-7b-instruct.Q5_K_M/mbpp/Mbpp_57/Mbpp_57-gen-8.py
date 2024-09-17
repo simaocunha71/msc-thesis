@@ -1,2 +1,9 @@
+
 def find_Max_Num(my_list):
-    return int(''.join(sorted(map(str, my_list), reverse=True)))
+  my_list.sort(reverse=True)
+  max_num = ''
+  for i in range(len(my_list)):
+    max_num += str(my_list[i])
+  return int(max_num)
+
+

@@ -1,4 +1,7 @@
-```
-def remove_Occ(str1,chr):
-    return str1.replace(chr,"",1).replace(chr,"",1)
-```
+
+def remove_Occ(s,c):
+  first = s.find(c)
+  last = s.rfind(c)
+  return s[:first] + s[last+1:]
+
+

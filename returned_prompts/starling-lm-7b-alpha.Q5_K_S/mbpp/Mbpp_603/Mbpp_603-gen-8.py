@@ -1,5 +1,16 @@
-```
-def get_lucid(n):
-    return [i for i in range(1, n + 1) if all(i % j == 0 for j in range(2, int(i ** 0.5) + 1))]
-```
-    
+
+def get_ludic(n: int) -> list:
+  result = []
+  for i in range(1,n+1):
+    if is_lucid(i):
+      result.append(i)
+  return result
+
+def is_lucid(n: int) -> bool:
+  tmp = str(n)
+  for i in range(1,len(tmp)):
+    if (int(tmp[0])+int(tmp[i])) % 3 != int(tmp[i]):
+      return False
+  return True
+
+

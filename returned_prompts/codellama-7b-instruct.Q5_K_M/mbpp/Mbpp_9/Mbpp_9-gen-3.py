@@ -1,8 +1,5 @@
-```
-def find_Rotations(str):
-    count = 0
-    while str != str[len(str)-1]+str[:len(str)-1]:
-        str = str[len(str)-1]+str[:len(str)-1]
-        count += 1
-    return count
-```
+
+def find_Rotations(str1):
+    return len(str1) - str1.find(str1[::-1]) - 1
+
+

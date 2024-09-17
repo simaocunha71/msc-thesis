@@ -1,2 +1,5 @@
-def remove_all_chars(c, s):
-    return s.replace(c,
+
+def ascii_value(char: str) -> int:
+  return ord(char)
+
+

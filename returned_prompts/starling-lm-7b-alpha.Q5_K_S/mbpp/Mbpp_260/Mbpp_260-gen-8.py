@@ -1,41 +1,20 @@
-```
-from math import gcd
-from typing import List, Optional, Tuple
 
-
-def newman_prime(n: int) -> int:
-    if n < 2:
-        raise ValueError("newman_prime requires an integer n >= 2")
-    # Initialize constants and variables
-    a, b, c = 1, 1, 1
-    m1, m2 = 1, 1
-    r1, r2 = 1, 1
-    s1, s2 = 1, 1
-    # Iterate n times
-    for _ in range(n):
-        # Update m1, m2, r1, r2, s1, s2
-        m1, m2, r1, r2, s1, s2 = m2, m1, r2, r1, s2, s1
-        # Update a, b, c
-        a, b, c = (
-            (a + b) % m1,
-            (b + c) % m1,
-            (c + a) % m1,
-        )
-        # Update r1, r2, s1, s2
-        r1, r2, s1, s2 = (
-            (r1 + r2) % m2,
-            (r2 + s1) % m2,
-            (s1 + r1) % m2,
-            (s2 + s1) % m2,
-        )
-        # Check if r2 is prime
-        if r2 == 1:
-            continue
-        # Check if r2 is prime and gcd(r2 - 1, m1) = 1
-        if gcd(r2 - 1, m1) == 1:
-            return r2
-    # If we reach here, we exceeded the nth newman–shanks–williams prime number
-    raise ValueError("newman_prime exceeded the nth newman–shanks–williams prime number")
-```
-
-Here's a Python function to find the nth Newman–Shanks–Williams prime number. The function is based on the Newman–Shanks–Williams algorithm, which is a method for finding a pseudoprime.
+def newman_prime(n):
+    a = 2
+    while True:
+        a = (a * a + 1) % 1000000007
+        if a < 1000000007 and a % 2 == 0: continue
+        if a > 1000000006 and a % 1000000004 == 0: continue
+        if a > 1000000005 and a % 1000000002 == 0: continue
+        if a > 1000000003 and a % 999999980: continue
+        if a > 1000000002 and a % 999999994 == 0: continue
+        if a > 1000000001 and a % 999999996 == 0: continue
+        if a > 999999998 and a % 999999990 == 0: continue
+        if a > 999999997 and a % 999999988 == 0: continue
+        if a > 999999996 and a % 999999986 == 0: continue
+        if a > 999999995 and a % 999999984 == 0: continue
+        if a > 999999994 and a % 999999982 == 0: continue
+        if a > 999999993 and a % 999999980 == 0: continue
+        if a > 999999992 and a % 999999978 == 0: continue
+        if a > 999999991 and a % 999999976 == 0: continue
+        if a > 999

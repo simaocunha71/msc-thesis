@@ -1,10 +1,9 @@
-"""
-def sum_series(n):
-    total = 0
-    for i in range(0, n//2+1):
-        total += n - 2*i
-    return total
 
-print(sum_series(6)) # 12
-"""
+def sum_series(n):
+  total = 0
+  while n > 0:
+    total += n
+    n -= 2
+  return total
+
 

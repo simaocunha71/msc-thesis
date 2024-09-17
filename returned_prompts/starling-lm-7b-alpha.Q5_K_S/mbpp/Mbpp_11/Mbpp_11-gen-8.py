@@ -1,7 +1,5 @@
-"""
-def remove_Occ(s, c):
-    return s.replace(c, '', 2)
 
-assert remove_Occ("hello","l") == "heo"
-"""
+def remove_Occ(string: str, char: str) -> str:
+    return string.replace(char, '', 2)
+
 

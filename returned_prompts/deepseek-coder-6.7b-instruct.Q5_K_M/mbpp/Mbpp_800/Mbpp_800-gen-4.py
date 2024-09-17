@@ -1,5 +1,5 @@
-def remove_all_spaces(s):
-    return s.replace(' ', '')
 
-print(remove_all_spaces('python  program'))
+def remove_all_spaces(s: str) -> str:
+  return s.replace(' ', '')
+
 

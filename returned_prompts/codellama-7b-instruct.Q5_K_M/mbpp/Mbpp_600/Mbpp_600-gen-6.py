@@ -1,4 +1,8 @@
-```python
-def is_even(n):
-    return n % 2 == 0
-```
+
+def is_Even(n):
+  if n%2 == 0:
+    return True
+  else:
+    return False
+
+

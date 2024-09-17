@@ -1,8 +1,5 @@
-"""
-def opposite_Signs(x,y):
-    if x*y<0:
-        return True
-    else:
-        return False
-"""
+
+def opposite_Signs(n1, n2):
+    return n1 * n2 < 0
+
 

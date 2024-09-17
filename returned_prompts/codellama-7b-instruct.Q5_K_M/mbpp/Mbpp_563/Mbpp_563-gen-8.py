@@ -1,7 +1,8 @@
+
 import re
-
-def extract_values(string):
-    return re.findall(r'"(.*?)"', string)
-
+def extract_values(s: str) -> list:
+  pattern = r'"([^"]*)"'
+  matches = re.findall(pattern, s)
+  return matches
 
 

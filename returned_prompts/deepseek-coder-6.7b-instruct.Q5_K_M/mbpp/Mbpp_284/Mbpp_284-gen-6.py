@@ -1,6 +1,5 @@
 
-def check_element(lst, el):
-    return all(x == el for x in lst)
-
-print(check_element(["green", "orange", "black", "white"],'blue')) # False
+def check_element(test_list, test_item):
+  return all(element == test_item for element in test_list)
+"""
 

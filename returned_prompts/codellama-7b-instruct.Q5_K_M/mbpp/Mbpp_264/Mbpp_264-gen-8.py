@@ -1,2 +1,5 @@
-def dog_age(age):
-    return age * 7
+
+def dog_age(human_age: int) -> int:
+  return human_age * 7
+
+

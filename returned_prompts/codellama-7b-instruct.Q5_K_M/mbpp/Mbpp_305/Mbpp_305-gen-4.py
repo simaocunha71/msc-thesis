@@ -1,7 +1,6 @@
-def start_withp(lst):
-    lst=lst
-    lst=list(filter(lambda x: x[0]=='p', lst))
-    return lst[0]
 
+def start_withp(words: list) -> tuple:
+  p_words = [word for word in words if word.split()[0] == 'Python']
+  return tuple(p_words[0].split())
 
 

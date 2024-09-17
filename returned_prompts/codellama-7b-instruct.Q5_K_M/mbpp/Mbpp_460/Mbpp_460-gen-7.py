@@ -1,4 +1,8 @@
-```python
+
 def Extract(my_list):
-    return [sub[0] for sub in my_list]
-```
+  new_list = []
+  for sublist in my_list:
+    new_list.append(sublist[0])
+  return new_list
+
+

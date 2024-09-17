@@ -1,5 +1,5 @@
 
-import cmath
+def polar_rect(r: float, theta: float) -> tuple:
+  return (r*math.cos(theta),r*math.sin(theta))
 
-def polar_rect(r, theta):
-    return cmath.rect(r)
+

@@ -1,9 +1,6 @@
-def Split(nums):
-    res = []
-    for i in nums:
-        if i % 2 != 0:
-            res.append(i)
-    return res
 
+def Split(nums: list) -> list:
+  odd_nums = [num for num in nums if num % 2 != 0]
+  return odd_nums
 
 

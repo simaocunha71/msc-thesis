@@ -1,4 +1,5 @@
-```python
-def split(s):
-    return [c for c in s]
-```
+
+def split(s: str) -> list:
+  return list(s)
+
+

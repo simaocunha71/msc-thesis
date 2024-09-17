@@ -1,68 +1,13 @@
-def find_kth(A, B, k):
-    """
-    Find the kth smallest element in two sorted arrays.
 
-    Args:
-        A (list): The first sorted array.
-        B (list): The second sorted array.
-        k (int): The position of the element to find.
-
-    Returns:
-        int: The kth smallest element from the two sorted arrays.
-    """
-    if k > len(A) + len(B):
-        return None
-
-    while len(A) > 0 and len(B) > 0 and k > 0:
-        if A[0] < B[0]:
-            k -= 1
-            A.pop(0)
-        else:
-            k -= 1
-            B.pop(0)
-
-    if len(A) == 0:
-        return B[0]
-    elif len(B) == 0:
-        return A[0]
-    else:
-        return None
-
-# assert find_kth([2, 3, 6, 7, 9], [1, 4, 8, 10], 5) == 6
+def find_kth(arr1: list, arr2: list, k: int) -> int:
+  len_arr1 = len(arr1)
+  len_arr2 = len(arr2)
+  if len_arr1 > len_arr2:
+    arr1, arr2 = arr2, arr1
+    len_arr1, len_arr2 = len_arr2, len_arr1
+  if k > len_arr1:
+    return find_kth(arr1[:k-len_arr1], arr2, k-len_arr1)
+  return max(find_kth(arr1[:k], arr2[:k], k),
+             find_kth(arr1[:k]+arr1[k:len_arr1+k], arr2[k:len_arr2]+arr2[:k], k))
 
 
-
-
-
-"""
-Find the kth smallest element in two sorted arrays.
-
-Args:
-    A (list): The first sorted array.
-    B (list): The second sorted array.
-    k (int): The position of the element to find.
-
-Returns:
-    int: The kth smallest element from the two sorted arrays.
-"""
-def find_kth(A, B, k):
-    if k > len(A) + len(B):
-        return None
-
-    while len(A) > 0 and len(B) > 0 and k > 0:
-        if A[0] < B[0]:
-            k -= 1
-            A.pop(0)
-        else:
-            k -= 1
-            B.pop(0)
-
-    if len(A) == 0:
-        return B[0]
-    elif len(B) == 0:
-        return A[0]
-    else:
-        return None
-
-
-# assert find_kth([2, 3, 6, 7,

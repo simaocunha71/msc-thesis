@@ -1,6 +1,9 @@
-```
-import re
-def text_lowercase_underscore(string):
-    pattern = r'^[a-z]+(_[a-z]+)*$'
-    return re.match(pattern, string) != None
-```
+
+def text_lowercase_underscore(text):
+  text_list = text.split("_")
+  for i in text_list:
+    if i.islower() == False:
+      return False
+  return True
+
+

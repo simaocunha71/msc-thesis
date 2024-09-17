@@ -1,7 +1,9 @@
-```
+
 def find_Index(n):
-    i = 1
-    while len(str(i * (i + 1) // 2)) != n:
-        i += 1
-    return i * (i + 1) // 2
-```
+    for i in range(1, n+1):
+        num = i*(i+1)//2
+        if len(str(num)) == n:
+            return i
+    return -1
+
+

@@ -1,5 +1,9 @@
-"""
-def check_Consecutive(l):
-    return all(l[i+1] - l[i] == 1 for i in range(len(l)-1))
-"""
+
+def check_Consecutive(nums:list) -> bool:
+  nums.sort()
+  for i in range(len(nums)-1):
+    if nums[i]+1 != nums[i+1]:
+      return False
+  return True
+
 

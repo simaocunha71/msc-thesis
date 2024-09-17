@@ -1,12 +1,14 @@
 
-def max_sub_array_sum_repeated(arr, k, n):
-    # Write your code here
-    # Initialize the variables
-    dp = [0] * (k + 1)
-    res = 0
-    for i in range(n):
-        for j in range(1, k + 1):
-            dp[j] = max(dp[j], dp[j - 1] + arr[i])
-        res = max(res, dp[k])
-    return res
+def max_sub_array_sum_repeated(arr: list, k: int, n: int) -> int:
+  curr_sum = 0
+  max_sum = 0
+  for i in range(n):
+      curr_sum += arr[i]
+      if i < k:
+          max_sum += arr[i]
+      else:
+          max_sum = max(max_sum, curr_sum - arr[i-k])
+          curr_sum -= arr[i-k]
+  return max_sum
+
 

@@ -1,19 +1,12 @@
-"""
+
 def max_sub_array_sum_repeated(arr, k, n):
-    if k == 1:
-        return max(arr)
-    if k == n:
-        return sum(arr)
-    if n == 1:
-        return arr[0]
-
-    max_k_times_sum = 0
-    max_sum_in_current_window = 0
-
+    max_sum = 0
     for i in range(n):
-        max_sum_in_current_window += arr[i]
-        max_k_times_sum = max(max_k_times_sum, max_sum_in_current_window)
-        max_sum_in_current_window = max(max_sum_in_current_window, 0)
+        curr_sum = 0
+        for j in range(i, n + i):
+            curr_sum += arr[j % n]
+            if curr_sum > max_sum:
+                max_sum = curr_sum
+    return max_sum * k
 
-    return max(max_k_times_sum, max_sub_array_sum_repeated(arr, k - 1, n - 1))
-"""
+

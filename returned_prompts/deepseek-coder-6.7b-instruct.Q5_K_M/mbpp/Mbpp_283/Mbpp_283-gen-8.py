@@ -1,10 +1,5 @@
-def validate(num):
-    num = str(num)
-    for digit in num:
-        if num.count(digit) > int(digit):
-            return False
-    return True
 
-print(validate(1234)) # True
+def validate(n):
+    return all(n.count(str(i)) <= i for i in range(10))
 
 

@@ -1,2 +1,5 @@
-def and_tuples(t1, t2):
-    return tuple(c1 & c2 for c1, c2 in zip(t1, t2))
+
+def and_tuples(tup1, tup2):
+    return tuple(i & j for i, j in zip(tup1, tup2))
+
+

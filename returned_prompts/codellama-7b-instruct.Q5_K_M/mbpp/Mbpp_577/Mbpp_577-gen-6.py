@@ -1,8 +1,9 @@
-```python
-def last_Digit_Factorial(n):
-    if n<0:
-        return -1
-    if n==0:
-        return 1
-    return n%10
-```
+
+def last_Digit_Factorial(n: int) -> int:
+    fact = 1
+    while n > 0:
+        fact *= n
+        n -= 1
+    return fact % 10
+
+

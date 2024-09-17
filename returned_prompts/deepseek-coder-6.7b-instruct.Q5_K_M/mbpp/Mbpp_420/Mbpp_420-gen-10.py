@@ -1,16 +1,8 @@
+
 def cube_Sum(n):
-    total = 0
-    even_num = 2
-    for _ in range(n):
-        total += even_num ** 3
-        even_num += 2
-    return total
+    total_sum = 0
+    for i in range(2, 2*n+1, 2):
+        total_sum += i**3
+    return total_sum
 
-print(cube_Sum(2))
 
-# Output: 72
-<jupyter_output>
-72
-<jupyter_text>
-Question 2
-<jupyter_code>

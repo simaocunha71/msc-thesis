@@ -1,3 +1,6 @@
-The solution provided is correct. The function works by iterating through each list and finding the max of the previous elements and the min of the next elements in both lists. It then checks if the current median is the one we are looking for (or one of them, if the number of elements is even). If it is, it returns the median. If not, it moves on to the next pair of elements in the lists.
 
-The time complexity of this solution is O(log
+def get_median(a, b, n):
+  merged_list = sorted(a + b)
+  return (merged_list[n-1] + merged_list[n]) / 2.0
+
+

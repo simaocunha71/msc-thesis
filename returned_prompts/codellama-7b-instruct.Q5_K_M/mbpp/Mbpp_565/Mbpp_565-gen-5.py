@@ -1,4 +1,5 @@
-```python
-def split(word):
-  return [char for char in word]
-```
+
+def split(s: str) -> list:
+    return list(s)
+
+

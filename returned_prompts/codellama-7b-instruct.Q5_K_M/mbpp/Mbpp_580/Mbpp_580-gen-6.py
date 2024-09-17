@@ -1,11 +1,5 @@
-"""
-def extract_even(t):
-    result = []
-    for i in t:
-        if isinstance(i, tuple):
-            result.append(extract_even(i))
-        else:
-            if i % 2 == 0:
-                result.append(i)
-    return tuple(result)
-"""
+
+def extract_even(nested_tuple: tuple) -> tuple:
+  return tuple(filter(lambda x: x % 2 == 0, nested_tuple))
+
+

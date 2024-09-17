@@ -1,4 +1,4 @@
-def starts_with(text, prefix):
-    return text.startswith(prefix)
 
-print(starts_with("Person", "
+def is_upper(word):
+    return word.upper()
+

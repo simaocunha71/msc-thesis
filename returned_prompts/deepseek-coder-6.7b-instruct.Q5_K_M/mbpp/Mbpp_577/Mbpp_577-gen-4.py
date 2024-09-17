@@ -1,48 +1,10 @@
-def last_Digit_Factorial(n: int) -> int:
-    if n == 0:
-        return 1
-    if n == 1:
-        return 1
-    else:
-        fact = 1
-        for i in range(1, n + 1):
-            fact *= i
-            while fact % 10 == 0:
-                fact /= 10
-            fact %= 10
-        return int(fact % 10)
 
-assert last_Digit_Factorial(4) == 4
+def last_Digit_Factorial(n):
+  fact = 1
+  for i in range(1, n + 1):
+    fact = (fact * i)
+  while fact % 10 == 0:
+    fact //= 10
+  return fact % 10
 
-# 0(N) complexity due to the loop.
 
-# 10: 5
-# 20: 1
-# 30: 1
-# 40: 4
-# 50: 2
-# 60: 2
-# 70: 5
-# 80: 1
-# 90: 1
-# 100: 4
-# 150: 8
-# 200: 6
-# 500: 8
-# 1000: 0
-# 10000: 4
-# 20000: 0
-# 50000: 0
-# 100000: 0
-# 1000000: 0
-# 10000000: 0
-# 100000000: 0
-# 1000000000: 0
-# 10000000000: 0
-# 100000000000: 0
-# 1000000000000: 0
-# 10000000000000: 0
-# 100000000000000: 0
-# 1000000000000000: 0
-# 10000000000000000: 0
-# 1000000000000

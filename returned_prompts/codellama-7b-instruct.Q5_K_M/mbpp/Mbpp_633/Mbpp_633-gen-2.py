@@ -1,5 +1,9 @@
-def pair_xor_Sum(arr,n):
-    return sum([a^b for a,b in zip(arr,arr[1:])])
 
+def pair_xor_Sum(arr, n):
+    res = 0
+    for i in range(n):
+        for j in range(i+1, n):
+            res = res + arr[i] ^ arr[j]
+    return res
 
 

@@ -1,4 +1,5 @@
-def concatenate_tuple(tuple_value, delimiter="-"):
-    return delimiter.join(map(str, tuple_value))
+
+def concatenate_tuple(tup: tuple, delimiter: str = '-') -> str:
+    return delimiter.join(map(str, tup))
 
 

@@ -1,5 +1,5 @@
-def remove_uppercase(s):
-    return ''.join(i for i in s if not i.isupper())
 
-print(remove_uppercase('cAstyoUrFavoRitETVshoWs'))
+def remove_uppercase(s):
+  return ''.join(c for c in s if not c.isupper())
+
 

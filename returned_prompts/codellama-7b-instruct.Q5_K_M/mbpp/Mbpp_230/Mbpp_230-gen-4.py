@@ -1,4 +1,5 @@
-def replace_blank(s, char):
-    return s.replace(" ", char)
+
+def replace_blank(s: str, ch: str) -> str:
+  return s.replace(" ", ch)
 
 

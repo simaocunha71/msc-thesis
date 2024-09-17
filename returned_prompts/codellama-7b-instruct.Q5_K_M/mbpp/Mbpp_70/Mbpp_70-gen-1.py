@@ -1,5 +1,5 @@
-"""
-def get_equal(tuples):
-    return len(set(len(t) for t in tuples)) == 1
-"""
+
+def get_equal(my_tuples):
+  return len(set(map(len, my_tuples))) <= 1
+
 

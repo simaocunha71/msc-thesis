@@ -1,3 +1,6 @@
+
 def removezero_ip(ip):
-    a,b,c,d=ip.split('.')
-    return ('%s.%s.%s.%s' % (a,b,c,d))
+    octets = ip.split('.')
+    return '.'.join([o for o in octets if o != '0'])
+
+

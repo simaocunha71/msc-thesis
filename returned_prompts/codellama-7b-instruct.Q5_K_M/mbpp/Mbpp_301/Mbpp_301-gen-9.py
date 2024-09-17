@@ -1,4 +1,7 @@
+
 def dict_depth(d):
-    if not isinstance(d, dict):
-        return 0
-    return max(dict_depth(v) for v in d.values()) + 1
+    if isinstance(d, dict):
+        return 1 + (max(map(dict_depth, d.values())) if d.values() else 0)
+    return 0
+
+

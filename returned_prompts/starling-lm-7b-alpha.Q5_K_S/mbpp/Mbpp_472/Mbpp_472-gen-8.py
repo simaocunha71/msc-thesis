@@ -1,10 +1,8 @@
-"""
-def check_Consecutive(lst):
-    if len(lst) == 0:
-        return False
-    for i in range(len(lst)-1):
-        if lst[i+1] - lst[i] != 1:
-            return False
-    return True
-"""
+
+def check_Consecutive(nums: list) -> bool:
+  for i in range(len(nums)-1):
+    if nums[i+1] - nums[i] != 1:
+      return False
+  return True
+
 

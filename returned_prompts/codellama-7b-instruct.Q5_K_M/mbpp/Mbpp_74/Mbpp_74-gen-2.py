@@ -1,9 +1,5 @@
-def is_samepatterns(patterns, strings):
-    if len(patterns) != len(strings):
-        return False
-    for i in range(len(strings)):
-        if patterns[i] != strings[i]:
-            return False
-    return True
+
+def is_samepatterns(my_list, patterns):
+    return all(x == patterns[0] or x == patterns[1] for x in my_list)
 
 

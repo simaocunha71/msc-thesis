@@ -1,4 +1,5 @@
-def check_tuplex(my_tuple,my_element):
-  return my_element in my_tuple
+
+def check_tuplex(my_tuple, element_to_find):
+  return element_to_find in my_tuple
 
 

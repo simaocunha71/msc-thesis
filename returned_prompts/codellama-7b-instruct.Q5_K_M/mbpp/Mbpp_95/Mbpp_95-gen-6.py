@@ -1,4 +1,7 @@
-"""
-def Find_Min_Length(List_of_lists):
-    return min(len(x) for x in List_of_lists)
-"""
+
+def Find_Min_Length(list_of_lists):
+    if not list_of_lists:
+        return 0
+    return min(len(lst) for lst in list_of_lists)
+
+

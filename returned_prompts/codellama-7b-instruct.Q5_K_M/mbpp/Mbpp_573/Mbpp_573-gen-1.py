@@ -1,9 +1,9 @@
-```
+
 def unique_product(my_list):
-    unique_elements = set(my_list)
-    product = 1
-    for element in unique_elements:
-        product *= element
-    return product
-```
+  unique_list = list(set(my_list))
+  product = 1
+  for i in unique_list:
+    product *= i
+  return product
+
 

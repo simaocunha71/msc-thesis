@@ -1,10 +1,8 @@
-def sum_digits(n):
-    s = 0
-    while n:
-        s += n % 10
-        n //= 10
-    return s
 
-assert sum_digits(345)==12
-"""
+def sum_digits(n):
+    if n==0:
+        return 0
+    else:
+        return (n%10) + sum_digits(n//10)
+
 

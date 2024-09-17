@@ -1,9 +1,8 @@
-```
-def first_repeated_char(s):
-    seen = set()
-    for c in s:
-        if c in seen:
-            return c
-        seen.add(c)
-    return None
-```
+
+def first_repeated_char(s: str) -> str:
+    for i in range(len(s)):
+        if s.count(s[i]) > 1:
+            return s[i]
+    return ""
+
+

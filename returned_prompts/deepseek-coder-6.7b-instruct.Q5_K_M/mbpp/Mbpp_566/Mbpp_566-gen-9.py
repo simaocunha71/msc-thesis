@@ -1,12 +1,5 @@
+
 def sum_digits(n):
-    return sum(map(int, str(n)))
+    return sum(int(digit) for digit in str(n))
 
-print(sum_digits(345))
 
-# Testing
-assert sum_digits(345)==12
-<jupyter_output>
-12
-<jupyter_text>
-Problem 2:
-<jupyter_code>

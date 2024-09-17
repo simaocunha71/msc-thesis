@@ -1,4 +1,5 @@
-"""
-def count_charac(string):
-    return len(string)
-"""
+
+def count_charac(string: str) -> int:
+  return len(string)
+
+

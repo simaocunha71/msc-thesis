@@ -1,4 +1,7 @@
+
 def merge(my_list):
-    return [list(zip(*my_list))[0], list(zip(*my_list))[1]]
+    first = [sublist[0] for sublist in my_list]
+    second = [sublist[1] for sublist in my_list]
+    return [first, second]
 
 

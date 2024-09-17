@@ -1,7 +1,6 @@
+
 import re
+def extract_values(my_string):
+    return re.findall(r'"([^"]*)"', my_string)
 
-def extract_values(str):
-    return re.findall(r'"([^"]*)"', str)
-
-extract_values('"Python", "PHP", "Java"')
 

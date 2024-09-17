@@ -1,3 +1,4 @@
+
 def prime_num(n):
     if n < 2:
         return False

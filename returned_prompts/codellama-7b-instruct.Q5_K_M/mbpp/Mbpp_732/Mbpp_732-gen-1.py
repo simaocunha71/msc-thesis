@@ -1,4 +1,5 @@
-"""
-def replace_specialchar(string):
-    return string.replace(' ', ':').replace(',', ':').replace('.', ':')
-"""
+
+def replace_specialchar(str: str) -> str:
+  return str.replace(' ', ':').replace(',', ':').replace('.', ':').strip(':')
+
+

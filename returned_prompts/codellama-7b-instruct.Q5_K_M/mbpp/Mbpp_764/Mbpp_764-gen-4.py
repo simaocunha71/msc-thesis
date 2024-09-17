@@ -1,6 +1,9 @@
-def number_ctr(str):
-    count = 0
-    for char in str:
-        if char.isdigit():
-            count += 1
-    return count
+
+def number_ctr(str_given):
+  count = 0
+  for i in str_given:
+    if i.isdigit():
+      count += 1
+  return count
+
+

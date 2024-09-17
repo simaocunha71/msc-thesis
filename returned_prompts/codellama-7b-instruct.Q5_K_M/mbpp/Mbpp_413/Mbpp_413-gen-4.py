@@ -1,4 +1,5 @@
-def extract_nth_element(lst, n):
-    return [x[n] for x in lst]
+
+def extract_nth_element(my_list,n):
+  return [x[n] for x in my_list]
 
 

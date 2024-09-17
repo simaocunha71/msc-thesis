@@ -1,13 +1,16 @@
+
 def shell_sort(arr):
-    # 分组
-    group = len(arr) // 2
-    while group > 0:
-        # 每个组内排序
-        for i in range(group, len(arr)):
-            j = i
-            while j >= group and arr[j] < arr[j-group]:
-                arr[j], arr[j-group] = arr[j-group], arr[j]
-                j -= group
-        # 分组缩小一半
-        group = group // 2
-    return arr
+  n = len(arr)
+  gap = n//2
+  while gap > 0:
+    for i in range(gap,n):
+      temp = arr[i]
+      j = i
+      while j>=gap and arr[j-gap]>temp:
+        arr[j] = arr[j-gap]
+        j -= gap
+      arr[j] = temp
+    gap = gap//2
+  return arr
+
+

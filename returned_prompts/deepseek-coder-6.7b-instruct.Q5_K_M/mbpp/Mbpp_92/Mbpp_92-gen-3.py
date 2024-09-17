@@ -1,9 +1,9 @@
-"""
+
 def is_undulating(n):
-    s = str(n)
-    for i in range(len(s)-2):
-        if s[i] == s[i+1] or s[i+1] != s[i+2]:
+    n = str(n)
+    for i in range(len(n) - 2):
+        if n[i] == n[i + 1] or n[i + 1] != n[i + 2]:
             return False
     return True
-"""
+
 

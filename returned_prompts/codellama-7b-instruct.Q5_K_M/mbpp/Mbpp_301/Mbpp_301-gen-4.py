@@ -1,6 +1,9 @@
-def dict_depth(d):
-    depth = 0
-    for v in d.values():
-        if isinstance(v, dict):
-            depth = max(depth, 1 + dict_depth(v))
-    return depth
+
+def dict_depth(my_dict):
+  max_depth = 1
+  for key, value in my_dict.items():
+    if isinstance(value, dict):
+      max_depth = max(max_depth, dict_depth(value) + 1)
+  return max_depth
+
+

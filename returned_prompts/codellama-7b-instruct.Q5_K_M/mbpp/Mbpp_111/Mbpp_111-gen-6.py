@@ -1,8 +1,5 @@
 
+def common_in_nested_lists(lists: list) -> set:
+    return set(set(lists[0]).intersection(*lists))
 
 
-
-from collections import Counter
-
-def common_in_nested_lists(nested_lists):
-    return [x for x in Counter([y for sublist in nested_lists for y in sublist]).most_common(1)[0][0]]

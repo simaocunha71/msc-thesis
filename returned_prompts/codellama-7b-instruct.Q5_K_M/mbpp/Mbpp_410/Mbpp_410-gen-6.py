@@ -1,4 +1,5 @@
-```
-def min_val(my_list):
-    return min(my_list)
-```
+
+def min_val(lst: list) -> list:
+  return min(lst)
+
+

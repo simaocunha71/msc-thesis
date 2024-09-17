@@ -1,8 +1,5 @@
 
-def count_samepair(a, b, c):
-    return sum(x == y == z for x, y, z in zip(a, b, c))
-
-assert count_samepair([1,2,3,4,5,6,7,8],[2,2,3,1,2,6,7,9],[2,1,3,1,2,6,7,9])==3
+def count_samepair(l1, l2, l3):
+  return sum(1 for a, b, c in zip(l1, l2, l3) if a == b == c)
 
 
-"""

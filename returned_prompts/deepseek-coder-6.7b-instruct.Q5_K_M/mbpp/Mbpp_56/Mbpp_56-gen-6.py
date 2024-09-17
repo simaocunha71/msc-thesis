@@ -1,8 +1,7 @@
 
-def check(n):
-    return n == int(str(n)[::-1]) * 2 - 1
+def check(num):
+  reverse = int(str(num)[::-1])
+  twice_less = reverse - 1
+  return num == twice_less * 2
 
-print(check(70))
-
-# Output: False
 

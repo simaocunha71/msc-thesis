@@ -1,10 +1,5 @@
-def find_min_index(t):
-    return t.index(min(t))
 
-find_min_index(('a', 1, 3, 4, 'c')) # 0
-
+def tup_string(tup: tuple) -> str:
+  return ''.join(tup)
 
 
-"""
-Write a function to find the index of the maximum value in a list of lists.
-assert find_max_index([[1, 

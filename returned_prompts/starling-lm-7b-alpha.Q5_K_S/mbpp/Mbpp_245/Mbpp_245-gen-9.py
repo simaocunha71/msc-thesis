@@ -1,49 +1,13 @@
-def max_sum(arr):
-    n = len(arr)
-    dp = [0] * n
+
+def max_sum(nums:list)->int:
+    n = len(nums)
+    dp = [[0 for _ in range(n)] for _ in range(2)]
     for i in range(n):
-        max_val = 0
+        dp[i % 2][i] = nums[i]
+    for i in range(1,n):
         for j in range(i):
-            if arr[j] < arr[i]:
-                max_val = max(max_val, dp[j])
-        dp[i] = max_val + arr[i]
-    return max(dp)
+            dp[(i+1)%2][j] = max(dp[i%2][j], dp[(i+1)%2][j+1]+nums[j])
+            dp[(i+1)%2][i] = max(dp[i%2][i], dp[(i+1)%2][j]+nums[i])
+    return dp[n%2][0]
 
-# Test
-print(max_sum([1, 15, 51, 45, 33, 100, 12, 18, 9])) # 194
 
-"""
-The time complexity of this algorithm is O(n^2), where n is the length of the given array.
-"""
-
-def max_sum_bitonic(arr):
-    n = len(arr)
-    dp = [0]*n
-    for i in range(n):
-        max_val = 0
-        for j in range(i):
-            if arr[j] < arr[i]:
-                max_val = max(max_val, dp[j])
-        dp[i] = max_val + arr[i]
-    return max(dp)
-
-# Test
-print(max_sum_bitonic([1, 15, 51, 45, 33, 100, 12, 18, 9])) # 194
-
-"""
-The time complexity of this algorithm is O(n^2), where n is the length of the given array.
-"""
-
-def max_sum_bitonic(arr):
-    n = len(arr)
-    dp = [0]*n
-    for i in range(n):
-        max_val = 0
-        for j in range(i):
-            if arr[j] < arr[i]:
-                max_val = max(max_val, dp[j])
-        dp[i] = max_val + arr[i]
-    return max(dp)
-
-# Test
-print(max_sum_bitonic([1, 15, 51, 45, 33, 100, 12

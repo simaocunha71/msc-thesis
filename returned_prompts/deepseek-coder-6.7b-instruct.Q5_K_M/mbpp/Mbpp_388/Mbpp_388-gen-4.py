@@ -1,7 +1,8 @@
-def product_list(lst):
-    product = 1
-    for num in lst:
-        product *= num
-    return product
 
-print(product_list([1, 2, 3, 
+def highest_Power_of_2(n):
+    i = 0
+    while(2 ** i <= n):
+        i += 1
+    return 2 ** (i - 1)
+
+

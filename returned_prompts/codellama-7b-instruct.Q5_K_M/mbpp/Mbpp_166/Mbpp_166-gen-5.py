@@ -1,9 +1,10 @@
-"""
-def find_even_pair(lst):
-    pairs = 0
-    for i in range(len(lst)):
-        for j in range(i+1, len(lst)):
-            if lst[i] ^ lst[j] % 2 == 0:
-                pairs += 1
-    return pairs
-"""
+
+def find_even_pair(nums: list) -> int:
+    count = 0
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] ^ nums[j] % 2 == 0:
+                count += 1
+    return count
+
+

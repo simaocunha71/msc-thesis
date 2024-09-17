@@ -1,18 +1,12 @@
+
 def max_run_uppercase(s):
-    count = max_count = 0
-    for ch in s:
-        if ch.isupper():
-            count += 1
-            max_count = max(max_count, count)
+    max_len = cur_len = 0
+    for char in s:
+        if char.isupper():
+            cur_len += 1
+            max_len = max(max_len, cur_len)
         else:
-            count = 0
-    return max_count
+            cur_len = 0
+    return max_len
 
-print(max_run_uppercase('GeMKSForGERksISBESt'))
 
-# OUTPUT: 5
-
-# Explanation: In the given string 'GeMKSForGERksISBESt', maximum run of uppercase characters is 5.
-<jupyter_output>
-5
-<jupyter_text>

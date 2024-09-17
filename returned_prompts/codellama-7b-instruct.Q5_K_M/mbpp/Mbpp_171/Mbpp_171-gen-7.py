@@ -1,4 +1,5 @@
-"""
-def perimeter_pentagon(side):
-    return side * 5
-"""
+
+def perimeter_pentagon(side_length):
+  return side_length * 5
+
+

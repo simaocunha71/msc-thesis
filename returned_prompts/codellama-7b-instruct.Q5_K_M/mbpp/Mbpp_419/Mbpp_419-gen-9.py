@@ -1,51 +1,9 @@
-def round_and_sum(numbers):
-    total = sum([round(x) for x in numbers])
-    return total * len(numbers)
 
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
+def round_and_sum(nums: list) -> float:
+  total = 0
+  for num in nums:
+    rounded_num = round(num)
+    total += rounded_num
+  return total * len(nums)
 
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
 
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
-
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
-
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
-
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
-
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
-
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
-
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
-
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
-
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
-
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
-
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
-
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
-
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers)
-
-def round_and_sum(numbers):
-    return sum(round(x) for x in numbers) * len(numbers

@@ -1,4 +1,8 @@
-"""
-def extract_quotation(s):
-    return [x for x in re.findall(r'".*?"', s) if x]
-"""
+
+import re
+def extract_quotation(string: str) -> list:
+  pattern = r'"(.*?)"'
+  extracted_elements = re.findall(pattern, string)
+  return extracted_elements
+
+

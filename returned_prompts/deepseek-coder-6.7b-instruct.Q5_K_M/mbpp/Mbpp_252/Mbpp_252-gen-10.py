@@ -1,9 +1,6 @@
-"""
-def convert(num):
-    r = abs(num)
-    phi = cmath.phase(num)
-    return (r, phi)
 
-print(convert(1))
-"""
+import cmath
+def convert(n):
+    return cmath.polar(complex(n))
+
 

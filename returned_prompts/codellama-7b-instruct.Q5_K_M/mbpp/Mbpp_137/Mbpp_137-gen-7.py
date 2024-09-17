@@ -1,9 +1,10 @@
-def zero_count(arr):
-    count_zero = 0
-    count_nonzero = 0
-    for i in arr:
-        if i == 0:
-            count_zero += 1
-        else:
-            count_nonzero += 1
-    return count_zero / count_nonzero
+
+import math
+def zero_count(my_list):
+  count = 0
+  for i in my_list:
+    if i == 0:
+      count += 1
+  return count / len(my_list)
+
+

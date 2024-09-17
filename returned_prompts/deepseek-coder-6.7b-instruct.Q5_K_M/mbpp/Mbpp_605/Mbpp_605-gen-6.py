@@ -1,10 +1,10 @@
 
-def prime_num(n):
-    if n <= 1 or (n % 2 == 0 and n > 2): 
+def prime_num(num):
+    if num < 2:
         return False
-    return all(n % i for i in range(3, int(n**0.5) + 1, 2))
+    for i in range(2, num):
+        if num % i == 0:
+            return False
+    return True
 
-print(prime_num(13))
-<jupyter_output>
-True
-<jupyter_text>
+

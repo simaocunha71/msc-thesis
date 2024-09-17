@@ -1,2 +1,6 @@
-def rectangle_area(width, height):
-    return width * height
+
+def rectangle_area(width: int, height: int) -> int:
+  area = width * height
+  return area
+
+

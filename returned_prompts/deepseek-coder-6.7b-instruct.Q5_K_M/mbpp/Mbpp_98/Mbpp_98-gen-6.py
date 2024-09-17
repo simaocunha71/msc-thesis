@@ -1,8 +1,9 @@
-"""
-def multiply_num(num_list):
-    total = 1
-    for num in num_list:
-        total *= num
-    return total / len(num_list)
-"""
+
+import math
+def multiply_num(num_tuple):
+  product = 1
+  for num in num_tuple:
+    product *= num
+  return product / len(num_tuple)
+
 

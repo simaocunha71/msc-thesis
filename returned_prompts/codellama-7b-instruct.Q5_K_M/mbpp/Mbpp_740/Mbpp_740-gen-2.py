@@ -1,4 +1,8 @@
+
 def tuple_to_dict(my_tuple):
-    return {my_tuple[i]: my_tuple[i + 1] for i in range(len(my_tuple) - 1)}
+  dict_ = {}
+  for i in range(0, len(my_tuple), 2):
+    dict_.update({my_tuple[i]: my_tuple[i + 1]})
+  return dict_
 
 

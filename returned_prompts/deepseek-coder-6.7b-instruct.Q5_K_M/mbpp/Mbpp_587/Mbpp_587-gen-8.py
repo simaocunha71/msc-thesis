@@ -1,4 +1,5 @@
-def max_list(lst):
-    return max(lst)
 
-print(max_list([5, 
+def list_tuple(lst):
+  return tuple(lst)
+
+

@@ -1,9 +1,5 @@
-def remove_length(s, k):
-    words = s.split()
-    ans = ""
-    for word in words:
-        if len(word) != k:
-            ans += word + " "
-    return ans
 
-# assert remove_length('The person is most value tet', 
+def remove_length(s: str, k: int) -> str:
+    return ' '.join([i for i in s.split(' ') if len(i) != k])
+
+

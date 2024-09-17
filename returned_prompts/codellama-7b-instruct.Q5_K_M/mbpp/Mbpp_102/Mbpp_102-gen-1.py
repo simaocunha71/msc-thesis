@@ -1,7 +1,8 @@
-"""
-def snake_to_camel(snake_case_string):
-    components = snake_case_string.split('_')
-    # We capitalize the first letter of each component except the first one
-    # with the 'capitalize' method and join them together.
-    return components[0] + "".join(x.capitalize() for x in components[1:])
-"""
+
+def snake_to_camel(snake_case_str: str) -> str:
+  camel_case_str = ""
+  for word in snake_case_str.split('_'):
+    camel_case_str += word[0].upper() + word[1:]
+  return camel_case_str
+
+

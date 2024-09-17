@@ -1,5 +1,5 @@
-def Diff(lst1, lst2):
-    return [i for i in lst1 if i not in lst2]
 
-print(Diff([10, 15, 20, 25, 30, 35, 40], [25, 40, 35]))  # == [10, 20, 30, 15]
+def Diff(li1, li2): 
+    return [i for i in li1+li2 if not i in li1 or not i in li2] 
+
 

@@ -1,2 +1,10 @@
-def multiply_num(my_list):
-    return sum(my_list) / len(my_list)
+
+from statistics import mean
+import math
+def multiply_num(nums: list) -> float:
+    product = 1
+    for num in nums:
+        product *= num
+    return product/len(nums)
+
+

@@ -1,11 +1,11 @@
-def sum_dict(l):
-    d={}
-    for i in l:
-        for j in i:
-            if j not in d:
-                d[j]=i[j]
-            else:
-                d[j]+=i[j]
-    return d
 
-"""
+def check_occurences(nums:list):
+  result = {}
+  for i in range(len(nums)):
+    if nums[i] in result:
+      result[nums[i]] += 1
+    else:
+      result[nums[i]] = 1
+  return result
+
+

@@ -1,5 +1,5 @@
-def split(word):
-    return [x for x in word]
 
+def split(word):
+    return [character for character in word]
 
 

@@ -1,0 +1,1 @@
+heap_sort = lambda lst: sorted(lst)

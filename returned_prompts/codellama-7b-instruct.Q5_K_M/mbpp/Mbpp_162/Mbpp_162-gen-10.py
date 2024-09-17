@@ -1,5 +1,8 @@
-def sum_series(n):
-    return sum([n - 2*i for i in range(n // 2 + 1)])
 
+def sum_series(n):
+  result = 0
+  for i in range(n // 2):
+    result += n - 2 * i
+  return result
 
 

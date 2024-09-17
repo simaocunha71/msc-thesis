@@ -1,4 +1,5 @@
-"""
-def max_length(lst_lst):
-    return max(lst_lst, key=len)
-"""
+
+def max_length(my_list):
+    return max(map(len, my_list))
+
+

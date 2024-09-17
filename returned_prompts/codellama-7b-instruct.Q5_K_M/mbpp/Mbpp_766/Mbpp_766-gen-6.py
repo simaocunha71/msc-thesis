@@ -1,4 +1,5 @@
-```
-def pair_wise(items):
-    return [(items[i], items[i+1]) for i in range(len(items)-1)]
-```
+
+def pair_wise(lst: list):
+    return [(lst[i], lst[i+1]) for i in range(len(lst)-1)]
+
+

@@ -1,5 +1,10 @@
-def check_smaller(first_tuple, second_tuple):
-    return all(x < y for x, y in zip(first_tuple, second_tuple))
 
-# 
+def check_smaller(tup1, tup2):
+  if len(tup1) != len(tup2):
+    raise ValueError("Both tuples must have the same length")
+  for i in range(len(tup1)):
+    if tup1[i] >= tup2[i]:
+      return False
+  return True
+
 

@@ -1,10 +1,8 @@
-"""
-def even_position(lst):
-    for i in range(0,len(lst),2):
-        if lst[i]%2!=0:
-            return False
-    return True
 
-print(even_position([3,2,1]))
-"""
+def even_position(nums: list) -> bool:
+  for i in range(0, len(nums), 2):
+    if nums[i] % 2 != 0:
+      return False
+  return True
+
 

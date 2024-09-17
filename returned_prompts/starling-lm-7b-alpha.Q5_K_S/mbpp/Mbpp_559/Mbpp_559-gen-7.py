@@ -1,60 +1,18 @@
-"""
-def max_sub_array_sum(nums, k):
-    """
-    :type nums: List[int]
-    :type k: int
-    :rtype: int
-    """
-    if not nums or k <= 0:
-        return 0
 
-    # Sliding window solution
-    window_sum, max_sum, start = 0, 0, 0
-    for i in range(len(nums)):
-        window_sum += nums[i]
+def max_sub_array_sum(nums: list, k: int) -> int:
+    if k == 0:
+        return 0
+    window_start = 0
+    window_sum = 0
+    max_window_sum = float('-inf')
+
+    for window_end in range(len(nums)):
+        window_sum += nums[window_end]
         while window_sum > k:
-            window_sum -= nums[start]
-            start += 1
-        max_sum = max(max_sum, window_sum)
-    return max_sum
+            window_sum -= nums[window_start]
+            window_start += 1
+        max_window_sum = max(max_window_sum, window_sum)
+
+    return max_window_sum
 
 
-# Test
-assert max_sub_array_sum([-2, -3, 4, -1, -2, 1, 5, -3], 8) == 7
-"""
-
-def max_sub_array_sum(nums, k):
-    """
-    :type nums: List[int]
-    :type k: int
-    :rtype: int
-    """
-    if not nums or k <= 0:
-        return 0
-
-    # Sliding window solution
-    window_sum, max_sum, start = 0, 0, 0
-    for i in range(len(nums)):
-        window_sum += nums[i]
-        while window_sum > k:
-            window_sum -= nums[start]
-            start += 1
-        max_sum = max(max_sum, window_sum)
-    return max_sum
-
-# Test
-assert max_sub_array_sum([-2, -3, 4, -1, -2, 1, 5, -3], 8) == 7
-
-"""
-
-def max_sub_array_sum(nums, k):
-    """
-    :type nums: List[int]
-    :type k: int
-    :rtype: int
-    """
-    if not nums or k <= 0:
-        return 0
-
-    # Sliding window solution
-    window_sum, max_sum, start = 0, 0, 0

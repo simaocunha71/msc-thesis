@@ -1,5 +1,5 @@
-"""
-def _sum(array):
-    return sum(array)
-"""
+
+def _sum(nums: list) -> int:
+  return sum(nums)
+
 

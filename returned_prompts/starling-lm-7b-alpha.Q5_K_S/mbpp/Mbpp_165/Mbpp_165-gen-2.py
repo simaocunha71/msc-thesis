@@ -1,26 +1,9 @@
-"""
-def count_char_position(s):
-    count = 0
-    for i in range(len(s)):
-        if ord(s[i].lower()) - ord('a') == i:
-            count += 1
-    return count
-"""
 
-def count_char_position(s):
-    count = 0
-    for i in range(len(s)):
-        if ord(s[i].lower()) - ord('a') == i:
-            count += 1
-    return count
-
-def test_count_char_position():
-    assert count_char_position("xbcefg") == 2
-    print("All Test Passed")
-
-test_count_char_position()
+def count_char_position(s: str) -> int:
+  count = 0
+  for i, c in enumerate(s):
+    if ord(c) - i == 97:
+      count += 1
+  return count
 
 
-
-# Made By Mostafa_Khaled
-```

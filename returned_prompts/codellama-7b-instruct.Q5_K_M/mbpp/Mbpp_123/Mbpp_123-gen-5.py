@@ -1,10 +1,11 @@
-def amicable_numbers_sum(max_n):
-    amicable_numbers = []
-    for i in range(1, max_n+1):
-        if i in amicable_numbers:
-            continue
-        d1 = sum(j for j in range(1, i//2+1) if i%j==0)
-        d2 = sum(j for j in range(1, d1//2+1) if d1%j==0)
-        if d1==i and d2==i:
-            amicable_numbers.append(i)
-    return sum(amicable_numbers)
+
+def amicable_numbers_sum(n):
+  sums = []
+  for i in range(1, n+1):
+    sum_of_divisors_1 = sum(list(set(range(1, i+1)) & set(range(1, i))))
+    sum_of_divisors_2 = sum(list(set(range(1, sum_of_divisors_1+1)) & set(range(1, sum_of_divisors_1))))
+    if sum_of_divisors_1 == i and sum_of_divisors_2 == sum_of_divisors_1:
+      sums.append(sum_of_divisors_1)
+  return sum(sums)
+
+

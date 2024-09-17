@@ -1,11 +1,4 @@
-"""
-def count_char_position(s):
-    count = 0
-    for i in range(len(s)):
-        if chr(i+65) == s[i].upper():
-            count += 1
-    return count
 
-assert count_char_position("xbcefg") == 2
-"""
+def count_char_position(s):
+    return sum(1 for i in range(min(len(s), 26)) if chr(97+i) == s[i])
 

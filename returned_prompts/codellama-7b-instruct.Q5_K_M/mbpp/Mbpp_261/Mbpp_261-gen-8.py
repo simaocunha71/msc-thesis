@@ -1,5 +1,8 @@
-def division_elements(tup1, tup2):
-    return tuple(int(i)//int(j) for i, j in zip(tup1, tup2))
 
+def division_elements(tuple1, tuple2):
+  result = []
+  for i in range(len(tuple1)):
+    result.append(tuple1[i] / tuple2[i])
+  return tuple(result)
 
 

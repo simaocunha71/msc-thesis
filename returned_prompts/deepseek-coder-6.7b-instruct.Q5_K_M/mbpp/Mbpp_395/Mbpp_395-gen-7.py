@@ -1,10 +1,8 @@
-def first_non_unique_character(s):
-    count_dict = {}
-    for i in s:
-        if i in count_dict:
-            count_dict[i] += 1
-        else:
-            count_dict[i] = 1
-    for i in s:
-        if count_dict[i] > 1:
-            return
+
+def first_non_repeating_character(s):
+    for index, char in en_umerate(s):
+        if s.count(char) == 1:
+            return char
+    return None
+
+

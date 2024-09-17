@@ -1,5 +1,5 @@
-"""
-def is_lower(s):
-    return s.lower()
-"""
+
+def is_lower(string):
+    return string.lower()
+
 

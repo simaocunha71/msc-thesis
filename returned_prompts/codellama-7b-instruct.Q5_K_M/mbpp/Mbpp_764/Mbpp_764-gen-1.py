@@ -1,5 +1,5 @@
-"""
+
 def number_ctr(s):
-    return len(list(filter(lambda x: x.isdigit(), s)))
-"""
+    return sum(char.isdigit() for char in s)
+
 

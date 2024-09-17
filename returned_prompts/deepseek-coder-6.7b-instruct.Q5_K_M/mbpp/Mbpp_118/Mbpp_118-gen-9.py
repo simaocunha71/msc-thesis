@@ -1,6 +1,5 @@
-def string_to_list(s):
-    return s.split(" ")
 
-assert string_to_list("python programming") == ['python','programming']
+def string_to_list(s: str) -> list:
+  return s.split(" ")
 
-# 2nd Solution
+

@@ -1,5 +1,7 @@
-def is_sublist(l1, l2):
-    return [i for i in range(len(l1)) if l1[i:i+len(l2)] == l2]
 
-print(is_sublist([2,4,3,5,7],[3,7]))
+def is_sublist(g, s):
+    return s in g
+"""
+In the above function, g refers to the main list and s refers to the sublist. The function checks if the sublist s is in the main list g. If it is, it returns True; otherwise, it returns False.
+"""
 

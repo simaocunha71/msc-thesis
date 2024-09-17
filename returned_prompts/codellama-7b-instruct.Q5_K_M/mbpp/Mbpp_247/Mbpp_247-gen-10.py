@@ -1,12 +1,13 @@
-"""
-def lps(s):
-    n = len(s)
-    dp = [0] * (n + 1)
-    for i in range(1, n + 1):
-        for j in range(i, 0, -1):
-            if s[i - 1] == s[j - 1] and j - i < 2:
-                dp[i] = max(dp[i], dp[j - i] + 1)
-            elif s[i - 1] == s[j - 1] and j - i > 2 and dp[i] <= dp[j - i]:
-                dp[i] = dp[j - i] + 1
-    return dp[n]
-"""
+
+def lps(input_string: str) -> int:
+    def lps_helper(input_string: str, left: int, right: int) -> int:
+        if left > right:
+            return 0
+        if input_string[left] == input_string[right]:
+            return 2 + lps_helper(input_string, left + 1, right - 1)
+        else:
+            return max(lps_helper(input_string, left + 1, right), lps_helper(input_string, left, right - 1))
+
+    return lps_helper(input_string, 0, len(input_string) - 1)
+
+

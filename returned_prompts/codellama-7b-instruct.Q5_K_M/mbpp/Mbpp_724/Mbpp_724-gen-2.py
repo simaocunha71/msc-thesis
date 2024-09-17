@@ -1,4 +1,8 @@
+
 def power_base_sum(base, power):
-    return sum([int(i) for i in str(base**power)])
+    result = 0
+    for digit in str(base**power):
+        result += int(digit)
+    return result
 
 

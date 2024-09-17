@@ -1,6 +1,5 @@
 
 def add_dict_to_tuple(tup, dic):
-    return tup + (dic,)
+  return tup + (dic,)
 
-print(add_dict_to_tuple((4, 5, 6), {"MSAM"  : 1, "is"  : 2, "best"  : 3}))
 

@@ -1,8 +1,5 @@
-```python
-def sum_list(a, b):
-    return [x+y for x, y in zip(a, b)]
 
-print(sum_list([10,20,30],[15,25,35]))
-```
+def sum_list(a, b):
+  return [i + j for i, j in zip(a, b)]
 
 

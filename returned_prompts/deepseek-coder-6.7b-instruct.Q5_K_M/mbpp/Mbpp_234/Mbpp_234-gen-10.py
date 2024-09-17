@@ -1,8 +1,5 @@
+
 def volume_cube(side):
-    return side ** 3
+    return side**3
+"""
 
-print(volume_cube(3))
-assert volume_cube(3)==27
-
-
-# 2.

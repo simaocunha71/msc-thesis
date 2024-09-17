@@ -1,51 +1,5 @@
-def noprofit_noloss(price1, price2):
-    if price1 < price2:
-        return False
-    elif price1 == price2:
-        return True
-    else:
-        return noprofit_noloss(price1-price2, price2)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def noprofit_noloss(costs:list, income:int) -> bool:
+  return income >= costs[-1]
 
 

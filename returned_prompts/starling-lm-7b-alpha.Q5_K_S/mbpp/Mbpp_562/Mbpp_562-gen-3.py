@@ -1,9 +1,10 @@
-"""
-def Find_Max_Length(sublists):
+
+def Find_Max_Length(lists):
     max_length = 0
-    for i in sublists:
-        if len(i) > max_length:
-            max_length = len(i)
+    for sublist in lists:
+        current_length = len(sublist)
+        if current_length > max_length:
+            max_length = current_length
     return max_length
-"""
+
 

@@ -1,6 +1,7 @@
-```python
-import re
 
-def extract_quotation(string):
-    return re.findall(r'"([^"]*)"', string)
-```
+import re
+def extract_quotation(s: str) -> list:
+  matches = re.findall(r'"(.*?)"', s)
+  return matches
+
+

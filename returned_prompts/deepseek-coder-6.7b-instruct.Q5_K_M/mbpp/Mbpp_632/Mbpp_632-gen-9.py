@@ -1,5 +1,9 @@
-def move_zero(lst):
-    return [num for num in lst if num != 0] + [0] * lst.count(0)
 
-print(move_zero([1,0,2,0,3,4]))
+def move_zero(nums):
+    for i in nums:
+        if i == 0:
+            nums.remove(i)
+            nums.append(i)
+    return nums
+
 

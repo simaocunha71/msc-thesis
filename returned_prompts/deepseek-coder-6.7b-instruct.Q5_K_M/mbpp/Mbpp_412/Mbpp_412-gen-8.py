@@ -1,7 +1,5 @@
-def remove_odd(numbers):
-    return [n for n in numbers if n % 2 == 0]
 
-print(remove_odd([1,2,3]))  # Should print [2]
+def remove_odd(nums):
+    return [num for num in nums if num % 2 == 0]
 
-# 2.
 

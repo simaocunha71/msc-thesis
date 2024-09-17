@@ -1,6 +1,6 @@
-"""
-import math
 
-def volume_sphere(radius):
-    return (4.0/3.0) * math.pi * radius ** 3
-"""
+import math
+def volume_sphere(r: int) -> float:
+  return (4/3) * math.pi * (r**3)
+
+

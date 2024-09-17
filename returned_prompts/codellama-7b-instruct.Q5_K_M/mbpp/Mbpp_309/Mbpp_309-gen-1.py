@@ -1,4 +1,5 @@
-```
-def maximum(x, y):
-    return x if x > y else y
-```
+
+def maximum(num1, num2):
+    return max(num1, num2)
+
+

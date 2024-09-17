@@ -1,3 +1,6 @@
-def extract_values(s):
-    return [value for value in s.split(',') if value.startswith('"') and value.endswith('"')]
+
+import re
+def extract_values(string_):
+  return re.findall(r'"([^"]*)"', string_)
+
 

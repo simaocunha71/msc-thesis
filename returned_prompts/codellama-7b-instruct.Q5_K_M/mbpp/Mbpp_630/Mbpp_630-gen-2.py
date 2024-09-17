@@ -1,2 +1,6 @@
-def get_coordinates(coord):
-    return [[x, y] for x in range(coord[0]-1, coord[0]+2) for y in range(coord[1]-1, coord[1]+2)]
+
+def get_coordinates(coord_tuple):
+  x, y = coord_tuple
+  return [[x + 1, y + 1], [x + 1, y], [x + 1, y - 1], [x, y + 1], [x, y], [x, y - 1], [x - 1, y + 1], [x - 1, y], [x - 1, y - 1]]
+
+

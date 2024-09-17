@@ -1,5 +1,5 @@
-"""
-def max_aggregate(student_marks):
-    return max(student_marks, key=sum)
-"""
+
+def max_aggregate(test_tup):
+  return max(test_tup, key=lambda x: x[1])
+
 

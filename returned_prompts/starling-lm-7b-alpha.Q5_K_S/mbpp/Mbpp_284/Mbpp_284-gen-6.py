@@ -1,4 +1,5 @@
 
-In this solution, the `check_element` function takes in two parameters: a list (`lst`) and an element (`elem`). The function uses a `for` loop to iterate over each item in the list. Inside the loop, it checks whether the current item is equal to the given element using the `!=` operator. If the current item is not equal to the given element, the function immediately returns `False`. If the loop completes without finding any items that are not equal to the given element, the function returns `True`.
+def check_element(test_list, elem):
+  return all(i == elem for i in test_list)
 
-The provided code snippet includes an `assert` statement that verifies the behavior of the `check_element` function for the given test case. The `assert
+

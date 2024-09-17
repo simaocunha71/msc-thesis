@@ -1,18 +1,12 @@
-def eulerian_num(n, m):
-    if m == 0:
-        return 1
-    elif n == 0:
-        return 0
-    else:
-        return (m * eulerian_num(n - 1, m) + eulerian_num(n, m - 1))
 
-print(eulerian_num(3, 1))
+def eulerian_num(n: int, m: int) -> int:
+  euler_arr = [[0 for _ in range(n+1)] for _ in range(n+1)]
+  for i in range(n+1):
+    euler_arr[i][0] = 0
+    euler_arr[i][i] = 1
+  for i in range(2, n+1):
+    for j in range(1, i):
+      euler_arr[i][j] = euler_arr[i-1][j-1] + j*euler_arr[i-1][j]
+  return euler_arr[n][m]
 
-# 4
-"""
-Explanation:
-The Eulerian number a(n, m) is a generalization of the binomial coefficient. It counts the number of permutations of n elements, where m maximum runs have length greater than 1.
-For example, a(3, 1) is 4 because there are 4 permutations of 3 elements: {1, 2, 3}, {1, 3, 2}, {2, 1, 3}, {2, 3, 1}.
-"""
 
-# 2.

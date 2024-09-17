@@ -1,10 +1,5 @@
 
-def check_none(t):
-    return None in t
+def check_none(input_tuple):
+  return any(value is None for value in input_tuple)
 
-print(check_none((10, 4, 5, 6, None)))
-<jupyter_output>
-True
-<jupyter_text>
-2. Write a Python program to create a list of tuples from given list having number and its square as elements.
-<jupyter_code>
+

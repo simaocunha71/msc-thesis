@@ -1,5 +1,5 @@
-def division_elements(tuple_a, tuple_b):
-    return tuple(a // b for a, b in zip(tuple_a, tuple_b))
 
+def division_elements(tup1, tup2):
+    return tuple(i / j for i, j in zip(tup1, tup2))
 
 

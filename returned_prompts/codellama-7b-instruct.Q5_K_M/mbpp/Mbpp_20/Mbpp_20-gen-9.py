@@ -1,5 +1,9 @@
+
 def is_woodall(n):
-    s = str(n)
-    return all(s.count(d) == 2 for d in '13579')
+  str_num = str(n)
+  for i in range(len(str_num)):
+    if not str_num[i] == str_num[0]:
+      return False
+  return True
 
 

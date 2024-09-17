@@ -1,1 +1,5 @@
-def min_matrix(m):
+
+def sort_matrix(matrix):
+    return sorted(matrix, key=sum)
+
+

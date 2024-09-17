@@ -1,2 +1,8 @@
-def minimum(a,b):
-    return a if a < b else b
+
+def minimum(a, b):
+    if a < b:
+        return a
+    else:
+        return b
+
+

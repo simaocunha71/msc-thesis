@@ -1,2 +1,5 @@
-def count_words(words):
-    return {word: words.count(word) for word in words
+
+def div_list(a, b):
+  return [i / j for i, j in zip(a, b)]
+
+

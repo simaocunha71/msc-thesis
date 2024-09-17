@@ -1,4 +1,5 @@
-def left_rotate(a, d):
-    mask = 0xffffffff
-    return (a << d) | (a & mask >> (32 - d))
+
+def left_rotate(x: int,d: int) -> int:
+  return (x << d) | (x >> (32-d))
+
 

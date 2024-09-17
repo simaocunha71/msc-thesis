@@ -1,7 +1,6 @@
-"""
-def convert(x):
-    if isinstance(x, complex):
-        return (x.real, x.imag)
-    else:
-        return (x, 0.0)
-"""
+
+import cmath
+def convert(x: complex) -> tuple:
+  return cmath.polar(x)
+
+

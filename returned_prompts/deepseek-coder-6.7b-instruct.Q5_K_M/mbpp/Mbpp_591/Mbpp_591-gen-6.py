@@ -1,13 +1,9 @@
 
-def swap_List(lst):
-    """Swap the first and last elements in a list."""
-    lst[0], lst[-1] = lst[-1], lst[0]
-    return lst
+def swap_List(list):
+    size = len(list)
+  
+    list[0], list[size - 1] = list[size - 1], list[0]
+  
+    return list
 
-# Testing
-print(swap_List([12, 35, 9, 56, 24]))
-<jupyter_output>
-[24, 35, 9, 56, 12]
-<jupyter_text>
-Problem 4
-<jupyter_code>
+

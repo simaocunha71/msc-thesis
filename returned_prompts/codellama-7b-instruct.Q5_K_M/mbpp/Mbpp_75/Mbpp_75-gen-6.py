@@ -1,4 +1,5 @@
-"""
-def find_tuples(my_list_of_tuples, divisor):
-    return [t for t in my_list_of_tuples if all(i % divisor == 0 for i in t)]
-"""
+
+def find_tuples(tuple_list: list, k: int) -> list:
+    return [tup for tup in tuple_list if all(i % k == 0 for i in tup)]
+
+

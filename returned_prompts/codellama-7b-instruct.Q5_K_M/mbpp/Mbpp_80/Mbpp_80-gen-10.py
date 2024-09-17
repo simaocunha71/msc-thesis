@@ -1,3 +1,5 @@
+
 def tetrahedral_number(n):
-    # T(n) = (n+2)n
-    return (n+2)*n
+  return int((2 * n - 1) * (n * (n + 1)))
+
+

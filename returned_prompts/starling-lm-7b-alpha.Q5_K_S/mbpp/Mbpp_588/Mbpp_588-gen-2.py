@@ -1,5 +1,5 @@
-"""
-def big_diff(lst):
-    return max(lst)-min(lst)
-"""
+
+def big_diff(nums: list) -> int:
+  return max(nums) - min(nums)
+
 

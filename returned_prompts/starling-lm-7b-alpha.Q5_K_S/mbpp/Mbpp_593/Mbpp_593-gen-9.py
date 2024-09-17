@@ -1,9 +1,7 @@
-"""
-def removezero_ip(ip):
-    ip=ip.split('.')
-    ip=[str(x) for x in ip if x!='0']
-    return '.'.join(ip)
 
-print(removezero_ip("216.08.094.196"))
-"""
+def removezero_ip(ip: str) -> str:
+    while ip[0] == '0':
+        ip = ip[1:]
+    return ip
+
 

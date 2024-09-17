@@ -1,4 +1,7 @@
-def sum_average(n):
-    sum = (n * (n + 1)) // 2
-    avg = sum / n
-    return (sum, avg)
+
+def sum_average(n: int) -> tuple:
+    sum_ = (n * (n + 1)) // 2
+    average = sum_ / n
+    return (sum_, average)
+
+

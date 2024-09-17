@@ -1,7 +1,8 @@
-"""
-def check_monthnumber_number(month_number):
-    if (month_number == 4 or month_number == 6 or month_number == 9 or month_number == 11):
+
+def check_monthnumber_number(monthnumber: int) -> bool:
+    if monthnumber in [4, 6, 9, 11]:
         return False
     else:
         return True
-"""
+
+

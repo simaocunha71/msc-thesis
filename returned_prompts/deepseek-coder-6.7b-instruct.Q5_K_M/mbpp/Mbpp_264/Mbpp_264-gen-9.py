@@ -1,11 +1,8 @@
-def dog_age(human_age):
-    return human_age*7
 
-print(dog_age(12))
+def dog_age(human_years):
+  if human_years <= 2:
+    return human_years * 10.5
+  else:
+    return 2 * 10.5 + (human_years - 2) * 4
 
-#The function dog_age takes in a human age as an argument and returns the equivalent age in dog years by multiplying the human age by 7.
-<jupyter_output>
-84
-<jupyter_text>
-Question 2:
-<jupyter_code>
+

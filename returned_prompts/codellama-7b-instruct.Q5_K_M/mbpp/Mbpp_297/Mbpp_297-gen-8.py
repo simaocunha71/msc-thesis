@@ -1,10 +1,9 @@
-def flatten_list(nested_list):
-    flat_list = []
-    for item in nested_list:
-        if isinstance(item, list):
-            flat_list += flatten_list(item)
-        else:
-            flat_list.append(item)
-    return flat_list
+
+def flatten_list(my_list):
+    if not my_list:
+        return my_list
+    if isinstance(my_list[0], list):
+        return flatten_list(my_list[0]) + flatten_list(my_list[1:])
+    return [my_list[0]] + flatten_list(my_list[1:])
 
 

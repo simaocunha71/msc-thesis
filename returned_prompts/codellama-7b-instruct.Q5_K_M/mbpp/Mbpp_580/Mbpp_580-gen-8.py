@@ -1,10 +1,12 @@
 
-def extract_even(nested_tuple):
-    return tuple(
-        t
-        for t in nested_tuple
-        if isinstance(t, tuple)
-        else t
-            if t % 2 == 0
-            else None
-    )
+def extract_even(tup):
+  result = ()
+  for elem in tup:
+    if isinstance(elem, tuple):
+      result += (extract_even(elem),)
+    else:
+      if elem % 2 == 0:
+        result += (elem,)
+  return result
+
+

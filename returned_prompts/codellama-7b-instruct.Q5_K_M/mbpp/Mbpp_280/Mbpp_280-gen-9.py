@@ -1,5 +1,8 @@
+
 def sequential_search(arr, element):
-    for index, value in enumerate(arr):
-        if value == element:
-            return True, index
-    return False, -1
+  for idx, val in enumerate(arr):
+    if val == element:
+      return True, idx
+  return False, -1
+
+

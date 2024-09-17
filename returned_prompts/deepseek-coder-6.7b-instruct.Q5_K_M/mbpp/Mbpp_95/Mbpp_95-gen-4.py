@@ -1,7 +1,5 @@
 
-def Find_Min_Length(list_of_lists):
-    return min(len(lst) for lst in list_of_lists)
+def Find_Min_Length(lst):
+  return len(min(lst, key=len))
 
-print(Find_Min_Length([[1],[1,2]]))  # 1
 
-# 2.

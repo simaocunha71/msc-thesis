@@ -1,4 +1,5 @@
-def remove_nested(tup):
-    def inner(x):
-        return isinstance(x, tuple)
-    return tuple(filter(inner, tup))
+
+def remove_nested(tup: tuple) -> tuple:
+  return tuple(x for x in tup if not isinstance(x, tuple))
+
+

@@ -1,8 +1,8 @@
-def check_smaller(t1, t2):
-    if len(t1) != len(t2):
-        return False
-    for i in range(len(t1)):
-        if t1[i] > t2[i]:
-            return False
-    return True
+
+def check_smaller(tup1: tuple, tup2: tuple) -> bool:
+  for i in range(len(tup1)):
+    if tup1[i] > tup2[i]:
+      return False
+  return True
+
 

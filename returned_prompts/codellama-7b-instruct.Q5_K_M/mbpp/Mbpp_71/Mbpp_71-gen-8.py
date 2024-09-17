@@ -1,12 +1,16 @@
-def comb_sort(lst):
-    gap = len(lst)
-    swapped = True
-    while gap > 1 or swapped:
-        if gap > 1:
-            gap = int(gap / 1.247330950103979)
-        swapped = False
-        for i in range(len(lst) - gap):
-            if lst[i] > lst[i + gap]:
-                lst[i], lst[i + gap] = lst[i + gap], lst[i]
-                swapped = True
-    return lst
+
+def comb_sort(arr):
+  gap = len(arr)
+  swapped = True
+  while gap > 1 or swapped:
+    gap = int(gap / 1.247330950103979)
+    if gap < 1:
+      gap = 1
+    swapped = False
+    for i in range(len(arr) - gap):
+      if arr[i] > arr[i + gap]:
+        arr[i], arr[i + gap] = arr[i + gap], arr[i]
+        swapped = True
+  return arr
+
+

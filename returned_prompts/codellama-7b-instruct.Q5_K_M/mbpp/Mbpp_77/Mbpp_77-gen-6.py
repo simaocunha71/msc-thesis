@@ -1,4 +1,10 @@
-```python
-def is_divisible_by_11(num):
-    return num % 11 == 0
-```
+
+def is_diff(n):
+  count = 0
+  while n > 0:
+    if n % 10 != 1:
+      count += 1
+    n = n // 10
+  return count > 0
+
+

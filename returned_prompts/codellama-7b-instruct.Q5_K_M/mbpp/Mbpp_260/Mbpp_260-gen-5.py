@@ -1,24 +1,23 @@
-def newman_prime(n):
-    i = 2
-    while True:
-        if is_prime(i):
-            n -= 1
-            if n == 0:
+
+def newman_prime(n: int) -> int:
+    if n == 1:
+        return 2
+    elif n == 2:
+        return 3
+    elif n == 3:
+        return 11
+    else:
+        i = 2
+        while i ** 2 <= n:
+            i += 1
+        while True:
+            j = 2
+            while j <= i:
+                if i % j == 0:
+                    break
+                j += 1
+            if j == i:
                 return i
-        else:
             i += 1
 
-def is_prime(n):
-    if n == 2 or n == 3:
-        return True
-    if n % 2 == 0 or n % 3 == 0:
-        return False
-    r = int(n ** 0.5)
-    f = 5
-    while f <= r:
-        if n % f == 0:
-            return False
-        if n % (f + 2) == 0:
-            return False
-        f += 6
-    return True
+

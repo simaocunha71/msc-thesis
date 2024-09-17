@@ -1,8 +1,5 @@
-def swap_numbers(num1, num2):
-    return num2, num1
 
-print(swap_numbers(10,20))
+def swap_numbers(a, b):
+  return (b, a)
 
-# output: (20, 10)
 
-# Question 2

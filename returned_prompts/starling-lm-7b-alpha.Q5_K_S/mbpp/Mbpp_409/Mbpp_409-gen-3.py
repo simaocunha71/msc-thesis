@@ -1,15 +1,6 @@
-"""
-def min_product_tuple(list_tuple):
-    list_tuple.sort(key = lambda x: x[0]*x[1])
-    return list_tuple[0][0]*list_tuple[0][1]
 
-def test_min_product_tuple():
-    assert min_product_tuple([(2, 7), (2, 6), (1, 8), (4, 9)]) == 8
+def min_product_tuple(tuples: list) -> int:
+  product_list = [t[0]*t[1] for t in tuples]
+  return min(product_list)
 
-min_product_tuple([(2, 7), (2, 6), (1, 8), (4, 9)])
-"""
-
-"""
-
-"""
 

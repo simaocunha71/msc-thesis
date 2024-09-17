@@ -1,18 +1,5 @@
-"""
-def check_distinct(t):
-    if len(t) == len(set(t)):
-        return True
-    return False
-"""
 
-# Alternative solution using Python's built-in set()
-def check_distinct(t):
-    return len(t) == len(set(t))
+def check_distinct(test_tup):
+  return len(test_tup) == len(set(test_tup))
 
 
-# Testing the function
-assert check_distinct((1, 4, 5, 6, 1, 4)) == False
-print("All tests passed")
-
-# End program
-```

@@ -1,5 +1,6 @@
-```python
-def count(lst):
-    return lst.count(True)
-```
+
+def count(bool_list):
+    return bool_list.count(True)
+"""
+"""
 

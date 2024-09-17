@@ -1,10 +1,5 @@
 
 def word_len(word):
-    if len(word) % 2 == 0:
-        return False
-    else:
-        return True
+  return len(word) % 2 != 0
 
-assert word_len("Hadoop") == False
 
-# 2.

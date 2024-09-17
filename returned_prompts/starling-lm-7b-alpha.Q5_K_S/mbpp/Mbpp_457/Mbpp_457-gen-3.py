@@ -1,61 +1,9 @@
-"""
-def Find_Min(l):
-    min_length = len(l[0])
-    for i in range(len(l)):
-        if len(l[i]) < min_length:
-            min_length = len(l[i])
-    for i in range(len(l)):
-        if len(l[i]) == min_length:
-            return l[i]
 
-Find_Min([[1],[1,2],[1,2,3]])
-"""
-
-def Find_Min(l):
-    return min(l, key = len)
-
-Find_Min([[1],[1,2],[1,2,3]])
+def Find_Min(list_of_lists):
+  min_len = len(list_of_lists[0])
+  for i in range(len(list_of_lists)):
+    if len(list_of_lists[i]) < min_len:
+      min_len = len(list_of_lists[i])
+  return min_len
 
 
-"""
-def Find_Min(l):
-    min_length = len(l[0])
-    for i in range(len(l)):
-        if len(l[i]) < min_length:
-            min_length = len(l[i])
-    for i in range(len(l)):
-        if len(l[i]) == min_length:
-            return l[i]
-
-Find_Min([[1],[1,2],[1,2,3]])
-"""
-
-"""
-def Find_Min(l):
-    min_length = float('inf')
-    for i in range(len(l)):
-        if len(l[i]) < min_length:
-            min_length = len(l[i])
-    for i in range(len(l)):
-        if len(l[i]) == min_length:
-            return l[i]
-
-Find_Min([[1],[1,2],[1,2,3]])
-"""
-
-"""
-def Find_Min(l):
-    min_length = len(l[0])
-    for i in range(len(l)):
-        if len(l[i]) < min_length:
-            min_length = len(l[i])
-    for i in range(len(l)):
-        if len(l[i]) == min_length:
-            return l[i]
-
-Find_Min([[1],[1,2],[1,2,3]])
-"""
-
-"""
-def Find_Min(l):
-    min

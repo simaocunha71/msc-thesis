@@ -1,3 +1,5 @@
-def drop_empty(d):
-    return {k: v for k, v in d.items() if v is not None}
+
+def drop_empty(my_dict):
+  return {k: v for k, v in my_dict.items() if v is not None}
+
 

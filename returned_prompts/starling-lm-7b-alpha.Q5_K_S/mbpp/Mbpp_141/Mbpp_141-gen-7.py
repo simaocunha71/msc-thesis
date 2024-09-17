@@ -1,45 +1,9 @@
-"""
-def pancake_sort(A):
-    for n in range(len(A)-1, 0, -1):
-        max_val = A[0]
-        max_pos = 0
-        for i in range(1, n+1):
-            if A[i] > max_val:
-                max_val = A[i]
-                max_pos = i
-        A[:max_pos+1] = A[:max_pos][::-1] + A[max_pos+1:max_pos+1] + A[max_pos+1:max_pos+1+n-max_pos]
-    return A
+
+def pancake_sort(nums:list) -> list:
+    for i in range(len(nums) - 1, 0, -1):
+        max_element = max(nums[:i + 1])
+        index = nums[:i + 1].index(max_element)
+        nums[:index + 1], nums[index + 1: i + 1] = nums[index + 1: i + 1], nums[:index + 1]
+    return nums
 
 
-def test_pancake_sort():
-    assert pancake_sort([15, 79, 25, 38, 69]) == [15, 25, 38, 69, 79]
-    print("All Tests Passed")
-
-
-test_pancake_sort()
-"""
-
-def pancake_sort(A):
-    for n in range(len(A)-1, 0, -1):
-        max_val = A[0]
-        max_pos = 0
-        for i in range(1, n+1):
-            if A[i] > max_val:
-                max_val = A[i]
-                max_pos = i
-        A[:max_pos+1] = A[:max_pos][::-1] + A[max_pos+1:max_pos+1] + A[max_pos+1:max_pos+1+n-max_pos]
-    return A
-
-
-def test_pancake_sort():
-    assert pancake_sort([15, 79, 25, 38, 69]) == [15, 25, 38, 69, 79]
-    print("All Tests Passed")
-
-
-test_pancake_sort()
-
-
-"""
-def pancake_sort(A):
-    for n in range(len(A)-1, 0, -1):
-        max_val = A[0

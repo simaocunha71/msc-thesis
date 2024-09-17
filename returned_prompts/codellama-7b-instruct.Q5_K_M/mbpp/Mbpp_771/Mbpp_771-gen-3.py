@@ -1,4 +1,4 @@
-```python
+
 def check_expression(expression):
     stack = []
     for char in expression:
@@ -8,14 +8,10 @@ def check_expression(expression):
             if len(stack) == 0:
                 return False
             top = stack.pop()
-            if top == "{" and char != "}":
-                return False
-            elif top == "[" and char != "]":
-                return False
-            elif top == "(" and char != ")":
+            if char == "}" and top != "{" or char == "]" and top != "[" or char == ")" and top != "(":
                 return False
     if len(stack) != 0:
         return False
     return True
-```
+
 

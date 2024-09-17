@@ -1,7 +1,7 @@
-"""
-def convert(num):
-    r = abs(num)
-    theta = num.phase()
-    return (r, theta)
-"""
+
+import cmath
+def convert(num: complex) -> tuple:
+  r = cmath.polar(num)
+  return (r.real, r.imag)
+
 

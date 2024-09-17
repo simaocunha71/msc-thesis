@@ -1,4 +1,5 @@
-```
+
 def Diff(list1, list2):
-    return list(set(list1) - set(list2))
-```
+    return [x for x in list1 if x not in list2]
+
+

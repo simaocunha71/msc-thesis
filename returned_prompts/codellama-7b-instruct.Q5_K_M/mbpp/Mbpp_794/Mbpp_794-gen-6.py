@@ -1,3 +1,5 @@
-"""
-return str.startswith('a') and str.endswith('b')
-"""
+
+def text_starta_endb(text:str):
+  return text.startswith("a") and text.endswith("b")
+
+

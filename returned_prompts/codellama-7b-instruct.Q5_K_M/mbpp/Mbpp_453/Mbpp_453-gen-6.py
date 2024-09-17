@@ -1,4 +1,9 @@
-"""
+
 def sumofFactors(n):
-    return sum(x for x in range(1, n + 1, 2) if n % x == 0)
-"""
+  sum_even_factors = 0
+  for i in range(1, n + 1):
+    if i % 2 == 0 and n % i == 0:
+      sum_even_factors += i
+  return sum_even_factors
+
+

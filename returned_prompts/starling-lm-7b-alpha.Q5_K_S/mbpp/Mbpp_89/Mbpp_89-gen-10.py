@@ -1,9 +1,5 @@
-```
-def closest_num(n):
-    num = 0
-    for i in range(1,n):
-        if i < n:
-            num = i
-    return num
-```
+
+def closest_num(n: int):
+  return next(i for i in range(n) if i < n)
+
 

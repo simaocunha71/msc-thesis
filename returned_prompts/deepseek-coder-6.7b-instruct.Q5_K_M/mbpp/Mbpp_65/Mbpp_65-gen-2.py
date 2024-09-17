@@ -1,8 +1,11 @@
 
-def anagrams(word, words):
-    sorted_word = sorted(word)
-    anagrams = [w for w in words if sorted(w) == sorted_word]
-    return anagrams
+def recursive_list_sum(lst):
+    total = 0
+    for element in lst:
+        if type(element) == list:
+            total += recursive_list_sum(element)
+        else:
+            total += element
+    return total
 
-print(anagrams('listen', ['enlist', 'google', 'inlets', 'silent']))
-assert anagrams('listen', ['enlist', 'google', 'inlets', 'silent'])==['
+

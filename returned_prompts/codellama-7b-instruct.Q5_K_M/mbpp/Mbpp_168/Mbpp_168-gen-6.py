@@ -1,4 +1,5 @@
-```python
-def frequency(my_list, target_value):
-    return my_list.count(target_value)
-```
+
+def frequency(my_list: list, num: int) -> int:
+    return my_list.count(num)
+
+

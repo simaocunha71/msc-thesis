@@ -1,9 +1,6 @@
-def check_monthnumb_number(month_number):
-    if month_number in [1, 3, 5, 7, 8, 10, 12]:
-        return True
-    else:
-        return False
 
-assert check_monthnumb_number(5)==True
-"""
+def check_monthnumb_number(month_number):
+  thirty_one_days_months = [1, 3, 5, 7, 8, 10, 12]
+  return month_number in thirty_one_days_months
+
 

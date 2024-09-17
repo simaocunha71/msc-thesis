@@ -1,12 +1,10 @@
 
-def test_duplicate(nums):
-    num_set = set()
-    for num in nums:
-        if num in num_set:
-            return True
-        num_set.add(num)
-    return False
-
-print(test_duplicate([1,2,3,4,5])) # False
-
+def test_duplicate(lst):
+    if len(lst) == len(set(lst)):
+        return False
+    else:
+        return True
+"""
+This function works by converting the list to a set. A set is an unordered collection of unique elements, so if there are any duplicate elements in the list, the length of the set will be smaller than the length of the list. If the lengths are the same, there were no duplicate elements in the list.
+"""
 

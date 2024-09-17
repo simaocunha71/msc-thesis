@@ -1,5 +1,5 @@
-def extract_string(lst,n):
-    return [i for i in lst if type(i) == str and len(i) > n]
 
-print(extract_string(['Python', 'list', 'exercises', 'practice', 'solution'],8))
+def extract_string(lst: list,n: int) -> list:
+  return [i for i in lst if len(i) > n]
+
 

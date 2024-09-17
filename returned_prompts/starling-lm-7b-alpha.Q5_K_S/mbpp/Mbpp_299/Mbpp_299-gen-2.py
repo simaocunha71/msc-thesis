@@ -1,7 +1,6 @@
-def avg_aggregate(tuples):
-    total = 0
-    for tup in tuples:
-        total += tup[1]
-    return (total / len(tuples),)
 
-#
+def max_aggregate(scores: list) -> tuple:
+  max_score = max(scores, key = lambda x: x[1])
+  return max_score
+
+

@@ -1,15 +1,15 @@
-"""
-def right_insertion(arr, value):
-    left = 0
-    right = len(arr) - 1
 
-    while left <= right:
-        mid = (left + right) // 2
-        if arr[mid] == value:
-            return mid + 1
-        elif arr[mid] < value:
-            left = mid + 1
+def right_insertion(arr, x):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == x:
+            return mid
+        elif arr[mid] < x:
+            low = mid + 1
         else:
-            right = mid - 1
-    return left
-"""
+            high = mid - 1
+    return low
+
+

@@ -1,4 +1,7 @@
-def text_match_three(text):
-    return text == "abbb"
+
+def text_match_three(text: str) -> bool:
+    if text.count('b') >= 3:
+        return True
+    return False
 
 

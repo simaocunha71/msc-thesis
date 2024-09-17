@@ -1,7 +1,8 @@
-"""
-def is_samepatterns(patterns, seq):
-    for i, p in enumerate(patterns):
-        if p not in seq[:i+1]:
+
+def is_samepatterns(patterns, arr):
+    for i in range(len(arr)):
+        if arr[i] != patterns[i % len(patterns)]:
             return False
     return True
-"""
+
+

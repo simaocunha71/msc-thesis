@@ -1,8 +1,12 @@
 
-def divisible_by_digits(startnum, endnum):
-    res = []
-    for i in range(startnum, endnum+1):
-        if all(i % int(j) == 0 for j in str(i)):
-            res.append(i)
-    return res
+def divisible_by_digits(startnum: int, endnum: int) -> list:
+    divisible_nums = []
+    for num in range(startnum, endnum+1):
+        for digit in str(num):
+            if num % int(digit) != 0:
+                break
+        else:
+            divisible_nums.append(num)
+    return divisible_nums
+
 

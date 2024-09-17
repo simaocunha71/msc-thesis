@@ -1,5 +1,5 @@
-def substract_elements(tuple1, tuple2):
-    return tuple(i - j for i, j in zip(tuple1, tuple2))
 
+def substract_elements(tup1, tup2):
+  return tuple(i - j for i, j in zip(tup1, tup2))
 
 

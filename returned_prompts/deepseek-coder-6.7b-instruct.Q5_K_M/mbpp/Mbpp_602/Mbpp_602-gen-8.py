@@ -1,12 +1,8 @@
-def first_repeated_char(s):
-    chars = {}
-    for char in s:
-        if char in chars:
-            return char
-        else:
-            chars[char] = 1
-    return None
 
-print(first_repeated_char("abcabc"))
+def first_repeated_char(s: str) -> str:
+  for i in s:
+    if s.count(i) > 1:
+      return i
+  return None
 
-# 2. Palindrome
+

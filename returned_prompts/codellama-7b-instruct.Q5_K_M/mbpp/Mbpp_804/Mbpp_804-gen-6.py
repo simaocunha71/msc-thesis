@@ -1,4 +1,5 @@
-"""
-def is_product_even(numbers):
-    return reduce(lambda x, y: x * y, numbers) % 2 == 0
-"""
+
+def is_product_even(num_list):
+  return False if any(num % 2 for num in num_list) else True
+
+

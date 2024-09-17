@@ -1,7 +1,17 @@
-"""
-def right_insertion(my_list, x):
-    for i in range(len(my_list)):
-        if my_list[i] > x:
-            return i
-    return len(my_list)
-"""
+
+def right_insertion(arr, value):
+    left = 0
+    right = len(arr) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == value:
+            return mid
+        elif arr[mid] < value:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return left
+
+

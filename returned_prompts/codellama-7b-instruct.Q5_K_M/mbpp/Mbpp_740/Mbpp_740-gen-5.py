@@ -1,4 +1,7 @@
-def tuple_to_dict(t):
-    return dict(zip(t[::2], t[1::2]))
+
+def tuple_to_dict(my_tuple):
+  keys = my_tuple[::2]
+  values = my_tuple[1::2]
+  return dict(zip(keys, values))
 
 

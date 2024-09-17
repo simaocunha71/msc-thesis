@@ -1,12 +1,11 @@
-def find_max_subarray(arr):
-    if len(arr) == 1:
-        return arr[0]
-    max_sum = arr[0]
-    for i in range(1, len(arr)):
-        max_sum = max(max_sum, max_sum + arr[i])
-    return max_sum
 
-"""
-Write a function to find the maximum sum of a subarray in the given array. 
-arr = [1, 2, 3, 4, 5]
-assert find_max_subarray([1, 2, 3, 4, 5]) == 15
+def check_min_heap(arr):
+  n = len(arr)
+  if n == 1:
+    return True
+  for i in range(n // 2):
+    if arr[i] > arr[i * 2] or arr[i] > arr[i * 2 + 1]:
+      return False
+  return True
+
+

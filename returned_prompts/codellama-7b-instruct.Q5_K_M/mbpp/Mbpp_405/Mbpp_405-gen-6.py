@@ -1,7 +1,5 @@
 
-```python
-def check_tuplex(tuple1, element):
-    return element in tuple1
-```
+def check_tuplex(t, element):
+    return element in t
 
 

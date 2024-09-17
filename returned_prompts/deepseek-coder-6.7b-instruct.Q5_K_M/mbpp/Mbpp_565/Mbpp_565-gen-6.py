@@ -1,7 +1,4 @@
 
 def split(word):
-    return list(word)
+    return [char for char in word]
 
-assert split('python') == ['p','y','t','h','o','n']
-
-"""

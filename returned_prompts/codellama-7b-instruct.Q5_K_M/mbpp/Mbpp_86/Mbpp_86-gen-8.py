@@ -1,4 +1,5 @@
-"""
+
 def centered_hexagonal_number(n):
-    return (n * (n + 1)) // 2
-"""
+  return (2*n-1)**2
+
+

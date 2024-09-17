@@ -1,37 +1,20 @@
-"""
-def search(array):
-    for i in range(0,len(array)-1):
-        if array[i]!=array[i+1]:
-            return array[i+1]
-    return array[-1]
-"""
 
-def search(array):
-    for i in range(0,len(array)-1):
-        if array[i]!=array[i+1]:
-            return array[i+1]
-    return array[-1]
-
-
-# assert search([1,1,2,2,3]) == 3
-# assert search([1,2,3,4,4,4,5,5]) == 5
-# assert search([1,2,3,4,4,4,4,5]) == 3
-# assert search([1,2,3,4,4,4,4,5,5,5]) == 3
-# assert search([1,1,2,2,3,3,3,4]) == 4
+def search(test_arr):
+    if len(test_arr) == 1:
+        return test_arr[0]
+    elif len(test_arr) == 2:
+        if test_arr[0] == test_arr[1]:
+            return test_arr[0]
+        else:
+            return test_arr[1]
+    else:
+        mid = int(len(test_arr)/2)
+        if test_arr[mid] != test_arr[mid+1]:
+            return search(test_arr[mid:mid+1])
+        else:
+            if test_arr[mid] != test_arr[mid-1]:
+                return search(test_arr[mid-1:mid])
+            else:
+                return search(test_arr[mid+1:])
 
 
-# assert search([1,1,2,2,3]) == 3
-# assert search([1,2,3,4,4,4,5,5]) == 5
-# assert search([1,2,3,4,4,4,4,5]) == 3
-# assert search([1,2,3,4,4,4,4,5,5,5]) == 3
-# assert search([1,1,2,2,3,3,3,4]) == 4
-
-# assert search([1,1,2,2,3]) == 3
-# assert search([1,2,3,4,4,4,5,5]) == 5
-# assert search([1,2,3,4,4,4,4,5]) == 3
-# assert search([1,2,3,4,4,4,4,5,5,5]) == 3
-# assert search([1,1,2,2,3,3,3,4]) == 4
-
-# assert search([1,1,2,2,3]) == 3
-# assert search([1,2,3,4,4,4,5,5]) == 5
-# assert search

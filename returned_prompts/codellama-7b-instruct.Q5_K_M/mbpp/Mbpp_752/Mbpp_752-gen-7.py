@@ -1,6 +1,12 @@
-def jacobsthal_num(n):
+
+def jacobsthal_num(n: int) -> int:
     if n == 1:
-        return 0
-    if n == 2:
         return 1
-    return (2 * jacobsthal_num(n - 1)) + jacobsthal_num(n - 2)
+    if n == 2:
+        return 3
+    if n % 2 == 0:
+        return 2 * jacobsthal_num(n // 2)
+    else:
+        return jacobsthal_num(n + 1)
+
+

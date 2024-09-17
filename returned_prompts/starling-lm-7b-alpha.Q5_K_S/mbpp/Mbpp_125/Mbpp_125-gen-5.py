@@ -1,69 +1,10 @@
-"""
-def find_length(string):
-    max_count = 0
-    for i in range(len(string)):
-        count = 0
-        for j in range(i, len(string)):
-            if string[j] == "1":
-                count += 1
-            else:
-                count -= 1
-            max_count = max(max_count, count)
-    return max_count
 
-# Test
-print(find_length("11000010001"))  # 6
-"""
-
-def find_length(string):
-    max_count = 0
-    for i in range(len(string)):
-        count = 0
-        for j in range(i, len(string)):
-            if string[j] == "1":
-                count += 1
-            else:
-                count -= 1
-            max_count = max(max_count, count)
-    return max_count
-
-# Test
-print(find_length("11000010001"))  # 6
+def find_length(s):
+    s = s + '0'
+    max_len = 0
+    for i in range(len(s)-1):
+        if s[i] == '0':
+            max_len = max(max_len, (s.rfind('1', 0, i+1) - s.find('0', 0, i+1)) + 1)
+    return max_len
 
 
-"""
-def find_length(string):
-    max_count = 0
-    for i in range(len(string)):
-        count = 0
-        for j in range(i, len(string)):
-            if string[j] == "1":
-                count += 1
-            else:
-                count -= 1
-            max_count = max(max_count, count)
-    return max_count
-
-# Test
-print(find_length("11000010001"))  # 6
-
-
-"""
-def find_length(string):
-    max_count = 0
-    for i in range(len(string)):
-        count = 0
-        for j in range(i, len(string)):
-            if string[j] == "1":
-                count += 1
-            else:
-                count -= 1
-            max_count = max(max_count, count)
-    return max_count
-
-# Test
-print(find_length("11000010001"))  # 6
-
-
-"""
-def find_length(string):

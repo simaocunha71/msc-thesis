@@ -1,9 +1,15 @@
+
 def get_ludic(n):
-    ludics = [2]
-    for i in range(3, n + 1):
-        for j in range(3, int(i ** 0.5) + 1):
-            if i % j == 0:
-                break
-        else:
-            ludics.append(i)
-    return ludics
+  ludic_nums = []
+  ludic_nums.append(1)
+  i = 1
+  while i <= n:
+    if i % 2 == 0:
+      ludic_nums.append(i)
+    else:
+      ludic_nums.append(i + 1)
+      i += 2
+    i += 1
+  return ludic_nums
+
+

@@ -1,2 +1,5 @@
-def ascii_value(character):
-    return ord(character)
+
+def ascii_value(character: str) -> int:
+  return ord(character)
+
+

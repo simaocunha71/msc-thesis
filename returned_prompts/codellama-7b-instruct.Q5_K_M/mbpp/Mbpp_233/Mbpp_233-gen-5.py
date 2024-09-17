@@ -1,7 +1,7 @@
-"""
+
 import math
-def lateral_surface_cylinder(radius, height):
-    return 2 * math.pi * radius * (radius + height)
-"""
+
+def lateralsuface_cylinder(height, radius):
+    return 2 * math.pi * radius + 2 * math.pi * height
 
 

@@ -1,9 +1,7 @@
 
-def convert_to_dict(lst):
-    return dict(lst)
+def mul_even_odd(lst):
+    even = next((x for x in lst if x % 2 == 0), None)
+    odd = next((x for x in lst if x % 2 != 0), None)
+    return even * odd if even and odd else None
 
-print(convert_to_dict([('a', 1), ('b', 2), ('c', 3)]))
-<jupyter_output>
-{'a': 1, 'b': 2, 'c': 3}
-<jupyter_text>
-Q
+

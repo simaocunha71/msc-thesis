@@ -1,5 +1,5 @@
-def factorial(n):
-    if n == 0:
-        return 1
-    else:
-        return n *
+
+def sub_list(l1, l2):
+  return [a - b for a, b in zip(l1, l2)]
+
+

@@ -1,4 +1,5 @@
-"""
-def sum_series(n):
-    return sum(range(n, 0, -2))
-"""
+
+def sum_series(n: int) -> int:
+  return sum([n - 2*i for i in range(n // 2)])
+
+

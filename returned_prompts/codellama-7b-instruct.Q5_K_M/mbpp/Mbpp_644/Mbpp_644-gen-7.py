@@ -1,10 +1,8 @@
-```
-def reverse_Array_Upto_K(arr, k):
-    start = 0
-    end = k
-    while start < end:
-        arr[start], arr[end] = arr[end], arr[start]
-        start += 1
-        end -= 1
+
+def reverse_Array_Upto_K(arr,k):
+  if k < 0 or k >= len(arr):
     return arr
-```
+  for i in range(0, k+1):
+    arr[i] = arr[i]
+
+

@@ -1,8 +1,10 @@
-```python
-def find_Rotations(string):
-    count = 0
-    while string != string[::-1]:
-        string = string[1:] + string[0]
-        count += 1
-    return count
-```
+
+def find_Rotations(str1) -> int:
+  if len(str1) == 0:
+    return 0
+  for i in range(len(str1)):
+    if str1 == str1[i:]+str1[:i]:
+      return len(str1) - i
+  return len(str1)
+
+

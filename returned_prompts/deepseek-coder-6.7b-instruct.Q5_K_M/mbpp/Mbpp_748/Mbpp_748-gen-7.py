@@ -1,7 +1,6 @@
-def title_case_words(s):
-    return ' '.join(word.title() for word in s.split())
 
-print(title_case_words("python is fun"))
+import re
+def capital_words_spaces(text):
+    return re.sub(r"(\w)([A-Z])", r"\1 \2", text)
 
-"""
-Write a function that takes a string and returns a new string with each word in
+

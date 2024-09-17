@@ -1,3 +1,5 @@
 
-def count_binary_seq(n):
-    return math.factorial(2*n) / (math.factorial(n)**2)
+def count_binary_seq(n: int) -> float:
+    return 2**(n+1)
+
+

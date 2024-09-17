@@ -1,2 +1,5 @@
-def sum_negativenum(numbers):
-    return sum(filter(lambda x: x < 0, numbers))
+
+def sum_negativenum(nums: list) -> int:
+    return sum(x for x in nums if x < 0)
+
+

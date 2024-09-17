@@ -1,10 +1,9 @@
-def insert_element(my_list, element):
+
+def insert_element(my_list,element):
     result = []
-    for i in range(len(my_list)):
+    for i in my_list:
         result.append(element)
-        result.append(my_list[i])
+        result.append(i)
     return result
-
-
 
 

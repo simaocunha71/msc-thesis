@@ -1,4 +1,4 @@
-"""
+
 def recursive_list_sum(my_list):
     total = 0
     for element in my_list:
@@ -7,4 +7,5 @@ def recursive_list_sum(my_list):
         else:
             total += element
     return total
-"""
+
+

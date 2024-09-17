@@ -1,13 +1,5 @@
-def surface_Area(base, height):
-    # formula to calculate the surface area of a square pyramid is 1/2 * base_edge * slant_length + base_area
-    slant_length = (height**2 + base**2)**0.5
-    area = (1/2) * base * slant_length
-    return round(area)
 
-# Test Case
-assert surface_Area(3,4) == 33
-<jupyter_output>
-<empty_output>
-<jupyter_text>
-Problem 2
-<jupyter_code>
+def surface_Area(base, height):
+    return ((base**2) + (2*base*height))
+
+

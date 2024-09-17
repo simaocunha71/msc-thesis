@@ -1,6 +1,8 @@
-def find_remainder(arr, n):
-    result = 1
+
+def find_remainder(arr: list, modulo: int) -> int:
+    product = 1
     for i in arr:
-        result *= i
-        result %= n
-    return result
+        product = (product * i) % modulo
+    return product
+
+

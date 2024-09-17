@@ -1,5 +1,5 @@
 
-def sum_numbers(lst):
-    return sum(lst)
+def multiple_to_single(nums):
+  return int(''.join(map(str,nums)))
 
-print(sum_numbers([1, 2, 3, 4, 5]))  # 1
+

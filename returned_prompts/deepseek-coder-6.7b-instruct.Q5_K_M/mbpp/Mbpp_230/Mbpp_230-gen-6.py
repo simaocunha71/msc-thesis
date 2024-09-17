@@ -1,11 +1,5 @@
 
-def replace_blank(string,character):
-    return string.replace(' ',character)
+def replace_blank(string: str, char: chr) -> str:
+    return string.replace(' ', char)
 
-print(replace_blank("hello people",'@'))
-
-"""
-Output:
-"hello@people"
-"""
 

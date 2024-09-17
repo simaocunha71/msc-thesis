@@ -1,6 +1,6 @@
-def sample_nam(nam):
-  total = 0
-  for name in nam:
-    if not name[0].islower():
-      total += len(name)
-  return total
+
+def sample_nam(names: list) -> int:
+    names = [name for name in names if not name[0].islower()]
+    return sum(len(name) for name in names)
+
+

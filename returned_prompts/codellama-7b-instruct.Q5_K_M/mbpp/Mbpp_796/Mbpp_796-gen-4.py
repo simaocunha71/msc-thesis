@@ -1,5 +1,5 @@
-def return_sum(my_dict):
-    sum = 0
-    for value in my_dict.values():
-        sum += value
-    return sum
+
+def return_sum(my_dict: dict):
+    return sum(my_dict.values())
+
+

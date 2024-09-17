@@ -1,4 +1,5 @@
-"""
-def count_occurance(s):
-    return len([i for i in range(len(s)) if s[i:i+3] == 'std'])
-"""
+
+def count_occurance(given_string):
+    return given_string.count('std')
+
+

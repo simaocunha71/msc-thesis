@@ -1,8 +1,8 @@
-def first_odd(lst):
-    for num in lst:
-        if num%2 != 0:
-            return num
 
-# Test
-assert first_odd([1,3,5]) == 1
+def first_odd(nums:list)->int:
+  for i in nums:
+    if i % 2 != 0:
+      return i
+  return None
+
 

@@ -1,10 +1,8 @@
 
 def even_position(lst):
-    return all(i % 2 == 0 for i in lst[::2])
+  for i in range(0, len(lst), 2):
+    if lst[i] % 2 != 0:
+      return False
+  return True
 
-print(even_position([3,2,1]))
-<jupyter_output>
-False
-<jupyter_text>
-Q2.
-<jupyter_code>
+

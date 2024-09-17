@@ -1,8 +1,6 @@
-"""
+
+import re
 def text_lowercase_underscore(text):
-    return all(x.islower() or x=='_' for x in text) and not(text[0]=='_' or text[-1]=='_')
+  return bool(re.search(r'[a-z]+_[a-z]+', text))
 
-print(text_lowercase_underscore("aab_cbbbc"))
-"""
 
-#Q2:

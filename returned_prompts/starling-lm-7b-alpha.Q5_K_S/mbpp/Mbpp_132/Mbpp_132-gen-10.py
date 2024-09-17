@@ -1,5 +1,8 @@
-def tuple_string(tup):
-    # convert a tuple to a string with commas and spaces
-    str = ""
-    for i in tup:
-        str += i + "," + "
+
+def tup_string(t):
+    s = ""
+    for i in t:
+        s += i
+    return s
+
+

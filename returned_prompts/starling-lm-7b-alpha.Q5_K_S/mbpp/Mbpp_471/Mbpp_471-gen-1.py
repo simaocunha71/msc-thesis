@@ -1,50 +1,12 @@
-def find_remainder(arr,n):
-    if len(arr) == 1:
-        return arr[0] % n
-    else:
-        if len(arr)%2 == 0:
-            return (find_remainder(arr[:-1],n) * find_remainder(arr[1:],n)) % n
-        else:
-            return (find_remainder(arr[:-1],n) * find_remainder(arr[1:],n) * arr[-1]) % n
 
-
-find_remainder([ 100, 10, 5, 25, 35, 14 ],11)
-
-
-
-
-"""
-def find_remainder(arr,n):
-    if len(arr) == 1:
-        return arr[0] % n
-    else:
-        if len(arr)%2 == 0:
-            return (find_remainder(arr[:-1],n) * find_remainder(arr[1:],n)) % n
-        else:
-            return (find_remainder(arr[:-1],n) * find_remainder(arr[1:],n) * arr[-1]) % n
-
-find_remainder([ 100, 10, 5, 25, 35, 14 ],11) ==9
-"""
-
-# def find_remainder(arr,n):
-#     if len(arr) == 1:
-#         return arr[0] % n
-#     else:
-#         if len(arr)%2 == 0:
-#             return (find_remainder(arr[:-1],n) * find_remainder(arr[1:],n)) % n
-#         else:
-#             return (find_remainder(arr[:-1],n) * find_remainder(arr[1:],n) * arr[-1]) % n
-
-# find_remainder([ 100, 10, 5, 25, 35, 14 ],11) ==9
-
-
-
-
-
-
-
-
-
-
+def find_remainder(nums: list,n: int) -> int:
+  def find_product(left,right):
+    if left == right:
+      return nums[left] % n
+    res = 1
+    for i in range(left, right+1):
+      res = (res * nums[i]) % n
+    return res
+  return find_product(0, len(nums)-1)
 
 

@@ -1,4 +1,5 @@
-```python
-def Find_Min_Length(my_list_of_lists):
-    return min(len(x) for x in my_list_of_lists)
-```
+
+def Find_Min_Length(lst_lst):
+  return min([len(lst) for lst in lst_lst])
+
+

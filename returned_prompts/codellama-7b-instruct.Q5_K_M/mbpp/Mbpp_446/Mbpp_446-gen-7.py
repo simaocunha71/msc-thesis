@@ -1,7 +1,9 @@
-def count_Occurrence(my_list, ele_list):
-    count = 0
-    for i in my_list:
-        if i in ele_list:
-            count += 1
+
+def count_Occurrence(tup, list_):
+    count = {}
+    for i in tup:
+        if i in list_:
+            count[i] = tup.count(i)
     return count
+
 

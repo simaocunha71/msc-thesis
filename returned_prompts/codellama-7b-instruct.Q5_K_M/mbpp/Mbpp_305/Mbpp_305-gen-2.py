@@ -1,4 +1,7 @@
-def start_withp(my_list):
-    return tuple(word for word in my_list if word.split()[0] == "Python")
+
+def start_withp(words):
+  for word in words:
+    if word.split()[0] == 'p':
+      return word.split()
 
 

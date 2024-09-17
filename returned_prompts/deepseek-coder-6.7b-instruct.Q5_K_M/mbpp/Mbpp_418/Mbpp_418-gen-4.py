@@ -1,12 +1,6 @@
-def Find_Max(lst):
-    max_len = -1
-    max_element = []
-    for element in lst:
-        if len(element) > max_len:
-            max_len = len(element)
-            max_element = element
-    return max_element
 
-assert Find_Max([['A'],['A','B'],['A','B','C']]) == ['A','B','C']
+def Find_Max(lst):
+  max_len = max(len(sub) for sub in lst)
+  return [sub for sub in lst if len(sub) == max_len][0]
 
 

@@ -1,8 +1,5 @@
-"""
-def text_match_two_three(s):
-    if 'a' in s and s.count('b')==2 or s.count('b')==3:
-        return True
-    else:
-        return False
-"""
+
+def text_match_two_three(text: str) -> bool:
+  return "a" in text and "bb" in text or "a" in text and "bbb" in text
+
 

@@ -1,11 +1,7 @@
-import re
 
-def find_literals(pattern, search_string):
-    pattern = re.compile(pattern)
-    match = pattern.search(search_string)
-    if match:
-        return match.group(), match.start(), match.end()
-    else:
-        return None
+import re
+def find_literals(strng, pattern):
+  match = re.search(pattern, strng)
+  return match.group(0), match.start(), match.end()
 
 

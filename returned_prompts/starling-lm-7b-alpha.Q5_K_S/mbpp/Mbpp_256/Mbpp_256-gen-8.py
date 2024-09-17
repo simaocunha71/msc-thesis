@@ -1,13 +1,16 @@
-"""
-def count_Primes_nums(num):
-    if num < 2:
-        return 0
-    primes = [True] * (num + 1)
-    primes[0], primes[1] = False, False
-    for i in range(2, num + 1):
-        if primes[i]:
-            for j in range(i*i, num+1, i):
-                primes[j] = False
-    return primes.count(True)
-"""
+
+def count_Primes_nums(n: int) -> int:
+    count = 0
+    for i in range(2, n+1):
+        if is_prime(i):
+            count += 1
+    return count
+
+
+def is_prime(n: int) -> bool:
+    for i in range(2, int(math.sqrt(n))+1):
+        if n % i == 0:
+            return False
+    return True
+
 

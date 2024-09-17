@@ -1,9 +1,5 @@
-def remove_all_spaces(s):
-    return "".join(s.split())
 
-print(remove_all_spaces('python  program'))
+def remove_all_spaces(s: str) -> str:
+  return ''.join(s.split())
 
-#output: pythonprogram
-<jupyter_output>
-pythonprogram
-<jupyter_text>
+

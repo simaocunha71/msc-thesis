@@ -1,9 +1,7 @@
-def is_sublist(main_list, sublist):
-    return all(item in main_list for item in sublist)
 
-print(is_sublist([2,4,3,5,7],[3,7]))
-
+def is_sublist(g, s):
+    return all(i in g for i in s)
 """
-This function uses the built-in Python function all() to check if all elements in the sublist exist in the main list. If all elements exist in the main list, then the all() function returns True otherwise it returns False.
+The all() function returns True if all items in an iterable are true.
 """
 

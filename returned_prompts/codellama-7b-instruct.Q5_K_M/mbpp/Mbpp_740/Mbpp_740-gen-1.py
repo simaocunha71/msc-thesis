@@ -1,4 +1,5 @@
-```python
-def tuple_to_dict(my_tuple):
-    return {my_tuple[i]: my_tuple[i+1] for i in range(0, len(my_tuple), 2)}
-```
+
+def tuple_to_dict(tup):
+  return {tup[i]: tup[i+1] for i in range(0, len(tup), 2)}
+
+

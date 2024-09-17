@@ -1,6 +1,5 @@
-def extract_singly(lst):
-    result = []
-    for sublst in lst:
-        result.extend(sublst)
-    return result
+
+def extract_singly(list_of_lists: list) -> set:
+  return set(sum(list_of_lists,[]))
+
 

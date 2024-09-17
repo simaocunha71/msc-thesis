@@ -1,3 +1,5 @@
 
-def extract_singly(lst_of_lst):
-    return set(sum(lst_of_lst, []))
+def extract_singly(my_list):
+  return set(sum(my_list, ()))
+
+

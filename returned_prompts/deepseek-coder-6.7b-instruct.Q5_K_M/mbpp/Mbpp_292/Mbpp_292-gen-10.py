@@ -1,3 +1,5 @@
 
-def find(n):
-    return sum
+def find(a, b):
+    return a // b
+
+

@@ -1,5 +1,9 @@
-def average_tuple(tuple_of_tuples):
-    average_list = []
-    for t in tuple_of_tuples:
-        average_list.append(sum(t) / len(t))
-    return average_list
+
+def average_tuple(tup: tuple) -> list:
+  avg_list = []
+  for sub_tuple in tup:
+    avg = sum(sub_tuple) / len(sub_tuple)
+    avg_list.append(avg)
+  return avg_list
+
+

@@ -1,5 +1,5 @@
-"""
-def empty_list(N):
-    return [{} for _ in range(N)]
-"""
+
+def empty_list(n: int) -> list:
+  return [{} for _ in range(n)]
+
 

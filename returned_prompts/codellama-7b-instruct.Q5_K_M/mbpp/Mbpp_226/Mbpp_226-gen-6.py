@@ -1,4 +1,5 @@
-```python
-def odd_values_string(input_string):
-    return ''.join([i for i in input_string if input_string.index(i) % 2 == 0])
-```
+
+def odd_values_string(s):
+    return ''.join(x for i, x in enumerate(s) if i % 2 == 0)
+
+

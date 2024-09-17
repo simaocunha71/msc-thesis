@@ -1,8 +1,5 @@
-def is_num_decagonal(n):
-    return (n*2) - 1
 
-def nth_decagonal(n):
-    return is_num_decagonal(n)
+def is_num_decagonal(n: int) -> int:
+  return int(n * (n + 1) / 2)
 
-print(nth_decagonal(3))
 

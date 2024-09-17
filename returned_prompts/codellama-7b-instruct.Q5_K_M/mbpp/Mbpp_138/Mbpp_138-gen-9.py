@@ -1,10 +1,11 @@
+
 def is_Sum_Of_Powers_Of_Two(n):
     if n == 1:
         return True
-    i = 1
-    while i <= n:
-        if n & (1 << i):
-            if is_Sum_Of_Powers_Of_Two(n - (1 << i)):
-                return True
-        i += 1
-    return False
+    if n == 0:
+        return False
+    while(n % 2 == 0):
+        n = n >> 1
+    return is_Sum_Of_Powers_Of_Two(n - 1)
+
+

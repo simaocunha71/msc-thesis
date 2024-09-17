@@ -1,4 +1,5 @@
-def check_K(t, k):
-    return k in t
+
+def check_K(tup1, k):
+  return k in tup1
 
 

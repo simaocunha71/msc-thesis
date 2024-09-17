@@ -1,8 +1,8 @@
-def odd_num_sum(n):
-    sum = 0
-    for i in range(1,n+1):
-        sum += i**4
-    return sum
 
+def odd_num_sum(n):
+  total = 0
+  for num in range(1, n*2+1, 2):
+    total += num ** 4
+  return total
 
 

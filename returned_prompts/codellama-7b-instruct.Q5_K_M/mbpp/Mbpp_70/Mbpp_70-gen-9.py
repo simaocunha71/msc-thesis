@@ -1,4 +1,9 @@
-def get_equal(my_list):
-    return len(set(len(x) for x in my_list)) == 1
+
+def get_equal(my_tuple):
+  length = len(my_tuple[0])
+  for i in my_tuple:
+    if len(i) != length:
+      return False
+  return True
 
 

@@ -1,5 +1,7 @@
-"""
+
 import cmath
-def polar_rect(rho, theta):
-    return cmath.rect(rho, theta)
-"""
+def polar_rect(rho: float, theta: float) -> tuple:
+  rect_coordinates = (rho*cmath.cos(theta), rho*cmath.sin(theta))
+  return rect_coordinates
+
+

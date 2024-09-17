@@ -1,8 +1,5 @@
-"""
-def radian_degree(degree):
-    from math import pi
-    return degree * (pi/180)
 
-print(radian_degree(90))
-"""
+import math
+def radian_degree(degrees):
+    return math.radians(degrees)
 

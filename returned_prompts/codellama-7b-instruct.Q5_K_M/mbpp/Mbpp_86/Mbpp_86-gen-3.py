@@ -1,2 +1,8 @@
+
 def centered_hexagonal_number(n):
-    return (3 * (n ** 2) - 3 * n) // 2
+    if n == 1:
+        return 1
+    else:
+        return centered_hexagonal_number(n - 1) + (2 * (n - 1))
+
+

@@ -1,4 +1,4 @@
-```
+
 def count_Substrings(s):
     count = 0
     for i in range(len(s)):
@@ -6,4 +6,5 @@ def count_Substrings(s):
             if sum(int(x) for x in s[i:j+1]) == j+1:
                 count += 1
     return count
-```
+
+

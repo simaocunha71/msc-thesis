@@ -1,5 +1,5 @@
-def unique_sublists(my_list):
-    return {frozenset(sublist): my_list.count(sublist) for sublist in set(map(tuple, my_list))}
 
+def unique_sublists(lst):
+  return {tuple(slst): lst.count(slst) for slst in set(map(tuple, lst))}
 
 

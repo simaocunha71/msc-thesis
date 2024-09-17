@@ -1,2 +1,5 @@
+
 def remove_odd(my_list):
-    return [i for i in my_list if i % 2 == 0]
+    return list(filter(lambda x: x % 2 == 0, my_list))
+
+

@@ -1,10 +1,5 @@
-def is_num_senic(n):
-    return n**6
 
-print(is_num_senic(3))
+def is_num_decagonal(n):
+  return n*(7*n-5)//2
 
-# 729
 
-"""
-Write a function to find the nth septic number.
-assert is_num_

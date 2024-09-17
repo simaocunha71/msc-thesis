@@ -1,8 +1,5 @@
-```python
-def count_X(my_tuple, element):
-    count = 0
-    for item in my_tuple:
-        if item == element:
-            count += 1
-    return count
-```
+
+def count_X(test_tup, X):
+  return test_tup.count(X)
+
+

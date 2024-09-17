@@ -1,6 +1,8 @@
-def check_type(tup):
-    return all(isinstance(i, type(tup[0])) for i in tup)
 
-print(check_type((5, 6, 7, 3, 5, 6) ))
+def check_type(my_tuple):
+  if len(my_tuple) == 0:
+    return False
+  else:
+    return all(isinstance(x, type(my_tuple[0])) for x in my_tuple)
 
 

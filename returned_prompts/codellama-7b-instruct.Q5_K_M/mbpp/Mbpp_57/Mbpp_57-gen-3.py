@@ -1,2 +1,6 @@
-def find_Max_Num(my_list):
-    return int("".join(sorted(my_list, reverse=True)))
+
+def find_Max_Num(digits):
+    digits.sort(reverse=True)
+    return int(''.join(map(str, digits)))
+
+

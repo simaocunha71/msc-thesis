@@ -1,2 +1,7 @@
-def sum_average(n):
-    return sum(range(n+1)), sum(range(n+1))/(n+1)
+
+def sum_average(n: int) -> (float, float):
+    sum = (n * (n + 1)) // 2
+    avg = sum / n
+    return (sum, avg)
+
+

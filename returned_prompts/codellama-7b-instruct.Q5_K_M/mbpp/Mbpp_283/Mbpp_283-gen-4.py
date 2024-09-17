@@ -1,6 +1,14 @@
+
 def validate(n):
-    s = str(n)
-    for i in range(1, len(s) + 1):
-        if s.count(str(i)) > i:
-            return False
-    return True
+  d = {}
+  for i in str(n):
+    if i in d.keys():
+      if d[i] >= int(i):
+        return False
+      else:
+        d[i] += 1
+    else:
+      d[i] = 1
+  return True
+
+

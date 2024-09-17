@@ -1,7 +1,9 @@
-"""
-def sum_digits(x):
-    if not x:
-        return 0
-    return x%10 + sum_digits(x//10)
-"""
+
+def sum_digits(n):
+    total = 0
+    while n:
+        total += n % 10
+        n //= 10
+    return total
+
 

@@ -1,4 +1,10 @@
-"""
-def noprofit_noloss(price,amount):
-    return price*amount<=10000
-"""
+
+def noprofit_noloss(amount: float, cost: float) -> bool:
+  if amount == cost:
+    return True
+  elif amount < cost:
+    return False
+  else:
+    return True
+
+

@@ -1,4 +1,5 @@
-"""
-def remove_elements(master_list, sub_list):
-    return [element for element in master_list if element not in sub_list]
-"""
+
+def remove_elements(my_list,elements_to_remove):
+  return list(set(my_list) - set(elements_to_remove))
+
+

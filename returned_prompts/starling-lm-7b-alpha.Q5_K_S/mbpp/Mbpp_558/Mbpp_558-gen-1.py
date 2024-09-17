@@ -1,14 +1,12 @@
-"""
-def digit_distance_nums(x,y):
-    x_str = str(x)
-    y_str = str(y)
-    if len(x_str) != len(y_str):
-        return 'The input numbers must be of equal length'
-    digit_sum = 0
-    for i in range(len(x_str)):
-        digit_sum += abs(int(x_str[i]) - int(y_str[i]))
-    return digit_sum
 
-# assert digit_distance_nums(1,2) == 1
-"""
+def digit_distance_nums(num1: int, num2: int) -> int:
+  num1_digit = len(str(num1))
+  num2_digit = len(str(num2))
+  if num1_digit < num2_digit:
+    num1_digit += 1
+  elif num2_digit < num1_digit:
+    num2_digit += 1
+  diff_nums = [abs(int(str(num1)[i]) - int(str(num2)[i])) for i in range(num1_digit)]
+  return sum(diff_nums)
+
 

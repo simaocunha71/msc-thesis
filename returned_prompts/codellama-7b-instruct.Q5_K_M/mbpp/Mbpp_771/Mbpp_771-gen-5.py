@@ -1,14 +1,23 @@
-```
-def check_expression(expression: str) -> bool:
+
+def check_expression(expression):
+    if len(expression) % 2 != 0:
+        return False
     stack = []
     for char in expression:
-        if char == "{" or char == "[" or char == "(":
+        if char == "(" or char == "[" or char == "{":
             stack.append(char)
-        elif char == "}" or char == "]" or char == ")":
-            if not stack:
+        elif char == ")" or char == "]" or char == "}":
+            if len(stack) == 0:
                 return False
             top = stack.pop()
-            if (top == "{" and char != "}") or (top == "[" and char != "]") or (top == "(" and char != ")"):
+            if char == ")" and top != "(":
                 return False
-    return not stack
-```
+            elif char == "]" and top != "[":
+                return False
+            elif char == "}" and top != "{":
+                return False
+    if len(stack) != 0:
+        return False
+    return True
+
+

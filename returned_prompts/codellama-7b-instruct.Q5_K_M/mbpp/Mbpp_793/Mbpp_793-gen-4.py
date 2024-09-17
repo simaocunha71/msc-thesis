@@ -1,12 +1,15 @@
+
 def last(arr, element):
-    low = 0
-    high = len(arr) - 1
-    while low <= high:
-        mid = (low + high) // 2
-        if arr[mid] > element:
-            high = mid - 1
-        elif arr[mid] < element:
-            low = mid + 1
-        else:
-            return mid
-    return -1
+  left = 0
+  right = len(arr) - 1
+  while left <= right:
+    mid = (left + right) // 2
+    if arr[mid] == element:
+      left = mid + 1
+    else:
+      right = mid - 1
+  if left < len(arr) and arr[left] == element:
+    return left
+  return -1
+
+

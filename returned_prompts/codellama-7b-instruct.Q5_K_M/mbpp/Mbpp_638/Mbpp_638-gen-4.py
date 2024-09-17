@@ -1,3 +1,5 @@
-def wind_chill(wind_speed, temp):
-    wind_chill_index = (33.77 + (0.6215 * temp) + (0.4275 * wind_speed) - (0.135 * temp * wind_speed))
-    return int(wind_chill_index)
+
+def wind_chill(wind_speed: float, temperature: float) -> int:
+  return int(((13.12 + (0.6215 * temperature) - (11.37 * wind_speed ** 0.16) + (0.3965 * temperature * wind_speed ** 0.16))**0.5))
+
+

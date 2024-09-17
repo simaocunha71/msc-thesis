@@ -1,7 +1,5 @@
-def char_frequency(string):
-    freq_dict = {}
-    for char in string:
-        if char in freq_dict:
-            freq_dict[char] += 1
-        else:
-           
+
+def extract_nth_element(lst: list, n: int) -> list:
+  return [i[n] for i in lst]
+
+

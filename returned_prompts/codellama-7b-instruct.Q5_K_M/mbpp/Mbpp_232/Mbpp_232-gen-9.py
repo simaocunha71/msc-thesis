@@ -1,5 +1,5 @@
-def larg_nnum(list,n):
-    return sorted(list,reverse=True)[:n]
 
+def larg_nnum(nums: list,n: int) -> list:
+  return sorted(nums,reverse=True)[:n]
 
 

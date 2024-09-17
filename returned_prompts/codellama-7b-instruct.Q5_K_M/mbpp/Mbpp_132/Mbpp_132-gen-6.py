@@ -1,4 +1,6 @@
-```python
-def tup_string(my_tuple):
-    return ''.join(my_tuple)
-```
+
+def tup_string(tup: tuple) -> str:
+  tup_str = ''.join(tup)
+  return tup_str
+
+

@@ -1,10 +1,13 @@
-"""
-def first_non_repeating_character(s):
-    for i in s:
-        if s.count(i) == 1:
-            return i
-    return None
 
-print(first_non_repeating_character("abcabc"))  # None
-"""
+def first_non_repeating_character(s):
+    count = {}
+    for char in s:
+        if char in count:
+            count[char] += 1
+        else:
+            count[char] = 1
+    for char in s:
+        if count[char] == 1:
+            return char
+    return None
 

@@ -1,6 +1,6 @@
-def capital_words_spaces(s):
-    return ' '.join(s.split())
 
-print(capital_words_spaces("Python"))
+import re
+def capital_words_spaces(text):
+  return re.sub(r"((?<=[a-z])(?=[A-Z]))", " ", text)
 
-# Q2:
+

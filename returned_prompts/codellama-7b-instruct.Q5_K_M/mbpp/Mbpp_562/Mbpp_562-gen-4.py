@@ -1,4 +1,5 @@
-```python
-def Find_Max_Length(SubLists):
-    return max(len(SubList) for SubList in SubLists)
-```
+
+def Find_Max_Length(sub_lists: list) -> int:
+  return max([len(sub_list) for sub_list in sub_lists])
+
+

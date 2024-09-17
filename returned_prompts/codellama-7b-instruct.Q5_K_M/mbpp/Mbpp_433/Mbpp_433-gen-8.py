@@ -1,3 +1,5 @@
-def check_greater(arr, num):
-    return any(x > num for x in arr)
+
+def check_greater(arr: list, num: int) -> bool:
+  return all(num > i for i in arr)
+
 

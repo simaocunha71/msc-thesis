@@ -1,10 +1,8 @@
-def occurance_substring(main_string, search_string):
-    start = main_string.find(search_string)
-    if start == -1:
-        return None
-    else:
-        end = start + len(search_string)
-        return search_string, start, end
 
+def occurance_substring(strng:str, sub_str:str) -> tuple:
+  if sub_str not in strng:
+    return None
+  else:
+    return (sub_str, strng.index(sub_str), len(sub_str))
 
 

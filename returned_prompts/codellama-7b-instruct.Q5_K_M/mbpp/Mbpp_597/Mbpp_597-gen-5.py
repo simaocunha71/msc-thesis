@@ -1,17 +1,10 @@
-"""
-def find_kth(arr1, arr2, k):
-    n = len(arr1)
-    m = len(arr2)
-    if n > m:
-        return find_kth(arr2, arr1, k)
-    if n == 0:
-        return arr2[k - 1]
-    if k == 1:
-        return min(arr1[0], arr2[0])
-    if k > n:
-        return find_kth(arr1[1:], arr2, k - n)
-    if k < n + 1:
-        return find_kth(arr1, arr2[1:], k)
-    return find_kth(arr1[1:], arr2[1:], k - n)
-"""
+
+def find_kth(arr1: list,arr2: list,k: int) -> int:
+  if k>len(arr1)+len(arr2):
+    return -1
+  if k<=len(arr1):
+    return arr1[k-1]
+  if k<=len(arr1)+len(arr2):
+    return arr2[k-len(arr1)-1]
+
 

@@ -1,2 +1,8 @@
-def replace_specialchar(text):
-    return text.replace(',',':').replace('.','').replace(' ','::')
+
+def replace_specialchar(s):
+  res = s.replace(' ', ':')
+  res = res.replace(',', ':')
+  res = res.replace('.', ':')
+  return res
+
+

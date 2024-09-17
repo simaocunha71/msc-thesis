@@ -1,6 +1,9 @@
-def occurance_substring(string, substring):
-    match = re.search(substring, string)
-    if match:
-        return match.group(0), match.start(), match.end()
-    else:
-        return None
+
+def occurance_substring(string: str, substring: str) -> tuple:
+  if substring in string:
+    index = string.index(substring)
+    return (substring, index, index+len(substring))
+  else:
+    return None
+
+

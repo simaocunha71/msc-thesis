@@ -1,6 +1,5 @@
-"""
-def find_Volume(a,b,c):
-    #Volume of a triangular prism is given by the formula a*b*c
-    return a*b*c
-"""
+
+def find_Volume(l:float,w:float,h:float) -> float:
+  return l*w*h
+
 

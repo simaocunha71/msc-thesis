@@ -1,4 +1,5 @@
-```python
-def surfacearea_cube(size):
-    return 6*size**2
-```
+
+def surfacearea_cube(cube_length: int) -> int:
+  return 6 * cube_length ** 2
+
+

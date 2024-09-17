@@ -1,4 +1,5 @@
-```python
-def tuple_modulo(t1, t2):
-    return tuple(map(lambda x, y: x % y, t1, t2))
-```
+
+def tuple_modulo(tuple_1, tuple_2):
+    return tuple(i % j for i, j in zip(tuple_1, tuple_2))
+
+

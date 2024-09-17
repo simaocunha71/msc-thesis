@@ -1,8 +1,5 @@
-"""
-def check_tuplex(tuplex, elem):
-    for i in tuplix:
-        if i == elem:
-            return True
-    return False
-"""
+
+def check_tuplex(tuplex, element):
+    return element in tuplex
+
 

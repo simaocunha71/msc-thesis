@@ -1,7 +1,5 @@
-```
+
 def next_Perfect_Square(num):
-    i = num + 1
-    while i * i - num <= 0:
-        i = i + 1
-    return i * i
-```
+    return int((num // (num ** 0.5)) * (num ** 0.5) + (num ** 0.5))
+
+

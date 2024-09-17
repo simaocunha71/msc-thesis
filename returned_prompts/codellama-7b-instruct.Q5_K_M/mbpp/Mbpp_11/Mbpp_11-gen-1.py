@@ -1,4 +1,5 @@
-```
-def remove_Occ(string, char):
-    return string.replace(char, "", 1).replace(char, "")
-```
+
+def remove_Occ(s: str, c: str) -> str:
+  return s.replace(c, "", 1)
+
+

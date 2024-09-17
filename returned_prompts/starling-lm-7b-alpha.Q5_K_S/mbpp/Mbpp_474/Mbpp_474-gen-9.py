@@ -1,5 +1,5 @@
-def get_multiplication_matrix(A,B):
-    if len(A[0])!=len(B):
-        raise Exception("Can't multiply")
-    C=[[0,0],[0,0]]
-    for i
+
+def replace_char(s: str, old: str, new: str) -> str:
+  return s.replace(old, new)
+
+

@@ -1,6 +1,5 @@
-def text_match_two_three(my_string):
-    pattern = r"a[b]{2,3}"
-    if re.search(pattern, my_string):
-        return True
-    return False
+
+def text_match_two_three(text):
+  return text.count('a') and all(text.count('b') in [2,3] for _ in range(text.count('a')))
+
 

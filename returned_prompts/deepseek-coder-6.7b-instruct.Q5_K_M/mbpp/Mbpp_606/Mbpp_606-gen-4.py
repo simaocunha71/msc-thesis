@@ -1,6 +1,6 @@
+
+import math
 def radian_degree(degrees):
-    return degrees * (3.141592653589793 / 180)
+  return math.radians(degrees)
 
-print(radian_degree(90))
 
-"""

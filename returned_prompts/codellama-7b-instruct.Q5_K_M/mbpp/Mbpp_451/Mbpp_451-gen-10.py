@@ -1,5 +1,5 @@
-```
-remove_whitespaces(s) {
-    return s.replace(/\s+/g, '');
-}
-```
+
+def remove_whitespaces(strng: str) -> str:
+  return strng.replace(" ", "")
+
+

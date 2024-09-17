@@ -1,12 +1,8 @@
 
-import re
-def occurance_substring(input_string, substring):
-    match = re.search(substring, input_string)
-    if match:
-        return (substring, match.start(), match.end())
+def occurance_substring(main_string, search_string):
+    if search_string in main_string:
+        return (search_string, main_string.index(search_string), main_string.index(search_string) + len(search_string))
     else:
         return None
 
-print(occurance_substring('python programming, python language','python'))
-print(occurance_substring('python programming, python language','python', 'javascript'))
-print(occurance_substring('python programming, python language','javascript'))
+

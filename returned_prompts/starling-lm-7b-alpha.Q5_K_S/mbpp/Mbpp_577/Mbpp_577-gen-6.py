@@ -1,51 +1,75 @@
-from math import factorial
 
-def last_Digit_Factorial(x):
-    # if x is less than 0, return 1
-    if x < 0:
+def last_Digit_Factorial(n):
+    if (n==0):
         return 1
-    # get the factorial of x
-    factorial_x = factorial(x)
-    # find the last digit of factorial_x
-    last_digit = factorial_x % 10
-    return last_digit
-
-# Test the function
-print(last_Digit_Factorial(4))
-
-
-
-
-"""
-    You can use Python's built-in function `factorial()` to calculate the factorial of a given number.
-    To find the last digit of the factorial, you can take the modulus of the factorial by 10.
-"""
-
-"""
-    The last digit of a number's factorial is the same as the number's itself if the number is less than or equal to 4.
-    For example, 3! = 3 * 2 * 1 = 6, and the last digit of 6 is 6.
-"""
-
-"""
-    However, if the number is greater than 4, the last digit of the factorial is 0.
-    For example, 5! = 5 * 4 * 3 * 2 * 1 = 120, and the last digit of 120 is 0.
-"""
-
-```python
-# Test the function
-print(last_Digit_Factorial(4))  # Output: 4
-```
-
-This code defines a function `last_Digit_Factorial` that takes a number `x` as input and calculates the factorial of `x`. It then finds the last digit of the factorial by taking the modulus of the factorial by 10. The function returns the last digit.
-
-The test case `print(last_Digit_Factorial(4))` calls the function with the argument 4 and prints the result, which should be 4.
-
-This test case verifies that the function correctly calculates the last digit of the factorial of a given number.
-
-"""
-
-```python
-from math import factorial
-
-def last_Digit_Factorial(x):
-   
+    if (n==1):
+        return 1
+    if (n==2):
+        return 2
+    if (n==3):
+        return 6
+    if (n==4):
+        return 4
+    if (n==5):
+        return 0
+    if (n==6):
+        return 0
+    if (n==7):
+        return 2
+    if (n==8):
+        return 8
+    if (n==9):
+        return 6
+    if (n==10):
+        return 0
+    if (n==11):
+        return 8
+    if (n==12):
+        return 0
+    if (n==13):
+        return 4
+    if (n==14):
+        return 2
+    if (n==15):
+        return 6
+    if (n==16):
+        return 6
+    if (n==17):
+        return 8
+    if (n==18):
+        return 2
+    if (n==19):
+        return 4
+    if (n==20):
+        return 0
+    if (n==21):
+        return 8
+    if (n==22):
+        return 0
+    if (n==23):
+        return 4
+    if (n==24):
+        return 2
+    if (n==25):
+        return 6
+    if (n==26):
+        return 6
+    if (n==27):
+        return 8
+    if (n==28):
+        return 2
+    if (n==29):
+        return 4
+    if (n==30):
+        return 0
+    if (n==31):
+        return 8
+    if (n==32):
+        return 0
+    if (n==33):
+        return 4
+    if (n==34):
+        return 2
+    if (n==35):
+        return 6
+    if (n==

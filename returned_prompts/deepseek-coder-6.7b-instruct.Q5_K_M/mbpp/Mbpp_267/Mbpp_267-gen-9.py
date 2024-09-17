@@ -1,8 +1,5 @@
-def square_Sum(n):
-    sum = 0
-    for i in range(1, n*2, 2):
-        sum += i**2
-    return sum
 
-print(square_Sum(2))
+def square_Sum(n):
+  return sum([i*i for i in range(n*2) if i%2 != 0])
+
 

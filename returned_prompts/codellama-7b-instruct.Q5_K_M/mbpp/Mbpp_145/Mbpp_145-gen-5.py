@@ -1,4 +1,5 @@
-def max_Abs_Diff(nums):
-    return max([abs(nums[i] - nums[i+1]) for i in range(len(nums)-1)])
+
+def max_Abs_Diff(my_list):
+    return max(abs(my_list[i] - my_list[j]) for i in range(len(my_list)) for j in range(i+1, len(my_list)))
 
 

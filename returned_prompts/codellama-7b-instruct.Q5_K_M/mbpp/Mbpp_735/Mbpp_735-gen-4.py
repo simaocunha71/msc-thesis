@@ -1,5 +1,7 @@
-```python
+
 def toggle_middle_bits(n):
-    first_bit, last_bit = n & 1, n & 2**(n.bit_length() - 1)
-    return (n ^ 2**(n.bit_length() - 1)) | first_bit | last_bit
-```
+    flip_bit = ~1 << 1
+    flip_bit2 = ~1 << (n.bit_length() - 1)
+    return n ^ flip_bit ^ flip_bit2
+
+

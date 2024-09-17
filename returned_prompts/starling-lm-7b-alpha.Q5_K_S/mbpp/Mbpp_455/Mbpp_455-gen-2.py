@@ -1,6 +1,9 @@
-"""
+
 def check_monthnumb_number(month):
-    month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    return month_days[month-1] == 31
-"""
+    month_list = [1, 3, 5, 7, 8, 10, 12]
+    if month in month_list:
+        return True
+    else:
+        return False
+
 

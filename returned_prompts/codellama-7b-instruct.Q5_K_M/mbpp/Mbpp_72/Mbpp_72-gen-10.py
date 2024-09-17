@@ -1,12 +1,9 @@
+
 def dif_Square(num):
-    # Check if num is a perfect square
-    root = int(num ** 0.5)
-    if root ** 2 == num:
-        return True
+  for i in range(1, num):
+    j = num - i
+    if i ** 2 == j ** 2:
+      return True
+  return False
 
-    # Check if (num + 1) is a perfect square
-    root = int((num + 1) ** 0.5)
-    if (root + 1) ** 2 == num + 1:
-        return True
 
-    return False

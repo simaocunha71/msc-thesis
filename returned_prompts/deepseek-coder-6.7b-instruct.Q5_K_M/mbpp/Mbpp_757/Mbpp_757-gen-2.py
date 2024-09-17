@@ -7,6 +7,4 @@ def count_reverse_pairs(lst):
                 count += 1
     return count
 
-print(count_reverse_pairs(["julia", "best", "tseb", "for", "ailuj"]))
 
-"""

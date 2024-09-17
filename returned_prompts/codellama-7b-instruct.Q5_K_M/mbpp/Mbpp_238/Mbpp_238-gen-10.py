@@ -1,4 +1,5 @@
-```python
-def number_of_substrings(string):
-    return sum(1 for i in range(len(string)))
-```
+
+def number_of_substrings(s: str) -> int:
+    return len(s) * (len(s) + 1) // 2
+
+

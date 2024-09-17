@@ -1,11 +1,8 @@
-def occurance_substring(s, sub):
-    pos = s.find(sub)
-    if pos != -1:
-        return (sub, pos, pos+len(sub))
+
+def occurance_substring(string:str,substring:str)->tuple:
+  start = string.find(substring)
+  if start == -1:
     return None
+  return (substring, start, start + len(substring) - 1)
 
-print(occurance_substring('python programming, python language','python'))
 
-#Output: ('python', 0, 6)
-
-#Task 2

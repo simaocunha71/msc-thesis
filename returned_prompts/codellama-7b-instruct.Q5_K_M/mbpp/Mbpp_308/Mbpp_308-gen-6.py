@@ -1,3 +1,9 @@
 
-def large_product(list1, list2, k):
-    return sorted(list(map(lambda x, y: x * y, list1, list2)), reverse=True)[:k]
+def large_product(list_a,list_b,n):
+  largest_products = []
+  for i in range(n):
+    largest_products.append(list_a[i]*list_b[i])
+  largest_products.sort(reverse=True)
+  return largest_products
+
+

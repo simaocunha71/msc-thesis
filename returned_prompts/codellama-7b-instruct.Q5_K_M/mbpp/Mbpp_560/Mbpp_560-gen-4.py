@@ -1,8 +1,5 @@
-def union_elements(tuple1, tuple2):
-    elements = tuple1 + tuple2
-    return sorted(set(elements))
 
-# OR
+def union_elements(test_tup1, test_tup2):
+    return sorted(set(test_tup1 + test_tup2))
 
-def union_elements(tuple1, tuple2):
-    return sorted(set(tuple1 + tuple2))
+

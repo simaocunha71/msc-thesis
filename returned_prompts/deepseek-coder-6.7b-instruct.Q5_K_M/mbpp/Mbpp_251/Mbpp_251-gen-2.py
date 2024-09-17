@@ -1,9 +1,5 @@
-def insert_element(lst, elem):
-    return [elem] + lst
 
-print(insert_element(['Red', 'Green', 'Black'], 'c'))
-<jupyter_output>
-['c', 'Red', 'c', 'Green', 'c', 'Black']
-<jupyter_text>
-Problem 3
-<jupyter_code>
+def insert_element(lst, element):
+  return [element for i in lst for element in (i, element)]
+
+

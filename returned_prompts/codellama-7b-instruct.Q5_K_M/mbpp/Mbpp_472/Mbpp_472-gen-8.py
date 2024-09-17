@@ -1,3 +1,9 @@
-def check_Consecutive(my_list):
-    return all(my_list[i+1] - my_list[i] == 1 for i in range(len(my_list)-1))
+
+def check_Consecutive(nums):
+    nums.sort()
+    for i in range(len(nums)-1):
+        if nums[i+1] != nums[i] + 1:
+            return False
+    return True
+
 

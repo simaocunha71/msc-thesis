@@ -1,4 +1,5 @@
-```
-def is_upper(word):
-    return word.upper()
-```
+
+def is_upper(s: str) -> str:
+  return s.upper()
+
+

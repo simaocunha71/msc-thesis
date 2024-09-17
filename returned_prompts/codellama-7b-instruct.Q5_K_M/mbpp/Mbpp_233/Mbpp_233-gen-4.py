@@ -1,2 +1,6 @@
-def lateralsuface_cylinder(h,r):
-    return 2*math.pi*r*r + 2*math.pi*r*h
+
+import math
+def lateralsuface_cylinder(height, radius):
+  return 2*math.pi*radius*height + 2*math.pi*radius**2
+
+

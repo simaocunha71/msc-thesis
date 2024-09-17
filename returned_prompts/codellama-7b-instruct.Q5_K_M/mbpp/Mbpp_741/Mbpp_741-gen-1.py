@@ -1,5 +1,5 @@
-```python
-def all_Characters_Same(str):
-    return len(set(str)) <= 1
-```
+
+def all_Characters_Same(my_str: str) -> bool:
+  return len(set(my_str)) == 1
+
 

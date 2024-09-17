@@ -1,8 +1,9 @@
-"""
-def get_equal(tuples):
-    length = len(tuples[0])
-    for t in tuples:
-        if len(t) != length:
+
+def get_equal(tups):
+    length = len(tups[0])
+    for tup in tups:
+        if length != len(tup):
             return False
     return True
-"""
+
+

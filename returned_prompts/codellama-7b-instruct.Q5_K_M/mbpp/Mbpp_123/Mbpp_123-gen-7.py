@@ -1,16 +1,11 @@
-def amicable_numbers_sum(n):
-    total = 0
-    for i in range(1, n+1):
-        d1 = sum(d**2 for d in divisors(i))
-        d2 = sum(d**2 for d in divisors(d1))
-        if d2 == i and d1 != i:
-            total += i
-    return total
 
-def divisors(n):
-    for i in range(1, int(n**0.5) + 1):
-        if n % i == 0:
-            yield i
-            if n // i != i:
-                yield n // i
+def amicable_numbers_sum(n: int) -> int:
+  sum_of_amicable_numbers = 0
+  for i in range(1,n+1):
+    sum_of_divisors_of_i = sum(int(j) for j in str(i) if int(j) != 0 and int(j) != i)
+    sum_of_divisors_of_sum_of_divisors_of_i = sum(int(j) for j in str(sum_of_divisors_of_i) if int(j) != 0 and int(j) != sum_of_divisors_of_i)
+    if sum_of_divisors_of_i == i and sum_of_divisors_of_sum_of_divisors_of_i == sum_of_divisors_of_i and sum_of_divisors_of_i != sum_of_divisors_of_sum_of_divisors_of_i:
+      sum_of_amicable_numbers += i
+  return sum_of_amicable_numbers
+
 

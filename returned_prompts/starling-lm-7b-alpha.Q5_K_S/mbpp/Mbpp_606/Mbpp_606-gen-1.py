@@ -1,4 +1,5 @@
-def rectangle_area(length, width):
-    """
-    Calculate the area of a rectangle
-    """
+
+def radian_degree(degree: int) -> float:
+  return degree * (math.pi/180.0)
+
+

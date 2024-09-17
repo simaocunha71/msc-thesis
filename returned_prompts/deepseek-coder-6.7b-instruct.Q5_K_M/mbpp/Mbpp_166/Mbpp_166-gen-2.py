@@ -1,4 +1,4 @@
-"""
+
 def find_even_pair(lst):
     count = 0
     for i in range(len(lst)):
@@ -7,6 +7,4 @@ def find_even_pair(lst):
                 count += 1
     return count
 
-print(find_even_pair([5, 4, 7, 2, 1]))
-"""
 

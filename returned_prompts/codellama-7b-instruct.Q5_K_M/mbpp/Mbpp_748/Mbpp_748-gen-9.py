@@ -1,2 +1,6 @@
-def capital_words_spaces(s):
-    return ' '.join([c for c in s if c.isupper()])
+
+def capital_words_spaces(s: str) -> str:
+    words = s.split()
+    return ' '.join([word for word in words])
+
+

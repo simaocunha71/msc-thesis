@@ -1,9 +1,12 @@
-def zero_count(arr):
-    zeroes = 0
-    non_zeroes = 0
-    for num in arr:
-        if num == 0:
-            zeroes += 1
-        else:
-            non_zeroes += 1
-    return zeroes / non_zeroes
+
+from collections import Counter
+from math import log
+
+def zero_count(nums):
+  count = Counter(nums)
+  total = len(nums)
+  zeroes = count[0]
+  non_zeroes = total - zeroes
+  return zeroes / non_zeroes
+
+

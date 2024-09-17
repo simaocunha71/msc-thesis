@@ -1,7 +1,5 @@
-def lateralsurface_cube(side_length):
-    return 4*side_length**2
 
-print(lateralsurface_cube(5))
+def lateralsurface_cube(side):
+    return 4 * (side**2)
 
-#3. Write a function that calculates the volume of a sphere given its radius.
 

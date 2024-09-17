@@ -1,12 +1,7 @@
 
-def removezero_ip(ip):
-    l = ip.split('.')
-    l = [str(int(i)) for i in l]
-    return '.'.join(l)
+def removezero_ip(ip: str) -> str:
+    ip_parts = ip.split('.')
+    ip_parts = [str(int(part)) for part in ip_parts]
+    return '.'.join(ip_parts)
 
-print(removezero_ip("216.08.094.196"))
-<jupyter_output>
-216.8.94.196
-<jupyter_text>
-Problem 3
-<jupyter_code>
+

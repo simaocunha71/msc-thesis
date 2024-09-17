@@ -1,9 +1,5 @@
-```
-def count(list):
-    count=0
-    for i in list:
-        if i==True:
-            count+=1
-    return count
-```
+
+def count(booleans: list) -> int:
+  return len([i for i in booleans if i == True])
+
 

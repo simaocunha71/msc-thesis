@@ -1,7 +1,5 @@
-"""
-def max_of_nth(matrix, n):
-    return max(row[n] for row in matrix)
 
-print(max_of_nth([[5, 6, 7], [1, 3, 5], [8, 9, 19]], 2))
-"""
+def max_of_nth(matrix: list, n: int) -> int:
+  return max(row[n] for row in matrix)
+
 

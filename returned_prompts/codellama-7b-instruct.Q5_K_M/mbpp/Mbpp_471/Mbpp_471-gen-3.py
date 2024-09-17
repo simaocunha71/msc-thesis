@@ -1,4 +1,5 @@
-```
-def find_remainder(arr,n):
-    return reduce(lambda x,y: (x*y)%n,arr,1)
-```
+
+def find_remainder(arr, n):
+    return sum(arr) % n
+
+

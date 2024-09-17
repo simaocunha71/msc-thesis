@@ -1,2 +1,5 @@
-def Find_Min(lst):
-    return min(lst, key=len)
+
+def Find_Min(my_list):
+    return min(my_list, key=len)
+
+

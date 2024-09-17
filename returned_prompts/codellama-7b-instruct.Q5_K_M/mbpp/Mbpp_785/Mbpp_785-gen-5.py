@@ -1,7 +1,7 @@
-```
-import ast
+
+def tuple_str_int(s):
+    t = s[1:-1]
+    t = t.replace(', ', ',')
+    return tuple(map(int, t.split(',')))
 
 
-def tuple_str_int(tuple_str):
-    return ast.literal_eval(tuple_str)
-```

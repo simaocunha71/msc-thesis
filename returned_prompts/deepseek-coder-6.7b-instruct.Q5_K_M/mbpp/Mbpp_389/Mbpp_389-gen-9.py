@@ -1,3 +1,4 @@
+
 def find_lucas(n):
     if n == 0:
         return 2
@@ -8,5 +9,4 @@ def find_lucas(n):
         a, b = b, a + b
     return b
 
-print(find_lucas(9)) # 76
 

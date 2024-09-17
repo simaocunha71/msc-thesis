@@ -1,4 +1,5 @@
-"""
-def string_to_tuple(my_string):
-    return tuple(my_string)
-"""
+
+def string_to_tuple(s: str) -> tuple:
+  return tuple(s)
+
+

@@ -1,7 +1,11 @@
-"""
-def first_repeated_char(s):
-    for i in range(len(s)):
-        if s[i] in s[i+1:]:
-            return s[i]
-    return None
-"""
+
+def first_repeated_char(input_str):
+  repeated_chars = []
+  for char in input_str:
+    if char in repeated_chars:
+      return char
+    else:
+      repeated_chars.append(char)
+  return None
+
+

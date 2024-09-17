@@ -1,6 +1,5 @@
-def frequency(lst, n):
-    return lst.count(n)
 
-print(frequency([1,2,3], 4))
+def frequency(lst, num):
+  return lst.count(num)
 
-"""
+

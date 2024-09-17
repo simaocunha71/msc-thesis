@@ -1,10 +1,6 @@
 
-```python
-from itertools import product
+import itertools
+def combinations_colors(lst: list,n: int) -> list:
+  return list(itertools.product(lst, repeat=n))
 
-def combinations_colors(lst, n):
-    return list(product(*([lst]*n)))
-
-print(combinations_colors(["Red","Green","Blue"],1))
-```
 

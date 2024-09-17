@@ -1,9 +1,7 @@
 
-def diff_even_odd(my_list):
-    if len(my_list) == 0:
-        return None
-    diff = my_list[1] - my_list[0]
-    for i in range(2, len(my_list)):
-        if my_list[i] - my_list[i-1] != diff:
-            return None
-    return diff
+def diff_even_odd(nums: list) -> int:
+  even = next((x for x in nums if x % 2 == 0), None)
+  odd = next((x for x in nums if x % 2 == 1), None)
+  return odd - even
+
+

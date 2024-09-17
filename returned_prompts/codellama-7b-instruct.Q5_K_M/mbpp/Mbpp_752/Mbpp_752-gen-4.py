@@ -1,4 +1,8 @@
-"""
-The nth Jacobsthal number is given by the formula:
-jacobsthal(n) = (2^n - 1) * (3^n - 1)
-"""
+
+def jacobsthal_num(n):
+  nums = [0, 1]
+  for i in range(2, n+1):
+    nums.append(nums[i-1] + nums[i-2])
+  return nums[n]
+
+

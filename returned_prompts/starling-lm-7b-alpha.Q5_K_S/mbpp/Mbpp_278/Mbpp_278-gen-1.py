@@ -1,15 +1,11 @@
-def longest_unique_chars(s):
-    d = defaultdict(int)
-    for i in range(len(s)):
-        if d[s[i]]:
-            d.clear()
-        d[s[i]] += 1
-    return ''.join(s[i] for i in range(len(s)) if d[s[i]])
 
-def longest_unique_chars(s):
-    d = defaultdict(int)
-    for i in range(len(s)):
-        if d[s[i]]:
-            d.clear()
-        d[s[i]] += 1
-    return ''.join(s[i] for
+def count_first_elements(tup):
+  count = 0
+  for i in tup:
+    if isinstance(i, tuple):
+      count += count_first_elements(i)
+    else:
+      count += tup.index(i)
+  return count
+
+

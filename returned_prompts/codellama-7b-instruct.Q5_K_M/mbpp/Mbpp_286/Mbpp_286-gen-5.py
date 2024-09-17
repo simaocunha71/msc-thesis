@@ -1,7 +1,7 @@
-def max_sub_array_sum_repeated(arr, k, repetitions):
-    # Write your code here
-    return max(
-        sum(arr[i:j])
-        for i in range(k * repetitions)
-        for j in range(i + 1, k * repetitions + 1)
-    )
+
+def max_sub_array_sum_repeated(arr: list, k: int, n: int) -> int:
+    if k == 1:
+        return sum(arr)
+    return sum(arr) + max(max_sub_array_sum_repeated(arr, k - 1, n - 1), 0)
+
+

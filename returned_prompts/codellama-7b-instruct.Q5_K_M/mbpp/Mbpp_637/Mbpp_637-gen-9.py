@@ -1,4 +1,5 @@
-def noprofit_noloss(amount, price):
-    return price>=amount
+
+def noprofit_noloss(price: float, cost: float) -> bool:
+    return price == cost
 
 

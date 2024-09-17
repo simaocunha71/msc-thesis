@@ -1,3 +1,8 @@
+
 def sum_series(n):
-    return sum((n-2*i) for i in range(n//2+1))
+    s = 0
+    for i in range(n // 2):
+        s += n - 2 * i
+    return s
+
 

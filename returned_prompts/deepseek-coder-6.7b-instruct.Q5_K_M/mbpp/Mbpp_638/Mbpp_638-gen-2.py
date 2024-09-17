@@ -1,15 +1,6 @@
-"""
+
+import math
 def wind_chill(velocity, temp):
-    wci = 13.12 + 0.6215*temp - 11.37*(velocity**0.16) + 0.3965*temp*(velocity**0.16)
-    return round(wci + 0.5)
+  return round(13.12 + 0.6215*temp - 11.37*(velocity**0.16) + 0.3965*temp*(velocity**0.16))
 
-print(wind_chill(120, 35))
-"""
-
-O:
-"""
-40
-"""
-
-# 6.
 

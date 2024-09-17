@@ -1,32 +1,13 @@
 
-from typing import List
-
-def max_sub_array_sum(nums: List[int], k: int) -> int:
-    """
-    :param nums: List[int]
-    :param k: int
-    :return: int
-    """
-    if len(nums) < k:
-        return -1
-    max_sum = nums[0:k]
-    for i in range(len(nums) - k + 1):
-        sum = 0
-        for j in range(k):
-            sum += nums[i + j]
-        if sum > max_sum:
-            max_sum = sum
+def max_sub_array_sum(nums, k: int) -> int:
+    max_sum = 0
+    current_sum = 0
+    for num in nums:
+        current_sum = max(current_sum + num, num)
+        if current_sum > max_sum:
+            max_sum = current_sum
+        if current_sum == k:
+            break
     return max_sum
-
-
-
-
-
-
-
-
-
-
-
 
 

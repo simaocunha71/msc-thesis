@@ -1,4 +1,5 @@
-```python
-def find_tuples(tuples, k):
-    return [t for t in tuples if all(i % k == 0 for i in t)]
-```
+
+def find_tuples(tups, k):
+  return list(filter(lambda x: all(y % k == 0 for y in x), tups))
+
+

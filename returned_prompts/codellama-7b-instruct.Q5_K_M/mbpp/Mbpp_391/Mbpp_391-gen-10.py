@@ -1,4 +1,10 @@
-def convert_list_dictionary(list_1,list_2,list_3):
-    list_dict = dict(zip(list_1, list_2))
-    dict_list = [dict(zip(list_1, [list_3])) for list_3 in list_3]
-    return [dict(zip(list_1, [dict_list[list_1]])) for list_1 in list_1]
+
+def convert_list_dictionary(list_1: list, list_2: list, list_3: list) -> list:
+  result = []
+  for i in range(len(list_1)):
+    temp = {}
+    temp[list_1[i]] = {list_2[i]: list_3[i]}
+    result.append(temp)
+  return result
+
+

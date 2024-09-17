@@ -1,9 +1,8 @@
-"""
+
 def recursive_list_sum(my_list):
-    if not my_list:
-        return 0
-    if isinstance(my_list[0], list):
-        return recursive_list_sum(my_list[0]) + recursive_list_sum(my_list[1:])
+    if not isinstance(my_list, list):
+        return my_list
     else:
-        return my_list[0] + recursive_list_sum(my_list[1:])
-"""
+        return sum(map(recursive_list_sum, my_list))
+
+

@@ -1,9 +1,8 @@
-def convert_list_dictionary(list1, list2, list3):
-    assert len(list1) == len(list2) == len(list3)
-    dictionary = {}
-    for i in range(len(list1)):
-        dictionary.setdefault(list1[i], {})[list2[i]] = list3[i]
-    return list(dictionary.values())
+
+def convert_list_dictionary(student_id,name,marks):
+  assert len(student_id) == len(name) == len(marks)
+  return [
+    {s_id: {n: m} for s_id, n, m in zip(student_id, name, marks)}
+  ]
 
 
-# 3

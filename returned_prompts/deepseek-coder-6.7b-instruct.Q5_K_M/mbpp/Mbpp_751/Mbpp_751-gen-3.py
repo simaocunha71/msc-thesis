@@ -1,20 +1,12 @@
-def check_min_heap(arr):
-    n = len(arr)
 
-    # Iterate from the first index till the last index
-    for i in range(n):
-        # If left child exists
-        if 2*i+1 < n:
-            # If parent is greater than left child
-            if arr[i] > arr[2*i+1]:
+def check_min_heap(lst):
+    n = len(lst)
+    for i in range(int(n/2)-1):
+        if lst[i]>lst[2*i+1]:
+            return False
+        if 2*i+2<n:
+            if lst[i]>lst[2*i+2]:
                 return False
-        # If right child exists
-        if 2*i+2 < n:
-            # If parent is greater than right child
-            if arr[i] > arr[2*i+2]:
-                return False
-    # If none of the above conditions is true, array represents min heap
     return True
 
-print(check_min_heap([1, 2, 3, 4, 5, 6]))  # True
 

@@ -1,2 +1,10 @@
+
 def is_perfect_square(n):
-    return n > 0 and int(n ** 0.5) ** 2 == n
+    i = 1
+    while i * i <= n:
+        if i * i == n:
+            return True
+        i += 1
+    return False
+
+

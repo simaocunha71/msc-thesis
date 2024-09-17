@@ -1,10 +1,12 @@
-"""
-def right_insertion(arr, value):
-    for i in range(len(arr)):
-        if value<arr[i]:
-            return i
-    return len(arr)
 
-print(right_insertion([1,2,4,5],6))
-"""
+def right_insertion(sorted_list, value):
+    if value > sorted_list[-1]:
+        return len(sorted_list)
+    if value < sorted_list[0]:
+        return 0
+    for i in range(len(sorted_list)):
+        if sorted_list[i] > value:
+            return i
+    return len(sorted_list)
+
 

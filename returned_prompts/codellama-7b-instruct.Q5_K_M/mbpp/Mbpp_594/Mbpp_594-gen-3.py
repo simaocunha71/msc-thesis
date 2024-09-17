@@ -1,4 +1,7 @@
+
 def diff_even_odd(my_list):
-    return my_list[next(i for i, x in enumerate(my_list) if x % 2 == 0)] - my_list[next(i for i, x in enumerate(my_list) if x % 2 == 1)]
+  even = next((x for x in my_list if x % 2 == 0), None)
+  odd = next((x for x in my_list if x % 2 != 0), None)
+  return abs(even - odd)
 
 

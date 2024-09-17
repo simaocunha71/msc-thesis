@@ -1,7 +1,8 @@
-```python
-def first_repeated_char(s):
-    for c in s:
-        if s.count(c) > 1:
-            return c
-    return None
-```
+
+def first_repeated_char(s: str) -> str:
+  for i in s:
+    if s.count(i) > 1:
+      return i
+  return None
+
+

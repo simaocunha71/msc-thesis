@@ -1,14 +1,5 @@
-def longest_common_prefix(strings):
-    if not strings:
-        return ""
 
-    shortest = min(strings, key=len)
+def remove_uppercase(s):
+    return ''.join([i for i in s if not i.isupper()])
 
-    for i, char in enumerate(shortest):
-        for other in strings:
-            if other[i] != char:
-                return shortest[:i]
 
-    return shortest
-
-print

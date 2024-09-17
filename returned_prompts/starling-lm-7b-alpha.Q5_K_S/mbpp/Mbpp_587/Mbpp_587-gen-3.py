@@ -1,9 +1,5 @@
-def index_elem(lst, elem):
-    if elem in lst:
-        return lst.index(elem)
-    else:
-        return -1
+
+def list_tuple(nums: list) -> tuple:
+  return tuple(nums)
 
 
-# Test
-assert index

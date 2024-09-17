@@ -1,5 +1,5 @@
-def nth_octagonal(n):
-    return n * (3 * n - 2)
 
-assert nth_octagonal(5) == 65
-"""
+def is_octagonal(n):
+    return n*(7*n-5)/2
+
+

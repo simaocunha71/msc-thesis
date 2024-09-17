@@ -1,4 +1,7 @@
-def split_Arr(arr,n):
-    first_part = arr[:n]
-    second_part = arr[n:]
-    return first_part + second_part
+
+def split_Arr(my_list: list, n: int) -> list:
+  first_part = my_list[:n]
+  last_part = my_list[n:]
+  return last_part + first_part
+
+

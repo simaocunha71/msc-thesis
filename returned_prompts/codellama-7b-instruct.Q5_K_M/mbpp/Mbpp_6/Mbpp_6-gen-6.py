@@ -1,14 +1,5 @@
-"""
-def differ_At_One_Bit_Pos(x, y):
-    if (x & y) == 0:
-        return False
-    i = 0
-    while (x > 0) and (y > 0):
-        if (x & 1) != (y & 1):
-            return False
-        x >>= 1
-        y >>= 1
-        i += 1
-    return True
-"""
+
+def differ_At_One_Bit_Pos(num1: int,num2: int) -> bool:
+  return bin(num1 ^ num2).count('1') == 1
+
 

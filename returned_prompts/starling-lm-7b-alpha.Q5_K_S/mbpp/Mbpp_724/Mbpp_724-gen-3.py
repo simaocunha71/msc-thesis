@@ -1,3 +1,5 @@
-def even(n):
-    if n % 2 == 0:
-        return True
+
+def power_base_sum(base: int, power: int) -> int:
+  return sum([int(str(base ** i)) for i in range(power+1)])
+
+

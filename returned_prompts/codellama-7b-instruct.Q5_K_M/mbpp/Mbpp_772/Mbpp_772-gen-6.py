@@ -1,4 +1,5 @@
-def remove_length(sentence, k):
-    return " ".join([word for word in sentence.split() if len(word) != k])
+
+def remove_length(my_str: str, k: int) -> str:
+  return ' '.join([word for word in my_str.split() if len(word) != k])
 
 

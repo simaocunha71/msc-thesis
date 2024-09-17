@@ -1,4 +1,5 @@
-"""
+
 def tup_string(tup):
-    return "".join(tup)
-"""
+    return ''.join(tup)
+
+

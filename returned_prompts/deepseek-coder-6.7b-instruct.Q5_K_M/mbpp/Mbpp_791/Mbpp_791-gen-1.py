@@ -1,7 +1,5 @@
 
-def remove_nested(tup):
-    return tuple(i for i in tup if not isinstance(i, tuple))
-
-print(remove_nested((1, 5, 7, (4, 6), 10)))
+def remove_nested(input_tuple):
+    return tuple(i for i in input_tuple if not isinstance(i, tuple))
 
 

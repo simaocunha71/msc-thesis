@@ -1,4 +1,5 @@
+
 def neg_nos(my_list):
-    return [x for x in my_list if x < 0]
+  return list(filter(lambda x: x < 0, my_list))
 
 

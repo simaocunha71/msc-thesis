@@ -1,3 +1,5 @@
-def max_difference(pairs):
-    return max(pair[1] - pair[0] for pair in pairs)
+
+def max_difference(pairs: list) -> int:
+  return max([abs(a-b) for a, b in pairs])
+
 

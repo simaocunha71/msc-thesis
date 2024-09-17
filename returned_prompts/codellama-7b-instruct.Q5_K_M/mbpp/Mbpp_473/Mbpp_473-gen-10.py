@@ -1,10 +1,5 @@
-def tuple_intersection(tuple_list, result={}):
-    for tuple in tuple_list:
-        for item in tuple:
-            if item not in result:
-                result[item] = 1
-            else:
-                result[item] += 1
-    return {item for item, count in result.items() if count == len(tuple_list)}
+
+def tuple_intersection(tuple_list1,tuple_list2):
+    return set((tuple(sorted(tup)) for tup in tuple_list1)).intersection(set((tuple(sorted(tup)) for tup in tuple_list2)))
 
 

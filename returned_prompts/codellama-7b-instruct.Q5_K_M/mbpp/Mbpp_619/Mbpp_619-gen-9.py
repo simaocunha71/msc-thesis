@@ -1,5 +1,6 @@
-def move_num(s):
-    return ''.join(filter(str.isalpha, s))
 
+import re
+def move_num(s: str) -> str:
+  return re.sub(r'\d+', '', s) + re.sub(r'\d+', lambda x: str(x.group()), s)
 
 

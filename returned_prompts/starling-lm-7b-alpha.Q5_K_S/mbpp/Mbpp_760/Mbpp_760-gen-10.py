@@ -1,7 +1,8 @@
-"""
-def unique_Element(my_list):
-    return len(my_list) == len(set(my_list))
 
-unique_Element([1,1,1])
-"""
+def unique_Element(nums:list) -> bool:
+  if len(nums) == len(set(nums)):
+    return True
+  else:
+    return False
+
 

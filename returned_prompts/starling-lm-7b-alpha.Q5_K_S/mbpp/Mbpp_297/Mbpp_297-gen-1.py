@@ -1,33 +1,11 @@
-"""
-def flatten_list(lst):
-    res = []
-    for i in lst:
-        if isinstance(i, list):
-            res.extend(flatten_list(i))
-        else:
-            res.append(i)
-    return res
+
+def flatten_list(nested_list: list) -> list:
+  flattened_list = []
+  for item in nested_list:
+    if isinstance(item, list):
+      flattened_list.extend(item)
+    else:
+      flattened_list.append(item)
+  return flattened_list
 
 
-flatten_list([0, 10, [20, 30], 40, 50, [60, 70, 80], [90, 100, 110, 120]])
-
-"""
-
-def flatten_list(lst):
-    res = []
-    for i in lst:
-        if isinstance(i, list):
-            res.extend(flatten_list(i))
-        else:
-            res.append(i)
-    return res
-
-
-flatten_list([0, 10, [20, 30], 40, 50, [60, 70, 80], [90, 100, 110, 120]])
-
-
-```
-
-```
-
-```

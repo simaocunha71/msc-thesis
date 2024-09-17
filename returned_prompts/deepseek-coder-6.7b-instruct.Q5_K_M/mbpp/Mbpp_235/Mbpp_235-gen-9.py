@@ -1,8 +1,8 @@
-def even_bit_set_number(n):
-    binary = bin(n)[2:] # remove '0b' from the start
-    even_bits = [binary[i] for i in range(0, len(binary), 2)]
-    even_bits = ''.join(even_bits)
-    return int(even_bits, 2)
 
-print(even_bit_set_number(10)) # should return 10
+def even_bit_set_number(n):
+    binary = bin(n)[2:]
+    for i in range(0, len(binary), 2):
+        n = n | (1 << int(binary[i:i+2], 2))
+    return n
+
 

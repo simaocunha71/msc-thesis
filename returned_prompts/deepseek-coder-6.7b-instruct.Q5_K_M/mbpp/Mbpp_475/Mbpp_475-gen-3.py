@@ -1,2 +1,5 @@
-def sort_counter(dic):
-    return sorted(dic.items(), key=lambda x: x[1], reverse=True)
+
+def sort_counter(d):
+  return sorted(d.items(), key=lambda x: x[1], reverse=True)
+
+

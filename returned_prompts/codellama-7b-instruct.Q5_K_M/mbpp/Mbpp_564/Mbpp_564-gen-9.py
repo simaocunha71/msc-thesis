@@ -1,9 +1,10 @@
-```
-def count_Pairs(my_list):
+
+def count_Pairs(arr, n):
     count = 0
-    for i in range(len(my_list)):
-        for j in range(i+1,len(my_list)):
-            if my_list[i] != my_list[j]:
+    for i in range(0, n):
+        for j in range(i+1, n):
+            if arr[i] != arr[j]:
                 count += 1
     return count
-```
+
+

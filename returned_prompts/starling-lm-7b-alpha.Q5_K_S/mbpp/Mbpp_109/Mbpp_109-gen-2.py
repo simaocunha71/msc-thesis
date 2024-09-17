@@ -1,8 +1,6 @@
-def countSubString(s,substring):
-    cnt=0
-    for i in range(len(s)-len(substring)+1):
-        if s[i:i+len(substring)]==substring:
-            cnt+=1
-    return cnt
 
-# print(countSubString("aaabaaacaaaayaaayyayayyayayyaayayayyaayayyaayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayay
+def odd_Equivalent(binary_str: str, n: int) -> int:
+  binary_str = "".join([str(int(binary_str[i])^int(binary_str[(i+n)%len(binary_str)])) for i in range(len(binary_str))])
+  return binary_str.count("1")
+
+

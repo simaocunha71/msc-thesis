@@ -1,8 +1,8 @@
-def count_list(my_list):
-    count = 0
-    for item in my_list:
-        if type(item) == list:
-            count += 1
-    return count
+
+def count_list(lists: list) -> int:
+  count = 0
+  for i in lists:
+    count += 1
+  return count
 
 

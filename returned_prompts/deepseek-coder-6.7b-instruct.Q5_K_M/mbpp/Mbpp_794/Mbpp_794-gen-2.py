@@ -1,13 +1,6 @@
 
-def text_start1_end2(text):
-    if re.search(r'1.*2$', text):
-        return True
-    else:
-        return False
+import re
+def text_starta_endb(text):
+  return bool(re.fullmatch(r'a.*b$', text))
 
-print(text_start1_end2("1anything2"))
-print(text_start1_end2("1anything3"))
 
-#Q5:
-"""
-Write a function that matches a string that has a '

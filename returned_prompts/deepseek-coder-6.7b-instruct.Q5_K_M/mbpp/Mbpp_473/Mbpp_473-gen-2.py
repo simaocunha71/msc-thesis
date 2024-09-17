@@ -1,10 +1,5 @@
-"""
-def tuple_intersection(tuples):
-    intersection = set(tuples[0])
-    for tup in tuples[1:]:
-        intersection &= set(tup)
-    return intersection
-"""
 
-# Tests
-assert
+def tuple_intersection(tuples1, tuples2):
+  return set(tuple(sorted(t)) for t in (set(t) for t in tuples1) & (set(t) for t in tuples2))
+
+

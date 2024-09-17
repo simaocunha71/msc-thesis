@@ -1,10 +1,8 @@
-def capitalize_all_letters(s):
-    result = ""
-    for c in s:
-        result += c.upper()
-    return result
+
+def capital_words_spaces(word: str) -> str:
+  if word[0].islower():
+    return word
+  else:
+    return word[0] + " " + word[1:]
 
 
-"""
-Write a function to reverse a given string.
-assert reverse("Hello World")

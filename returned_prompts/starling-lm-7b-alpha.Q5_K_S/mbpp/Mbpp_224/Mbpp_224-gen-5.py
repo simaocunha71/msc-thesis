@@ -1,14 +1,9 @@
-"""
-def count_Set_Bits(n):
-    cnt = 0
+
+def count_Set_Bits(n: int):
+    count = 0
     while n:
-        cnt += n & 1
-        n >>= 1
-    return cnt
+        n &= (n-1)
+        count += 1
+    return count
 
-def test_count_Set_Bits():
-    assert count_Set_Bits(2) == 1
-
-test_count_Set_Bits()
-"""
 

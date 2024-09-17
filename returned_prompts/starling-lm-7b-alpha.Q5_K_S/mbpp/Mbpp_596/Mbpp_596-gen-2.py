@@ -1,6 +1,5 @@
-from sys import getsizeof
 
-def set_size(s):
-    return getsizeof(s)
+def tuple_size(t):
+    return sys.getsizeof(t)
 
-# assert set_size(set(["A", 1, "B", 2, "C", 3]) ) == sys.getsizeof(set(["A", 
+

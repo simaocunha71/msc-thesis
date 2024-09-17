@@ -1,28 +1,17 @@
 
-def get_pairs_count(lst, s):
-    n = len(lst)
+def get_pairs_count(arr, sum):
+    n = len(arr)
     m = [0] * 1000
-    twosum = [0] * 1000
-    for i in range(0, n):
-        temp = s - lst[i]
-        if (temp >= 0):
-            twosum[temp] += 1
-        m[lst[i]] += 1
     twice_count = 0
     for i in range(0, n):
-        temp = s - lst[i]
-        if (temp >= 0):
-            twice_count += twosum[temp]
-            if (temp == lst[i]):
-                twice_count -= 1
-    twice_count = int(twice_cut/2)
+        if (arr[i] * 2 == sum):
+            twice_count += 1
+        m[arr[i]] += 1
+    pair_count = 0
     for i in range(0, n):
-        temp = s - lst[i]
-        if (temp >= 0 and m[temp]):
-            count += m[temp]
-            if (temp == lst[i]):
-                count -= 1
-    return count
+        pair_count += m[sum - arr[i]]
+        if (sum - arr[i] == arr[i]):
+            pair_count -= 1
+    return int(pair_count / 2 + twice_count)
 
-print(get_pairs_count([1,1,1,1],2))
-"""
+

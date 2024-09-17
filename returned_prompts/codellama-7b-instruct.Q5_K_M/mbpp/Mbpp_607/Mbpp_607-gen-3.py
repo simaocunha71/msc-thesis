@@ -1,10 +1,10 @@
-"""
-import re
 
+import re
 def find_literals(string, pattern):
-    match = re.search(pattern, string)
-    if match:
-        return match.group(), match.start(), match.end()
-    else:
-        return None, None, None
-"""
+  found = re.search(pattern, string)
+  if found:
+    return found.group(), found.start(), found.end()
+  else:
+    return None, None, None
+
+

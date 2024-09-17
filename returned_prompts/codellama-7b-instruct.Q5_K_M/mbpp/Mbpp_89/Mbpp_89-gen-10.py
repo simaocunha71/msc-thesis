@@ -1,2 +1,5 @@
+
 def closest_num(n):
-    return int(n / 10) * 10 - 1
+  return n - 1 if n % 2 != 0 else n - 2
+
+

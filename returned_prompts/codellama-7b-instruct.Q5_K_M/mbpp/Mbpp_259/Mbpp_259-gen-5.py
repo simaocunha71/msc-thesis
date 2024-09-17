@@ -1,7 +1,5 @@
-def maximize_elements(tuple_list):
-    """
-    tuple_list: a list of tuples
-    returns: a list of tuples
-    """
-    # Your code here
-    return tuple(map(max, zip(*tuple_list)))
+
+def maximize_elements(tup1: tuple, tup2: tuple) -> tuple:
+  return tuple(map(max, zip(tup1, tup2)))
+
+

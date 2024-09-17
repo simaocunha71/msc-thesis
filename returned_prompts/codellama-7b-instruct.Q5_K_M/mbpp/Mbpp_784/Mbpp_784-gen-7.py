@@ -1,9 +1,12 @@
+
 def mul_even_odd(my_list):
-    even = []
-    odd = []
+    even = 1
+    odd = 1
     for i in my_list:
         if i % 2 == 0:
-            even.append(i)
+            even *= i
         else:
-            odd.append(i)
-    return (even[0] * odd[0])
+            odd *= i
+    return even * odd
+
+

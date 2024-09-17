@@ -1,4 +1,5 @@
-def radian_degree(degree):
-    return math.radians(degree)
+
+def radian_degree(degrees:float) -> float:
+  return degrees * math.pi / 180
 
 

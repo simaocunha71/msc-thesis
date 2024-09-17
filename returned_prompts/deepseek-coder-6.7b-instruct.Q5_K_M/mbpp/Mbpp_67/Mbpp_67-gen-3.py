@@ -1,4 +1,4 @@
-"""
+
 def bell_number(n):
     bell = [[0 for i in range(n+1)] for j in range(n+1)]
     bell[0][0] = 1
@@ -8,6 +8,4 @@ def bell_number(n):
             bell[i][j] = bell[i-1][j-1] + bell[i][j-1]
     return bell[n][0]
 
-print(bell_number(2))
-"""
 

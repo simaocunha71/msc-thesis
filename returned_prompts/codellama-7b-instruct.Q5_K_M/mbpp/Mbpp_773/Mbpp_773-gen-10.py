@@ -1,9 +1,9 @@
-def occurance_substring(main_string,substring):
-    pos=main_string.find(substring)
-    if pos==-1:
-        return None
-    else:
-        return (substring,pos,pos+len(substring))
 
+def occurance_substring(string_1, string_2):
+  match_string = re.search(string_2, string_1)
+  if match_string:
+    return (string_2, match_string.start(), match_string.end())
+  else:
+    return None
 
 

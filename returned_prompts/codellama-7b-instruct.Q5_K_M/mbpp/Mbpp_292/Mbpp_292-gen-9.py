@@ -1,2 +1,5 @@
-def find(a,b):
+
+def find(a, b):
     return a//b
+
+

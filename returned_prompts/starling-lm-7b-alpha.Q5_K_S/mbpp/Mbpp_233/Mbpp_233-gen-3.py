@@ -1,6 +1,6 @@
-"""
+
 import math
-def lateralsuface_cylinder(r,h):
-    return 2*math.pi*r*h
-"""
+def lateralsuface_cylinder(r: float, h: float) -> float:
+    return 2*math.pi*r*(h+r)
+
 

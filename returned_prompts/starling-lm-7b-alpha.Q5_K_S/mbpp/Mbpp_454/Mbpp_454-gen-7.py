@@ -1,11 +1,5 @@
-"""
-def text_match_wordz(text):
-    if "z" in text:
-        return True
-    else:
-        return False
 
-text_match_wordz("pythonz.")
-"""
+def text_match_wordz(text:str) -> bool:
+  return 'z' in text
 
 

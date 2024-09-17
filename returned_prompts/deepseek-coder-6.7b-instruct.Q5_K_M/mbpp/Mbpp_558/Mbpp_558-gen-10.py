@@ -1,5 +1,5 @@
-def digit_distance_nums(num1, num2):
-    str_num1 = str(num1)
-    str_num2 = str(num2)
-    diff_sum = 0
-    for i in range(min(
+
+def digit_distance_nums(a,b):
+    return sum(abs(int(x) - int(y)) for x, y in zip(str(a), str(b)))
+
+

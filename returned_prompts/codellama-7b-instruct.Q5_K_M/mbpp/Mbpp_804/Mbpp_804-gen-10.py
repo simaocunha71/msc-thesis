@@ -1,6 +1,11 @@
+
 def is_product_even(my_list):
-    result = 1
-    for element in my_list:
-        result *= element
-    return result % 2 == 0
+    product = 1
+    for i in my_list:
+        product *= i
+    if product % 2 == 0:
+        return True
+    else:
+        return False
+
 

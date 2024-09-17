@@ -1,46 +1,9 @@
-from functools import reduce
-from operator import mul
 
-def max_product_tuple(tuples):
-    return max(map(reduce, map(list, tuples), [mul]))
-
-
-# Alternative approach
-def max_product_tuple(tuples):
-    from functools import reduce
-    from operator import mul
-    return reduce(lambda x, y: max(x, y), map(reduce, map(list, tuples), [mul]))
+def max_product_tuple(tup_list: list) -> int:
+  max_product = -float("inf")
+  for tup in tup_list:
+    for i in range(len(tup)-1):
+      max_product = max(max_product, tup[i] * tup[i+1] if tup[i+1] > 0 else -(tup[i] * tup[i+1]))
+  return max_product
 
 
-# Testing
-assert max_product_tuple([(2, 7), (2, 6), (1, 8), (4, 9)]) == 36
-assert max_product_tuple([(1, 1), (1, 1), (1, 1)]) == 1
-assert max_product_tuple([(1, 1), (1, 1), (1, -1)]) == -1
-```
-    
-```
-"""
-Write a function to find the maximum absolute product between numbers in pairs of tuples within a given list.
-assert max_product_tuple([(2, 7), (2, 6), (1, 8), (4, 9)] )==36
-"""
-
-from functools import reduce
-from operator import mul
-
-def max_product_tuple(tuples):
-    return max(map(reduce, map(list, tuples), [mul]))
-
-# Alternative approach
-def max_product_tuple(tuples):
-    from functools import reduce
-    from operator import mul
-    return reduce(lambda x, y: max(x, y), map(reduce, map(list, tuples), [mul]))
-
-# Testing
-assert max_product_tuple([(2, 7), (2, 6), (1, 8), (4, 9)]) == 36
-assert max_product_tuple([(1, 1), (1, 1), (1, 1)]) == 1
-assert max_product_tuple([(1, 1), (1, 1), (1, -1)]) == -1
-```
-```
-
-The provided Python code defines a function called `max_product_tuple` that takes a list of

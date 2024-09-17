@@ -1,4 +1,5 @@
-```
-def is_Even(num):
-    return num % 2 == 0
-```
+
+def is_even(n):
+  return n % 2 == 0
+
+

@@ -1,10 +1,5 @@
-```
-def filter_oddnumbers(numbers):
-    """
-    Yields the odd numbers from the given list.
-    """
-    for number in numbers:
-        if number % 2 != 0:
-            yield number
-```
+
+def filter_oddnumbers(nums: list) -> list:
+  return list(filter(lambda x: x%2 != 0, nums))
+
 

@@ -1,9 +1,6 @@
-def check_monthnumb_number(month):
-    if month in [1, 3, 5, 7, 8, 10, 12]:
-        return True
-    else:
-        return False
 
-#Testing
-print(check_monthnumb_number(5)) #Expected output: True
+def check_monthnumb_number(month_number):
+  thirty_one_days_months = [1, 3, 5, 7, 8, 10, 12]
+  return month_number in thirty_one_days_months
+
 

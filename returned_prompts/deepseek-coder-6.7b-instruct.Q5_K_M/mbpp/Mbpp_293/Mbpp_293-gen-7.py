@@ -1,7 +1,6 @@
-"""
-def otherside_rightangle(base, height):
-    return (base**2 + height**2)**0.5
 
-print(otherside_rightangle(7,8))
-"""
+import math
+def otherside_rightangle(a,b):
+  return round(math.sqrt(a**2 + b**2),2)
+
 

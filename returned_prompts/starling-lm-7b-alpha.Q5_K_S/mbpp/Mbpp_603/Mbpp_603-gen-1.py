@@ -1,33 +1,14 @@
-"""
-def get_lucid(n):
-    res = []
-    for i in range(1, n + 1):
-        temp = i
-        while temp <= n:
-            if temp in res:
-                break
-            res.append(temp)
-            temp *= 2
-    return res
-"""
 
-import math
-
-def get_lucid(n):
-    sq = int(math.sqrt(n))
-    res = []
-    for i in range(1, sq + 1):
-        if i in res:
-            continue
-        temp = i
-        while temp <= n:
-            if temp in res:
-                break
-            res.append(temp)
-            temp *= 2
-    return res
-
-print(get_lucid(10))
+def get_lucid(n: int) -> list:
+  lucid_nums = [1, 2, 3, 5, 7]
+  if n < 6:
+    return lucid_nums
+  i = 4
+  while True:
+    lucid_nums.append(sum(map(lambda x: x % 2, lucid_nums[i:i+5])))
+    if lucid_nums[-1] > n:
+      break
+    i += 1
+  return lucid_nums
 
 
-"""

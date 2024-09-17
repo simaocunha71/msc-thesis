@@ -1,5 +1,5 @@
-def surfacearea_cube(size):
-    return 6*size**2
 
-assert surfacearea_cube(5)==150
-"""
+def surfacearea_cube(side):
+  return 6 * (side ** 2)
+
+

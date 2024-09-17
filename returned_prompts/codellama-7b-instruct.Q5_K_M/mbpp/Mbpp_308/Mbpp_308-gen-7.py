@@ -1,8 +1,5 @@
+
 def large_product(list1, list2, n):
-    assert n <= len(list1) and n <= len(list2)
-    result = []
-    for i in range(n):
-        result.append(list1[i]*list2[i])
-    return result
+    return sorted([x * y for x in list1 for y in list2], reverse=True)[:n]
 
 

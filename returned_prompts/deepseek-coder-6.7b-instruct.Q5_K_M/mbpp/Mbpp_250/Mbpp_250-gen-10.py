@@ -1,5 +1,5 @@
 
-def count_X(string, character):
-    return string.count(character)
+def count_X(test_tup, elem):
+    return test_tup.count(elem)
 
-print(count
+

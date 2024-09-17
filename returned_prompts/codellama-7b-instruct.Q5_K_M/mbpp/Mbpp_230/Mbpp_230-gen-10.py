@@ -1,2 +1,5 @@
-def replace_blank(string,char):
-    return string.replace(" ",char)
+
+def replace_blank(s:str,c:str) -> str:
+  return s.replace(' ','@')
+
+

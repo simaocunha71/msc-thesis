@@ -1,10 +1,6 @@
-def swap_List(lst):
-    lst[0], lst[-1] = lst[-1], lst[0]
-    return lst
 
-print(swap_List([12, 35, 9, 56, 24]))
-<jupyter_output>
-[24, 35, 9, 56, 12]
-<jupyter_text>
-Question 2:
-<jupyter_code>
+def swap_List(list):
+  list[0], list[-1] = list[-1], list[0]
+  return list
+
+

@@ -1,30 +1,18 @@
-def lps(s):
-    # s = "TENS FOR TENS"
-    n = len(s)
-    dp = [[0 for _ in range(n)] for _ in range(n)]
-    for i in range(n):
-        dp[i][i] = 1
-    max_len = 0
-    for i in range(n - 1):
-        for j in range(i + 1, n):
-            if s[i] == s[j]:
-                dp[i][j] = 2
-            else:
-                dp[i][j] = 1
-            max_len = max(max_len, dp[i][j])
-    return max_len
 
-def lps_dp(s):
-    n = len(s)
-    dp = [[0 for _ in range(n)] for _ in range(n)]
-    for i in range(n):
-        dp[i][i] = 1
-    max_len = 0
-    for i in range(n - 1):
-        for j in range(i + 1, n):
-            if s[i] == s[j]:
-                dp[i][j] = dp[i + 1][j - 1] + 2
-            else:
-                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
-            max_len = max(max_len, dp[i][j])
-    return max_len
+def lps(str):
+  if len(str) == 0:
+    return 0
+  dp = [0]*(len(str))
+  max_length = 0
+  for i in range(len(str)):
+    for j in range(i+1, len(str)):
+      if str[i] == str[j]:
+        if j - i == 1:
+          dp[j] = 2
+        else:
+          dp[j] = dp[j-1] + 2
+        if dp[j] > max_length:
+          max_length = dp[j]
+  return max_length
+
+

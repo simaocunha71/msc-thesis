@@ -1,4 +1,5 @@
-def sum_all(lst):
-    return sum(lst)
 
-print(sum
+def pos_count(lst):
+    return sum(1 for num in lst if num > 0)
+
+

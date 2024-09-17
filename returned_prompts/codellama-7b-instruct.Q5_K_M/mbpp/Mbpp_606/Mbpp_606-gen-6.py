@@ -1,5 +1,7 @@
-import math
 
-def radian_degree(angle_degree):
-    return math.radians(angle_degree)
+from math import pi
+
+def radian_degree(degree: float) -> float:
+  return degree * (pi/180)
+
 
