@@ -1,7 +1,0 @@
-```
-def max_of_nth(matrix, n):
-    return max(row[n] for row in matrix)
-```
-
-
-The function `max_of_nth` takes a matrix represented as a list of lists and an integer `n` as input and returns the maximum value in the `n`th column of the matrix. The column is accessed using the indexing operation `row[n]` for each row in the matrix, and the `max` function is used to find the maximum value among these. The unit test `assert max_of_nth([[5, 6, 7], [1, 3, 5], [8, 9, 19]], 2) == 19` ensures that the function works correctly.  For example, if the input matrix is `[[5, 6, 7], [1, 3, 5], [8, 9, 19]]` and `n` is 2, the function will return `19` which is the maximum value in the second column of the matrix.  If the input matrix is `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]` and `n` is 1, the function will return `6` which is the maximum value in the first column of the matrix.  If the input matrix is `[[1, 2], [3, 4], [5, 6]]` and `n` is 2, the function will return `6` which is the maximum value in the second column of the matrix.  If the input matrix is `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]` and `n` is 0, the function will return `9` which is the maximum value in the zeroth column of the matrix.  If the input matrix is `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]` and `n` is 3, the function will return `9` which is the maximum value in the third column of the matrix.  If the input matrix is `[[1], [2], [3]]` and `n` is 0, the function will return `1` which is the maximum value in the zeroth column of the matrix.  If the input matrix is `[[

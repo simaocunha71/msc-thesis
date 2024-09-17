@@ -1,1 +1,0 @@
-number_of_substrings = lambda s: (len(s) * (len(s)+1))//2

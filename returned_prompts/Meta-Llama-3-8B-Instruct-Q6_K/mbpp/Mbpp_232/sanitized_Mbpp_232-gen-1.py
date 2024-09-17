@@ -1,3 +1,0 @@
-from heapq import nlargest
-def larg_nnum(lst, n):
-    return nlargest(n, lst)  # This function returns a list of the n largest items from the list. It uses Python's built-in heapq module. If there are multiple items with the same value, it returns all of them. If you want to return only one of them, you would need to sort the list before calling this function. The function uses the set function to ensure that the returned list contains only unique items. The unit test provided in the question ensures that this function works correctly. For example, it checks that the function returns the two largest numbers from the list [10, 20, 50, 70, 90, 20, 50, 40, 60, 80, 100]. The function returns [100, 90], which is the correct answer. 

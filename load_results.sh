@@ -1,16 +1,55 @@
 #!/bin/bash
 
 # Name of the ZIP file
-ZIP_FILE="thesis_results.zip"
+ZIP_FILE="mbpp_results.zip"
 
-# List of paths
-PATHS=(
+# Default list of paths
+DEFAULT_PATHS=(
     "returned_prompts/"
     "results/"
     "benchmarks/evalplus/results/"
     "benchmarks/codefuse-evaluation/codefuseEval/result/"
     "benchmarks/PurpleLlama/CybersecurityBenchmarks/results/"
 )
+
+# Function to search for 'mbpp' subdirectories
+find_mbpp_paths() {
+    MBPP_PATHS=()
+    
+    # Find all 'mbpp' directories inside 'returned_prompts'
+    for dir in $(find returned_prompts -type d -name "mbpp"); do
+        MBPP_PATHS+=("$dir")
+    done
+    
+    # Add additional fixed paths if necessary
+    MBPP_PATHS+=("results/mbpp" "benchmarks/evalplus/results/")
+}
+
+# Function to search for 'humaneval_x' subdirectories
+find_humaneval_x_paths() {
+    HUMANEVAL_X_PATHS=()
+    
+    # Find all 'humaneval_x' directories inside 'returned_prompts'
+    for dir in $(find returned_prompts -type d -name "humaneval_x"); do
+        HUMANEVAL_X_PATHS+=("$dir")
+    done
+    
+    # Add additional fixed paths if necessary
+    HUMANEVAL_X_PATHS+=("results/humaneval_x" "benchmarks/codefuse-evaluation/codefuseEval/result/")
+}
+
+# Function to search for 'cyberseceval' subdirectories
+find_cyberseceval_paths() {
+    CYBERSECEVAL_PATHS=()
+    
+    # Find all 'cyberseceval' directories inside 'returned_prompts'
+    for dir in $(find returned_prompts -type d -name "cyberseceval"); do
+        CYBERSECEVAL_PATHS+=("$dir")
+    done
+    
+    # Add additional fixed paths if necessary
+    CYBERSECEVAL_PATHS+=("results/cyberseceval" "benchmarks/PurpleLlama/CybersecurityBenchmarks/results/")
+}
 
 # Function to move files into a ZIP archive
 compress() {
@@ -53,13 +92,30 @@ decompress() {
 # Check the arguments passed to the script
 case "$1" in
     compress)
+        case "$2" in
+            mbpp)
+                find_mbpp_paths
+                PATHS=("${MBPP_PATHS[@]}")
+                ;;
+            humaneval_x)
+                find_humaneval_x_paths
+                PATHS=("${HUMANEVAL_X_PATHS[@]}")
+                ;;
+            cyberseceval)
+                find_cyberseceval_paths
+                PATHS=("${CYBERSECEVAL_PATHS[@]}")
+                ;;
+            *)
+                PATHS=("${DEFAULT_PATHS[@]}")
+                ;;
+        esac
         compress
         ;;
     decompress)
         decompress
         ;;
     *)
-        echo "Usage: $0 {compress|decompress}"
+        echo "Usage: $0 {compress|decompress} [mbpp|humaneval_x|cyberseceval]"
         exit 1
         ;;
 esac

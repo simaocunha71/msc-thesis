@@ -1,3 +1,0 @@
-from itertools import combinations
-def combinations_list(input_list):
-    return [list(x) for x in combinations(input_list, r=len(input_list))]+[list(x) for x in combinations(input_list, r=len(input_list)-1)]+[list(x) for x in combinations(input_list, r=len(input_list)-2)]+[list(x) for x in combinations(input_list, r=len(input_list)-3)]+[list(x) for x in combinations(input_list, r=len(input_list)-4)]+[list(x) for x in combinations(input_list, r=len(input_list)-5)]+[list(x) for x in combinations(input_list, r=len(input_list)-6)]+[list(x) for x in combinations(input_list, r=len(input_list)-7)]+[list(x) for x in combinations(input_list, r=len(input_list)-8)]+[list(x) for x in combinations(input_list, r=len(input_list)-9)]+[list(x) for x in combinations(input_list, r=0)]

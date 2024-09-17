@@ -1,2 +1,0 @@
-def concatenate_tuple(tup):
-    return '-'.join(map(str, tup)) if any(isinstance(x, int) for x in tup) else '-'.join(map(str, tup))  # added this line to handle the case where there are integers in the tuple

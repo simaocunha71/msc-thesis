@@ -1,2 +1,0 @@
-def centered_hexagonal_number(n):
-    return 2 * (n * (n - 1) + 1)

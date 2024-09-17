@@ -1,1 +1,0 @@
-diff_even_odd = lambda lst: lst[0] - lst[1]

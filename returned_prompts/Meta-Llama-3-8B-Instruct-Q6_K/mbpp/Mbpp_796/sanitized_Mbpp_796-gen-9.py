@@ -1,2 +1,0 @@
-def return_sum(dictionary):
-    return sum(dictionary.values()) # Returns the sum of all values in the dictionary. In Python, dictionary values are returned as a view object. The view object behaves like a list and supports basic operations such as indexing, slicing, and iteration. The sum() function is then called on this view object to return the sum of all values in the dictionary.

@@ -1,2 +1,0 @@
-def closest_num(n):
-    return max(i for i in range(n) if i < n)  # This will return the maximum number that is less than n. This will be the closest smaller number. If you want to return the closest smaller number from both sides, you can use the following code:

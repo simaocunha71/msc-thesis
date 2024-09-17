@@ -1,8 +1,0 @@
-def removezero_ip(ip):
-    return '.'.join(i.lstrip('0') or '0' for i in ip.split('.'))
-
-# Test the function
-print(removezero_ip("216.08.094.196"))  # Expected output: ('216.8.94.196')
-print(removezero_ip("0001.0000.0001.0000"))  # Expected output: ('1.0.1.0')  # Expected output: ('1.0.1.0')  # Expected output: ('1.0.1.0')
-print(removezero_ip("1.0.1.0"))  # Expected output: ('1.0.1.0')
-print(removezero_ip("0000"))  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('0')  # Expected output: ('

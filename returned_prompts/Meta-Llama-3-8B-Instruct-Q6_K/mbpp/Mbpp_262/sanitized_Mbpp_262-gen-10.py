@@ -1,2 +1,0 @@
-def split_two_parts(lst, L):
-  return tuple(lst[:L], lst[L:]) if L <= len(lst) else (lst, [])  # Check if L is less than or equal to the length of the list, if so, return the list split at index L, otherwise return the list and an empty list.

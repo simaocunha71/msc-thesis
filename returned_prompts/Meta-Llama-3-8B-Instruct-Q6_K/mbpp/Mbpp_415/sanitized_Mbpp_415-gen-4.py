@@ -1,3 +1,0 @@
-def max_Product(arr):
-  arr.sort()
-  return (arr[-1],arr[-2]) if arr[-1]*arr[-2]>arr[0]*arr[-1] else (arr[0],arr[-1])  # Return the pair with the highest product. It's either the last two elements or the first and the last elements. This is because the array is sorted in ascending order. If the product of the last two elements is greater than the product of the first and the last elements, then the last two elements are the pair with the highest product. Otherwise, the first and the last elements are the pair with the highest product.

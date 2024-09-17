@@ -1,9 +1,0 @@
-def is_lower(s):
-    return s.lower()
-
-assert is_lower("InValid") == "invalid"
-print(is_lower("InValid"))  # Output: "invalid"  # passed
-
-# Python's built-in string method lower() is used to convert the string to lowercase. This method returns a copy of the string where all characters have been converted to lowercase. 
-
-# For example, "Hello".lower() returns "hello".  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed  # passed 

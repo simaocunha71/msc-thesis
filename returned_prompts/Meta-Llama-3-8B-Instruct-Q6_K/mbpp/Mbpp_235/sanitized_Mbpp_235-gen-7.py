@@ -1,2 +1,0 @@
-def even_bit_set_number(n):
-    return n ^ ((n >> 1) & 0xAAAAAAAA) & 0x55555555
