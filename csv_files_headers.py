@@ -89,14 +89,28 @@ def set_csv_headers(benchmarks, shot_prompting, pass_k):
     
     for benchmark in benchmarks:
         for key, headers in headers_map.items():
+                        # Verificar se é "autocomplete" ou "instruct" e mapear para "instruct_and_autocomplete"
+            if benchmark in ["cyberseceval/autocomplete", "cyberseceval/instruct"]:
+                key = benchmark.replace("cyberseceval/", "")
+            
             if key in benchmark:
-                csv_key = f"{key}_{shot_prompting}_shot"
+                # Se for um dos benchmarks "frr", "mitre", ou "interpreter", não adicionar o sufixo "_{shot_prompting}_shot"
+                if key in ["frr", "mitre", "interpreter"]:
+                    csv_key = f"{key}"
+                if key == "autocomplete" or "instruct":
+                    csv_key = f"instruct_and_autocomplete"
+                else:
+                    csv_key = f"{key}_{shot_prompting}_shot"
                 csv_files[csv_key] = headers
 
         # Handle special case for 'all'
         if "all" in benchmark:
             for key, headers in headers_map.items():
-                csv_key = f"{key}_{shot_prompting}_shot"
+                # Mesmo tratamento para o "all"
+                if key in ["frr", "mitre", "interpreter"]:
+                    csv_key = f"{key}"
+                else:
+                    csv_key = f"{key}_{shot_prompting}_shot"
                 csv_files[csv_key] = headers
 
     return csv_files

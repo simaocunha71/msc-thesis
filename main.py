@@ -366,13 +366,22 @@ def main():
                 folder_path = os.path.join("results", "humaneval_x")
             elif "mbpp" in filename:
                 folder_path = os.path.join("results", "mbpp")
-            else:
+            elif (
+                "mitre" in filename or 
+                "interpreter" in filename or
+                "frr" in filename or  
+                "instruct_and_autocomplete" in filename or 
+                "canary_exploit" in filename
+            ):
                 folder_path = os.path.join("results", "cyberseceval")
+            else:
+                folder_path = None 
 
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
 
-            create_csv(os.path.join(folder_path, filename + ".csv"), columns)
+            create_csv(os.path.join(folder_path, filename + f"_{shot_prompting}_shot.csv"), columns)
+        
         for _ in range(N_TIMES):
             start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting, SLEEP_TIME, pass_k, top_p, temperature)
 
