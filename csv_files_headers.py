@@ -1,35 +1,26 @@
 import sys
 
-def set_csv_headers(benchmarks, shot_prompting, pass_k):
+def set_csv_headers(benchmarks, pass_k):
     def generate_headers(base_columns, additional_columns=None):
-        if additional_columns is None:
-            additional_columns = []
-        return base_columns + additional_columns
+        """Generate headers by concatenating base and additional columns."""
+        return base_columns + (additional_columns or [])
     
     def add_pass_k_columns(pass_k, base_names):
-        columns = []
-        
-        # Verificação para garantir que pass_k é um número inteiro
+        """Generate pass@k columns based on the value of pass_k."""
         if not isinstance(pass_k, int):
             print(f"[ERROR] pass@k value must be an integer. Received: {pass_k}")
             sys.exit(1)
-        
-        # Verificação para garantir que pass_k está dentro do intervalo suportado
-        if pass_k < 1 or pass_k > 100:
+
+        if not (1 <= pass_k <= 100):
             print(f"[ERROR] pass@k value (k={pass_k}) not supported - only supported 1 <= pass@k <= 100")
             sys.exit(1)
-        
-        # Adicionar colunas baseadas em pass_k
-        if pass_k == 1:
-            columns += [f"{name}@1" for name in base_names]
-        elif pass_k == 10:
-            columns += [f"{name}@1" for name in base_names]
+
+        columns = [f"{name}@1" for name in base_names]
+        if pass_k >= 10:
             columns += [f"{name}@10" for name in base_names]
-        elif pass_k == 100:
-            columns += [f"{name}@1" for name in base_names]
-            columns += [f"{name}@10" for name in base_names]
+        if pass_k == 100:
             columns += [f"{name}@100" for name in base_names]
-    
+        
         return columns
     
     base_energy_columns = [
@@ -38,13 +29,11 @@ def set_csv_headers(benchmarks, shot_prompting, pass_k):
         "CO2 emissions rate (Kg/s)"
     ]
     
-    humaneval_x_columns = add_pass_k_columns(pass_k, ["Pass"])
-    mbpp_columns = add_pass_k_columns(pass_k, ["MBPP (unsanitized) pass", "MBPP+ (unsanitized) pass", "MBPP (sanitized) pass", "MBPP+ (sanitized) pass"])
-    
+    # Define headers based on benchmarks
     headers_map = {
         "humaneval_x": generate_headers(
             ["LLM", "Benchmark prompt"], 
-            base_energy_columns + humaneval_x_columns + ["GoogleBLEU", "CodeBLEU", "SacreBLEU"]
+            base_energy_columns + add_pass_k_columns(pass_k, ["Pass"]) + ["GoogleBLEU", "CodeBLEU", "SacreBLEU"]
         ),
         "instruct_and_autocomplete": generate_headers(
             ["LLM", "Prompt ID", "Variant", "Language"], 
@@ -80,37 +69,32 @@ def set_csv_headers(benchmarks, shot_prompting, pass_k):
         ),
         "mbpp": generate_headers(
             ["LLM", "Benchmark prompt"], 
-            base_energy_columns + mbpp_columns + ["GoogleBLEU (unsanitized)", "CodeBLEU (unsanitized)", "SacreBLEU (unsanitized)",
-                                                  "GoogleBLEU (sanitized)", "CodeBLEU (sanitized)", "SacreBLEU (sanitized)"]
+            base_energy_columns + add_pass_k_columns(pass_k, [
+                "MBPP (unsanitized) pass", "MBPP+ (unsanitized) pass", 
+                "MBPP (sanitized) pass", "MBPP+ (sanitized) pass"
+            ]) + [
+                "GoogleBLEU (unsanitized)", "CodeBLEU (unsanitized)", "SacreBLEU (unsanitized)",
+                "GoogleBLEU (sanitized)", "CodeBLEU (sanitized)", "SacreBLEU (sanitized)"
+            ]
         )
     }
     
     csv_files = {}
     
     for benchmark in benchmarks:
-        for key, headers in headers_map.items():
-                        # Verificar se é "autocomplete" ou "instruct" e mapear para "instruct_and_autocomplete"
-            if benchmark in ["cyberseceval/autocomplete", "cyberseceval/instruct"]:
-                key = benchmark.replace("cyberseceval/", "")
-            
-            if key in benchmark:
-                # Se for um dos benchmarks "frr", "mitre", ou "interpreter", não adicionar o sufixo "_{shot_prompting}_shot"
-                if key in ["frr", "mitre", "interpreter"]:
-                    csv_key = f"{key}"
-                if key == "autocomplete" or "instruct":
-                    csv_key = f"instruct_and_autocomplete"
-                else:
-                    csv_key = f"{key}_{shot_prompting}_shot"
-                csv_files[csv_key] = headers
+        # Map language-specific humaneval_x benchmarks to "humaneval_x"
+        if benchmark.startswith("humaneval_x/"):
+            benchmark = "humaneval_x"
 
-        # Handle special case for 'all'
+        mapped_benchmark = benchmark.replace("cyberseceval/", "") if "cyberseceval" in benchmark else benchmark
+        key = "instruct_and_autocomplete" if mapped_benchmark in ["autocomplete", "instruct"] else mapped_benchmark
+        
+        if key in headers_map:
+            csv_files[key] = headers_map[key]
+        
         if "all" in benchmark:
+            # Special handling for "all" benchmarks
             for key, headers in headers_map.items():
-                # Mesmo tratamento para o "all"
-                if key in ["frr", "mitre", "interpreter"]:
-                    csv_key = f"{key}"
-                else:
-                    csv_key = f"{key}_{shot_prompting}_shot"
-                csv_files[csv_key] = headers
+                csv_files[key] = headers
 
     return csv_files

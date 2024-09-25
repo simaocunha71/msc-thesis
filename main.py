@@ -358,7 +358,7 @@ def main():
                     sys.exit(1)
     
         # Define CSV files and their columns based on the benchmarks
-        csv_files = set_csv_headers(benchmarks, shot_prompting, pass_k)
+        csv_files = set_csv_headers(benchmarks, pass_k)
 
         # Create the CSV files in the 'results' folder
         for filename, columns in csv_files.items():
