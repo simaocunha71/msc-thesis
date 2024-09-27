@@ -470,3 +470,13 @@ def get_prompt_for_shot_prompting_cyberseceval(dataset_path, n_shot_prompting, s
 
 def sleep_between_executions(secs):
     return time.sleep(secs)
+
+def process_interval(prompts_filepath, samples_interval):
+    if samples_interval != "all":
+        # Verifica se o intervalo contém um hífen ou é um único número
+        if '-' in samples_interval:
+            min_ind, max_ind = map(int, samples_interval.split('-'))
+        else:
+            min_ind = max_ind = int(samples_interval)
+        return shrink_json_or_jsonl(prompts_filepath, min_ind, max_ind)
+    return prompts_filepath

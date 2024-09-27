@@ -1,7 +1,7 @@
 import argparse, json, os, sys
 from benchmarks.benchmarks_execution_scripts import humaneval_x, cyberseceval, mbpp
 from benchmarks.benchmarks_execution_scripts import utils as benchmark_utils
-from measure_utils import extract_llm_name, create_csv, validate_supported_models, shrink_json_or_jsonl, extract_language, change_mbpp_filepath, save_sanitized_outputs, get_prompt_for_shot_prompting, get_prompt_for_shot_prompting_cyberseceval, remove_temp_datasets, sleep_between_executions
+from measure_utils import extract_llm_name, create_csv, validate_supported_models, process_interval, extract_language, change_mbpp_filepath, save_sanitized_outputs, get_prompt_for_shot_prompting, get_prompt_for_shot_prompting_cyberseceval, remove_temp_datasets, sleep_between_executions
 from llms.utils import load_llm, get_llm_family
 from llms.llamacpp_wrapper import LLAMACPP
 from csv_files_headers import set_csv_headers
@@ -44,30 +44,14 @@ def start_measure(llm_path_list: list, prompts_filepath_list: list, max_tokens: 
         temperature (float): The temperature to use for sampling
     """
 
-    def process_interval(prompts_filepath):
-        if samples_interval != "all":
-            # Verifica se o intervalo contém um hífen ou é um único número
-            if '-' in samples_interval:
-                min_ind, max_ind = map(int, samples_interval.split('-'))
-            else:
-                min_ind = max_ind = int(samples_interval)
-            return shrink_json_or_jsonl(prompts_filepath, min_ind, max_ind)
-        return prompts_filepath
-
     def handle_prompt_files(llm_obj, llm_path, prompts_filepath, pass_k):
         prompt_for_shot_prompting, temp_prompts_filepath = get_prompt_for_shot_prompting(prompts_filepath, shot_prompting)
-        temp_prompts_filepath = process_interval(temp_prompts_filepath)
+        temp_prompts_filepath = process_interval(temp_prompts_filepath, samples_interval)
 
         if "humaneval_x" in temp_prompts_filepath:
             handle_humaneval_x_benchmark(llm_obj, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, top_p, temperature, save_output_flag, SLEEP_TIME, shot_prompting, pass_k, seed)
-        elif "cyberseceval" in temp_prompts_filepath:
-            prompt_for_shot_prompting, temp_prompts_filepath = get_prompt_for_shot_prompting_cyberseceval(prompts_filepath, shot_prompting, prompts_filepath.split("/")[2])
-            temp_prompts_filepath = process_interval(temp_prompts_filepath)
-            prompt_for_shot_prompting_file = "prompt_for_shot_prompting.txt"
-            with open(prompt_for_shot_prompting_file, 'w') as file:
-                file.write(prompt_for_shot_prompting)
-            handle_cyberseceval_benchmark(llm_path, temp_prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
-            os.remove(prompt_for_shot_prompting_file)
+        #elif "cyberseceval" in temp_prompts_filepath:
+        #    pass
         elif "mbpp" in temp_prompts_filepath:
             handle_mbpp_benchmark(llm_obj, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, top_p, temperature, save_output_flag, SLEEP_TIME, shot_prompting, pass_k, seed)
         else:
@@ -77,10 +61,10 @@ def start_measure(llm_path_list: list, prompts_filepath_list: list, max_tokens: 
 
     for llm_path in llm_path_list:
         for prompts_filepath in prompts_filepath_list:
-            if "cyberseceval" in prompts_filepath:
-                llm_obj = None
-            else:
-                llm_obj = load_llm(llm_path, n_ctx, seed)
+            #if "cyberseceval" in prompts_filepath:
+            #    llm_obj = None
+            #else:
+            llm_obj = load_llm(llm_path, n_ctx, seed)
             
             handle_prompt_files(llm_obj, llm_path, prompts_filepath, pass_k)
         
@@ -93,17 +77,17 @@ def handle_humaneval_x_benchmark(llm_obj, llm_path, prompts_filepath, prompt_for
     
     list_of_seeds = [seed + i for i in range(pass_k)]
     
-    with open(prompts_filepath, 'r') as file:
-        lines = file.readlines()
-        for line in lines:
-            entry = json.loads(line)
-            task_id = entry.get("task_id", "")
-            prompt_from_file = entry.get("prompt", "")
-            prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
-            language = extract_language(prompts_filepath)
-            for idx, sd in enumerate(list_of_seeds, start=1):
-                execute_llm(llm_obj, task_id, prompt, llm_path, os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv"), max_tokens, top_p, temperature, "humaneval_x", save_output_flag, language, sd, idx, shot_prompting, pass_k)
-            sleep_between_executions(secs=SLEEP_TIME)
+    #with open(prompts_filepath, 'r') as file:
+    #    lines = file.readlines()
+    #    for line in lines:
+    #        entry = json.loads(line)
+    #        task_id = entry.get("task_id", "")
+    #        prompt_from_file = entry.get("prompt", "")
+    #        prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
+    #        language = extract_language(prompts_filepath)
+    #        for idx, sd in enumerate(list_of_seeds, start=1):
+    #            execute_llm(llm_obj, task_id, prompt, llm_path, os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv"), max_tokens, top_p, temperature, "humaneval_x", save_output_flag, language, sd, idx, shot_prompting, pass_k)
+    #        sleep_between_executions(secs=SLEEP_TIME)
     
     scores = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath), pass_k, shot_prompting)
     pass_1, pass_10, pass_100, google_bleu, codebleu, sacrebleu = scores["pass_1"], scores["pass_10"], scores["pass_100"], scores["google_bleu"], scores["codebleu"], scores["sacrebleu"]
@@ -217,7 +201,7 @@ def save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k,
             "returned_prompts", extract_llm_name(llm_path), "mbpp", str(n_shot)
         )
         
-def handle_cyberseceval_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
+def handle_cyberseceval_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times):
     if not os.path.exists("benchmarks/PurpleLlama/CybersecurityBenchmarks/results"):
         os.makedirs("benchmarks/PurpleLlama/CybersecurityBenchmarks/results")
 
@@ -225,17 +209,17 @@ def handle_cyberseceval_benchmark(llm_path, prompts_filepath, max_tokens, seed, 
     os.makedirs(folder_path, exist_ok=True)
 
     if "autocomplete" in prompts_filepath:
-        cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "autocomplete", max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
+        cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "autocomplete", max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times)
     elif "instruct" in prompts_filepath:
-        cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "instruct", max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
+        cyberseceval.run_instruct_or_autocomplete_benchmark(llm_path, prompts_filepath, "instruct", max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times)
     elif "mitre" in prompts_filepath:
-        cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
+        cyberseceval.run_mitre_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times)
     elif "frr" in prompts_filepath:
-        cyberseceval.run_frr_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
+        cyberseceval.run_frr_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times)
     elif "interpreter" in prompts_filepath:
-        cyberseceval.run_interpreter_benchmark(llm_path, prompts_filepath,max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
+        cyberseceval.run_interpreter_benchmark(llm_path, prompts_filepath,max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times)
     elif "canary_exploit" in prompts_filepath:
-        cyberseceval.run_canary_exploit_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting)
+        cyberseceval.run_canary_exploit_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times)
 
 def main():
     parser = argparse.ArgumentParser(description="Execute benchmarks with given arguments.")
@@ -382,9 +366,22 @@ def main():
 
             create_csv(os.path.join(folder_path, filename + f"_{shot_prompting}_shot.csv"), columns)
         
-        for _ in range(N_TIMES):
-            start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting, SLEEP_TIME, pass_k, top_p, temperature)
 
+        if not any("cyberseceval" in filepath for filepath in prompts_filepath_list):
+            #MBPP or HumanEval-X execution
+            for _ in range(N_TIMES):
+                start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting, SLEEP_TIME, pass_k, top_p, temperature)
+        else:
+            #CyberSecEval execution
+            for llm_path in llm_path_list:
+                for prompts_filepath in prompts_filepath_list:
+                    prompt_for_shot_prompting, temp_prompts_filepath = get_prompt_for_shot_prompting_cyberseceval(prompts_filepath, shot_prompting, prompts_filepath.split("/")[2])
+                    temp_prompts_filepath = process_interval(temp_prompts_filepath, samples_interval)
+                    prompt_for_shot_prompting_file = "prompt_for_shot_prompting.txt"
+                    with open(prompt_for_shot_prompting_file, 'w') as file:
+                        file.write(prompt_for_shot_prompting)
+                    handle_cyberseceval_benchmark(llm_path, temp_prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, N_TIMES)
+                    os.remove(prompt_for_shot_prompting_file)
 
 if __name__ == "__main__":
     main()

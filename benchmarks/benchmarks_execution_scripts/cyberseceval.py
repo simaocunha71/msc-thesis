@@ -14,7 +14,7 @@ def set_env_variables():
     #os.system('export PATH="$HOME/.cargo/bin:$PATH"')
     os.environ['PATH'] = f"{os.environ['HOME']}/.cargo/bin:{os.environ['PATH']}"
 
-def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_type, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
+def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_type, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times):
     """Calcula os scores do benchmark Instruct ou Autocomplete do CybersecEval"""
 
     set_env_variables()
@@ -28,6 +28,8 @@ def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_ty
         f'--temperature={temperature} ' \
         f'--save_output_flag={save_output_flag} ' \
         f'--sleep_time={SLEEP_TIME} ' \
+        f'--n_shot_prompting={shot_prompting} ' \
+        f'--n_times={n_times} ' \
         f'--prompt_for_shot_prompting_file={prompt_for_shot_prompting_file} ' \
         f'--prompt-path="{prompts_filepath}" ' \
         f'--response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{benchmark_type}_responses_{shot_prompting}_shot.json" ' \
@@ -52,7 +54,7 @@ def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_ty
         columns_from_json_response_file
         )
 
-def run_mitre_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
+def run_mitre_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times):
     'Calcula os scores do benchmark MITRE do CybersecEval'
 
     set_env_variables()
@@ -71,6 +73,8 @@ def run_mitre_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p,
         f'--temperature={temperature} ' \
         f'--save_output_flag={save_output_flag} ' \
         f'--sleep_time={SLEEP_TIME} ' \
+        f'--n_shot_prompting={shot_prompting} ' \
+        f'--n_times={n_times} ' \
         f'--prompt_for_shot_prompting_file={prompt_for_shot_prompting_file} ' \
         f'--prompt-path="{prompts_filepath}" '
         '--response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/mitre_responses.json" '
@@ -99,7 +103,7 @@ def run_mitre_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p,
         columns_from_json_response_file
     )
 
-def run_interpreter_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
+def run_interpreter_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times):
     'Calcula os scores do benchmark Interpreter do CybersecEval'
 
     set_env_variables()
@@ -117,6 +121,8 @@ def run_interpreter_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, 
         f'--temperature={temperature} ' \
         f'--save_output_flag={save_output_flag} ' \
         f'--sleep_time={SLEEP_TIME} ' \
+        f'--n_shot_prompting={shot_prompting} ' \
+        f'--n_times={n_times} ' \
         f'--prompt_for_shot_prompting_file={prompt_for_shot_prompting_file} ' \
         f'--prompt-path="{prompts_filepath}" '
         '--response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/interpreter_responses.json" '
@@ -144,7 +150,7 @@ def run_interpreter_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, 
         columns_from_json_response_file
     )
 
-def run_frr_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
+def run_frr_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times):
     'Calcula os scores do benchmark False Rate Refusal do CybersecEval'
 
     set_env_variables()
@@ -159,6 +165,8 @@ def run_frr_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, t
         f'--temperature={temperature} ' \
         f'--save_output_flag={save_output_flag} ' \
         f'--sleep_time={SLEEP_TIME} ' \
+        f'--n_shot_prompting={shot_prompting} ' \
+        f'--n_times={n_times} ' \
         f'--prompt_for_shot_prompting_file={prompt_for_shot_prompting_file} ' \
         f'--prompt-path="{prompts_filepath}" '
         '--response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/frr_responses.json" '
@@ -184,7 +192,7 @@ def run_frr_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, t
         columns_from_json_response_file
     )
 
-def run_canary_exploit_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting):
+def run_canary_exploit_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times):
     'Calcula os scores do benchmark Vulnerability Exploitation do CybersecEval'
 
     set_env_variables()
@@ -199,6 +207,8 @@ def run_canary_exploit_benchmark(model, prompts_filepath, max_tokens, seed, n_ct
         f'--temperature={temperature} ' \
         f'--save_output_flag={save_output_flag} ' \
         f'--sleep_time={SLEEP_TIME} ' \
+        f'--n_shot_prompting={shot_prompting} ' \
+        f'--n_times={n_times} ' \
         f'--prompt_for_shot_prompting_file={prompt_for_shot_prompting_file} ' \
         f'--prompt-path="{prompts_filepath}" '
         f'--response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/canary_exploit_responses_{shot_prompting}_shot.json" '
@@ -220,7 +230,7 @@ def run_canary_exploit_benchmark(model, prompts_filepath, max_tokens, seed, n_ct
 
     canary_exploit_json_to_csv(
         f'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/canary_exploit_judge_responses_{shot_prompting}_shot.json',
-        f'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/canary_exploit_stat.json_{shot_prompting}_shot',
+        f'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/canary_exploit_stat_{shot_prompting}_shot.json',
         f'results/cyberseceval/canary_exploit_{shot_prompting}_shot.csv',
         columns_from_json_response_file
     )

@@ -1,6 +1,8 @@
 import sys
 
 def set_csv_headers(benchmarks, pass_k):
+    print(benchmarks, pass_k)
+    
     def generate_headers(base_columns, additional_columns=None):
         """Generate headers by concatenating base and additional columns."""
         return base_columns + (additional_columns or [])
@@ -86,15 +88,23 @@ def set_csv_headers(benchmarks, pass_k):
         if benchmark.startswith("humaneval_x/"):
             benchmark = "humaneval_x"
 
+        # Handle benchmarks like "cyberseceval"
         mapped_benchmark = benchmark.replace("cyberseceval/", "") if "cyberseceval" in benchmark else benchmark
         key = "instruct_and_autocomplete" if mapped_benchmark in ["autocomplete", "instruct"] else mapped_benchmark
         
         if key in headers_map:
-            csv_files[key] = headers_map[key]
+            if key in csv_files:
+                # Merge headers for multiple benchmarks into the same entry
+                csv_files[key] = generate_headers(csv_files[key], headers_map[key])
+            else:
+                csv_files[key] = headers_map[key]
         
         if "all" in benchmark:
             # Special handling for "all" benchmarks
             for key, headers in headers_map.items():
-                csv_files[key] = headers
+                if key in csv_files:
+                    csv_files[key] = generate_headers(csv_files[key], headers)
+                else:
+                    csv_files[key] = headers
 
     return csv_files
