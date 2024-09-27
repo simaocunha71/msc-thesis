@@ -358,8 +358,10 @@ def main():
 
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
-
-            create_csv(os.path.join(folder_path, filename + f"_{shot_prompting}_shot.csv"), columns)
+            if ("mitre" in filename or "interpreter" in filename or "frr" in filename):
+                create_csv(os.path.join(folder_path, filename + ".csv"), columns)
+            else:
+                create_csv(os.path.join(folder_path, filename + f"_{shot_prompting}_shot.csv"), columns)
 
         if not any("cyberseceval" in filepath for filepath in prompts_filepath_list):
             #MBPP or HumanEval-X execution
