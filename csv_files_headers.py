@@ -1,8 +1,6 @@
 import sys
 
-def set_csv_headers(benchmarks, pass_k):
-    print(benchmarks, pass_k)
-    
+def set_csv_headers(benchmarks, pass_k):    
     def generate_headers(base_columns, additional_columns=None):
         """Generate headers by concatenating base and additional columns."""
         return base_columns + (additional_columns or [])

@@ -50,8 +50,6 @@ def start_measure(llm_path_list: list, prompts_filepath_list: list, max_tokens: 
 
         if "humaneval_x" in temp_prompts_filepath:
             handle_humaneval_x_benchmark(llm_obj, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, top_p, temperature, save_output_flag, SLEEP_TIME, shot_prompting, pass_k, seed)
-        #elif "cyberseceval" in temp_prompts_filepath:
-        #    pass
         elif "mbpp" in temp_prompts_filepath:
             handle_mbpp_benchmark(llm_obj, llm_path, temp_prompts_filepath, prompt_for_shot_prompting, max_tokens, top_p, temperature, save_output_flag, SLEEP_TIME, shot_prompting, pass_k, seed)
         else:
@@ -61,9 +59,6 @@ def start_measure(llm_path_list: list, prompts_filepath_list: list, max_tokens: 
 
     for llm_path in llm_path_list:
         for prompts_filepath in prompts_filepath_list:
-            #if "cyberseceval" in prompts_filepath:
-            #    llm_obj = None
-            #else:
             llm_obj = load_llm(llm_path, n_ctx, seed)
             
             handle_prompt_files(llm_obj, llm_path, prompts_filepath, pass_k)
@@ -77,17 +72,17 @@ def handle_humaneval_x_benchmark(llm_obj, llm_path, prompts_filepath, prompt_for
     
     list_of_seeds = [seed + i for i in range(pass_k)]
     
-    #with open(prompts_filepath, 'r') as file:
-    #    lines = file.readlines()
-    #    for line in lines:
-    #        entry = json.loads(line)
-    #        task_id = entry.get("task_id", "")
-    #        prompt_from_file = entry.get("prompt", "")
-    #        prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
-    #        language = extract_language(prompts_filepath)
-    #        for idx, sd in enumerate(list_of_seeds, start=1):
-    #            execute_llm(llm_obj, task_id, prompt, llm_path, os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv"), max_tokens, top_p, temperature, "humaneval_x", save_output_flag, language, sd, idx, shot_prompting, pass_k)
-    #        sleep_between_executions(secs=SLEEP_TIME)
+    with open(prompts_filepath, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            entry = json.loads(line)
+            task_id = entry.get("task_id", "")
+            prompt_from_file = entry.get("prompt", "")
+            prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
+            language = extract_language(prompts_filepath)
+            for idx, sd in enumerate(list_of_seeds, start=1):
+                execute_llm(llm_obj, task_id, prompt, llm_path, os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv"), max_tokens, top_p, temperature, "humaneval_x", save_output_flag, language, sd, idx, shot_prompting, pass_k)
+            sleep_between_executions(secs=SLEEP_TIME)
     
     scores = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath), pass_k, shot_prompting)
     pass_1, pass_10, pass_100, google_bleu, codebleu, sacrebleu = scores["pass_1"], scores["pass_10"], scores["pass_100"], scores["google_bleu"], scores["codebleu"], scores["sacrebleu"]
@@ -365,7 +360,6 @@ def main():
                 os.makedirs(folder_path)
 
             create_csv(os.path.join(folder_path, filename + f"_{shot_prompting}_shot.csv"), columns)
-        
 
         if not any("cyberseceval" in filepath for filepath in prompts_filepath_list):
             #MBPP or HumanEval-X execution
