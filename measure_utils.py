@@ -163,16 +163,28 @@ def save_output_to_file(output, label_folder, label, language, output_folder, ll
     Guarda os outputs gerados pelo LLM em ficheiros cujo file system é o seguinte:
     "returned_prompts/"
         |"llama-2-7b.Q2_K/"
-            |"humaneval_x/"
-                |"CPP_0.cpp"
-                |"CPP_1.cpp"
-                |"CPP_2.cpp"
-                |...
-                |"Go_0.go"
-                |...
-                |"Python_163.py"
-            |"cyberseceval/"
-                |TBD
+            |"0-shot"
+                |"humaneval_x/"
+                    |"CPP_0.cpp"
+                    |"CPP_1.cpp"
+                    |"CPP_2.cpp"
+                    |...
+                    |"Go_0.go"
+                    |...
+                    |"Python_163.py"
+                |"cyberseceval/"
+                    |TBD
+            |"3-shot"
+                |"humaneval_x/"
+                    |"CPP_0.cpp"
+                    |"CPP_1.cpp"
+                    |"CPP_2.cpp"
+                    |...
+                    |"Go_0.go"
+                    |...
+                    |"Python_163.py"
+                |"cyberseceval/"
+                    |TBD
         |"llama-2-7b.Q3_K_L/"
             |TBD
     """
