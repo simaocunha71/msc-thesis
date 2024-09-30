@@ -88,9 +88,9 @@ def start_measure(llm_path_list: list, prompts_filepath_list: list, max_tokens: 
 
     for llm_path in llm_path_list:
         for prompts_filepath in prompts_filepath_list:
-            #llm_obj = load_llm(llm_path, n_ctx, seed)
+            llm_obj = load_llm(llm_path, n_ctx, seed)
             
-            handle_prompt_files("llm_obj", llm_path, prompts_filepath, pass_k)
+            handle_prompt_files(llm_obj, llm_path, prompts_filepath, pass_k)
         
         try:
             os.system("rm -rf ~/.cache/evalplus/*")
@@ -121,17 +121,17 @@ def handle_humaneval_x_benchmark(llm_obj: Llama, llm_path: str, prompts_filepath
     """    
     list_of_seeds = [seed + i for i in range(pass_k)]
     
-    #with open(prompts_filepath, 'r') as file:
-    #    lines = file.readlines()
-    #    for line in lines:
-    #        entry = json.loads(line)
-    #        task_id = entry.get("task_id", "")
-    #        prompt_from_file = entry.get("prompt", "")
-    #        prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
-    #        language = extract_language(prompts_filepath)
-    #        for idx, sd in enumerate(list_of_seeds, start=1):
-    #            execute_llm(llm_obj, task_id, prompt, llm_path, os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv"), max_tokens, top_p, temperature, "humaneval_x", save_output_flag, language, sd, idx, shot_prompting, pass_k)
-    #        sleep_between_executions(secs=SLEEP_TIME)
+    with open(prompts_filepath, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            entry = json.loads(line)
+            task_id = entry.get("task_id", "")
+            prompt_from_file = entry.get("prompt", "")
+            prompt = prompt_for_shot_prompting + "\nQ:\n" + prompt_from_file + "\nA:\n"
+            language = extract_language(prompts_filepath)
+            for idx, sd in enumerate(list_of_seeds, start=1):
+                execute_llm(llm_obj, task_id, prompt, llm_path, os.path.join("results", "humaneval_x", f"humaneval_x_{shot_prompting}_shot.csv"), max_tokens, top_p, temperature, "humaneval_x", save_output_flag, language, sd, idx, shot_prompting, pass_k)
+            sleep_between_executions(secs=SLEEP_TIME)
     
     scores = humaneval_x.run_human_eval_benchmark(extract_llm_name(llm_path), extract_language(prompts_filepath), pass_k, shot_prompting)
     pass_1, pass_10, pass_100, google_bleu, codebleu, sacrebleu = scores["pass_1"], scores["pass_10"], scores["pass_100"], scores["google_bleu"], scores["codebleu"], scores["sacrebleu"]
