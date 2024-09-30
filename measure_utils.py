@@ -1,9 +1,23 @@
 import os, csv, json, sys, glob, re, time
+from codecarbon import OfflineEmissionsTracker
 
-def save_sanitized_outputs(file_path, output_folder, llm_name_folder, benchmark_folder, n_shot):
-    """Guarda as versões sanitized dos outputs gerados - apenas os outputs do MBPP"""
+def save_sanitized_outputs(file_path: str, output_folder: str, llm_name_folder: str, 
+                           benchmark_folder: str, n_shot: int) -> None:
+    """
+    Saves sanitized versions of the outputs generated, specifically for MBPP outputs.
+
+    Args:
+        file_path (str): The path to the input file containing JSON lines of outputs.
+        output_folder (str): The directory where sanitized outputs will be saved.
+        llm_name_folder (str): The name of the folder for the specific LLM being used.
+        benchmark_folder (str): The folder for the benchmark type.
+        n_shot (int): The number of shots to consider for output generation.
+
+    Returns:
+    None: This function does not return any value.
+    """
     
-    # Dicionário para armazenar as linhas por label
+    # Dictionary to store lines by label
     outputs_by_label = {}
 
     with open(file_path, 'r') as file:
@@ -11,7 +25,7 @@ def save_sanitized_outputs(file_path, output_folder, llm_name_folder, benchmark_
             # Parse the JSON line
             json_line = json.loads(line)
             
-            # Extrair o label e a geração
+            # Extract the label and the generation
             label = json_line.get('task_id')
             generation = json_line.get('generation')
             
@@ -20,39 +34,41 @@ def save_sanitized_outputs(file_path, output_folder, llm_name_folder, benchmark_
             
             outputs_by_label[label].append(generation)
             
-    # Iterar sobre os outputs organizados por label
+    # Iterate over the outputs organized by label
     for label, generations in outputs_by_label.items():
         for idx, generation in enumerate(generations, start=1):
-            # Definir o prefixo para a pasta e o arquivo
+            # Define the prefix for the folder and file
             prefix = "sanitized_" if generation else "sanitized_EMPTY_"
             
-            # Criar o novo label com o prefixo
+            # Create the new label with the prefix
             sanitized_label = f"{prefix}{label}"
             
-            # Chamar a função save_output_to_file para salvar na pasta com o nome correto
+            # Call the function save_output_to_file to save in the correct folder with the proper name
             save_output_to_file(
                 output=generation,
                 label_folder=label,
                 label=sanitized_label,
-                language=None,  # Aqui estou assumindo que o idioma não é relevante, ajuste conforme necessário
+                language=None,
                 output_folder=output_folder,
                 llm_name_folder=llm_name_folder,
                 benchmark_folder=benchmark_folder,
                 output_id=idx,
                 n_shot=n_shot
             )
-def shrink_json_or_jsonl(file_path, min_index, max_index):
+
+            
+def shrink_json_or_jsonl(file_path: str, min_index: int, max_index: int) -> str:
     """
     Shrinks a JSON or JSONL file to only include entries/lines between min_index and max_index (inclusive).
     NOTE: min_index can be equal to max_index
     
-    Parameters:
-    - file_path: str, path to the input JSON or JSONL file
-    - min_index: int, minimum index (inclusive)
-    - max_index: int, maximum index (inclusive)
+    Args:
+        file_path: str, path to the input JSON or JSONL file
+        min_index: int, minimum index (inclusive)
+        max_index: int, maximum index (inclusive)
     
     Returns:
-    - output_path: str, path to the output JSON or JSONL file
+        output_path: str, path to the output JSON or JSONL file
     """
     # Check if min_index is greater than max_index
     if min_index > max_index:
@@ -109,7 +125,7 @@ def shrink_json_or_jsonl(file_path, min_index, max_index):
         print(f"An error occurred: {e}")
         sys.exit(1)
     
-def extract_language(filepath):
+def extract_language(filepath: str) -> str:
     """
     Extracts the programming language from the given filepath.
 
@@ -117,15 +133,21 @@ def extract_language(filepath):
         filepath (str): The filepath string to parse.
 
     Returns:
-        str: The extracted programming language.
+        str: The extracted programming language - returns None otherwise.
     """
     match = re.search(r'humaneval_(\w+)(?:_samples_\d+-\d+)?\.(json|jsonl)', filepath)
     if match:
         return match.group(1)
     return None
 
-def change_mbpp_filepath(filename, new_mbpp_filename):
-    """Substitui o valor de MBPP_FILENAME vindo do ficheiro JSON quando apenas executamos uma parte dos prompts"""
+def change_mbpp_filepath(filename: str, new_mbpp_filename: str) -> None:
+    """
+    Update the variable MBPP_FILENAME from `filename` with the string `new_mbpp_filename`
+
+    Args:
+        filename (str): The filepath.
+        new_mbpp_filename (str): New string to update in the MBPP_FILENAME variable
+    """
     with open(filename, 'r') as file:
         lines = file.readlines()
 
@@ -138,19 +160,49 @@ def change_mbpp_filepath(filename, new_mbpp_filename):
         file.writelines(lines)
 
 
-def convert_kwh_to_j(value):
-    return value * (3.6*(10**6))
-
-def extract_llm_name(filepath):
+def convert_kwh_to_j(value: float) -> float:
     """
-    Devolve o nome do modelo sem a extensão (e.g. sem o ".gguf") e sem o path completo
-    Ex: extract_llm_name("llama_c++/models/llama-2-7b.Q2_K.gguf") = "llama-2-7b.Q2_K" 
+    Converts energy value from kilowatt-hours (kWh) to joules (J).
+
+    Args:
+        value (float): The energy value in kilowatt-hours.
+
+    Returns:
+        float: The equivalent energy value in joules.
+    """
+    return value * (3.6 * (10**6))
+
+
+def extract_llm_name(filepath: str) -> str:
+    """
+    Extracts the model name from the given file path without the extension (e.g., without the ".gguf") 
+    and without the full path.
+
+    Example:
+    extract_llm_name("llama_c++/models/llama-2-7b.Q2_K.gguf") = "llama-2-7b.Q2_K"
+
+    Args:
+        filepath (str): The full path to the model file.
+
+    Returns:
+        str: The model name without the file extension.
     """
     filename_with_extension = os.path.basename(filepath)
     filename_without_extension = os.path.splitext(filename_with_extension)[0]
     return filename_without_extension
 
-def print_measure_information(model_name, prompt_id, n_shot, generation_id, pass_k_id):
+def print_measure_information(model_name: str, prompt_id: str, n_shot: int, generation_id: int, pass_k_id: int) -> None:
+    """
+    Prints information regarding the execution of the model with n-shot prompting.
+
+    Args:
+        model_name (str): The name of the model being executed.
+        prompt_id (str): The identifier of the prompt being used.
+        n_shot (int): The number of shots used in prompting.
+        generation_id (int): The current generation number.
+        pass_k_id (int): The pass@k value indicating the number of generations.
+
+    """
     print(f"\n\nExecuting with {n_shot}-shot prompting:")
     print(f"> Model: {model_name}")
     print(f"> Prompt: {prompt_id}")
@@ -158,9 +210,12 @@ def print_measure_information(model_name, prompt_id, n_shot, generation_id, pass
     if int(pass_k_id) > 1:
         print(f"  > Generation: #{generation_id}/{pass_k_id}\n")
 
-def save_output_to_file(output, label_folder, label, language, output_folder, llm_name_folder, benchmark_folder, output_id, n_shot):
+
+
+def save_output_to_file(output: str, label_folder: str, label: str, language: str, output_folder: str, 
+                        llm_name_folder: str, benchmark_folder: str, output_id: int, n_shot: str) -> None:
     """
-    Guarda os outputs gerados pelo LLM em ficheiros cujo file system é o seguinte:
+    Saves the outputs generated by the LLM into files structured as follows:
     "returned_prompts/"
         |"llama-2-7b.Q2_K/"
             |"0-shot"
@@ -187,8 +242,22 @@ def save_output_to_file(output, label_folder, label, language, output_folder, ll
                     |TBD
         |"llama-2-7b.Q3_K_L/"
             |TBD
+
+    Args:
+        output (str): The generated output content to be saved.
+        label_folder (str): The folder name for the label of the output.
+        label (str): The specific label associated with the output.
+        language (str): The programming language of the output.
+        output_folder (str): The base folder where outputs are saved.
+        llm_name_folder (str): The folder name for the LLM being used.
+        benchmark_folder (str): The folder name for the benchmark type.
+        output_id (int): The identifier for the output generation.
+        n_shot (str): The n-shot configuration (e.g., "0-shot", "3-shot").
+
+    Returns:
+        None
     """
-    # Criar diretórios necessários
+    # Create necessary directories
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
@@ -204,8 +273,8 @@ def save_output_to_file(output, label_folder, label, language, output_folder, ll
     if not os.path.exists(n_shot_path):
         os.makedirs(n_shot_path)
 
-    # Determinar o nome do ficheiro e o caminho de saída
-    #NOTE: label deve estar no formato "[nome do benchmark]/[1..N]"
+    # Determine the filename and output path
+    # NOTE: label must be in the format "[benchmark name]/[1..N]"
     if language is not None:
         language_path = os.path.join(n_shot_path, language)
         if not os.path.exists(language_path):
@@ -230,11 +299,22 @@ def save_output_to_file(output, label_folder, label, language, output_folder, ll
         output_filename = f"{label.replace('/', '_')}-gen-{output_id}.py"
         output_path = os.path.join(label_path, output_filename)
 
-    # Salvar o output no ficheiro
+    # Save the output to the file
     with open(output_path, 'w') as output_file:
         output_file.write(output)
 
-def generate_samples_humaneval_x(model, output, label, n_shot, language):
+
+def generate_samples_humaneval_x(model: str, output: str, label: str, n_shot: int, language: str) -> None:
+    """
+    Generates the sample file for the specified model (Benchmark: HumanEval-X).
+
+    Args:
+        model (str): The name of the model for which samples are being generated.
+        output (str): The output content to be written to a temporary file.
+        label (str): The label associated with the samples.
+        n_shot (int): The number of shots to be used for generating samples.
+        language (str): The programming language for the samples.
+    """
     label = label.replace("/", "_")
     
     # Define temporary files
@@ -244,15 +324,25 @@ def generate_samples_humaneval_x(model, output, label, n_shot, language):
     with open(temp_prompt_file, 'w') as prompt_file:
         prompt_file.write(output)
 
-    # Executa a script get_samples.py que irá calcular as samples de um dado LLM para a execução do HumanEval
+    # Execute the script to calculate the samples for a given LLM for HumanEval
     command = f'python3 benchmarks/benchmarks_execution_scripts/get_samples_humaneval_x.py {model} "{label}" {n_shot} completion_content.txt {language}'
     os.system(command)
 
-    # Remove os ficheiros de texto temporários
+    # Remove temporary text files
     os.remove(temp_prompt_file)
 
-def generate_samples_mbpp(model, output, label, n_shot):
-    """Gera o ficheiro das samples deste modelo (Benchmark: MBPP)"""
+
+def generate_samples_mbpp(model: str, output: str, label: str, n_shot: int) -> None:
+    """
+    Generates the sample file for the specified model (Benchmark: MBPP).
+
+    Args:
+        model (str): The name of the model for which samples are being generated.
+        output (str): The output content to be written to a temporary file.
+        label (str): The label associated with the samples.
+        n_shot (int): The number of shots to be used for generating samples.
+    
+    """
     
     # Define temporary files
     temp_prompt_file = "completion_content.txt"
@@ -272,40 +362,71 @@ def generate_samples_mbpp(model, output, label, n_shot):
     else:
         print(f"{temp_prompt_file} does not exist.")
 
-def add_measurement_to_csv(FILENAME, model_name, label, tracker):
-    """ Adiciona uma linha com as medições de tempos de execução e de energia consumida ao ficheiro CSV """
 
-    with open(FILENAME, 'a', newline='') as csv_file:
+def add_measurement_to_csv(filename: str, model_name: str, label: str, tracker: OfflineEmissionsTracker) -> None:
+    """
+    Adds a row with execution time and energy consumption measurements to the specified CSV file.
+
+    Args:
+        filename (str): The name of the CSV file to which the measurements will be added.
+        model_name (str): The name of the model being measured.
+        label (str): The label associated with the measurements.
+        tracker (OfflineEmissionsTracker): An object that contains final emissions data for the measurement.
+
+    """
+    with open(filename, 'a', newline='') as csv_file:
         csv_writer = csv.writer(csv_file)
         try:
-            csv_writer.writerow([model_name, label, 
-                                    tracker.final_emissions_data.duration, 
-                                    convert_kwh_to_j(tracker.final_emissions_data.cpu_energy), 
-                                    convert_kwh_to_j(tracker.final_emissions_data.ram_energy), 
-                                    convert_kwh_to_j(tracker.final_emissions_data.gpu_energy),  
-                                    tracker.final_emissions_data.cpu_power, 
-                                    tracker.final_emissions_data.ram_power,  
-                                    tracker.final_emissions_data.gpu_power, 
-                                    tracker.final_emissions_data.emissions,
-                                    tracker.final_emissions_data.emissions_rate
-                                ])
+            csv_writer.writerow([
+                model_name, 
+                label, 
+                tracker.final_emissions_data.duration, 
+                convert_kwh_to_j(tracker.final_emissions_data.cpu_energy), 
+                convert_kwh_to_j(tracker.final_emissions_data.ram_energy), 
+                convert_kwh_to_j(tracker.final_emissions_data.gpu_energy),  
+                tracker.final_emissions_data.cpu_power, 
+                tracker.final_emissions_data.ram_power,  
+                tracker.final_emissions_data.gpu_power, 
+                tracker.final_emissions_data.emissions,
+                tracker.final_emissions_data.emissions_rate
+            ])
         except Exception as e:
             print("------------------------------------------")
             print(e)
             print("------------------------------------------")
-            csv_writer.writerow([model_name, label, "ERROR", "ERROR", "ERROR", "ERROR", "ERROR",
-                                                    "ERROR", "ERROR", "ERROR", "ERROR"
-                                ])
+            csv_writer.writerow([
+                model_name, label, 
+                "ERROR", "ERROR", "ERROR", "ERROR", 
+                "ERROR", "ERROR", "ERROR", "ERROR", "ERROR"
+            ])
 
-def create_csv(filename, columns):
-    """Cria um ficheiro csv com umas colunas específicas"""
+
+def create_csv(filename: str, columns: list) -> None:
+    """
+    Creates a CSV file with specified columns.
+
+    Args:
+        filename (str): The name of the CSV file to be created.
+        columns (list): A list of column names to be written to the CSV file.
+    """
     if not os.path.isfile(filename) or os.stat(filename).st_size == 0:  
         with open(filename, 'w', newline='') as f:
             writer = csv.writer(f)
             writer.writerow(columns)
 
-def validate_supported_models(json_file, models_list):
-    """Verifica se uma string de paths de LLMs estão suportados pelo programa, lendo o ficheiro JSON de modelos s"""
+
+def validate_supported_models(json_file: str, models_list: list[str]) -> tuple[bool, list[str]]:
+    """
+    Verifies if all the LLMs from the `models_list` are supported by the program, i.e., if all the LLMs are in the JSON file
+
+    Args:
+        json_file (str): JSON file with the supported models (e.g. "supported_models.json").
+        models_list ([str]): Invalid models detected.
+
+    Returns:
+        tuple: bool - true if all models are valid (false, otherwise), [str]: list of all invalid models detected.
+    """
+
     invalid_models = []
     try:
         with open(json_file, 'r') as file:
@@ -324,7 +445,7 @@ def validate_supported_models(json_file, models_list):
     except FileNotFoundError:
         print(f"The file '{json_file}' was not found.")
 
-def get_prompt_for_shot_prompting(dataset_path, n_shot_prompting):
+def get_prompt_for_shot_prompting(dataset_path: str, n_shot_prompting: int) -> tuple[str,str]:
     """
     Generates a prompt string for n-shot prompting and returns the path to the remaining dataset.
 
@@ -382,25 +503,25 @@ def get_prompt_for_shot_prompting(dataset_path, n_shot_prompting):
 
     return prompt_string, temp_output_path
 
-def remove_temp_datasets(prompts_filepath_updated):
+def remove_temp_datasets(prompts_filepath_updated: str):
     """
-    Remove todos os arquivos que contêm a palavra "temp_" no diretório do caminho fornecido, exceto o próprio arquivo.
+    Removes all files that contain the word "temp_" in the directory of the provided path, except for the file itself.
     
     Args:
-        prompts_filepath_updated (str): Caminho completo para o arquivo de prompts atualizado.
+        prompts_filepath_updated (str): Full path to the updated prompts file.
     """
-    # Obter o diretório completo, exceto o nome do arquivo
+    # Get the full directory path, excluding the filename
     dir_path = os.path.dirname(prompts_filepath_updated)
     
-    # Procurar por todos os arquivos no diretório que contêm "temp_" no nome
+    # Search for all files in the directory that contain "temp_" in the name
     temp_files = glob.glob(os.path.join(dir_path, "*temp_*"))
     
-    # Remover todos os arquivos encontrados
+    # Remove all found files
     for temp_file in temp_files:
         os.remove(temp_file)
         print(f"Removed: {temp_file}")
 
-def get_prompt_for_shot_prompting_cyberseceval(dataset_path, n_shot_prompting, subbenchmark):
+def get_prompt_for_shot_prompting_cyberseceval(dataset_path: str, n_shot_prompting: int, subbenchmark: str) -> tuple[str,str]:
     """
     Generates a prompt string for n-shot prompting and returns the path to the remaining dataset.
 
@@ -468,15 +589,32 @@ def get_prompt_for_shot_prompting_cyberseceval(dataset_path, n_shot_prompting, s
 
     return prompt_string, temp_output_path
 
-def sleep_between_executions(secs):
+def sleep_between_executions(secs: int) -> None:
+    """
+    Pauses the execution for a specified number of seconds.
+
+    Args:
+        secs (int): The number of seconds to sleep.
+    """
     return time.sleep(secs)
 
-def process_interval(prompts_filepath, samples_interval):
+def process_interval(prompts_filepath: str, samples_interval: str) -> str:
+    """
+    Processes the interval of samples specified and returns the appropriate prompts file path.
+
+    Args:
+        prompts_filepath (str): The path to the prompts file.
+        samples_interval (str): A string representing either a single number or a range (e.g., '1-5' or '42')
+
+    Returns:
+        str: The processed prompts file path.
+    """
     if samples_interval != "all":
-        # Verifica se o intervalo contém um hífen ou é um único número
+        # Checks if the interval contains a hyphen or is a single number
         if '-' in samples_interval:
             min_ind, max_ind = map(int, samples_interval.split('-'))
         else:
             min_ind = max_ind = int(samples_interval)
         return shrink_json_or_jsonl(prompts_filepath, min_ind, max_ind)
+    
     return prompts_filepath

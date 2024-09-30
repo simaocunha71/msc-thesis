@@ -1,13 +1,41 @@
 import argparse, json, os, sys
 from benchmarks.benchmarks_execution_scripts import humaneval_x, cyberseceval, mbpp
 from benchmarks.benchmarks_execution_scripts import utils as benchmark_utils
+from llama_cpp import Llama
 from measure_utils import extract_llm_name, create_csv, validate_supported_models, process_interval, extract_language, change_mbpp_filepath, save_sanitized_outputs, get_prompt_for_shot_prompting, get_prompt_for_shot_prompting_cyberseceval, remove_temp_datasets, sleep_between_executions
 from llms.utils import load_llm, get_llm_family
 from llms.llamacpp_wrapper import LLAMACPP
 from csv_files_headers import set_csv_headers
 
-def execute_llm(llm_obj, task_id, prompt, llm_path, CSV_FILENAME, max_tokens, top_p, temperature, benchmark_type, save_output_flag, language, seed, output_counter_id, n_shot, pass_k):
-    # Prompt lido do ficheiro JSONL para um ficheiro de texto - resolve o problema do escaping!
+def execute_llm(llm_obj: Llama, task_id: int, prompt: str, llm_path: str, 
+                CSV_FILENAME: str, max_tokens: int, top_p: float, temperature: float, 
+                benchmark_type: str, save_output_flag: str, language: str, 
+                seed: int, output_counter_id: int, n_shot: int, pass_k: int) -> None:
+    """
+    Execute measurement scripts for all considered models.
+    NOTE: The prompt is read from the JSONL file to a text file, which resolves the escaping problems 
+    that occurred in previous versions of the project. However, in the current version (30 Sept 2024), 
+    Python provides more efficient ways to read a prompt directly from the JSON file 
+    instead of using the method implemented here.
+
+    Args:
+        llm_obj (Llama): Llama object with the model loaded.
+        task_id (int): Prompt ID to execute.
+        prompt (str): Prompt to execute.
+        llm_path (str): LLM path.
+        CSV_FILENAME (str): CSV to append the metrics.
+        max_tokens (int): Max tokens used by the LLM to generate responses.
+        top_p (float): The top-p value to use for nucleus sampling.
+        temperature (float): The temperature to use for sampling.
+        benchmark_type (str): Type of benchmark to execute - "MBPP" or "HumanEval-X"
+        save_output_flag (str): Indicates if the results should be saved ('yes' or 'no').
+        language (str): Language of the HumanEval-X. NOTE: it is None in MBPP.
+        seed (int): Seed used for generating the same outputs.
+        output_counter_id (int): ID of the generation when calculating pass@k.
+        n_shot (int): Number of examples (shots) to include in the prompt to demonstrate the task.
+        pass_k (int): Max number of k to evaluate in pass@k metric.
+    """
+
     temp_prompt_file = "temp_prompt.txt"
     with open(temp_prompt_file, 'w') as prompt_file:
         prompt_file.write(prompt)
@@ -24,8 +52,9 @@ def execute_llm(llm_obj, task_id, prompt, llm_path, CSV_FILENAME, max_tokens, to
         print(f"Não existe classe capaz de executar o LLM com o path {llm_path}")
         sys.exit(-1)
         
-def start_measure(llm_path_list: list, prompts_filepath_list: list, max_tokens: int, n_ctx: int, seed: int, save_output_flag: str, 
-                  samples_interval: str, shot_prompting: int, SLEEP_TIME: float, pass_k: int, top_p: float, temperature: float):
+def start_measure(llm_path_list: list, prompts_filepath_list: list, max_tokens: int, n_ctx: int, 
+                  seed: int, save_output_flag: str, samples_interval: str, shot_prompting: int, 
+                  SLEEP_TIME: float, pass_k: int, top_p: float, temperature: float) -> None:
     """
     Execute measurement scripts for all considered models.
 
@@ -37,7 +66,7 @@ def start_measure(llm_path_list: list, prompts_filepath_list: list, max_tokens: 
         seed (int): Seed for generating reproducible results.
         save_output_flag (str): Indicates if the results should be saved ('yes' or 'no').
         samples_interval (str): Sample interval to execute. Format: '[min_index]-[max_index]', or 'all' to use the entire dataset.
-        shot_prompting (int): Number of examples for N-Shot prompting.
+        shot_prompting (int): Number of examples for N-shot prompting.
         SLEEP_TIME (float): Sleep time between executions.
         pass_k: Max number of k to evaluate in pass@k metric: 1, 10 or 100 (currently supported)
         top_p (float): The top-p value to use for nucleus sampling.
@@ -59,17 +88,37 @@ def start_measure(llm_path_list: list, prompts_filepath_list: list, max_tokens: 
 
     for llm_path in llm_path_list:
         for prompts_filepath in prompts_filepath_list:
-            llm_obj = load_llm(llm_path, n_ctx, seed)
+            #llm_obj = load_llm(llm_path, n_ctx, seed)
             
-            handle_prompt_files(llm_obj, llm_path, prompts_filepath, pass_k)
+            handle_prompt_files("llm_obj", llm_path, prompts_filepath, pass_k)
         
         try:
             os.system("rm -rf ~/.cache/evalplus/*")
         except Exception as e:
             print(f"Error clearing cache: {e}")
 
-def handle_humaneval_x_benchmark(llm_obj, llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, top_p, temperature, save_output_flag, SLEEP_TIME, shot_prompting, pass_k, seed):
-    
+def handle_humaneval_x_benchmark(llm_obj: Llama, llm_path: str, prompts_filepath: str, 
+                                 prompt_for_shot_prompting: str, max_tokens: int, top_p: float, 
+                                 temperature: float, save_output_flag: str, 
+                                 SLEEP_TIME: float, shot_prompting: int, pass_k: int, seed: int):
+    """
+    Read the dataset from HumanEval-X from a certain language (obtained in `prompts_filepath`) line by line and execute the LLM with the prompt.
+    Args:
+        llm_obj (Llama): Llama object with the model loaded.
+        llm_path (str): LLM path.
+        prompts_filepath (str): Dataset path.
+        prompt_for_shot_prompting_file (str): Text file containing the initial prompt for shot-prompting.
+        max_tokens (int): Max tokens used by the LLM to generate responses.
+        top_p (float): The top-p value to use for nucleus sampling.
+        seed (int): Seed used for generating the same outputs.
+        temperature (float): The temperature to use for sampling.
+        save_output_flag (str): Indicates if the results should be saved ('yes' or 'no').
+        SLEEP_TIME (float): Number of seconds to wait between executions.
+        shot_prompting (int): Number of examples (shots) to include in the prompt to demonstrate the task.
+        pass_k (int): Max number of k to evaluate in pass@k metric.
+        n_shot (int): Number of examples (shots) to include in the prompt to demonstrate the task.
+        seed (int): Seed used for generating the same outputs.
+    """    
     list_of_seeds = [seed + i for i in range(pass_k)]
     
     #with open(prompts_filepath, 'r') as file:
@@ -106,7 +155,28 @@ def handle_humaneval_x_benchmark(llm_obj, llm_path, prompts_filepath, prompt_for
     benchmark_utils.add_score_in_csv(results_path, "CodeBLEU", codebleu)
     benchmark_utils.add_score_in_csv(results_path, "SacreBLEU", sacrebleu)
 
-def handle_mbpp_benchmark(llm_obj, llm_path, prompts_filepath, prompt_for_shot_prompting, max_tokens, top_p, temperature, save_output_flag, SLEEP_TIME, shot_prompting, pass_k, seed):
+def handle_mbpp_benchmark(llm_obj: Llama, llm_path: str, prompts_filepath: str, prompt_for_shot_prompting: str, 
+                          max_tokens: int, top_p: float, temperature: float, save_output_flag: str, 
+                          SLEEP_TIME: float, shot_prompting: int, pass_k: int, seed: int):
+    """
+    Read the dataset from MBPP (i.e., `MbppPlus.jsonl`) line by line and execute the LLM with the prompt.
+    Args:
+        llm_obj (Llama): Llama object with the model loaded.
+        llm_path (str): LLM path.
+        prompts_filepath (str): Dataset path.
+        prompt_for_shot_prompting_file (str): Text file containing the initial prompt for shot-prompting.
+        max_tokens (int): Max tokens used by the LLM to generate responses.
+        top_p (float): The top-p value to use for nucleus sampling.
+        seed (int): Seed used for generating the same outputs.
+        temperature (float): The temperature to use for sampling.
+        save_output_flag (str): Indicates if the results should be saved ('yes' or 'no').
+        SLEEP_TIME (float): Number of seconds to wait between executions.
+        shot_prompting (int): Number of examples (shots) to include in the prompt to demonstrate the task.
+        pass_k (int): Max number of k to evaluate in pass@k metric.
+        n_shot (int): Number of examples (shots) to include in the prompt to demonstrate the task.
+        seed (int): Seed used for generating the same outputs.
+    """
+
     change_mbpp_filepath("benchmarks/evalplus/evalplus/data/mbpp.py", os.path.basename(prompts_filepath))
     results_path = os.path.join("results", "mbpp", f"mbpp_{shot_prompting}_shot.csv")
     
@@ -127,8 +197,19 @@ def handle_mbpp_benchmark(llm_obj, llm_path, prompts_filepath, prompt_for_shot_p
     results = mbpp.run_mbpp_benchmark(extract_llm_name(llm_path), pass_k, shot_prompting)
     save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k, shot_prompting)
 
-def save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k, n_shot):
-    
+def save_mbpp_results(results: tuple, llm_path: str, save_output_flag: str, 
+                      results_path: str, pass_k: int, n_shot: int) -> None:
+    """
+    Add the pass@k and BLEU scores in the correct columns of the CSV
+    Args:
+        results (tuple): pass@k and BLEU scores.
+        llm_path (str): LLM path.
+        save_output_flag (str): Indicates if the results should be saved ('yes' or 'no').
+        results_path (str): CSV path to save the results.
+        pass_k (int): Max number of k to evaluate in pass@k metric.
+        n_shot (int): Number of examples (shots) to include in the prompt to demonstrate the task.
+    """
+
     (mbpp_unsan_pass_1, mbpp_san_pass_1, mbppPlus_unsan_pass_1, mbppPlus_san_pass_1, 
      mbpp_unsan_pass_10, mbpp_san_pass_10, mbppPlus_unsan_pass_10, mbppPlus_san_pass_10, 
      mbpp_unsan_pass_100, mbpp_san_pass_100, mbppPlus_unsan_pass_100, mbppPlus_san_pass_100,
@@ -196,7 +277,27 @@ def save_mbpp_results(results, llm_path, save_output_flag, results_path, pass_k,
             "returned_prompts", extract_llm_name(llm_path), "mbpp", str(n_shot)
         )
         
-def handle_cyberseceval_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times):
+def handle_cyberseceval_benchmark(llm_path: str, prompts_filepath: str, max_tokens: int, seed: int, 
+                                  n_ctx: int, top_p: float, temperature: float, save_output_flag: str, 
+                                  prompt_for_shot_prompting_file: str, SLEEP_TIME: float, 
+                                  shot_prompting: int, n_times: int) -> None:
+    """
+    Redirects to the function of CyberSecEval called in the function.
+    Args:
+        llm_path (str): LLM path.
+        prompts_filepath (str): Dataset path.
+        max_tokens (int): Max tokens used by the LLM to generate responses.
+        seed (int): Seed used for generating the same outputs.
+        n_ctx (float): Context size.
+        top_p (float): The top-p value to use for nucleus sampling.
+        temperature (float): The temperature to use for sampling.
+        save_output_flag (str): Indicates if the results should be saved ('yes' or 'no').
+        prompt_for_shot_prompting_file (str): Text file containing the initial prompt for shot-prompting.
+        SLEEP_TIME (float): Number of seconds to wait between executions.
+        shot_prompting (int): Number of examples (shots) to include in the prompt to demonstrate the task.
+        n_times (int): Number of times to execute the benchmark.
+    """
+
     if not os.path.exists("benchmarks/PurpleLlama/CybersecurityBenchmarks/results"):
         os.makedirs("benchmarks/PurpleLlama/CybersecurityBenchmarks/results")
 

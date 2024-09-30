@@ -146,12 +146,25 @@ COMMAND_TEMPLATES = {
     }
 }
 
-def execute_command(command: str):
-    """Executes a system command."""
+def execute_command(command: str) -> None:
+    """
+    Executes a system command.
+    Args:
+        command (str): The command to be executed in the system shell.
+    """
     os.system(command)
 
-def extract_scores_from_json(file_googlebleu: Path, file_codebleu: Path, file_sacrebleu: Path) -> tuple:
-    """Extracts google_bleu, codebleu, and sacrebleu scores from JSON files."""
+def extract_scores_from_json(file_googlebleu: Path, file_codebleu: Path, file_sacrebleu: Path) -> tuple[float, float, float]:
+    """
+    Extracts the google_bleu, codebleu, and sacrebleu scores from the JSON files.
+    Args:
+        file_googlebleu (Path): File containg the GoogleBLEU
+        file_codebleu (Path): File containg the CodeBLEU
+        file_sacrebleu (Path): File containg the SacreBLEU
+    Returns:
+        tuple[float,float,float]: contains all the BLEU's scores
+    """
+    
     gbleu_score = -1
     codeb_score = -1
     sacreb_score = -1
@@ -198,8 +211,14 @@ def extract_scores_from_json(file_googlebleu: Path, file_codebleu: Path, file_sa
     return gbleu_score, codeb_score, sacreb_score
 
 
-def parse_scores(file_path):
-    """Parse the pass@1, pass@10, and pass@100 scores from a given file."""
+def parse_scores(file_path: str):
+    """
+    Parse the pass@1, pass@10, and pass@100 scores from a given file.
+    Args:
+        file_path (Path): Text file containing all the pass@k scores.
+    Returns:
+        tuple[float,float,float]: contains all the pass@k scores
+    """
     if os.path.exists(file_path):
         with open(file_path, 'r') as file:
             content = file.read()
@@ -226,7 +245,15 @@ def parse_scores(file_path):
         return None
 
 def run_mbpp_benchmark(model: str, pass_k : int, n_shot: int) -> tuple:
-    """Calculates the MBPP+ benchmark scores."""
+    """
+    Calculates the MBPP+ benchmark scores.
+    Args:
+        model (str): LLM path.
+        pass_k (int): Max k value for pass@k (k = 1, 10, 100).
+        n_shot (int): Number of shots (examples) for each execution.
+    Returns:
+        tuple: All the pass@k, CodeBLEU, SacreBLEU and GoogleBLEU for sanitized and unsanitized samples
+    """
 
     base_path = Path("benchmarks/codefuse-evaluation/codefuseEval/result")
     base_path.mkdir(parents=True, exist_ok=True)

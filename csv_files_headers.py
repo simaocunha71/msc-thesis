@@ -1,12 +1,40 @@
 import sys
 
-def set_csv_headers(benchmarks, pass_k):    
+def set_csv_headers(benchmarks: list, pass_k: int) -> dict:   
+    """Generate headers by concatenating base columns with optional additional columns.
+    Args:
+        benchmarks (list): List of benchmarks to execute.
+        pass_k (int): Max k value for pass@k metric.
+    Returns:
+        dict: Dictionary with all the CSV headers grouped by each CSV name as CSV keys.
+    """
+
     def generate_headers(base_columns, additional_columns=None):
-        """Generate headers by concatenating base and additional columns."""
+        """Generate headers by concatenating base columns with optional additional columns.
+
+        Args:
+            base_columns (list): A list of base column names.
+            additional_columns (list, optional): A list of additional column names to concatenate. Defaults to None.
+
+        Returns:
+            list: A list containing the concatenated base and additional columns.
+        """
         return base_columns + (additional_columns or [])
+
     
-    def add_pass_k_columns(pass_k, base_names):
-        """Generate pass@k columns based on the value of pass_k."""
+    def add_pass_k_columns(pass_k: int, base_names: list) -> list:
+        """Generate pass@k columns based on the value of pass_k.
+
+        Args:
+            pass_k (int): The pass@k value, which must be between 1 and 100.
+            base_names (list): A list of base column names.
+
+        Returns:
+            list: A list of pass@k columns generated from the base names.
+
+        Raises:
+            SystemExit: If pass_k is not an integer or if it is not within the supported range.
+        """
         if not isinstance(pass_k, int):
             print(f"[ERROR] pass@k value must be an integer. Received: {pass_k}")
             sys.exit(1)

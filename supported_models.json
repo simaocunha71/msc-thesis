@@ -2,6 +2,8 @@
     {
         "LLAMACPP": [
             "llms/models/llama-2-7b.Q2_K.gguf",
+            "llms/models/llama-2-7b.Q2_K_1.gguf",
+            "llms/models/llama-2-7b.Q2_K_2.gguf",
             "llms/models/llama-2-7b.Q3_K_L.gguf",
             "llms/models/llama-2-7b.Q3_K_M.gguf",
             "llms/models/llama-2-7b.Q3_K_S.gguf",

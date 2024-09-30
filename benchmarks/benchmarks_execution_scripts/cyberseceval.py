@@ -3,19 +3,51 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from utils import autocompleteOrInstruct_json_to_csv, mitre_json_to_csv, interpreter_json_to_csv, frr_json_to_csv, canary_exploit_json_to_csv
 
 # Global definitions for LLMs
-JUDGE_LLM = "LLAMACPP::llms/models/orca-2-13b.Q3_K_M.gguf::random_string"
-EXPANSION_LLM = "LLAMACPP::llms/models/Tess-10.7B-v2.0-Q6_K.gguf::random_string"
+JUDGE_LLM = "LLAMACPP::llms/models/llama-2-7b.Q2_K_1.gguf::random_string"
+EXPANSION_LLM = "LLAMACPP::llms/models/llama-2-7b.Q2_K_2.gguf::random_string"
 
 def set_env_variables():
-    #Variáveis de ambiente necessárias para a execução do benchmark
+    """
+    Set the necessary environment variables for the execution of the benchmark.
 
-    #os.system("export WEGGLI_PATH=weggli")
+    This function sets the following environment variables:
+    - WEGGLI_PATH: Specifies the path to the WEGGLI executable.
+    - PATH: Updates the system PATH to include the Cargo bin directory for Rust tools.
+
+    Environment Variables:
+        WEGGLI_PATH (str): Path to the WEGGLI executable.
+        PATH (str): Updated PATH variable including Cargo's bin directory.
+    """
+    
+    # Set the path for WEGGLI - export WEGGLI_PATH=weggli
     os.environ['WEGGLI_PATH'] = 'weggli'
-    #os.system('export PATH="$HOME/.cargo/bin:$PATH"')
+    
+    # Update PATH to include Cargo's bin directory - export PATH="$HOME/.cargo/bin:$PATH"
     os.environ['PATH'] = f"{os.environ['HOME']}/.cargo/bin:{os.environ['PATH']}"
 
-def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_type, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times):
-    """Calcula os scores do benchmark Instruct ou Autocomplete do CybersecEval"""
+
+def run_instruct_or_autocomplete_benchmark(model: str, prompts_filepath: str, benchmark_type: str, 
+                                           max_tokens: int, seed: int, n_ctx: int, top_p: float, temperature: float, 
+                                           save_output_flag: str, prompt_for_shot_prompting_file: str, 
+                                           SLEEP_TIME: float, shot_prompting: int, n_times: int):
+    """
+    Calculate the scores from the Instruct or Autocomplete benchmarks from CybersecEval.
+
+    Args:
+        model (str): LLM name.
+        prompts_filepath (str): Dataset path.
+        benchmark_type (str): Refers to "Autocomplete" or "Instruct"
+        max_tokens (int): Max tokens used by the LLM to generate responses.
+        seed (int): Seed used for generating the same outputs.
+        n_ctx (float): Context size.
+        top_p (float): The top-p value to use for nucleus sampling.
+        temperature (float): The temperature to use for sampling.
+        save_output_flag (str): Indicates if the results should be saved ('yes' or 'no').
+        prompt_for_shot_prompting_file (str): Text file containing the initial prompt for shot-prompting.
+        SLEEP_TIME (float): Number of seconds to wait between executions.
+        shot_prompting (int): Number of examples (shots) to include in the prompt to demonstrate the task.
+        n_times (int): Number of times to execute the benchmark.
+    """
 
     set_env_variables()
 
@@ -54,12 +86,31 @@ def run_instruct_or_autocomplete_benchmark(model, prompts_filepath, benchmark_ty
         columns_from_json_response_file
         )
 
-def run_mitre_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times):
-    'Calcula os scores do benchmark MITRE do CybersecEval'
+def run_mitre_benchmark(model: str, prompts_filepath: str, max_tokens: int, seed: int, 
+                        n_ctx: int, top_p: float, temperature: float, 
+                        save_output_flag: str, prompt_for_shot_prompting_file: str, 
+                        SLEEP_TIME: float, shot_prompting: int, n_times: int):
+    """
+    Calculate the scores from the MITRE benchmark from CybersecEval.
+
+    Args:
+        model (str): LLM name.
+        prompts_filepath (str): Dataset path.
+        max_tokens (int): Max tokens used by the LLM to generate responses.
+        seed (int): Seed used for generating the same outputs.
+        n_ctx (float): Context size.
+        top_p (float): The top-p value to use for nucleus sampling.
+        temperature (float): The temperature to use for sampling.
+        save_output_flag (str): Indicates if the results should be saved ('yes' or 'no').
+        prompt_for_shot_prompting_file (str): Text file containing the initial prompt for shot-prompting.
+        SLEEP_TIME (float): Number of seconds to wait between executions.
+        shot_prompting (int): Number of examples (shots) to include in the prompt to demonstrate the task.
+        n_times (int): Number of times to execute the benchmark.
+    """
 
     set_env_variables()
 
-    #Estas duas LLMs vão estar fixadas para todas as medições
+    #NOTE: These two LLMs are going to be the same in all the measurements.
     judge_llm     = JUDGE_LLM
     expansion_llm = EXPANSION_LLM
 
@@ -103,12 +154,32 @@ def run_mitre_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p,
         columns_from_json_response_file
     )
 
-def run_interpreter_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times):
-    'Calcula os scores do benchmark Interpreter do CybersecEval'
+
+def run_interpreter_benchmark(model: str, prompts_filepath: str, max_tokens: int, seed: int, 
+                              n_ctx: int, top_p: float, temperature: float, 
+                              save_output_flag: str, prompt_for_shot_prompting_file: str, 
+                              SLEEP_TIME: float, shot_prompting: int, n_times: int):
+    """
+    Calculate the scores from the Interpreter benchmark from CybersecEval.
+
+    Args:
+        model (str): LLM name.
+        prompts_filepath (str): Dataset path.
+        max_tokens (int): Max tokens used by the LLM to generate responses.
+        seed (int): Seed used for generating the same outputs.
+        n_ctx (float): Context size.
+        top_p (float): The top-p value to use for nucleus sampling.
+        temperature (float): The temperature to use for sampling.
+        save_output_flag (str): Indicates if the results should be saved ('yes' or 'no').
+        prompt_for_shot_prompting_file (str): Text file containing the initial prompt for shot-prompting.
+        SLEEP_TIME (float): Number of seconds to wait between executions.
+        shot_prompting (int): Number of examples (shots) to include in the prompt to demonstrate the task.
+        n_times (int): Number of times to execute the benchmark.
+    """
 
     set_env_variables()
 
-    #Esta LLM vai estar fixada para todas as medições
+    #NOTE: This LLM will be the same in all the measurements.
     judge_llm     = JUDGE_LLM
 
     command_to_execute_benchmark = (
@@ -150,8 +221,27 @@ def run_interpreter_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, 
         columns_from_json_response_file
     )
 
-def run_frr_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times):
-    'Calcula os scores do benchmark False Rate Refusal do CybersecEval'
+def run_frr_benchmark(model: str, prompts_filepath: str, max_tokens: int, seed: int, 
+                      n_ctx: int, top_p: float, temperature: float, 
+                      save_output_flag: str, prompt_for_shot_prompting_file: str, 
+                      SLEEP_TIME: float, shot_prompting: int, n_times: int):
+    """
+    Calculate the scores from the False Rate Refusal benchmark from CybersecEval.
+
+    Args:
+        model (str): LLM name.
+        prompts_filepath (str): Dataset path.
+        max_tokens (int): Max tokens used by the LLM to generate responses.
+        seed (int): Seed used for generating the same outputs.
+        n_ctx (float): Context size.
+        top_p (float): The top-p value to use for nucleus sampling.
+        temperature (float): The temperature to use for sampling.
+        save_output_flag (str): Indicates if the results should be saved ('yes' or 'no').
+        prompt_for_shot_prompting_file (str): Text file containing the initial prompt for shot-prompting.
+        SLEEP_TIME (float): Number of seconds to wait between executions.
+        shot_prompting (int): Number of examples (shots) to include in the prompt to demonstrate the task.
+        n_times (int): Number of times to execute the benchmark.
+    """
 
     set_env_variables()
 
@@ -192,8 +282,27 @@ def run_frr_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, t
         columns_from_json_response_file
     )
 
-def run_canary_exploit_benchmark(model, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times):
-    'Calcula os scores do benchmark Vulnerability Exploitation do CybersecEval'
+def run_canary_exploit_benchmark(model: str, prompts_filepath: str, max_tokens: int, seed: int, 
+                      n_ctx: int, top_p: float, temperature: float, 
+                      save_output_flag: str, prompt_for_shot_prompting_file: str, 
+                      SLEEP_TIME: float, shot_prompting: int, n_times: int):
+    """
+    Calculate the scores from the Vulnerability Exploitation benchmark from CybersecEval.
+
+    Args:
+        model (str): LLM name.
+        prompts_filepath (str): Dataset path.
+        max_tokens (int): Max tokens used by the LLM to generate responses.
+        seed (int): Seed used for generating the same outputs.
+        n_ctx (float): Context size.
+        top_p (float): The top-p value to use for nucleus sampling.
+        temperature (float): The temperature to use for sampling.
+        save_output_flag (str): Indicates if the results should be saved ('yes' or 'no').
+        prompt_for_shot_prompting_file (str): Text file containing the initial prompt for shot-prompting.
+        SLEEP_TIME (float): Number of seconds to wait between executions.
+        shot_prompting (int): Number of examples (shots) to include in the prompt to demonstrate the task.
+        n_times (int): Number of times to execute the benchmark.
+    """
 
     set_env_variables()
 

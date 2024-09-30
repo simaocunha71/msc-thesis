@@ -90,22 +90,27 @@ COMMAND_TEMPLATES = {
     }
 }
 
-def execute_command(command: str):
-    """Executes a system command."""
+def execute_command(command: str) -> None:
+    """
+    Executes a system command.
+    Args:
+        command (str): The command to be executed in the system shell.
+    """
     os.system(command)
 
 def parse_score_from_file(file_path: Path) -> dict:
-    """Parses score information from the given file."""
+    """
+    Parse the pass@1, pass@10, and pass@100 scores from a given file.
+    Args:
+        file_path (Path): Text file containing all the pass@k scores.
+    Returns:
+        dict: contains all the pass@k scores
+    """
     scores = {"pass_1": -1, "pass_10": -1, "pass_100": -1}
     
     if file_path.exists():
         with file_path.open('r') as file:
             content = file.read()
-            #match = re.search(r"Total:\s+(\d+)\s+Correct:\s+(\d+)", content)
-            #if match:
-            #    total, correct = int(match.group(1)), int(match.group(2))
-            #    if total != 0:
-            #        scores["pass_1"] = correct / total
 
             match_pass1 = re.search(r"'pass@1': (\d+\.\d+)", content)
             match_pass10 = re.search(r"'pass@10': (\d+\.\d+)", content)
@@ -124,7 +129,15 @@ def parse_score_from_file(file_path: Path) -> dict:
     return scores
 
 def extract_scores_from_json(file_googlebleu: Path, file_codebleu: Path, file_sacrebleu: Path) -> dict:
-    """Extracts google_bleu and codebleu scores from JSON files."""
+    """
+    Extracts the google_bleu, codebleu, and sacrebleu scores from the JSON files.
+    Args:
+        file_googlebleu (Path): File containg the GoogleBLEU
+        file_codebleu (Path): File containg the CodeBLEU
+        file_sacrebleu (Path): File containg the SacreBLEU
+    Returns:
+        dict: contains all the BLEU's scores
+    """
     scores = {"google_bleu": -1, "codebleu": -1, "sacrebleu": -1}
     
     # Check and extract from google_bleu file
@@ -168,7 +181,16 @@ def extract_scores_from_json(file_googlebleu: Path, file_codebleu: Path, file_sa
 
 
 def run_human_eval_benchmark(model: str, language: str, pass_k: int, n_shot: str) -> dict:
-    """Calculates the HumanEval-X benchmark scores for pass@k, Google BLEU, CodeBLEU, and SacreBLEU."""
+    """
+    Calculates the HumanEval-X benchmark scores.
+    Args:
+        model (str): LLM path.
+        language (str): Language of the HumanEval-X benchmark.
+        pass_k (int): Max k value for pass@k (k = 1, 10, 100).
+        n_shot (int): Number of shots (examples) for each execution.
+    Returns:
+        dict: All the pass@k, CodeBLEU, SacreBLEU and GoogleBLEU for a given language of HumanEval-X
+    """
     base_path = Path("benchmarks/codefuse-evaluation/codefuseEval/result")
     scores = {"pass_1": -1, "pass_10": -1, "pass_100": -1,
               "google_bleu": -1, "codebleu": -1, "sacrebleu": -1}
