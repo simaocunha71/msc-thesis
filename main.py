@@ -464,7 +464,7 @@ def main():
             else:
                 create_csv(os.path.join(folder_path, filename + f"_{shot_prompting}_shot.csv"), columns)
 
-        if not any("cyberseceval" in filepath for filepath in prompts_filepath_list):
+        if any("humaneval_x" in filepath or "mbpp" in filepath for filepath in prompts_filepath_list):
             #MBPP or HumanEval-X execution
             for _ in range(N_TIMES):
                 start_measure(llm_path_list, prompts_filepath_list, max_tokens, n_ctx, seed, save_output_flag, samples_interval, shot_prompting, SLEEP_TIME, pass_k, top_p, temperature)
