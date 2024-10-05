@@ -1,7 +1,0 @@
-    var nums = strings.Split(numbers, " ")
-    sort.Strings(nums)
-    return strings.Join(nums, " ")
-}
-
-
-

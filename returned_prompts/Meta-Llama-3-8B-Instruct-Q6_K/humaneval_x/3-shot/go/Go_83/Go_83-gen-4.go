@@ -1,9 +1,0 @@
-    count := 0
-    for i := 1; i < 10; i++ {
-        count += 1
-    }
-    for i := 1; i <= 9; i++ {
-        count += int(math.Pow(10, float64(n-1))) - int(math.Pow(10, float64(n-1))) / 10 + 1
-    }
-    return count
-}  // O(n log n) complexity. The first loop counts the numbers that start with 1 and the second loop counts the numbers that end with 1. The second loop calculates the number of numbers that end with 1 by subtracting the numbers that end with 0 (which is 1/10th of the total numbers) and then adding 1 for the number that ends with 1 itself.  // O(n log n) complexity. The first loop counts the numbers that start with 1 and the second loop counts the numbers that end with 1. The second loop calculates the number of numbers that end with 1 by subtracting the numbers that end with 0 (which is 1/10th of the total numbers) and then adding 1 for the number that ends with 1 itself.  // O(n log n) complexity. The first loop counts the numbers that start with 1 and the second loop counts the numbers that end with 1. The second loop calculates the number of numbers that end with 1 by subtracting the numbers that end with 0 (which is 1/10th of the total numbers) and then adding 1 for the number that ends with 1 itself.  // O(n log n) complexity. The first loop counts the numbers that start with 1 and the second loop counts the numbers that end with 1. The second loop calculates the number of numbers that end with 1 by subtracting the numbers that end with 0 (which is 1/10th of the total numbers) and then adding 1 for the number that ends with 1 itself.  // O(n log n) complexity. The first loop counts the numbers that start with 1 and the second loop counts the numbers that end with 1. The second loop calculates the number of numbers that end with 1 by subtracting the numbers that end with 0 (which is 1/10th of the total numbers) and then adding 1 for the number that ends with 1 itself.  // O(n log n

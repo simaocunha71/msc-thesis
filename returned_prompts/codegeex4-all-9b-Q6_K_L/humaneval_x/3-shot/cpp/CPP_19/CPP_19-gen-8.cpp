@@ -1,5 +1,0 @@
-
-In the has_close_elements function, you're missing a closing brace.  This is likely a copy-paste error, but it's the only syntax error I can find.
-In the separate_paren_groups function, you're using the wrong variable name when you check if the level is 0.  You want to check if level == 0 instead of if (level==0).
-In the sort_numbers function, you're using to_string() on a map value, which is an int.  You should use to_string(m[word]) instead of to_string(m[words[min]]).
-In all of the functions, you're missing return statements for when the input is empty.  For example, in has_close_elements, if the vector is empty, the function will return nothing, which is undefined behavior.  Similarly, in separate_paren_groups, if the input string is empty, the function will return nothing, which is undefined behavior.  In sort_numbers, if the input string is empty, the function will return nothing, which is undefined behavior.  In truncate_number, if the input is NaN, the function will return NaN, which is undefined behavior.  All of these functions should return an empty vector or string or 0.0, respectively,

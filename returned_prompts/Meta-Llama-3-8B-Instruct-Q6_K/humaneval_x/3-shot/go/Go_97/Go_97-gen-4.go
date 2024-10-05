@@ -1,2 +1,0 @@
-    return (a % 10) * (b % 10)
-}  //The function works by taking the last digit of each number and multiplying them together. The modulus operator % is used to get the last digit of a number. For example, 148 % 10 = 8.

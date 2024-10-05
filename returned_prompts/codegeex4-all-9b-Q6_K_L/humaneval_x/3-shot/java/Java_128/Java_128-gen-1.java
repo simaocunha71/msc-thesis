@@ -1,2 +1,0 @@
-
-Your first question is correctly solved, you have a double loop that checks all pairs of numbers. The second question is also correctly solved, you are iterating over all characters in the string and increasing or decreasing the depth as needed. The third question is also correctly solved, you are using the modulus operator to get the decimal part of the number. The fourth question is correctly solved, you are iterating over all numbers in the list and multiplying the product of all signs by the sum of all magnitudes.

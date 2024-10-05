@@ -1,9 +1,0 @@
-    if (s.length() < 3) return false;
-    for (int i=0;i<s.length()-2;i++)
-    {
-        if (s[i]==s[i+1] || s[i]==s[i+2] || s[i+1]==s[i+2])
-        return false;
-    }
-    return true;
-}  //  This function checks whether a given string is "happy" or not.
-//  A string is considered "happy" if it has at least 3 characters and all 3 consecutive characters are unique.  //  If the string has less than 3 characters, it's not "happy".  //  If any 3 consecutive characters are the same, the string is not "happy".  //  Otherwise, the string is "happy".  //  It's a simple function that checks these conditions and returns a boolean value.  //  It's not a very complex function, but it does the job.  //  It's also quite efficient, as it only checks 3 consecutive characters at a time, and it stops checking as soon as it finds a pair of identical characters.  //  It's a good function for checking whether a string is "happy" or not.  //  It's a simple, efficient, and effective function.  //  It's a good example of a simple function that does a specific task.  //  It's a good function to use when you need to check whether a string is "happy" or not.  //  It's a good function to use when you need to check whether a string has at least 3 characters and all 3 consecutive characters are unique.  //  It's a good function to use when you need to check whether a string is "happy" or not, and you want a simple and efficient function that does the job.  //  It's a good function to use when you need to check whether a string is "happy" or not, and you want a simple and efficient function that does the job.  //  It's a good function to use when you need to check whether a string is "happy" or not, and you want a simple and efficient function that does the job.  //  It's a good function to use when you need to check whether a string is "happy" or not, and you want a simple and efficient function that does the job.  //  It's a good function to use when you need to check

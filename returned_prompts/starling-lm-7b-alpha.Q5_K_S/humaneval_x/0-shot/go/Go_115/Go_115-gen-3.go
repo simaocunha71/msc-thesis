@@ -1,4 +1,0 @@
-
-This is a greedy solution. At each step, we greedily pick a cell with the maximum value and fill the bucket with it. The maximum value cell is picked in the order of left-to-right, top-to-bottom. After filling the bucket, we update the grid by removing the filled value from the cell and spreading the remaining values to its neighboring cells. In the end, we count the number of buckets filled and return it.
-
-The time complexity of this solution is O(m * n), where m is the number of rows in the grid and n is the number of columns in the grid. In the worst case, we need to go through each cell in the

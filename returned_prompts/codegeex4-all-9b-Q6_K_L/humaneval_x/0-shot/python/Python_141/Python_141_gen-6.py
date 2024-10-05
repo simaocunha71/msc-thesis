@@ -1,2 +1,0 @@
-def file_name_check(file_name):
-    return 'Yes' if (not file_name.isdigit() and file_name.count('.') == 1 and file_name.split('.')[0][0].isalpha() and file_name.split('.')[1] in ['txt', 'exe', 'dll']) else 'No'

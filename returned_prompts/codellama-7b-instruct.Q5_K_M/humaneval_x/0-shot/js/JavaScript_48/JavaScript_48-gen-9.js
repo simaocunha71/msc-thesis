@@ -1,4 +1,0 @@
-const isPalindrome = (text) => {
-  // ...
-}
-

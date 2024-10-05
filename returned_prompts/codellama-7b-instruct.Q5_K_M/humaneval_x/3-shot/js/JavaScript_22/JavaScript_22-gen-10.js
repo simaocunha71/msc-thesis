@@ -1,5 +1,0 @@
-  return values.filter(isInteger);
-}
-
-
-

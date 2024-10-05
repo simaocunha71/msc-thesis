@@ -1,2 +1,0 @@
-  return l.filter(x => x > 0);
-} // Using JavaScript's built-in filter method, which creates a new array with all elements that pass the test implemented by the provided function. In this case, the function is x => x > 0, which returns true for numbers greater than 0 and false otherwise. The filter method then uses these boolean values to decide whether to include each element in the new array.

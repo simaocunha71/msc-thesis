@@ -1,2 +1,0 @@
-  return (Math.pow(10, n) % p);
-} // Note: This function will only work correctly for n <= 53 due to JavaScript's limitations with floating point precision. For larger values of n, you would need to use a library that supports arbitrary precision arithmetic.

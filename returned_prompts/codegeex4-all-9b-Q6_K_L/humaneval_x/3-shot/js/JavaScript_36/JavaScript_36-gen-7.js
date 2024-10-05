@@ -1,6 +1,0 @@
-
-The first question is asking to check whether there are any two numbers in the list that are closer than the given threshold. It's a straightforward nested loop solution that checks each pair of numbers and returns true if any pair is closer than the threshold.
-The second question is asking to separate groups of parentheses from a given string. It uses a for loop to iterate through each character in the string, keeping track of the current depth of parentheses and the current group of parentheses. When it encounters a closing parenthesis and the current depth is 0, it adds the current group to the result list and resets the current group and depth.
-The third question is asking to truncate a floating point number to its decimal part. It uses the modulo operator to get the decimal part of the number.
-The fourth question is asking to count the number of times the digit 7 appears in integers less than n that are divisible by 11 or 13. It uses a for loop to iterate through each number less than n, checking if it's divisible by 11 or 13. If it is, it converts the number to a string and checks each character to see if it's a 7. If it is, it increments the count.
-Overall, these questions are asking to manipulate and analyze lists of numbers and strings, and to perform operations on floating point numbers and integers.

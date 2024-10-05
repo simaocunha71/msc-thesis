@@ -1,1 +1,0 @@
-    return sum(s.startswith('I') for s in re.split('[.?!]', S))

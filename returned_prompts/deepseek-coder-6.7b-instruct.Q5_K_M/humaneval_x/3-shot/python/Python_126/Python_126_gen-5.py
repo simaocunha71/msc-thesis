@@ -1,3 +1,0 @@
-    return lst == sorted(lst)
-
-

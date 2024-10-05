@@ -1,2 +1,0 @@
-    return sorted([num for num in range(a, b+1) if num % 2 == 0])
-

@@ -1,8 +1,0 @@
-def words_string(s):
-    return s.replace(',', '').split()
-
-print(words_string("Hi, my name is John")) # == ["Hi", "my", "name", "is", "John"]
-print(words_string("One, two, three, four, five, six")) # == ["One", "two", "three", "four", "five", "six"]
-print(words_string("One, two, three, four, five, six, seven")) # == ["One", "two", "three", "four", "five", "six", "seven"]
-print(words_string("One, two, three, four, five, six, seven, eight")) # == ["One", "two", "three", "four", "five", "six", "seven", "eight"]
-print(words_string("One, two, three, four, five, six, seven, eight, nine")) # == ["One", "two", "three", "four", "five", "six", "seven", "eight", "nine"]

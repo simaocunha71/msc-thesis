@@ -1,5 +1,0 @@
-    return strings.Join(output, " ")
-}
-
-
-

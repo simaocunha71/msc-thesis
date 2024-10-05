@@ -1,7 +1,0 @@
-def count_distinct_characters(string: str) -> int:
-    return len(set(string.lower()))
-    
-
-
-
-This function takes a string as an input and returns the number of distinct characters in that string. The distinct characters are counted regardless of the case. For example, the string 'xyzXYZ' is considered to have 3 distinct characters: 'x', 'y', and 'z'. The function achieves this by first converting the string to lowercase using the method `string.lower()` and then converting it to a set, which is an unordered collection of unique elements. The length of the set is then returned as the number of distinct characters. The function uses the `set` data structure in Python, which automatically removes any duplicate elements. The `lower()` method is used to ensure that the function is case-insensitive, so that it treats 'a' and 'A' as the same character. This is achieved by converting the entire string to lowercase before counting the distinct characters. The unit tests provided in the problem description demonstrate the function's ability to count distinct characters correctly. For example, the test `>>> count_distinct_characters('xyzXYZ')` checks that the function returns 3, which is the correct number of distinct characters in the string 'xyzXYZ'. Similarly, the test `>>> count_distinct_characters('Jerry')` checks that the function returns 4, which is the correct number of distinct characters in the string 'Jerry'. The function passes these tests, indicating that it is working correctly.

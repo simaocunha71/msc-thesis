@@ -1,3 +1,0 @@
-
-The first function has_close_elements seems fine to me. No need for a label, just use a for loop with an index range that starts at 0 and ends with numbers.size() - 1. The condition abs(numbers[i] - numbers[j]) < threshold can be simplified to abs(numbers[i] - numbers[j]) < threshold.
-The second function separate_paren_groups seems fine, but you should check the input string for parentheses that do not match. The third function truncate_number is fine as well. The fourth function modp seems fine except that if n is 0, the function will return 1, which might not be what you want. You might want to return 0 in that case.

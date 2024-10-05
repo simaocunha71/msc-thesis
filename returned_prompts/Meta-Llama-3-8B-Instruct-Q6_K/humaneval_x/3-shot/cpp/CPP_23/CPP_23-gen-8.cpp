@@ -1,2 +1,0 @@
-    return str.length();
-}

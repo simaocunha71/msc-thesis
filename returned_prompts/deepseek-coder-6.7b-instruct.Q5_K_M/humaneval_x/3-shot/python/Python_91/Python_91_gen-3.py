@@ -1,3 +1,0 @@
-    return S.count("I")
-
-

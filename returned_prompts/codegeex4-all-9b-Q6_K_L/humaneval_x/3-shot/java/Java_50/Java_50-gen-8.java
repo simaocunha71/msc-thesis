@@ -1,5 +1,0 @@
-
-The first one is a very common algorithm for checking if there are two numbers closer than a given threshold in a list. It has a time complexity of O(n^2) which is acceptable for small lists.
-The second one is a solution for separating groups of parentheses from a given string. It uses a StringBuilder to build the current string and an integer to keep track of the current depth of parentheses. It iterates over the characters in the input string and updates the current string and depth accordingly. When the depth is 0, it means that a group of parentheses has been completed and it adds the current string to the result list.
-The third one is a solution for truncating a floating point number. It uses the modulo operator to get the decimal part of the number.
-The fourth one is a solution for encoding and decoding a string by shifting every character by 5 in the alphabet. It uses a StringBuilder to build the encoded or decoded string and iterates over the characters in the input string. For encoding, it shifts the character by 5 positions in the alphabet. For decoding, it shifts the character by 21 positions in the alphabet.

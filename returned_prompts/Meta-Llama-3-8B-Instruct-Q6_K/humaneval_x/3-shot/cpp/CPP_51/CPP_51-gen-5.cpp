@@ -1,9 +1,0 @@
-    string result = "";
-    for(char c : text){
-        if(c != 'a' && c != 'e' && c != 'i' && c != 'o' && c != 'u' && c != 'A' && c != 'E' && c != 'I' && c != 'O' && c != 'U'){
-            result += c;
-        }
-    }
-    return result;
-}  // Not very efficient, could be improved by using std::remove_if
-// or by using a stringstream and a loop to remove vowels.

@@ -1,5 +1,0 @@
-
-The first function hasCloseElements is a little bit tricky. You should not check all pairs of numbers. You can check only pairs of numbers where i is smaller than j and i+1 is smaller than j. This is because if i is greater than j, then i+1 will be greater than j. This way you will check all pairs of numbers only once.
-The second function separateParenGroups is good. You can improve it by using a while loop instead of a for loop and by checking if the current depth is not equal to 0 at the end of the loop.
-The third function truncateNumber is good. You can improve it by using the Math.trunc function instead of the modulo operator.
-The fourth function sumSquares is good. You can improve it by using a for loop instead of a while loop and by checking if the index is a multiple of 3 or 4 and not a multiple of 3 at the end of the loop.

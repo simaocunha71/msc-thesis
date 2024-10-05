@@ -1,4 +1,0 @@
-    return number-int(number);
-}
-
-

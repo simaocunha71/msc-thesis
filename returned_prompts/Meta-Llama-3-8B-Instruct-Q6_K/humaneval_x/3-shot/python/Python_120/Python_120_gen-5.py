@@ -1,2 +1,0 @@
-    return sorted(arr, reverse=True)[:k] if k <= len(arr) else []  # return empty list if k is greater than len(arr)
-    # The sorted function is used to sort the array in descending order. The [:k] is used to slice the array to get the first k elements. If k is greater than the length of the array, it will return an empty list.

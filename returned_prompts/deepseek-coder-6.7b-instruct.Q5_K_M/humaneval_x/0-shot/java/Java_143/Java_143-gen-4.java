@@ -1,7 +1,0 @@
-In this solution, we are firstly splitting the sentence into an array of words. We then iterate through each word in the array and check whether its length is a prime number. If it is, we append it to a StringBuilder object. At the end, we return the StringBuilder object converted to a string, but without a trailing space using the trim() method.
-
-The isPrime method checks whether a given number is a prime number or not. It starts by checking if the number is less than or equal to 1, in which case it returns false because 1 and numbers less than 1 are not considered prime numbers. Then, it uses a for loop to check if any number from 2 to the square root of the given number can divide the given number evenly. If any such number is found, the method returns false because the number is not prime. If no such number is found, the method returns true, indicating that the given number is prime.
-
-This solution is efficient because it uses a StringBuilder object to build the result string, which allows it to append words to the end of the string in linear time. It also uses the isPrime method to check the length of each word, which runs in linear time. Therefore, the overall time complexity of the solution is linear, O(n), where n is the length of the sentence.
-
-This solution should pass all provided test cases. However, if the sentence contains a very long word, the isPrime method may take a long time to check the length of the word, because it checks all numbers up to the square root of the word length. In such a case, you might want to optimize the

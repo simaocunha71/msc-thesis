@@ -1,5 +1,0 @@
-
-The first problem is good. You're using a brute force approach, which is acceptable for small inputs. However, if you want to optimize, you can sort the array first and then iterate over it, which will cut down the number of comparisons by a factor of 2.
-The second problem is a good problem, too. You're using a depth-first search approach, which is also acceptable for small inputs. However, if you want to optimize, you can use a stack-based approach instead, which will be more efficient.
-The third problem is a good problem, too. You're using a brute force approach, which is acceptable for small inputs. However, if you want to optimize, you can use a binary search approach instead, which will be more efficient.
-The fourth problem is a good problem, too. You're using a dynamic programming approach, which is acceptable for small inputs. However, if you want to optimize, you can use a bottom-up approach instead, which will be more efficient.

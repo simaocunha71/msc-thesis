@@ -1,3 +1,0 @@
-    binary = bin(decimal)[2:]  # convert decimal to binary and remove the '0b' prefix
-    return f"db{binary}db"
-

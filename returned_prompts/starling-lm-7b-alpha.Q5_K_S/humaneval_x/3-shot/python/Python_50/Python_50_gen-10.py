@@ -1,1 +1,0 @@
-    return "".join([chr(((ord(ch) + ord(chars[

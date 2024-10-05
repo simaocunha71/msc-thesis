@@ -1,7 +1,0 @@
-
-There's a lot of room for improvement here.
-
-Your hasCloseElements() method is O(n^2), which is probably fine for small values of n, but could be improved to O(n log n) using a TreeSet to store the numbers in sorted order and then looking for any two numbers that are within threshold of each other. You could also use a TreeSet to store the differences between consecutive numbers, and then check to see if any of those differences are less than threshold.
-Your separateParenGroups() method could be improved to O(n) by using a stack to keep track of the current depth of nesting. When you encounter an opening parenthesis, push it onto the stack. When you encounter a closing parenthesis, pop it from the stack. If the stack is empty when you encounter a closing parenthesis, then you've found a complete group. You can then remove the opening parenthesis from the beginning of the string and the closing parenthesis from the end of the string, and add the group to the result list. This method is O(n) because each character in the string is processed exactly once.
-Your truncateNumber() method is fine, but you could use Math.floorMod() instead of the modulus operator to handle negative numbers correctly.
-Your antiShuffle() method could be improved to O(n log n) by using a TreeMap to store the characters in each word and then iterating through the map to build the sorted word. This method is O(n log n) because each character in the string is processed exactly once, and the TreeMap operations are O(log n).

@@ -1,5 +1,0 @@
-The provided code defines a function `intToMiniRoman` that takes a positive integer as input and returns its Roman numeral equivalent as a string. The function uses an object `romanNumbers` to map each Roman numeral to its corresponding decimal value. It then initializes an empty string `result` to store the Roman numeral representation of the input number.
-
-The function sorts the keys of the `romanNumbers` object in descending order based on their decimal values. This is done to ensure that the Roman numerals are added in the correct order, following the rules of Roman numerals. 
-
-The function then enters a while loop, which continues as long as the input number is greater than 0. Inside the loop, a for loop iterates over the sorted keys of the `romanNumbers` object. For each key, the function checks if the input number is greater than or equal to the corresponding decimal value. If it is, the Roman numeral is added to the `result` string and the input number is decremented by the decimal value of the Roman numeral. This process is repeated until the input number

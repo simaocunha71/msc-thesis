@@ -1,5 +1,0 @@
-    return regexp.MustCompile(`[aeiou]`)
-}
-
-
-

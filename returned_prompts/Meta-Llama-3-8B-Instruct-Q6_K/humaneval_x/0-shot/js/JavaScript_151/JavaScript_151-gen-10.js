@@ -1,1 +1,0 @@
-This function uses the `filter()` method to create a new array with only the numbers that are positive integers and odd. Then it uses the `map()` method to square each number in the array. Finally, it uses the `reduce()` method to sum up the squares. If the input list is empty, the function returns 0, as specified in the problem statement.

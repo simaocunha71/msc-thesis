@@ -1,8 +1,0 @@
-    vowels = "aeiou"
-    result = ""
-    for c in text:
-        if c not in vowels:
-            result += c
-    return result
-
-

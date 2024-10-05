@@ -1,9 +1,0 @@
-
-Firstly, I'd like to say that the problems are great and fun to solve. I'd like to point out some things that could be improved on, though.
-
-The first problem seems fine, but I'd like to suggest that you can use a single loop to solve the problem. Currently, you're using nested loops, which isn't necessary and can be avoided. You can solve the problem in a single loop, with a comparison between each pair of numbers. If the distance is less than the threshold, return true.
-The second problem is fine, but I'd like to suggest that you can use a stack to solve the problem. You can iterate through the string and push each character onto the stack. If the character is an opening parenthesis, push it onto the stack. If the character is a closing parenthesis, pop the stack and check if the stack is empty. If the stack is empty, it means that the parentheses are balanced and not nested within each other. If the stack is not empty, it means that the parentheses are not balanced and nested within each other. You can continue this process until you reach the end of the string. If the stack is empty at the end, it means that all parentheses are balanced and not nested within each other.
-The third problem is fine, but I'd like to suggest that you can use math.Floor to solve the problem. You can use math.Floor to get the integer part of the number, and then subtract it from the original number to get the decimal part.
-The fourth problem is fine, but I'd like to suggest that you can use the strings package to solve the problem. You can use strings.ToUpper to convert the string to uppercase, and then iterate through the string and check if each character is a vowel. If the character is a vowel, replace it with the letter that appears 2 places ahead of that vowel in the english alphabet. If the character is not a vowel, keep it as it is.
-
-I hope this helps! Let me know if you have any questions.

@@ -1,2 +1,0 @@
-
-The function works by first checking if both inputs are strings. If they are, it converts both strings to floats by replacing the commas with dots. If only one input is a string, it converts that string to a float. Then it compares the two values and returns the larger one. If the values are equal, it returns `None`. This way, the function handles both integer and float inputs, as well as strings that contain floating point numbers with commas instead of dots. The function also handles the case where both inputs are equal.

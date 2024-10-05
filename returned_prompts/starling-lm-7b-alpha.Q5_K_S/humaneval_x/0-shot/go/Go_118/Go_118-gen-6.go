@@ -1,3 +1,0 @@
-The line is checking if the current character is a '*' and the next character is a vowel, or if the current character is a vowel and the next character is a '*'. 
-
-It is correct as is, because you are only interested in the current character and the next character. The buffer.String()[i] == v condition is checking if the current character is a vowel, and the buffer.String()[i+1] == '*' condition is checking if

@@ -1,2 +1,0 @@
-
-Your first piece of code is good. The second piece of code is good too, although it's not very clear what the function is doing. The third piece of code is good, although it's not clear what the function is doing. The fourth piece of code is good, although it's not clear what the function is doing.

@@ -1,2 +1,0 @@
-    for index, value := range arr{
-       

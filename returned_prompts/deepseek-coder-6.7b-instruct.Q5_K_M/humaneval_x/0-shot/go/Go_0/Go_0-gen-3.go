@@ -1,1 +1,0 @@
-    for i := 0; i < len(numbers)-1; i++

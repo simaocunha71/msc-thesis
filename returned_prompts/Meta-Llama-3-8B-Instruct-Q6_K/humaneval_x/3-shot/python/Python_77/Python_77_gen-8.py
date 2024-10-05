@@ -1,3 +1,0 @@
-    import math
-    return math.isclose(a ** (1.0/3), round(a ** (1.0/3)))  # or math.isclose(a ** (1.0/3), round(a ** (1.0/3)), rel_tol=1e-9) for more precision
-    # round(a ** (1.0/3)) to check if the cube root is an integer. If it is, a is a perfect cube. math.isclose is used to compare floating point numbers for equality with a certain tolerance. In this case, it is set to 1e-9 to ensure accurate results. You can adjust this value based on your needs.

@@ -1,9 +1,0 @@
-```javascript
-const allPrefixes = (string) => {
-  let prefixes = [];
-  for (let i = 1; i <= string.length; i++) {
-    prefixes.push(string.slice(0, i));
-  }
-  return prefixes;
-}
-```

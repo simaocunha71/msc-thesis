@@ -1,1 +1,0 @@
-    return [val for val in values if isinstance(val, int)]

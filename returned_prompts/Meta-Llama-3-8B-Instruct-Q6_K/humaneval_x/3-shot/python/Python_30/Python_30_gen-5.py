@@ -1,3 +1,0 @@
-    return [i for i in l if i > 0]  # Using a list comprehension
-
-

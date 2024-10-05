@@ -1,2 +1,0 @@
-
-This solution first creates a new slice of pairs, where each pair contains the original number, the sum of its digits, and its index in the original list. Then it sorts this slice based on a custom comparison function. This function first compares the sums of the digits of the pairs, and if they are equal, it compares the indices. Finally, it creates a new slice with the sorted numbers and returns it. The time complexity of this solution is O(n log n), where n is the length of the input list. The space complexity is O(n), for the additional slice of pairs.

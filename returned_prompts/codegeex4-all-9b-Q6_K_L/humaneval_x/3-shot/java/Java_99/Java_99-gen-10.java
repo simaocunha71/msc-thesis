@@ -1,5 +1,0 @@
-
-In the first question, you have a small bug in your implementation. The condition should be if (distance <= threshold) return true, not if (distance < threshold) return true. This is because if two numbers are equal, they are still close to each other.
-In the second question, you have a minor bug in your implementation. The condition should be if (current_depth == 0) instead of if (current_depth == 1). This is because you want to add the current string to the result when you reach the outermost level of parentheses, not when you reach the next level.
-In the third question, your implementation is correct. You are using the modulus operator (%) to get the decimal part of the number.
-In the fourth question, your implementation is correct. You are using Math.floor() and Math.ceil() to get the lower and upper integers, and then you are comparing the distances to zero to decide which integer to return.

@@ -1,7 +1,0 @@
-    int sum=0;
-    for (int i=1;i<=n;i++)
-    {
-        sum+=i;
-    }
-    return sum;
-} // or: return n*(n+1)/2; (this is the formula for the sum of an arithmetic series) // or: int sum=0; for (int i=1;i<=n;i++) sum+=i; return sum; (this is the original answer) // or: return n*(n+1)/2; (this is the formula for the sum of an arithmetic series) // or: int sum=0; for (int i=1;i<=n;i++) sum+=i; return sum; (this is the original answer) // or: return n*(n+1)/2; (this is the formula for the sum of an arithmetic series) // or: int sum=0; for (int i=1;i<=n;i++) sum+=i; return sum; (this is the original answer) // or: return n*(n+1)/2; (this is the formula for the sum of an arithmetic series) // or: int sum=0; for (int i=1;i<=n;i++) sum+=i; return sum; (this is the original answer) // or: return n*(n+1)/2; (this is the formula for the sum of an arithmetic series) // or: int sum=0; for (int i=1;i<=n;i++) sum+=i; return sum; (this is the original answer) // or: return n*(n+1)/2; (this is the formula for the sum of an arithmetic series) // or: int sum=0; for (int i=1;i<=n;i++) sum+=i; return sum; (this is the original answer) // or: return n*(n+1)/2; (this is the formula for the sum of an arithmetic series) // or: int sum=0; for (int i=1;i<=n;i++) sum+=i; return sum; (this is the original answer) // or: return n*(n+1)/2; (this is the formula for the sum of an arithmetic series) // or: int sum=0; for (int i=1;i<=n;i++) sum+=i; return sum; (this is the original answer) // or: return n*(n+1)/2; (this is the

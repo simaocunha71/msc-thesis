@@ -1,4 +1,0 @@
-
-The first problem's function is well written and it's easy to understand. The algorithm is O(n^2) and it's the most straightforward way to solve this problem.
-The second problem's function is also well written, it's easy to understand and it's also correct.
-The third problem's function is also correct, but it's not very efficient. The algorithm is O(n^2) and it's the most straightforward way to solve this problem, but it's not the best one. A better algorithm would be to use a sieve to generate all prime numbers up to the maximum possible length of the intersection, and then check if the length of the intersection is in that list of primes. This would be a O(n) algorithm, which is much faster for large inputs. However, this would also require more memory to store the list of primes.

@@ -1,1 +1,0 @@
-    return ' '.join(sorted(''.join(s.split(' '))))

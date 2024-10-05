@@ -1,2 +1,0 @@
-const fibfib = (n) => {
-

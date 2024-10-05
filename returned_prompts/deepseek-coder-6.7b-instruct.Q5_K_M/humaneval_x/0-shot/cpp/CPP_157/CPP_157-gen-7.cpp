@@ -1,2 +1,0 @@
-This program takes three side lengths as input and determines if they can form a right-angled triangle. It does this by first checking if the given lengths can form a valid triangle. If they can, the lengths are sorted in ascending order. The program then checks if the square of the hypotenuse (the longest side) is equal to the sum of the squares of the other two sides (the other two sides). If this is true, the three sides form a right-angled triangle and the program returns true. If not, the three sides do not form a right-angled triangle and the program returns false.
-

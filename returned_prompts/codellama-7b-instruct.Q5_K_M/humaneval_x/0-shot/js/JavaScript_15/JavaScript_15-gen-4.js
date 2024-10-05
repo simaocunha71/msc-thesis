@@ -1,2 +1,0 @@
-const stringSequence = (n) => {
-

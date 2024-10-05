@@ -1,1 +1,0 @@
-        Set<Character> primeDigits = new HashSet<Character>(Arrays.asList('2', '3', '5

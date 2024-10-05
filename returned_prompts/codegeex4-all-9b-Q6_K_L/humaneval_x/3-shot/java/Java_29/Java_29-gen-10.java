@@ -1,9 +1,0 @@
-
-I would like to start with the fact that your code is very good, you have a good understanding of the language and you have used all the tools that are available in Java.
-However, I would like to point out some improvements that can be made to your code:
-
-1. The first problem is that you are not using the correct data types for your variables. In the first problem, you are using a List of Doubles, but you are comparing them to a double. This is a problem because you are comparing an object to a primitive data type, which can lead to unexpected results.
-2. The second problem is that you are not using the correct data types for your variables. In the second problem, you are using a StringBuilder to store the current string, but you are appending characters to it as if it were a String. This is a problem because you are not using the StringBuilder correctly, and it can lead to unexpected results.
-3. The third problem is that you are not using the correct data types for your variables. In the third problem, you are using a List of Strings, but you are comparing them to a String. This is a problem because you are comparing an object to a primitive data type, which can lead to unexpected results.
-4. The fourth problem is that you are not using the correct data types for your variables. In the fourth problem, you are using a List of Strings, but you are comparing them to a String. This is a problem because you are comparing an object to a primitive data type, which can lead to unexpected results.
-5. The fifth problem is that you are not using the correct data types for your variables. In the fifth problem, you are using a List of Strings, but you are comparing them to a String. This is a problem because you are comparing an object to a primitive data type, which can lead to unexpected results.

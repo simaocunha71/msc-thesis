@@ -1,2 +1,0 @@
-const changeBase = (x, base) => {
-

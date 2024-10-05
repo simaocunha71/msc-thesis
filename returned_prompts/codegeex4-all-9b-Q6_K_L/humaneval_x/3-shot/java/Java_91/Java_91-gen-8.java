@@ -1,4 +1,0 @@
-
-I don't have much to say about the first function, apart from the fact that you have a lot of unnecessary indentation, but the second function is a lot better.
-The third function is good, but I would prefer to use the Math.floor() function to calculate the integer part of the number. This is because it will return the largest integer smaller than the given number, which is what you want.
-The fourth function is also good, but I would prefer to use the String.trim() method to remove any leading or trailing spaces from the sentence before checking if it starts with the word "I". This is because the String.trim() method will also remove any other whitespace characters, which can be useful if the sentence has any leading or trailing spaces.

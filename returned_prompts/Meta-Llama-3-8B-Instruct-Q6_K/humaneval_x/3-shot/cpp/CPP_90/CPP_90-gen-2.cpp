@@ -1,7 +1,0 @@
-    if(lst.size()<2)
-        return -1;
-    sort(lst.begin(),lst.end());
-    if(lst[0]==lst[1])
-        return -1;
-    return lst[1];
-}  // This function will return the second smallest number in the list. If the list has less than 2 elements, it will return -1 (or None as per the problem statement). If all elements in the list are the same, it will also return -1.  // It sorts the list first, then checks if the first two elements are the same. If they are, it returns -1. Otherwise, it returns the second smallest element.  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //

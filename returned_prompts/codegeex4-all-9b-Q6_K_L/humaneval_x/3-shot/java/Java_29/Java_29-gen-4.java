@@ -1,6 +1,0 @@
-
-Your hasCloseElements method is correct.  It uses two nested loops to check every pair of elements in the list.  If the distance between any two elements is less than the threshold, it immediately returns true.  If no such pair is found after checking all possibilities, it returns false.
-Your separateParenGroups method is also correct.  It uses a StringBuilder to build up the current string as it iterates through the characters in the input string.  It keeps track of the current depth of parentheses, and when it reaches a depth of zero, it adds the current string to the result list and resets the current string and current depth.  It correctly handles nested parentheses and ignores spaces in the input string.
-Your truncateNumber method is also correct.  It uses the modulus operator to find the decimal part of the number.  It correctly handles negative numbers and numbers that are already integers.
-Your filterByPrefix method is also correct.  It uses Java 8 streams to filter the input list and collect the results into a new list.  It correctly handles empty input lists and ignores case when filtering.
-Overall, your solutions are correct and efficient.  They correctly handle the given test cases and have good performance for large inputs.

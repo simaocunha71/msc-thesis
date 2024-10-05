@@ -1,5 +1,0 @@
-In the given code, we first define a helper function `is_prime` to check if a number is prime or not. Then we use this function in the main function `words_in_sentence` to check each word's length and if it is prime, we add it to the result string.
-
-The helper function `is_prime` checks if a number is prime by iterating from 2 to the square root of the number and checking for any divisor. If it finds any, it returns false, indicating that the number is not prime. If it doesn't find any divisor, it returns true, indicating that the number is prime.
-
-In the main function `words_in_sentence`, we first split the input sentence into words and store them in an array `words`. Then we iterate over the words and for each word, we check its length using the `is_prime` function. If the length is prime, we add it to the `result` string. We add a space after each word except the last one. Finally, we return the

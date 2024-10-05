@@ -1,4 +1,0 @@
-        return String.join("", strings);
-    }
-}
-

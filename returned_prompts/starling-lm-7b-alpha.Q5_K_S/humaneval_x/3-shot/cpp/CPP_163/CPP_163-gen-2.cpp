@@ -1,9 +1,0 @@
-    vector<int> all_numbers;
-    for (int i=a;i<=b;i++)
-    if (i%2==0)
-    all_numbers.push_back(i);
-    return all_numbers;
-}
-
-
-
