@@ -1,0 +1,230 @@
+
+
+def car_race_collision(n):
+    # This function returns the number of collisions,
+    # as the left and right moving cars collide but continue
+    # moving as if they didn't.
+    # The n cars move left to right at the same speed,
+    # while the n cars move right to left at the same speed
+
+    # Since all cars are moving at the same speed,
+    # after n cars have moved left to right, the n cars moving
+    # right to left will have moved the same distance
+
+    # Therefore, there will be a collision every time a car moving
+    # left to right is directly in front of a car moving right to left
+
+    # This is equivalent to saying there will be a collision every time
+    # the index of the car moving left to right is the same as the index
+    # of the car moving right to left
+
+    # So the number of collisions is equivalent to the number of cars
+    return n
+
+
+# Testing
+print(car_race_collision(1))  # 1
+print(car_race_collision(2))  # 2
+print(car_race_collision(3))  # 3
+print(car_race_collision(4))  # 4
+print(car_race_collision(5))  # 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

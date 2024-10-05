@@ -1,0 +1,5 @@
+The provided solution correctly solves the problem of determining whether it is possible to obtain a sorted array by performing the right shift operation. Here's a breakdown of the solution:
+
+1. The code starts by finding the maximum element in the given array using the spread operator (...arr) and the Math.max function. This gives us the maximum value in the array.
+2. Next, the code uses the filter function to remove the maximum element from the array (num < max) and then finds the maximum value in the remaining array. This gives us the second maximum value.
+3. The code then checks if the maximum element (max) is less than the second maximum element (secondMax). If it is, it means that the maximum element is not the largest value in the array, and it is not possible to obtain a sorted array by performing the right shift operation. In this case, the

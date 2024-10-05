@@ -1,0 +1,7 @@
+        for (Integer i : l) {
+            if (i > t)
+                return false;
+        }
+        return true;
+    }
+}

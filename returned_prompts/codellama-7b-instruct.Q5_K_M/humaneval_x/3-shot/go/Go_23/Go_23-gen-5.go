@@ -1,0 +1,5 @@
+    return len(str)
+}
+
+
+

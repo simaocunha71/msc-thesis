@@ -1,0 +1,2 @@
+
+The first question is correct. There is no problem in the code. The second question is also correct. The only thing I would suggest is to use a std::string instead of char chr, because std::string is more flexible and less prone to errors. The third question is correct, but it is not clear why you use float instead of double. Double has more precision than float. The fourth question is also correct. The only thing I would suggest is to use a range-based for loop instead of a traditional for loop. This makes the code more readable and easier to understand.

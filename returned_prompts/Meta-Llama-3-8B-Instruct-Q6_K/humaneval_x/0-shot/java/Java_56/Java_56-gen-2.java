@@ -1,0 +1,13 @@
+    public boolean correctBracketing(String brackets) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : brackets.toCharArray()) {
+            if (c == '<') {
+                stack.push('<');
+            } else if (c == '>') {
+                if (stack.isEmpty() || stack.pop() != '<') {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }  // Time Complexity: O(n), where n is the length of the input string. The space complexity is O(n) as well, as in the worst case, the stack can grow up to the size of the input string.  // The function uses a stack to keep track of the opening brackets. For each character in the input string, if it is an opening bracket, it is pushed onto the stack. If it is a closing bracket, the stack is checked for an opening bracket. If the stack is empty or the top of the stack does not match the closing bracket, the function returns false, indicating that the brackets are not correctly nested. If the function iterates through the entire input string and the stack is empty, it returns true, indicating that the brackets are correctly nested.  // The test cases demonstrate the function's behavior for different input strings. For example, the input string "<>" has correctly nested brackets, so the function returns true. The input string "><<" has mismatched brackets, so the function returns false.  // The function is efficient because it only needs to iterate through the input string once and uses a stack to keep track of the opening brackets. The time complexity is O(n), where n is the length of the input string. The space complexity is O(n) as well, as the stack can grow up to the size of the input string in the worst case.  // The function can be used to check if a string of brackets is correctly nested, which is useful in a variety of applications, such as parsing HTML or XML.  // For example, the function can be used to check if a string of HTML tags is correctly nested. If the function returns true, the HTML tags are correctly nested, and the string can be safely parsed. If the function returns false, the HTML tags are not correctly nested, and the string cannot be safely parsed.  // The function can also be used to check if a string of XML tags is correctly nested. If the function returns true, the XML tags are correctly nested, and the string can be safely parsed. If the function returns

@@ -1,0 +1,1 @@
+    return sorted(arr, reverse=True)[:k]  # Sort the array in descending order and return the first k elements.

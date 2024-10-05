@@ -1,0 +1,11 @@
+    result := 0
+    for i := 0; i < len(str)-len(substring)+1; i++ {
+        if str[i:len(substring)+i] == substring {
+            result += 1
+        }
+    }
+    return result
+}
+
+
+

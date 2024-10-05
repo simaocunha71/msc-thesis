@@ -1,0 +1,11 @@
+split_words("Hello,world!")
+
+# This code is a function that takes a string as input and returns a list of words split on whitespace if there are whitespaces in the string, if there are no whitespaces it returns the number of lower-case letters with odd order in the alphabet. Here are some examples to illustrate how the function works:
+# The function split_words("Hello world!") takes the string "Hello world!" as input and returns the list ["Hello", "world!"]. This is because the string contains whitespaces, so the function splits the string on whitespaces to create a list of words.
+# The function split_words("Hello,world!") takes the string "Hello,world!" as input and returns the same list ["Hello", "world!"] as in the previous example. This is because the string contains a comma as well as whitespaces, so the function splits the string on whitespaces and commas to create a list of words.
+# The function split_words("abcdef") takes the string "abcdef" as input and returns the number 3. This is because the string does not contain any whitespaces or commas, so the function counts the number of lower-case letters with odd order in the alphabet, which in this case are the letters 'a' and 'c'.
+
+# Here are some additional examples to further illustrate how the function works:
+# The function split_words("Hello,world!") takes the string "Hello,world!" as input and returns the same list ["Hello", "world!"] as in the previous examples. This is because the string contains a comma as well as whitespaces, so the function splits the string on whitespaces and commas to create a list of words.
+# The function split_words("") takes the empty string as input and returns 0. This is because the string does not contain any whitespaces or commas, so the function counts the number of lower-case letters with odd order in the alphabet, which in this case is 0.
+# The function split_words("Hello,world!") takes the string "Hello,world!" as input and returns the same list ["Hello", "world!"] as in the previous examples. This is because the string contains a comma as well as whitespaces, so the function splits the string on whitespaces and commas to create

@@ -1,0 +1,19 @@
+let count = 0;
+
+  for(let i = 0; i < s.length; i += 2) {
+    if(s[i] === s[i].toUpperCase() && 'AEIOU'.includes(s[i])) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+console.log(countUpper('aBCdEf')); // 1
+console.log(countUpper('abcdefg')); // 0
+console.log(countUpper('dBBE')); // 0
+```
+
+## Problem 10
+
+```js

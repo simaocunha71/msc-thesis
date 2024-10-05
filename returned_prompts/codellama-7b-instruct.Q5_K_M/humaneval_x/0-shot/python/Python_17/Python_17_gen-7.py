@@ -1,0 +1,1 @@
+    return [4 if letter == 'o' else 2 if letter == 'o|' else 1 for letter in music_string]

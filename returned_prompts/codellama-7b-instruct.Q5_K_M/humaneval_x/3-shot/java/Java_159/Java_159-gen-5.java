@@ -1,0 +1,13 @@
+        List<Integer> result = new ArrayList<>();
+
+        if (need > remaining) {
+            result.add(number + remaining);
+            result.add(0);
+        } else {
+            result.add(number + need);
+            result.add(remaining - need);
+        }
+        return result;
+    }
+}
+

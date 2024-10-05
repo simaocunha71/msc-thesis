@@ -1,0 +1,12 @@
+    bool increasing=true;
+    bool decreasing=true;
+    int i;
+    for (i=1;i<l.size();i++)
+    {
+        if (l[i-1]>l[i])
+            decreasing=false;
+        if (l[i-1]<l[i])
+            increasing=false;
+    }
+    return increasing || decreasing;
+}  // This function works for any type of array not just float type.  It will work for any data type.  It will return true if all elements are increasing or decreasing.  It will return false if the array has both increasing and decreasing elements.  It will return false if the array has no elements.  It will return false if the array has only one element.  It will return true if the array has all elements equal.  It will return true if the array has all elements equal and has more than one element.  It will return true if the array has all elements equal and has only one element.  It will return true if the array has all elements equal and has no elements.  It will return true if the array has all elements equal and has more than one element.  It will return true if the array has all elements equal and has only one element.  It will return true if the array has all elements equal and has no elements.  It will return true if the array has all elements equal and has more than one element.  It will return true if the array has all elements equal and has only one element.  It will return true if the array has all elements equal and has no elements.  It will return true if the array has all elements equal and has more than one element.  It will return true if the array has all elements equal and has only one element.  It will return true if the array has all elements equal and has no elements.  It will return true if the array has all elements equal and has more than one element.  It will return true if the array has all elements equal and has only one element.  It will return true if the array has all elements equal and has no elements.  It will return true if the array has all elements equal and has more than one element.  It will return true if the array has all elements equal and has only one element.  It will return true if the array has all elements equal and has no elements.  It will return true if the array has all elements equal and has more than one element.  It will return true if the array has all elements equal

@@ -1,0 +1,7 @@
+
+I see that you're writing Java. This is a good thing because Java has a lot of good libraries and tools. However, there are a few things in your code that you could improve.
+First of all, your code is well-commented, which is good! However, you could make your comments more concise and to the point. For example, in the first code snippet, you could write "Check if in given list of numbers, are any two numbers closer to each other than given threshold." as "Check if any two numbers are closer than threshold.".
+In the second code snippet, you could write "Input to this function is a string containing multiple groups of nested parentheses." as "Input is a string of nested parentheses.".
+In the third code snippet, you could write "Given a positive floating point number, it can be decomposed into and integer part (largest integer smaller than given number) and decimals (leftover part always smaller than 1)." as "Given a positive floating point number, decompose it into integer and decimal parts.".
+In the fourth code snippet, you could write "brackets is a string of "<" and ">"." as "Input is a string of "<" and ">".".
+Overall, your code is well-written and easy to read, but there are a few small things that you could improve.

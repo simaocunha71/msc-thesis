@@ -1,0 +1,9 @@
+    if (s.length()<3) return false;
+    int i;
+    for (i=0;i<s.length()-2;i++)
+    {
+        if (s[i]==s[i+1] || s[i+1]==s[i+2] || s[i]==s[i+2])
+        return false;
+    }
+    return true;
+}  // This function checks if a string is happy. A string is happy if its length is at least 3 and every 3 consecutive letters are distinct.

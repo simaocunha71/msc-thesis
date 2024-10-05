@@ -1,0 +1,103 @@
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum += i;
+  }
+  return sum;
+} // or return (n * (n + 1)) / 2; // formula for sum of natural numbers
+} // for small n, this is more efficient
+} // but for large n, the loop version is more accurate
+} // due to floating point precision issues
+} // in the formula
+} // version
+} // for
+} // large
+} // n
+} // example
+} // sum
+} // to
+} // N
+} // function
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N
+} // sumToN
+} // sum
+} // to
+} // N

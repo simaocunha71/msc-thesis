@@ -1,0 +1,2 @@
+    return string.count(substring)
+

@@ -1,0 +1,15 @@
+    if n < 3{
+        return 0
+    }else if n == 3{
+        return 1
+    }
+
+    a, b, c := 0, 0, 1
+    for i := 3; i <= n; i++ {
+        a, b, c = b, c, a + b + c
+    }
+    return c
+}
+
+
+

@@ -1,0 +1,9 @@
+    sort.Ints(lst)
+    if len(lst) < 2 {
+        return nil
+    }
+    return lst[1]
+}
+
+
+

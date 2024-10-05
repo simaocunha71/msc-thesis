@@ -1,0 +1,8 @@
+    text = strings.ToLower(text)
+    for i := 0; i < len(text); i++ {
+        if text[i] != text[len(text)-1-i] {
+            return false
+        }
+    }
+    return true
+}

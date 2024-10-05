@@ -1,0 +1,17 @@
+
+
+def median(l: list) -> float:
+    l = sorted(l)
+    n = len(l)
+    if n % 2 == 0:
+        return (l[n // 2] + l[(n // 2) - 1]) / 2
+    else:
+        return l[n // 2]
+
+
+# Important: don't forget to uncomment these lines when submitting to check50
+# if __name__ == "__main__":
+#     print(median([3, 1, 2, 4, 5]))  # 3
+#     print(median([-10, 4, 6, 1000, 10, 20]))  # 15.0
+
+```

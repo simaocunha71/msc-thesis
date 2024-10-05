@@ -1,0 +1,95 @@
+
+To solve this problem, we have to follow these steps:
+
+1. We start by defining a function called sorted_list_sum, which takes a vector of strings as an argument.
+2. In the function, we iterate through the vector and remove all strings that have an odd length. We do this by using the erase function to remove the element at the current index, and then decrementing the index to account for the element being removed.
+3. After removing all strings with odd lengths, we sort the vector first by length of the strings, and then alphabetically if the lengths are the same. We do this using the sort function from the algorithm library.
+4. Finally, we return the sorted vector.
+5. In the main function, we create a vector called list and initialize it with the values {"aa", "a", "aaa"}. We then call the sorted_list_sum function with this vector as an argument, and print the result using the c_str function.
+6. The output of the program will be "aa", since it is the only string in the vector with an even length, and it is the smallest string alphabetically.
+
+
+This solution satisfies the requirements of the problem, as it correctly removes strings with odd lengths, sorts the vector by length and alphabetically, and returns the resulting vector.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

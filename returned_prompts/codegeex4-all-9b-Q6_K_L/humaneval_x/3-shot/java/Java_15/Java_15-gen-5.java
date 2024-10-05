@@ -1,0 +1,9 @@
+
+The first question is not a bad question, it is a good question. It asks you to implement a function that checks if there are any two numbers in a list that are closer than a given threshold. The function should return true if there are two such numbers, and false otherwise.
+The implementation is straightforward. We iterate over all pairs of numbers in the list and calculate their distance. If the distance is smaller than the threshold, we return true. If we have checked all pairs and found no such pair, we return false.
+The second question is a little more tricky. It asks you to implement a function that separates groups of nested parentheses in a string. The function should return a list of strings, each containing one group of nested parentheses.
+The implementation is also straightforward. We iterate over all characters in the string and keep track of the current depth of parentheses. When we encounter an open parenthesis, we increment the depth and add it to the current string. When we encounter a close parenthesis, we decrement the depth and add it to the current string. If the depth becomes zero, we have finished reading one group of nested parentheses and we add it to the result list.
+The third question asks you to implement a function that truncates a floating point number. The function should return the decimal part of the number.
+The implementation is straightforward. We subtract the integer part of the number from the number itself. The result is always smaller than one, so we can safely cast it to a double.
+The fourth question asks you to implement a function that generates a string containing space-delimited numbers starting from 0 upto n inclusive.
+The implementation is straightforward. We iterate over all numbers from 0 to n and append them to a string builder, separated by spaces. Finally, we return the string.

@@ -1,0 +1,16 @@
+        String[] numerals = new String[] {
+            "i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x",
+            "xx", "xxxi", "xxx", "xl", "xli", "xl", "l", "l", "lii", "lxiii",
+            "lxiv", "lxv", "lxvi", "lxvii", "lxviii", "lix", "xc", "xcix",
+            "c", "c", "ccii", "ccxl", "ccc", "cd", "cdi", "cd", "cv",
+            "cvi", "cvii", "cviii", "cx", "cxix", "cxx", "cxxx", "cxl", "cxli",
+            "cxlv", "cxlvi", "cxlvii", "cxlviii", "cxlii", "cl", "cl", "cli",
+            "clii", "cliii", "cliv", "clvi", "clvii", "clviii", "clix", "clix",
+            "clix", "clix", "clix", "clix", "clix", "clix", "clix", "clix",
+            "clix", "clix", "clix", "clix", "clix", "clix", "clix", "clix",
+            "clix", "clix", "clix", "clix", "clix", "clix", "clix", "clix",
+            "clix", "clix", "clix", "clix", "clix", "clix", "clix", "clix",
+            "clix", "clix", "clix", "clix", "clix", "clix", "clix", "clix",
+            "clix", "clix", "clix", "clix", "clix", "clix", "clix", "clix",
+            "clix", "clix", "clix", "clix", "clix", "clix", "clix", "clix",
+            "clix", "clix", "cl

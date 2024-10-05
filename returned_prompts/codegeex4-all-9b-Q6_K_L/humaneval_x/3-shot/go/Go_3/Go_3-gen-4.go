@@ -1,0 +1,12 @@
+    balance := 0
+    for _, value := range operations{
+        balance += value
+        if balance < 0{
+            return true
+        }
+    }
+    return false
+}
+
+
+

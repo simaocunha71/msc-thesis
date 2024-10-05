@@ -1,0 +1,45 @@
+	if(s0.size()!=s1.size()) return false;
+	sort(s0.begin(),s0.end());
+	sort(s1.begin(),s1.end());
+	for(int i=0;i<s0.size();i++) if(s0[i]!=s1[i]) return false;
+	return true;
+}
+
+
+int main(){
+	string s0,s1;
+	while(cin>>s0>>s1) printf("%d\n",same_chars(s0,s1));
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+*/
+										 	   		   		 			
+*/
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	string s0,s1;
+	while(cin>>s0>>s1) cout<<same_chars(s0,s1)<<endl;
+	return 0;
+}
+
+bool same_chars(string s0,string s1){
+	if(s0.size()!=s1.size()) return false;
+	sort(s0.begin(),s0.end());
+	sort(s1.begin(),s1.end());
+	for(int i=0;i<s0.size();i++) if(s0[i]!=s1[i]) return false;
+	return true;
+}
+
+
+
+```

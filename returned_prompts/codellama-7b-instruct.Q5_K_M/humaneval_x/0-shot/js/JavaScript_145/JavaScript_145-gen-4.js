@@ -1,0 +1,2 @@
+const orderByPoints = (nums) => {
+

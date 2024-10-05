@@ -1,0 +1,14 @@
+    vector<int> factors;
+    int i;
+    for (i=2;i<n;i++)
+    if (n%i==0)
+    {
+        factors.push_back(i);
+        n/=i;
+        i--;
+    }
+    factors.push_back(n);
+    return factors;
+}
+
+

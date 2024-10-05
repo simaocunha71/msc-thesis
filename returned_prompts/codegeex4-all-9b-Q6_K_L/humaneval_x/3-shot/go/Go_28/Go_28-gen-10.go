@@ -1,0 +1,2 @@
+    return strings.Join(strings,"")
+}

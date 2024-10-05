@@ -1,0 +1,9 @@
+        if(a + b > c && b + c > a && a + c > b) {
+            double s = (a + b + c) / 2;
+            return Math.round(Math.sqrt(s * (s - a) * (s - b) * (s - c)) * 100.0) / 100.0;
+        } else {
+            return -1;
+        }
+    }
+}
+

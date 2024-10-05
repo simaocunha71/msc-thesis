@@ -1,0 +1,12 @@
+    var count int = 0
+    for i:=2; a != 1; i++ {
+        for a % i == 0 {
+            count++
+            a = a / i
+        }
+    }
+    return count == 3
+}
+
+
+

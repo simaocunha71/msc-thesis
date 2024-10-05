@@ -1,0 +1,10 @@
+
+I understand that the code provided is a JavaScript function that shifts every character in a string by 5 in the alphabet, and another function that decodes the string back to its original form. However, I am having trouble understanding the logic behind the encoding and decoding. Can you help explain it in more detail?
+
+In the encoding function, the input string is first split into an array of individual characters using the `split("")` method. Then, each character is mapped to a new character using the `map()` method. Inside the mapping function, the `String.fromCharCode()` method is used to convert the ASCII value of the character to its corresponding Unicode character. The ASCII value of each character is shifted by 5 using the expression `((ch.charCodeAt(0) + 5 - "a".charCodeAt(0)) % 26) + "a".charCodeAt(0)`. This ensures that the shift wraps around if the character is at the end of the alphabet. Finally, the mapped characters are joined back together into a single string using the `join("")` method and returned as the encoded string.
+
+The decoding function works in the reverse manner. It takes the encoded string as input and splits it into an array of individual characters using the `split("")` method. Then, each character is mapped to a new character using the `map()` method. Inside the mapping function, the `String.fromCharCode()` method is used to convert the ASCII value of the character to its corresponding Unicode character. The ASCII value of each character is shifted back by 5 using the expression `((ch.charCodeAt(0) - 5 + "a".charCodeAt(0)) % 26) + "a".charCodeAt(0)`. This ensures that the shift wraps around if the character is at the start of the alphabet. Finally, the mapped characters are joined back together into a single string using the `join("")` method and returned as the decoded string.
+
+Overall, the encoding and decoding functions use modular arithmetic to shift the ASCII values of the characters in the string by 5, ensuring that the shift wraps around if the character is at the end or start of the alphabet.
+
+I hope this explanation helps you understand the logic behind the encoding

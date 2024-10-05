@@ -1,0 +1,2 @@
+  return (Math.pow(10, n) % p) % p;
+} // This function works as long as n is not too large and p is not too small. For larger values of n or smaller values of p, you might need to use a library that can handle big numbers.

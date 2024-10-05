@@ -1,0 +1,13 @@
+    string binary;
+    binary="db";
+    while (decimal>0)
+    {
+        if (decimal%2==0)
+            binary+='0';
+        else
+            binary+='1';
+        decimal=decimal/2;
+    }
+    binary+="db";
+    return binary;
+}  // This function is not working correctly for decimal numbers greater than 32. It seems that the function is not correctly converting decimal number into binary format. It seems that the function is not correctly dividing the decimal number. It should be able to handle decimal numbers greater than 32.  // This function is not working correctly for decimal numbers greater than 32. It seems that the function is not correctly converting decimal number into binary format. It seems that the function is not correctly dividing the decimal number. It should be able to handle decimal numbers greater than 32.  // This function is not working correctly for decimal numbers greater than 32. It seems that the function is not correctly converting decimal number into binary format. It seems that the function is not correctly dividing the decimal number. It should be able to handle decimal numbers greater than 32.  // This function is not working correctly for decimal numbers greater than 32. It seems that the function is not correctly converting decimal number into binary format. It seems that the function is not correctly dividing the decimal number. It should be able to handle decimal numbers greater than 32.  // This function is not working correctly for decimal numbers greater than 32. It seems that the function is not correctly converting decimal number into binary format. It seems that the function is not correctly dividing the decimal number. It should be able to handle decimal numbers greater than 32.  // This function is not working correctly for decimal numbers greater than 32. It seems that the function is not correctly converting decimal number into binary format. It seems that the function is not correctly dividing the decimal number. It should be able to handle decimal numbers greater than 32.  // This function is not working correctly for decimal numbers greater than 32. It seems that the function is not correctly converting decimal number into binary format. It seems that the function is not correctly dividing the decimal number. It should be able to handle decimal numbers greater than 32.  // This function is not working correctly for decimal numbers greater than 32. It seems that the function is not correctly converting decimal number into binary format. It seems that the function is not correctly dividing the decimal number. It should be able to handle decimal numbers greater than

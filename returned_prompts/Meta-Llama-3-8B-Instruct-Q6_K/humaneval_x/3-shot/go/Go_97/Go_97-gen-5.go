@@ -1,0 +1,2 @@
+    return (a % 10) * (b % 10)
+}  // This code calculates the product of the unit digits of the two numbers. The modulus operator % is used to get the last digit of each number. The product of these two digits is then returned.

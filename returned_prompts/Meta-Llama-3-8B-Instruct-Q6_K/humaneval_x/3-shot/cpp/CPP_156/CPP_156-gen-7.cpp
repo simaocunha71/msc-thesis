@@ -1,0 +1,10 @@
+    vector<pair<int, string>> romans = {{1000, "m"}, {900, "cm"}, {500, "d"}, {400, "cd"}, {100, "c"}, {90, "xc"}, {50, "l"}, {40, "xl"}, {10, "x"}, {9, "ix"}, {5, "v"}, {4, "iv"}, {1, "i"}};
+    string result;
+    for (auto &roman : romans) {
+        while (number >= roman.first) {
+            result += roman.second;
+            number -= roman.first;
+        }
+    }
+    return result;
+}  //  Note: This code is not case-insensitive, so it will always return the result in lowercase. If you want to keep the original case of the input, you should not convert the result to lowercase.  //  Note: This code only supports numbers up to 1000. If you need to support larger numbers, you will need to add more cases to the romans vector.  //  Note: This code assumes that the input is a positive integer. If you need to support negative numbers or non-integer numbers, you will need to add additional error checking.  //  Note: This code does not handle the case where the input is 0. If you need to support 0, you will need to add a special case for it.  //  Note: This code does not handle the case where the input is a decimal number. If you need to support decimal numbers, you will need to add additional error checking.  //  Note: This code does not handle the case where the input is a non-integer number. If you need to support non-integer numbers, you will need to add additional error checking.  //  Note: This code does not handle the case where the input is a negative number. If you need to support negative numbers, you will need to add additional error checking.  //  Note: This code does not handle the case where the input is a number greater than 1000. If you need to support numbers greater than 1000, you will need to add more cases to the romans vector.  //  Note: This code does not handle the case where the input is a number less than 1. If you need to support numbers less than 1, you will need to add more cases to the romans vector.  //  Note: This code does not

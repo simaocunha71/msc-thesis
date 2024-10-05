@@ -1,0 +1,2 @@
+
+The function `exchange` takes two lists of numbers, `lst1` and `lst2`, as input. It first separates the numbers in `lst1` into two lists: `even_in_lst1` containing the even numbers, and `odd_in_lst1` containing the odd numbers.

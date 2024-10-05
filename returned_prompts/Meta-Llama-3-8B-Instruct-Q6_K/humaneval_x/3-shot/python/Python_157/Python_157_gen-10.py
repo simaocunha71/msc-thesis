@@ -1,0 +1,4 @@
+    a, b, c = sorted([a, b, c])  # sort sides in ascending order
+    return a**2 + b**2 == c**2  # check if it's a right-angled triangle using Pythagorean theorem
+    # The Pythagorean theorem states that for a right-angled triangle, the square of the length of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the lengths of the other two sides.
+    # We first sort the sides in ascending order. Then, we check if the square of the length of the longest side (c) is equal to the sum of the squares of the lengths of the other two sides (a and b). If it is, then the triangle is right-angled. Otherwise, it's not.

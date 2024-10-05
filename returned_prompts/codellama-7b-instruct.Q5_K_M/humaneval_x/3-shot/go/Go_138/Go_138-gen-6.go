@@ -1,0 +1,14 @@
+    if n < 4 || n % 2 != 0 {
+        return false
+    }
+
+    for i := 2; i <= n; i += 2 {
+        if n == i + i + i + i {
+            return true
+        }
+    }
+    return false
+}
+
+
+

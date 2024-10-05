@@ -1,0 +1,19 @@
+  var result = [0, 0];
+
+  for (let i = 1; i <= n; i++) {
+    let s = i.toString();
+    let isPalindrome = s == s.split('').reverse().join('');
+    if (isPalindrome) {
+      if (i % 2 == 0) {
+        result[0] += 1;
+      } else {
+        result[1] += 1;
+      }
+    }
+  }
+
+  return result;
+}
+
+
+

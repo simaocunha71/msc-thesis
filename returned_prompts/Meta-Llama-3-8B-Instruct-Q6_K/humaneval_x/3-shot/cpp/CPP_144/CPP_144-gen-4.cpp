@@ -1,0 +1,11 @@
+    int numerator1 numerator2 denominator1 denominator2;
+    istringstream iss1(x+" / "+n);
+    iss1>>numerator1>>"/"<<denominator1>>numerator2>>"/"<<denominator2;
+    if(denominator1==denominator2)
+    {
+        float res = (float)numerator1 / denominator1 * (float)numerator2 / denominator2;
+        if(res == (int)res)
+            return true;
+    }
+    return false;
+}  // The code to solve the problem. It reads the input strings and then checks if the numerators are equal. If they are, it calculates the result of the multiplication and checks if it is an integer. If it is, the function returns true, otherwise it returns false.  // The code to solve the problem. It reads the input strings and then checks if the numerators are equal. If they are, it calculates the result of the multiplication and checks if it is an integer. If it is, the function returns true, otherwise it returns false.  // The code to solve the problem. It reads the input strings and then checks if the numerators are equal. If they are, it calculates the result of the multiplication and checks if it is an integer. If it is, the function returns true, otherwise it returns false.  // The code to solve the problem. It reads the input strings and then checks if the numerators are equal. If they are, it calculates the result of the multiplication and checks if it is an integer. If it is, the function returns true, otherwise it returns false.  // The code to solve the problem. It reads the input strings and then checks if the numerators are equal. If they are, it calculates the result of the multiplication and checks if it is an integer. If it is, the function returns true, otherwise it returns false.  // The code to solve the problem. It reads the input strings and then checks if the numerators are equal. If they are, it calculates the result of the multiplication and checks if it is an integer. If it is, the function returns true, otherwise it returns false.  // The code to solve the problem. It reads the input strings and then checks if the numerators are equal. If they are, it calculates the result of the multiplication and checks if it is an integer. If it is, the function returns true, otherwise it returns false.  // The code to solve the problem. It

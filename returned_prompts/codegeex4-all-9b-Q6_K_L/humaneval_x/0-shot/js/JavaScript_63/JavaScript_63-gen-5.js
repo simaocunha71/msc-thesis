@@ -1,0 +1,6 @@
+```javascript
+  if(n < 2) return 0;
+  if(n === 2) return 1;
+  return fibfib(n - 1) + fibfib(n - 2) + fibfib(n - 3);
+};
+```

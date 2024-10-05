@@ -1,0 +1,10 @@
+    vector<string> result;
+    for (int i=0;i<strings.size();i++)
+    {
+        if (strings[i].find(substring) != string::npos)
+        {
+            result.push_back(strings[i]);
+        }
+    }
+    return result;
+}  // or using lambda function: return filter(strings.begin(), strings.end(), [substring](const string& s) { return s.find(substring) != string::npos; }); // or using std::copy_if: std::copy_if(strings.begin(), strings.end(), std::back_inserter(result), [substring](const string& s) { return s.find(substring) != string::npos; });  // or using std::remove_if and std::vector::erase: vector<string> result(strings); auto it = std::remove_if(result.begin(), result.end(), [substring](const string& s) { return s.find(substring) == string::npos; }); result.erase(it, result.end());  // or using std::find_if: vector<string> result; for (const string& s : strings) { if (s.find(substring) != string::npos) { result.push_back(s); } }  // or using boost::algorithm::filter: #include <boost/algorithm/copy.hpp> #include <boost/algorithm/string/find.hpp> vector<string> result; boost::algorithm::filter_copy(strings.begin(), strings.end(), std::back_inserter(result), boost::algorithm::contains(substring));  // or using std::copy_if: vector<string> result; std::copy_if(strings.begin(), strings.end(), std::back_inserter(result), [substring](const string& s) { return s.find(substring) != string::npos; });  // or using std::remove_if and std::vector::erase: vector<string> result(strings); auto it = std::remove_if(result.begin(), result.end(), [substring](const string& s) { return s.find(substring) == string::npos; }); result.erase(it, result.end());  // or using std::find_if: vector<string> result; for (const string& s : strings) { if (s.find(substring) != string::npos) { result.push_back(s); } }  // or using boost::algorithm::filter: #include <boost/algorithm/copy.hpp> #include <boost/algorithm/string/find.hpp> vector<string> result; boost::algorithm::filter_copy(strings.begin(), strings.end(), std::

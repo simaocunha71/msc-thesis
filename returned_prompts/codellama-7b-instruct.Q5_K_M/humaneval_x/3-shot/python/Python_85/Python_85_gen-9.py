@@ -1,0 +1,3 @@
+    return sum(lst[::2])
+
+

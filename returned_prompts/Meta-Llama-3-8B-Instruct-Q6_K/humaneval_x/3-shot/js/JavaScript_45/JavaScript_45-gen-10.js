@@ -1,0 +1,2 @@
+  return (a * h) / 2;
+} // Note that this function assumes a and h are the base and height of the triangle, respectively. If they are the length of the sides, you would need to use the law of cosines to calculate the area.

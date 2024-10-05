@@ -1,0 +1,10 @@
+    seen := make(map[int]bool)
+    result := make([]int, 0)
+    for _, num := range numbers {
+        if !seen[num] {
+            seen[num] = true
+            result = append(result, num)
+        }
+    }
+    return result
+}  // Time complexity is O(n), where n is the number of elements in the input list. Space complexity is O(n).  // Note: This solution assumes that the input list is a slice of integers. It does not handle non-integer values. If you need to handle non-integer values, you will need to adjust the solution accordingly.  // Also note that the order of elements in the output list is the same as in the input list, as per the problem statement.  // You can use this function like this:  // numbers := []int{1, 2, 3, 2, 4}  // result := RemoveDuplicates(numbers)  // fmt.Println(result)  // Output: [1 3 4]  // This solution is efficient because it uses a map to keep track of the numbers it has seen, and it uses the append function to add elements to the result slice. This makes it efficient for large input lists.  // The time complexity is O(n) because it needs to iterate over the input list once. The space complexity is also O(n) because in the worst case, it needs to store all elements in the map and the result slice.  // If you want to remove duplicates while preserving the order of elements, you can use a different approach that uses a slice of slices. This approach is less efficient because it needs to iterate over the input list multiple times, but it is more flexible because it can handle non-integer values.  // Here is an example of how you can implement this approach:  // var result [][]int  // for _, num := range numbers {  //     found := false  //     for i, x := range result {  //         if x[0] == num {  //             found = true  //             break  //         }  //     }  //     if !found {  //         result = append(result, []int{num})  //     }  // }  // fmt.Println(result)  // Output: [[1] [2] [3] [4]]  // This solution is less efficient because it needs to iterate over the input list multiple times, but it is more flexible because

@@ -1,0 +1,16 @@
+  lst.sort((a, b) => a - b);
+  let result = [];
+  while (lst.length) {
+    result.push(lst.shift()); // take minimum
+    if (lst.length) {
+      result.push(lst.pop()); // take maximum
+    }
+  }
+  return result;
+}
+
+console.log(strangeSortList([1, 2, 3, 4])); // [1, 4, 2, 3]
+console.log(strangeSortList([5, 5, 5, 5])); // [5, 5, 5, 5]
+console.log(strangeSortList([])); // []
+
+

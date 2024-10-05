@@ -1,0 +1,11 @@
+    string result;
+    int i;
+    for (i=0;i<a.length();i++)
+    {
+        if (a[i]==b[i])
+            result+=('0');
+        else
+            result+=('1');
+    }
+    return result;
+}  // This function does not handle cases where a and b are of different lengths. It also assumes that a and b have the same length. It can be improved by using the maximum of the lengths of a and b to iterate over both strings.  // This function does not handle cases where a and b are of different lengths. It also assumes that a and b have the same length. It can be improved by using the maximum of the lengths of a and b to iterate over both strings. It also assumes that a and b are non-empty strings. It can be further improved by using std::string::size() instead of a.length() and b.length().  // This function does not handle cases where a and b are of different lengths. It also assumes that a and b have the same length. It can be improved by using the maximum of the lengths of a and b to iterate over both strings. It also assumes that a and b are non-empty strings. It can be further improved by using std::string::size() instead of a.length() and b.length(). It can be improved by using a loop that iterates over the maximum of the lengths of a and b.  // This function does not handle cases where a and b are of different lengths. It also assumes that a and b have the same length. It can be improved by using the maximum of the lengths of a and b to iterate over both strings. It also assumes that a and b are non-empty strings. It can be further improved by using std::string::size() instead of a.length() and b.length(). It can be improved by using a loop that iterates over the maximum of the lengths of a and b. It also assumes that a and b are non-empty strings. It can be further improved by using std::string::size() instead of a.length() and b.length(). It can be improved by using a loop that iterates over the maximum of the lengths of a and b. It also assumes that a and b are non-empty strings. It can be further improved by using std::string::size() instead of a.length() and b.length(). It can be improved by using a loop that iterates over the maximum of the lengths of a and b. It

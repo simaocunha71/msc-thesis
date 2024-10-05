@@ -1,0 +1,2 @@
+  const strlen = string.length;
+

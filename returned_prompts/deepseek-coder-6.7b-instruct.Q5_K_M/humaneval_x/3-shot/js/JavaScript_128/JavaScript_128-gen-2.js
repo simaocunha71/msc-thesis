@@ -1,0 +1,24 @@
+  if  (arr.length === 0)  {
+    return null;
+  }
+
+  let sum = 0;
+  let signProd = 1;
+
+  for  (let i = 0; i < arr.length; i++)  {
+    if  (arr[i] < 0)  {
+      signProd *= -1;
+    } else if  (arr[i] > 0)  {
+      signProd *= 1;
+    } else  {
+      return 0;
+    }
+
+    sum += Math.abs(arr[i]);
+  }
+
+  return sum * signProd;
+}
+
+
+

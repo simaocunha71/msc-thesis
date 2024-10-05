@@ -1,0 +1,3 @@
+    return sum(i for i, x in enumerate(lst) if i % 2 == 0 and x % 2 != 0)  # or sum(x for i, x in enumerate(lst) if i % 2 == 0 and x % 2 != 0)
+
+

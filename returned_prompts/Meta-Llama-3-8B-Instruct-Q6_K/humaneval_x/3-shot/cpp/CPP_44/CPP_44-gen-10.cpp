@@ -1,0 +1,10 @@
+    string res="";
+    while (x>0)
+    {
+        int rem=x%base;
+        res=to_string(rem)+res;
+        x=x/base;
+    }
+    return res;
+}  // This function is not working correctly for bases greater than 10. It should convert base 10 to base n correctly.
+}  // The function change_base is not working correctly for bases greater than 10. It should convert base 10 to base n correctly. For example, change_base(8, 3) should return "22" which is the base 3 representation of 8. The function should also work for bases less than 10. For example, change_base(8, 2) should return "1000" which is the base 2 representation of 8. The function should also work for bases less than 10. For example, change_base(7, 2) should return "111" which is the base 2 representation of 7. The function is not working correctly for these cases.  // The function change_base is not working correctly for bases greater than 10. It should convert base 10 to base n correctly. For example, change_base(8, 3) should return "22" which is the base 3 representation of 8. The function should also work for bases less than 10. For example, change_base(8, 2) should return "1000" which is the base 2 representation of 8. The function should also work for bases less than 10. For example, change_base(7, 2) should return "111" which is the base 2 representation of 7.  // The function is not working correctly for these cases. It should be corrected to work correctly for all bases between 2 and 10.  // The function is not working correctly for these cases. It should be corrected to work correctly for all bases between 2 and 10.  // The function is not working correctly for these cases. It should be corrected to work correctly for all bases between 2 and 10.  // The function is not working correctly for these cases. It should be corrected to work correctly for all bases between 2 and 10.  // The function is not working correctly for these cases. It should be corrected to work correctly for all bases between 2 and 10.  // The function is not working correctly for these cases. It should be corrected to work correctly for

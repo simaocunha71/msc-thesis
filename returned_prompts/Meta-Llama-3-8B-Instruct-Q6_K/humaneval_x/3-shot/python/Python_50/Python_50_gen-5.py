@@ -1,0 +1,2 @@
+    return "".join([chr(((ord(ch) - ord("a") - 5) % 26) + ord("a")) for ch in s])
+    # Note: This function assumes that the input string only contains lowercase letters. If the string can contain uppercase letters or other characters, the function should be modified accordingly.

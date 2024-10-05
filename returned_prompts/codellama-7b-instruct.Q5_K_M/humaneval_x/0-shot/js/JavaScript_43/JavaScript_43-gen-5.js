@@ -1,0 +1,2 @@
+const pairsSumToZero = (list) => {
+

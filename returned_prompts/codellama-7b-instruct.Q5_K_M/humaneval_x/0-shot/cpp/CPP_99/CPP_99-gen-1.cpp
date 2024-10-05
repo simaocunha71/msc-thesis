@@ -1,0 +1,5 @@
+	return round(stod(value));
+}
+
+
+

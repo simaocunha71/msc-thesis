@@ -1,0 +1,13 @@
+    result := make([]int, n)
+    for i := 1; i < n+1; i++ {
+        if i%2 == 0 {
+            result[i-1] = Factorial(i)
+        } else {
+            result[i-1] = Sum(i)
+        }
+    }
+    return result
+}
+
+
+

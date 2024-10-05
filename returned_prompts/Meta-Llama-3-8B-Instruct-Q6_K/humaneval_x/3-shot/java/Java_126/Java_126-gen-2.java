@@ -1,0 +1,12 @@
+        for (int i = 1; i < lst.size(); i++) {
+            if (lst.get(i) < lst.get(i - 1)) {
+                return false;
+            }
+            if (lst.get(i).equals(lst.get(i - 1))) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+

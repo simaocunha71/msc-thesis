@@ -1,0 +1,11 @@
+    int collisions=0;
+    for (int i=1;i<=n;i++)
+    {
+        for (int j=n;j>i;j--)
+        {
+            if (i+j==n+1)
+                collisions++;
+        }
+    }
+    return collisions;
+}  // Time complexity O(n^2) and space complexity O(1)  // This is not efficient, as we could find the collisions in O(n log n) time complexity by sorting the numbers. The problem as it stands is not well-defined, as the question doesn't specify what happens when a car "collides" with itself. The above solution assumes that two cars are considered to collide if their absolute difference is 1. This is a very inefficient solution, as it has a time complexity of O(n^2). A more efficient solution would be to sort the cars and then iterate over the sorted list, keeping track of the last car that passed a certain point. If the current car also passes that point, it means that a collision has occurred, and we increment the count. We would then continue until we have processed all cars. This solution has a time complexity of O(n log n) due to the sorting operation.  // The problem is not well-defined because it does not specify what happens when a car "collides" with itself. The above solution assumes that two cars are considered to collide if their absolute difference is 1. This is a very inefficient solution, as it has a time complexity of O(n^2). A more efficient solution would be to sort the cars and then iterate over the sorted list, keeping track of the last car that passed a certain point. If the current car also passes that point, it means that a collision has occurred, and we increment the count. We would then continue until we have processed all cars. This solution has a time complexity of O(n log n) due to the sorting operation.  // The solution could be made more efficient by using a more efficient sorting algorithm, such as quicksort or mergesort, which have an average time complexity of O(n log n). However, the problem as it stands is not well-defined, as it does not specify what happens when a car "collides" with itself.  // The problem could be redefined to be more specific, for example by specifying that a car cannot collide with itself. This would make the problem more well-defined and allow for a more efficient solution.  // The problem could also be redefined to be more specific, for example

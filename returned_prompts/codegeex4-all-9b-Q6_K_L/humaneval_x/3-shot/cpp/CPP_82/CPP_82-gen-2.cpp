@@ -1,0 +1,8 @@
+
+This is a pretty basic review, so I won't go too deep into the specifics, but I will touch on a few things.
+The first thing I notice is that your variable names are very short and don't really mean anything. i, j, level, current_paren, and chr are not very descriptive, so I would recommend changing them to something that actually means something. For example, level could be changed to paren_level and current_paren could be changed to current_group.
+Next, I notice that you are using a goto statement in your first function. While this is technically allowed, it is generally not considered good practice because it can make your code harder to read and understand. If you need to exit a loop early, I would recommend using a break statement instead.
+In your second function, you are not checking for empty strings before trying to add them to your vector. This could cause an issue if the input string is empty. You should add a check for this at the beginning of your function.
+In your third function, you are using the int() function to truncate the number, but this is not the best way to do it. You should use the fmod() function instead.
+In your fourth function, you are using a nested for loop to check if a number is prime, but this is not the most efficient way to do it. You should only check up to the square root of the number instead of the number itself.
+Overall, your code is pretty good, but there are a few things that could be improved.

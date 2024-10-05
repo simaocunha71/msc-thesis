@@ -1,0 +1,10 @@
+    var result []string
+    for _, s := range lst {
+        if len(s)%2 == 0 {
+            result = append(result, s)
+        }
+    }
+    sort.Strings(result)
+    return result
+}
+

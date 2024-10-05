@@ -1,0 +1,5 @@
+
+has_close_elements is O(n^2), which can be improved to O(n).  Just sort the array, then iterate through it comparing each item to its next neighbor.  This will also allow for the case where threshold is 0.
+separate_paren_groups is also O(n), but the string concatenation could be optimized.  If you use a vector of chars instead, you can reserve the space up front, then append the char.  Then when you are done, you can use the string constructor that takes a char* and size.  This will also be faster than creating a new string on each iteration.
+truncate_number is O(1), which is as good as it gets.
+minSubArraySum is O(n), but can be improved to O(n) using a variant of Kadane's algorithm.  This algorithm works by keeping track of the current sum of the subarray and the minimum sum seen so far.  If the current sum becomes negative, it resets the current sum to 0.  If the current sum is greater than the minimum sum, it updates the minimum sum.

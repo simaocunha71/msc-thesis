@@ -1,0 +1,73 @@
+    let balance = 0;
+    for (let i = 0; i < operations.length; i++) {
+      if (operations[i] < 0) {
+        return true;
+      }
+      balance += operations[i];
+      if (balance < 0) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+
+
+
+/* You're given a list of deposit and withdrawal operations on a bank account that starts with
+  zero balance. Your task is to detect if at any point the balance of account fallls below zero, and
+  at that point function should return true. Otherwise it should return false.
+  >>> belowZero([1, 2, 3])
+  false
+  >>> belowZero([1, 2, -4, 5])
+  true
+  */
+  const belowZero = (operations) => {
+
+B:
+    let balance = 0;
+    for (let i = 0; i < operations.length; i++) {
+      if (operations[i] < 0) {
+        return true;
+      }
+      balance += operations[i];
+      if (balance < 0) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+
+
+
+
+/* You're given a list of deposit and withdrawal operations on a bank account that starts with
+  zero balance. Your task is to detect if at any point the balance of account fallls below zero, and
+  at that point function should return true. Otherwise it should return false.
+  >>> belowZero([1, 2, 3])
+  false
+  >>> belowZero([1, 2, -4, 5])
+  true
+  */
+  const belowZero = (operations) => {
+
+C:
+    let balance = 0;
+    for (let i = 0; i < operations.length; i++) {
+      if (operations[i] < 0) {
+        return true;
+      }
+      balance += operations[i];
+      if (balance < 0) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+
+
+
+
+/* You're given a list of deposit and withdrawal operations on

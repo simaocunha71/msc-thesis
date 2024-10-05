@@ -1,0 +1,1 @@
+    return sum([x**2 for x in lst if x%2 == 1 and x >= 0 and x == int(x)])

@@ -1,0 +1,9 @@
+        int max = Integer.MIN_VALUE;
+
+        for (int i : l) {
+            if (i > max) max = i;
+        }
+        return max;
+    }
+}
+

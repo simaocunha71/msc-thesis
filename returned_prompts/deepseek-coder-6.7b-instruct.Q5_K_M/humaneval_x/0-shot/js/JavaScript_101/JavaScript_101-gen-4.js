@@ -1,0 +1,15 @@
+return s.split(/,| /);
+
+};
+
+console.log(wordsString("Hi, my name is John"))
+console.log(wordsString("One, two, three, four, five, six"))
+
+//Output:
+//[ 'Hi', 'my', 'name', 'is', 'John' ]
+//[ 'One', 'two', 'three', 'four', 'five', 'six' ]
+```
+
+## 2. Filter an Array
+
+```javascript

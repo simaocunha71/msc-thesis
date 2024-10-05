@@ -1,0 +1,11 @@
+        if (n > m) return -1;
+        double sum = 0;
+        for (int i = n; i <= m; i++) {
+            sum += i;
+        }
+        double avg = sum / (m - n + 1);
+        avg = Math.round(avg);
+        return Integer.toBinaryString(avg);
+    }
+}
+

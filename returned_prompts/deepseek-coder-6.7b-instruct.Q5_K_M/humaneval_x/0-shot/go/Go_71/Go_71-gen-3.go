@@ -1,0 +1,1 @@
+The code is correct and the logic is correct. The problem is in the question. It states that "Three sides make a valid triangle when the sum of any two sides is greater than the third side", but it does not specify what to do if the

@@ -1,0 +1,5 @@
+
+1) The threshold is a value that you compare to the difference between pairs of numbers. If the difference is less than the threshold, then you return true. For example, if the threshold is 0.5, then the difference between 1.0 and 1.5 is 0.5, so you would return true. If the threshold is 0.3, then the difference between 1.0 and 1.5 is 0.5, so you would return false. The threshold is not an absolute difference, but rather a relative difference.
+2) The output of the second question is a vector of strings because the function needs to return a list of strings. The vector is a dynamic array that can grow or shrink as needed.
+3) int(number) returns the integer part of the number, while number-int(number) returns the decimal part of the number. For example, if number is 3.5, then int(number) is 3 and number-int(number) is 0.5.
+4) "Cycle groups of three characters" means that for each group of three characters, you shift the characters to the right by one position. For example, if the group is "abc",

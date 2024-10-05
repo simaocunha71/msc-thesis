@@ -1,0 +1,53 @@
+    int a[10],b[10],i=0,j=0;
+    while(number>0)
+    {
+        a[i]=number%10;
+        number=number/10;
+        i++;
+    }
+    i--;
+    string c="";
+    while(i>=0)
+    {
+        j=0;
+        if(a[i]==1)
+        {
+            c=c+"i";
+        }
+        if(a[i]==2)
+        {
+            c=c+"i"+"i";
+        }
+        if(a[i]==3)
+        {
+            c=c+"i"+"i"+"i";
+        }
+        if(a[i]==4)
+        {
+            c=c+"iv";
+        }
+        if(a[i]==5)
+        {
+            c=c+"v";
+        }
+        if(a[i]==6)
+        {
+            c=c+"v"+"i";
+        }
+        if(a[i]==7)
+        {
+            c=c+"v"+"i"+"i";
+        }
+        if(a[i]==8)
+        {
+            c=c+"v"+"i"+"i"+"i";
+        }
+        if(a[i]==9)
+        {
+            c=c+"ix";
+        }
+        i--;
+    }
+    return c;
+}
+

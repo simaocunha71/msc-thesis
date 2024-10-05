@@ -1,0 +1,3 @@
+This JavaScript function, `fizzBuzz`, takes an integer `n` as input and returns the number of times the digit 7 appears in integers less than `n` which are divisible by 11 or 13. It uses a simple loop to iterate over the numbers less than `n` that are divisible by 11 or 13, converts each number to a string, and checks if it contains the digit 7. If it does, it increments a counter. Finally, it returns the count.
+
+The time complexity of this function is O(n), where n is the input number, because it iterates over the numbers less than `n` that are divisible by 11 or 13. The space complexity is O(1), because it only uses a constant amount of space to store the counter and the input number.

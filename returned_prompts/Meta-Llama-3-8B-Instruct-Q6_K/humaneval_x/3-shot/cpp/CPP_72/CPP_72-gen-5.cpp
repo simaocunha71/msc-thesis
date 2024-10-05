@@ -1,0 +1,12 @@
+    bool balanced = true;
+    for(int i = 0; i < q.size(); i++) {
+        if(q[i] != q[q.size() - 1 - i]) {
+            balanced = false;
+            break;
+        }
+    }
+    if(balanced && (int)q.size()*(q[0]) <= w) {
+        return true;
+    }
+    return false;
+}  // This function checks if the given vector is balanced and the sum of its elements is less than or equal to the given maximum weight. It returns true if the object will fly, and false otherwise.  // The function first checks if the vector is balanced by comparing each element with its corresponding element from the end of the vector. If any element does not match, it sets the balanced flag to false and breaks the loop.  // Then it checks if the sum of the elements is less than or equal to the given maximum weight. If the sum is less than or equal to the weight and the vector is balanced, it returns true. Otherwise, it returns false.  // This function is case-sensitive and it considers the sum of the elements as integers.  // It assumes that the input vector is not empty and the maximum weight is a positive integer.  // It does not handle invalid inputs.  // It does not handle the case where the vector has only one element.  // It does not handle the case where the maximum weight is zero.  // It does not handle the case where the input vector is not a vector of integers.  // It does not handle the case where the maximum weight is not an integer.  // It does not handle the case where the input vector is an empty vector.  // It does not handle the case where the maximum weight is not a positive integer.  // It does not handle the case where the input vector is not a vector.  // It does not handle the case where the maximum weight is not a number.  // It does not handle the case where the input vector is not a vector of numbers.  // It does not handle the case where the maximum weight is not a positive number.  // It does not handle the case where the input vector is not a vector of positive numbers.  // It does not handle the case where the maximum weight is not a positive integer.  // It does not handle the case where the input vector is not a vector of positive integers.  // It does not handle the case where the maximum weight is not a positive

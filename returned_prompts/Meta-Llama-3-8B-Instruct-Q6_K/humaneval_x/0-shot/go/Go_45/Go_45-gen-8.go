@@ -1,0 +1,3 @@
+// Here is the solution
+return 0.5 * a * h
+

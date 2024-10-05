@@ -1,0 +1,45 @@
+from typing import List, Optional
+
+def longest(strings: List[str]) -> Optional[str]:
+    if not strings:
+        return None
+    longest_string = strings[0]
+    for string in strings:
+        if len(string) > len(longest_string):
+            longest_string = string
+    return longest_string
+
+
+print(longest([]))  # None
+print(longest(['a', 'b', 'c']))  # 'a'
+print(longest(['a', 'bb', 'ccc']))  # 'ccc'
+
+
+# or using max function with key parameter
+
+from typing import List, Optional
+
+def longest(strings: List[str]) -> Optional[str]:
+    return max(strings, key=len, default=None)
+
+
+print(longest([]))  # None
+print(longest(['a', 'b', 'c']))  # 'a'
+print(longest(['a', 'bb', 'ccc']))  # 'ccc'
+
+
+# or using lambda function
+
+from typing import List, Optional
+
+def longest(strings: List[str]) -> Optional[str]:
+    return max(strings, key=lambda s: len(s), default=None)
+
+
+print(longest([]))  # None
+print(longest(['a', 'b', 'c']))  # 'a'
+print(longest(['a', 'bb', 'ccc']))  # 'ccc'
+'''
+
+#Q2
+'''

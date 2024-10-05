@@ -1,0 +1,2 @@
+  return l.filter(x => x > 0);
+} // Using filter() function to get the positive numbers in the list. This function returns a new array with all elements that pass the test implemented by the provided function. In this case, the function is x => x > 0 which means it returns true if the number is greater than 0.

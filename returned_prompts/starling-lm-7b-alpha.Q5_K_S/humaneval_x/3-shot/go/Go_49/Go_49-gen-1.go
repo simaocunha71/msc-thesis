@@ -1,0 +1,9 @@
+    n %= p
+    if n < 0 {
+        n += p
+    }
+    return n
+}
+
+
+

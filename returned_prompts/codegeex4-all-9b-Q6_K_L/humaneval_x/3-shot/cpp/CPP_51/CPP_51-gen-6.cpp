@@ -1,0 +1,2 @@
+
+The first function looks correct. However, you could make it more efficient by using a set to store the values already seen, as that would allow you to check whether an element is close to another in constant time. The second function is good, but it should check that the parentheses are balanced before trying to separate them. The third function is fine, but you could use the built-in function floor() instead of the cast. The last function is good, but you could use the built-in function find_first_of() instead of the loop.

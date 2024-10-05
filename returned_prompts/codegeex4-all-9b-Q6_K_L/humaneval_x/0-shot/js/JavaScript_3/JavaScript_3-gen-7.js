@@ -1,0 +1,1 @@
+The function `belowZero` takes in an array of numbers representing deposit and withdrawal operations. It iterates through the array, updating the balance by adding the current operation to it. If at any point the balance becomes negative, the function returns `true`. If the balance never becomes negative, it returns `false`.

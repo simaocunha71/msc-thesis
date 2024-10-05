@@ -1,0 +1,1 @@
+    return "".join([chr(((ord(ch) + shift - ord("a")) % 2

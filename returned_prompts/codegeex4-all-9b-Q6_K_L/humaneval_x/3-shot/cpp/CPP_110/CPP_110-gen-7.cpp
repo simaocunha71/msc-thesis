@@ -1,0 +1,10 @@
+
+has_close_elements
+It's not very clear what this function is supposed to do. It takes a vector of floats and a float and returns a boolean. The boolean is true if any two numbers in the vector are closer than the threshold. But what does "closer" mean? Is it the absolute difference, or the difference squared? Are the numbers considered "close" if they are equal? Are they considered close if they are equal to the threshold? The function name is not very descriptive either. It's not clear what "close" means in the context of the function.
+If the goal is to find two numbers that are closer than a threshold, then the function name should be descriptive of the goal. For example, "find_close_numbers" or "has_numbers_within_threshold".
+Also, it's not clear why the function is named has_close_elements. The function does not return a vector of close elements, it just returns a boolean. So the name is not very descriptive of the function's return value.
+Finally, the function name has_close_elements is not very clear. The function does not return a boolean indicating if there are close elements, it just returns a boolean. So the name is not very descriptive of the function's return value.
+Overall, the function name has_close_elements is not very descriptive of the function's return value. It would be better to name the function something that describes the goal of the function, such as find_close_numbers or has_numbers_within_threshold.
+separate_paren_groups
+This function takes a string containing multiple groups of nested parentheses and separates them into separate strings and returns the vector of those strings. The function is well-named and the goal of the function is clear.
+The function uses a for loop to iterate through the characters of the input string. It uses a variable level to keep track of the current level of nesting. If the character is an open parenthesis, the level is incremented. If the character is a close parenthesis,

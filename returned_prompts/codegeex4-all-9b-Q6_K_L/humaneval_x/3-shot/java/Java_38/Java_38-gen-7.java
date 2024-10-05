@@ -1,0 +1,5 @@
+
+1. Your code looks pretty good. However, I would suggest you to check if the threshold is greater than 0.0 before starting your nested loop. That way, if the threshold is 0.0, your program will not execute the nested loop, which will be a slight optimization.
+2. Your code looks pretty good. However, I would suggest you to check if the string is empty before starting your loop. That way, if the string is empty, your program will not execute the loop, which will be a slight optimization.
+3. Your code looks pretty good. However, I would suggest you to check if the number is less than 1.0 before returning the result. That way, if the number is less than 1.0, your program will return 0.0, which is the correct result.
+4. Your code looks pretty good. However, I would suggest you to check if the string is empty before starting your loop. That way, if the string is empty, your program will not execute the loop, which will be a slight optimization.

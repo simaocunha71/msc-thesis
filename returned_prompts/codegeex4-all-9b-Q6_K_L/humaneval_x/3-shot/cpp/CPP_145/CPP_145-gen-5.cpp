@@ -1,0 +1,3 @@
+
+It looks like you have 4 questions, but only 1 piece of code.  Is it possible to combine these questions into one?  That would make it easier to answer.  Or is there a reason why you are asking separately?  If so, please combine them into one question and post them as one question.
+Also, please post your questions in the correct place.  They are currently in the "Ask a Question" box, and therefore will be ignored.  Please post them in the "Questions" section of the page.

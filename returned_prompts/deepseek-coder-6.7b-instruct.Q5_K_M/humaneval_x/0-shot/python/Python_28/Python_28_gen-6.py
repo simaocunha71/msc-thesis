@@ -1,0 +1,1 @@
+def concatenate(strings: List[str

@@ -1,0 +1,13 @@
+  return arr.sort((a, b) => {
+    const a_ones = (a.toString(2).split('').filter(x => x == '1').length);
+    const b_ones = (b.toString(2).split('').filter(x => x == '1').length);
+    if (a_ones !== b_ones) {
+      return a_ones - b_ones;
+    } else {
+      return a - b;
+    }
+  });
+}
+
+
+

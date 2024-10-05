@@ -1,0 +1,8 @@
+    import hashlib
+
+    if not text:
+        return None
+
+    return hashlib.md5(text.encode()).hexdigest()  # encode to bytes first
+
+

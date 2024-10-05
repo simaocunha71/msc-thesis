@@ -1,0 +1,2 @@
+
+The minimum path is the path that visits the smallest values first. This is because the lexicographical order of the path is determined by the order in which the values are visited. Therefore, to find the minimum path, we should visit the smallest values first.

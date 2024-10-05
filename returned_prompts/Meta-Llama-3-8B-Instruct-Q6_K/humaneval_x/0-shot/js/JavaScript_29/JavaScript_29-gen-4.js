@@ -1,0 +1,5 @@
+```javascript
+const filterByPrefix = (strings, prefix) => strings.filter(s => s.startsWith(prefix));
+```
+Explanation:
+The provided JavaScript code defines a function called `filterByPrefix` that takes two parameters: `strings` and `prefix`. The function uses the `filter` method of the `strings` array to create a new array with only the elements that start with the given `prefix`. The `startsWith` method is used to check if a string starts with a given prefix. If a string starts with the prefix, it is included in the resulting array; otherwise, it is excluded. The function returns the filtered array. For example, if the input array is `['abc', 'bcd', 'cde', 'array']` and the prefix is `'a'`, the function will return `['abc', 'array']`. If the input array is empty and the prefix is `'a'`, the function will return an empty array.

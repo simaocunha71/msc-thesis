@@ -1,0 +1,10 @@
+    int count=0;
+    for (int i=0;i<num.length();i++)
+    {
+        if (num[i]=='2'||num[i]=='3'||num[i]=='5'||num[i]=='7'||num[i]=='B'||num[i]=='D')
+        {
+            count++;
+        }
+    }
+    return count;
+}  // The function should return the count of prime hexadecimal digits in the given string num.  //  // For example, if num is "AB", the function should return 1 because there is one prime hexadecimal digit 'B' in num.  //  // The function should ignore the case of the input string.  //  // The function should return 0 for an empty string.  //  // For example, if num is "2020", the function should return 2 because there are two prime hexadecimal digits '2' in num.  //  // Note that the function should not use any external libraries except for the standard library.  //  // The function should work correctly even if the input string contains more than 16 hexadecimal digits.  //  // For example, if num is "123456789ABCDEF0", the function should return 6 because there are six prime hexadecimal digits '2', '3', '5', '7', 'B', 'D' in num.  //  // The function should not use any loops with variables other than 'i' and 'count'.  //  // The function should not use any conditional statements other than the if statement.  //  // The function should not use any function calls other than the function call to the length method of the string class.  //  // The function should not use any array or vector.  //  // The function should not use any class except for the string class.  //  // The function should not use any namespace except for the std namespace.  //  // The function should not use any pointer.  //  // The function should not use any static variable.  //  // The function should not use any global variable.  //  // The function should not use any function call to the operator<< method of the ostream class.  //  // The function should not use any function call to the operator>> method of the istream class.  //  // The function should not use any function call to the getline method of the istream class.  //  // The function should not use any function call to the substr method of the

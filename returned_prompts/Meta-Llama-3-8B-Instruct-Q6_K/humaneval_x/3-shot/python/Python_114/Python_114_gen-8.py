@@ -1,0 +1,21 @@
+    min_sum = float('inf')
+    current_sum = 0
+
+    for num in nums:
+        current_sum += num
+        min_sum = min(min_sum, current_sum)
+        if current_sum > 0:
+            current_sum = 0
+
+    return min_sum
+    # or
+    return min(sum(nums[i: j+1]) for i in range(len(nums)) for j in range(i, len(nums)))
+    # or
+    min_sum = float('inf')
+    for i in range(len(nums)):
+        current_sum = 0
+        for j in range(i, len(nums)):
+            current_sum += nums[j]
+            min_sum = min(min_sum, current_sum)
+
+
