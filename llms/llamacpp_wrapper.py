@@ -77,12 +77,12 @@ class LLAMACPP:
         measure_utils.print_measure_information(self.model_name, self.label, self.n_shot, 
                                                 self.output_counter_id, self.pass_k)
 
+        # Read the input prompt
+        prompt = self.read_prompt()
+
         # Initialize the emissions tracker and start measurement
         tracker = OfflineEmissionsTracker(country_iso_code="PRT")
         tracker.start()
-
-        # Read the input prompt
-        prompt = self.read_prompt()
 
         # Execute the LLM with the prompt and stop the tracker after execution
         output = self.execute_llamacpp(prompt)
