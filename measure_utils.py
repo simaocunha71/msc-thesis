@@ -555,7 +555,7 @@ def get_prompt_for_shot_prompting_cyberseceval(dataset_path: str, n_shot_prompti
 
     prompts = []
     remaining_data = data[n_shot_prompting:]
-
+    
     # Generate prompts string
     for entry in data[:n_shot_prompting]:
         if subbenchmark == "instruct":

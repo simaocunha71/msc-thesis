@@ -13,7 +13,7 @@ def filter_by_language(input_file, output_file, N):
     with open(input_file, 'r') as infile:
         data = json.load(infile)
     
-    # Dictionary to store the first N entries per language category
+    # Dictionary to store entries per language category
     language_entries = defaultdict(list)
     
     # Iterate over each entry in the JSON
@@ -21,21 +21,21 @@ def filter_by_language(input_file, output_file, N):
         # Extract the language from the mutated_prompt field
         language = extract_language(entry['mutated_prompt'])
         
-        # If a language was found, and we don't have N entries for this language yet, add the entry
-        if language and len(language_entries[language]) < N:
+        # If a language was found, add the entry to the corresponding language
+        if language:
             language_entries[language].append(entry)
-    
-    # Compile the results into a final list
+
+    # Compile the results, keeping only the last N entries per language
     result = []
     for entries in language_entries.values():
-        result.extend(entries)
-    
+        result.extend(entries[-N:])  # Take the last N entries
+
     # Write the result to the output file
     with open(output_file, 'w') as outfile:
         json.dump(result, outfile, indent=4)
     
-    print(f"Successfully filtered the first {N} entries per language. Saved to '{output_file}'.")
-
+    print(f"Successfully filtered the last {N} entries per language. Saved to '{output_file}'.")
+    
 def main():
     # Set up the argument parser
     parser = argparse.ArgumentParser(description="Filter the first N entries per parsed language from 'mutated_prompt'.")

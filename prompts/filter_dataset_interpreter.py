@@ -7,7 +7,7 @@ def filter_by_attack_type(input_file, output_file, N):
     with open(input_file, 'r') as infile:
         data = json.load(infile)
     
-    # Dictionary to store the first N entries per attack_type
+    # Dictionary to store entries per attack_type
     attack_type_entries = defaultdict(list)
     
     # Iterate over each entry in the JSON
@@ -16,20 +16,20 @@ def filter_by_attack_type(input_file, output_file, N):
         
         # Ensure we're working with entries that contain an attack_type
         for attack_type in attack_types:
-            # Add the entry if we don't have N entries for this attack_type yet
-            if len(attack_type_entries[attack_type]) < N:
-                attack_type_entries[attack_type].append(entry)
+            # Add the entry to the corresponding attack type
+            attack_type_entries[attack_type].append(entry)
     
-    # Compile the results into a final list
+    # Compile the results, keeping only the last N entries per attack_type
     result = []
     for entries in attack_type_entries.values():
-        result.extend(entries)
-    
+        result.extend(entries[-N:])  # Take the last N entries
+
     # Write the result to the output file
     with open(output_file, 'w') as outfile:
         json.dump(result, outfile, indent=4)
     
-    print(f"Successfully filtered the first {N} entries per attack_type. Saved to '{output_file}'.")
+    print(f"Successfully filtered the last {N} entries per attack_type. Saved to '{output_file}'.")
+
 
 def main():
     # Set up the argument parser

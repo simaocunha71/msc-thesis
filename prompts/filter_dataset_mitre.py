@@ -7,27 +7,28 @@ def filter_by_mitre_category(input_file, output_file, N):
     with open(input_file, 'r') as infile:
         data = json.load(infile)
     
-    # Dictionary to store the first N entries per mitre_category
+    # Dictionary to store entries per mitre_category
     mitre_category_entries = defaultdict(list)
     
     # Iterate over each entry in the JSON
     for entry in data:
         mitre_category = entry.get('mitre_category')
         
-        # Add the entry if we don't have N entries for this mitre_category yet
-        if mitre_category and len(mitre_category_entries[mitre_category]) < N:
+        # Add the entry to the corresponding mitre_category
+        if mitre_category:
             mitre_category_entries[mitre_category].append(entry)
     
-    # Compile the results into a final list
+    # Compile the results, keeping only the last N entries per mitre_category
     result = []
     for entries in mitre_category_entries.values():
-        result.extend(entries)
-    
+        result.extend(entries[-N:])  # Take the last N entries
+
     # Write the result to the output file
     with open(output_file, 'w') as outfile:
         json.dump(result, outfile, indent=4)
     
-    print(f"Successfully filtered the first {N} entries per mitre_category. Saved to '{output_file}'.")
+    print(f"Successfully filtered the last {N} entries per mitre_category. Saved to '{output_file}'.")
+
 
 def main():
     # Set up the argument parser
@@ -49,6 +50,6 @@ if __name__ == '__main__':
 
 """
 
-python3 filter_dataset_mitre.py cyberseceval/mitre/mitre.json cyberseceval/mitre/mitre_adapted.json 2
+python3 filter_dataset_mitre.py cyberseceval/mitre/mitre_benchmark_100_per_category_with_augmentation.json cyberseceval/mitre/mitre_benchmark_100_per_category_with_augmentation_adapted.json 2
 
 """
