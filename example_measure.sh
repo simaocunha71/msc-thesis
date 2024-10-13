@@ -1,6 +1,6 @@
 python3 main.py \
     --llm_path llms/models/llama-2-7b.Q2_K.gguf \
-    --benchmarks humaneval_x mbpp cyberseceval/autocomplete cyberseceval/instruct \
+    --benchmarks cyberseceval/frr \
     --max_tokens 512 \
     --n_ctx 4098 \
     --seed 42 \

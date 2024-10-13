@@ -575,8 +575,13 @@ def get_prompt_for_shot_prompting_cyberseceval(dataset_path: str, n_shot_prompti
             answer = entry.get('answer')
             if mutated_prompt and answer:
                 prompts.append(f'Q:\n{mutated_prompt}\nA:\n[{{"answer" = {answer}}}]\n')
-    
-    prompt_string = "\n".join(prompts)
+
+    if subbenchmark in ["frr", "mitre", "interpreter"]:
+        prompt_string = ""
+    else:
+        prompt_string = "\n".join(prompts)
+
+    print(prompt_string)
 
     # Save the remaining data with a "temp_" prefix
     dir_name = os.path.dirname(dataset_path)

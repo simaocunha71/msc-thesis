@@ -518,7 +518,6 @@ def main():
                     prompt_for_shot_prompting, _ = get_prompt_for_shot_prompting_cyberseceval(
                         prompts_filepath, shot_prompting, prompts_filepath.split("/")[2])
                     temp_prompts_filepath = process_interval(temp_prompts_filepath, samples_interval)
-                    print(temp_prompts_filepath)
                     prompt_for_shot_prompting_file = "prompt_for_shot_prompting.txt"
                     with open(prompt_for_shot_prompting_file, 'w') as file:
                         file.write(prompt_for_shot_prompting)
