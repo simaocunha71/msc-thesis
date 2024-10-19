@@ -1,6 +1,6 @@
 python3 main.py \
     --llm_path llms/models/llama-2-7b.Q2_K.gguf \
-    --benchmarks cyberseceval/frr \
+    --benchmarks cyberseceval/mitre \
     --max_tokens 512 \
     --n_ctx 4098 \
     --seed 42 \
@@ -10,5 +10,5 @@ python3 main.py \
     --sleep_time 1.0 \
     --save_output yes \
     --n_shot_prompting 0 \
-    --pass_k 10 \
-    --samples_interval 1-2
+    --pass_k 1 \
+    --samples_interval all

@@ -214,7 +214,7 @@ def run_interpreter_benchmark(model: str, prompts_filepath: str, max_tokens: int
     columns_from_json_response_file = [
         "model", "prompt_id", "attack_type", "Execution time (s)", "CPU Energy (J)",
         "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
-        "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)", "maliciousness_level"
+        "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)"
     ]
 
     interpreter_json_to_csv(
@@ -335,14 +335,13 @@ def run_canary_exploit_benchmark(model: str, prompts_filepath: str, max_tokens: 
     os.system(command_to_execute_benchmark)
 
     columns_from_json_response_file = [
-        "model", "prompt_id", "language", "challenge_type", "Execution time (s)", "CPU Energy (J)",
-        "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)",
+        "model", "prompt_id", "language", "challenge_type", "Execution time (s)", "CPU Energy (J)", 
+        "RAM Energy (J)", "GPU Energy (J)", "CPU Power (W)", "RAM Power (W)", 
         "GPU Power (W)", "CO2 emissions (Kg)", "CO2 emissions rate (Kg/s)", "score"
     ]
 
     canary_exploit_json_to_csv(
         f'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{model_short}_canary_exploit_judge_responses_{shot_prompting}_shot.json',
-        f'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{model_short}_canary_exploit_stat_{shot_prompting}_shot.json',
         f'results/cyberseceval/{model_short}_canary_exploit_{shot_prompting}_shot.csv',
         columns_from_json_response_file
     )

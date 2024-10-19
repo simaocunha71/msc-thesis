@@ -137,6 +137,7 @@ def interpreter_json_to_csv(json_responses: str, json_results: str, csv_file_pat
     # Select only the specified columns
     df = df[columns]
 
+
     # Read the content of the JSON file containing statistical results
     with open(json_results, 'r') as file:
         json_results_data = json.load(file)
@@ -238,14 +239,13 @@ def frr_json_to_csv(json_responses: str, json_results: str, csv_file_path: str, 
     df.to_csv(csv_file_path, mode='a', index=False, header=False)
 
 
-def canary_exploit_json_to_csv(json_responses: str, json_results: str, csv_file_path: str, columns: list):
+def canary_exploit_json_to_csv(json_responses: str, csv_file_path: str, columns: list):
     """
-    Extracts specified columns from a JSON file containing responses from the Vulnerability Exploitation benchmark
-    and appends the data to a specified CSV file that contains results of this benchmark.
+    Extracts specified columns and scores from a JSON file containing responses from the Vulnerability Exploitation benchmark
+    and appends the data to a specified CSV file.
 
     Args:
         json_responses (str): The path to the JSON file containing responses from the LLM.
-        json_results (str): The path to the JSON file containing statistical results from the LLM.
         csv_file_path (str): The path to the CSV file where results will be stored.
         columns (list): A list of columns to extract from the JSON responses.
     """
@@ -258,42 +258,41 @@ def canary_exploit_json_to_csv(json_responses: str, json_results: str, csv_file_
     df = pd.DataFrame(json_response_data)
 
     # Only select the columns from the "columns" array
-    df = df[columns]
+    df = df[columns]  # Now includes 'Score' from json_responses
 
-    # Create the "Prompt ID" column in the format "df['variant']_df[prompt_id]"
+    # Create the "Prompt ID" column in the format "df['variant']_df['prompt_id']"
     df['Prompt ID'] = df['prompt_id'].astype(str)
+    df['LLM'] = df['model'].astype(str)
+    df['Score'] = df['score'].astype(float)
+    df['Language'] = df['language'].astype(str)
+    df['Challenge Type'] = df['challenge_type'].astype(str)
+
+
 
     # Remove unnecessary columns
     df = df.drop(['prompt_id'], axis=1)
+    df = df.drop(['model'], axis=1)
+    df = df.drop(['score'], axis=1)
+    df = df.drop(['language'], axis=1)
+    df = df.drop(['challenge_type'], axis=1)
+
+
 
     # Move the 'Prompt ID' column to be the second column in the DataFrame
     cols = list(df.columns)
+    cols.insert(0, cols.pop(cols.index('LLM')))
     cols.insert(1, cols.pop(cols.index('Prompt ID')))
+    cols.insert(2, cols.pop(cols.index('Language')))
+    cols.insert(3, cols.pop(cols.index('Challenge Type')))
+
     df = df[cols]
     
-    # Read the content of the JSON file containing statistical results from the LLM
-    with open(json_results, 'r') as file:
-        json_results_data = json.load(file)
-
-    
-    # This for loop is responsible for adding, for each prompt of a given language, the statistical results
-    # from the LLM for that same language
-    for index, row in df.iterrows():
-        model = row['model']
-        language = row['language']
-        challenge_type = row['challenge_type']
-
-        if challenge_type in json_results_data:
-            if language in json_results_data[challenge_type]:
-                if model in json_results_data[challenge_type][language]:
-                    df.at[index, 'Score'] = json_results_data[challenge_type][language][model]
-    
-
     # Filter the names of the LLMs, excluding their file paths
-    df["model"] = df["model"].apply(lambda x: os.path.splitext(os.path.basename(x))[0])
+    df["LLM"] = df["LLM"].apply(lambda x: os.path.splitext(os.path.basename(x))[0])
 
     # Append this DataFrame to the CSV file for benchmark measurements
-    df.to_csv(csv_file_path, mode='a', index=False, header=False)
+    df.to_csv(csv_file_path, mode='a', index=False)
+
 
 
 def add_score_in_csv(csv_file: str, column_name: str, value_to_add) -> None:

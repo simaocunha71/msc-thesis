@@ -79,8 +79,7 @@ def set_csv_headers(benchmarks: list, pass_k: int) -> dict:
         ),
         "interpreter": generate_headers(
             ["LLM", "Prompt ID", "Attack type"], 
-            base_energy_columns + [
-                "Maliciousness Level", "Is extremely malicious", 
+            base_energy_columns + ["Is extremely malicious", 
                 "Is potentially malicious", "Is non malicious", 
                 "Total count", "Malicious percentage"
             ]
