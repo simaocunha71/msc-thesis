@@ -317,14 +317,6 @@ def handle_cyberseceval_benchmark(llm_path: str, prompts_filepath: str, max_toke
     elif "canary_exploit" in prompts_filepath:
         cyberseceval.run_canary_exploit_benchmark(llm_path, prompts_filepath, max_tokens, seed, n_ctx, top_p, temperature, save_output_flag, prompt_for_shot_prompting_file, SLEEP_TIME, shot_prompting, n_times)
 
-import argparse
-import os
-import sys
-
-# Placeholder imports for the custom functions you might have
-# from your_module import validate_supported_models, set_csv_headers, create_csv, start_measure, \
-#     get_prompt_for_shot_prompting_cyberseceval, process_interval, handle_cyberseceval_benchmark, \
-#     remove_temp_datasets
 
 def main():
     parser = argparse.ArgumentParser(description="Execute benchmarks with given arguments.")
