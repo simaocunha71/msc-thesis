@@ -323,7 +323,7 @@ def main():
     parser.add_argument("--llm_path", nargs='+', required=True, help="Path to the LLMs to execute.")
     parser.add_argument("--benchmarks", nargs='+', choices=[
         "humaneval_x", "humaneval_x/c++", "humaneval_x/go", "humaneval_x/java",
-        "humaneval_x/javascript", "humaneval_x/python", "humaneval_x/rust",
+        "humaneval_x/javascript", "humaneval_x/python",
         "cyberseceval", "cyberseceval/autocomplete", "cyberseceval/instruct",
         "cyberseceval/mitre", "cyberseceval/frr", "cyberseceval/interpreter",
         "cyberseceval/canary_exploit", "mbpp"
@@ -369,7 +369,7 @@ def main():
     # Define benchmark groups
     humaneval_x_group = {
         "humaneval_x", "humaneval_x/c++", "humaneval_x/go", "humaneval_x/java",
-        "humaneval_x/javascript", "humaneval_x/python", "humaneval_x/rust"
+        "humaneval_x/javascript", "humaneval_x/python"
     }
     cyberseceval_group = {
         "cyberseceval", "cyberseceval/autocomplete", "cyberseceval/instruct",

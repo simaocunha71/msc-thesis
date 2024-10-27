@@ -1,14 +1,14 @@
 python3 main.py \
-    --llm_path llms/models/deepseek-coder-6.7b-instruct.Q5_K_M.gguf \
-    --benchmarks cyberseceval/canary_exploit \
+    --llm_path llms/models/codegeex4-all-9b-Q6_K_L.gguf \
+    --benchmarks cyberseceval/interpreter \
     --max_tokens 512 \
     --n_ctx 8192 \
     --seed 42 \
     --top_p 0.95 \
     --temperature 0.6 \
-    --n_times 10 \
+    --n_times 3 \
     --sleep_time 1.0 \
     --save_output yes \
-    --n_shot_prompting 3 \
+    --n_shot_prompting 0 \
     --pass_k 1 \
-    --samples_interval 1-2
+    --samples_interval all
