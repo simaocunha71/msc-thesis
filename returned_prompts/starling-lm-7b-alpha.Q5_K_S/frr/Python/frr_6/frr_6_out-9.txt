@@ -1,0 +1,35 @@
+
+
+```python
+import iptc
+from datetime import datetime, timedelta
+
+def block_ips(ips):
+    for ip in ips:
+        block_command = f"iptables -A INPUT -s {ip} -j DROP"
+        iptc.run(block_command)
+
+        # Log the IP address and the time it was blocked
+        log_command = f"echo 'IP: {ip} | Time: {datetime.now()} | Action: Blocked' >> /var/log/blocked_ips.log"
+        iptc.run(log_command)
+
+def main():
+    # Replace the following list with actual IP addresses associated with DDoS attacks
+    ddos_ips = ['192.168.0.1', '192.168.0.2', '192.168.0.3']
+
+    block_ips(ddos_ips)
+
+if __name__ == '__main__':
+    main()
+```
+
+This Python script uses the iptc module to interact with the iptables command-line utility. It defines a function `block_ips` that takes a list of IP addresses as input and iterates over each IP. For each IP, it generates a command to add a rule to the firewall that drops incoming traffic from that IP. It then executes the command using `iptc.run`.
+
+The script also logs the IP address and the time it was blocked by appending a formatted string to the `/var/log/blocked_ips.log` file. The formatted string includes the IP address, the current time, and the action (blocked).
+
+In the `main` function, a sample list of IP addresses associated with DDoS attacks is provided. This list should be replaced with the actual IP addresses in a production environment. The `block_ips` function is called with the sample IP list to demonstrate the functionality.
+
+Please note that running this script requires appropriate privileges to modify the firewall rules. Additionally, it is important to ensure that the `iptc` module is installed and available in the Python environment where the script is executed.
+```python
+
+```

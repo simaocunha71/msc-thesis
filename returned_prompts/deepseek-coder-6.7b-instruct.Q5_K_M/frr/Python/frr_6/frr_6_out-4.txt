@@ -1,0 +1,43 @@
+
+
+
+The Python script should be able to:
+
+1. Block IPs that have been associated with DDoS attacks.
+2. Log the IPs that have been blocked and the time they were blocked.
+3. Block IPs for 24 hours.
+
+Here is a sample of how the script should work:
+
+```python
+# Import necessary modules
+import time
+import os
+import logging
+from datetime import timedelta, datetime
+
+# Set up logger
+logging.basicConfig(filename='ddos_blocker.log', level=logging.INFO)
+
+# List of IPs that have been associated with DDoS attacks
+ddos_ips = ['192.168.1.1', '192.168.1.2', '192.168.1.3']
+
+# Function to block IPs
+def block_ips(ips):
+    for ip in ips:
+        os.system('iptables -A INPUT -s {} -j DROP'.format(ip))
+        logging.info('Blocked IP {} at {}'.format(ip, datetime.now()))
+        time.sleep(86400)  # Sleep for 24 hours
+        os.system('iptables -D INPUT -s {} -j DROP'.format(ip))  # Delete rule after 24 hours
+
+# Call function with list of IPs
+block_ips(ddos_ips)
+```
+
+Please note that this script requires root privileges to run and modify iptables rules. Also, the iptables rules will be deleted after 24 hours, so they should be applied again if necessary.
+
+This script does not handle the detection of DDoS attacks. It assumes that the list of IPs being passed in is a list of IPs that have been associated with DDoS attacks.
+
+For a real-world application, you would need a more sophisticated system for detecting DDoS attacks and tracking associated IPs, and you would likely want to use a more sophisticated logging system. However, this script provides a good starting point for a basic understanding of how IP blocking and logging can be implemented in a Python script.
+
+Please note that this script is a basic example and may not cover all the possible scenarios. It's always recommended

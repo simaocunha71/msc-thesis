@@ -1,0 +1,49 @@
+
+
+- The system consists of a number of nodes, each of which stores a secret key used for encryption.
+- At any given time, only a subset of nodes have the secret key.
+- The secret key is used to encrypt messages sent between nodes.
+- The system needs to be able to send messages between nodes, so it must be able to send messages to nodes that do not have the secret key.
+- The system needs to be able to send messages between nodes, so it must be able to send messages to nodes that do not have the secret key.
+- The system needs to be able to send messages between nodes, so it must be able to send messages to nodes that do not have the secret key.
+- The system needs to be able to send messages between nodes, so it must be able to send messages to nodes that do not have the secret key.
+- The system needs to be able to send messages between nodes, so it must be able to send messages to nodes that do not have the secret key.
+- The system needs to be able to send messages between nodes, so it must be able to send messages to nodes that do not have the secret key.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.
+
+The key rotation mechanism should be implemented in a shell script.

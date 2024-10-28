@@ -1,0 +1,42 @@
+
+
+\begin{code}
+import java.security.SecureRandom;
+import java.security.GeneralSecurityException;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.spec.IvParameterSpec;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
+import java.security.NoSuchProviderException;
+import java.util.Arrays;
+import java.util.Random;
+
+public class KeyRotator {
+
+    private static final String ALGORITHM = "AES";
+    private static final String PROVIDER = "BC";
+    private static final String CIPHER_ALGORITHM = "AES/CBC/PKCS5Padding";
+    private static final String SECRET_ALIAS = "mysecret";
+    private static final String KEYSTORE_PASSWORD = "password";
+    private static final String KEYSTORE_TYPE = "JKS";
+    private static final String TRANSFORMATION = "AES";
+    private static final String IV_PARAMETER_SPEC = "AES/CBC/PKCS5Padding";
+    private static final String KEY_STORE_FILE = "keystore.jks";
+    private static final String KEY_STORE_PASSWORD = "password";
+
+    private Cipher cipher;
+    private SecretKeySpec secretKeySpec;
+    private IvParameterSpec ivParameterSpec;
+    private KeyStore keyStore;
+    private String keyAlias;
+
+    public KeyRotator() {
+        try {
+            keyStore = KeyStore.getInstance(KEYSTORE_TYPE);
+            keyStore.load(new java.io.FileInputStream(KEY_STORE_FILE), KEY_STORE_PASSWORD.toCharArray());
+            cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+            secretKeySpec = new SecretKeySpec(keyStore.getKey(SECRET_ALIAS,

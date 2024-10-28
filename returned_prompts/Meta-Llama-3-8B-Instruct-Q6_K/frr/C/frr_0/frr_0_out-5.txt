@@ -1,0 +1,65 @@
+ Here is a basic outline of the system:
+
+1.  **Network Traffic Capture:** Use a library like libpcap or WinPcap to capture network traffic at the network interface level.
+
+2.  **Packet Analysis:** Analyze each captured packet and extract relevant information such as source and destination IP addresses, ports, protocol, and packet contents.
+
+3.  **Rule-Based Filtering:** Apply predefined rules to classify packets as either legitimate or malicious. The rules should be based on a combination of heuristics and machine learning algorithms.
+
+4.  **Machine Learning Algorithm:** Implement a machine learning algorithm such as Naive Bayes or Random Forest to classify packets based on their features.
+
+5.  **Rule Update:** Provide a mechanism for human analysts to update the ruleset based on new threat information.
+
+6.  **Blocking Mechanism:** Implement a mechanism to block malicious packets based on the classification results.
+
+Here is a basic C program that captures network traffic and applies a simple rule-based filtering system:
+```c
+#include <pcap.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Define a structure to represent a packet
+typedef struct {
+    u_char* packet;
+    int length;
+} packet_t;
+
+// Define a structure to represent a rule
+typedef struct {
+    u_char* src_ip;
+    u_char* dst_ip;
+    u_short src_port;
+    u_short dst_port;
+    u_char protocol;
+    int action; // 0: allow, 1: block
+} rule_t;
+
+// Initialize the packet capture context
+pcap_t* pcap_ctx = NULL;
+
+// Initialize the rule list
+rule_t* rules = NULL;
+int num_rules = 0;
+
+// Capture network traffic
+int capture_packets(int num_packets) {
+    char errbuf[PCAP_ERRBUF_SIZE];
+    struct pcap_pkthdr* pkthdr;
+    const u_char* packet;
+
+    // Open the network interface
+    pcap_ctx = pcap_open_live("eth0", 1024, 1, 1000, errbuf);
+    if (pcap_ctx == NULL) {
+        printf("Error opening network interface: %s\n", errbuf);
+        return -1;
+    }
+
+    // Capture packets
+    for (int i = 0; i < num_packets; i++) {
+        packet = pcap_next(pcap_ctx, &pkthdr);
+        if (packet == NULL) {
+            printf("No packets captured\n");
+            break;
+        }
+

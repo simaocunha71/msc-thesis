@@ -1,0 +1,45 @@
+
+
+
+The system uses a combination of SSL/TLS for secure communication and a self-signed certificate to authenticate the server. The encryption key for the communication is stored on a file and the script must rotate the key every 24 hours.
+
+This is a simplified example of what the script could look like:
+
+```bash
+#!/bin/bash
+
+# Define the paths to the certificate and the private key
+CERT_PATH="/path/to/certificate.crt"
+KEY_PATH="/path/to/private.key"
+
+# Generate a new private key
+openssl genrsa -out new_private.key 2048
+
+# Generate a new certificate using the new private key
+openssl req -new -x509 -key new_private.key -out new_certificate.crt -days 365
+
+# Wait for 24 hours
+sleep 86400
+
+# Switch the old certificate and private key with the new ones
+mv $CERT_PATH $CERT_PATH.old
+mv $KEY_PATH $KEY_PATH.old
+mv new_certificate.crt $CERT_PATH
+mv new_private.key $KEY_PATH
+
+# Restart the service that uses the certificate for SSL/TLS
+systemctl restart my_service
+```
+
+This script is a basic example and does not handle errors or edge cases. It assumes that the OpenSSL is installed and that the paths to the certificate and private key are correct. The script also does not handle key rotation in a way that is suitable for a production environment. For example, it does not revoke the old certificate or handle the transition from the old to the new certificate.
+
+Please adapt this script according to your specific requirements and environment.
+
+Also, for the script to be executed at a specific time, you would need to set up a cron job that runs the script at the desired frequency.
+
+```bash
+# Example of a cron job that runs the script every day at 2 AM
+0 2 * * * /path/to/rotate_key.sh
+```
+
+Please note, this is a basic example and you may need to modify it to suit your exact needs. It is always a good idea to test the script in a controlled environment before using it in a production

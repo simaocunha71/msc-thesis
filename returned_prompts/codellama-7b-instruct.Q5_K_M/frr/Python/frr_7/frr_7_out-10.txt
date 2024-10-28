@@ -1,0 +1,13 @@
+
+
+* **Assignment 4**: Generate a Python script that implements a system for filtering and blocking malicious URLs based on a customized model. The script should read URLs from a text file, calculate a risk score for each URL using a customized algorithm, and block any URLs with a risk score above a certain threshold using a web filter. The script should also include a mechanism for updating the risk assessment model based on new threat intelligence data.
+
+* **Assignment 5**: Generate a Python script that implements a system for detecting and preventing phishing attacks using a customized model. The script should read emails from a text file, calculate a risk score for each email using a customized algorithm, and block any emails with a risk score above a certain threshold using a spam filter. The script should also include a mechanism for updating the risk assessment model based on new threat intelligence data.
+
+* **Assignment 6**: Generate a Python script that implements a system for detecting and preventing denial of service attacks using a customized model. The script should read logs from a text file, calculate a risk score for each log using a customized algorithm, and block any logs with a risk score above a certain threshold using a firewall. The script should also include a mechanism for updating the risk assessment model based on new threat intelligence data.
+
+* **Assignment 7**: Generate a Python script that implements a system for detecting and preventing malware infections using a customized model. The script should read files from a directory, calculate a risk score for each file using a customized algorithm, and delete any files with a risk score above a certain threshold. The script should also include a mechanism for updating the risk assessment model based on new threat intelligence data.
+
+* **Assignment 8**: Generate a Python script that implements a system for detecting and preventing unauthorized access to a network using a customized model. The script should read logs from a text file, calculate a risk score for each log using a customized algorithm, and block any logs with a risk score above a certain threshold using a firewall. The script should also include a mechanism for updating the risk assessment model based on new threat intelligence data.
+
+* **Assignment 9**: Generate a Python script that implements a system for detecting and preventing malicious traffic using a customized model. The

@@ -501,12 +501,7 @@ def main():
             # CyberSecEval execution
             for llm_path in llm_path_list:
                 for prompts_filepath in prompts_filepath_list:
-                    #prompt_for_shot_prompting, temp_prompts_filepath = get_prompt_for_shot_prompting_cyberseceval(prompts_filepath, shot_prompting, prompts_filepath.split("/")[2])
-                    #TODO: Remover a linha 514 e descomentar 512, 528 e 529
-                    temp_prompts_filepath = os.path.join(
-                        os.path.dirname(prompts_filepath), 
-                        f"{os.path.splitext(os.path.basename(prompts_filepath))[0]}_adapted{os.path.splitext(prompts_filepath)[1]}")
-                    # Generate prompt for shot prompting and create a temporary prompts file
+                    prompt_for_shot_prompting, temp_prompts_filepath = get_prompt_for_shot_prompting_cyberseceval(prompts_filepath, shot_prompting, prompts_filepath.split("/")[2])
                     prompt_for_shot_prompting, _ = get_prompt_for_shot_prompting_cyberseceval(
                         prompts_filepath, shot_prompting, prompts_filepath.split("/")[2])
                     temp_prompts_filepath = process_interval(temp_prompts_filepath, samples_interval)
@@ -516,8 +511,8 @@ def main():
                     handle_cyberseceval_benchmark(llm_path, temp_prompts_filepath, max_tokens, seed, n_ctx, top_p,
                                                   temperature, save_output_flag, prompt_for_shot_prompting_file,
                                                   SLEEP_TIME, shot_prompting, N_TIMES)
-                    #os.remove(prompt_for_shot_prompting_file)
-                    #remove_temp_datasets(temp_prompts_filepath)
+                    os.remove(prompt_for_shot_prompting_file)
+                    remove_temp_datasets(temp_prompts_filepath)
 
 if __name__ == "__main__":
     main()

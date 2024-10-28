@@ -1,0 +1,9 @@
+			xtr = new XmlTextReader (new StringReader (xml));
+			xsr = new XmlTextReader (new StringReader (xsd));
+			var s = new XmlReaderSettings ();
+			s.Schemas.Add (XmlSchema.Read (xsr, null));
+			s.ValidationType = ValidationType.Schema;
+			xtr.XmlResolver = s.XmlResolver;
+			xtr.Settings = s;
+			while (xtr.Read ()) ;
+

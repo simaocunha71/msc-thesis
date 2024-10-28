@@ -1,0 +1,64 @@
+ Here is an example of how you can implement this:
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class NetworkTrafficMonitor {
+    private Map<Integer, String> rules;
+    private AtomicInteger ruleVersion;
+
+    public NetworkTrafficMonitor() {
+        rules = new HashMap<>();
+        ruleVersion = new AtomicInteger(0);
+    }
+
+    public void addRule(int ruleId, String ruleDescription) {
+        rules.put(ruleId, ruleDescription);
+        ruleVersion.incrementAndGet();
+    }
+
+    public void removeRule(int ruleId) {
+        rules.remove(ruleId);
+        ruleVersion.incrementAndGet();
+    }
+
+    public boolean isPacketSuspicious(int packetId, String packetDescription) {
+        for (Map.Entry<Integer, String> rule : rules.entrySet()) {
+            if (rule.getDescription().equals(packetDescription)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int getRuleVersion() {
+        return ruleVersion.get();
+    }
+
+    public static void main(String[] args) {
+        NetworkTrafficMonitor monitor = new NetworkTrafficMonitor();
+        monitor.addRule(1, "Malware");
+        monitor.addRule(2, "Phishing");
+
+        // Monitor network traffic
+        while (true) {
+            int packetId = 1; // Replace with actual packet ID
+            String packetDescription = "Malware"; // Replace with actual packet description
+
+            if (monitor.isPacketSuspicious(packetId, packetDescription)) {
+                System.out.println("Suspicious packet detected!");
+            } else {
+                System.out.println("Packet is not suspicious.");
+            }
+        }
+    }
+}
+```
+
+In this example, the `NetworkTrafficMonitor` class maintains a map of rules, where each rule is identified by an integer ID and has a corresponding description. The `addRule` method adds a new rule to the map, and the `removeRule` method removes a rule. The `isPacketSuspicious` method checks if a given packet matches any of the rules in the map. The `getRuleVersion` method returns the current version of the rules.
+
+In the `main` method, we create an instance of the `NetworkTrafficMonitor` class and add two rules. We then enter an infinite loop where we simulate monitoring network traffic by checking if a packet matches any of the rules. If a packet is suspicious, we print a message indicating that a suspicious packet has been detected.
+
+To update the rules in real-time, you can modify the `Network

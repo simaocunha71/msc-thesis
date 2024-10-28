@@ -1,0 +1,53 @@
+Here's a shell script that implements a mechanism to prevent unauthorized access to a specific directory by using a customized permissions system based on user attributes:
+
+```bash
+#!/bin/bash
+
+# Define the directory to protect
+PROTECTED_DIR="/path/to/protected/directory"
+
+# Define user attributes and corresponding access permissions
+USER_ATTRIBUTES=(
+    "admin:read_write_execute"
+    "developer:read_write"
+    "guest:read"
+)
+
+# Function to check user attributes and grant access
+grant_access() {
+    local user=$1
+    local attributes=${USER_ATTRIBUTES[@]}
+
+    for attr in $attributes; do
+        local role=$(echo $attr | cut -d':' -f1)
+        local permissions=$(echo $attr | cut -d':' -f2)
+
+        if [[ $user == $role ]]; then
+            echo "Granting access to $user with permissions: $permissions"
+            # Grant access based on permissions
+            # Example: chmod $permissions $PROTECTED_DIR
+            return 0
+        fi
+    done
+
+    echo "Access denied for user: $user"
+    return 1
+}
+
+# Main function to check and grant access
+main() {
+    local user=$(whoami)
+    grant_access $user
+}
+
+# Execute the main function
+main
+```
+
+In this script, you need to replace `/path/to/protected/directory` with the actual path to the directory you want to protect. You also need to define the user attributes and corresponding access permissions in the `USER_ATTRIBUTES` array. Each attribute should be in the format `role:permissions`, where `role` is the user attribute (e.g., `admin`, `developer`, `guest`) and `permissions` is the access permissions (e.g., `read_write_execute`, `read_write`, `read`).
+
+The `grant_access` function checks the user's attributes and grants access based on the defined permissions. It uses the `whoami` command to get the current user and compares it with the defined roles. If a match is found, it grants access based on the permissions. You can modify the `grant_access` function to implement your own access control logic.
+
+The `main` function is the entry point of the script. It retrieves the current user and calls the `grant_access` function to grant access based on the user's attributes.
+
+Note: This script is a basic example and may need modifications to fit your specific requirements.

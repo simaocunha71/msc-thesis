@@ -1,0 +1,31 @@
+
+
+In this shell script, we will create a customized permissions system that grants access to a specific directory based on the user's role and department. We will use the `id` command to get the user's role and department attributes, and the `grep` command to check if the user has the required role and department to access the directory.
+
+Here's an example of the shell script:
+
+```bash
+#!/bin/bash
+
+# Define the target directory and the list of authorized roles and departments
+target_dir="/path/to/your/directory"
+authorized_roles="admin,manager"
+authorized_departments="HR,IT"
+
+# Check if the user has the required role and department to access the directory
+if ! echo $($id -u) | grep -q -E "^($authorized_roles).*($authorized_departments)"; then
+    echo "Access Denied: You don't have the required role or department to access this directory."
+    exit 1
+fi
+
+# If the user has the required role and department, navigate to the target directory
+cd $target_dir
+```
+
+To use this script, you can save it to a file (e.g., `custom_access.sh`), make it executable (`chmod +x custom_access.sh`), and then run it (`./custom_access.sh`). The script will check if the user has the required role and department to access the specified directory, and if so, it will navigate to the directory. Otherwise, it will display an "Access Denied" message and exit with an error code.
+
+Please note that this script is a simple example and may not be suitable for production use. In a production environment, you should consider using more robust mechanisms, such as implementing a custom authentication and authorization system, using a web server with access controls, or using a dedicated access control system like OpenLDAP or SELinux.
+
+Additionally, this script assumes that the authorized roles and departments are predefined and hardcoded in the script. In a production environment, you should consider implementing a dynamic authorization system that retrieves the authorized roles and departments from an external source, such as a database or a configuration file.
+
+Lastly, it's important to note that this script does not prevent

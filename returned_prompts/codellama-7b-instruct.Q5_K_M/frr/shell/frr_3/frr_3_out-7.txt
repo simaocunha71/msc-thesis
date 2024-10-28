@@ -1,0 +1,56 @@
+
+
+### Task 2: Implement a customized permissions system
+
+To implement a customized permissions system, you will need to create a function that takes in a list of user attributes, such as role or department, and a list of permissions that the user is attempting to access. The function will then return a list of permissions that the user is allowed to access based on the user attributes and permissions provided.
+
+The permissions system should be implemented using a combination of the following:
+
+- Lists: A list to store the permissions that are granted to each user attribute
+- Functions: A function to check the user attributes and permissions provided to determine if the user is allowed access
+
+To create the customized permissions system, you can use the following steps:
+
+1. Create a list to store the permissions that are granted to each user attribute. For example, you can create a list called `permissions` that contains the following permissions for each user attribute:
+
+   ```
+   permissions = {
+     "role": [
+       "read",
+       "write",
+       "execute"
+     ],
+     "department": [
+       "read",
+       "write"
+     ]
+   }
+   ```
+
+2. Create a function that takes in a list of user attributes, such as role or department, and a list of permissions that the user is attempting to access. The function should return a list of permissions that the user is allowed to access based on the user attributes and permissions provided.
+
+   ```
+   def check_user_permissions(user_attr, permissions):
+     # Initialize a list to store the user permissions
+     user_permissions = []
+
+     # Loop through each user attribute in the list
+     for attr in user_attr:
+       # Get the permissions for the current user attribute
+       attr_permissions = permissions[attr]
+
+       # Loop through each permission in the list of permissions
+       for permission in permissions:
+         # Check if the permission is in the list of permissions for the current user attribute
+         if permission in attr_permissions:
+           # Add the permission to the list of user permissions
+           user_permissions.append(permission)
+
+     # Return the list of user permissions
+     return user_permissions
+   ```
+
+3. Test the function using the following example:
+
+   ```
+   user_

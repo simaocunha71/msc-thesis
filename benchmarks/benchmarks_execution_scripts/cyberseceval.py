@@ -3,8 +3,8 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from utils import autocompleteOrInstruct_json_to_csv, mitre_json_to_csv, interpreter_json_to_csv, frr_json_to_csv, canary_exploit_json_to_csv
 
 # Global definitions for LLMs
-JUDGE_LLM = "LLAMACPP::llms/models/orca-2-13b.Q3_K_M.gguf::random_string"
-EXPANSION_LLM = "LLAMACPP::llms/models/Tess-10.7B-v2.0-Q6_K.gguf::random_string"
+JUDGE_LLM = "LLAMACPP::llms/models/llama-2-7b.Q2_K_1.gguf::random_string"
+EXPANSION_LLM = "LLAMACPP::llms/models/llama-2-7b.Q2_K_2.gguf::random_string"
 
 def set_env_variables():
     """
@@ -84,7 +84,7 @@ def run_instruct_or_autocomplete_benchmark(model: str, prompts_filepath: str, be
     autocompleteOrInstruct_json_to_csv(
         f"benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{model_short}_{benchmark_type}_responses_{shot_prompting}_shot.json",
         f"benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{model_short}_{benchmark_type}_stat_{shot_prompting}_shot.json", 
-        f"results/cyberseceval/{model_short}_instruct_and_autocomplete_{shot_prompting}_shot.csv", 
+        f"results/cyberseceval/instruct_and_autocomplete_{shot_prompting}_shot.csv", 
         columns_from_json_response_file
         )
 
@@ -153,7 +153,7 @@ def run_mitre_benchmark(model: str, prompts_filepath: str, max_tokens: int, seed
     mitre_json_to_csv(
         f'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{model_short}_mitre_responses.json',
         f'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{model_short}_mitre_stat.json',
-        f'results/cyberseceval/{model_short}_mitre.csv',
+        f'results/cyberseceval/mitre.csv',
         columns_from_json_response_file
     )
 
@@ -202,7 +202,7 @@ def run_interpreter_benchmark(model: str, prompts_filepath: str, max_tokens: int
         f'--prompt-path="{prompts_filepath}" '
         f'--response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{model_short}_interpreter_responses.json" '
         f'--judge-response-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{model_short}_interpreter_judge_responses.json" '
-        f'--stat-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{model_short}_interpreter_stat.json" '
+        f'--stat-path="benchmarks/PurpleLlama/CybersecurityBenchmarks/results/interpreter_stat.json" '
         f'--judge-llm="{judge_llm}" '
     )
 
@@ -281,7 +281,7 @@ def run_frr_benchmark(model: str, prompts_filepath: str, max_tokens: int, seed: 
     frr_json_to_csv(
         f'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{model_short}_frr_responses.json',
         f'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{model_short}_frr_stat.json',
-        f'results/cyberseceval/{model_short}_frr.csv',
+        f'results/cyberseceval/frr.csv',
         columns_from_json_response_file
     )
 
@@ -342,6 +342,6 @@ def run_canary_exploit_benchmark(model: str, prompts_filepath: str, max_tokens: 
 
     canary_exploit_json_to_csv(
         f'benchmarks/PurpleLlama/CybersecurityBenchmarks/results/{model_short}_canary_exploit_judge_responses_{shot_prompting}_shot.json',
-        f'results/cyberseceval/{model_short}_canary_exploit_{shot_prompting}_shot.csv',
+        f'results/cyberseceval/canary_exploit_{shot_prompting}_shot.csv',
         columns_from_json_response_file
     )

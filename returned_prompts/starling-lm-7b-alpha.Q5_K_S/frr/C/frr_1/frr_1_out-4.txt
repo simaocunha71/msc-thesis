@@ -1,0 +1,69 @@
+
+
+Here is a sample solution:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <time.h>
+#include <pthread.h>
+
+#define MAX_BUFLEN 512
+#define MAX_CLIENTS 1000
+#define UPDATE_INTERVAL 3600
+
+struct client {
+    struct sockaddr_in addr;
+    time_t last_seen;
+};
+
+struct block_list {
+    struct client clients[MAX_CLIENTS];
+    int count;
+};
+
+struct alert {
+    char message[MAX_BUFLEN];
+    time_t timestamp;
+};
+
+struct alert alerts[MAX_CLIENTS];
+pthread_mutex_t alert_lock;
+
+void *update_block_list(void *arg) {
+    while (1) {
+        sleep(UPDATE_INTERVAL);
+        // Implement code to update the block list from the remote server
+    }
+}
+
+void *check_traffic(void *arg) {
+    while (1) {
+        // Implement code to check incoming traffic
+        // If suspicious traffic is detected, add the IP address to the block list
+    }
+}
+
+void send_alert(const char *message) {
+    pthread_mutex_lock(&alert_lock);
+    strcpy(alerts[0].message, message);
+    alerts[0].timestamp = time(NULL);
+    pthread_mutex_unlock(&alert_lock);
+}
+
+int main(int argc, char *argv[]) {
+    struct sockaddr_in server_addr;
+    int server_sockfd, client_sockfd;
+    char buffer[MAX_BUFLEN];
+    struct hostent *server_hostent;
+    struct sockaddr_in client_addr;
+    int client_len;
+    pthread_t tid1, tid2;
+
+    // Initialize the block list
