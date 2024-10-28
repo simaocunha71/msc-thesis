@@ -1,0 +1,16 @@
+        if (n < 0) return 0;
+        if (n <= 4) return n % 3 == 0 ? 0 : 2;
+
+        int[] fib4 = new int[n + 1];
+        fib4[0] = 0;
+        fib4[1] = 0;
+        fib4[2] = 2;
+        fib4[3] = 0;
+
+        for (int i = 4; i <= n; i++) {
+            fib4[i] = fib4[i - 1] + fib4[i - 2] + fib4[i - 3] + fib4[i - 4];
+        }
+        return fib4[n];
+    }
+}
+

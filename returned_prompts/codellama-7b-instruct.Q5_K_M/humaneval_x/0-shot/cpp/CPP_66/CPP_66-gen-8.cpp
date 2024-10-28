@@ -1,0 +1,4 @@
+/*
+Task
+Write a function that takes a string as input and returns the sum of the upper characters only's
+ASC

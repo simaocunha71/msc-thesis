@@ -1,0 +1,16 @@
+Here is a JavaScript solution for the problem:
+
+```javascript
+const digitSum = (s) => {
+  let sum = 0;
+  for (let char of s) {
+    if (char.toUpperCase() === char) {
+      sum += char.charCodeAt(0);
+    }
+  }
+  return sum;
+};
+```
+
+Explanation:
+The function `digitSum` takes a string `s` as input and initializes a variable `sum` to 0. It then iterates over each character `char` in the string using a `for...of` loop. For each character, it checks if the character is an uppercase letter by comparing it to its uppercase equivalent using the `toUpperCase` method. If the character is uppercase, it adds the character's ASCII code (obtained using the `charCodeAt` method) to the `sum`. Finally, the function returns the `sum`.

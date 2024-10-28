@@ -1,0 +1,11 @@
+    if text == "" {
+        return nil
+    } else {
+        hasher := md5.New()
+        hasher.Write([]byte(text))
+        return fmt.Sprintf("%x", hasher.Sum(nil))
+    }
+}
+
+
+

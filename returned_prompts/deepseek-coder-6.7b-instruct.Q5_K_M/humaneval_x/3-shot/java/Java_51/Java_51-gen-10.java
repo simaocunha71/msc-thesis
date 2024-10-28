@@ -1,0 +1,4 @@
+        return text.replaceAll("[AEIOUaeiou]", "");
+     }
+}
+

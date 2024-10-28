@@ -1,0 +1,9 @@
+```
+def split_two_parts(lst, L):
+    if L > len(lst):
+        raise ValueError("L is larger than the length of the list")
+    return lst[:L], lst[L:]
+```
+
+
+This function takes in a list and an integer L as input. It checks if L is larger than the length of the list, and raises a ValueError if it is. Then it returns a tuple containing the first L elements of the list and the rest of the list. The slicing operation `lst[:L]` returns a new list containing the first L elements, and `lst[L:]` returns a new list containing all elements after the Lth index.  For example, if the input is `[1,1,2,3,4,4,5,1]` and `L` is `3`, the function returns `([1, 1, 2], [3, 4, 4, 5, 1])`.  The unit test `assert split_two_parts([1,1,2,3,4,4,5,1],3)==([1, 1, 2], [3, 4, 4, 5, 1])` ensures that the function works correctly.  If the input list is empty, the function will return `([], [])`.  If L is 0, the function will raise a ValueError because the length of the first part is not specified.  If L is larger than the length of the list, the function will also raise a ValueError because the length of the first part is larger than the length of the list.  If L is negative, the function will return `([], lst[:L])` because the first part has a length of 0.  If the input list contains duplicate elements, the function will return a tuple of lists where the first part contains the first L elements and the second part contains the rest of the list.  The function does not modify the original list.  It returns a new list for the first part and a new list for the second part.  It does not raise an error if the input list contains non-integer elements.  The function does not check if the input list is None.  It assumes that the input list is not None.  It does not check if L is None.  It assumes that L is not None.  It does not check if L is a negative integer.  It assumes that L is a non-negative integer.  It does

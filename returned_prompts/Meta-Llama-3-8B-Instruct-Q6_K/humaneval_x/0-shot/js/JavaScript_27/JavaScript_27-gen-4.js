@@ -1,0 +1,4 @@
+```javascript
+const flipCase = (string) => string.replace(/[a-z]/g, (c) => c.toUpperCase()).replace(/[A-Z]/g, (c) => c.toLowerCase());
+```
+This code uses the `replace()` method with regular expressions to iterate over the characters in the input string. The first regular expression `/[a-z]/g` matches any lowercase letter (the `g` flag at the end makes the replacement global, so all occurrences are replaced), and the replacement function `c => c.toUpperCase()` converts each matched character to uppercase. The second regular expression `/[A-Z]/g` matches any uppercase letter, and the replacement function `c => c.toLowerCase()` converts each matched character to lowercase. The resulting string is then returned. For example, `flipCase('Hello')` would return `'hELLO'`.

@@ -1,0 +1,5 @@
+
+
+def common(l1, l2):
+    return sorted(set(l1).intersection(set(l2)))
+

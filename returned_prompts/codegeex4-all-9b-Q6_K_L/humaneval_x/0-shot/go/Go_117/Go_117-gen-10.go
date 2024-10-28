@@ -1,0 +1,26 @@
+```go
+func SelectWords(s string, n int) []string {
+    words := strings.Fields(s)
+    var result []string
+    for _, word := range words {
+        if countConsonants(word) == n {
+            result = append(result, word)
+        }
+    }
+    return result
+}
+
+func countConsonants(s string) int {
+    count := 0
+    for _, c := range s {
+        if isConsonant(c) {
+            count++
+        }
+    }
+    return count
+}
+
+func isConsonant(c rune) bool {
+    return !strings.ContainsRune("aeiouAEIOU", c) && c >= 'a' && c <= 'z'
+}
+```

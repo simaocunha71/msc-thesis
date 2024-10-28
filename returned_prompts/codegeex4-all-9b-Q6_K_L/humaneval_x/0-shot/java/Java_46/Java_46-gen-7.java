@@ -1,0 +1,25 @@
+```java
+public int fib4(int n) {
+    if (n == 0) {
+        return 0;
+    }
+    if (n == 1) {
+        return 0;
+    }
+    if (n == 2) {
+        return 2;
+    }
+    if (n == 3) {
+        return 0;
+    }
+    int[] fib4 = new int[n + 1];
+    fib4[0] = 0;
+    fib4[1] = 0;
+    fib4[2] = 2;
+    fib4[3] = 0;
+    for (int i = 4; i <= n; i++) {
+        fib4[i] = fib4[i - 1] + fib4[i - 2] + fib4[i - 3] + fib4[i - 4];
+    }
+    return fib4[n];
+}
+```

@@ -1,0 +1,1 @@
+To solve this problem, we need to sort the even indices of the input list, while leaving the odd indices unchanged. Here's a step-by-step explanation of the code:

@@ -1,0 +1,1 @@
+The code creates two flags (flag1 and flag2) to check if there

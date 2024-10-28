@@ -1,0 +1,9 @@
+    int len=str.length();
+
+    for (int i=2;i<len;i++)
+    if (len%i==0)
+    return false;
+
+    return true;
+}
+

@@ -1,0 +1,11 @@
+    switch {
+    case x.(int) == y.(int)+z.(int):
+        return true
+    case y.(int) == x.(int)+z.(int):
+        return true
+    case z.(int) == x.(int)+y.(int):
+        return true
+    default:
+        return false
+    }
+}  // the function AnyInt is not type-safe, since it does not check if the input is an integer. // If the input is not an integer, the function will panic at runtime. // It's better to use type assertions to ensure the input is an integer, // and return an error if the input is not an integer. // Here's a safer version of the function: func AnyInt(x, y, z interface{}) (bool, error) { switch { case x.(int) == y.(int)+z.(int): return true, nil case y.(int) == x.(int)+z.(int): return true, nil case z.(int) == x.(int)+y.(int): return true, nil default: return false, errors.New("inputs are not integers") } } // This version of the function returns a boolean value and an error value. // If the inputs are not integers, it returns false and an error. // Otherwise, it returns true and nil. // You can use this function like this: result, err := AnyInt(5, 2, 7) if err != nil { log.Fatal(err) } if result { log.Println("One of the numbers is equal to the sum of the other two") } else { log.Println("None of the numbers are equal to the sum of the other two") } // This code checks if there was an error, and if so, logs the error and stops the program. // If there was no error, it logs a message depending on the result of the function. // You can also use this function in a more complex program, // where you can handle the error value and the boolean value in a more sophisticated way. // For example, you can use the error value to retry the operation // or to report the error to the user. // You can use the boolean value to make a decision in your program. // You can use the boolean value to log a message, // or to perform an action depending on the result. // You can use the boolean value in any way that makes sense for your program. // The important thing is to handle the error value and the

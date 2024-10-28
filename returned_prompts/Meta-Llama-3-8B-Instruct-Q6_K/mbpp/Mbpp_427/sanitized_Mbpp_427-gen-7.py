@@ -1,0 +1,10 @@
+from datetime import datetime
+import re
+import re
+import re
+import re
+import re
+import re
+def change_date_format(date_str):
+    date_list = date_str.split('-')
+    return f'{date_list[2]}-{date_list[1]}-{date_list[0]}'

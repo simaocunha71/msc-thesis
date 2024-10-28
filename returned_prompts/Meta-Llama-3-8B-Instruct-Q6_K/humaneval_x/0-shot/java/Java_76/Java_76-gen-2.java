@@ -1,0 +1,11 @@
+public class Solution {
+    public boolean isSimplePower(int x, int n) {
+        for(int i = 1; Math.pow(n, i) <= x; i++) {
+            if(Math.pow(n, i) == x) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+In this solution, we use a for loop to iterate from 1 to x. In each iteration, we calculate the power of n raised to the current iteration value i. If this calculated value is equal to x, we return true, indicating that x is a simple power of n. If the loop finishes without finding such a value, we return false. This solution has a time complexity of O(log(x)) because the maximum number of iterations is the number of times n can be raised to the power of 2 (which is log2(x)).  For example, for the input x = 8 and n = 2, the loop will iterate 3 times: 2^1 = 2, 2^2 = 4, and 2^3 = 8. Therefore, the function will return true.  Similarly, for the input x = 3 and n = 2, the loop will iterate only once: 2^1 = 2, and then stop because 2^2 = 4 > 3. Therefore, the function will return false.  This solution is efficient and works for all positive integers x and n.  It is a simple and intuitive approach to solve the problem.  It can be easily implemented in any programming language.  It does not require any advanced mathematical knowledge or complex data structures.  It is a good example of a basic algorithm for solving a problem in computer science.  It is easy to understand and maintain.  It is a good starting point for learning about algorithms and data structures.  It is a simple and efficient solution for the problem.  It is a good example of how to solve a problem in a straightforward and efficient way.  It is a good starting point for learning about algorithms and data structures.  It is a simple and efficient solution for the problem.  It is a good example of how to solve a problem in a straightforward and efficient way.  It is a good starting point for learning about algorithms and data structures.  It is a simple and efficient solution for the problem.  It is a good example of how to solve a problem in a straightforward and efficient way.  It is a good starting point

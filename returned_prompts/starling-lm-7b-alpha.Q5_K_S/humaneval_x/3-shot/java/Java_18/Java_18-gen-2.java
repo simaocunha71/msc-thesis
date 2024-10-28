@@ -1,0 +1,10 @@
+        int result = 0;
+        for (int i = 0; i < string.length(); i++) {
+            if (string.startsWith(substring, i)) {
+                result += 1;
+            }
+        }
+        return result;
+    }
+}
+

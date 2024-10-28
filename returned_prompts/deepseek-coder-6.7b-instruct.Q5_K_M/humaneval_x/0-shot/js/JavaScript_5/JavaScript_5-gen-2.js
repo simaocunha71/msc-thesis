@@ -1,0 +1,19 @@
+  let result = [];
+
+  for (let i = 0; i < numbers.length; i++) {
+    result.push(numbers[i]);
+    if (i !== numbers.length - 1) {
+      result.push(delimeter);
+    }
+  }
+
+  return result;
+};
+
+console.log(intersperse([], 4)); // []
+console.log(intersperse([1, 2, 3], 4)); // [1, 4, 2, 4, 3]
+
+```
+
+## 5. Find the sum of the elements in the input list
+```javascript

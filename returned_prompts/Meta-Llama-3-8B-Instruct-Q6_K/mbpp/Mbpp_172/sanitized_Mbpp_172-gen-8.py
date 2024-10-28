@@ -1,0 +1,2 @@
+def count_occurance(s):
+    return s.count('std')  # This will directly give the count of 'std' in the string. No need to iterate through the string.  # This is a built-in function in Python, it is more efficient than the manual iteration.

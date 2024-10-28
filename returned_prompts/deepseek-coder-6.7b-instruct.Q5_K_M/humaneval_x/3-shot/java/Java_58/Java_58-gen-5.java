@@ -1,0 +1,9 @@
+        Set<Integer> set1 = new HashSet<>(l1);
+        Set<Integer> set2 = new HashSet<>(l2);
+        set1.retainAll(set2);
+        List<Integer> result = new ArrayList<>(set1);
+        Collections.sort(result);
+        return result;
+     }
+}
+

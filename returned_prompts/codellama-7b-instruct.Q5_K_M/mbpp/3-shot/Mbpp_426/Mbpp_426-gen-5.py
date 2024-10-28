@@ -1,0 +1,5 @@
+
+def filter_oddnumbers(nums:list) -> list:
+  return [x for x in nums if x%2==0]
+
+

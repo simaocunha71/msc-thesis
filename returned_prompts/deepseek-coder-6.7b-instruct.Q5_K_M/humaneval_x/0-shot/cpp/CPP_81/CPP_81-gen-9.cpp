@@ -1,0 +1,1 @@
+The code provided is a good attempt. It can be simplified by using a switch-case statement. It is also important to note that in C

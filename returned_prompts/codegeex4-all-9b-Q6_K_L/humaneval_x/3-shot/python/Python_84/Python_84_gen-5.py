@@ -1,0 +1,1 @@
+    return bin(N).replace("0b", "")

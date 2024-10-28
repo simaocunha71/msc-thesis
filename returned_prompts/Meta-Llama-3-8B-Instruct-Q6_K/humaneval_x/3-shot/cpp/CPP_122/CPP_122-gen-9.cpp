@@ -1,0 +1,7 @@
+    int sum=0;
+    for (int i=0;i<k;i++){
+        if (log10(arr[i]) < 2)
+            sum+=arr[i];
+    }
+    return sum;
+}  // or return accumulate(cbegin(arr), cbegin(arr)+k, 0, [n](int a, int b){return a+(b<10?b:0);}); // with std::accumulate and lambda.  // or return accumulate(cbegin(arr), cbegin(arr)+k, 0, [](int a, int b){return a+(b<10?b:0);});  // with c++11's lambda.  // or return accumulate(cbegin(arr), cbegin(arr)+k, 0, [](int a, int b){return a+(b<10?b:0);});  // with c++11's lambda.  // or return accumulate(cbegin(arr), cbegin(arr)+k, 0, [](int a, int b){return a+(b<10?b:0);});  // with c++11's lambda.  // or return accumulate(cbegin(arr), cbegin(arr)+k, 0, [](int a, int b){return a+(b<10?b:0);});  // with c++11's lambda.  // or return accumulate(cbegin(arr), cbegin(arr)+k, 0, [](int a, int b){return a+(b<10?b:0);});  // with c++11's lambda.  // or return accumulate(cbegin(arr), cbegin(arr)+k, 0, [](int a, int b){return a+(b<10?b:0);});  // with c++11's lambda.  // or return accumulate(cbegin(arr), cbegin(arr)+k, 0, [](int a, int b){return a+(b<10?b:0);});  // with c++11's lambda.  // or return accumulate(cbegin(arr), cbegin(arr)+k, 0, [](int a, int b){return a+(b<10?b:0);});  // with c++11's lambda.  // or return accumulate(cbegin(arr), cbegin(arr)+k, 0, [](int a, int b){return a+(b<10?b:0);});  // with c++11's lambda.  // or return accumulate(cbegin(arr),

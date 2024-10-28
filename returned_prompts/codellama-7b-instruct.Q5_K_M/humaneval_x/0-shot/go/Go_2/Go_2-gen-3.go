@@ -1,0 +1,2 @@
+    return math.Mod(number, 1)
+}

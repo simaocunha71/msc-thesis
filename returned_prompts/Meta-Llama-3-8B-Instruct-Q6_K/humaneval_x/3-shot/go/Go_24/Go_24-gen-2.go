@@ -1,0 +1,7 @@
+    for i := n - 1; i > 0; i-- {
+        if n%i == 0 {
+            return i
+        }
+    }
+    return 1
+}  // or return n, since n is itself a divisor of n.  // or return 1, since 1 is always a divisor of any number.  // or return n/2, since the largest divisor is always less than the square root of n.  // or return n/2 + n%2, since the largest divisor is always less than the square root of n.  // or return n/2 + n%2 - 1, since the largest divisor is always less than the square root of n.  // or return n/2 + n%2 - 1 + n%(n/2+n%2) - n%(n/2+n%2)/2, since the largest divisor is always less than the square root of n.  // or return int(math.Sqrt(float64(n))), since the largest divisor is always less than the square root of n.  // or return int(math.Sqrt(float64(n)) - 1), since the largest divisor is always less than the square root of n.  // or return n/2, since the largest divisor is always less than the square root of n.  // or return n/2 + n%2 - 1, since the largest divisor is always less than the square root of n.  // or return n/2 + n%2 - 1 + n%(n/2+n%2) - n%(n/2+n%2)/2, since the largest divisor is always less than the square root of n.  // or return n/2 + n%2 - 1 + n%(n/2+n%2) - n%(n/2+n%2)/2 - 1, since the largest divisor is always less than the square root of n.  // or return n/2 + n%2 - 1 + n%(n/2+n%2) - n%(n/2+n%2)/2 - 1 - 1, since the largest divisor is always less than the square root of n.  // or return n/2 + n%2 - 1 + n%(n/2+n%2) - n%(n/2+n%2)/2 - 1 - 1 - 1, since the largest divisor

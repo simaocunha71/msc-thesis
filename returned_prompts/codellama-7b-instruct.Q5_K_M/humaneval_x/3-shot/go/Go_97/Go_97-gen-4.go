@@ -1,0 +1,5 @@
+    return int(math.Mod(float64(a/10) * float64(b/10), 10))
+}
+
+
+

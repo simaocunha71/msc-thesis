@@ -1,0 +1,12 @@
+    vector<string> result;
+    for (int i=0;i<strings.size();i++)
+    {
+        if (strings[i].find(substring)!=string::npos)
+            result.push_back(strings[i]);
+    }
+    return result;
+}  // This function is case sensitive, if you want it to be case insensitive, you can convert both the string and the substring to lower or upper case before searching.
+}  // This function is case sensitive, if you want it to be case insensitive, you can convert both the string and the substring to lower or upper case before searching.
+}  // This function is case sensitive, if you want it to be case insensitive, you can convert both the string and the substring to lower or upper case before searching.
+}  // This function is case sensitive, if you want it to be case insensitive, you can convert both the string and the substring to lower or upper case before searching.  // This function is case sensitive, if you want it to be case insensitive, you can convert both the string and the substring to lower or upper case before searching.
+}  // This function is case sensitive, if you want it to be case insensitive, you can convert both the string and the substring to lower or upper case before searching.  // This function is case sensitive, if you want it to be case insensitive, you can convert both the string and the substring to lower or upper case before searching.  // This function is case sensitive, if you want it to be case insensitive, you can convert both the string and the substring to lower or upper case before searching.  // This function is case sensitive, if you want it to be case insensitive, you can convert both the string and the substring to lower or upper case before searching.  // This function is case sensitive, if you want it to be case insensitive, you can convert both the string and the substring to lower or upper case before searching.  // This function is case sensitive, if you want it to be case insensitive, you can convert both the string and the substring to lower or upper case before searching.  // This function is case sensitive, if you want it to be case insensitive, you can convert both the string and the substring to lower or upper case before searching.  // This function is case sensitive, if you want it to be case insensitive, you can convert both the string and the substring to lower or upper case before searching.  // This function is case sensitive, if you want it to be case insensitive

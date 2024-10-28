@@ -1,0 +1,3 @@
+    return sorted([x for x in lst if len(x) % 2 == 0])
+
+

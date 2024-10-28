@@ -1,0 +1,86 @@
+Here is a solution to the problem of finding the median of a vector of integers using a function called median. The function takes a vector of floats as input and returns the median as a float. Here is a step-by-step explanation of the solution:
+
+1. The function begins by getting the size of the vector using the size() function and storing it in the variable n.
+2. The next step is to sort the vector in ascending order using the sort() function. This is necessary in order to find the median, which is the middle value of the vector.
+3. After sorting the vector, the function checks if the size of the vector is even or odd using the modulus operator (%). If the size is even, it means that there are two middle values, so the function calculates the average of these two values and returns it as the median.
+4. If the size of the vector is odd, it means that there is only one middle value, so the function simply returns this value as the median.
+5. The main function then creates a vector of floats called l and initializes it with some values. It then calls the median function with this vector as an argument and prints the result using the printf() function.
+
+Overall, this solution provides a straightforward and efficient way to find the median of a vector of floats using the median function.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

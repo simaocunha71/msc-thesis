@@ -1,0 +1,2 @@
+def move_zero(nums):
+    return [num for num in nums if num != 0] + [num for num in nums if num == 0]  # or nums.sort(key=int); return [x for x in nums if x != 0] + [x for x in nums if x == 0] for sorting the list first

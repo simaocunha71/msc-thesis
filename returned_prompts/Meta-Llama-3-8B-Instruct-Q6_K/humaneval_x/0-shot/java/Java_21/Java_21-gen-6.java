@@ -1,0 +1,2 @@
+
+The time complexity of this solution is O(n), where n is the size of the input list, as we iterate over the list once to apply the linear transform. The space complexity is also O(n), as we create a new list to store the rescaled values.

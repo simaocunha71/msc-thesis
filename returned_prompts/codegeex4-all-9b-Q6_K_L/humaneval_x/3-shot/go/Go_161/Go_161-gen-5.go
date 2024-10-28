@@ -1,0 +1,17 @@
+    result := make([]rune, 0)
+
+    for _, c := range s {
+        if c >= 'a' && c <= 'z' {
+            result = append(result, rune(c-'a'+'A'))
+        } else if c >= 'A' && c <= 'Z' {
+            result = append(result, rune(c-'A'+'a'))
+        } else {
+            result = append(result, c)
+        }
+    }
+
+    return string(result)
+}
+
+
+

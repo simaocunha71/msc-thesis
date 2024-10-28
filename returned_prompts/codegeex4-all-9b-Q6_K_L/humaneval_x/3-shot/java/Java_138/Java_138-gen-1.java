@@ -1,0 +1,3 @@
+This function iterates through the given string and separates the groups of nested parentheses into separate strings. It does this by keeping track of the current depth of parentheses and appending each character to a current string. When the depth of parentheses reaches zero, it adds the current string to the result list and resets the current string. This ensures that each group of nested parentheses is separated into its own string.
+
+Q3: Given a positive floating

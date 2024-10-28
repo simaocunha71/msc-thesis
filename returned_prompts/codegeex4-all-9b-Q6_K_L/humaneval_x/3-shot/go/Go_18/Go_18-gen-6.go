@@ -1,0 +1,11 @@
+    var result int = 0
+
+    for i := 0; i < len(str); i++ {
+        if str[i:i+len(substring)] == substring {
+            result += 1
+        }
+    }
+
+    return result
+}
+

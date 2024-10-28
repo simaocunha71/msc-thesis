@@ -1,0 +1,17 @@
+    result := []rune{}
+    for _, c1 := range s {
+        if !strings.Contains(c, string(c1)) {
+            result = append(result, c1)
+        }
+    }
+    s = string(result)
+    return [2]interface{}{s,strings.EqualFold(s,reverse(s))}
+}
+
+func reverse(s string) string {
+    runes := []rune(s)
+    for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+        runes[i], runes[j] = runes[j], runes[i]
+    }
+    return string(runes)
+}

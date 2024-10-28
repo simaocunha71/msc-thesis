@@ -1,0 +1,2 @@
+def extract_nth_element(lst, n):
+  return [tup for i, tup in enumerate(lst) if i == n]  # Return all elements at the nth position. If there are multiple, return them all.  # If you want the nth element itself, change the list comprehension to [tup[n]]

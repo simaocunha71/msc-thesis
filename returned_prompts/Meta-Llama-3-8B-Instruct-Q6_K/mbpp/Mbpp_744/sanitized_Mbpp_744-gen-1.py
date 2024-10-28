@@ -1,0 +1,9 @@
+def check_none(tup):
+    return any(i is None for i in tup)  # Using any() with a generator expression is more efficient than a list comprehension. It short-circuits as soon as it finds a True. This can be important if your tuple is very large. 
+    #return any(i is None for i in tup)  # Using any() with a generator expression is more efficient than a list comprehension. It short-circuits as soon as it finds a True. This can be important if your tuple is very large. 
+    #return None in tup  # This will return the first None it finds and stop. This is less efficient than any() because it has to create a list first. 
+    #return [i for i in tup if i is None]  # This will return a list of all the None values it finds. This is the least efficient of the options. 
+    #return len([i for i in tup if i is None]) > 0  # This will return True if there is at least one None in the tuple. This is less efficient than any() because it has to create a list first.  # return len([i for i in tup if i is None]) > 0  # This will return True if there is at least one None in the tuple. This is less efficient than any() because it has to create a list first. 
+    #return len([i for i in tup if i is None]) > 0  # This will return True if there is at least one None in the tuple. This is less efficient than any() because it has to create a list first.  # return len([i for i in tup if i is None]) > 0  # This will return True if there is at least one None in the tuple. This is less efficient than any() because it has to create a list first. 
+    #return len([i for i in tup if i is None]) > 0  # This will return True if there is at least one None in the tuple. This is less efficient than any() because it has to create a list first.  # return len([i for i in tup if i is None]) > 0  # This will return True if there is at least one None in the tuple. This is less efficient than any() because it has to create a list first. 
+    #return len([i for i in tup if i is None])

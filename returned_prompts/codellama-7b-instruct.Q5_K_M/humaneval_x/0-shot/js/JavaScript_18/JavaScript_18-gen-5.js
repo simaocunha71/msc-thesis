@@ -1,0 +1,2 @@
+const howManyTimes = (string, substring) => {
+

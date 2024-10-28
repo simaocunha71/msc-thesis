@@ -1,0 +1,2 @@
+
+The first code block is correct. It checks for any two numbers in the list that are within the given threshold of each other. The second code block has a mistake. It does not correctly separate the parenthesis groups. The third code block is correct. It correctly calculates the mean absolute deviation of the given list of numbers. The fourth code block is correct. It correctly truncates the given number by returning the decimal part.

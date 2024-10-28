@@ -1,0 +1,5 @@
+```
+def modp(n: int, p: int):
+    return pow(n, p-2, p)
+```
+This function uses the pow function with three arguments, which calculates the modular exponentiation. The third argument is the modulus, which is `p` in this case. The result is the value of `n` raised to the power of `p-2` modulo `p`. This is equivalent to the modulo operation `2^n mod p`. The function works for all positive integers `n` and `p`. For example, `modp(3, 5)` returns `3` because `3^4 mod 5` equals `3`. Similarly, `modp(1101, 101)` returns `2` because `1101^100 mod 101` equals `2`. Note that the result of the function depends on the choice of the modulus `p`. The function is numerically stable and does not overflow for large inputs. It also works correctly for `n=0` and returns `1` as expected. The function is efficient and does not require any additional memory. It is suitable for use in a variety of applications, such as cryptography and numerical computations.

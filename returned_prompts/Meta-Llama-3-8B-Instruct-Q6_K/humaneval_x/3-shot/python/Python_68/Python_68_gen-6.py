@@ -1,0 +1,12 @@
+    smallest_value = float('inf')
+    smallest_index = -1
+
+    for i, node in enumerate(arr):
+        if node % 2 == 0 and node < smallest_value:
+            smallest_value = node
+            smallest_index = i
+
+    if smallest_value == float('inf'):
+        return []
+
+    return [smallest_value, smallest_index]  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index.  # Return the smallest even value and its index

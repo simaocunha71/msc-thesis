@@ -1,0 +1,5 @@
+```
+def is_samepatterns(patterns, sequence):
+    return patterns == sequence
+```
+The function `is_samepatterns` checks if the given sequence matches the pattern provided. It takes two parameters: `patterns` and `sequence`. It then compares these two parameters directly using the `==` operator, which checks for equality. If the sequence matches the pattern, the function returns `True`; otherwise, it returns `False`. This function uses a simple and direct approach to solve the problem. It does not need to iterate over the patterns or sequence, as it can simply compare the two parameters directly. This approach is efficient and easy to understand. The unit test `assert is_samepatterns(["red","green","green"], ["a", "b", "b"])==True` demonstrates how the function works. It checks if the sequence `["a", "b", "b"]` matches the pattern `["red","green","green"]`. The function correctly returns `True`, indicating that the sequence matches the pattern.

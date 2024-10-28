@@ -1,0 +1,1 @@
+    return sorted(arr, reverse=True)[:k]  # Use the built-in sort function and slice operator to get the k largest numbers. The built-in sort function sorts the list in ascending order, so we use the reverse=True parameter to sort in descending order. The slice operator [:k] is then used to get the k largest numbers.

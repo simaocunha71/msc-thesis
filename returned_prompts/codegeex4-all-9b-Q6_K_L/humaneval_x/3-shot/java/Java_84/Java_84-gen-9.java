@@ -1,0 +1,4 @@
+        return Integer.toBinaryString(N);
+    }
+}
+

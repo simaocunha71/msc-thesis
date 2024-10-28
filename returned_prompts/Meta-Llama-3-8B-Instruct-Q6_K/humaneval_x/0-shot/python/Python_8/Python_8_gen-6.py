@@ -1,0 +1,23 @@
+    result = (sum(numbers), 1 if not numbers else functools.reduce(lambda x, y: x * y, numbers))
+    return result
+# This function uses the built-in sum function to calculate the sum of the list of numbers.
+# For the product, it uses a lambda function with functools.reduce to multiply all the numbers together.
+# If the list is empty, the product is set to 1, as per the problem statement. 
+
+
+
+
+
+
+
+    # result = (sum(numbers), 1 if not numbers else functools.reduce(lambda x, y: x * y, numbers))
+    # return result
+    # For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.
+    # Empty sum should be equal to 0 and empty product should be equal to 1.
+    # >>> sum_product([])
+    # (0, 1)
+    # >>> sum_product([1, 2, 3, 4])
+    # (10, 24)
+    # This function uses the built-in sum function to calculate the sum of the list of numbers.
+    # For the product, it uses a lambda function with functools.reduce to multiply all the numbers together.
+    # If the list is empty, the product is set to 1, as per the problem statement.

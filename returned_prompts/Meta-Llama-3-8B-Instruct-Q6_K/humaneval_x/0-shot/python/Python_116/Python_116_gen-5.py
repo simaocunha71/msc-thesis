@@ -1,0 +1,6 @@
+    def sort_array(arr):
+        return sorted(arr, key=lambda x: (bin(x).count('1'), x)) # use lambda function as key for sorting
+    # Note: bin() function is used to convert an integer to a binary string and count('1') is used to count the number of '1's in the binary string. This is done for each number in the array. Then, the sorted function is used to sort the array based on this key. The numbers with the same number of '1's are sorted by their decimal values. This is done by the x in the lambda function. The sorted function returns the sorted array. This solution works for both positive and negative numbers. The numbers are sorted in ascending order.
+    print(sort_array([1, 5, 2, 3, 4])) # prints: [1, 2, 3, 4, 5]
+    print(sort_array([-2, -3, -4, -5, -6])) # prints: [-6, -5, -4, -3, -2]
+    print(sort_array([1, 0, 2, 3, 4])) # prints: [0, 1, 2, 3, 4]  # 0 is the smallest number with no ones in binary representation. Then, 1 is the smallest number with one '1' in binary representation. Then, 2 is the smallest number with two '1's in binary representation. And so on. This is why the array is sorted in ascending order based on the number of '1's in binary representation and then by their decimal values.

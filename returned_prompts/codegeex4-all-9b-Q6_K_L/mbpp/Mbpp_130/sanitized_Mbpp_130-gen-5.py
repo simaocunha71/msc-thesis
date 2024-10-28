@@ -1,0 +1,11 @@
+def max_occurrences(lst):
+    frequency_dict = {}
+    for item in lst:
+        if item in frequency_dict:
+            frequency_dict[item] += 1
+        else:
+            frequency_dict[item] = 1
+    max_frequency = max(frequency_dict.values())
+    for item, frequency in frequency_dict.items():
+        if frequency == max_frequency:
+            return item

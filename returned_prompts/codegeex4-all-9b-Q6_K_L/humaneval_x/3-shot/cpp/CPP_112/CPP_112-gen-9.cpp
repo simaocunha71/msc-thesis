@@ -1,0 +1,4 @@
+The separate_paren_groups function could be improved by removing the level variable.  Instead, you could use a boolean flag to indicate whether you are inside a group or not.  This would simplify the logic and reduce the number of variables used.
+The truncate_number function is correct, but you could use the fmod function instead of subtracting the integer part from the number.  This would be more accurate for very large numbers.
+The reverse_delete function is correct, but you could use the erase-remove idiom to remove the characters from the result string.  This would be more efficient and more readable.
+Overall, the code is mostly correct, but there are some improvements that could be made.

@@ -1,0 +1,4 @@
+    return lst==sorted(lst);
+}
+
+

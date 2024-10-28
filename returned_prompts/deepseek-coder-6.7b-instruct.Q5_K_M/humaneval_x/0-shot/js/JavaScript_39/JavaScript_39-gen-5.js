@@ -1,0 +1,2 @@
+
+Yes, we can optimize the code to have a better time complexity by using the Sieve of Eratosthenes algorithm to generate prime numbers. This algorithm finds all prime numbers up to a given limit. We can use this algorithm to generate all prime numbers up to the nth Fibonacci number

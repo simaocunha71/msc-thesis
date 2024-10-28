@@ -1,0 +1,2 @@
+def interleave_lists(list1, list2, list3):
+    return [item for t in zip(list1, list2, list3) for item in t] + list(set(list1) ^ set(list2) ^ set(list3))  # ^ operator is used for set difference operation

@@ -1,0 +1,11 @@
+
+def do_algebra(operator, operand):
+    result = 0
+    for i in range(len(operand)-1):
+        result = result + operand[i] * operator[i]
+    return result
+
+
+
+
+

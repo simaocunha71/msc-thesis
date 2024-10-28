@@ -1,0 +1,5 @@
+
+The first question is fine, you're just iterating through the list and checking if the distance between each number and the next number is less than the threshold. You're also correctly handling the edge case when the list is empty.
+The second question is fine, you're correctly iterating through the string and checking if the current character is an opening or closing parenthesis. You're also correctly handling the edge case when the input string is empty.
+The third question is fine, you're correctly using the modulus operator to find the decimal part of the number. You're also correctly handling the edge case when the input number is an integer.
+The fourth question is fine, you're correctly splitting the input string into a list of words and then iterating through the list and adding each word to the result map. You're also correctly handling the edge case when the input string is empty.

@@ -1,0 +1,12 @@
+        List<Integer> result = new ArrayList<Integer>();
+        for (int i = a; i <= b; i++) {
+            String str = String.valueOf(i);
+            for (int j = 0; j < str.length(); j++) {
+                if (str.charAt(j) % 2 == 0) {
+                    result.add(Integer.parseInt(str.charAt(j) + ""));
+                }
+            }
+        }
+        return result;
+    }
+}

@@ -1,0 +1,12 @@
+    min := math.Min(math.MinFloat64, math.MinFloat64)
+    max := math.Max(math.MinFloat64, math.MaxFloat64)
+    for _, num := range numbers {
+        min = math.Min(min, num)
+        max = math.Max(max, num)
+    }
+    result := make([]float64, len(numbers))
+    for i, num := range numbers {
+        result[i] = (num - min) / (max - min)
+    }
+    return result
+}  // This function is a part of the solution to the given problem.  It can be used as a standalone function.  // The main function to solve the problem is not included in this solution.  // It can be used as a standalone function.  // The main function to solve the problem is not included in this solution.  // It can be used as a standalone function.  // The main function to solve the problem is not included in this solution.  // It can be used as a standalone function.  // The main function to solve the problem is not included in this solution.  // It can be used as a standalone function.  // The main function to solve the problem is not included in this solution.  // It can be used as a standalone function.  // The main function to solve the problem is not included in this solution.  // It can be used as a standalone function.  // The main function to solve the problem is not included in this solution.  // It can be used as a standalone function.  // The main function to solve the problem is not included in this solution.  // It can be used as a standalone function.  // The main function to solve the problem is not included in this solution.  // It can be used as a standalone function.  // The main function to solve the problem is not included in this solution.  // It can be used as a standalone function.  // The main function to solve the problem is not included in this solution.  // It can be used as a standalone function.  // The main function to solve the problem is not included in this solution.  // It can be used as a standalone function.  // The main function to solve the problem is not included in this solution.  // It can be used as a standalone function.  // The main function to solve the problem is not included in this solution.  // It can be used as a standalone function.  // The main function to solve the

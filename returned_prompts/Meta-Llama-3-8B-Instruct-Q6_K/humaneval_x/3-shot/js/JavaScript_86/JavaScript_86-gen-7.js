@@ -1,0 +1,2 @@
+  return s.split(' ').map(word => word.split('').sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0)).join('')).join(' ');
+}  // Time Complexity: O(n*m*log26), where n is the number of words and m is the length of the longest word.  // Space Complexity: O(n*m) for storing the sorted words.

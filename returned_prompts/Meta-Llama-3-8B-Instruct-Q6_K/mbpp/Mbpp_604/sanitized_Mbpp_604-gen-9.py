@@ -1,0 +1,2 @@
+def reverse_words(s):
+    return ' '.join(s.split()[::-1])  # split the string into a list of words, reverse the list, and then join the words back together with spaces in between.  # For example, "hello world" becomes ["world", "hello"] which becomes "world hello" after reversing.

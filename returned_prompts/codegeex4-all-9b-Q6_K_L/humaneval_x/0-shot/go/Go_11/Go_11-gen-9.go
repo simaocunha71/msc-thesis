@@ -1,0 +1,15 @@
+func StringXor(a string, b string) string {
+    if len(a) != len(b) {
+        fmt.Printf("Strings are not of equal length %d != %d", len(a), len(b))
+        return ""
+    }
+    var result string
+    for i := 0; i < len(a); i++ {
+        if a[i] == b[i] {
+            result += "0"
+        } else {
+            result += "1"
+        }
+    }
+    return result
+}

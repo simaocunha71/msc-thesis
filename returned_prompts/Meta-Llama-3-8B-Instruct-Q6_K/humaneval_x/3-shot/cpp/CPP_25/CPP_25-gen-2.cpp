@@ -1,0 +1,12 @@
+    vector<int> factors;
+    int i;
+    for (i=2;i<=n;i++)
+    {
+        while (n%i==0)
+        {
+            factors.push_back(i);
+            n=n/i;
+        }
+    }
+    return factors;
+}  // This function will return all the prime factors of the given number in the order from smallest to largest. The number of times a factor appears in the factorization is also stored in the result vector. This function works by dividing the number by the smallest prime number (2) as long as it is divisible, then it tries the next prime number, and so on. The factors are stored in a vector and returned at the end.  // It is worth noting that this function returns the prime factors in the order from smallest to largest, and the number of times a factor appears in the factorization. For example, if the input number is 8, the function will return {2, 2, 2}, which means that 2 is a factor of 8 and it appears three times in the factorization.  // This function can be used to factorize any positive integer. However, it is worth noting that the function does not handle the case where the input number is less than 2.  // The time complexity of this function is O(sqrt(n)), where n is the input number. This is because the function has to iterate from 2 to the square root of the input number to find all the prime factors.  // The space complexity of this function is O(sqrt(n)), where n is the input number. This is because the function has to store all the prime factors in a vector, and the size of the vector can be up to the square root of the input number.  // This function can be used to factorize any positive integer, and it is efficient for large numbers. However, it is worth noting that the function does not handle the case where the input number is less than 2.  // The function can be improved by using a more efficient algorithm for finding prime numbers, such as the Sieve of Eratosthenes algorithm. This would reduce the time complexity of the function to O(n log log n), where n is the input number.  // The function can also be improved by using a more efficient algorithm for finding the prime factors of a number, such as the Pollard's rho algorithm. This would reduce the time complexity of the function to O(sqrt(n)), where n is the input number. 

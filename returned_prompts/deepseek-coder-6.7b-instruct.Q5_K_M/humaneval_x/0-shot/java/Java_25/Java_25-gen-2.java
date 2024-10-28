@@ -1,0 +1,2 @@
+// The solution is correct and the code is well-written. The function works as expected and it's efficient. The time complexity is O(n) and the space complexity is O(n) as well. The only thing that could be improved is the documentation, but the code is already clear and easy to understand.
+// The function factorize takes an integer n

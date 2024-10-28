@@ -1,0 +1,11 @@
+    vector<int> result;
+    int i;
+    int diff;
+    for (i=0;i<game.size();i++)
+    {
+        diff=abs(game[i]-guess[i]);
+        result.push_back(diff);
+    }
+    return result;
+}
+

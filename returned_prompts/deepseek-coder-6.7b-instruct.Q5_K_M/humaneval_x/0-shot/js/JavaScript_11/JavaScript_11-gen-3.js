@@ -1,0 +1,14 @@
+  let result = '';
+  for (let i = 0; i < a.length; i++) {
+    result += a[i] ^ b[i];
+  }
+  return result;
+};
+
+console.log(stringXor('010', '110')); // '100'
+
+```
+
+### 3. Solution:
+
+```javascript

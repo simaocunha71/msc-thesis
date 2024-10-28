@@ -1,0 +1,14 @@
+    var result int = 0
+
+    for i, v := range lst {
+        if i%3 == 0 {
+            result += v * v
+        } else if i%4 == 0 {
+            result += v * v * v
+        }
+    }
+    return result
+}
+
+
+

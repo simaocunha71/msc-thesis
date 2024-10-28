@@ -1,0 +1,2 @@
+def text_match_two_three(s):
+  return s.count('a') > 0 and (s.count('b') >= 2 and s.count('b') <= 3) and s.find('a') < s.find('b')  # or s.find('a') < s.find('b') < s.find('b', s.find('b')+1) for multiple 'b's

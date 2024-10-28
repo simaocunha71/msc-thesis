@@ -1,0 +1,1 @@
+bell_number = lambda n: 1 if n<3 else bell_number(n-1)+bell_number(n-2)

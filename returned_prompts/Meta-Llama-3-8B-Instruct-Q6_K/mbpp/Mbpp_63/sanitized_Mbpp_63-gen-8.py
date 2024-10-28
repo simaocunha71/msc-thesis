@@ -1,0 +1,2 @@
+def max_difference(tuple_list):
+    return max(abs(a - b) for a, b in tuple_list) - min(a for a, b in tuple_list) + min(b for a, b in tuple_list) - min(tuple_list, key=lambda x: min(x))[0] + min(tuple_list, key=lambda x: max(x))[1]  # max_difference((3, 5), (1, 7), (10, 3), (1, 2)) == 7

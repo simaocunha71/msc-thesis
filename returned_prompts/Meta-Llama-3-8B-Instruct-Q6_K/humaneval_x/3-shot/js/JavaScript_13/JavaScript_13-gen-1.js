@@ -1,0 +1,6 @@
+  if (b === 0) {
+    return a;
+  } else {
+    return greatestCommonDivisor(b, a % b);
+  }
+}  // This is a recursive function that finds the greatest common divisor using Euclidean algorithm. It keeps replacing a with b and b with the remainder of a divided by b until b becomes 0. The last non-zero remainder is the greatest common divisor.  // You can also use a loop instead of recursion.  // The function works for any positive integers a and b. If you want to handle negative numbers, you need to take their absolute values first.  // The function returns 0 if one of the inputs is 0, because the greatest common divisor of a number and 0 is the number itself.  // The time complexity is O(log(min(a, b))), because in each step the remainder is smaller than the original number.  // The space complexity is O(log(min(a, b))), because of the recursive call stack.  // You can also use the math.gcd() function if you are using a browser that supports it.  // The function can be extended to find the greatest common divisor of more than two numbers by using the same algorithm.

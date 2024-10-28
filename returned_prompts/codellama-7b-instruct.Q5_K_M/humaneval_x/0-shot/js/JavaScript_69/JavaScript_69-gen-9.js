@@ -1,0 +1,33 @@
+/*
+  You are given a non-empty list of positive integers. Return the greatest integer that is greater than
+  zero, and has a frequency greater than or equal to the value of the integer itself.
+  The frequency of an integer is the number of times it appears in the list.
+  If no such a value exist, return -1.
+  Examples:
+      search([4, 1, 2, 2, 3, 1])) == 2
+      search([1, 2, 2, 3, 3, 3, 4, 4, 4])) == 3
+      search([5, 5, 4, 4, 4])) == -1
+  */
+const search = (lst) => {
+  const nums = {};
+  let max = -1;
+  for (let i = 0; i < lst.length; i++) {
+    if (lst[i] > 0) {
+      if (!nums[lst[i]]) {
+        nums[lst[i]] = 1;
+      } else {
+        nums[lst[i]] += 1;
+      }
+    }
+    if (lst[i] > max) {
+      max = lst[i];
+    }
+  }
+  for (let i = max; i >= 1; i--) {
+    if (nums[i] && nums[i] >= i) {
+      return i;
+    }
+  }
+  return -1;
+}
+

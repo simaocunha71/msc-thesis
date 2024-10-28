@@ -1,0 +1,3 @@
+The function `hexToNum` takes a hexadecimal digit as an argument and returns its corresponding numeric value. It does this by using a mapping object, `hexToNumMap`, where the keys are the hexadecimal digits and the values are their respective numeric representations. The function looks up the value of the input hexadecimal digit in the mapping object and returns it.
+
+The function `isPrime` takes a number as an argument and checks if it is a prime number. It first checks if the number is equal to 2, in which case it returns true since 2 is a prime number. If the number is equal to 1 or

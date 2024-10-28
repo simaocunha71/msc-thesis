@@ -1,0 +1,1 @@
+left_rotate = lambda n, d: ((n << d) & int('1' * 32, 2)) | (n >> (32 - d))

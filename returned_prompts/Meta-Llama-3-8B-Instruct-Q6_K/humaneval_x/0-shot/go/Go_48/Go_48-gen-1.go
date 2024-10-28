@@ -1,0 +1,56 @@
+```
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func IsPalindrome(text string) bool {
+	// convert the input string to lowercase
+	text = strings.ToLower(text)
+	// remove non-alphanumeric characters
+	text = strings.ReplaceAll(text, " ", "")
+	text = strings.ReplaceAll(text, "\t", "")
+	text = strings.ReplaceAll(text, "\r", "")
+	text = strings.ReplaceAll(text, "\n", "")
+	text = strings.ReplaceAll(text, ".", "")
+	text = strings.ReplaceAll(text, ",", "")
+	text = strings.ReplaceAll(text, "!", "")
+	text = strings.ReplaceAll(text, "?", "")
+	text = strings.ReplaceAll(text, "-", "")
+	text = strings.ReplaceAll(text, "_", "")
+	text = strings.ReplaceAll(text, "'", "")
+	text = strings.ReplaceAll(text, "\"", "")
+	text = strings.ReplaceAll(text, "/", "")
+	text = strings.ReplaceAll(text, "\\", "")
+	text = strings.ReplaceAll(text, "(", "")
+	text = strings.ReplaceAll(text, ")", "")
+	text = strings.ReplaceAll(text, "[", "")
+	text = strings.ReplaceAll(text, "]", "")
+	text = strings.ReplaceAll(text, "{", "")
+	text = strings.ReplaceAll(text, "}", "")
+	text = strings.ReplaceAll(text, ":", "")
+	text = strings.ReplaceAll(text, " ", "")
+	text = strings.ReplaceAll(text, "\'", "")
+	text = strings.ReplaceAll(text, "\"", "")
+	text = strings.ReplaceAll(text, "–", "")
+	text = strings.ReplaceAll(text, "—", "")
+	text = strings.ReplaceAll(text, "°", "")
+	text = strings.ReplaceAll(text, "×", "")
+	text = strings.ReplaceAll(text, "÷", "")
+	text = strings.ReplaceAll(text, "±", "")
+	text = strings.ReplaceAll(text, "‰", "")
+	text = strings.ReplaceAll(text, "‱", "")
+	text = strings.ReplaceAll(text, "‰", "")
+	text = strings.ReplaceAll(text, "‴", "")
+	text = strings.ReplaceAll(text, "‵", "")
+	text = strings.ReplaceAll(text, "‶", "")
+	text = strings.ReplaceAll(text, "‷", "")
+	text = strings.ReplaceAll(text, "‸", "")
+	text = strings.ReplaceAll(text, "‹", "")
+	text = strings.ReplaceAll(text, "›", "")
+	text = strings.ReplaceAll(text, "«", "")
+	text = strings.ReplaceAll(text, "»", "")
+	text = strings.ReplaceAll(text, "‹", "")
+	text = strings.ReplaceAll(text, "›", "")

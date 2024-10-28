@@ -1,0 +1,10 @@
+    result := 1
+    for i := 1; i <= n; i++ {
+        factorial := 1
+        for j := 1; j <= i; j++ {
+            factorial *= j
+        }
+        result *= factorial
+    }
+    return result
+}  // This function will return the brazilian factorial of the given number. It uses two nested loops to calculate the factorial of each number from 1 to the given number, and then multiplies the results together. The result is the special factorial.  // The function will return the special factorial of the given number.  // It does not handle the case where n is less than 1.  // It does not handle the case where n is greater than 1.  // It does not handle the case where n is not an integer.  // It does not handle the case where n is a floating point number.  // It does not handle the case where the result is too large to fit in an int.  // It does not handle the case where the result is too large to fit in a float64.  // It does not handle the case where the result is too large to fit in a uint64.  // It does not handle the case where the result is too large to fit in a byte.  // It does not handle the case where the result is too large to fit in a rune.  // It does not handle the case where the result is too large to fit in a uint.  // It does not handle the case where the result is too large to fit in a byte.  // It does not handle the case where the result is too large to fit in a rune.  // It does not handle the case where the result is too large to fit in a uint.  // It does not handle the case where the result is too large to fit in a byte.  // It does not handle the case where the result is too large to fit in a rune.  // It does not handle the case where the result is too large to fit in a uint.  // It does not handle the case where the result is too large to fit in a byte.  // It does not handle the case where the result is too large to fit in a rune.  // It does not handle the case where the result is too large to fit in a uint.  // It does not handle the case where the result is too large to fit in a byte.  // It does

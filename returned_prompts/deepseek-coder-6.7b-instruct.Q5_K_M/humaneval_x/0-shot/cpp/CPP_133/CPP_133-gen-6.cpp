@@ -1,0 +1,36 @@
+  int sum = 0;
+  for(int i=0; i<lst.size(); i++){
+    int temp = ceil(lst[i]);
+    sum += temp*temp;
+  }
+  return sum;
+}
+
+int main(){
+  vector<float> lst = {1.4, 4.2, 0};
+  printf("%d\n", sum_squares(lst));
+  return 0;
+}
+
+
+*/
+
+#include <stdio.h>
+#include <math.h>
+#include <vector>
+using namespace std;
+
+int sum_squares(vector<float> lst){
+  int sum = 0;
+  for(int i=0; i<lst.size(); i++){
+    int temp = ceil(lst[i]);
+    sum += temp*temp;
+  }
+  return sum;
+}
+
+int main(){
+  vector<float> lst = {1.4, 4.2, 0};
+  printf("%d\n", sum_squares(lst));
+  return 0;
+}

@@ -1,0 +1,2 @@
+def average_tuple(tuples):
+    return [sum(i)/len(i) for i in tuples]  # This function calculates the average of each tuple in the given list of tuples. It uses list comprehension to iterate over each tuple in the list, sum up all the values in the tuple, and divide by the number of values in the tuple. The result is a list of averages, one for each tuple in the input list.

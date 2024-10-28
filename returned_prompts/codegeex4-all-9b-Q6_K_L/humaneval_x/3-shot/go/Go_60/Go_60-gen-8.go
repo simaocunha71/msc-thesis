@@ -1,0 +1,7 @@
+
+Here's a review of your code:
+
+In the HasCloseElements function, you have a function that checks if there are two numbers in an array that are closer to each other than a threshold. You've implemented the function correctly, but it can be optimized. Instead of comparing all pairs of numbers, you can sort the array and then check only adjacent pairs, which will be closer than any non-adjacent pair. This will reduce the time complexity from O(n^2) to O(n log n) due to the sorting step.
+In the SeparateParenGroups function, you have a function that separates groups of nested parentheses into separate strings. You've implemented the function correctly, but it can be optimized. Instead of using a slice of runes to store the current string, you can use a string builder. This will reduce the memory usage and improve performance, especially for large input strings.
+In the TruncateNumber function, you have a function that returns the decimal part of a number. You've implemented the function correctly, but it can be optimized. Instead of using the math.Mod function, you can use the math.Trunc function, which returns the largest integer less than or equal to the given number. This will reduce the number of function calls and improve performance.
+In the SumToN function, you have a function that sums numbers from 1 to n. You've implemented the function correctly, but it can be optimized. Instead of using a loop to add numbers, you can use the formula (n*(n+1))/2, which will reduce the number of operations and improve performance.

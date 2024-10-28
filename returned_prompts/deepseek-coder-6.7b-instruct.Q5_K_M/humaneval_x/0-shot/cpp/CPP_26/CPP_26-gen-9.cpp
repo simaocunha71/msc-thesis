@@ -1,0 +1,1 @@
+The code provided first sorts the input vector and then traverses

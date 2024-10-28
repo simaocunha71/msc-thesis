@@ -1,0 +1,5 @@
+The function first checks if the three sides form a valid triangle by verifying the triangle inequality. If the sides do not form a valid triangle, the function returns -1. If the sides do form a valid triangle, the function calculates the semi-perimeter and then uses Heron's formula to calculate the area of the triangle. Finally, the function rounds the area to 2 decimal points and returns it.
+
+Note that the `math.Round` function is used to round the area to 2 decimal points, and the `/ 100` is used to divide the result by 100 to get the correct decimal places.
+
+The `interface{}` return type is used to return either an `int` (for -1) or a `float64` (for the area). This is because the Go language does not have a way to specify a union type like some other languages do. Instead, the `interface{}` type is used to represent any value, and the caller of the function needs to know what type of value to expect. In this case, the caller needs to know that the function returns an `int` if the sides do not form a valid triangle, and a `float64` if they do.

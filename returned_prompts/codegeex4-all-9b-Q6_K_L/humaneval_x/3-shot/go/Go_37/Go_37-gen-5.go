@@ -1,0 +1,5 @@
+
+Your first function is correct. You're checking all pairs of numbers in the list and if any pair's distance is less than the threshold, you return true. If the loops complete without finding a pair that is too close, you return false.
+Your second function is close, but you have to be careful about the case where the current depth is zero (i.e. you've reached the end of a group of parentheses). In this case, you should add the current group to the result and then reset the current group.
+Your third function is correct. You're using the math.Mod function to find the decimal part of the number.
+Your fourth function is correct. You're creating two slices, one for the even-indexed values and one for the odd-indexed values. You're then sorting the even-indexed values and then creating the result slice by alternating between the sorted even values and the original odd values.

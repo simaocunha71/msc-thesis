@@ -1,0 +1,4 @@
+        return txt.length() > 0 && Character.isLetter(txt.charAt(txt.length() - 1)) && !txt.charAt(txt.length() - 1) == ' ';
+    }
+}
+

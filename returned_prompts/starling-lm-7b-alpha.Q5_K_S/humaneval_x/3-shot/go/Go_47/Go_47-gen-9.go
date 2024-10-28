@@ -1,0 +1,11 @@
+    sort.Ints(l)
+    length := len(l)
+
+    if length%2 == 0 {
+        return float64((l[length/2-1]+l[length/2]))/2.0
+    }
+    return float64(l[length/2])
+}
+
+
+

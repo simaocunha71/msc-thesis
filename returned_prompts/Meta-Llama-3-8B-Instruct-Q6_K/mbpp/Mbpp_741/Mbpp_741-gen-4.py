@@ -1,0 +1,11 @@
+```
+def all_Characters_Same(s):
+    return len(set(s)) <= 1
+```
+The function `all_Characters_Same` checks if all the characters in a given string `s` are the same. It does this by converting the string into a set, which removes any duplicate characters. If the length of the set is less than or equal to 1, then all the characters in the original string were the same. This function is tested with the string "python" and returns `False`, indicating that the characters in the string are not all the same.  The unit test `assert all_Characters_Same("python") == False` also confirms this. 
+
+For example, if the input is "abc", the function will return `False` because "abc" has three different characters. If the input is "aaa", the function will return `True` because "aaa" has only one character.  If the input is "aabb", the function will return `False` because "aabb" has two different characters.  If the input is "aaaa", the function will return `True` because "aaaa" has only one character.  The function can handle any string input, not just the ones given in the unit test.  It is flexible and can be used to check for same characters in any string. 
+
+The time complexity of this function is O(n), where n is the length of the string. This is because the function needs to iterate over the entire string to convert it into a set. The space complexity is also O(n), as the function needs to store the characters in the set. 
+
+This function is case sensitive, so "A" and "a" are considered different characters. If you want the function to be case insensitive, you can convert the string to lower case or upper case before checking for same characters. For example, you can modify the function to `return len(set(s.lower())) <= 1`.  This will treat "A" and "a" as the same character.  However, this will also treat "A" and " " (space) as the same character, which may not be what you want.  If you want to ignore spaces and other non-alphabetic characters, you can modify the function to `return len(set(c for c in s if c.isalpha())) <= 1`.  This will treat "A" and "a" as the same character, and will ignore spaces and other non-alphabetic

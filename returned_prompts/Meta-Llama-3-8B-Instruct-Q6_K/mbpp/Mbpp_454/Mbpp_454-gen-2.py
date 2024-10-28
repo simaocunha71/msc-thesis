@@ -1,0 +1,36 @@
+def text_match_wordz(text):
+    return 'z' in text
+
+assert text_match_wordz("pythonz.")==True
+assert text_match_wordz("python")==False
+assert text_match_wordz("pzython")==True
+assert text_match_wordz("pzythonz")==True
+assert text_match_wordz("pzythonz.")==True
+assert text_match_wordz("pzython.z")==True
+assert text_match_wordz("pzython.zs")==True
+assert text_match_wordz("pzythonzs")==True
+assert text_match_wordz("pzythonzsd")==True
+assert text_match_wordz("pzythonzsd.")==True
+assert text_match_wordz("pzythonzsd.")==True
+assert text_match_wordz("pzythonzsdzs")==True
+assert text_match_wordz("pzythonzsdzs.")==True
+assert text_match_wordz("pzythonzsdzs..")==True
+assert text_match_wordz("pzythonzsdzs...")==True
+assert text_match_wordz("pzythonzsdzs....")==True
+assert text_match_wordz("pzythonzsdzs.....")==True
+assert text_match_wordz("pzythonzsdzs......")==True
+assert text_match_wordz("pzythonzsdzs.......")==True
+assert text_match_wordz("pzythonzsdzs........")==True
+assert text_match_wordz("pzythonzsdzs.........")==True
+assert text_match_wordz("pzythonzsdzs..........")==True
+assert text_match_wordz("pzythonzsdzs.........")==True
+assert text_match_wordz("pzythonzsdzs...........")==True
+assert text_match_wordz("pzythonzsdzs............")==True
+assert text_match_wordz("pzythonzsdzs.............")==True
+assert text_match_wordz("pzythonzsdzs..............")==True
+assert text_match_wordz("pzythonzsdzs...............")==True
+assert text_match_wordz("pzythonzsdzs...............")==True
+assert text_match_wordz("pzythonzsdzs...............")==True
+assert text_match_wordz("pzythonzsdzs...............")==True
+assert text_match_wordz("pzythonzsdzs...............")==True
+assert text_match_word

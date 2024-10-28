@@ -1,0 +1,9 @@
+        Set<Integer> s = new HashSet<>();
+        for (int i : l) {
+            if (s.contains(-i)) return true;
+            s.add(i);
+        }
+        return false;
+    }
+}
+

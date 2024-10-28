@@ -1,0 +1,1 @@
+    return lst == sorted(lst) and len(lst) == len(set(lst))

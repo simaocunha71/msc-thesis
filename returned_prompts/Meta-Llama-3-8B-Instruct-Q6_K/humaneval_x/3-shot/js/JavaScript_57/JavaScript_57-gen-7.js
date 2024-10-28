@@ -1,0 +1,13 @@
+  return l.every((x, i) => i == 0 || (l[i - 1] <= x)) ||
+         l.every((x, i) => i == 0 || (l[i - 1] >= x));
+}
+// Alternative solution
+const monotonic = (l) => {
+  return l.every((x, i) => i == 0 || (x > l[i - 1])) ||
+         l.every((x, i) => i == 0 || (x < l[i - 1]));
+}
+// Alternative solution
+const monotonic = (l) => {
+  return l.every((x, i) => (i == 0 || l[i - 1] <= x) && (i == l.length - 1 || l[i] <= l[i + 1])) ||
+         l.every((x, i) => (i == 0 || l[i - 1] >= x) && (i == l.length - 1 || l[i] >= l[i + 1]));
+}

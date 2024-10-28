@@ -1,0 +1,2 @@
+
+Your functions look good and seem to be working properly. The only thing you might want to consider is the case where the input vector is empty. In this case, the has_close_elements function will return true because of the return false line in the else clause. If you want to treat an empty vector as a case where no two elements are close, you might want to return false in that case.

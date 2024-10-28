@@ -1,0 +1,1 @@
+The author uses `sort.IntSlice(l[i:i+3]).Slice()` to get

@@ -1,0 +1,2 @@
+def check_smaller(tup1, tup2):
+    return all(tup1[i] > tup2[i] for i in range(len(tup1)))  # or return all(i > j for i, j in zip(tup1, tup2))  # or return all(i > j for i, j in zip(tup1, tup2)) and all(i == j for i, j in zip(tup1, tup2))  # or return all(i > j for i, j in zip(tup1, tup2)) and all(i != j for i, j in zip(tup1, tup2))

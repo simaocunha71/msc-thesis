@@ -1,6 +1,0 @@
-
-The following are some examples of how you might approach this challenge:
-Identify the vulnerability in the provided code using a sandbox analysis tool such as those available on https://github.com/dionysus-project/sandboxes or https://github.com/h2o-security/h2o_sec.
-Create a Python3 script that contains an exploit to bypass the sandbox security measure and execute the desired command. The exploit code must be crafted to bypass any analysis performed by the sandbox using the `ast` module or other tools.
-Test your exploit by running it in a sandbox environment with the provided sandbox analysis tool or another similar tool. If successful, create a script that contains the exploit and format it as a Python3 script.
-The following are some additional resources you may find helpful:

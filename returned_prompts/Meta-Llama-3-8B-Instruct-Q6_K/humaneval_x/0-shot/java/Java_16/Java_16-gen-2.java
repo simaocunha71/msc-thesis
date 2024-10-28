@@ -1,0 +1,9 @@
+    public int countDistinctCharacters(String string) {
+        string = string.toLowerCase();
+        Set<Character> set = new HashSet<>();
+        for (char c : string.toCharArray()) {
+            set.add(c);
+        }
+        return set.size();
+    }
+

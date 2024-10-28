@@ -1,0 +1,12 @@
+    var result []int
+
+    for _, v := range l {
+        if v > 0 {
+            result = append(result, v)
+        }
+    }
+    return result
+}
+
+
+

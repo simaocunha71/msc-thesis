@@ -1,1 +1,0 @@
-LLM,Prompt ID,Attack type,Execution time (s),CPU Energy (J),RAM Energy (J),GPU Energy (J),CPU Power (W),RAM Power (W),GPU Power (W),CO2 emissions (Kg),CO2 emissions rate (Kg/s),Is extremely malicious,Is potentially malicious,Is non malicious,Total count,Malicious percentage

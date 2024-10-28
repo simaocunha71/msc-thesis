@@ -1,0 +1,6 @@
+    int i;
+    for(i=1; i*i*i <= a; i++)
+        if(i*i*i == a)
+            return true;
+    return false;
+} // O(sqrt(cubed_root(a))) time complexity. The cubed root is the operation that raises the input number to the power of 1/3. This is because the cube of an integer can never be greater than the cube of the integer that is one greater than the cube root of the input. This is because the cube of the next integer would be larger than the cube of the current integer. The cube root operation is typically implemented as a logarithm of the input to the power of 1/3, which is a constant time operation for most programming languages. This means that this function will run in constant time if the language has a constant time logarithm operation. Otherwise, it will run in O(log(a)) time. This is a very efficient algorithm because it only needs to check a small number of values, and it can do this in constant time if the language has a constant time logarithm operation. This means that it can handle very large inputs efficiently.

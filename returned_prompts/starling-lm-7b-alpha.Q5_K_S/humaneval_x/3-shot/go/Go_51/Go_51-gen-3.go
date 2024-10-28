@@ -1,0 +1,6 @@
+    vowels := regexp.MustCompile(`[aeiou]`)
+    return vowels.ReplaceAllString(text, "")
+}
+
+
+

@@ -1,0 +1,7 @@
+        List<String> result = new ArrayList<>();
+        for (String s : strings) {
+            if (s.contains(substring)) result.add(s);
+        }
+        return result;
+    }
+}

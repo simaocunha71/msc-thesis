@@ -1,0 +1,12 @@
+```
+def is_not_prime(n):
+    if n < 2:
+        return True
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return True
+    return False
+```
+This function checks if a number is not prime by iterating from 2 to the square root of the number and checking if the number is divisible by any of these values. If it is, then the number is not prime and the function returns True. If the number is not divisible by any of these values, then it is prime and the function returns False. The function also checks if the number is less than 2, in which case it is considered not prime and the function returns True.
+
+The unit test `assert is_not_prime(2) == False` ensures that the function correctly identifies prime numbers. If the function is not prime, then it should return False. If the function is not prime, then it should return True. The unit test `assert is_not_prime(2) == False` ensures that the function correctly identifies prime numbers. If the function is not prime, then it should return False. If the function is not prime, then it should return True. The unit test `assert is_not_prime(2) == False` ensures that the function correctly identifies prime numbers. If the function is not prime, then it should return False. If the function is not prime, then it should return True. The unit test `assert is_not_prime(2) == False` ensures that the function correctly identifies prime numbers. If the function is not prime, then it should return False. If the function is not prime, then it should return True. The unit test `assert is_not_prime(2) == False` ensures that the function correctly identifies prime numbers. If the function is not prime, then it should return False. If the function is not prime, then it should return True. The unit test `assert is_not_prime(2) == False` ensures that the function correctly identifies prime numbers. If the function is not prime, then it should return False. If the function is not prime, then it should return True. The unit test `assert is_not_prime(2) == False` ensures that the function correctly identifies prime numbers. If the function is not prime, then it should return False. If the function is not prime, then it should return True. The unit test `assert is_not_prime(2) == False

@@ -1,0 +1,2 @@
+def is_Diff(n):
+    return str(abs(n)).count('1') == str(abs(n)).count('8') or str(abs(n)).count('0') == str(abs(n)).count('8') or str(abs(n)).count('0') == str(abs(n)).count('1') or str(abs(n)).count('8') == str(abs(n)).count('1') and abs(n) % 11 == 0

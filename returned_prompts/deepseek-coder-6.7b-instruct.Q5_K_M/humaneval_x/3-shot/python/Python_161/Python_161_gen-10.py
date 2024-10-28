@@ -1,0 +1,2 @@
+    return ''.join(c.lower() if c.isupper() else c.upper() for c in s[::-1] if c.isalpha()) or s[::-1]
+

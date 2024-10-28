@@ -1,0 +1,10 @@
+    result := make([]float64, n+1)
+    result[1] = 3.0
+    if n > 1 {
+        result[2] = 1.0 + 2.0/2.0
+    }
+    for i := 3; i <= n; i++ {
+        result[i] = result[i-1] + result[i-2] + result[i-3]
+    }
+    return result
+}

@@ -1,0 +1,11 @@
+public class Solution {
+    public List<Integer> derivative(List<Integer> xs) {
+        List<Integer> derivative = new ArrayList<>();
+        derivative.add(xs.get(1)); // xs[0] is constant, so derivative is 0
+        for (int i = 2; i < xs.size(); i++) {
+            derivative.add(i * xs.get(i));
+        }
+        return derivative;
+    }
+}  // Time Complexity: O(n) where n is the size of the input list.
+// The space complexity is also O(n) as we are storing the result in a new list.  // This is not very efficient if the polynomial has a lot of terms.  // We could use a different data structure, like a LinkedList, if we wanted to keep the original list intact.  // We could also return the derivative as a new object instead of a list, if we wanted to keep the original object intact.  // For a more efficient solution, we would need to use a different algorithm.  // For example, we could use a recursive function that calculates the derivative of a polynomial with n terms in O(log n) time.  // However, this would likely be more complicated to implement and would not be as efficient for small polynomials.  // Another option would be to use a library that has a built-in function for calculating the derivative of a polynomial.  // This would be the most efficient solution, but it would also be the least flexible.  // For example, if we wanted to calculate the derivative of a polynomial with a lot of terms, we might need to use a different algorithm.  // In that case, using a library would not be the best option.  // For a more general solution that can handle polynomials with a lot of terms, we would need to use a different algorithm.  // For example, we could use a dynamic programming approach to calculate the derivative of a polynomial with n terms in O(n) time.  // This would be more efficient than the O(n) time algorithm we used above, but it would also be more complicated to implement.  // For a more efficient solution that can handle polynomials with a lot of terms, we would need to use a different algorithm.  // For example, we could use a divide and conquer approach to calculate the derivative of a polynomial with n terms in O(log n) time.  // This would be the most efficient solution, but it would also be the most complicated to implement.  // For a more general solution

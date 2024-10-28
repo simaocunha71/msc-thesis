@@ -1,0 +1,36 @@
+
+// SumToN is a function that sums numbers from 1 to n.
+// >>> SumToN(30)
+// 465
+// >>> SumToN(100)
+// 5050
+// >>> SumToN(5)
+// 15
+// >>> SumToN(10)
+// 55
+// >>> SumToN(1)
+// 1
+func SumToN(n int) int {
+    sum := 0
+    for i := 1; i <= n; i++ {
+        sum += i
+    }
+    return sum
+}
+
+B:
+
+// SumToN is a function that sums numbers from 1 to n.
+// >>> SumToN(30)
+// 465
+// >>> SumToN(100)
+// 5050
+// >>> SumToN(5)
+// 15
+// >>> SumToN(10)
+// 55
+// >>> SumToN(1)
+// 1
+func SumToN(n int) int {
+    return (n * (n + 1)) / 2
+}

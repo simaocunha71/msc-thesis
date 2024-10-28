@@ -1,0 +1,12 @@
+        int result = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (i % 2 == 0) {
+                if (s.charAt(i) == 'A' || s.charAt(i) == 'E' || s.charAt(i) == 'I' || s.charAt(i) == 'O' || s.charAt(i) == 'U') {
+                    result += 1;
+                }
+            }
+        }
+        return result;
+    }
+}
+

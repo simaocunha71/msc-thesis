@@ -1,0 +1,6 @@
+```python
+def all_prefixes(string: str) -> List[str]:
+    return [string[:i] for i in range(1, len(string) + 1)]
+```
+
+### 3.4.10
