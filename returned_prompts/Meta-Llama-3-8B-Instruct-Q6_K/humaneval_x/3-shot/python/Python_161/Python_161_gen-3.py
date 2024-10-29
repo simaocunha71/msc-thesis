@@ -1,9 +1,0 @@
-    result = ""
-    for c in s:
-        if c.isalpha():
-            result += c.swapcase()
-        else:
-            result += c
-    return result[::-1] if result.isalpha() else result
-
-

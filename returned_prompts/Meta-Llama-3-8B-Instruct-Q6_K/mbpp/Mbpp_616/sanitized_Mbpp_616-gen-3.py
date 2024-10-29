@@ -1,2 +1,0 @@
-def tuple_modulo(t1, t2):
-    return tuple(x % y for x, y in zip(t1, t2))  # Using zip to iterate over corresponding elements in both tuples. Then using a generator expression to calculate the modulo of each pair. Finally, converting the generator expression into a tuple.  # 0ms, 13.4MB

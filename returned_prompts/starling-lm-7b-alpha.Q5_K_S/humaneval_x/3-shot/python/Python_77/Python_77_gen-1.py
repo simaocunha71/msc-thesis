@@ -1,3 +1,0 @@
-    return any(i ** 3 == a for i in range(1, 1000))
-
-

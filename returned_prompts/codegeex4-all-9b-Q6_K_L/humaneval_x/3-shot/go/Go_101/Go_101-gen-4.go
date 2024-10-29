@@ -1,5 +1,0 @@
-    return strings.Split(s,", ")
-}
-
-
-

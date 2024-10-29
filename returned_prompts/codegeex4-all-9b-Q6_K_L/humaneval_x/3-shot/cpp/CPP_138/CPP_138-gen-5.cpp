@@ -1,4 +1,0 @@
-
-The first question is not a valid C++ question because C++ does not have a built-in function abs(). You can use std::abs instead. However, this function is not in the math.h header. You need to include the cmath header file to use it.
-The second question is also not a valid C++ question because C++ does not have a built-in function to remove spaces from a string. You need to write your own function to do this.
-The third question is also not a valid C++ question because C++ does not have a built-in function to check if a number can be expressed as the sum of four even numbers. You need to write your own function to do this.

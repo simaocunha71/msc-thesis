@@ -1,2 +1,0 @@
-def expensive_items(dataset, n):
-    return sorted(dataset, key=lambda x: x['price'], reverse=True)[:n]  # Sort by price in descending order, then get the first n items.  # Sort by price in descending order, then get the first n items.

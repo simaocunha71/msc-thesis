@@ -1,2 +1,0 @@
-def count_Occurrence(tup, lst):
-    return sum(tup.count(i) for i in lst) if set(lst).issubset(set(tup)) else "Elements not found in tuple"  # use set to check if all elements of lst are present in tup

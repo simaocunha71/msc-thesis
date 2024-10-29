@@ -1,3 +1,0 @@
-    return s.replace(',', ' ').split()
-
-

@@ -1,9 +1,0 @@
-    long long sum=0, min_sum=LONG_LONG_MAX;
-    for (long long num:nums)
-    {
-        sum+=num;
-        min_sum=min(min_sum, sum);
-        if (sum<0) sum=0;
-    }
-    return min_sum;
-}  // This function assumes that input vector is not empty. If it may be empty, add a check for it.  // This function is O(n) where n is the size of the input vector.  // It initializes a variable sum to 0, and min_sum to the maximum possible value.  // Then it iterates over the vector, adding each number to sum, and updating min_sum if sum becomes smaller than min_sum.  // If sum becomes negative, it resets sum to 0.  // Finally, it returns min_sum.  // This function can be used to find the minimum sum of any non-empty sub-vector of a given vector of integers.  // For example, minSubArraySum({2, 3, 4, 1, 2, 4}) returns 1, and minSubArraySum({-1, -2, -3}) returns -6.  // The time complexity of this function is O(n), where n is the size of the input vector.  // The space complexity is O(1), as it only uses a constant amount of space.  // This function assumes that the input vector is not empty. If it may be empty, add a check for it.  // This function can be used to find the minimum sum of any non-empty sub-vector of a given vector of integers.  // For example, minSubArraySum({2, 3, 4, 1, 2, 4}) returns 1, and minSubArraySum({-1, -2, -3}) returns -6.  // This function can be used to find the minimum sum of any non-empty sub-vector of a given vector of integers.  // For example, minSubArraySum({2, 3, 4, 1, 2, 4}) returns 1, and minSubArraySum({-1, -2, -3}) returns -6.  // This function can be used to find the minimum sum of any non-empty sub-vector of a given vector of integers.  // For example, minSubArraySum({2, 3, 4, 1, 2,

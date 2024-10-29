@@ -1,8 +1,0 @@
-def decimal_to_binary(decimal):
-    binary = bin(decimal).replace("0b", "")
-    binary = "db" + binary + "db"
-    return binary
-
-# Test the function
-print(decimal_to_binary(15))   # returns "db1111db"
-print(decimal_to_binary(32))   # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"  # returns "db100000db"

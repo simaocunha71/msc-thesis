@@ -1,3 +1,0 @@
-
-There's a lot to be said here, but I'll start with the obvious...
-

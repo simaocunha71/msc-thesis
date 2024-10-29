@@ -1,9 +1,0 @@
-    stack = []
-    for char in string:
-        if char == '[':
-            stack.append(char)
-        elif char == ']':
-            if not stack:
-                return False
-            stack.pop()
-    return bool(stack)  # If stack is not empty, it means there's a nested bracket.  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True if stack is not empty, False otherwise.  #  # True

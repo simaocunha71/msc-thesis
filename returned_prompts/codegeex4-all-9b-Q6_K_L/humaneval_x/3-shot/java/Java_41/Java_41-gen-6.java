@@ -1,5 +1,0 @@
-
-The first question is a simple nested loop that checks for any two numbers that are closer than the threshold. If it finds a pair that is closer, it returns true, otherwise, it returns false.
-The second question is a bit more complex. It iterates through the input string, checking for opening and closing parentheses. If it finds an opening parenthesis, it increments a counter and appends the character to a current string. If it finds a closing parenthesis, it decrements the counter and appends the character to the current string. If the counter is zero, it means that a complete group of parentheses has been found, so it adds the current string to the result list and resets the current string. Finally, it returns the result list.
-The third question is a simple calculation that returns the decimal part of a number. It uses the modulus operator to find the remainder of dividing the number by 1, which is always the decimal part of the number.
-The last question is a bit more complex. It asks for the number of collisions between cars driving in opposite directions. However, the function is not implemented yet, so it returns 0.

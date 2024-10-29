@@ -1,2 +1,0 @@
-    return n
-}  // This is because all cars will collide with all other cars.  The number of collisions is the total number of cars.  This is because the cars are infinitely sturdy and strong.  They continue moving in their trajectory as if they did not collide.  So all cars will collide with all other cars.  The number of collisions is the total number of cars.  So the answer is n.

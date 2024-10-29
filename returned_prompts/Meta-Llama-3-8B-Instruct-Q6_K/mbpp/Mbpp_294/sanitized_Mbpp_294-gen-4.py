@@ -1,2 +1,0 @@
-def max_val(lst):
-    return max([i for i in lst if isinstance(i, (int, float))])  # Use a list comprehension to filter out non-numeric values and then use the built-in max function to find the maximum value.

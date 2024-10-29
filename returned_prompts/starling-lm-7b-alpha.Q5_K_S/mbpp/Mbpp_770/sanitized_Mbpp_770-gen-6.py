@@ -1,6 +1,0 @@
-def odd_num_sum(n):
-    """ Find the sum of the fourth powers of the first n odd natural numbers."""
-    sum = 0
-    for i in range(1, 2*n, 2):
-        sum += i ** 4
-    return sum

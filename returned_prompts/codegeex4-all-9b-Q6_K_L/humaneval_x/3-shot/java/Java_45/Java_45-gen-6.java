@@ -1,5 +1,0 @@
-
-The first question is about finding two numbers in a list that are closer than a given threshold. The solution is to iterate over all pairs of numbers and calculate the absolute difference between them. If any pair of numbers is closer than the threshold, return true. Otherwise, return false.
-The second question is about separating groups of nested parentheses in a string. The solution is to iterate over all characters in the string. If a character is an opening parenthesis, increase the current depth by 1. If a character is a closing parenthesis, decrease the current depth by 1. If the current depth is 0, add the current group of parentheses to the result list and reset the current group. Finally, return the result list.
-The third question is about finding the decimal part of a given floating-point number. The solution is to return the remainder of the number when divided by 1.0.
-The fourth question is about calculating the area of a triangle given the length of its base and height. The solution is to use the formula (base * height) / 2.0.

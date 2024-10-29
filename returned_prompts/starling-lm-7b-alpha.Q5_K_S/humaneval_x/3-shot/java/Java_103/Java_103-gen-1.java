@@ -1,8 +1,0 @@
-        if (n > m) {
-            return -1;
-        }
-        int avg = (n + m) / 2;
-        return Integer.toBinaryString(Math.round(avg * 1d));
-    }
-}
-

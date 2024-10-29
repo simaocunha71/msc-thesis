@@ -1,2 +1,0 @@
-
-// Check if two words have the same characters.

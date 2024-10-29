@@ -1,2 +1,0 @@
-  return [...new Set(string.toLowerCase())].length;
-} // This code works by converting the string to lowercase (to remove case sensitivity), then using the Set data structure to remove duplicates and convert to an array, and then returning the length of that array.

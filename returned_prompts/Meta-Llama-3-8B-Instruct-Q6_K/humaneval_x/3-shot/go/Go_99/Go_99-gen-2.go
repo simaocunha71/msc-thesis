@@ -1,3 +1,0 @@
-    num, _ := strconv.ParseFloat(value, 64)
-    return int(math.Ceil(float64(num)))
-} // This function will always round the number away from zero. It will round up if the number is greater than zero, and round down if the number is less than zero. This is because math.Ceil rounds up and math.Floor rounds down.  If you want to round to the nearest integer without rounding away from zero, you would use math.Round.  However, math.Round will round to the nearest integer, which could result in the number being rounded to the same number it started as. For example, ClosestInteger("14.5") would return 15, and ClosestInteger("-14.5") would return -15.

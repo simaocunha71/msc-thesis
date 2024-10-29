@@ -1,2 +1,0 @@
-    return round(value)
-

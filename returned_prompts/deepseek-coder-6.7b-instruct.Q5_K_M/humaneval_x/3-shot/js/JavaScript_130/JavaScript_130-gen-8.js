@@ -1,5 +1,0 @@
-  return Math.max(...numbers);
-}
-
-
-

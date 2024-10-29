@@ -1,9 +1,0 @@
-```
-def circular_shift(x, shift):
-    s = str(x)
-    shift = shift % len(s)
-    return s[-shift:] + s[:-shift]
-```
-This function converts the integer `x` to a string `s`. It then calculates the actual shift by taking the remainder of `shift` divided by the length of `s`. This is to handle the case where `shift` is greater than the number of digits in `x`.
-
-Finally, it returns a new string that is the result of shifting the digits of `s` to the right by `shift` positions. This is done by concatenating two parts of `s`: the last `shift` characters (which become the first `shift` characters after the shift) and the rest of `s` (which becomes the rest of `s` after the shift). The `[-shift:]` and `[:-shift]` syntax are used to slice the string from the end and from the beginning, respectively.  The `[:-shift]` part is equivalent to `s[0:-shift]`, which means "all characters from the beginning to the `shift`-th from the end". The `[-shift:]` part is equivalent to `s[-shift:]`, which means "all characters from the `shift`-th from the end to the end".  This way, we effectively "shift" the digits of `s` to the right.  If `shift` is greater than the number of digits, this effectively reverses the string, which is the desired behavior in this case.  For example, if `s` is "123" and `shift` is 3, then `s[-shift:]` is "3" and `s[:-shift]` is "12", so the result is "312".  If `shift` is 4, then `s[-shift:]` is also "3" and `s[:-shift]` is still "12", so the result is still "312".  If `shift` is 5, then `s[-shift:]` is still "3" and `s[:-shift]` is still "12", so the result is still "312".  And so on, until `shift` is 3 or less.  At that point, the result starts to change.  For example, if `s` is "123" and `shift` is 6, then `s[-shift:]` is "3" and `

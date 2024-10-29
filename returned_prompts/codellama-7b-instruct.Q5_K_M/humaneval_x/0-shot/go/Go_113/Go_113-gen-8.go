@@ -1,2 +1,0 @@
-    return []string{"the number of odd elements 4n the str4ng 4 of the 4nput."}
-}

@@ -1,2 +1,0 @@
-def replace_specialchar(s):
-    return s.replace(" ", ":").replace(",", ":").replace(".", ":")  # or using regular expression: re.sub(r'[ ,\.]', ':', s)  # or using list comprehension: ':'.join(c for c in s if c not in ' ,.')  # or using str.translate()  # or using re.sub() with a function  # or using str.translate() with a dictionary

@@ -1,5 +1,0 @@
-def find_adverb_position(sentence):
-    adverbs = ["quickly", "clearly", "slowly", "loudly", "quietly", "carefully", "gently", "happily", "sadly", "angrily", "easily", "openly", "naturally", "honestly", "often", "sometimes", "usually", "seldom", "rarely", "never", "usually", "ordinarily", "commonly", "generally", "particularly", "specifically", "directly", "indirectly", "directly", "finally", "ultimately", "eventually", "finally", "consequently", "subsequently", "therefore", "otherwise", "instead", "accordingly", "conversely", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally", "equally"]
-    for i in range(len(sentence)):
-        if sentence[i] in adverbs:
-            return i, sentence.index(sentence[i]), sentence[i]

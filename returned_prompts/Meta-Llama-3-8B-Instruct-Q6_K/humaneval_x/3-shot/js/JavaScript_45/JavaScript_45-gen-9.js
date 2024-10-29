@@ -1,2 +1,0 @@
-  return (a * h) / 2;
-}  // This function is not working correctly. The formula for the area of a triangle is (base * height) / 2. However, this function is not correctly calculating the area. The area should be (a * h) / 2, not (a * a * h) / 2. Please fix this function to correctly calculate the area of a triangle.

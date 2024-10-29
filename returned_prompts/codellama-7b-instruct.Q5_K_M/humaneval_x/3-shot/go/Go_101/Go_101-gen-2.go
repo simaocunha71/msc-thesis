@@ -1,5 +1,0 @@
-    return strings.Fields(s)
-}
-
-
-

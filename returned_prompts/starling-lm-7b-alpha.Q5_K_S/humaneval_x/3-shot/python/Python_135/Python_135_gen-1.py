@@ -1,6 +1,0 @@
-    for idx, elem in enumerate(arr):
-        if elem > arr[idx-1]:
-            return idx - 1
-    return -1
-
-

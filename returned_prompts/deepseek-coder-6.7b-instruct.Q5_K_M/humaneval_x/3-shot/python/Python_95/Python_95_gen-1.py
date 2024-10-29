@@ -1,9 +1,0 @@
-    if not dict:
-        return False
-
-    keys = list(dict.keys())
-    if all(k.islower() for k in keys) or all(k.isupper() for k in keys):
-        return True
-    return False
-
-

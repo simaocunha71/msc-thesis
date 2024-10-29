@@ -1,2 +1,0 @@
-def max_val(lst):
-    return max(map(int, filter(lambda x: isinstance(x, int), lst))) if any(isinstance(x, int) for x in lst) else max(map(str, filter(lambda x: isinstance(x, str), lst))) if any(isinstance(x, str) for x in lst) else None

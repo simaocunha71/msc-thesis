@@ -1,2 +1,0 @@
-
-You have the right idea for the first problem. However, your code is not correct. It does not do what the problem statement asks for. You are trying to find two numbers in the list that are closer to each other than a given threshold. But you are instead finding any two numbers in the list that are closer to each other than the threshold, and returning true if you find any such pair

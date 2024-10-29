@@ -1,1 +1,0 @@
-In Go, you can use the strings.Fields(str) method to split a string with whitespace.

@@ -1,7 +1,0 @@
-
-Explanation:
-This function starts by initializing the variable "count" to zero. It then uses two for loops to iterate through all numbers that are multiples of 11 and 13, up to the number n. For each of these numbers, it converts the number to a string using the "strconv.Itoa()" function. It then checks if the string contains the digit 7 using the "strings.Contains()" function. If it does, it increments the count variable by one. Finally, it returns the count variable, which represents the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.
-
-In the provided examples, when FizzBuzz(50) is called, it returns 0 because there are no numbers less than 50 that are divisible by 11 or 13 and contain the digit 7. When FizzBuzz(78) is called, it returns 2 because there are two numbers between 11 and 78 (i.e., 22 and 44) that are divisible by 11 or 13 and contain the digit 7. When FizzBuzz(79) is called, it returns 3 because there are three numbers between 11 and 79 (i.e., 22, 33, and 44) that are divisible by 11 or 13 and contain the digit 7.
-
-Overall, the function correctly counts the number of times the digit 7 appears in integers less than n which are divisible by 11 or 

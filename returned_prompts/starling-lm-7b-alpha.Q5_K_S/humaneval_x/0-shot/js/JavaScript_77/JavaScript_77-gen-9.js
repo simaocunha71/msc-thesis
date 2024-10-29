@@ -1,1 +1,0 @@
-return list.map(s => [...s].reverse().filter(c => !'aeiou'.includes(c)).join(''));

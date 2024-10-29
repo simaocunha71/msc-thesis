@@ -1,1 +1,0 @@
-Your code correctly checks for triples that sum to zero but could be improved by using a HashSet to check for duplicates instead of a sorted list. This will improve the performance from O(n^2) to

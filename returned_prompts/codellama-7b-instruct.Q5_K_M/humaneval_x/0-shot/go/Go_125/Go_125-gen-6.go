@@ -1,4 +1,0 @@
-
-return strings.Split(txt, " ")
-
-}

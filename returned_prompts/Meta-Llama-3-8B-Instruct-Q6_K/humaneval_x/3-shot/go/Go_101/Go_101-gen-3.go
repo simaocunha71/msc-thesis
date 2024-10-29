@@ -1,2 +1,0 @@
-    return strings.Split(s, " ")
-} // Note: the default separator in strings.Split is a space, so we don't need to specify it explicitly. If we want to split by both commas and spaces, we could use strings.SplitN(s, " ,", -1) instead.

@@ -1,4 +1,0 @@
-
-```
-return len(string)
-```

@@ -1,1 +1,0 @@
-这个代码实现了从给定的整数数组 `arr` 中找到最大的 `k` 个数字，并将它们按降序排序的功能。具体来说，`sort.Sort(sort.Reverse(sort.IntSlice(arr)))` 这行代码首先将数组 `arr` 转换为整数切片，然后使用 `sort.Reverse` 函数将切片按降序排序。最后，`return arr[:k]` 返回排序后的数组的前 `k` 个元素。

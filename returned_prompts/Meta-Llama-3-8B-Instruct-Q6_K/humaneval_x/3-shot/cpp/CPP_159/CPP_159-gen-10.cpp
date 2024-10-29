@@ -1,7 +1,0 @@
-    int total_carrots_eaten = number + need;
-    int carrots_left = remaining - (need - (total_carrots_eaten - number));
-    if(carrots_left < 0) carrots_left = 0;
-    return {total_carrots_eaten, carrots_left};
-} // this function should return the total number of eaten carrots and the remaining carrots.
-// Example: eat(5, 6, 10) -> {11, 4} because the rabbit ate 5 carrots, need 6 more, and there are 10 remaining. So the total number of eaten carrots is 5 + 6 = 11 and the remaining carrots are 10 - (6 - (11 - 5)) = 4. If there are not enough remaining carrots, the rabbit will eat all remaining carrots, but will still be hungry. The function should return the total number of eaten carrots and the remaining carrots. In this case, the function will return {11, 4}.
-// if there are not enough remaining carrots, the function will return {total_carrots_eaten, 0} because the rabbit will eat all remaining carrots and there will be no remaining carrots. For example, eat(2, 11, 5) -> {7, 0}. The function will return the total number of eaten carrots and the remaining carrots. The total number of eaten carrots is 2 + 11 = 13 but the remaining carrots are 5 - (11 - (13 - 2)) = 0. So the function will return {7, 0}.

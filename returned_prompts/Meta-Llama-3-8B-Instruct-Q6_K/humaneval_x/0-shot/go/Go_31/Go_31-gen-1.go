@@ -1,2 +1,0 @@
-
-I completely agree with you. The function is correct and it will correctly identify prime numbers. It's a good practice to include some edge cases, such as checking for numbers less than or equal to 1, which are not prime. Your function handles these cases correctly by returning false for these inputs. Well done!

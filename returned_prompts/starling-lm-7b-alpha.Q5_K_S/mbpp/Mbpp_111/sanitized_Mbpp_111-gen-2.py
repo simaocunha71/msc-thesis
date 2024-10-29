@@ -1,1 +1,0 @@
-common_in_nested_lists = lambda nested_lists: set(item for sublist in nested_lists for item in sublist)

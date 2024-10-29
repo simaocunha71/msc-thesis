@@ -1,6 +1,0 @@
-
-Q1: Your function looks good. However, you can make it more efficient by using a set. Instead of using two loops, you only need to iterate through the vector once and insert each element into the set. Then, you can check if the set contains any two elements that are closer than the threshold. If it does, return true. Otherwise, return false.
-Q2: Your function looks good. However, you can make it more efficient by using a stack. Instead of iterating through the string character by character, you can use a stack to keep track of the parentheses. When you encounter an opening parenthesis, you push it onto the stack. When you encounter a closing parenthesis, you pop the top element from the stack and check if it matches the opening parenthesis. If it does not, return false. After you have processed all the parentheses, check if the stack is empty. If it is not, return false. Otherwise, return true.
-Q3: Your function looks good. However, you can make it more efficient by using the modulus operator. Instead of subtracting the integer part of the number from the number, you can use the modulus operator to get the decimal part of the number. For example:
-float truncate_number(float number){
-    return number

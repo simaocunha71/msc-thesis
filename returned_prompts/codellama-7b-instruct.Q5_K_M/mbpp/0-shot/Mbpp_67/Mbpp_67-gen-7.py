@@ -1,8 +1,0 @@
-"""
-def bell_number(n):
-    # base case
-    if n==0:
-        return 1
-    # recursive case
-    return sum(bell_number(i) for i in range(n))
-"""

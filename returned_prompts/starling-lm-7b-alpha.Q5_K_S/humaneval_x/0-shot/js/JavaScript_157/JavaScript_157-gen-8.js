@@ -1,2 +1,0 @@
-
-The function `rightAngleTriangle` takes three parameters `a`, `b`, and `c`, representing the lengths of the sides of a triangle. It checks if the given sides can form a right-angled triangle by applying the Pythagorean

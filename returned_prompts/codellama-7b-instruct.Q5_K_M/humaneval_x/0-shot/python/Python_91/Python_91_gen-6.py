@@ -1,2 +1,0 @@
-
-return S.count('I')

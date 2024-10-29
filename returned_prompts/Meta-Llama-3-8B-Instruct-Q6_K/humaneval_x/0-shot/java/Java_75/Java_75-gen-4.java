@@ -1,7 +1,0 @@
-The provided solution defines a function `isMultiplyPrime` that takes an integer `a` as input and returns a boolean value indicating whether `a` is the product of three prime numbers or not.
-
-The function uses a nested loop to iterate over all possible prime factors of `a`. For each prime factor `i`, it calculates the other two prime factors `b` and `c` as `a / i` and `a / (i * b)`, respectively. If all three prime factors are found, the function returns `true`. If no such combination is found after iterating over all possible prime factors, the function returns `false`.
-
-The `isPrime` function is a helper function that checks whether a given integer `n` is prime or not. It returns `false` if `n` is less than or equal to 1, and `true` otherwise. It then iterates over all integers from 2 to the square root of `n` and checks if `n` is divisible by any of these integers. If it is, the function returns `false`. If `n` is not divisible by any of these integers, the function returns `true`.
-
-The provided solution has a time complexity of O(√a) due to the nested loop and the `isPrime` function, where `a` is the input integer. The space complexity is O(1) as it only uses a constant amount of space to store the variables and function calls.

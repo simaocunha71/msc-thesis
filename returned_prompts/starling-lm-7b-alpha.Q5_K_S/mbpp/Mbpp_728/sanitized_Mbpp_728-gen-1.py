@@ -1,1 +1,0 @@
-sum_list = lambda l1, l2: [i + j for i, j in zip(l1, l2)]

@@ -1,5 +1,0 @@
-    return grid[0]
-}
-
-
-

@@ -1,9 +1,0 @@
-    if (a*a+b*b==c*c || a*a+c*c==b*b || b*b+c*c==a*a)
-    return true;
-    else
-    return false;
-}  // This is not a correct solution. It should be a solution that returns true if the three sides form a right-angled triangle. It should be something like this: if(sqrt(a*a+b*b)==c || sqrt(a*a+c*c)==b || sqrt(b*b+c*c)==a) return true; else return false; // This is not a correct solution. It should be a solution that returns true if the three sides form a right-angled triangle. It should be something like this: if(sqrt(a*a+b*b)==c || sqrt(a*a+c*c)==b || sqrt(b*b+c*c)==a) return true; else return false; 
-}  // This is not a correct solution. It should be a solution that returns true if the three sides form a right-angled triangle. It should be something like this: if(sqrt(a*a+b*b)==c || sqrt(a*a+c*c)==b || sqrt(b*b+c*c)==a) return true; else return false; 
-}  // This is not a correct solution. It should be a solution that returns true if the three sides form a right-angled triangle. It should be something like this: if(sqrt(a*a+b*b)==c || sqrt(a*a+c*c)==b || sqrt(b*b+c*c)==a) return true; else return false;  // This is not a correct solution. It should be a solution that returns true if the three sides form a right-angled triangle. It should be something like this: if(sqrt(a*a+b*b)==c || sqrt(a*a+c*c)==b || sqrt(b*b+c*c)==a) return true; else return false; 
-}  // This is not a correct solution. It should be a solution that returns true if the three sides form a right-angled triangle. It should be something like this: if(sqrt(a*a+b*b)==c || sqrt(a*a+c*c)==b || sqrt(b*b+c*c)==a) return true; else return false; 
-}  // This is not a correct solution. It should be a solution that returns true if the three sides form a right-angled triangle. It should be something like this: if(sqrt(a*a+b*b)==c || sqrt(a*a+c*c)==b || sqrt(b*b+c*c)==a) return true; else

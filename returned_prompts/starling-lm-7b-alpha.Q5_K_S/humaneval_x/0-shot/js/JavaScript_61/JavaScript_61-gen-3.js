@@ -1,2 +1,0 @@
-
-To solve this problem, we can use a stack to keep track of the opening brackets. We initialize an empty stack, and then iterate through the brackets string. Each time we encounter an opening bracket, we push it onto the stack. Each time we encounter a closing bracket, we pop the top element from the stack and check if it is the corresponding opening bracket. If the closing bracket does not match the top opening bracket, this means there is a mismatch and the brackets are incorrect. If we reach the end of the iteration and the

@@ -1,5 +1,0 @@
-  return string.toUpperCase();
-}
-
-
-

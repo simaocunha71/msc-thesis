@@ -1,2 +1,0 @@
-
-The first question asks you to check if there are two numbers in the list that are within a given threshold of each other. The second question asks you to separate groups of nested parentheses in a string into separate strings. The third question asks you to truncate the decimal part of a positive floating-point number. The fourth question asks you to encode a message by swapping the case of all letters and replacing vowels with the letter that appears 2 places ahead of that vowel in the English alphabet.

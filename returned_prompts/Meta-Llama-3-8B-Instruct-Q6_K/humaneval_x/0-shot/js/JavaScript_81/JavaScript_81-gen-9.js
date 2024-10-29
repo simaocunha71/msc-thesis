@@ -1,3 +1,0 @@
-This function works by iterating over the array of GPAs and checking each one against a series of if-else statements. Each if-else statement checks if the GPA is greater than or equal to a certain value, and if so, returns the corresponding letter grade.
-
-For example, the first if statement checks if the GPA is greater than or equal to 4.0, and if so, returns 'A+'. The second if statement checks if the GPA is greater than or equal to 

@@ -1,5 +1,0 @@
-        return number - (int) number;
-    }
-}
-
-

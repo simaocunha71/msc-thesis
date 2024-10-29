@@ -1,3 +1,0 @@
-  return (a % 10) * (b % 10);
-}
-// It works by taking the last digit of each number, which is the unit digit. The unit digit of a number is the remainder when divided by 10. The % operator in JavaScript is used to get the remainder of a division operation. For example, 148 % 10 is 8, which is the unit digit of 148. Similarly, 412 % 10 is 2, which is the unit digit of 412. Then we multiply these two unit digits together to get the product of the unit digits. So multiply(148, 412) returns 8 * 2 = 16. 19 % 10 is 9 and 28 % 10 is 8, so multiply(19, 28) returns 9 * 8 = 72. And so on.

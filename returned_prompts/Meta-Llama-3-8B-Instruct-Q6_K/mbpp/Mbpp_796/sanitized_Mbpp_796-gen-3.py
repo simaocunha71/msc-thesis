@@ -1,2 +1,0 @@
-def return_sum(d):
-    return sum(d.values())  # This function takes a dictionary as input and returns the sum of all its values. It uses the built-in sum() function and the dictionary's values() method to achieve this.

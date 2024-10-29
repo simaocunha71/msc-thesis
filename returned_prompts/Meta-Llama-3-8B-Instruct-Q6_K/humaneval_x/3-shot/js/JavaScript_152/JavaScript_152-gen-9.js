@@ -1,2 +1,0 @@
-  return game.map((score, index) => Math.abs(score - guess[index]));
-} // Note: This function assumes that both arrays have the same length and that the indices match correctly. If this is not the case, you may need to add error checking code.

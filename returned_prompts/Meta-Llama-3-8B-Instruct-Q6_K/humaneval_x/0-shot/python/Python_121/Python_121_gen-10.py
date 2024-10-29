@@ -1,1 +1,0 @@
-    return sum(num for i, num in enumerate(lst) if i % 2 == 0 and num % 2 != 0)  # Use enumerate to get the index and value, then filter out even positions and odd numbers, and sum the remaining numbers.

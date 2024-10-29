@@ -1,4 +1,0 @@
-        return Collections.max(l);
-     }
-}
-

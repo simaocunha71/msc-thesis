@@ -1,3 +1,0 @@
-    return round(float(value))
-
-

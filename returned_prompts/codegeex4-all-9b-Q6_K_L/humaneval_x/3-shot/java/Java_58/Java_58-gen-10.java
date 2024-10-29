@@ -1,7 +1,0 @@
-
-This is a very good collection of exercises. I'd like to add a few comments:
-
-Your hasCloseElements method is O(n^2) because it has nested for-loops. Consider using a TreeSet to get O(n log n) time complexity instead. For each number, you can use lower and ceiling methods to find the closest numbers. TreeSet is a good choice because it allows you to use these methods.
-Your separateParenGroups method uses StringBuilder to build a string for each group. However, you don't need a StringBuilder. You can use a StringBuilder initially and use append method to add '(' or ')'. If you encounter '(', increase the current_depth by 1. If you encounter ')', decrease the current_depth by 1. If current_depth equals 0, you've found a group. Then, use append method to add this group to the result list. This way, you can avoid using StringBuilder and setLength method.
-Your truncateNumber method uses % operator, which is not recommended because it's not clear what is the expected result if the number is negative. You can use Math.floorMod method instead.
-Your common method has a time complexity of O(n log n) because it first converts the lists to sets and then uses retainAll method. However, you can improve the performance by using HashSet. For example, you can convert l1 to a HashSet and then iterate over l2 to check if each element is in the HashSet. This way, you can get O(n) time complexity.

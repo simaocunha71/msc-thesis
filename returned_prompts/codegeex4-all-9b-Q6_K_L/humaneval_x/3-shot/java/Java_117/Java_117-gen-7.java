@@ -1,5 +1,0 @@
-
-The first problem is a simple one. We have to iterate through the list of numbers and for each number we iterate through the list again and calculate the absolute difference. If it's less than the threshold we return true.
-The second problem is more complex. We have to iterate through the string and keep track of the current depth of parentheses. When we find an open parenthesis we increase the depth and add it to the current string. When we find a close parenthesis we decrease the depth and add it to the current string. When the depth goes back to zero we add the current string to the result and reset the current string to an empty string.
-The third problem is also complex. We have to iterate through the string and count the number of consonants in each word. If the number of consonants is equal to n we add the word to the result.
-The fourth problem is simple. We have to calculate the decimal part of the number by subtracting the integer part from the number. We can use the modulus operator to get the integer part.

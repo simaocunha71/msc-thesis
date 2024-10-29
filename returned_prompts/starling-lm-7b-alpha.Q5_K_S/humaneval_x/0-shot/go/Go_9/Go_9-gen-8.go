@@ -1,1 +1,0 @@
-In order to find the rolling maximum element in a list

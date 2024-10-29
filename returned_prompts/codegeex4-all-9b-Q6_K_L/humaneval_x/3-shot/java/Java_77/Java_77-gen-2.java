@@ -1,6 +1,0 @@
-
-I have reviewed your code and I have some comments for each one.
-The first question is about finding if two elements in a list are closer than a given threshold. The code you have is fine and it is a simple solution. But I would say that the comments are not good enough, you should explain better what the code is doing and what it is expected from the function.
-The second question is about separating groups of parentheses in a string. The code you have is fine and it is a simple solution. But I would say that the comments are not good enough, you should explain better what the code is doing and what it is expected from the function.
-The third question is about truncating a floating point number. The code you have is fine and it is a simple solution. But I would say that the comments are not good enough, you should explain better what the code is doing and what it is expected from the function.
-The fourth question is about checking if a number is a cube of some integer number. The code you have is fine and it is a simple solution. But I would say that the comments are not good enough, you should explain better what the code is doing and what it is expected from the function.

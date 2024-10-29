@@ -1,5 +1,0 @@
-```
-def unique_digits(x):
-    return sorted([i for i in x if all(int(digit) % 2 != 0 for digit in str(i))])
-```
-The function `unique_digits` takes a list of positive integers `x` as input. It uses a list comprehension to generate a new list containing only the elements of `x` that do not have any even digits. This is achieved by checking each digit of each integer in the list using the `all` function and a generator expression. The `all` function returns `True` if all elements of the iterable (in this case, the generator expression) are true. The generator expression `int(digit) % 2 != 0 for digit in str(i)` checks if each digit in the string representation of the integer `i` is odd (i.e., not divisible by 2). If all digits in an integer are odd, the integer is added to the new list. The resulting list is then sorted in increasing order using the `sorted` function and returned.  If no integers in the list have only odd digits, the function returns an empty list.  For example, the output of `unique_digits([15, 33, 1422, 1])` is `[1, 15, 33]`, and the output of `unique_digits([152, 323, 1422, 10])` is an empty list.
