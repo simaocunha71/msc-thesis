@@ -51,7 +51,7 @@ For `llama-cpp-python` installation with CPU support (used in this dissertation)
 CMAKE_ARGS="-DLLAMA_BLAS=ON -DLLAMA_BLAS_VENDOR=OpenBLAS" pip3 install llama-cpp-python
 ```
 
-For other hardware acceleration backends, refer to the ![llama-cpp-python-documentation](https://github.com/abetlen/llama-cpp-python?tab=readme-ov-file#installation-configuration):
+For other hardware acceleration backends, refer to the [llama-cpp-python documentation](https://github.com/abetlen/llama-cpp-python?tab=readme-ov-file#installation-configuration):
 
 2. Download the benchmark repositories for HumanEval-X, MBPP+ and CyberSecEval:
 
