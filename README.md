@@ -150,7 +150,7 @@ export PYTHONPATH=$PYTHONPATH:$(pwd)
 export WEGGLI_PATH=weggli
 export PATH="$HOME/.cargo/bin:$PATH"
 
-srun python3 main.py \
+python3 main.py \
     --llm_path llms/models/codellama-7b-instruct.Q5_K_M.gguf \
     --benchmarks humaneval_x/\
     --max_tokens 512 \
