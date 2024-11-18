@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define a target directory for downloading models
-MODEL_DIR="models"
+MODEL_DIR="llms/models"
 
 # Create the models directory if it doesn't exist
 mkdir -p "$MODEL_DIR"

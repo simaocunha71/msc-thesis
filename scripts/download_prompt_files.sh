@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ../prompts 
+
 # Create and navigate to the humaneval_x directory
 mkdir -p humaneval_x
 cd humaneval_x/ || exit
@@ -27,3 +29,5 @@ wget https://github.com/meta-llama/PurpleLlama/archive/refs/heads/main.zip
 unzip main.zip 
 mv PurpleLlama-main/CybersecurityBenchmarks/datasets ./cyberseceval/
 rm -rf main.zip PurpleLlama-main
+
+cd ..

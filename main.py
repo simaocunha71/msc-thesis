@@ -49,7 +49,7 @@ def execute_llm(llm_obj: Llama, task_id: int, prompt: str, llm_path: str,
             llama_benchmark = LLAMACPP(llm_obj, task_id, temp_prompt_file, CSV_FILENAME, llm_path, seed, max_tokens, top_p, temperature, benchmark_type, save_output_flag, output_counter_id, str(n_shot), str(pass_k))
         llama_benchmark.run()
     else:
-        print(f"Não existe classe capaz de executar o LLM com o path {llm_path}")
+        print(f"There is no class capable of executing the LLM with the path {llm_path}")
         sys.exit(-1)
         
 def start_measure(llm_path_list: list, prompts_filepath_list: list, max_tokens: int, n_ctx: int, 

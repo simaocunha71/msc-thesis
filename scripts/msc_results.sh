@@ -158,6 +158,7 @@ decompress() {
     fi
 }
 
+cd ..
 # Check the arguments passed to the script
 case "$1" in
     compress)
