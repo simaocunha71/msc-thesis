@@ -7,7 +7,7 @@ This repository contains all the work done for my Master's Dissertation in Infor
 |-------------------------------------|----------------------------------------------------------------------|
 | Dissertation                        | [dissertation.pdf](https://simaocunha71.github.io/assets/docs/msc-thesis/dissertation.pdf) |
 | Thesis Presentation                    | [presentation.pdf](https://simaocunha71.github.io/assets/docs/msc-thesis/presentation.pdf) |
-| Pre-Dissertation Report (PDR)                                  | [rpd.pdf](https://simaocunha71.github.io/assets/docs/msc-thesis/pdr.pdf)       |
+| Pre-Dissertation Report (PDR)                                  | [pdr.pdf](https://simaocunha71.github.io/assets/docs/msc-thesis/pdr.pdf)       |
 | PDR Presentation                    | [pdr_presentation.pdf](https://simaocunha71.github.io/assets/docs/msc-thesis/pdr_presentation.pdf) |
 
 #### Pre-requisites
