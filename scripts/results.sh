@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Default ZIP file name for compression (not decompression)
-ZIP_FILE=${3:-"mbpp_results.zip"}
+ZIP_FILE=${3:-"results.zip"}
 
 # Default list of paths
 DEFAULT_PATHS=(
@@ -158,7 +158,7 @@ decompress() {
     fi
 }
 
-cd ..
+#cd ..
 # Check the arguments passed to the script
 case "$1" in
     compress)

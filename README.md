@@ -1,14 +1,7 @@
 ### Master's Dissertation in Informatics Engineering (2023/2024)
 #### Towards a Platform for Benchmarking Large Language Models
 
-This repository contains all the work done for my Master's Dissertation in Informatics Engineering: the tool to evaluate LLMs and measure metrics such as CPU energy consumption and execution time during the outputs generation. This CLI application also evaluates the quality and functionality of the generated code by benchmarking LLMs such as HumanEval-X, MBPP+ and CyberSecEval.
-
-| Documents                            | Link                                                                 |
-|-------------------------------------|----------------------------------------------------------------------|
-| Dissertation                        | [dissertation.pdf](https://simaocunha71.github.io/assets/docs/msc-thesis/dissertation.pdf) |
-| Thesis Presentation                    | [presentation.pdf](https://simaocunha71.github.io/assets/docs/msc-thesis/presentation.pdf) |
-| Pre-Dissertation Report (PDR)                                  | [pdr.pdf](https://simaocunha71.github.io/assets/docs/msc-thesis/pdr.pdf)       |
-| PDR Presentation                    | [pdr_presentation.pdf](https://simaocunha71.github.io/assets/docs/msc-thesis/pdr_presentation.pdf) |
+This repository contains all the work done for the paper "What do we need to know about the energy consumption of local LLMs for code?": the tool to evaluate LLMs and measure metrics such as CPU energy consumption and execution time during the outputs generation. This CLI application also evaluates the quality and functionality of the generated code by benchmarking LLMs such as HumanEval-X, MBPP+ and CyberSecEval.
 
 #### Pre-requisites
 
@@ -80,8 +73,7 @@ bash scripts/download_prompt_files.sh
 5. Download results, sample files and model generations:
 
 ```bash
-wget https://github.com/simaocunha71/msc-thesis/releases/download/v1.0.0/msc_results.zip
-bash scripts/msc_results.sh decompress
+bash scripts/results.sh decompress
 ```
 
 #### Repository structure

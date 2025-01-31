@@ -1,4 +1,4 @@
-### Python classes to execute LLMs and LLMs used in the dissertation
+### Python classes to execute LLMs and LLMs used in the paper
 
 In order to add support to another framework to execute LLMs (e.g. ollama, transformers, ...):
 
@@ -106,7 +106,7 @@ def execute_llm(llm_obj: Llama, task_id: int, prompt: str, llm_path: str,
         ...
 ```
 
-### LLMs used in the dissertation
+### LLMs used in the paper
 
 | Model Name                              | Download Link                                                                                                                 |
 |-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
@@ -115,5 +115,3 @@ def execute_llm(llm_obj: Llama, task_id: int, prompt: str, llm_path: str,
 | deepseek-coder-6.7b-instruct.Q5_K_M     | [https://huggingface.co/TheBloke/deepseek-coder-6.7B-instruct-GGUF/resolve/main/deepseek-coder-6.7b-instruct.Q5_K_M.gguf](https://huggingface.co/TheBloke/deepseek-coder-6.7B-instruct-GGUF/resolve/main/deepseek-coder-6.7b-instruct.Q5_K_M.gguf) |
 | Meta-Llama-3-8B-Instruct-Q6_K           | [https://huggingface.co/bartowski/Meta-Llama-3-8B-Instruct-GGUF/resolve/main/Meta-Llama-3-8B-Instruct-Q6_K.gguf](https://huggingface.co/bartowski/Meta-Llama-3-8B-Instruct-GGUF/resolve/main/Meta-Llama-3-8B-Instruct-Q6_K.gguf) |
 | starling-lm-7b-alpha.Q5_K_S             | [https://huggingface.co/TheBloke/Starling-LM-7B-alpha-GGUF/resolve/main/starling-lm-7b-alpha.Q5_K_S.gguf](https://huggingface.co/TheBloke/Starling-LM-7B-alpha-GGUF/resolve/main/starling-lm-7b-alpha.Q5_K_S.gguf) |
-| tess-10.7b-v2.0.Q6_K                    | [https://huggingface.co/DavidAU/Tess-10.7B-v2.0-Q6_K-GGUF/resolve/main/tess-10.7b-v2.0.Q6_K.gguf](https://huggingface.co/DavidAU/Tess-10.7B-v2.0-Q6_K-GGUF/resolve/main/tess-10.7b-v2.0.Q6_K.gguf) |
-| orca-2-13b.Q3_K_M                       | [https://huggingface.co/TheBloke/Orca-2-13B-GGUF/resolve/main/orca-2-13b.Q3_K_M.gguf](https://huggingface.co/TheBloke/Orca-2-13B-GGUF/resolve/main/orca-2-13b.Q3_K_M.gguf)                 |
