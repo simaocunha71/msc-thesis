@@ -1,5 +1,4 @@
-### Master's Dissertation in Informatics Engineering (2023/2024)
-#### Towards a Platform for Benchmarking Large Language Models
+### "What do we need to know about the energy consumption of local LLMs for code?"
 
 This repository contains all the work done for the paper "What do we need to know about the energy consumption of local LLMs for code?": the tool to evaluate LLMs and measure metrics such as CPU energy consumption and execution time during the outputs generation. This CLI application also evaluates the quality and functionality of the generated code by benchmarking LLMs such as HumanEval-X, MBPP+ and CyberSecEval.
 
