@@ -4,9 +4,9 @@ Currently, this application supports three LLM benchmarks: **HumanEval-X**, **MB
 
 | Benchmark Repository            | Link                                                                                  |
 |---------------------------------|---------------------------------------------------------------------------------------|
-| **CodeFuseEval** (HumanEval-X)  | [https://github.com/simaocunha71/codefuse-evaluation](https://github.com/simaocunha71/codefuse-evaluation) |
-| **EvalPlus** (MBPP+)            | [https://github.com/simaocunha71/evalplus](https://github.com/simaocunha71/evalplus)                 |
-| **PurpleLlama** (CyberSecEval)  | [https://github.com/simaocunha71/PurpleLlama](https://github.com/simaocunha71/PurpleLlama)           |
+| **CodeFuseEval** (HumanEval-X)  | [https://anonymous.4open.science/r/codefuse-evaluation-2D67/README.md](https://anonymous.4open.science/r/codefuse-evaluation-2D67/README.md) |
+| **EvalPlus** (MBPP+)            | [https://anonymous.4open.science/r/evalplus-2C5C/README.md](https://anonymous.4open.science/r/evalplus-2C5C/README.md)                 |
+| **PurpleLlama** (CyberSecEval)  | [https://anonymous.4open.science/r/PurpleLlama-2766/README.md](https://anonymous.4open.science/r/PurpleLlama-2766/README.md)           |
 
 #### Adding a New Benchmark
 
